@@ -8,6 +8,14 @@ library:
       description: A port which transfers power flow
       fields:
         - id: flow
+    - id: energy_limit_constraint
+      description: Port for limiting generation for all generators for current model of generator in this library
+      fields:
+        - id: e_limit
+    - id: co2_emission_constraint
+      description: Port for limiting generation for all or selected set of generators based on CO2 emission factors
+      fields:
+        - id: co2_e
 
   models:
     - id: bus
@@ -27,10 +35,9 @@ library:
       binding-constraints:
         - id: balance
           expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
-      objective-contributions: 
-      	- id: objective
-      	  expression: sum(spillage_cost * spillage + ens_cost * unsupplied_energy)
-
+      objective-contributions:
+        - id: objective
+          expression: sum(spillage_cost * spillage + ens_cost * unsupplied_energy)
     - id: load
       parameters:
         - id: load
@@ -103,6 +110,7 @@ library:
           scenario-dependent: true
           time-dependent: true
         - id: generation_cost
+        - id: co2_emission_factor  # t/MW
       variables:
         - id: generation
           lower-bound: p_min
@@ -111,13 +119,23 @@ library:
       ports:
         - id: balance_port
           type: flow
+        - id: energy_limitation
+          type: energy_limit_constraint
+        - id: co2_emmision
+          type: co2_emission_constraint
       port-field-definitions:
         - port: balance_port
           field: flow
           definition: generation
-      objective-contributions: 
-      	- id: objective
-      	  expression: sum(generation_cost * generation)
+        - port: energy_limitation
+          field: e_limit
+          definition: generation
+        - port: co2_emmision
+          field: co2_e
+          definition: generation * co2_emission_factor
+      objective-contributions:
+        - id: objective
+          expression: sum(generation_cost * generation)
 
     - id: short-term-storage
       parameters:
@@ -146,7 +164,7 @@ library:
           variable-type: continuous
         - id: p_withdrawal
           lower-bound: 0
-          upper-bound: withdrawal_nominal_capacity 
+          upper-bound: withdrawal_nominal_capacity
           variable-type: continuous
         - id: level
           lower-bound: 0
@@ -160,8 +178,107 @@ library:
           field: flow
           definition: p_withdrawal - p_injection
       constraints:
-        - id: initial_level
+        - id: initial_level_constraint
           expression: level[0] = initial_level * reservoir_capacity
         - id: Level equation
           expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal
 
+
+    - id: co2_emission_constraint
+      description: Model for hard energy limitation constraint that enforces must run generation
+      parameters:
+        - id: rhs  # Tons of CO2
+          time-dependant: true
+          scenario-dependent: true
+      ports:
+        - id: co2_emmision
+          type: co2_emission_constraint
+      binding-constraints:
+        - id: co2_constraint
+          expression: sum_connections(co2_emmision.co2_e) <= rhs
+
+
+    - id: energy_limitation_hard_constraint_set
+      description: Model for hard energy limitation constraint that enforces must run generation
+      parameters:
+        - id: rhs
+          time-dependant: true
+          scenario-dependent: true
+      ports:
+        - id: energy_limitation
+          type: energy_limit_constraint
+      binding-constraints:
+        - id: set_generation_constraint
+          expression: sum_connections(energy_limitation.e_limit) = rhs
+
+    - id: energy_limitation_hard_constraint_max
+      description: Model for hard energy limitation constraint that enforces maximum generation constraint
+      parameters:
+        - id: rhs
+          time-dependant: true
+          scenario-dependent: true
+      ports:
+        - id: energy_limitation
+          type: energy_limit_constraint
+      binding-constraints:
+        - id: max_generation_hard
+          expression: sum_connections(energy_limitation.e_limit) <= rhs
+
+    - id: energy_limitation_hard_constraint_min
+      description: Model for hard energy limitation constraint that enforces minimum generation constraint
+      parameters:
+        - id: rhs
+          time-dependant: true
+          scenario-dependent: true
+      ports:
+        - id: energy_limitation
+          type: energy_limit_constraint
+      binding-constraints:
+        - id: min_generation_hard
+          expression: sum_connections(energy_limitation.e_limit) >= rhs
+
+    - id: energy_limitation_soft_constraint_max
+      description: Model for soft energy limitation constraint that enforces maximum generation constraint
+      parameters:
+        - id: constraint_cost
+          time-dependant: false
+          scenario-dependent: false
+        - id: rhs
+          time-dependant: true
+          scenario-dependent: true
+      variables:
+        - id: slack
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: energy_limitation
+          type: energy_limit_constraint
+      binding-constraints:
+        - id: max_generation_soft
+          expression: sum_connections(energy_limitation.e_limit) <= rhs + slack
+      objective-contributions:
+        - id: objective
+          expression: sum(slack * constraint_cost)
+
+    - id: energy_limitation_soft_constraint_min
+      description: Model for soft energy limitation constraint that enforces minimum generation constraint
+      parameters:
+        - id: constraint_cost
+          time-dependant: false
+          scenario-dependent: false
+        - id: rhs
+          time-dependant: true
+          scenario-dependent: true
+      variables:
+        - id: slack
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: energy_limitation
+          type: energy_limit_constraint
+      binding-constraints:
+        - id: min_generation_soft
+          expression: sum_connections(energy_limitation.e_limit) >= rhs + slack
+      objective-contributions:
+        - id: objective
+          expression: sum(slack * constraint_cost)
