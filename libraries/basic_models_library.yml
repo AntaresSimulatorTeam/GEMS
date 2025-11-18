@@ -1,6 +1,6 @@
 library:
   id: basic_models_library
-  description: Ready for use basic models for adequacy assesment of the simple power system
+  description: Ready for use basic models to build simple optimal dispatch problems
 
 
   port-types:
