@@ -185,7 +185,7 @@ library:
 
 
     - id: emission_constraint
-      description: Model for hard energy limitation constraint that enforces must run generation
+      description: Model for enforcing system-wide limits on pollutant emissions.
       parameters:
         - id: emission_limit  # Tons of CO2
           time-dependant: true
