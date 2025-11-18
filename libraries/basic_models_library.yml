@@ -70,7 +70,7 @@ library:
           variable-type: continuous
         - id: flow
           lower-bound: -capacity_indirect
-          upper-bound: capacity_indirect
+          upper-bound: capacity_direct
           variable-type: continuous
       ports:
         - id: out_port
