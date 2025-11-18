@@ -12,10 +12,10 @@ library:
       description: Port for limiting generation for all generators for current model of generator in this library
       fields:
         - id: cumulative_energy
-    - id: co2_emission_constraint
+    - id: emission
       description: Port for limiting generation for all or selected set of generators based on CO2 emission factors
       fields:
-        - id: co2_e
+        - id: co2
 
   models:
     - id: bus
@@ -121,8 +121,8 @@ library:
           type: flow
         - id: energy_port
           type: energy
-        - id: co2_emmision
-          type: co2_emission_constraint
+        - id: emission_port
+          type: emission
       port-field-definitions:
         - port: balance_port
           field: flow
@@ -130,8 +130,8 @@ library:
         - port: energy_port
           field: cumulative_energy
           definition: generation
-        - port: co2_emmision
-          field: co2_e
+        - port: emission_port
+          field: co2
           definition: generation * co2_emission_factor
       objective-contributions:
         - id: objective
@@ -184,18 +184,18 @@ library:
           expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal
 
 
-    - id: co2_emission_constraint
+    - id: emission_constraint
       description: Model for hard energy limitation constraint that enforces must run generation
       parameters:
-        - id: rhs  # Tons of CO2
+        - id: emission_limit  # Tons of CO2
           time-dependant: true
           scenario-dependent: true
       ports:
-        - id: co2_emmision
-          type: co2_emission_constraint
+        - id: emission_port
+          type: emission
       binding-constraints:
         - id: co2_constraint
-          expression: sum_connections(co2_emmision.co2_e) <= rhs
+          expression: sum_connections(emission_port.co2) <= emission_limit
 
 
     - id: energy_limitation_hard_constraint_set
