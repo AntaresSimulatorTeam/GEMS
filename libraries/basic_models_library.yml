@@ -137,7 +137,7 @@ library:
         - id: objective
           expression: sum(generation_cost * generation)
 
-    - id: short-term-storage
+    - id: storage
       parameters:
         - id: reservoir_capacity
           time-dependent: false
