@@ -8,10 +8,10 @@ library:
       description: A port which transfers power flow
       fields:
         - id: flow
-    - id: energy_limit_constraint
+    - id: energy
       description: Port for limiting generation for all generators for current model of generator in this library
       fields:
-        - id: e_limit
+        - id: cumulative_energy
     - id: co2_emission_constraint
       description: Port for limiting generation for all or selected set of generators based on CO2 emission factors
       fields:
@@ -119,16 +119,16 @@ library:
       ports:
         - id: balance_port
           type: flow
-        - id: energy_limitation
-          type: energy_limit_constraint
+        - id: energy_port
+          type: energy
         - id: co2_emmision
           type: co2_emission_constraint
       port-field-definitions:
         - port: balance_port
           field: flow
           definition: generation
-        - port: energy_limitation
-          field: e_limit
+        - port: energy_port
+          field: cumulative_energy
           definition: generation
         - port: co2_emmision
           field: co2_e
@@ -205,11 +205,11 @@ library:
           time-dependant: true
           scenario-dependent: true
       ports:
-        - id: energy_limitation
-          type: energy_limit_constraint
+        - id: energy_port
+          type: energy
       binding-constraints:
         - id: set_generation_constraint
-          expression: sum_connections(energy_limitation.e_limit) = rhs
+          expression: sum_connections(energy_port.cumulative_energy) = rhs
 
     - id: energy_limitation_hard_constraint_max
       description: Model for hard energy limitation constraint that enforces maximum generation constraint
@@ -218,11 +218,11 @@ library:
           time-dependant: true
           scenario-dependent: true
       ports:
-        - id: energy_limitation
-          type: energy_limit_constraint
+        - id: energy_port
+          type: energy
       binding-constraints:
         - id: max_generation_hard
-          expression: sum_connections(energy_limitation.e_limit) <= rhs
+          expression: sum_connections(energy_port.cumulative_energy) <= rhs
 
     - id: energy_limitation_hard_constraint_min
       description: Model for hard energy limitation constraint that enforces minimum generation constraint
@@ -231,11 +231,11 @@ library:
           time-dependant: true
           scenario-dependent: true
       ports:
-        - id: energy_limitation
-          type: energy_limit_constraint
+        - id: energy_port
+          type: energy
       binding-constraints:
         - id: min_generation_hard
-          expression: sum_connections(energy_limitation.e_limit) >= rhs
+          expression: sum_connections(energy_port.cumulative_energy) >= rhs
 
     - id: energy_limitation_soft_constraint_max
       description: Model for soft energy limitation constraint that enforces maximum generation constraint
@@ -251,11 +251,11 @@ library:
           lower-bound: 0
           variable-type: continuous
       ports:
-        - id: energy_limitation
-          type: energy_limit_constraint
+        - id: energy_port
+          type: energy
       binding-constraints:
         - id: max_generation_soft
-          expression: sum_connections(energy_limitation.e_limit) <= rhs + slack
+          expression: sum_connections(energy_port.cumulative_energy) <= rhs + slack
       objective-contributions:
         - id: objective
           expression: sum(slack * constraint_cost)
@@ -274,11 +274,11 @@ library:
           lower-bound: 0
           variable-type: continuous
       ports:
-        - id: energy_limitation
-          type: energy_limit_constraint
+        - id: energy_port
+          type: energy
       binding-constraints:
         - id: min_generation_soft
-          expression: sum_connections(energy_limitation.e_limit) >= rhs + slack
+          expression: sum_connections(energy_port.cumulative_energy) >= rhs + slack
       objective-contributions:
         - id: objective
           expression: sum(slack * constraint_cost)
