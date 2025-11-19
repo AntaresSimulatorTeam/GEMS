@@ -21,7 +21,7 @@ library:
     - id: bus
       parameters:
         - id: spillage_cost
-        - id: unsupllied_energy_cost
+        - id: unsupplied_energy_cost
       variables:
         - id: spillage
           lower-bound: 0
@@ -37,7 +37,7 @@ library:
           expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
       objective-contributions:
         - id: objective
-          expression: sum(spillage_cost * spillage + unsupllied_energy_cost * unsupplied_energy)
+          expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
     - id: load
       parameters:
         - id: load
