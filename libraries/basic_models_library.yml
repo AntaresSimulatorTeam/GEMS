@@ -188,8 +188,8 @@ library:
       description: Model for enforcing system-wide limits on pollutant emissions.
       parameters:
         - id: emission_limit  # Tons of CO2
-          time-dependant: true
-          scenario-dependent: true
+          time-dependant: false
+          scenario-dependent: false
       ports:
         - id: emission_port
           type: emission
@@ -201,8 +201,8 @@ library:
       description: Model for hard energy limitation constraint that enforces maximum generation constraint
       parameters:
         - id: energy_limit
-          time-dependant: true
-          scenario-dependent: true
+          time-dependant: false
+          scenario-dependent: false
       ports:
         - id: energy_port
           type: energy
@@ -217,8 +217,8 @@ library:
           time-dependant: false
           scenario-dependent: false
         - id: energy_limit
-          time-dependant: true
-          scenario-dependent: true
+          time-dependant: false
+          scenario-dependent: false
       variables:
         - id: slack
           lower-bound: 0
