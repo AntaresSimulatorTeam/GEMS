@@ -216,7 +216,7 @@ library:
         - id: slack_penalty
           time-dependant: false
           scenario-dependent: false
-        - id: rhs
+        - id: energy_limit
           time-dependant: true
           scenario-dependent: true
       variables:
@@ -228,7 +228,7 @@ library:
           type: energy
       binding-constraints:
         - id: max_generation_soft
-          expression: sum_connections(energy_port.cumulative_energy) <= rhs + slack
+          expression: sum_connections(energy_port.cumulative_energy) <= energy_limit + slack
       objective-contributions:
         - id: objective
           expression: sum(slack * slack_penalty)
