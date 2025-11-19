@@ -129,10 +129,10 @@ library:
           definition: generation
         - port: energy_port
           field: cumulative_energy
-          definition: generation
+          definition: sum(generation)
         - port: emission_port
           field: co2
-          definition: generation * co2_emission_factor
+          definition: sum(generation * co2_emission_factor)
       objective-contributions:
         - id: objective
           expression: sum(generation_cost * generation)
