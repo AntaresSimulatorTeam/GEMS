@@ -5,15 +5,15 @@ library:
 
   port-types:
     - id: flow
-      description: A port which transfers power flow
+      description: A port that transfers a power flow.
       fields:
         - id: flow
     - id: energy
-      description: Port for limiting generation for all generators for current model of generator in this library
+      description: A port that transfers an amount of energy.
       fields:
         - id: cumulative_energy
     - id: emission
-      description: Port for limiting generation for all or selected set of generators based on CO2 emission factors
+      description: A port that transfers quantities of gas emissions.
       fields:
         - id: co2
 
@@ -110,7 +110,11 @@ library:
           scenario-dependent: true
           time-dependent: true
         - id: generation_cost
-        - id: co2_emission_factor  # t/MW
+          scenario-dependent: false
+          time-dependent: false
+        - id: co2_emission_factor
+          scenario-dependent: false
+          time-dependent: false
       variables:
         - id: generation
           lower-bound: p_min
