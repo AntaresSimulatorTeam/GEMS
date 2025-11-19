@@ -197,20 +197,6 @@ library:
         - id: co2_constraint
           expression: sum_connections(emission_port.co2) <= emission_limit
 
-
-    - id: energy_limitation_hard_constraint_set
-      description: Model for hard energy limitation constraint that enforces must run generation
-      parameters:
-        - id: rhs
-          time-dependant: true
-          scenario-dependent: true
-      ports:
-        - id: energy_port
-          type: energy
-      binding-constraints:
-        - id: set_generation_constraint
-          expression: sum_connections(energy_port.cumulative_energy) = rhs
-
     - id: energy_limitation_hard_constraint_max
       description: Model for hard energy limitation constraint that enforces maximum generation constraint
       parameters:
@@ -223,19 +209,6 @@ library:
       binding-constraints:
         - id: max_generation_hard
           expression: sum_connections(energy_port.cumulative_energy) <= rhs
-
-    - id: energy_limitation_hard_constraint_min
-      description: Model for hard energy limitation constraint that enforces minimum generation constraint
-      parameters:
-        - id: rhs
-          time-dependant: true
-          scenario-dependent: true
-      ports:
-        - id: energy_port
-          type: energy
-      binding-constraints:
-        - id: min_generation_hard
-          expression: sum_connections(energy_port.cumulative_energy) >= rhs
 
     - id: energy_limitation_soft_constraint_max
       description: Model for soft energy limitation constraint that enforces maximum generation constraint
@@ -256,29 +229,6 @@ library:
       binding-constraints:
         - id: max_generation_soft
           expression: sum_connections(energy_port.cumulative_energy) <= rhs + slack
-      objective-contributions:
-        - id: objective
-          expression: sum(slack * constraint_cost)
-
-    - id: energy_limitation_soft_constraint_min
-      description: Model for soft energy limitation constraint that enforces minimum generation constraint
-      parameters:
-        - id: constraint_cost
-          time-dependant: false
-          scenario-dependent: false
-        - id: rhs
-          time-dependant: true
-          scenario-dependent: true
-      variables:
-        - id: slack
-          lower-bound: 0
-          variable-type: continuous
-      ports:
-        - id: energy_port
-          type: energy
-      binding-constraints:
-        - id: min_generation_soft
-          expression: sum_connections(energy_port.cumulative_energy) >= rhs + slack
       objective-contributions:
         - id: objective
           expression: sum(slack * constraint_cost)
