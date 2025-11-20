@@ -64,7 +64,7 @@ By configuring the entire optimization problem using these **external YAML files
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
-    <a href="../../index.md">Previous Section</a>
+    <a href="1_context_GEMS.md">Previous Section</a>
   </div>
     <div style="text-align: center;">
     <a href="../../index.md">Back to Home</a>

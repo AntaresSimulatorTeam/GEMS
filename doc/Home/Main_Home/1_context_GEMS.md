@@ -44,13 +44,13 @@ As energy systems become more complex and dynamic, GEMS was developed to address
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
-    <a href="1_outlook_of_GEMS_and_Interpreters_behavior.md">Previous Section</a>
+    <a href="../../index.md">Previous Section</a>
   </div>
     <div style="text-align: center;">
     <a href="../../index.md">Back to Home</a>
   </div>
   <div style="text-align: right;">
-    <a href="3_release_notes.md">Next Section</a>
+    <a href="2_outlook_of_GEMS_and_Interpreters_behavior.md">Next Section</a>
   </div>
 </div>
 
