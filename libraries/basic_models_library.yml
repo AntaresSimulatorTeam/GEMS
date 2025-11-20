@@ -1,0 +1,238 @@
+library:
+  id: basic_models_library
+  description: Ready for use basic models to build simple optimal dispatch problems
+
+
+  port-types:
+    - id: flow
+      description: A port that transfers a power flow.
+      fields:
+        - id: flow
+    - id: energy
+      description: A port that transfers an amount of energy.
+      fields:
+        - id: cumulative_energy
+    - id: emission
+      description: A port that transfers quantities of gas emissions.
+      fields:
+        - id: co2
+
+  models:
+    - id: bus
+      parameters:
+        - id: spillage_cost
+        - id: unsupplied_energy_cost
+      variables:
+        - id: spillage
+          lower-bound: 0
+          variable-type: continuous
+        - id: unsupplied_energy
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+      objective-contributions:
+        - id: objective
+          expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+    - id: load
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: -load
+
+    - id: link
+      parameters:
+        - id: capacity_direct
+          time-dependent: true
+          scenario-dependent: true
+        - id: capacity_indirect
+          time-dependent: true
+          scenario-dependent: true
+      variables:
+        - id: flow_direct
+          lower-bound: 0
+          upper-bound: capacity_direct
+          variable-type: continuous
+        - id: flow_indirect
+          lower-bound: 0
+          upper-bound: capacity_indirect
+          variable-type: continuous
+        - id: flow
+          lower-bound: -capacity_indirect
+          upper-bound: capacity_direct
+          variable-type: continuous
+      ports:
+        - id: out_port
+          type: flow
+        - id: in_port
+          type: flow
+      port-field-definitions:
+        - port: out_port
+          field: flow
+          definition: flow
+        - port: in_port
+          field: flow
+          definition: -flow
+      constraints:
+        - id: flow_direct_indirect
+          expression: flow = flow_direct - flow_indirect
+
+    - id: renewable
+      parameters:
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+
+    - id: generator
+      parameters:
+        - id: p_min
+          scenario-dependent: true
+          time-dependent: true
+        - id: p_max
+          scenario-dependent: true
+          time-dependent: true
+        - id: generation_cost
+          scenario-dependent: false
+          time-dependent: false
+        - id: co2_emission_factor
+          scenario-dependent: false
+          time-dependent: false
+      variables:
+        - id: generation
+          lower-bound: p_min
+          upper-bound: p_max
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+        - id: energy_port
+          type: energy
+        - id: emission_port
+          type: emission
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+        - port: energy_port
+          field: cumulative_energy
+          definition: sum(generation)
+        - port: emission_port
+          field: co2
+          definition: sum(generation * co2_emission_factor)
+      objective-contributions:
+        - id: objective
+          expression: sum(generation_cost * generation)
+
+    - id: storage
+      parameters:
+        - id: reservoir_capacity
+          time-dependent: false
+          scenario-dependent: false
+        - id: injection_nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+        - id: withdrawal_nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+        - id: efficiency_injection
+          time-dependent: false
+          scenario-dependent: false
+        - id: efficiency_withdrawal
+          time-dependent: false
+          scenario-dependent: false
+        - id: initial_level
+          time-dependent: false
+          scenario-dependent: true
+      variables:
+        - id: p_injection
+          lower-bound: 0
+          upper-bound: injection_nominal_capacity
+          variable-type: continuous
+        - id: p_withdrawal
+          lower-bound: 0
+          upper-bound: withdrawal_nominal_capacity
+          variable-type: continuous
+        - id: level
+          lower-bound: 0
+          upper-bound: reservoir_capacity
+          variable-type: continuous
+      ports:
+        - id: injection_port
+          type: flow
+      port-field-definitions:
+        - port: injection_port
+          field: flow
+          definition: p_withdrawal - p_injection
+      constraints:
+        - id: initial_level_constraint
+          expression: level[0] = initial_level * reservoir_capacity
+        - id: Level equation
+          expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal
+
+
+    - id: emission_constraint
+      description: Model for enforcing system-wide limits on pollutant emissions.
+      parameters:
+        - id: emission_limit  # Tons of CO2
+          time-dependant: false
+          scenario-dependent: false
+      ports:
+        - id: emission_port
+          type: emission
+      binding-constraints:
+        - id: co2_constraint
+          expression: sum_connections(emission_port.co2) <= emission_limit
+
+    - id: energy_limitation_hard_constraint_max
+      description: Model for hard energy limitation constraint that enforces maximum generation constraint
+      parameters:
+        - id: energy_limit
+          time-dependant: false
+          scenario-dependent: false
+      ports:
+        - id: energy_port
+          type: energy
+      binding-constraints:
+        - id: max_generation_hard
+          expression: sum_connections(energy_port.cumulative_energy) <= energy_limit
+
+    - id: energy_limitation_soft_constraint_max
+      description: Model for soft energy limitation constraint that enforces maximum generation constraint
+      parameters:
+        - id: slack_penalty
+          time-dependant: false
+          scenario-dependent: false
+        - id: energy_limit
+          time-dependant: false
+          scenario-dependent: false
+      variables:
+        - id: slack
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: energy_port
+          type: energy
+      binding-constraints:
+        - id: max_generation_soft
+          expression: sum_connections(energy_port.cumulative_energy) <= energy_limit + slack
+      objective-contributions:
+        - id: objective
+          expression: sum(slack * slack_penalty)
