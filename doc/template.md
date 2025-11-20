@@ -77,7 +77,7 @@ $$
     <a href="previous.md">Previous Section</a>
   </div>
     <div style="text-align: center;">
-    <a href="home.md">Back to Home</a>
+    <a href="../../index.md">Back to Home</a>
   </div>
   <div style="text-align: right;">
     <a href="next.md">Next Section</a>
