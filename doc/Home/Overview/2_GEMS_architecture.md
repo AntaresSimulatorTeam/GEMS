@@ -1,7 +1,7 @@
 ---
 title: "GEMS Architecture outlook"
 author: "Guillaume MAISTRE - RTEi"
-date: "19/11/2025"
+date: "20/11/2025"
 logo: "../../assets/gemsV2.png"
 ---
 
