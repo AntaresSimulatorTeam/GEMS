@@ -16,9 +16,11 @@ logo: "../../assets/gemsV2.png"
 
 # GEMS architecture
 
-GEMS uses input files for the definition of the optimisation problem.
+The following scheme shows the interaction of the different core concepts presented in the previous section :
 
-SCHEME FROM PPT
+<p align="center">
+    <img src="../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
+</p>
 
 
 
