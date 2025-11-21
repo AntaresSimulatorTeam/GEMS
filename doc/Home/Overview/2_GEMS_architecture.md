@@ -34,7 +34,7 @@ SCHEME FROM PPT
         <a href="../../index.md">Back to Home</a>
     </div>
   <div style="text-align: right;">
-    <a href="XXX">Next Section</a>
+    <a href="3_features.md">Next Section</a>
   </div>
 </div>
 
