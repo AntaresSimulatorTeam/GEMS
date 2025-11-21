@@ -16,9 +16,28 @@ logo: "../../assets/gemsV2.png"
 
 # GEMS Features
 
-GEMS is a framework made for modelling energy system at a high spatial, temporal scale. It allows 
+## Main Functionalities
 
-GET DATA FROM ANT SIMULATOR DOCS
+- **Mixed Integer Linear Programming (MILP)** : GEMS is designed to handle mathematical problems requiring Mixed Integer Linear Programming.
+- **Time × Scenario Optimisation** : Problems over a time × scenario grid can be solved.
+
+## Grid Modelling
+
+- **Multi-Energy Modelling** : Multi-energy systems can be modeled by GEMS. Even if ANTARES mainly focused on electric grid, GEMS can handle a multi-energy system.
+- **Antares Legacy Integration (Hybrid Mode)** : A study can be composed of an "hybrid" simulation made 2 simulation parts one from Legacy AND the other from GEMS.
+- **Model Taxonomy** : The framework uses a `taxonomy.yml` file to define model categories and ensure mandatory fields (parameters, variables, ports, extra-outputs) for each category.
+
+## Architecture 
+
+- **Versatility** : Users can easily integrate new models of components without rewriting core code by editing their own library and system YAML files.
+- **Input Separation** Input data is separated into self-contained external files:
+  - `library file`
+  - `system file`
+  - `dataseries` 
+- **Interpreters** Different interpreters can be used for solving problems including the Modeler (GEMS interpreter in Antares Simulator) and GemsPy (Python interpreter [available on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)).
+- **Code Stability** GEMS was developped to ensure code stability and maintainability.
+- **Interoperability** GEMS aims to emphasize interoperabiloty and being able to run studies from different format
+
 ---
 
 **Navigation**
