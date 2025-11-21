@@ -14,14 +14,15 @@ logo: "../../assets/gemsV2.png"
     </div>
 </div>
 
-# YAML files
-GEMS uses mainly YAML files for defining optimisation problem :
+# Inputs
+## YAML files
+GEMS uses mainly YAML files for defining optimization problem :
 
 - **Library.yml** is a file listing all the **models** representing general unspecified elements of a study. These models are used as “template” for creating their instances, called **components**.
 
 - **System.yml** is a file listing all the **components**, the instances of **models** defined by the system yaml file, representing all the specified elements of the simulated grid. Besides, this file contains all the connections between the components, defining how they interact. 
 
-## Models definition (from library.yml)
+### Models definition (from library.yml)
 
 As seen before, library defines the **models**. They are abstract mathematical configurations representing the general features of a category of grid element, then, users can specify any instance of this model for creating each simulated grid’s element. 
 
@@ -37,7 +38,7 @@ They are defined by *variables*, *parameters*, *ports*, *constraints* :
 
 - **Binding Constraints [^1]** are constraint that links variables or ports across different models or components
 
-## Components specification (from system.yml)
+### Components specification (from system.yml)
 
 As mentionned before, **components** are instantiations of different **models**. In the system file, their parameters and connections are defined.
 
@@ -47,11 +48,11 @@ As mentionned before, **components** are instantiations of different **models**.
 - **Parameter value [^1]** is set inside the system.yml file but it was previously declared inside the library.yml file
 - **Connections** are the links between two components' ports 
 
-# Dataseries
+## Dataseries
 
 **Data series** are needed by the system description to define component parameter values are set in dedicated input files. Currently, the framework supports defining data-series using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
 
-## Scenario / Time Dependency
+### Scenario / Time Dependency
 
 Inside the YAML files, **Parameters, Variables, Constraints** can be dependent on the scenario or/and over the time.
 - A **scenario dependency** means for instance that the *parameter* `fixed_cost` for strating up a plant can depends on the scenario we chose.
@@ -67,7 +68,7 @@ Inside the YAML files, **Parameters, Variables, Constraints** can be dependent o
     23.652 
     253```
 
-# Illustration with an example
+## Illustration with an example
 
 For getting familiar with these concepts, you can see below a corresponding table between theorical concepts and example from a thermal plant usecase :
 
@@ -87,6 +88,18 @@ model (not a GU model) - Energy balance inside an area|
 |Time dependency|Max_active_power_setpoint is a time dependent parameter|
 |Scenario dependency|fix_startup_cost can depend on the scenario chosen by the users|
 
+# Outputs
+
+In the outputs of GEMS, we have the results of the modelisation, in a LP format (**Optimization Model**) and for hybrid and pure modeler studies in CSV format (**simulation table**), there are also **extra-outputs**.
+
+- **Optimization Model**
+    The optimization model solved by Antares modeler is written in the human-readable LP format, under output/problem.lp. It is only meant to be used for debugging.
+
+- **Simulation Table**
+    Antares Simulator (hybrid and modeler modes) produces detailed optimization results for the modeler's components, in the "simulation table", in CSV format
+
+- **Extra Outputs**
+    Extra-Outputs computed after optimization (using optimal variable values). These appear in the output files alongside variable and port values.
 
 
 [^1]: Parameters, Variables, Constraints can be either scenario dependent or time dependent
