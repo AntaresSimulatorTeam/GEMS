@@ -1,11 +1,17 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
   <diagram name="Page-1" id="lOXxaC2xbihVH8rXdj5s">
-    <mxGraphModel dx="1426" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="705" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="nNqrTSG8sfqvpAVsljmh-1" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="190" y="190" width="80" height="80" as="geometry" />
+        <mxCell id="nNqrTSG8sfqvpAVsljmh-2" value="" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="1">
+          <mxGeometry x="180" y="130" width="120" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="nNqrTSG8sfqvpAVsljmh-3" value="" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="1">
+          <mxGeometry x="170" y="140" width="120" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="nNqrTSG8sfqvpAVsljmh-4" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Library file&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;ID :&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;my_DC_generator&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Parameters :&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Power_min&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Power_set_point (time dependent)&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Fixed_cost (scenario dependent)&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Variables :&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- is_on (boolean)&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- active_power (continuous)&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Constraints :&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;div&gt;- Active_Power &amp;lt; is_On* max_Power_set_point​&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- Active_Power &amp;gt; is_On*min_Power_set_point&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Ports :&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;= Active Power&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="1">
+          <mxGeometry y="150" width="280" height="460" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
