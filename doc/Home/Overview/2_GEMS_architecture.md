@@ -18,7 +18,7 @@ logo: "../../assets/gemsV2.png"
 
 GEMS uses input files for the definition of the optimisation problem.
 
-SCHEME 
+SCHEME FROM PPT
 
 
 
