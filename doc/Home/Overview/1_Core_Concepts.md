@@ -35,7 +35,7 @@ SCHEME FROM PPT
         <a href="../../index.md">Back to Home</a>
     </div>
   <div style="text-align: right;">
-    <a href="XXX">Next Section</a>
+    <a href="2_GEMS_architecture.md">Next Section</a>
   </div>
 </div>
 
