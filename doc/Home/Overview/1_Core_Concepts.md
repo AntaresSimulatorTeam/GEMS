@@ -101,6 +101,8 @@ In the outputs of GEMS, we have the results of the modelisation, in a LP format 
 - **Extra Outputs**
     Extra-Outputs computed after optimization (using optimal variable values). These appear in the output files alongside variable and port values.
 
+- **Business Views**
+    Output files with metrics specifically designed for users purposes. It made from the simulation table.
 
 [^1]: Parameters, Variables, Constraints can be either scenario dependent or time dependent
 ---
