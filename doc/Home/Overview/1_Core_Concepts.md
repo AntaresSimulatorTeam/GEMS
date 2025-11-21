@@ -35,6 +35,8 @@ They are defined by *variables*, *parameters*, *ports*, *constraints* :
 
 - **Constraints [^1]** are mathematical conditions that restricts the values of variables 
 
+- **Binding Constraints [^1]** are constraint that links variables or ports across different models or components
+
 ## Components specification (from system.yml)
 
 As mentionned before, **components** are instantiations of different **models**. In the system file, their parameters and connections are defined.
@@ -47,17 +49,44 @@ As mentionned before, **components** are instantiations of different **models**.
 
 # Dataseries
 
-The **data series** are set of data throughout the all the optimisation problem time specific for each input.
+**Data series** are needed by the system description to define component parameter values are set in dedicated input files. Currently, the framework supports defining data-series using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
 
 ## Scenario / Time Dependency
 
 Inside the YAML files, **Parameters, Variables, Constraints** can be dependent on the scenario or/and over the time.
 - A **scenario dependency** means for instance that the *parameter* `fixed_cost` for strating up a plant can depends on the scenario we chose.
+
+    A simulation with 4 scenarios will get :
+    `54 67.5 23.652 253`
 - A **time dependent** *parameter* can be for instance `max_active_power_set_point` dependending on plant maintenancy. A time dependency needs a dataserie for getting data
+
+    A simulation with 4 timestamps will get :
+    ```
+    54 
+    67.5 
+    23.652 
+    253```
 
 # Illustration with an example
 
-ADD EXAMPLE FROM GLOSSARY WITH THERMAL PLANT
+For getting familiar with these concepts, you can see below a corresponding table between theorical concepts and example from a thermal plant usecase :
+
+|concept|example|
+|-|-|
+|Library|List of global concepts such as a thermal plant|
+|Model | A thermal plant model|
+|Component|A specific theraml, like a 300MW CCGT Thermal plant|
+|Variable|Actual dispatched power|
+|Parameter|Maximum Power Capacity (specfic for each thermal plant, to be entered by the users)|
+|Field|The field Injection flow is exchanged through injection_port|
+|Port|The injection_port let the injection_flow be transfered|
+|Connection|A link between a generation unit and a node representing the injection from the plant to the grid’s node|
+|Constraint|Value interval accepted for power generation|
+|Binding Constraints|Specific example with an area 
+model (not a GU model) - Energy balance inside an area|
+|Time dependency|Max_active_power_setpoint is a time dependent parameter|
+|Scenario dependency|fix_startup_cost can depend on the scenario chosen by the users|
+
 
 
 [^1]: Parameters, Variables, Constraints can be either scenario dependent or time dependent
