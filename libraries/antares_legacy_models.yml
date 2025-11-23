@@ -19,6 +19,8 @@ library:
       description: A port that transfers power flow.
       fields:
         - id: flow
+      area-connection:
+        - injection-field: flow
     - id: contribution_in_bc
       description: A port that transfers an amount of energy.
       fields:
