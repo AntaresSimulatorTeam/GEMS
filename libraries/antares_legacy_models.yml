@@ -19,6 +19,16 @@ library:
       description: A port that transfers power flow.
       fields:
         - id: flow
+    - id: contribution_in_bc
+      description: A port that transfers an amount of energy.
+      fields:
+        - id: energy_amount
+    - id: weighted_contribution_in_bc
+      description: A port that transfers expression to bc.
+      fields:
+        - id: weighted_term
+
+
 
   models:
     - id: area
@@ -81,6 +91,8 @@ library:
           type: flow
         - id: in_port
           type: flow
+        - id: bc_port
+          type: contribution_in_bc
       port-field-definitions:
         - port: out_port
           field: flow
@@ -88,6 +100,9 @@ library:
         - port: in_port
           field: flow
           definition: -flow
+        - port: bc_port
+          field: energy_amount
+          definition: flow
       constraints:
         - id: flow_direct_indirect
           expression: flow = flow_direct - flow_indirect
@@ -158,9 +173,14 @@ library:
       ports:
         - id: balance_port
           type: flow
+        - id: bc_port
+          type: contribution_in_bc
       port-field-definitions:
         - port: balance_port
           field: flow
+          definition: generation
+        - port: bc_port
+          field: energy_amount
           definition: generation
       constraints:
         - id: max_generation
@@ -241,3 +261,50 @@ library:
           expression: level[0] = initial_level * reservoir_capacity
         - id: Level equation
           expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal + inflows
+
+
+##  BC's with different operator should have it's own model
+##  BC's with different time resolution, hourly, daily or weekly should have it's own model
+##  Expression for daily sum(t*24 .. (t+1)*24, sum_connections(expression_port.weights_x_flow_exp)) <= sum(t*24 .. (t+1)*24, energy_limit)
+    - id: antares_bc_less_hourly
+      description: Model for hard energy limitation constraint that enforces maximum generation constraint
+      parameters:
+        - id: energy_limit
+          time-dependant: false
+          scenario-dependent: false
+      ports:
+        - id: expression_port
+          type: weighted_contribution_in_bc
+      binding-constraints:
+        - id: max_generation_hard
+          expression: sum_connections(expression_port.weighted_term) <= energy_limit
+
+##  Note that in Antares each generator can have different values of weights for each BC instance in which it correspond.
+##  If single generator/link is part of two antares_bc instances, than it should be two instances of antares_bc_config models
+##  Each instance of antares_bc_config will correspond with each BC
+
+    - id: antares_bc_config
+      description: Model for storing weights for each antares legacy BC implementation.
+      parameters:
+        - id: weights
+          time-dependant: false
+          scenario-dependent: false
+        - id: time-step
+          time-dependant: false
+          scenario-dependent: false
+      variables:
+        - id: weights_x_flow
+          lower-bound: -99999999 # is there syntax for infinity ?
+          upper-bound: 99999999
+          variable-type: continuous
+      ports:
+        - id: bc_port  ## Receive thermal cluster generation or link flow
+          type: contribution_in_bc
+        - id: expression_port  ## Transmitts thermal cluster generation x weights with time step to instance of model antares_bc
+          type: weighted_contribution_in_bc
+      port-field-definitions:
+        - port: expression_port
+          field: weighted_term
+          definition: weights_x_flow
+      binding-constraints:
+        -id: weights_x_flow = energy_port.cumulative_energy[t + time-step] * weights
