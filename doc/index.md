@@ -15,15 +15,33 @@ Documentation: [[DRAFT] Link to ReadTheDocs](https://gemspy.readthedocs.io/en/la
 
 # Documentation Highlights 
 
-This documentation includes:
-- [🏠 Home](Home/Main_Home/1_context_GEMS.md)
-- [📖 Overview](Overview/Overview/1_Core_Concepts.md)
-- [🚀 Getting Started](Getting_Started/1_Installation.md)
-- [🧑‍🏫 User Guide](User_Guide/1_Syntax.md)
-- [↕️ Interoperability](Interoperability/0_home.md)
-- [🏁 Quick Start](Getting_Started/Quickstart/0_home.md)
-- [✏️ Examples with open datasets](Examples/1_first_problem.md)
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
+  <a href="Home/Main_Home/1_context_GEMS.md" style="color:#FFFFFF; text-decoration:none;">🏠 Home</a>
+</button>
 
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
+  <a href="Overview/Overview/1_Core_Concepts.md" style="color:#FFFFFF; text-decoration:none;">📖 Overview</a>
+</button>
+
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
+  <a href="Getting_Started/1_Installation.md" style="color:#FFFFFF; text-decoration:none;">🚀 Getting Started</a>
+</button>
+
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
+  <a href="User_Guide/1_Syntax.md" style="color:#FFFFFF; text-decoration:none;">🧑‍🏫 User Guide</a>
+</button>
+
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
+  <a href="Interoperability/0_home.md" style="color:#FFFFFF; text-decoration:none;">↕️ Interoperability</a>
+</button>
+
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
+  <a href="Getting_Started/Quickstart/0_home.md" style="color:#FFFFFF; text-decoration:none;">🏁 Quick Start</a>
+</button>
+
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
+  <a href="Examples/1_first_problem.md" style="color:#FFFFFF; text-decoration:none;">✏️ Examples with open datasets</a>
+</button>
 
 ## Libraries
 
