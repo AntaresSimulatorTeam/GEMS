@@ -1,10 +1,3 @@
----
-title: "File title"
-author: "Author name"
-date: "29/01/2025" 
-logo: "assets/gemsV2.png"
----
-
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="folder1/home1.md">Main Section</a>
@@ -63,7 +56,7 @@ print("Hello World")
 
 **Simple Equation example:**
 
- $3 * parameter_1 * variable_a + variable_b + 56.4 <= variable_4 * 439$ 
+ > $3 * parameter_1 * variable_a + variable_b + 56.4 <= variable_4 * 439$ 
 
 **LATEC equation example:**
 $$
@@ -77,7 +70,7 @@ $$
     <a href="previous.md">Previous Section</a>
   </div>
     <div style="text-align: center;">
-    <a href="home.md">Back to Home</a>
+    <a href="index.md">Back to Home</a>
   </div>
   <div style="text-align: right;">
     <a href="next.md">Next Section</a>
