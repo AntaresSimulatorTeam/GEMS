@@ -15,45 +15,95 @@ Documentation: [[DRAFT] Link to ReadTheDocs](https://gemspy.readthedocs.io/en/la
 
 # Documentation Highlights
 
-| 📖 Overview |
-|:------------------:|
-| <button type="button" style="background-color:#38F527; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="Overview/Overview/1_Core_Concepts.md" style="color:#000000; text-decoration:none;">Core Concepts</a>
-<button type="button" style="background-color:#38F527; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Interpreters</a>
-<button type="button" style="background-color:#38F527; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">References</a> |
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+  <!-- Card Overview -->
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+    <div style="font-size: 1.2em; margin-bottom: 8px;">
+      📖 <strong>Overview</strong>
+    </div>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 5px;">
+        <a href="Overview/Overview/1_Core_Concepts.md" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🔍 Core Concepts</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🤖 Interpreters</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📄 References</a>
+      </div>
+    </div>
+  </div>
 
+  <!-- Card Getting Started -->
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+    <div style="font-size: 1.2em; margin-bottom: 8px;">
+      🚀 <strong>Getting Started</strong>
+    </div>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 5px;">
+        <a href="Getting_Started/1_Installation.md" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">💿 Installation</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🏁 Quick Start Examples</a>
+      </div>
+    </div>
+  </div>
 
-| 🚀 Getting Started |
-|:------------------:|
-|<button type="button" style="background-color:#F55427; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="Getting_Started/1_Installation.md" style="color:#000000; text-decoration:none;">Installation</a>
-<button type="button" style="background-color:#F55427; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Quick Start Example</a>
-</button>|
+  <!-- Card User Guide -->
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+    <div style="font-size: 1.2em; margin-bottom: 8px;">
+      🧑‍🏫 <strong>User Guide</strong>
+    </div>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 5px;">
+        <a href="User_Guide/1_Syntax.md" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📝 Syntax</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">↘️ Inputs</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">↗️ Outputs</a>
+      </div>
+    </div>
+  </div>
 
-| 🧑‍🏫 User Guide |
-|:------------------:|
-|<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="User_Guide/1_Syntax.md" style="color:#FFFFFF; text-decoration:none;">Syntax</a>
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#FFFFFF; text-decoration:none;">Inputs</a>
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#FFFFFF; text-decoration:none;">Outputs</a>|
+  <!-- Card Interoperability -->
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+    <div style="font-size: 1.2em; margin-bottom: 8px;">
+      ↕️ <strong>Interoperability</strong>
+    </div>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🔄 PyPSA</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📜 Antares Legacy</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🔰 Hybrid</a>
+      </div>
+    </div>
+  </div>
 
+  <!-- Card Examples -->
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+    <div style="font-size: 1.2em; margin-bottom: 8px;">
+      ✏️ <strong>Examples</strong>
+    </div>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📚 Tutorial</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🔰 Hybrid Examples</a>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📊 Opendata usecases</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-| ↕️ Interoperability |
-|:------------------:|
-|<button type="button" style="background-color:#FFA500; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">PyPSA</a>
-<button type="button" style="background-color:#FFA500; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Antares Legacy</a>
-<button type="button" style="background-color:#FFA500; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Hybrid</a>|
-
-| ✏️ Examples |
-|:------------------:|
-|<button type="button" style="background-color:#DBB8FF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Tutorial</a>
-<button type="button" style="background-color:#DBB8FF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Hybrid Examples</a> 
-<button type="button" style="background-color:#DBB8FF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Opendata usecases</a>|
-
-## Libraries
-
-Sample libraries are continually provided to help you create your own optimization problems.
-
-| Library Name         | Description                  | Link                                                      |
-|----------------------|------------------------------|-----------------------------------------------------------|
-| Basic Model Library  | Basic library for newcomers  | [basic-model-library.yml](libraries/basic-model-library.yml) |
 ---
 
 © GEMS (LICENSE)
