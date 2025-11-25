@@ -13,35 +13,39 @@ You can use GEMS with the following interpreters:
 
 Documentation: [[DRAFT] Link to ReadTheDocs](https://gemspy.readthedocs.io/en/latest/user-guide/syntax/)
 
-# Documentation Highlights 
+# Documentation Highlights
 
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
-  <a href="Home/Main_Home/1_context_GEMS.md" style="color:#FFFFFF; text-decoration:none;">🏠 Home</a>
-</button>
+| 📖 Overview |
+|:------------------:|
+| <button type="button" style="background-color:#38F527; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="Overview/Overview/1_Core_Concepts.md" style="color:#000000; text-decoration:none;">Core Concepts</a>
+<button type="button" style="background-color:#38F527; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Interpreters</a>
+<button type="button" style="background-color:#38F527; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">References</a> |
 
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
-  <a href="Overview/Overview/1_Core_Concepts.md" style="color:#FFFFFF; text-decoration:none;">📖 Overview</a>
-</button>
 
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
-  <a href="Getting_Started/1_Installation.md" style="color:#FFFFFF; text-decoration:none;">🚀 Getting Started</a>
-</button>
+| 🚀 Getting Started |
+|:------------------:|
+|<button type="button" style="background-color:#F55427; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="Getting_Started/1_Installation.md" style="color:#000000; text-decoration:none;">Installation</a>
+<button type="button" style="background-color:#F55427; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Quick Start Example</a>
+</button>|
 
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
-  <a href="User_Guide/1_Syntax.md" style="color:#FFFFFF; text-decoration:none;">🧑‍🏫 User Guide</a>
-</button>
+| 🧑‍🏫 User Guide |
+|:------------------:|
+|<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="User_Guide/1_Syntax.md" style="color:#FFFFFF; text-decoration:none;">Syntax</a>
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#FFFFFF; text-decoration:none;">Inputs</a>
+<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#FFFFFF; text-decoration:none;">Outputs</a>|
 
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
-  <a href="Interoperability/0_home.md" style="color:#FFFFFF; text-decoration:none;">↕️ Interoperability</a>
-</button>
 
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
-  <a href="Getting_Started/Quickstart/0_home.md" style="color:#FFFFFF; text-decoration:none;">🏁 Quick Start</a>
-</button>
+| ↕️ Interoperability |
+|:------------------:|
+|<button type="button" style="background-color:#FFA500; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">PyPSA</a>
+<button type="button" style="background-color:#FFA500; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Antares Legacy</a>
+<button type="button" style="background-color:#FFA500; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Hybrid</a>|
 
-<button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;">
-  <a href="Examples/1_first_problem.md" style="color:#FFFFFF; text-decoration:none;">✏️ Examples with open datasets</a>
-</button>
+| ✏️ Examples |
+|:------------------:|
+|<button type="button" style="background-color:#DBB8FF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Tutorial</a>
+<button type="button" style="background-color:#DBB8FF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Hybrid Examples</a> 
+<button type="button" style="background-color:#DBB8FF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-bottom:5px;"><a href="XXX" style="color:#000000; text-decoration:none;">Opendata usecases</a>|
 
 ## Libraries
 
