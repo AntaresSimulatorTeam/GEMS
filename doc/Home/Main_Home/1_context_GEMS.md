@@ -13,9 +13,12 @@
 GEMS (Generic Energy systems Modeling Scheme) was developed by the [**Antares Simulator Team**](https://antares-simulator.org/) in the context of the **ANDROMEDE project**. This framework is part of the R&D Roadmap of [**RTE**](https://www.rte-france.com/), French Transmission System Operator (TSO), is an **open-source framework** developed to advance the capabilities of the Antares Simulator and designed as an advancing tool for **Long-Term Power System Adequacy** studies.
 
 <p align="center">
-  <img src="../../assets/4_RTE_logo.svg.png" alt="RTE Logo"   <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" height="70px"/>
+  <img src="../../assets/4_RTE_logo.svg.png" alt="RTE Logo" height="70px"/>
+  <br>
   <em>RTE - French Transmission System Operator</em>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" height="70px"/>
+  <br>
   <em>Antares Simulator Team</em>
 </p>
 
