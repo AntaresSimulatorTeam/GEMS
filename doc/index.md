@@ -2,7 +2,7 @@
     <img src="assets/gemsV2.png" alt="GEMS Logo" width="400"/>
 </div>
 
-# Introduction
+# About GEMS
 
 **GEMS** (Generic Energy System Modeling Scheme) is a framework developed by the Antares Simulator Team.  
 It provides a high-level modeling language, close to mathematical syntax, and a data structure for describing energy systems.
