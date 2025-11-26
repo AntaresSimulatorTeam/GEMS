@@ -3,7 +3,29 @@ site_name: GEMS Documentation
 repo_url: https://github.com/AntaresSimulatorTeam/GEMS
 edit_uri: edit/doc/doc/
 
-theme: readthedocs
+theme:
+  name: material
+  logo: assets/gemsV2.png
+  favicon: assets/gemsV2.png
+  prev_next_buttons_location: none
+  features:
+    - navigation.instant
+    - navigation.top
+    - navigation.expand
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - content.action.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: antares
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 nav:
   - Home:
