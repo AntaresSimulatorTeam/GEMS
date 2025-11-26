@@ -26,14 +26,7 @@ More precisely, GEMS consists of:
 *   **A high-level modelling language** designed to configure and extend models of components
 *   **A data structure** used to represent energy systems
 
-This framework is a **GBOML** (Graph Based Optimization Modelling Language) specifically designed to handle **MILP** (Mixed Integer Linear Programming).
-
-## GEMS Interpreters
-
-GEMS uses interpreters to translate the models and data into an optimization problem:
-*   The **Modeler** is the GEMS interpreter integrated within Antares Simulator
-*   **GemsPy** is a separate Python interpreter designed for GEMS to perform simulation and optimization.
-
+This framework is a Graphh Oriented Optimmization Modelling Language specifically designed to handle **MILP** (Mixed Integer Linear Programming) and Two Stage Linear Programming. 
 ## GEMS Architecture and Input Files
 
 The GEMS architecture enforces a structured approach, separating modeling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded contexts".
