@@ -1,0 +1,66 @@
+docs_dir: doc
+site_name: GEMS Documentation
+repo_url: https://github.com/AntaresSimulatorTeam/GEMS
+edit_uri: edit/doc/doc/
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/Icone.png
+  prev_next_buttons_location: none
+  features:
+    - navigation.instant
+    - navigation.top
+    - navigation.expand
+    - navigation.tabs
+    - navigation.tabs.sticky
+  #  - navigation.sections
+  #   - header.autohide
+  #   - toc.separate
+
+
+palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: antares
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+
+site_name: GEMS Documentation
+nav:
+  - Home:
+      - Context: 0_Home/1_context_GEMS.md
+      - Release Notes: 0_Home/2_release_notes.md
+  - Overview:
+      - Concepts: 1_Overview/Concepts/
+      - GEMS Interpreters: 1_Overview/GEMS Interpreters/
+      - References: 1_Overview/References/
+  - Getting Started:
+      - Installation: 2_Getting Started/1_installation.md
+      - Quick Start Examples: 2_Getting Started/2_quick start examples.md
+  - User Guide:
+      - Syntax: 3_User Guide/1_syntax.md
+      - File Structure: 3_User Guide/2_file structure.md
+      - Inputs: 3_User Guide/3_inputs.md
+      - Outputs: 3_User Guide/4_outputs.md
+      - Optimization: 3_User Guide/5_optimization.md
+      - Glossary: 3_User Guide/6_glossary.md
+  - Interoperability:
+      - PyPSA: 4_Interoperability/1_pypsa.md
+      - Antares Legacy: 4_Interoperability/2_antares legacy.md
+      - Hybrid: 4_Interoperability/3_hybrid.md
+  - Examples:
+      - Optimization Problem: 5_Examples/1_optimization_problem.md
+      - Hybrid: 5_Examples/2_hybrid.md
+  - Support & Contributing:
+      - FAQ: 6_Support & Contributing/1_faq.md
+      - Contact: 6_Support & Contributing/2_contact.md
+      - Contributing: 6_Support & Contributing/3_contributing.md
+  - Index: index.md
+  - Template: template.md
