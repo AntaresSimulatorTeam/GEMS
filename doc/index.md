@@ -25,19 +25,18 @@ Sample libraries are continually provided to help you create your own optimizati
 This documentation includes:
 
 - **Theoretical foundations:**
-    - [Home](Home/Main_Home/0_home_page.md)
-    - GEMS interpreters
+    - [Context](0_Home/1_context_GEMS.md)
+    - [GEMS interpreters](1_Overview/GEMS Interpreters/1_gemspy.md)
 
 - **Practical guidance and examples:**
-    - References
-        - Ready-to-use grid use cases
-        - Libraries for custom optimization problems
-    - Getting Started
-    - User Guide
-    - Interoperability
-    - Examples
-        - Quick examples
-        - Use with open datasets
+    - [References](1_Overview/References/1_Classification.md)
+        - [Libraries](1_Overview/References/2_Libraries.md)
+        - [Configuration file](1_Overview/References/3_Configuration file.md)
+        - [Users](1_Overview/References/4_Users.md)
+    - [Getting Started](2_Getting Started/1_installation.md)
+    - [User Guide](3_User Guide/1_syntax.md)
+    - [Interoperability](4_Interoperability/1_pypsa.md)
+    - [Examples](5_Examples/1_optimization_problem.md)
 
 ---
 
