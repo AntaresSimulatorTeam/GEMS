@@ -8,9 +8,9 @@
 </div>
 
 
-# Context of GEMS
+# Context of GEMS 
 
-GEMS (Generic Energy systems Modeling Scheme) was developed by the [**Antares Simulator Team**](https://antares-simulator.org/) in the context of the **ANDROMEDE project**. This framework is part of the R&D Roadmap of [**RTE**](https://www.rte-france.com/), French Transmission System Operator (TSO), aimed at advancing tools for **Long-Term Power System Adequacy** studies.
+GEMS (Generic Energy systems Modeling Scheme) was developed by the [**Antares Simulator Team**](https://antares-simulator.org/) in the context of the **ANDROMEDE project**. This framework is part of the R&D Roadmap of [**RTE**](https://www.rte-france.com/), French Transmission System Operator (TSO), is an **open-source framework** developed to advance the capabilities of the Antares Simulator and designed as an advancing tool for **Long-Term Power System Adequacy** studies.
 
 <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
   <div style="display: flex; flex-direction: column; align-items: center;">
@@ -23,13 +23,21 @@ GEMS (Generic Energy systems Modeling Scheme) was developed by the [**Antares Si
   </div>
 </div>
 
-## Motivations for GEMS
+## Motivations for GEMS creation
 
-As energy systems become more complex and dynamic, GEMS was developed to address several key needs in modelling technology:
+GEMS was developped in the context of energy systems becoming more complex and dynamic. Its main motivation for the GEMS project is to move beyond classic Object-Oriented Modelling Environment (OOME) architectures (like Antares, PyPSA, SpineOpt.jl, OSeMOSYS) by improving : 
 
 - **Versatility**
 - **Code Stability and Maintainability**
 - **Interoperability**
+
+## GEMS Definition and Role
+
+More precisely, GEMS consists of:
+*   **A high-level modelling language** designed to configure and extend models of components
+*   **A data structure** used to represent energy systems
+
+This framework is a Graphh Oriented Optimmization Modelling Language specifically designed to handle **MILP** (Mixed Integer Linear Programming) and Two Stage Linear Programming. 
 
 ---
 **Navigation**
