@@ -18,7 +18,7 @@ logo: "../../assets/gemsV2.png"
 
 **GEMS** (Generic Energy systems Modeling Scheme) is an **open-source framework** developed to advance the capabilities of the Antares Simulator.
 
-The primary motivation for the GEMS project is to move beyond classic Object-Oriented Modelling Environment (OOME) architectures by improving **versatility, stability, maintainability and **interoperability****.
+The primary motivation for the GEMS project is to move beyond classic Object-Oriented Modelling Environment (OOME) architectures (like Antares, PyPSA, SpineOpt.jl, OSeMOSYS) by improving **versatility, stability, maintainability and **interoperability****.
 
 ## GEMS Definition and Role
 
