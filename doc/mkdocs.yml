@@ -14,9 +14,10 @@ theme:
     - navigation.expand
     - navigation.tabs
     - navigation.tabs.sticky
+    - content.action.copy
   #  - navigation.sections
-  #   - header.autohide
-  #   - toc.separate
+  #  - header.autohide
+  #  - toc.separate
 
 
 palette:
