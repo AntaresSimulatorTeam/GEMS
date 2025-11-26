@@ -31,8 +31,7 @@ GEMS (Generic Energy systems Modeling Scheme) was developed by the [**Antares Si
 
 
 ## Motivations for GEMS creation
-
-GEMS was developped in the context of energy systems becoming more complex and dynamic. Its main motivation for the GEMS project is to move beyond classic Object-Oriented Modelling Environment (OOME) architectures (like Antares, PyPSA, SpineOpt.jl, OSeMOSYS) by improving : 
+GEMS was developed as energy systems became increasingly complex and dynamic. The main motivation behind the GEMS project is to move beyond classic Object-Oriented Modelling Environment (OOME) architectures (such as Antares, PyPSA, SpineOpt.jl, and OSeMOSYS) by improving: 
 
 - **Versatility**
 - **Code Stability and Maintainability**
@@ -44,7 +43,7 @@ More precisely, GEMS consists of:
 *   **A high-level modelling language** designed to configure and extend models of components
 *   **A data structure** used to represent energy systems
 
-This framework is a Graphh Oriented Optimmization Modelling Language specifically designed to handle **MILP** (Mixed Integer Linear Programming) and Two Stage Linear Programming. 
+This framework is a Graph-Oriented Optimization Modeling Language specifically designed to handle **MILP** (Mixed Integer Linear Programming), **MIP** (Mixed Integer Programming), **LP** (Linear Programming), and **Two-Stage Linear Programming** problems.
 
 ---
 **Navigation**
