@@ -28,9 +28,7 @@ theme:
         name: Switch to light mode
 
 nav:
-  - Home:
-      - Context: 0_Home/1_context_GEMS.md
-      - Release Notes: 0_Home/2_release_notes.md
+  - Home: index.md
   - Overview:
       - Concepts:
           - Architecture: 1_Overview/Concepts/1_architecture.md
@@ -65,5 +63,3 @@ nav:
       - FAQ: 6_Support & Contributing/1_faq.md
       - Contact: 6_Support & Contributing/2_contact.md
       - Contributing: 6_Support & Contributing/3_contributing.md
-  - Index: index.md
-  - Template: template.md
