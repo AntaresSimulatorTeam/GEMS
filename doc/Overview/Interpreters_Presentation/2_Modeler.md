@@ -1,10 +1,3 @@
----
-title: "Antares Modeler Presentation"
-author: "Guillaume MAISTRE - RTEi"
-date: "21/11/2025"
-logo: "../../assets/gemsV2.png"
----
-
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <div style="text-align: left;">
         <a href="../../index.md">Main Section</a>
@@ -16,8 +9,7 @@ logo: "../../assets/gemsV2.png"
 
 # Antares Modeler presentation 
 
-The **Antares Simulator** is a powerful, open-source tool designed for simulating power systems. The **Antares Modeler**, Antares Simulator's core, is able to run GEMS simulations. Its design emphasizes flexibility, enabling users to adapt models to the specific needs of their studies.
-
+The **Antares Simulator** is a powerful, open-source tool designed for simulating power systems. The **Antares Modeler**, the core of Antares Simulator, is able to run GEMS simulations. Its design emphasizes flexibility, enabling users to adapt models to the specific needs of their studies.
 
 - [Antares Simulator Documentation - Modeler section](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/)
 
