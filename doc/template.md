@@ -14,7 +14,7 @@ logo: "assets/gemsV2.png"
   </div>
 </div>
 
-![Template Banner](/doc/assets/template_banner.svg)
+![Template Banner](assets/template_banner.svg)
 
 # Title 1
 
