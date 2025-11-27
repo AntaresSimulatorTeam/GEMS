@@ -9,7 +9,7 @@
 
 ## GEMS Architecture and Input Files
 
-The GEMS architecture enforces a structured approach, separating modeling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded contexts".
+The GEMS architecture enforces a structured approach, separating modeling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains".
 
 The core inputs for defining the optimization problem are external configuration files:
 
