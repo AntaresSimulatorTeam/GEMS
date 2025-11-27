@@ -1,3 +1,4 @@
+![Template Banner](../../assets/template_banner.svg)
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="folder1/home1.md">Main Section</a>

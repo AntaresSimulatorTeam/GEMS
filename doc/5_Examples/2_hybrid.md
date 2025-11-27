@@ -1,3 +1,4 @@
+![Template Banner](../assets/template_banner.svg)
 ---
 title: "File title"
 author: "Author name"
