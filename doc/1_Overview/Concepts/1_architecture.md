@@ -3,11 +3,27 @@
     <a href="../index.md">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
-## GEMS Architecture and Input Files
+# GEMS Architecture
+
+## Architectural Breakthrough
+
+This architecture represents a fundamental change from classical OOME architectures, where problem definition is typically located inside the *Problem builder* and the tool itself.
+
+<div style="text-align: center;">
+  <img src="../../assets/3_Scheme_Classical_GEMS_OOME.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
+</div>
+
+
+By configuring the entire optimization problem using these **external YAML files**, the architecture achieves its key principles:
+
+- **Versatile Modelling**: Optimization problem can be configured easily ***without* rewriting the core code**
+- **Interoperability**: The GEMS format facilitates seamless interaction with external tools, demonstrated, for example, by the conversion and simulation of PyPSA studies using GemsPy
+
+## Input Files
 
 The GEMS architecture enforces a structured approach, separating modeling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains".
 
@@ -19,24 +35,10 @@ The core inputs for defining the optimization problem are external configuration
 | **System** | `system.yml` | Defines the **Components**, which are **numerical instantiation of models**. It links to a specific model ID and defines the numerical values for its parameters. It also defines the **connections** between components via ports, forming the system graph. |
 | **Timeseries** | `timeseries.tsv` | Contains the numerical data for parameters that are dependent on time and scenario. |
 
-## Architectural Breakthrough
 
-This architecture represents a fundamental change from classical OOME architectures, where problem definition is typically located inside the *Problem builder* and the tool itself.
+## Files Interaction
 
-<div style="text-align: center;">
-  <img src="../assets/3_Scheme_Classical_GEMS_OOME.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
-</div>
-
-
-
-By configuring the entire optimization problem using these **external YAML files**, the architecture achieves its key principles:
-
-- **Versatile Modelling**: Optimization problem can be configured easily without **rewriting the core code**
-- **Interoperability**: The GEMS format facilitates seamless interaction with external tools, demonstrated, for example, by the conversion and simulation of PyPSA studies using GemsPy
-
-# GEMS architecture
-
-The following scheme shows the interaction of the different core concepts presented in the previous section :
+The following scheme shows the interaction of the different core concepts presented previously. It is based on the *basic-model-library* present inside this documentation.
 
 <p align="center">
     <img src="../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
@@ -54,7 +56,7 @@ The following scheme shows the interaction of the different core concepts presen
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="xxx" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="2_core concepts.md" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>
