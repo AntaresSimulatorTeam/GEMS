@@ -1,10 +1,3 @@
----
-title: "Core concepts"
-author: "Guillaume MAISTRE - RTEi"
-date: "20/11/2025"
-logo: "../../assets/gemsV2.png"
----
-
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <div style="text-align: left;">
         <a href="../../index.md">Main Section</a>
@@ -104,20 +97,26 @@ In the outputs of GEMS, we have the results of the modelisation, in a LP format 
 - **Business Views**
     Output files with metrics specifically designed for users purposes. It made from the simulation table.
 
-[^1]: Parameters, Variables, Constraints can be either scenario dependent or time dependent
+[^1]: Parameters, Variables, and Constraints can be either scenario-dependent or time-dependent.
+
 ---
+
 **Navigation**
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: left;">
-        <a href="../Main_Home/3_release_notes.md">Previous Section</a>
+    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="1_architecture.md" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    </button>
     </div>
-    <div style="text-align: center;">
-        <a href="../../index.md">Back to Home</a>
+    <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="../../index.md" style="text-decoration:none; color: #FFFFFF">Index</a>
+    </button>
+    <div style="text-align: right;">
+    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="3_features.md" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    </button>
     </div>
-  <div style="text-align: right;">
-    <a href="2_GEMS_architecture.md">Next Section</a>
-  </div>
 </div>
 
 ---

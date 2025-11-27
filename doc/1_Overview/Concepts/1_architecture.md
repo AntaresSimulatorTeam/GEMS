@@ -43,8 +43,11 @@ The following scheme shows the interaction of the different core concepts presen
 <p align="center">
     <img src="../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
 </p>
+
 ---
+
 **Navigation**
+
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
