@@ -4,13 +4,13 @@ It is a **temporary document**, as is the mkdocs YAML file.
 ## 0. Create a virtual environment
 
 ```bash
-python3 -m venv venv
+python3 -m venv documentation_env
 ```
 
 ## 1. Activate your virtual environment
 
 ```bash
-source venv/bin/activate
+source documentation_env/bin/activate
 ```
 
 ## 2. Install required libraries
@@ -24,7 +24,6 @@ pip install mkdocs mkdocs-material
 Open your terminal in the directory containing `mkdocs.yml`, then run:
 
 ```bash
-cd doc/
 mkdocs serve
 ```
 
