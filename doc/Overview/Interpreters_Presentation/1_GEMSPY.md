@@ -9,11 +9,24 @@
 
 # GEMSPY Presentation
 
-GEMSPY is a Python package designed to interpret GEMS models and construct optimization problems from compatible library and system files. It was developed to handle GEMS-specific problems. The Python API enables users to load, edit, and create case studies in YAML format, supporting both interactive modification and fully scripted workflows.
+GEMSPY is a Python package for interpreting GEMS models and building optimization problems from compatible library and system files. It is tailored for GEMS-specific workflows and provides a flexible Python API to:
 
-- [Link to the Github Repo](https://github.com/AntaresSimulatorTeam/GemsPy)
+- Load, edit, and create case studies in YAML format
+- Support both interactive and scripted workflows
 
-- [Link to GEMSPY documentation](https://gemspy.readthedocs.io/en/latest/)
+**Resources:**
+- [GitHub Repository](https://github.com/AntaresSimulatorTeam/GemsPy)
+- [GEMSPY Documentation](https://gemspy.readthedocs.io/en/latest/)
+
+## GEMSPY API Overview
+
+GEMSPY's API allows users to create studies programmatically. To build a study, you typically provide:
+1. **Component** – The building blocks of your model
+2. **Port Connection** – How components are linked
+3. **System** – The overall system configuration
+
+For detailed API usage and examples, see:
+- [Building with GEMSPY API](https://gemspy.readthedocs.io/en/latest/user-guide/building/)
 
 **Navigation**
 
