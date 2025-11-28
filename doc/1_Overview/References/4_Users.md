@@ -4,7 +4,7 @@
     <a href="folder1/home1.md">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
@@ -14,11 +14,11 @@
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
   <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="assets/4_RTE_logo.svg.png" alt="RTE Logo" style="height: 80"/>
+      <img src="../../assets/4_RTE_logo.svg.png" alt="RTE Logo" style="height: 80"/>
       <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>RTE - French Transmission System Operator</em></div>
     </div>
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" style="height: 80"/>
+      <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" style="height: 80"/>
       <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>Antares Simulator Team</em></div>
     </div>
   </div>
