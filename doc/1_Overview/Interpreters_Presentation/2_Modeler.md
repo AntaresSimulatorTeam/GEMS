@@ -7,12 +7,13 @@
     </div>
 </div>
 
-# Antares Modeler presentation 
+# Antares Modeler Presentation
 
-The **Antares Simulator** is a powerful, open-source tool designed for simulating power systems. The **Antares Modeler**, the core of Antares Simulator, is able to run GEMS simulations. Its design emphasizes flexibility, enabling users to adapt models to the specific needs of their studies.
+**Antares Simulator** is an open-source power system simulator designed to quantify the adequacy and economic performance of interconnected energy systems at long term. It is used by transmission system operators for probabilistic simulations of energy consumption, generation, and transportation.
+
+The **Antares Modeler** is the core interface of the Antares Simulator, offering advanced features for building, configuring, and running simulations. It is designed for flexibility, allowing users to adapt models to their specific study needs, including integration with tools like GEMS.
 
 - [Antares Simulator Documentation - Modeler section](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/)
-
 
 
 **Navigation**
