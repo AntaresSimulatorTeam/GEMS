@@ -8,61 +8,21 @@
   </div>
 </div>
 
+The following entities use currently or used GEMS framewor for their projects :
 
-# Title 1
+## Companies
 
-<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="../../assets/4_RTE_logo.svg.png" alt="RTE Logo" style="height: 80"/>
-      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>RTE - French Transmission System Operator</em></div>
-    </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" style="height: 80"/>
-      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>Antares Simulator Team</em></div>
-    </div>
-  </div>
-</div>
+### RTE 
 
-## Sub-Title 2
-Content or text here.
+<img src="../../assets/4_RTE_logo.svg.png" alt="RTE logo" height="50"/>
 
-**Code block example (YAML):**
-```yaml
-connections:
-  - component1: generator1
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-  - component1: generator2
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-  - component1: demand
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-```
+  GEMS was designed by RTE for the project ANDROMEDE.
+  
+  RTE is using it for Planeterr ([planeterr.fr](https://planeterr.fr/)) project too.
 
-**Code block example (Python):**
-```python
-print("Hello World")
-```
-**Note Example:**
+### RTE international
 
-<div style="border:1px solid #ccc; padding:10px; background:#f9f9f9;">
-<strong>🖊️ Note :</strong> This is an important note
-</div>
-
-
-**Simple Equation example:**
-
- > $3 * parameter_1 * variable_a + variable_b + 56.4 <= variable_4 * 439$ 
-
-**LATEC equation example:**
-$$
-3 \cdot \text{parameter\_1} \cdot \text{variable\_a} + \text{variable\_b} + 56.4 \leq \text{variable\_4} \cdot 439
-$$
+<img src="../../assets/7_RTEi_logo.png" alt="RTE international logo" height="55"/>
 
 ---
 **Navigation**
