@@ -46,9 +46,8 @@ As mentionned before, **components** are instantiations of different **models**.
 **Data series** are needed by the system description to define component parameter values are set in dedicated input files. Currently, the framework supports defining data-series using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
 
 ### Scenario / Time Dependency
-
-Inside the YAML files, **Parameters, Variables, Constraints** can be dependent on the scenario or/and over the time.
-- A **scenario dependency** means for instance that the *parameter* `fixed_cost` for strating up a plant can depends on the scenario we chose.
+Inside the YAML files, **Parameters, Variables, and Constraints** can be dependent on the scenario and/or over time.
+- A **scenario dependency** means, for instance, that the *parameter* `fixed_cost` for starting up a plant can depend on the chosen scenario.
 
     A simulation with 4 scenarios will get :
     `54 67.5 23.652 253`
@@ -83,7 +82,7 @@ model (not a GU model) - Energy balance inside an area|
 
 # Outputs
 
-In the outputs of GEMS, we have the results of the modelisation, in a LP format (**Optimization Model**) and for hybrid and pure modeler studies in CSV format (**simulation table**), there are also **extra-outputs**.
+The outputs of GEMS contain the results of the modelisation, in a LP format (**Optimization Model**) and for hybrid and pure modeler studies in CSV format (**simulation table**), there are also **extra-outputs**.
 
 - **Optimization Model**
     The optimization model solved by Antares modeler is written in the human-readable LP format, under output/problem.lp. It is only meant to be used for debugging.

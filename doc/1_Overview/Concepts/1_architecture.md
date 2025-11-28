@@ -31,7 +31,7 @@ The core inputs for defining the optimization problem are external configuration
 
 | Component | File | Description & Role |
 | :--- | :--- | :--- |
-| **Model Libraries** | `library.yml` | Define the **Models**, which are **abstract representation of a type of object** we want to simulate inside our own study. This file includes optimization **variables**, **mathematical constraints**, **objective contributions**, **parameters**, and **ports**. |
+| **Model Libraries** | `library.yml` | Define the **Models**, which are **abstract representation of a type of object** that will be simulated inside our own study. This file includes optimization **variables**, **mathematical constraints**, **objective contributions**, **parameters**, and **ports**. |
 | **System** | `system.yml` | Defines the **Components**, which are **numerical instantiation of models**. It links to a specific model ID and defines the numerical values for its parameters. It also defines the **connections** between components via ports, forming the system graph. |
 | **Timeseries** | `timeseries.tsv` | Contains the numerical data for parameters that are dependent on time and scenario. |
 
