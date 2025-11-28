@@ -1,10 +1,3 @@
----
-title: "File title"
-author: "Author name"
-date: "29/01/2025" 
-logo: "assets/gemsV2.png"
----
-
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="folder1/home1.md">Main Section</a>
@@ -14,7 +7,6 @@ logo: "assets/gemsV2.png"
   </div>
 </div>
 
-![Template Banner](assets/template_banner.svg)
 
 # Title 1
 
@@ -64,9 +56,9 @@ print("Hello World")
 
 **Simple Equation example:**
 
- $3 * parameter_1 * variable_a + variable_b + 56.4 <= variable_4 * 439$ 
+ > $3 * parameter_1 * variable_a + variable_b + 56.4 <= variable_4 * 439$ 
 
-**LATEC equation example:**
+**LATEX equation example:**
 $$
 3 \cdot \text{parameter\_1} \cdot \text{variable\_a} + \text{variable\_b} + 56.4 \leq \text{variable\_4} \cdot 439
 $$
@@ -75,13 +67,17 @@ $$
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
-    <a href="previous.md">Previous Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="previous.md" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+  </button>
   </div>
-    <div style="text-align: center;">
-    <a href="../../index.md">Back to Home</a>
-  </div>
+  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="Home/Main_Home/1_context_GEMS.md" style="text-decoration:none; color: #FFFFFF">Index</a>
+  </button>
   <div style="text-align: right;">
-    <a href="next.md">Next Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="next.md" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  </button>
   </div>
 </div>
 
