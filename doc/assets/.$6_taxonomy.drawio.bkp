@@ -1,0 +1,25 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram id="FCox0YGCn7trANrSxXsh" name="Page-1">
+    <mxGraphModel dx="1663" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-1" value="taxonomy file&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFF4C3;" vertex="1" parent="1">
+          <mxGeometry x="20" y="90" width="230" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-2" value="category 1" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFF99;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-3" value="category 2" style="shape=or;whiteSpace=wrap;html=1;fillColor=#99FFFF;" vertex="1" parent="1">
+          <mxGeometry x="150" y="150" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-5" value="Model 1" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="300" width="120" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-6" value="Parameters:&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;- param1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;- param2&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- param3&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Variables:&lt;/div&gt;&lt;div&gt;-variable1&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;-variabe2&lt;/span&gt;&lt;/div&gt;&lt;div&gt;-variable3&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="330" width="90" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

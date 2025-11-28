@@ -9,60 +9,18 @@
 </div>
 
 
-# Title 1
+# Classification of Models (Taxonomy)
 
-<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="../../assets/4_RTE_logo.svg.png" alt="RTE Logo" style="height: 80"/>
-      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>RTE - French Transmission System Operator</em></div>
-    </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" style="height: 80"/>
-      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>Antares Simulator Team</em></div>
-    </div>
-  </div>
-</div>
+GEMS provides the functionality to use a classification of models defined via the configuration file, `taxonomy.yml`. 
+The `taxonomy.yml` file, defines categories of models and serves multiple utilities:
 
-## Sub-Title 2
-Content or text here.
+The taxonomy define **mandatory requirements** for models belonging to a specific category, such as **parameters, variables, ports, and extra-outputs**.
 
-**Code block example (YAML):**
-```yaml
-connections:
-  - component1: generator1
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-  - component1: generator2
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-  - component1: demand
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-```
+This method avoids the duplication and the uniformisation of similar models.
 
-**Code block example (Python):**
-```python
-print("Hello World")
-```
-**Note Example:**
+In this scheme, there are two categories defined inside the taxonomy file, and one model was configured. In this model, 2 parameters and 1 variable are in fact directly configured by the taxonomy file.
 
-<div style="border:1px solid #ccc; padding:10px; background:#f9f9f9;">
-<strong>🖊️ Note :</strong> This is an important note
-</div>
-
-
-**Simple Equation example:**
-
- > $3 * parameter_1 * variable_a + variable_b + 56.4 <= variable_4 * 439$ 
-
-**LATEC equation example:**
-$$
-3 \cdot \text{parameter\_1} \cdot \text{variable\_a} + \text{variable\_b} + 56.4 \leq \text{variable\_4} \cdot 439
-$$
+![Taxonomy scheme](../../assets/6_taxonomy.png)
 
 ---
 **Navigation**
