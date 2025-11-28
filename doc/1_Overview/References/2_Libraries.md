@@ -11,10 +11,18 @@
 
 In this section several libraries which are continually provided to help you create your own optimization problems.
 
+## Sandbox
+List of libraries for learning GEMS :
+
 | Library Name         | Description                  | Link                                                      |
 |----------------------|------------------------------|-----------------------------------------------------------|
 | Basic Model Library  | Basic library for newcomers  | [basic-model-library.yml](../../../libraries/basic_models_library.yml) |
 
+## Real usecase librairies
+List of librairies from real projects :
+| Library Name         | Description                  | Link                                                      |
+|----------------------|------------------------------|-----------------------------------------------------------|
+| xxx  | xxx  | xxx |
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
