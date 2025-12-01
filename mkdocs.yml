@@ -28,7 +28,10 @@ theme:
         name: Switch to light mode
 
 nav:
-  - Home: index.md
+  - Home:
+    - Home: index.md
+    - Context of GEMS: 0_Home/1_context_GEMS.md
+    - Release Notes: 0_Home/2_release_notes.md 
   - Overview:
       - Concepts:
           - Architecture: 1_Overview/Concepts/1_architecture.md
