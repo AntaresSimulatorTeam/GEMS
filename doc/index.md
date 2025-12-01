@@ -2,16 +2,15 @@
     <img src="assets/gemsV2.png" alt="GEMS Logo" width="400"/>
 </div>
 
-# Introduction
+# About GEMS
 
 **GEMS** (Generic Energy System Modeling Scheme) is a framework developed by the Antares Simulator Team.  
 It provides a high-level modeling language, close to mathematical syntax, and a data structure for describing energy systems.
 
 You can use GEMS with the following interpreters:
+
 - [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator), an open-source power system simulator
 - [GEMSPy](https://github.com/AntaresSimulatorTeam/GemsPy), a stand-alone Python package, maintained for prototyping purposes
-
-Documentation: [[DRAFT] Link to ReadTheDocs](https://gemspy.readthedocs.io/en/latest/user-guide/syntax/)
 
 # Documentation Highlights
 
