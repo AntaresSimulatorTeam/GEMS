@@ -1,0 +1,60 @@
+docs_dir: doc
+site_name: GEMS - Generic Energy system Modelling Scheme
+repo_url: https://github.com/AntaresSimulatorTeam/GEMS
+edit_uri: edit/doc/doc/
+
+theme:
+  name: material
+  logo: assets/gemsV2.png
+  favicon: assets/gemsV2.png
+  prev_next_buttons_location: none
+  features:
+    - navigation.instant
+    - navigation.top
+    - navigation.expand
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - content.action.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: antares
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - Overview:
+      - Concepts:
+          - Architecture: 1_Overview/Concepts/1_architecture.md
+          - Core Concepts: 1_Overview/Concepts/2_core concepts.md
+          - Features: 1_Overview/Concepts/3_features.md
+      - GEMS Interpreters:
+          - GemsPy: 1_Overview/GEMS Interpreters/1_gemspy.md
+          - Antares Simulator: 1_Overview/GEMS Interpreters/2_antares_simulator_modeler.md      
+      - References:
+            - Classification of models: 1_Overview/References/1_Classification.md
+            - Libraries of models: 1_Overview/References/2_Libraries.md
+  - Getting Started:
+      - Installation: 2_Getting Started/1_installation.md
+      - Quick Start Examples: 2_Getting Started/2_quick start examples.md
+  - User Guide:
+      - Syntax: 3_User Guide/1_syntax.md
+      - Inputs: 3_User Guide/2_inputs.md
+      - Antares Hybrid Mode Inputs: 3_User Guide/3_hybrid inputs.md
+      - Outputs: 3_User Guide/4_outputs.md
+      - Optimization: 3_User Guide/5_optimization.md
+      - Glossary: 3_User Guide/6_glossary.md
+  - Interoperability:
+      - PyPSA: 4_Interoperability/1_pypsa.md
+      - Antares Legacy Format: 4_Interoperability/2_antares legacy.md
+      - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
+  - Support & Contributing:
+      - FAQ: 6_Support & Contributing/1_faq.md
+      - Contact: 6_Support & Contributing/2_contact.md
+      - Contributing: 6_Support & Contributing/3_contributing.md

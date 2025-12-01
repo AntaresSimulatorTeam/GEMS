@@ -1,104 +1,103 @@
 <div align="center">
-    <img src="assets/gemsV2.png" alt="GEMS Logo" width="400"/>
+    <img src="assets/gemsV2.png" alt="GEMS Logo" width="800"/>
 </div>
 
-# Introduction
+# About GEMS
 
 **GEMS** (Generic Energy System Modeling Scheme) is a framework developed by the Antares Simulator Team.  
 It provides a high-level modeling language, close to mathematical syntax, and a data structure for describing energy systems.
 
 You can use GEMS with the following interpreters:
+
 - [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator), an open-source power system simulator
 - [GEMSPy](https://github.com/AntaresSimulatorTeam/GemsPy), a stand-alone Python package, maintained for prototyping purposes
-
-Documentation: [[DRAFT] Link to ReadTheDocs](https://gemspy.readthedocs.io/en/latest/user-guide/syntax/)
 
 # Documentation Highlights
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
   <!-- Card Overview -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
     <div style="font-size: 1.2em; margin-bottom: 8px;">
       📖 <strong>Overview</strong>
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="Overview/Overview/1_Core_Concepts.md" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🔍 Core Concepts</a>
+        <a href="../1_Overview/Concepts/1_architecture/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔍 Core Concepts</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🤖 Interpreters</a>
+        <a href="../1_Overview/GEMS Interpreters/1_gemspy/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🤖 Interpreters</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📄 References</a>
+        <a href="../1_Overview/References/1_Classification/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📄 References</a>
       </div>
     </div>
   </div>
 
   <!-- Card Getting Started -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
     <div style="font-size: 1.2em; margin-bottom: 8px;">
       🚀 <strong>Getting Started</strong>
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="Getting_Started/1_Installation.md" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">💿 Installation</a>
+        <a href="../2_Getting Started/1_installation/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🏁 Quick Start Examples</a>
+        <a href="../2_Getting Started/2_quick start examples/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start Examples</a>
       </div>
     </div>
   </div>
 
   <!-- Card User Guide -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
     <div style="font-size: 1.2em; margin-bottom: 8px;">
       🧑‍🏫 <strong>User Guide</strong>
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="User_Guide/1_Syntax.md" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📝 Syntax</a>
+        <a href="../3_User Guide/1_syntax/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">↘️ Inputs</a>
+        <a href="../3_User Guide/3_inputs/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">↗️ Outputs</a>
+        <a href="../3_User Guide/4_outputs/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
       </div>
     </div>
   </div>
 
   <!-- Card Interoperability -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
     <div style="font-size: 1.2em; margin-bottom: 8px;">
       ↕️ <strong>Interoperability</strong>
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🔄 PyPSA</a>
+        <a href="../4_Interoperability/1_pypsa/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔄 PyPSA</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📜 Antares Legacy</a>
+        <a href="../4_Interoperability/2_antares legacy/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📜 Antares Legacy</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🔰 Hybrid</a>
+        <a href="../4_Interoperability/3_hybrid/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid</a>
       </div>
     </div>
   </div>
 
   <!-- Card Examples -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 32%;">
+  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
     <div style="font-size: 1.2em; margin-bottom: 8px;">
       ✏️ <strong>Examples</strong>
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📚 Tutorial</a>
+        <a href="../5_Examples/1_optimization_problem/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📚 Tutorial</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">🔰 Hybrid Examples</a>
+        <a href="../5_Examples/2_hybrid/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid Examples</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: fit-content;">📊 Opendata usecases</a>
+        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📊 Opendata usecases</a>
       </div>
     </div>
   </div>

@@ -1,5 +1,4 @@
-![Template Banner](assets/template_banner.svg)
-
+![Template Banner](../../assets/template_banner.svg)
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="folder1/home1.md">Main Section</a>
@@ -60,7 +59,7 @@ print("Hello World")
 
  > $3 * parameter_1 * variable_a + variable_b + 56.4 <= variable_4 * 439$ 
 
-**LATEX equation example:**
+**LATEC equation example:**
 $$
 3 \cdot \text{parameter\_1} \cdot \text{variable\_a} + \text{variable\_b} + 56.4 \leq \text{variable\_4} \cdot 439
 $$
