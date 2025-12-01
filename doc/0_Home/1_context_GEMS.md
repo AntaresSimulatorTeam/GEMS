@@ -17,7 +17,7 @@ logo: "../../assets/gemsV2.png"
 
 # Context of GEMS
 
-GEMS (Generic Energy systems Modeling Scheme) was developed by the [**Antares Simulator Team**](https://antares-simulator.org/) in the context of the **ANDROMEDE project**. This framework is part of the R&D Roadmap of [**RTE**](https://www.rte-france.com/), French Transmission System Operator (TSO), aimed at advancing tools for **Long-Term Power System Adequacy** studies.
+The framewok GEMS (Generic Energy systems Modelling Scheme) was developed by the [**Antares Simulator Team**](https://antares-simulator.org/) in the context of the **ANDROMEDE project**. This is part of the R&D Roadmap of [**RTE**](https://www.rte-france.com/), French Transmission System Operator (TSO), aimed at advancing tools for **Long-Term Power System Adequacy** and **Investment planning** studies.
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
   <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
