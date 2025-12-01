@@ -1,9 +1,9 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <div style="text-align: left;">
-        <a href="../../index.md">Main Section</a>
+        <a href="../../../index.md">Main Section</a>
     </div>
     <div style="text-align: right;">
-        <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
     </div>
 </div>
 
@@ -109,7 +109,7 @@ The outputs of GEMS contain the results of the modelisation, in a LP format (**O
     </button>
     </div>
     <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-        <a href="../../index.md" style="text-decoration:none; color: #FFFFFF">Index</a>
+        <a href="../../../index.md" style="text-decoration:none; color: #FFFFFF">Index</a>
     </button>
     <div style="text-align: right;">
     <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">

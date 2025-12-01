@@ -1,9 +1,9 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
-    <a href="../index.md">Main Section</a>
+    <a href="../../index.md">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
@@ -14,7 +14,7 @@
 This architecture represents a fundamental change from classical OOME architectures, where problem definition is typically located inside the *Problem builder* and the tool itself.
 
 <div style="text-align: center;">
-  <img src="../../assets/3_Scheme_Classical_GEMS_OOME.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
+  <img src="../../../assets/3_Scheme_Classical_GEMS_OOME.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
 </div>
 
 
@@ -41,7 +41,7 @@ The core inputs for defining the optimization problem are external configuration
 The following scheme shows the interaction of the different core concepts presented previously. It is based on the *basic-model-library* present inside this documentation.
 
 <p align="center">
-    <img src="../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
+    <img src="../../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
 </p>
 
 ---
