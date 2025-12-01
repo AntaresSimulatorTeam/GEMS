@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="assets/gemsV2.png" alt="GEMS Logo" width="400"/>
+    <img src="assets/gemsV2.png" alt="GEMS Logo" width="800"/>
 </div>
 
 # About GEMS
