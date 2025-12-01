@@ -54,6 +54,9 @@ nav:
       - PyPSA: 4_Interoperability/1_pypsa.md
       - Antares Legacy Format: 4_Interoperability/2_antares legacy.md
       - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
+  - Examples:
+      - Tutorial - Simple economic dispatch problem: 5_Examples/1_optimization_problem.md
+      - Antares Simulator Hybrid study: 5_Examples/2_hybrid.md
   - Support & Contributing:
       - FAQ: 6_Support & Contributing/1_faq.md
       - Contact: 6_Support & Contributing/2_contact.md
