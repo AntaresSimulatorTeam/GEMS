@@ -53,8 +53,4 @@
 
 ---
 
-<<<<<<< HEAD
 © GEMS (LICENSE)
-=======
-© GEMS (LICENSE)
->>>>>>> main
