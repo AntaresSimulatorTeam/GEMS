@@ -1,3 +1,10 @@
+---
+title: "GEMS Release Notes"
+author: "Guillaume MAISTRE - RTEi"
+date: "19/11/2025"
+logo: "../../assets/gemsV2.png"
+---
+
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <div style="text-align: left;">
         <a href="../../index.md">Main Section</a>
@@ -25,13 +32,13 @@
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: left;">
-        <a href="1_context_GEMS.md">Previous Section</a>
+        <a href="2_context_GEMS.md">Previous Section</a>
     </div>
     <div style="text-align: center;">
         <a href="../../index.md">Back to Home</a>
     </div>
   <div style="text-align: right;">
-    <a href="../../Overview/1_architecture.md">Next Section</a>
+    <a href="../Overview/1_GEMS architecture.md">Next Section</a>
   </div>
 </div>
 
