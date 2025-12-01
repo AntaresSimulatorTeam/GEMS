@@ -1,10 +1,3 @@
----
-title: "GEMS Release Notes"
-author: "Guillaume MAISTRE - RTEi"
-date: "19/11/2025"
-logo: "../../assets/gemsV2.png"
----
-
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <div style="text-align: left;">
         <a href="../../index.md">Main Section</a>
