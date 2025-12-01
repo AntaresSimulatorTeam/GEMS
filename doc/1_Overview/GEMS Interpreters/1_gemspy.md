@@ -3,7 +3,7 @@
         <a href="../../index.md">Main Section</a>
     </div>
     <div style="text-align: right;">
-        <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
     </div>
 </div>
 
@@ -29,13 +29,13 @@ For detailed API usage and examples, see:
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: left;">
-        <a href="XXX">Previous Section</a>
+        <a href="../Concepts/3_features.md">Previous Section</a>
     </div>
     <div style="text-align: center;">
         <a href="../../index.md">Back to Home</a>
     </div>
   <div style="text-align: right;">
-    <a href="2_Modeler.md">Next Section</a>
+    <a href="2_antares_simulator_modeler.md">Next Section</a>
   </div>
 </div>
 

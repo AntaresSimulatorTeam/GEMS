@@ -3,7 +3,7 @@
         <a href="../../index.md">Main Section</a>
     </div>
     <div style="text-align: right;">
-        <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
     </div>
 </div>
 
@@ -20,13 +20,13 @@ The **Antares Modeler** is the core interface of the Antares Simulator, offering
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: left;">
-        <a href="1_GEMSPY.md">Previous Section</a>
+        <a href="1_gemspy.md">Previous Section</a>
     </div>
     <div style="text-align: center;">
         <a href="../../index.md">Back to Home</a>
     </div>
   <div style="text-align: right;">
-    <a href="XXX">Next Section</a>
+    <a href="../References/1_Classification.md">Next Section</a>
   </div>
 </div>
 
