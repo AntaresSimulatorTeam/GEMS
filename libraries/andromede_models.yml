@@ -11,8 +11,8 @@
 # This file is part of the Antares project.
 
 library:
-  id: andromede-v1-models-weo
-  description: Andromede V1 model library - without expectation operators
+  id: andromede-v1-models
+  description: Andromede Project V1 model library
 
   port-types:
     - id: flow
