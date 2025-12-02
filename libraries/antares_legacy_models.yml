@@ -260,7 +260,7 @@ library:
       constraints:
         - id: initial_level_constraint
           expression: level[0] = initial_level * reservoir_capacity
-        - id: Level equation
+        - id: level_dynamic_constraint
           expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal + inflows
 
 
