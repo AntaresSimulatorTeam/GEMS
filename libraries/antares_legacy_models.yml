@@ -65,6 +65,12 @@ library:
         - id: capacity_indirect
           time-dependent: true
           scenario-dependent: true
+        - id: flow_direct_hurdle_cost
+          time-dependent: true
+          scenario-dependent: true
+        - id: flow_indirect_hurdle_cost
+          time-dependent: true
+          scenario-dependent: true
       variables:
         - id: flow_direct
           lower-bound: 0
@@ -98,6 +104,9 @@ library:
       constraints:
         - id: flow_direct_indirect
           expression: flow = flow_direct - flow_indirect
+      objective-contributions:
+        - id: objective
+          expression: sum(flow_direct * flow_direct_hurdle_cost- flow_indirect * flow_indirect_hurdle_cost)
 
     - id: renewable
       parameters:
