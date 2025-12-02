@@ -89,8 +89,6 @@ library:
           type: flow
         - id: in_port
           type: flow
-        - id: bc_port
-          type: contribution_in_bc
       port-field-definitions:
         - port: out_port
           field: flow
@@ -98,9 +96,6 @@ library:
         - port: in_port
           field: flow
           definition: -flow
-        - port: bc_port
-          field: energy_amount
-          definition: flow
       constraints:
         - id: flow_direct_indirect
           expression: flow = flow_direct - flow_indirect
@@ -174,14 +169,9 @@ library:
       ports:
         - id: balance_port
           type: flow
-        - id: bc_port
-          type: contribution_in_bc
       port-field-definitions:
         - port: balance_port
           field: flow
-          definition: generation
-        - port: bc_port
-          field: energy_amount
           definition: generation
       constraints:
         - id: max_generation
