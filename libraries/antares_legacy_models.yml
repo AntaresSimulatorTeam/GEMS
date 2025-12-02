@@ -21,16 +21,6 @@ library:
         - id: flow
       area-connection:
         - injection-field: flow
-    - id: contribution_in_bc
-      description: A port that transfers an amount of energy.
-      fields:
-        - id: energy_amount
-    - id: weighted_contribution_in_bc
-      description: A port that transfers expression to bc.
-      fields:
-        - id: weighted_term
-
-
 
   models:
     - id: area
