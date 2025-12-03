@@ -10,7 +10,7 @@
 
 # Context of GEMS
 
-The framewok GEMS (Generic Energy systems Modelling Scheme) was developed by the [**Antares Simulator Team**](https://antares-simulator.org/) in the context of the **ANDROMEDE project**. This is part of the R&D Roadmap of [**RTE**](https://www.rte-france.com/), French Transmission System Operator (TSO), aimed at advancing tools for **Long-Term Power System Adequacy** and **Investment planning** studies.
+The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed by the [Antares Simulator Team](https://antares-simulator.org/) at [RTE](https://www.rte-france.com/), the French Transmission System Operator (TSO). Its goal is to advance tools for **long-term power system adequacy** and **investment planning** studies.
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
   <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
