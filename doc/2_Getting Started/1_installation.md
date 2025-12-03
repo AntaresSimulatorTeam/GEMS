@@ -97,6 +97,7 @@ If you encounter issues during installation:
 - Ensure Python 3.11 or 3.8+ is installed 
 - If `pip install -r requirements.txt` fails, try installing dependencies manually
 
+### Python 3.11 installation
 In case of a newer version of Python, here a list of command to install Python 3.11 and `requirements.txt` :
 
   ```bash
