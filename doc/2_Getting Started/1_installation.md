@@ -97,6 +97,34 @@ If you encounter issues during installation:
 - Ensure Python 3.11 or 3.8+ is installed 
 - If `pip install -r requirements.txt` fails, try installing dependencies manually
 
+In case of a newer version of Python, here a list of command to install Python 3.11 and `requirements.txt` :
+
+  ```bash
+  # 1. Install Python 3.11
+  sudo add-apt-repository ppa:deadsnakes/ppa
+  sudo apt update
+  sudo apt install python3.11 python3.11-venv
+
+  # 2. Remove Old Virtual Environment made by a newer Python version (if any)
+  rm -rf gemspy-env
+
+  # 3. Create a New Virtual Environment with Python 3.11
+  python3.11 -m venv gemspy-env
+
+  # 4. Activate the Virtual Environment
+  source gemspy-env/bin/activate
+  # Verify the Python version
+  python --version  # Should display "Python 3.11.x"
+
+  # 5. Upgrade pip
+  pip install --upgrade pip
+
+  # 6. Install Dependencies
+  pip install -r requirements.txt
+
+  # 7. Verify Installation
+  python -c "import scipy; print(scipy.__version__)"
+  ```
 
 ## Additional Resources
 
