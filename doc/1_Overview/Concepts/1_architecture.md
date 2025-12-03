@@ -11,7 +11,7 @@
 
 ## Architectural Breakthrough
 
-This architecture represents a fundamental change from classical OOME architectures, where problem definition is typically located inside the *Problem builder* and the tool itself.
+This architecture represents a fundamental change from classical OOME architectures (Object-Oriented Modelling Environment), where mathematical models are typically hard-coded in the software itself.
 
 <div style="text-align: center;">
   <img src="../../../assets/3_Scheme_Classical_GEMS_OOME.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
@@ -25,20 +25,22 @@ By configuring the entire optimization problem using these **external YAML files
 
 ## Input Files
 
-The GEMS architecture enforces a structured approach, separating modeling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains".
+The GEMS architecture enforces a structured approach, separating modeling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
-The core inputs for defining the optimization problem are external configuration files:
+![Definition_Domains](../../assets/domains.png)
 
-| Component | File | Description & Role |
+These inputs are external files to the core and consist of:
+
+| Type of Input | File | Description & Role |
 | :--- | :--- | :--- |
-| **Model Libraries** | `library.yml` | Define the **Models**, which are **abstract representation of a type of object** that will be simulated inside our own study. This file includes optimization **variables**, **mathematical constraints**, **objective contributions**, **parameters**, and **ports**. |
-| **System** | `system.yml` | Defines the **Components**, which are **numerical instantiation of models**. It links to a specific model ID and defines the numerical values for its parameters. It also defines the **connections** between components via ports, forming the system graph. |
-| **Timeseries** | `timeseries.tsv` | Contains the numerical data for parameters that are dependent on time and scenario. |
+| **Model Libraries** | YAML file (eg: `library.yml`) | Define the **Models**, which are **abstract representation of a type of object** that will be simulated inside our own system. This file includes optimization **variables**, **mathematical constraints**, **objective contributions**, **parameters**, and **ports**. |
+| **System** | YAML file (eg: `system.yml`) | Defines the **Components**, which are **numerical instantiation of models**. It links to a specific model ID and defines the numerical values for its parameters. It also defines the **connections** between components via ports, forming the system graph. |
+| **Timeseries** | Dataserie (eg: `timeseries.tsv`) | Contains the numerical data for parameters that are dependent on time and scenario. |
 
 
 ## Files Interaction
 
-The following scheme shows the interaction of the different core concepts presented previously. It is based on the *basic-model-library* present inside this documentation.
+The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](../../../libraries/basic_models_library.yml) present inside this documentation.
 
 <p align="center">
     <img src="../../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
