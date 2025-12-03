@@ -195,6 +195,17 @@ Even if Antares Simulator is only 1GB, the storage's weigth of the studies will 
 | GitHub Issues         | [GemsPy Issues](https://github.com/AntaresSimulatorTeam/GemsPy/issues)|
 | Contact Support       | [Contact support](../../6_Support%20&%20Contributing/2_contact.md)   |
 
+# Support Contact
+
+
+| Contact Type         | Link                                                                 |
+|----------------------|----------------------------------------------------------------------|
+| GEMS Support      | [Contact support](../../6_Support%20&%20Contributing/2_contact.md) |
+| GEMS Contribution  | [Contributing Contact](../../6_Support%20&%20Contributing/3_contributing.md) |
+| GEMS FAQ                  | [FAQ](../../6_Support%20&%20Contributing/1_faq.md)                   |
+| Antares Simulator Contact (Github Issue) | [Contact Form Website](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues/new?template=support_request.md)        |
+
+
 ---
 
 **Navigation**
