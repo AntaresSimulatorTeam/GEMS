@@ -61,18 +61,19 @@ def unzip_studies(zip_folder: Path) -> tuple[Path, Path]:
     extracted_paths = []
 
     for zip_path in zip_files:
-        target_dir = zip_folder / zip_path.stem  # remove .zip extension
+        # Example: Antares-Simulator-Thermal-Test.zip → "Antares-Simulator-Thermal-Test"
+        study_dir = zip_folder / zip_path.stem
 
         try:
-            with zipfile.ZipFile(zip_path, 'r') as z:
-                z.extractall(target_dir)
+            with zipfile.ZipFile(zip_path, "r") as z:
+                # Let the archive create its internal top-level folder
+                z.extractall(zip_folder)
         except Exception as e:
             pytest.fail(f"Unzipping failed for {zip_path}: {e}")
 
-        extracted_paths.append(target_dir)
+        extracted_paths.append(study_dir)
 
-    # Return two paths in consistent order:
-    # Antares first, GEMS second (sorted alphabetically)
+    # Consistent order (e.g. Antares first, GEMS second)
     extracted_paths.sort()
     return extracted_paths[0], extracted_paths[1]
 
