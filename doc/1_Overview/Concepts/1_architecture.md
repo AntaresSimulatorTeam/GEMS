@@ -17,11 +17,10 @@ This architecture represents a fundamental change from classical OOME architectu
   <img src="../../../assets/3_Scheme_Classical_GEMS_OOME.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
 </div>
 
+This architecture aims at exporting the definition of component models and system configuration from the core software. By relying on **external YAML files**, GEMS enables:
 
-By configuring the entire optimization problem using these **external YAML files**, the architecture achieves its key principles:
-
-- **Versatile Modelling**: Optimization problem can be configured easily ***without* rewriting the core code**
-- **Interoperability**: The GEMS format facilitates seamless interaction with external tools, demonstrated, for example, by the conversion and simulation of PyPSA studies using GemsPy
+- **Flexible Modelling**: Models and system configurations can be defined, extended, or modified directly in configuration files—no changes to the core code are required.
+- **Interoperability**: The GEMS file format supports seamless integration with external tools and workflows, such as converting and simulating PyPSA studies using GemsPy.
 
 ## Input Files
 
