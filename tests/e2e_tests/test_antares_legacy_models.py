@@ -51,7 +51,28 @@ def copy_zip_folder(
     shutil.copy(zip2, target_folder)
 
     return target_folder
+def unzip_studies(zip_folder: Path) -> tuple[Path, Path]:
+    zip_files = list(zip_folder.glob("*.zip"))
+    if len(zip_files) != 2:
+        pytest.fail(f"Expected 2 zip files, found {len(zip_files)} in {zip_folder}")
 
+    extracted_paths = []
+
+    for zip_path in zip_files:
+        target_dir = zip_folder / zip_path.stem  # remove .zip extension
+
+        try:
+            with zipfile.ZipFile(zip_path, 'r') as z:
+                z.extractall(target_dir)
+        except Exception as e:
+            pytest.fail(f"Unzipping failed for {zip_path}: {e}")
+
+        extracted_paths.append(target_dir)
+
+    # Return two paths in consistent order:
+    # Antares first, GEMS second (sorted alphabetically)
+    extracted_paths.sort()
+    return extracted_paths[0], extracted_paths[1]
 
 # ---------------------------------------------------------------------------
 # Fixtures
@@ -96,6 +117,11 @@ def test_thermal_clusters(create_tmp: Path) -> None:
         tmp_root=create_tmp,
     )
 
+    # Unzip Antares and GEMS studies
+    antares_path, gems_path = unzip_studies(target_folder)
+
     # basic sanity checks
     assert (target_folder / antares_study).exists()
     assert (target_folder / gems_study).exists()
+    assert antares_path.is_dir()
+    assert gems_path.is_dir()
