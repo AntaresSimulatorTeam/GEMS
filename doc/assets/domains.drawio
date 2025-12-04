@@ -4,17 +4,17 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="box-1" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px; color: rgb(255, 255, 255);&quot;&gt;Abstract modeling&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;Mathematical representation of&lt;br&gt;modeling object behavior&lt;br&gt;(on a block)&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;&lt;b&gt;taxonomy.yml&lt;br&gt;library.yml&lt;/b&gt;&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#17a2b8;strokeColor=#138496;strokeWidth=3;" parent="1" vertex="1">
-          <mxGeometry x="10" y="10" width="280" height="180" as="geometry" />
+        <mxCell id="box-1" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px; color: rgb(255, 255, 255);&quot;&gt;Abstract Modelling&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;Mathematical representation of&lt;br&gt;Modelling object behavior&lt;br&gt;(on a block)&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;&lt;b&gt;taxonomy.yml&lt;br&gt;library.yml&lt;/b&gt;&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#17a2b8;strokeColor=#138496;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="280" height="180" as="geometry" />
         </mxCell>
         <mxCell id="box-2" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px; color: rgb(255, 255, 255);&quot;&gt;System&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;Definition of a system =&lt;br&gt;instantiation of abstract models&lt;br&gt;(graph, numerical data)&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;&lt;b&gt;system.yml&lt;br&gt;timeseries.tsv&lt;/b&gt;&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d63384;strokeColor=#b02a6e;strokeWidth=3;" parent="1" vertex="1">
-          <mxGeometry x="397" y="10" width="280" height="180" as="geometry" />
+          <mxGeometry x="360" y="20" width="280" height="180" as="geometry" />
         </mxCell>
         <mxCell id="box-3" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px; color: rgb(255, 255, 255);&quot;&gt;Solution workflow&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;Definition of processing workflow&lt;br&gt;for blocks (sequential or parallel,&lt;br&gt;Xpansion frontal ou Benders)&lt;br&gt;and raw outputs&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;&lt;b&gt;optim-config.yml&lt;br&gt;parameters.yml&lt;/b&gt;&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8a055;strokeColor=#e88b3e;strokeWidth=3;" parent="1" vertex="1">
-          <mxGeometry x="10" y="240" width="280" height="200" as="geometry" />
+          <mxGeometry x="40" y="240" width="280" height="200" as="geometry" />
         </mxCell>
         <mxCell id="box-4" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px; color: rgb(255, 255, 255);&quot;&gt;Business Intelligence&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;Definition of business&lt;br&gt;output metrics&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;&lt;b&gt;business-metric.yml&lt;br&gt;business-view-def-templates.yml&lt;br&gt;business-view-def.yml&lt;/b&gt;&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8b5fb5;strokeColor=#6f4c91;strokeWidth=3;" parent="1" vertex="1">
-          <mxGeometry x="397" y="240" width="280" height="200" as="geometry" />
+          <mxGeometry x="360" y="240" width="280" height="200" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
