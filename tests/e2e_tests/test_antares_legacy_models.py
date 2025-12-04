@@ -248,3 +248,35 @@ def test_thermal_clusters(create_tmp: Path) -> None:
     assert gems_path.is_dir()
     assert copied.exists()
     assert gems_objective == pytest.approx(antares_objective, abs=1e-4)
+
+def test_sts(create_tmp: Path) -> None:
+    antares_study = "Antares-Simulator-STS-Test.zip"
+    gems_study = "GEMS-STS-Test.zip"
+ 
+    # create_tmp is the root tmp folder; we create a subfolder for this test
+    target_folder = copy_zip_folder(
+        folder_name="sts",
+        zip1_name=antares_study,
+        zip2_name=gems_study,
+        source_dir=sts_studies_path,
+        tmp_root=create_tmp,
+    )
+ 
+    # Unzip Antares and GEMS studies
+    antares_path, gems_path = unzip_studies(target_folder)
+ 
+    copied = copy_file_to_gems_study(gems_path)
+ 
+    gems_objective = get_gems_study_objective(gems_path)
+    antares_objective = get_antares_study_objective(antares_path)
+ 
+    logger.info("GEMS Study objective: "  + str(gems_objective))
+    logger.info("Antares Study objective: "  + str(antares_objective))
+ 
+    # basic sanity checks
+    assert (target_folder / antares_study).exists()
+    assert (target_folder / gems_study).exists()
+    assert antares_path.is_dir()
+    assert gems_path.is_dir()
+    assert copied.exists()
+    assert gems_objective == pytest.approx(antares_objective, abs=1e-4)
