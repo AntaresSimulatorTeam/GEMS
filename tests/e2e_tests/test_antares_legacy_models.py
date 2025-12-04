@@ -63,14 +63,13 @@ def get_antares_objective_function_value(file_name: Path) -> float:
 
 
 def copy_zip_folder(
-    folder_name: str,
     zip1_name: str,
     zip2_name: str,
     source_dir: Path,
     tmp_root: Path,
 ) -> Path:
     """Copy two zip files into tmp/folder_name and return the target folder."""
-    target_folder = tmp_root / folder_name
+    target_folder = tmp_root
     target_folder.mkdir(parents=True, exist_ok=True)
 
     for name in (zip1_name, zip2_name):
@@ -222,7 +221,7 @@ def tmp_root() -> Path:
 
 
 @pytest.fixture(scope="function", autouse=True)
-def clean_tmp(tmp_root: Path) -> Path:
+def clean_tmp(tmp_root: Path) -> None:
     """Clean the contents of tmp before each test."""
     for item in tmp_root.iterdir():
         if item.is_dir():
@@ -230,35 +229,28 @@ def clean_tmp(tmp_root: Path) -> Path:
         else:
             item.unlink(missing_ok=True)
 
-    # so tests can use it like create_tmp did
-    return tmp_root
-
-
-
 # -----------------------------------------------------------------------------
 # Parametrized tests
 # -----------------------------------------------------------------------------
 @pytest.mark.parametrize(
-    "folder_name, antares_zip, gems_zip, source_dir",
+    "antares_zip, gems_zip, source_dir",
     [
-        ("thermal_clusters", "Antares-Simulator-Thermal-Test.zip", "GEMS-Thermal-Test.zip", thermal_cluster_studies_path),
-        ("sts",              "Antares-Simulator-STS-Test.zip",    "GEMS-STS-Test.zip",    sts_studies_path),
+        ("Antares-Simulator-Thermal-Test.zip", "GEMS-Thermal-Test.zip", thermal_cluster_studies_path),
+        ("Antares-Simulator-STS-Test.zip",    "GEMS-STS-Test.zip",    sts_studies_path),
     ],
 )
 def test_study_equivalence(
-    clean_tmp: Path,
-    folder_name: str,
+    tmp_root: Path,
     antares_zip: str,
     gems_zip: str,
     source_dir: Path,
 ) -> None:
     # Prepare zips in tmp
     target_folder = copy_zip_folder(
-        folder_name=folder_name,
         zip1_name=antares_zip,
         zip2_name=gems_zip,
         source_dir=source_dir,
-        tmp_root=clean_tmp,
+        tmp_root=tmp_root,
     )
 
     # Unzip Antares and GEMS studies
@@ -271,8 +263,8 @@ def test_study_equivalence(
     gems_objective = get_gems_study_objective(gems_path)
     antares_objective = get_antares_study_objective(antares_path)
 
-    logger.info(f"[{folder_name}] GEMS objective    : {gems_objective}")
-    logger.info(f"[{folder_name}] Antares objective : {antares_objective}")
+    logger.info(f"GEMS objective    : {gems_objective}")
+    logger.info(f"Antares objective : {antares_objective}")
 
     # Sanity checks
     assert (target_folder / antares_zip).exists()
