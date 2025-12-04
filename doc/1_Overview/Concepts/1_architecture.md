@@ -25,7 +25,7 @@ By configuring the entire optimization problem using these **external YAML files
 
 ## Input Files
 
-The GEMS architecture enforces a structured approach, separating modeling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
+The GEMS architecture enforces a structured approach, separating Modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
 ![Definition_Domains](../../assets/domains.png)
 

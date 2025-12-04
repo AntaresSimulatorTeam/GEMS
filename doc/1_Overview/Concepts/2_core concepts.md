@@ -13,11 +13,11 @@ GEMS uses mainly YAML files for defining optimization problem :
 
 - **Library.yml** is a file listing all the **models** representing general unspecified elements of a study. These models are used as “template” for creating their instances, called **components**.
 
-- **System.yml** is a file listing all the **components**, the instances of **models** defined by the system yaml file, representing all the specified elements of the simulated grid. Besides, this file contains all the connections between the components, defining how they interact. 
+- **System.yml** is a file listing all the **components**, the instances of **models** defined by the system yaml file, representing all the specified elements of the simulated energy system. Besides, this file contains all the connections between the components, defining how they interact. 
 
 ### Models definition (from library.yml)
 
-As seen before, library defines the **models**. They are abstract mathematical configurations representing the general features of a category of grid element, then, users can specify any instance of this model for creating each simulated grid’s element. 
+As seen before, library defines the **models**. They are abstract mathematical configurations representing the general features of a category of energy system element, then, users can specify any instance of this model for creating each simulated grid’s element. 
 
 They are defined by *variables*, *parameters*, *ports*, *constraints* :
 

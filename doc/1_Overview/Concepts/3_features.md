@@ -14,9 +14,9 @@
 - **Mixed Integer Linear Programming (MILP)**: GEMS is designed to handle mathematical problems requiring Mixed Integer Linear Programming.
 - **Time × Scenario Optimization**: Problems over a time × scenario grid can be solved.
 
-## Grid Modeling
+## Energy System Modelling
 
-- **Multi-Energy Modeling**: Multi-energy systems can be modeled by GEMS. While ANTARES mainly focuses on the electric grid, GEMS can handle multi-energy systems.
+- **Multi-Energy Modelling**: Multi-energy systems can be modeled by GEMS. While ANTARES mainly focuses on the electric grid, GEMS can handle multi-energy systems.
 - **Antares Legacy Integration (Hybrid Mode)**: A study can be composed of a "hybrid" simulation made of two simulation parts, one from Legacy and the other from GEMS.
 - **Model Taxonomy**: The framework uses a `taxonomy.yml` file to define model categories and ensure mandatory fields (parameters, variables, ports, extra outputs) for each category.
 
