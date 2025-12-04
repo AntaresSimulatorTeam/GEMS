@@ -35,8 +35,8 @@ OBJECTIVE_ATOL = 1e-4
 # -----------------------------------------------------------------------------
 # Helpers
 # -----------------------------------------------------------------------------
-def get_objective_value(file_name: Path) -> float:
-    """Read an objective value from a CSV/TSV file produced by GEMS."""
+def get_gems_objective_function_value(file_name: Path) -> float:
+    """Read an objective function value from a CSV/TSV file produced by GEMS."""
     match file_name.suffix:
         case ".csv":
             df = pd.read_csv(file_name, usecols=["output", "value"])
@@ -47,6 +47,19 @@ def get_objective_value(file_name: Path) -> float:
 
     result = df.query("output == 'OBJECTIVE_VALUE'")["value"]
     return float(result.iloc[0])
+
+def get_antares_objective_function_value(file_name: Path) -> float:
+    """Read an objective function value from txt file."""
+    exp_value: float | None = None
+    with file_name.open("r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("EXP"):  # e.g. "EXP  :  5.5088e+06"
+                parts = line.split(":")
+                if len(parts) >= 2:
+                    exp_value = float(parts[1].strip())
+                    break
+    return exp_value
 
 
 def copy_zip_folder(
@@ -136,7 +149,7 @@ def get_gems_study_objective(study_dir: Path) -> float:
     if not result_files:
         raise FileNotFoundError(f"Result file not found in {output_dir}")
 
-    return get_objective_value(result_files[-1])
+    return get_gems_objective_function_value(result_files[-1])
 
 
 def get_antares_study_objective(study_dir: Path) -> float:
@@ -170,16 +183,8 @@ def get_antares_study_objective(study_dir: Path) -> float:
     result_file = subdirs[0] / "annualSystemCost.txt"
     if not result_file.is_file():
         raise FileNotFoundError(f"Result file not found: {result_file}")
-
-    exp_value: float | None = None
-    with result_file.open("r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if line.startswith("EXP"):  # e.g. "EXP  :  5.5088e+06"
-                parts = line.split(":")
-                if len(parts) >= 2:
-                    exp_value = float(parts[1].strip())
-                    break
+    
+    exp_value = get_antares_objective_function_value(file_name=result_file)
 
     if exp_value is None:
         raise ValueError(f"Could not find EXP line in {result_file}")
@@ -201,15 +206,33 @@ def check_antares_binaries() -> None:
         )
 
 
-@pytest.fixture(scope="function", autouse=True)
-def create_tmp() -> Path:
-    """Create a temporary directory and abort the test if creation fails."""
+@pytest.fixture(scope="session")
+def tmp_root() -> Path:
+    """Create tmp directory once and delete it after all tests."""
     tmp = current_dir / "tmp"
     try:
         tmp.mkdir(exist_ok=True)
     except Exception as e:
         pytest.fail(f"Failed to create temporary directory {tmp}: {e}")
-    return tmp
+
+    yield tmp  # give to tests
+
+    # after all tests, delete tmp entirely
+    shutil.rmtree(tmp, ignore_errors=True)
+
+
+@pytest.fixture(scope="function", autouse=True)
+def clean_tmp(tmp_root: Path) -> Path:
+    """Clean the contents of tmp before each test."""
+    for item in tmp_root.iterdir():
+        if item.is_dir():
+            shutil.rmtree(item, ignore_errors=True)
+        else:
+            item.unlink(missing_ok=True)
+
+    # so tests can use it like create_tmp did
+    return tmp_root
+
 
 
 # -----------------------------------------------------------------------------
@@ -223,7 +246,7 @@ def create_tmp() -> Path:
     ],
 )
 def test_study_equivalence(
-    create_tmp: Path,
+    clean_tmp: Path,
     folder_name: str,
     antares_zip: str,
     gems_zip: str,
@@ -235,7 +258,7 @@ def test_study_equivalence(
         zip1_name=antares_zip,
         zip2_name=gems_zip,
         source_dir=source_dir,
-        tmp_root=create_tmp,
+        tmp_root=clean_tmp,
     )
 
     # Unzip Antares and GEMS studies
