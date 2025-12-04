@@ -31,6 +31,11 @@
 - **Code Stability**: GEMS was developed to ensure code stability and maintainability.
 - **Interoperability**: GEMS aims to emphasize interoperability and the ability to run studies from different formats.
 
+## Energy System Modelling
+
+- **Multi-Energy Modelling**: Multi-energy systems can be modeled by GEMS. While ANTARES mainly focuses on the electric grid, GEMS can handle multi-energy systems.
+- **Antares Legacy Integration (Hybrid Mode)**: A study can be composed of a "hybrid" simulation made of two simulation parts, one from Legacy and the other from GEMS.
+- **Model Taxonomy**: The framework uses a `taxonomy.yml` file to define model categories and ensure mandatory fields (parameters, variables, ports, extra outputs) for each category.
 ---
 
 **Navigation**
