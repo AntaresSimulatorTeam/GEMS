@@ -52,6 +52,7 @@ def copy_zip_folder(
     shutil.copy(zip2, target_folder)
 
     return target_folder
+
 def unzip_studies(zip_folder: Path) -> tuple[Path, Path]:
     zip_files = list(zip_folder.glob("*.zip"))
     if len(zip_files) != 2:
@@ -74,6 +75,29 @@ def unzip_studies(zip_folder: Path) -> tuple[Path, Path]:
     # Antares first, GEMS second (sorted alphabetically)
     extracted_paths.sort()
     return extracted_paths[0], extracted_paths[1]
+
+def copy_file_to_gems_study(gems_study_path: Path) -> Path:
+
+    source_file = current_dir / "libraries" / "antares_legacy_models.yml"
+    if not source_file.is_file():
+        pytest.fail(f"Source file does not exist: {source_file}")
+
+    # Required folder structure (must already exist in the extracted study)
+    target_folder = gems_study_path / "input" / "model-libraries"
+
+    # Fail if required folder is missing
+    if not target_folder.is_dir():
+        pytest.fail(f"GEMS study is missing required folder: {target_folder}")
+
+    # Target file path
+    target_path = target_folder / source_file.name
+
+    try:
+        shutil.copy(source_file, target_path)
+    except Exception as e:
+        pytest.fail(f"Failed to copy {source_file} to {target_path}: {e}")
+
+    return target_path
 
 # ---------------------------------------------------------------------------
 # Fixtures
@@ -121,8 +145,11 @@ def test_thermal_clusters(create_tmp: Path) -> None:
     # Unzip Antares and GEMS studies
     antares_path, gems_path = unzip_studies(target_folder)
 
+    copied = copy_file_to_gems_study(gems_path)
+
     # basic sanity checks
     assert (target_folder / antares_study).exists()
     assert (target_folder / gems_study).exists()
     assert antares_path.is_dir()
     assert gems_path.is_dir()
+    assert copied.exists()
