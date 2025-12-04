@@ -16,6 +16,7 @@ import shutil
 import subprocess
 from pathlib import Path
 import zipfile
+from ..utilis import get_objective_value
 
 import pytest
 
@@ -25,6 +26,7 @@ logger = logging.getLogger(__name__)
 current_dir = Path(__file__).resolve().parents[2]
 studies_folder = current_dir / "resources" / "e2e_studies" / "antares_legacy_models"
 thermal_cluster_studies_path = studies_folder / "test_thermal_clusters"
+sts_studies_path = studies_folder / "test_sts"
 
 
 # ---------------------------------------------------------------------------
@@ -100,6 +102,91 @@ def copy_file_to_gems_study(gems_study_path: Path) -> Path:
 
     return target_path
 
+def get_gems_study_objective(study_dir: Path) -> float:
+
+    modeler_bin = current_dir / "antares-9.3.2-Ubuntu-22.04" / "bin" / "antares-modeler"
+
+    logger.info(f"Running Antares modeler with study directory: {study_dir}")
+
+    try:
+        subprocess.run(
+            [str(modeler_bin), str(study_dir)],
+            capture_output=True,
+            text=True,
+            check=False,
+            cwd=str(modeler_bin.parent),
+        )
+
+    except subprocess.CalledProcessError as e:
+        raise Exception(f"Antares modeler failed with error: {e}")
+
+    logger.info("Getting GEMS study objective")
+
+    output_dir = study_dir / "output"
+    result_file = [f for f in output_dir.iterdir() if f.is_file() and f.name.startswith("simulation_table")]
+
+    if result_file:
+        return get_objective_value(result_file[-1])
+
+    raise FileNotFoundError(f"Result file not found in {output_dir}")
+
+
+def get_antares_study_objective(study_dir: Path) -> float:
+
+    antares_bin = current_dir / "antares-9.3.2-Ubuntu-22.04" / "bin" / "antares-solver"
+
+    logger.info(f"Running Antares Simulator with study directory: {study_dir}")
+
+    try:
+        subprocess.run(
+            [str(antares_bin), str(study_dir), "--linear-solver=coin"],
+            capture_output=True,
+            text=True,
+            check=True,                     # raise if Antares fails
+            cwd=str(antares_bin.parent),
+        )
+    except subprocess.CalledProcessError as e:
+        logger.error("Antares Simulator failed")
+        logger.error(e.stdout)
+        logger.error(e.stderr)
+        raise Exception(f"Antares Simulator failed with error: {e}") from e
+
+    logger.info("Getting Antares study objective")
+
+    output_dir = study_dir / "output"
+    if not output_dir.is_dir():
+        raise FileNotFoundError(f"Output directory not found: {output_dir}")
+
+    # Take the first subdirectory in output/, whatever its name is
+    subdirs = [d for d in output_dir.iterdir() if d.is_dir()]
+    if not subdirs:
+        raise FileNotFoundError(f"No subdirectories found in {output_dir}")
+
+    first_output = sorted(subdirs)[0]
+    result_file = first_output / "annualSystemCost.txt"
+
+    if not result_file.is_file():
+        raise FileNotFoundError(f"Result file not found: {result_file}")
+
+    # Parse EXP value from annualSystemCost.txt
+    exp_value: float | None = None
+    with result_file.open("r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            # Example line: "EXP  :  5.5088e+06"
+            if line.startswith("EXP"):
+                parts = line.split(":")
+                if len(parts) >= 2:
+                    value_str = parts[1].strip()
+                    exp_value = float(value_str)   # convert to float
+                    break
+
+    if exp_value is None:
+        raise ValueError(f"Could not find EXP line in {result_file}")
+
+    logger.info(f"Antares study objective (EXP) = {exp_value}")
+    return exp_value
+
 # ---------------------------------------------------------------------------
 # Fixtures
 # ---------------------------------------------------------------------------
@@ -148,9 +235,16 @@ def test_thermal_clusters(create_tmp: Path) -> None:
 
     copied = copy_file_to_gems_study(gems_path)
 
+    gems_objective = get_gems_study_objective(gems_path)
+    antares_objective = get_antares_study_objective(antares_path)
+
+    logger.info("GEMS Study objective: "  + str(gems_objective))
+    logger.info("Antares Study objective: "  + str(antares_objective))
+
     # basic sanity checks
     assert (target_folder / antares_study).exists()
     assert (target_folder / gems_study).exists()
     assert antares_path.is_dir()
     assert gems_path.is_dir()
     assert copied.exists()
+    assert gems_objective == pytest.approx(antares_objective, abs=1e-4)
