@@ -15,7 +15,6 @@ import math
 import shutil
 import subprocess
 from pathlib import Path
-from ..utilis import get_objective_value
 
 import pytest
 
