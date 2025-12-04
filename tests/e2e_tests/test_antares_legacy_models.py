@@ -15,6 +15,7 @@ import math
 import shutil
 import subprocess
 from pathlib import Path
+import zipfile
 
 import pytest
 
