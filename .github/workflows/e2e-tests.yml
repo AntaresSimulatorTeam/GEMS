@@ -44,7 +44,7 @@ jobs:
     
     - name: Run end-to-end tests
       run: |
-        python -m pytest -n auto tests/e2e_tests/test_antares_legacy_models.py -v
+        python -m pytest tests/e2e_tests/test_antares_legacy_models.py -v
     
     - name: Cleanup
       if: always()
