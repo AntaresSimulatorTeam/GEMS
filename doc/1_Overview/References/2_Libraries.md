@@ -7,22 +7,25 @@
   </div>
 </div>
 
-# Ready for use librairies
+# Ready-to-Use Libraries
 
-In this section several libraries which are continually provided to help you create your own optimization problems.
+This section provides several libraries that are continually updated to help you create your own optimization problems.
 
 ## Sandbox
-List of libraries for learning GEMS :
+
+List of libraries for learning GEMS:
 
 | Library Name         | Description                  | Link                                                      |
 |----------------------|------------------------------|-----------------------------------------------------------|
 | Basic Model Library  | Basic library for newcomers  | [basic-model-library.yml](../../../libraries/basic_models_library.yml) |
 
-## Real usecase librairies
-List of librairies from real projects :
+## Real Use Case Libraries
+
+List of libraries from real projects:
 | Library Name         | Description                  | Link                                                      |
 |----------------------|------------------------------|-----------------------------------------------------------|
 | xxx  | xxx  | xxx |
+
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">

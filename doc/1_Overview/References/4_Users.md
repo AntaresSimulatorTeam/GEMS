@@ -7,7 +7,7 @@
   </div>
 </div>
 
-The following entities use currently or used GEMS framewor for their projects :
+The following entities currently use or have used the GEMS framework for their projects:
 
 ## Companies
 
@@ -15,13 +15,13 @@ The following entities use currently or used GEMS framewor for their projects :
 
 <img src="../../assets/4_RTE_logo.svg.png" alt="RTE logo" height="50"/>
 
-  GEMS was designed by RTE for the project ANDROMEDE.
-  
-  RTE is using it for Planeterr ([planeterr.fr](https://planeterr.fr/)) project too.
+GEMS was designed by RTE for the ANDROMEDE project.
 
-### RTE international
+RTE is also using it for the Planeterr ([planeterr.fr](https://planeterr.fr/)) project.
 
-<img src="../../assets/7_RTEi_logo.png" alt="RTE international logo" height="55"/>
+### RTE International
+
+<img src="../../assets/7_RTEi_logo.png" alt="RTE International logo" height="55"/>
 
 ---
 **Navigation**
