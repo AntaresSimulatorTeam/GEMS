@@ -20,29 +20,33 @@ library:
       fields:
         - id: flow
   models:
-    - id: dsr
+
+    - id: shedding_load
       parameters:
+        - id: min_load
+          time-dependent: true
+          scenario-dependent: true 
         - id: max_load
           time-dependent: true
           scenario-dependent: true
-        - id: curtailment_price
+        - id: marginal_shedding_cost
           time-dependent: false
           scenario-dependent: false
       variables:
-        - id: curtailment
-          lower-bound: 0
+        - id: load
+          lower-bound: min_load
           upper-bound: max_load
           variable-type: continuous
       objective-contributions:
         - id: objective
-          expression: sum(curtailment * curtailment_price)
+          expression: sum((max_load-load)* marginal_shedding_cost)
       ports:
         - id: balance_port
           type: flow
       port-field-definitions:
         - port: balance_port
           field: flow
-          definition: -max_load + curtailment
+          definition: -load
 
 
     - id: electrolyser
