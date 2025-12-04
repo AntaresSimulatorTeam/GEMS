@@ -3,56 +3,56 @@
         <a href="../../../index.md">Main Section</a>
     </div>
     <div style="text-align: right;">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+        <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
     </div>
 </div>
 
 # Inputs
 ## YAML files
-GEMS uses mainly YAML files for defining optimization problem :
+GEMS mainly uses YAML files for defining optimization problems:
 
-- **Library.yml** is a file listing all the **models** representing general unspecified elements of a study. These models are used as “template” for creating their instances, called **components**.
+- **library.yml** is a file listing all the **models** representing general, unspecified elements of a study. These models are used as "templates" for creating their instances, called **components**.
 
-- **System.yml** is a file listing all the **components**, the instances of **models** defined by the system yaml file, representing all the specified elements of the simulated energy system. Besides, this file contains all the connections between the components, defining how they interact. 
+- **system.yml** is a file listing all the **components**—the instances of **models**—representing all the specified elements of the simulated energy system. This file also contains all the connections between the components, defining how they interact.
 
 ### Models definition (from library.yml)
 
-As seen before, library defines the **models**. They are abstract mathematical configurations representing the general features of a category of energy system element, then, users can specify any instance of this model for creating each simulated grid’s element. 
+As seen before, the library defines the **models**. They are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated grid element.
 
-They are defined by *variables*, *parameters*, *ports*, *constraints*, [examples are provided in UserGuide section](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29).
+They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)
 
-- **Variables [^1]** are abstract mathematical variables of a model, whose value is optimized by the solver. The optimization problem is to find the best set of variables based on their configuration. Their settings is shared across all model instances and defined in a library file.
+- **Variables [^1]** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration. Their settings are shared across all model instances and defined in a library file.
 
-- **Parameters (configuration) [^1]** is an input data declared in the model, but its value specific for each component is set in system.yml file.
+- **Parameters (configuration) [^1]** are input data declared in the model, but their values, specific for each component, are set in the system.yml file.
 
-- **Expression** is a mathematical formula used to specify a models's behavior, constraints, and contribution to the overall optimization problem
+- **Expression** is a mathematical formula used to specify a model's behavior, constraints, and contribution to the overall optimization problem.
 
-- **Constraints [^1]** are mathematical conditions that restricts the values of variables 
+- **Constraints [^1]** are mathematical conditions that restrict the values of variables.
 
-- **Port** is  communication interface for exchanging several expressions, called **fields** (expressions only exchanged by a port).
+- **Port** is a communication interface for exchanging several expressions, called **fields** (expressions only exchanged by a port).
 
-- **Binding Constraints [^1]** are constraints that link expressions shared between components through ports
+- **Binding Constraints [^1]** are constraints that link expressions shared between components through ports.
 
 ### Component specification (from system.yml)
 
-As mentionned before, **components** are instantiations of different **models**. In the system file, their [parameters and connections](../../3_User%20Guide/1_syntax.md#components%20specification%20%28from%20system.yml%29) are defined.
+As mentioned before, **components** are instantiations of different **models**. In the system file, their [parameters and connections](../../3_User%20Guide/1_syntax.md#components%20specification%20%28from%20system.yml%29) are defined.
 
-*One singe model can be referenced by several components, however, one component can only reference to one single model.*
+*One single model can be referenced by several components; however, one component can only reference one single model.*
 
-Their configuration consist of :
+Their configuration consists of:
 
-- **Model ID** is the reference of the model of which the component used. 
-- **Parameter value [^1]** is set inside the system.yml file but it was previously declared inside the library.yml file
-- **Connections** are the links between two components' ports 
+- **Model ID** is the reference to the model that the component uses.
+- **Parameter value [^1]** is set inside the system.yml file but must be previously declared inside the library.yml file.
+- **Connections** are the links between two components' ports.
 
 
 ## Dataseries
 
-Inside the YAML files, Parameters, Variables, and Constraints can be **dependent on the scenario and/or over time**, in this case, **dataseries** are needed for specified data. [Their structure depends of the system.](../../3_User%20Guide/1_syntax.md#dataseries).
+Inside the YAML files, Parameters, Variables, and Constraints can be **dependent on the scenario and/or over time**. In this case, **dataseries** are needed for specific data. [Their structure depends on the system.](../../3_User%20Guide/1_syntax.md#dataseries)
 
 ## Illustration with an example
 
-For getting familiar with these concepts, you can see below a corresponding table between theorical concepts and example from a thermal plant usecase :
+To get familiar with these concepts, see the table below for a correspondence between theoretical concepts and examples from a thermal plant use case:
 
 |Concept|Example|
 |-|-|
@@ -71,10 +71,10 @@ For getting familiar with these concepts, you can see below a corresponding tabl
 
 # Outputs
 
-The outputs of GEMS consit of the results of the modelisation, in two main files; **Optimization Problem** and **Business Views**. Their structure are detailed inside [UserGuide section](../../3_User%20Guide/1_syntax.md#outputs).
+The outputs of GEMS consist of the results of the modelling, in two main files: **Optimization Problem** and **Business Views**. Their structure is detailed in the [User Guide section](../../3_User%20Guide/1_syntax.md#outputs).
 
-- Optimization Problem contains all the global results of the simulation
-- Business Views consits of the results of the simulation but according to users' [specific needs](../../3_User%20Guide/1_syntax.md#outputs).
+- **Optimization Problem** contains all the global results of the simulation.
+- **Business Views** consist of the results of the simulation but according to users' [specific needs](../../3_User%20Guide/1_syntax.md#outputs).
 
 
 

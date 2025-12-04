@@ -7,38 +7,39 @@
   </div>
 </div>
 
+
 # GEMS Features
 
 ## Main Functionalities
 
-- **Mixed Integer Linear Programming (MILP)**: GEMS is designed to handle mathematical problems requiring Mixed Integer Linear Programming.
-- **Time × Scenario Optimization**: Problems over a time × scenario grid can be solved.
+- **Mixed Integer Linear Programming (MILP):** GEMS is designed to handle mathematical problems requiring Mixed Integer Linear Programming.
+- **Time × Scenario Optimization:** Problems over a time × scenario grid can be solved.
 
-## Usecase
+## Use Case
 
-GEMS was primary designed for the following purposes
+GEMS was primarily designed for the following purposes:
 
-- **Adequacy Assessment**: GEMS was designed to measure the ability of a energy system to supply the load through time and scenario
-- **Economic Dispatch**: It also optimizes the dispatch levels of electricity generators to minimize the overall cost of electricity generation while meeting demand and operational constraints
-- **Energy system planning**: Simulations help strategic development and coordination of electricity infrastructure to ensure a reliable and cost-effective energy supply at the long term
-
+- **Adequacy Assessment:** GEMS is designed to measure the ability of an energy system to supply the load through time and scenario.
+- **Economic Dispatch:** It also optimizes the dispatch levels of electricity generators to minimize the overall cost of electricity generation while meeting demand and operational constraints.
+- **Energy System Planning:** Simulations help strategic development and coordination of electricity infrastructure to ensure a reliable and cost-effective energy supply in the long term.
 
 ## Architecture
 
-- **Versatility**: Users can easily integrate new component models without rewriting core code by editing their own library and system YAML files.
-- **Input Separation**: Input data is separated into self-contained external files:
+- **Versatility:** Users can easily integrate new component models without rewriting core code by editing their own library and system YAML files.
+- **Input Separation:** Input data is separated into self-contained external files:
   - `library file`
   - `system file`
   - `dataseries`
-- **Interpreters**: Different interpreters can be used for solving problems, including the Modeler (GEMS interpreter in Antares Simulator) and GemsPy (Python interpreter [available on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)).
-- **Code Stability**: GEMS was developed to ensure code stability and maintainability.
-- **Interoperability**: GEMS aims to emphasize interoperability and the ability to run studies from different formats.
+- **Interpreters:** Different interpreters can be used for solving problems, including the Modeler (GEMS interpreter in Antares Simulator) and GemsPy (Python interpreter [available on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)).
+- **Code Stability:** GEMS was developed to ensure code stability and maintainability.
+- **Interoperability:** GEMS aims to emphasize interoperability and the ability to run studies from different formats.
 
-## Energy System Modelling
+## Energy System modelling
 
-- **Multi-Energy Modelling**: Multi-energy systems can be modeled by GEMS. While ANTARES mainly focuses on the electric grid, GEMS can handle multi-energy systems.
-- **Antares Legacy Integration (Hybrid Mode)**: A study can be composed of a "hybrid" simulation made of two simulation parts, one from Legacy and the other from GEMS.
-- **Model Taxonomy**: The framework uses a `taxonomy.yml` file to define model categories and ensure mandatory fields (parameters, variables, ports, extra outputs) for each category.
+- **Multi-Energy modelling:** Multi-energy systems can be modeled by GEMS. While ANTARES mainly focuses on the electric grid, GEMS can handle multi-energy systems.
+- **Antares Legacy Integration (Hybrid Mode):** A study can be composed of a "hybrid" simulation made of two simulation parts, one from Legacy and the other from GEMS.
+- **Model Taxonomy:** The framework uses a `taxonomy.yml` file to define model categories and ensure mandatory fields (parameters, variables, ports, extra outputs) for each category.
+
 ---
 
 **Navigation**

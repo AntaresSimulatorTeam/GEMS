@@ -11,39 +11,43 @@
 
 ## Architectural Breakthrough
 
-This architecture represents a fundamental change from classical OOME architectures (Object-Oriented Modelling Environment), where mathematical models are typically hard-coded in the software itself.
+
+This architecture represents a fundamental change from classical OOME architectures (Object-Oriented modelling Environment), where mathematical models are typically hard-coded in the software itself.
 
 <div style="text-align: center;">
   <img src="../../../assets/3_Scheme_Classical_GEMS_OOME.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
 </div>
 
-This architecture aims at exporting the definition of component models and system configuration from the core software. By relying on **external YAML files**, GEMS enables:
 
-- **Flexible Modelling**: Models and system configurations can be defined, extended, or modified directly in configuration files—no changes to the core code are required.
-- **Interoperability**: The GEMS file format supports seamless integration with external tools and workflows, such as converting and simulating PyPSA studies using GemsPy.
+This architecture aims to export the definition of component models and system configuration from the core software. By relying on **external YAML files**, GEMS enables:
+
+- **Flexible modelling:** Models and system configurations can be defined, extended, or modified directly in configuration files—no changes to the core code are required.
+- **Interoperability:** The GEMS file format supports seamless integration with external tools and workflows, such as converting and simulating PyPSA studies using GemsPy.
 
 ## Input Files
 
-The GEMS architecture enforces a structured approach, separating Modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
+
+The GEMS architecture enforces a structured approach, separating modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
 ![Definition_Domains](../../assets/domains.png)
 
 These inputs are external files to the core and consist of:
 | **Type of Input**        | **Domain**               | **File**                                   | **Description & Role**                                                                                                                                                                                                 |
 |-------------------------|--------------------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Model Libraries**      | Abstract Modelling       | YAML (e.g., `library.yml`)                 | **Defines Models**: Abstract representations of objects to be simulated. Includes optimization variables, mathematical constraints (internal and binding), objective contributions, parameters, and ports.              |
-| **System**               | System                   | YAML (e.g., `system.yml`)                  | **Defines Components**: Numerical instantiation of models, linking to model IDs (e.g., `library_id.model_id`). Specifies parameter values and connections between components via ports, forming the system graph.        |
-| **Timeseries**           | System                   | Dataserie (e.g., `timeseries.tsv`)         | **Time-dependent Data**: Numerical data for parameters varying by time and scenario. Stored as `.csv` or `.tsv` files, typically in a data-series folder.                                                               |
-| **Taxonomy**             | Abstract Modelling       | YAML (e.g., `taxonomy.yml`)                | **Model Structure & Categories**: Specifies mandatory parameters, variables, ports, or extra outputs per category. Useful for structuring the IHM (user interface) and simulation outputs.                             |
-| **Solution Workflow**    | Solution Workflow        | YAML (e.g., `optim-config.yml`)            | **Workflow Definition**: Describes calculation block processing (sequential, parallel, Xpansion frontale, Benders decomposition) and master problem constraints, especially for investment variables.                   |
-| **Business Views**       | Business Intelligence    | YAML (e.g., `business-view-def.yml`, `business-metric.yml`) | **Business Metrics Logic**: Calculates business metrics from simulation results in two phases: Step 1 (component scope, complex arithmetic), Step 2 (global scope, aggregation/filtering).                             |
-| **Parameters**           | System                   | YAML (e.g., `parameters.yml`)              | **Solver & Configuration Settings**: Contains solver parameters and configuration required for running the C++ Modeler.                                                                                                |
+| **Model Libraries**      | Abstract modelling        | YAML (e.g., `library.yml`)                 | **Defines Models:** Abstract representations of objects to be simulated. Includes optimization variables, mathematical constraints (internal and binding), objective contributions, parameters, and ports.              |
+| **System**               | System                   | YAML (e.g., `system.yml`)                  | **Defines Components:** Numerical instantiation of models, linking to model IDs (e.g., `library_id.model_id`). Specifies parameter values and connections between components via ports, forming the system graph.        |
+| **Timeseries**           | System                   | Dataseries (e.g., `timeseries.tsv`)        | **Time-dependent Data:** Numerical data for parameters varying by time and scenario. Stored as `.csv` or `.tsv` files, typically in a data-series folder.                                                               |
+| **Taxonomy**             | Abstract modelling        | YAML (e.g., `taxonomy.yml`)                | **Model Structure & Categories:** Specifies mandatory parameters, variables, ports, or extra outputs per category. Useful for structuring the UI (user interface) and simulation outputs.                             |
+| **Solution Workflow**    | Solution Workflow        | YAML (e.g., `optim-config.yml`)            | **Workflow Definition:** Describes calculation block processing (sequential, parallel, Xpansion frontale, Benders decomposition) and master problem constraints, especially for investment variables.                   |
+| **Business Views**       | Business Intelligence    | YAML (e.g., `business-view-def.yml`, `business-metric.yml`) | **Business Metrics Logic:** Calculates business metrics from simulation results in two phases: Step 1 (component scope, complex arithmetic), Step 2 (global scope, aggregation/filtering).                             |
+| **Parameters**           | System                   | YAML (e.g., `parameters.yml`)              | **Solver & Configuration Settings:** Contains solver parameters and configuration required for running the C++ Modeler.                                                                                                |
 
 
 
 ## Files Interaction
 
-The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](../../../libraries/basic_models_library.yml) present inside this documentation.
+
+The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](../../../libraries/basic_models_library.yml) included in this documentation.
 
 <p align="center">
     <img src="../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
