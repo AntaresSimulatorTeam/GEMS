@@ -30,12 +30,16 @@ The GEMS architecture enforces a structured approach, separating modeling logic,
 ![Definition_Domains](../../assets/domains.png)
 
 These inputs are external files to the core and consist of:
+| **Type of Input**        | **Domain**               | **File**                                   | **Description & Role**                                                                                                                                                                                                 |
+|-------------------------|--------------------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Model Libraries**      | Abstract Modelling       | YAML (e.g., `library.yml`)                 | **Defines Models**: Abstract representations of objects to be simulated. Includes optimization variables, mathematical constraints (internal and binding), objective contributions, parameters, and ports.              |
+| **System**               | System                   | YAML (e.g., `system.yml`)                  | **Defines Components**: Numerical instantiation of models, linking to model IDs (e.g., `library_id.model_id`). Specifies parameter values and connections between components via ports, forming the system graph.        |
+| **Timeseries**           | System                   | Dataserie (e.g., `timeseries.tsv`)         | **Time-dependent Data**: Numerical data for parameters varying by time and scenario. Stored as `.csv` or `.tsv` files, typically in a data-series folder.                                                               |
+| **Taxonomy**             | Abstract Modelling       | YAML (e.g., `taxonomy.yml`)                | **Model Structure & Categories**: Specifies mandatory parameters, variables, ports, or extra outputs per category. Useful for structuring the IHM (user interface) and simulation outputs.                             |
+| **Solution Workflow**    | Solution Workflow        | YAML (e.g., `optim-config.yml`)            | **Workflow Definition**: Describes calculation block processing (sequential, parallel, Xpansion frontale, Benders decomposition) and master problem constraints, especially for investment variables.                   |
+| **Business Views**       | Business Intelligence    | YAML (e.g., `business-view-def.yml`, `business-metric.yml`) | **Business Metrics Logic**: Calculates business metrics from simulation results in two phases: Step 1 (component scope, complex arithmetic), Step 2 (global scope, aggregation/filtering).                             |
+| **Parameters**           | System                   | YAML (e.g., `parameters.yml`)              | **Solver & Configuration Settings**: Contains solver parameters and configuration required for running the C++ Modeler.                                                                                                |
 
-| Type of Input | File | Description & Role |
-| :--- | :--- | :--- |
-| **Model Libraries** | YAML file (eg: `library.yml`) | Define the **Models**, which are **abstract representation of a type of object** that will be simulated inside our own system. This file includes optimization **variables**, **mathematical constraints**, **objective contributions**, **parameters**, and **ports**. |
-| **System** | YAML file (eg: `system.yml`) | Defines the **Components**, which are **numerical instantiation of models**. It links to a specific model ID and defines the numerical values for its parameters. It also defines the **connections** between components via ports, forming the system graph. |
-| **Timeseries** | Dataserie (eg: `timeseries.tsv`) | Contains the numerical data for parameters that are dependent on time and scenario. |
 
 
 ## Files Interaction
@@ -43,7 +47,7 @@ These inputs are external files to the core and consist of:
 The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](../../../libraries/basic_models_library.yml) present inside this documentation.
 
 <p align="center">
-    <img src="../../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
+    <img src="../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
 </p>
 
 ---
