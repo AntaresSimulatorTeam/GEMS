@@ -6,35 +6,62 @@ system:
     - id: bus_1
       model: basic_models_library.bus
       parameters:
-        spillage_cost: 1000
-        unsupplied_energy_cost: 10000
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
 
     - id: bus_2
       model: basic_models_library.bus
       parameters:
-        spillage_cost: 1000
-        unsupplied_energy_cost: 10000
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
           
     - id: bus_3
       model: basic_models_library.bus
       parameters:
-        spillage_cost: 1000
-        unsupplied_energy_cost: 10000
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
 
     - id: bus_load_1
       model: basic_models_library.load
       parameters:
-        load: 50
+        - id: load
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
 
     - id: bus_load_2
       model: basic_models_library.load
       parameters:
-        load: 40
+        - id: load
+          time-dependent: false
+          scenario-dependent: false
+          value: 40
           
     - id: bus_load_3
       model: basic_models_library.load
       parameters:
-        load: 80
+        - id: load
+          time-dependent: false
+          scenario-dependent: false
+          value: 80
           
           
     - id: generator1
