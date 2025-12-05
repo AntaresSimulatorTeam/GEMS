@@ -119,14 +119,21 @@ def copy_library_to_gems_study(gems_study_path: Path) -> None:
         pytest.fail(f"Source file does not exist: {source_file}")
 
     target_folder = gems_study_path / "input" / "model-libraries"
-    if not target_folder.is_dir():
-        pytest.fail(f"GEMS study is missing required folder: {target_folder}")
+
+    if not target_folder.exists():
+        try:
+            target_folder.mkdir(parents=True, exist_ok=True)
+        except Exception as e:
+            pytest.fail(f"Failed to create target folder {target_folder}: {e}")
+    elif not target_folder.is_dir():
+        pytest.fail(f"Expected directory for model-libraries, found a file: {target_folder}")
 
     target_path = target_folder / source_file.name
     try:
         shutil.copy(source_file, target_path)
     except Exception as e:
         pytest.fail(f"Failed to copy {source_file} to {target_path}: {e}")
+
 
 
 def get_gems_study_objective(study_dir: Path) -> float:
