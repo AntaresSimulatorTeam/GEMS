@@ -18,13 +18,17 @@ List of libraries for learning GEMS:
 | Library Name         | Description                  | Link                                                      |
 |----------------------|------------------------------|-----------------------------------------------------------|
 | Basic Model Library  | Basic library for newcomers  | [basic-model-library.yml](../../../libraries/basic_models_library.yml) |
+| andromede_models          | Library from RTE's Andromede project         | [link](../../../libraries/andromede_models.yml)  |
+|antares_legacy_models|Library from Antares Legacy|[link](../../../libraries/antares_legacy_models.yml)|
+|pypsa_models|Library using models from PyPSA|[link](../../../libraries/pypsa_models.yml)|
 
 ## Real Use Case Libraries
 
 List of libraries from real projects:
-| Library Name         | Description                  | Link                                                      |
-|----------------------|------------------------------|-----------------------------------------------------------|
-| xxx  | xxx  | xxx |
+
+| Library Name | Description | Link |
+|--------------|-------------|------|
+|NR|NR|NR|
 
 ---
 **Navigation**
