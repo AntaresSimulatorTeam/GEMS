@@ -22,9 +22,6 @@ As mentioned in the Overview section, GEMS studies can be executed using differe
 
 The following documentation explains how to install and use these interpreters for the first time.
 
----
-
-
 # GEMSPy
 
 GEMSPy is a Python interpreter for GEMS that allows you to create, manipulate, and simulate energy system models.
@@ -39,7 +36,7 @@ This package requires:
 - pip package manager (for installing required Python libraries)
 
 
-## Installation from Source
+## GEMSPy installation
 
 Currently, GEMSPy must be installed by cloning the repository manually:
 
@@ -64,13 +61,11 @@ It is recommended to create a **virtual environment** before installing GEMSPy. 
 | Enter GEMSPy directory      | `cd GemsPy`                                  | `cd GemsPy`                                |
 | Install requirements        | `pip install -r requirements.txt`            | `pip install -r requirements.txt`          |
 
-**Main dependencies installed via `requirements.txt`:**
+List of **main dependencies** installed via **`requirements.txt`**:
 
 - numpy
 - pandas
 - scipy
-
----
 
 
 ### Working with Virtual Environments
@@ -150,60 +145,14 @@ python -c "import scipy; print(scipy.__version__)"
 
 ## Additional Resources
 
-| Resource                | Link                                                                 |
-|-------------------------|----------------------------------------------------------------------|
-| Online Documentation     | [Antares Simulator Docs](https://antares-simulator.readthedocs.io/en/latest/) |
-| Modeler Documentation    | [GEMS Modeler Docs](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/) |
-| Examples                 | See the repository's `examples/` directory                           |
-| FAQ                      | [FAQ](../6_Support%20&%20Contributing/1_faq.md)                   |
-| Contact Support          | [Contact support](../6_Support%20&%20Contributing/2_contact.md)   |
-
-
-# Antares Modeler
-
-This section outlines the approach for configuring and utilizing the **Antares Modeler**, one of the primary interpreters for **GEMS studies**.
-
-## Requirements
-
-The **Antares Modeler** is designed to function within the Antares Simulator ecosystem. So, it's needed to **install Antares Simulator**.
-
-The complete installation documentation is in the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/)
-
-### System Requirements
-
-Antares is cross-platform running on :
-
-- Windows 10/11
-- CentOS 7.9
-- Ubuntu 20.04
-- OracleServer 8.9
-- OracleLinux 8
-
-
-### Memory
-
-Even if Antares Simulator is only 1GB, the storage's weigth of the studies will be added for the ROM and RAM.
-
-## Additional Resources
-
 | Resource              | Link                                                                 |
 |-----------------------|----------------------------------------------------------------------|
-| GitHub Repository     | [GemsPy on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)   |
+| GitHub Repository     | [GEMSPy on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)   |
 | Online Documentation  | [gemspy.readthedocs.io](https://gemspy.readthedocs.io)               |
 | Examples              | See the repository's `examples/` directory                           |
-| FAQ                   | [FAQ](../../6_Support%20&%20Contributing/1_faq.md)                   |
-| GitHub Issues         | [GemsPy Issues](https://github.com/AntaresSimulatorTeam/GemsPy/issues)|
-| Contact Support       | [Contact support](../../6_Support%20&%20Contributing/2_contact.md)   |
-
-# Support Contact
-
-
-| Contact Type         | Link                                                                 |
-|----------------------|----------------------------------------------------------------------|
-| GEMS Support      | [Contact support](../../6_Support%20&%20Contributing/2_contact.md) |
-| GEMS Contribution  | [Contributing Contact](../../6_Support%20&%20Contributing/3_contributing.md) |
-| GEMS FAQ                  | [FAQ](../../6_Support%20&%20Contributing/1_faq.md)                   |
-| Antares Simulator Contact (Github Issue) | [Contact Form Website](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues/new?template=support_request.md)        |
+| FAQ                   | [FAQ](../6_Support%20&%20Contributing/1_faq.md)                      |
+| GitHub Issues         | [GEMSPy Issues](https://github.com/AntaresSimulatorTeam/GemsPy/issues)|
+| Contact Support       | [Contact support](../6_Support%20&%20Contributing/2_contact.md)      |
 
 
 ---
