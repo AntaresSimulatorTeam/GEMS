@@ -23,13 +23,17 @@
 
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
-    <a href="../1_Overview/References/4_Users.md">Previous Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="1A_modeler_installation.md" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+  </button>
   </div>
-  <div style="text-align: center;">
-    <a href="../../index.md">Back to Home</a>
-  </div>
+  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="../index.md" style="text-decoration:none; color: #FFFFFF">Index</a>
+  </button>
   <div style="text-align: right;">
-    <a href="2_quick start examples.md">Next Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="2_quick start examples.md" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  </button>
   </div>
 </div>
 
