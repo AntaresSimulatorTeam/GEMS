@@ -62,44 +62,57 @@ def get_antares_objective_function_value(file_name: Path) -> float:
     return exp_value
 
 
-def copy_zip_folder(
-    zip1_name: str,
-    zip2_name: str,
+def copy_folders(
+    antares_zip_name: str,
+    gems_study_name: str,
     source_dir: Path,
     tmp_root: Path,
-) -> Path:
-    """Copy two zip files into tmp and return the target folder."""
-    for name in (zip1_name, zip2_name):
-        src = source_dir / name
-        if not src.is_file():
-            pytest.fail(f"ZIP file not found: {src}")
-        shutil.copy(src, tmp_root)
+) -> None:
+    """
+    Copy Antares ZIP and GEMS study (directory or ZIP) into tmp_root.
+    """
+    # Antares ZIP
+    antares_src = source_dir / antares_zip_name
+    if not antares_src.is_file():
+        pytest.fail(f"Antares ZIP file not found: {antares_src}")
+    shutil.copy(antares_src, tmp_root)
+
+    # GEMS study: prefer directory, but also accept zip in case of mixed setups
+    gems_src = source_dir / gems_study_name
+    if gems_src.is_dir():
+        gems_target = tmp_root / gems_study_name
+        if gems_target.exists():
+            shutil.rmtree(gems_target, ignore_errors=True)
+        shutil.copytree(gems_src, gems_target)
+    elif gems_src.is_file():
+        # fallback: if someone still has it as zip, we just copy the file
+        shutil.copy(gems_src, tmp_root)
+    else:
+        pytest.fail(f"GEMS study not found as directory or file: {gems_src}")
 
 
-def unzip_studies(zip_folder: Path) -> tuple[Path, Path]:
-    """Unzip the two zip files in zip_folder and return their study directories."""
-    zip_files = sorted(zip_folder.glob("*.zip"))
-    if len(zip_files) != 2:
-        pytest.fail(f"Expected 2 zip files, found {len(zip_files)} in {zip_folder}")
+def unzip_antares_study(zip_folder: Path, antares_zip_name: str) -> Path:
+    """
+    Unzip the Antares study zip into zip_folder and return the study directory.
+    """
+    zip_path = zip_folder / antares_zip_name
+    if not zip_path.is_file():
+        pytest.fail(f"Antares ZIP file not found in tmp: {zip_path}")
 
-    extracted_paths: list[Path] = []
+    try:
+        with zipfile.ZipFile(zip_path, "r") as z:
+            z.extractall(zip_folder)
+    except Exception as e:
+        pytest.fail(f"Unzipping failed for {zip_path}: {e}")
 
-    for zip_path in zip_files:
-        study_dir = zip_folder / zip_path.stem
-        try:
-            with zipfile.ZipFile(zip_path, "r") as z:
-                # Let the archive create its own internal top-level folder
-                z.extractall(zip_folder)
-        except Exception as e:
-            pytest.fail(f"Unzipping failed for {zip_path}: {e}")
+    study_dir = zip_folder / zip_path.stem
+    if not study_dir.is_dir():
+        pytest.fail(f"Antares study directory not found after unzip: {study_dir}")
 
-        extracted_paths.append(study_dir)
-
-    extracted_paths.sort()
-    return extracted_paths[0], extracted_paths[1]
+    return study_dir
 
 
-def copy_file_to_gems_study(gems_study_path: Path) -> None:
+def copy_library_to_gems_study(gems_study_path: Path) -> None:
     """Copy antares_legacy_models.yml into input/model-libraries of the GEMS study."""
     source_file = current_dir / "libraries" / "antares_legacy_models.yml"
     if not source_file.is_file():
@@ -230,8 +243,8 @@ def clean_tmp(tmp_root: Path) -> None:
 @pytest.mark.parametrize(
     "antares_zip, gems_zip, source_dir",
     [
-        ("Antares-Simulator-Thermal-Test.zip", "GEMS-Thermal-Test.zip", thermal_cluster_studies_path),
-        ("Antares-Simulator-STS-Test.zip",    "GEMS-STS-Test.zip",    sts_studies_path),
+        ("Antares-Simulator-Thermal-Test.zip", "GEMS-Thermal-Test", thermal_cluster_studies_path),
+        ("Antares-Simulator-STS-Test.zip",    "GEMS-STS-Test",    sts_studies_path),
     ],
 )
 def test_study_equivalence(
@@ -240,18 +253,22 @@ def test_study_equivalence(
     gems_zip: str,
     source_dir: Path,
 ) -> None:
-    # Prepare zips in tmp
-    copy_zip_folder(zip1_name=antares_zip,
-                    zip2_name=gems_zip,
-                    source_dir=source_dir,
-                    tmp_root=tmp_root,
-                    )
+    # Copy Antares zip and GEMS study folder into tmp
+    copy_folders(
+        antares_zip_name=antares_zip,
+        gems_study_name=gems_zip,
+        source_dir=source_dir,
+        tmp_root=tmp_root,
+    )
 
-    # Unzip Antares and GEMS studies
-    antares_path, gems_path = unzip_studies(tmp_root)
+    # Unzip Antares study
+    antares_path = unzip_antares_study(tmp_root, antares_zip)
+
+    # GEMS study is now a directory (already copied)
+    gems_path = tmp_root / gems_zip
 
     # Copy library into GEMS study
-    copy_file_to_gems_study(gems_path)
+    copy_library_to_gems_study(gems_path)
 
     # Compute objectives
     gems_objective = get_gems_study_objective(gems_path)
