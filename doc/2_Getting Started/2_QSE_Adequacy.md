@@ -81,6 +81,12 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 ### With Modeler
 
+1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation.md)
+2. Go to the GEMS study folder, open the terminal
+3. Type in the terminal `antares-modeler QSE_Study/`
+
+The results will be available in the folder `QSE_Study/output`
+
 
 ---
 **Navigation**
