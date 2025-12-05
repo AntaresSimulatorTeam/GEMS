@@ -68,17 +68,12 @@ def copy_zip_folder(
     source_dir: Path,
     tmp_root: Path,
 ) -> Path:
-    """Copy two zip files into tmp/folder_name and return the target folder."""
-    target_folder = tmp_root
-    target_folder.mkdir(parents=True, exist_ok=True)
-
+    """Copy two zip files into tmp and return the target folder."""
     for name in (zip1_name, zip2_name):
         src = source_dir / name
         if not src.is_file():
             pytest.fail(f"ZIP file not found: {src}")
-        shutil.copy(src, target_folder)
-
-    return target_folder
+        shutil.copy(src, tmp_root)
 
 
 def unzip_studies(zip_folder: Path) -> tuple[Path, Path]:
@@ -246,15 +241,14 @@ def test_study_equivalence(
     source_dir: Path,
 ) -> None:
     # Prepare zips in tmp
-    target_folder = copy_zip_folder(
-        zip1_name=antares_zip,
-        zip2_name=gems_zip,
-        source_dir=source_dir,
-        tmp_root=tmp_root,
-    )
+    copy_zip_folder(zip1_name=antares_zip,
+                    zip2_name=gems_zip,
+                    source_dir=source_dir,
+                    tmp_root=tmp_root,
+                    )
 
     # Unzip Antares and GEMS studies
-    antares_path, gems_path = unzip_studies(target_folder)
+    antares_path, gems_path = unzip_studies(tmp_root)
 
     # Copy library into GEMS study
     copy_file_to_gems_study(gems_path)
@@ -267,8 +261,8 @@ def test_study_equivalence(
     logger.info(f"Antares objective : {antares_objective}")
 
     # Sanity checks
-    assert (target_folder / antares_zip).exists()
-    assert (target_folder / gems_zip).exists()
+    assert (tmp_root / antares_zip).exists()
+    assert (tmp_root / gems_zip).exists()
     assert antares_path.is_dir()
     assert gems_path.is_dir()
 
