@@ -181,62 +181,64 @@ system:
         capacity_indirect: 50
 
   connections:
-
+    # Load connections
     - component1: bus_1
       component2: bus_load_1
       port1: balance_port
       port2: balance_port
-      
+
     - component1: bus_2
       component2: bus_load_2
       port1: balance_port
       port2: balance_port
-      
+
     - component1: bus_3
       component2: bus_load_3
       port1: balance_port
       port2: balance_port
-      
+
+    # Generator connections
     - component1: bus_1
       component2: generator1
       port1: balance_port
       port2: balance_port
-      
+
     - component1: bus_2
       component2: generator2
       port1: balance_port
       port2: balance_port
-      
+
     - component1: bus_3
       component2: generator3
       port1: balance_port
-      port2: balance_port   
-      
+      port2: balance_port
+
+    # Link connections
     - component1: bus_1
       component2: link_12
       port1: balance_port
       port2: balance_port
-      
+
     - component1: bus_1
       component2: link_31
       port1: balance_port
-      port2: balance_port   
+      port2: balance_port
 
     - component1: bus_2
       component2: link_12
       port1: balance_port
       port2: balance_port
-      
+
     - component1: bus_2
       component2: link_23
       port1: balance_port
-      port2: balance_port 
-      
+      port2: balance_port
+
     - component1: bus_3
       component2: link_23
       port1: balance_port
       port2: balance_port
-      
+
     - component1: bus_3
       component2: link_31
       port1: balance_port
@@ -248,8 +250,6 @@ system:
 ### Defintion
 
 **Kirchhoff's Second Law** states that the sum of voltages (or flow costs) around any closed loop must equal zero.
-
-
 
 ---
 **Navigation**
