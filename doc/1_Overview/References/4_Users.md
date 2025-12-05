@@ -19,10 +19,6 @@ GEMS was designed by RTE for the ANDROMEDE project.
 
 RTE is also using it for the Planeterr ([planeterr.fr](https://planeterr.fr/)) project.
 
-### RTE International
-
-<img src="../../../assets/7_RTEi_logo.png" alt="RTE International logo" height="45"/>
-
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
