@@ -61,7 +61,7 @@ system:
         - id: load
           time-dependent: false
           scenario-dependent: false
-          value: 80
+          value: 150
           
           
     - id: generator1

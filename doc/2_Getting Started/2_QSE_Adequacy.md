@@ -38,17 +38,49 @@ tutorial_QSE_adequacy/
 
 ## Step 1: Library File
 
-Use `basic-model-library.yml` from [libraries folder](../../libraries/basic_models_library.yml)
+- Use `basic-model-library.yml` from [libraries folder](../../libraries/basic_models_library.yml)
 
 ## Step 2: System File
 
-Creation of `system.yml` [file](../2_Getting%20Started/QSE_Study/input/system.yml)
+- Creation of `system.yml` [file](../2_Getting%20Started/QSE_Study/input/system.yml)
+
+This system models a three-bus network with the following characteristics:
+
+**Network Topology:**
+- 3 interconnected buses forming a triangular mesh network
+- 3 bidirectional transmission links connecting each pair of buses
+
+**Generation:**
+- **Generator 1** (Bus 1): 70-100 MW capacity, 35 $/MWh cost
+- **Generator 2** (Bus 2): 50-90 MW capacity, 25 $/MWh cost (cheapest)
+- **Generator 3** (Bus 3): 50-200 MW capacity, 42 $/MWh cost
+
+**Demand:**
+- **Bus 1**: 50 MW
+- **Bus 2**: 40 MW
+- **Bus 3**: 150 MW
+- **Total Load**: 240 MW
+
+**Transmission Capacities:**
+- **Link 1-2**: 40 MW (bidirectional)
+- **Link 2-3**: 30 MW (bidirectional)
+- **Link 3-1**: 50 MW (bidirectional)
+
+**Economic Parameters:**
+- Spillage cost: 1000 $/MWh (penalty for wasted energy)
+- Unsupplied energy cost: 10000 $/MWh (high penalty for unmet demand)
+
+**Expected Dispatch:**
+Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
 
 ## Step 3: Kirchhoff's Law (Balance of Flows)
 
-### Definition
-
 **Kirchhoff's Second Law** states that the sum of voltages (or flow costs) around any closed loop must equal zero.
+
+## How to run the study 
+
+### With Modeler
+
 
 ---
 **Navigation**
