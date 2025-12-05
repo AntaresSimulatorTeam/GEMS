@@ -38,7 +38,7 @@ tutorial_QSE_adequacy/
 
 ## Step 1: Library File
 
-USe `basic-model-library.yml` from [libraries foder](../../libraries/basic_models_library.yml)
+Use `basic-model-library.yml` from [libraries folder](../../libraries/basic_models_library.yml)
 
 ## Step 2: System File
 
@@ -94,21 +94,21 @@ system:
 
       parameters:
         - id: load_1
-          value: 50
+          value: 50 # only one value as there is only one time step
 
     - id: bus_load_2
       model: basic_models_library.load
 
       parameters:
         - id: load_2
-          value: 40
+          value: 40 # only one value as there is only one time step
           
     - id: bus_load_3
       model: basic_models_library.load
 
       parameters:
         - id: load_3
-          value: 80
+          value: 80 # only one value as there is only one time step
           
           
     - id: generator1
@@ -245,9 +245,9 @@ system:
       port2: balance_port 
 ```
 
-## Step 3: Kirchhoff's Law (Balance of flows)
+## Step 3: Kirchhoff's Law (Balance of Flows)
 
-### Defintion
+### Definition
 
 **Kirchhoff's Second Law** states that the sum of voltages (or flow costs) around any closed loop must equal zero.
 
