@@ -14,6 +14,7 @@ The **Antares** Modeler is a graph-based optimization problem builder that provi
 Integrated alongside the **Antares Simulator[^1]**, the Modeler introduces new possibilities for extending legacy optimization structures directly within Antares studies. This integration enables users to broaden the standard simulation framework by creating new models and exploring enhanced problem formulations, all while remaining fully compatible with the Antares Simulator ecosystem.
 
 For detailed Modeler usage and examples, see:
+- [Installation Guide](../../2_Getting%20Started/1_installation.md)
 - [Examples section](../../5_Examples/)
 - [The official Antares Simulator Documentation - Modeler section](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/)
 
