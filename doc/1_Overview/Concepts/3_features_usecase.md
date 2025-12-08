@@ -10,29 +10,19 @@
 
 # GEMS Features
 
-## Main Functionalities
+## Main Mathematical Programming Features
 
 - **Mixed Integer Linear Programming (MILP):** GEMS is designed to handle mathematical problems requiring Mixed Integer Linear Programming.
 - **Time × Scenario Optimization:** Problems over a time × scenario grid can be solved.
+- **2-Stage Stochastic Linear Programming:** GEMS can support optimization problems that can be two-stage stochastic.
 
-## Use Case
+## Use Cases
 
 GEMS was primarily designed for the following purposes:
 
 - **Adequacy Assessment:** GEMS is designed to measure the ability of an energy system to supply the load through time and scenario.
 - **Economic Dispatch:** It also optimizes the dispatch levels of electricity generators to minimize the overall cost of electricity generation while meeting demand and operational constraints.
 - **Energy System Planning:** Simulations help strategic development and coordination of electricity infrastructure to ensure a reliable and cost-effective energy supply in the long term.
-
-## Architecture
-
-- **Versatility:** Users can easily integrate new component models without rewriting core code by editing their own library and system YAML files.
-- **Input Separation:** Input data is separated into self-contained external files:
-  - `library file`
-  - `system file`
-  - `dataseries`
-- **Interpreters:** Different interpreters can be used for solving problems, including the Modeler (GEMS interpreter in Antares Simulator) and GemsPy (Python interpreter [available on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)).
-- **Code Stability:** GEMS was developed to ensure code stability and maintainability.
-- **Interoperability:** GEMS aims to emphasize interoperability and the ability to run studies from different formats.
 
 ## Energy System modelling
 
