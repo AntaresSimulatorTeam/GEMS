@@ -25,15 +25,15 @@ As seen before, the library defines the **models**. They are abstract mathematic
 
 They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)  
 
-- **Variables [^1]** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration. Their settings are shared across all model instances and defined in a library file.  
+- **Variables ¹** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration. Their settings are shared across all model instances and defined in a library file.  
 
-- **Parameters (configuration) [^1]** are input data declared in the model, but their values, specific for each component, are set in the system.yml file.  
+- **Parameters (configuration) ¹** are input data declared in the model, but their values, specific for each component, are set in the system.yml file.  
 
 - **Expression** is a mathematical formula used to specify a model's behavior, constraints, and contribution to the overall optimization problem.  
 
-- **Constraints [^1]** are mathematical conditions that restrict the values of variables.  
+- **Constraints ¹** are mathematical conditions that restrict the values of variables.  
 
-- **Binding Constraints [^1]** are constraints that link expressions shared between components through ports.  
+- **Binding Constraints ¹** are constraints that link expressions shared between components through ports.  
 
 ### Ports  
 
@@ -48,7 +48,7 @@ As mentioned before, **components** are instantiations of different **models**. 
 Their configuration consists of:
 
 - **Model ID** is the reference to the model that the component uses.
-- **Parameter value [^1]** is set inside the system.yml file but must be previously declared inside the library.yml file.
+- **Parameter value ¹** is set inside the system.yml file but must be previously declared inside the library.yml file.
 - **Connections** are the links between two components' ports.
 
 
@@ -84,7 +84,7 @@ The outputs of GEMS consist of the results of the modelling, in two main files: 
 
 
 
-[^1]: Parameters, Variables, and Constraints can be either scenario-dependent or time-dependent.
+¹: Parameters, Variables, and Constraints can be either scenario-dependent or time-dependent.
 
 ---
 
