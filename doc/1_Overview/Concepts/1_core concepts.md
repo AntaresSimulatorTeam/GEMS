@@ -7,6 +7,10 @@
     </div>
 </div>
 
+**GEMS** is a graph-based algebraic modelling language for building, managing, and solving optimization problems that describe energy systems.
+
+Unlike traditional algebraic modelling languages such as **AMPL or GAMS**, GEMS adopts an **object-oriented** and **graph-oriented** approach. Abstract **models** of components are defined in **Libraries** and can then be **instantiated, assembled, and interconnected** to form concrete **Systems**. Systems are graphs of components, that can be translated into an optimization problem.
+
 # Inputs
 ## YAML files
 GEMS mainly uses YAML files for defining optimization problems:
@@ -15,23 +19,25 @@ GEMS mainly uses YAML files for defining optimization problems:
 
 - **system.yml** is a file listing all the **components**—the instances of **models**—representing all the specified elements of the simulated energy system. This file also contains all the connections between the components, defining how they interact.
 
-### Models definition (from library.yml)
+### Models definition
 
-As seen before, the library defines the **models**. They are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated grid element.
+As seen before, the library defines the **models**. They are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element.  
 
-They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)
+They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)  
 
-- **Variables [^1]** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration. Their settings are shared across all model instances and defined in a library file.
+- **Variables [^1]** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration. Their settings are shared across all model instances and defined in a library file.  
 
-- **Parameters (configuration) [^1]** are input data declared in the model, but their values, specific for each component, are set in the system.yml file.
+- **Parameters (configuration) [^1]** are input data declared in the model, but their values, specific for each component, are set in the system.yml file.  
 
-- **Expression** is a mathematical formula used to specify a model's behavior, constraints, and contribution to the overall optimization problem.
+- **Expression** is a mathematical formula used to specify a model's behavior, constraints, and contribution to the overall optimization problem.  
 
-- **Constraints [^1]** are mathematical conditions that restrict the values of variables.
+- **Constraints [^1]** are mathematical conditions that restrict the values of variables.  
 
-- **Port** is a communication interface for exchanging several expressions, called **fields** (expressions only exchanged by a port).
+- **Binding Constraints [^1]** are constraints that link expressions shared between components through ports.  
 
-- **Binding Constraints [^1]** are constraints that link expressions shared between components through ports.
+### Ports  
+
+**Ports** are communication interfaces for exchanging several expressions between different components, called **fields**. Thus, they let components share information between each other.
 
 ### Component specification (from system.yml)
 
@@ -66,7 +72,7 @@ To get familiar with these concepts, see the table below for a correspondence be
 |Connection|A link between a generation unit and a node representing the injection from the plant to the energy system's node|
 |Constraint|Value interval accepted for power generation|
 |Binding Constraints|Energy balance inside an area|
-|Time dependency|`max_active_power_setpoint` is a time dependent parameter|
+|Time dependency|`load` is a time dependent parameter|
 |Scenario dependency|`fix_startup_cost` can depend on the scenario chosen by the users|
 
 # Outputs
