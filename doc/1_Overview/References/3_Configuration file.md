@@ -11,7 +11,7 @@
 # Configuration of Output Files
 
 GEMS provides the ability to configure output visualization through two dedicated files:
-- **`business_metrics.yml`**: Configures the metrics used for simulation.
+- **`business_metrics.yml`**: Configures the metrics displayed in business views.
 - **`business_view.yml`**: Allows users to select a specific output export configuration.
 
 ---
