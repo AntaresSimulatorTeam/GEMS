@@ -24,6 +24,7 @@ library:
 
   models:
     - id: area
+      taxonomy-group: area
       parameters:
         - id: spillage_cost
         - id: ens_cost
@@ -43,8 +44,12 @@ library:
       objective-contributions:
         - id: objective
           expression: sum(spillage_cost * spillage + ens_cost * unsupplied_energy)
+      extra-outputs:
+        - id: ens_and_spillage_cost
+          expression: spillage_cost * spillage + ens_cost * unsupplied_energy
 
     - id: load
+      taxonomy-group: consumption
       parameters:
         - id: load
           time-dependent: true
@@ -58,6 +63,7 @@ library:
           definition: -load
 
     - id: link
+      taxonomy-group: exchange
       parameters:
         - id: capacity_direct
           time-dependent: true
@@ -119,6 +125,7 @@ library:
           definition: generation
 
     - id: thermal
+      taxonomy-group: production
       parameters:
         - id: p_min_cluster
           scenario-dependent: true
@@ -191,8 +198,14 @@ library:
       objective-contributions:
         - id: objective
           expression: sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on)
+      extra-outputs:
+        - id: proportional_cost
+          expression: generation * generation_cost
+        - id: non_proportional_cost
+          expression: nb_units_on * fixed_cost + nb_starting * startup_cost
 
     - id: short-term-storage
+      taxonomy-group: storage
       parameters:
         - id: reservoir_capacity
           time-dependent: false
