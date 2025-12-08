@@ -19,7 +19,7 @@ This architecture represents a fundamental change from classical OOME architectu
 </div>
 
 
-This architecture aims to export the definition of component models and system configuration from the core software. By relying on **external YAML files**, GEMS enables:
+This architecture aims to export the definition of component models and system configuration from the core software, by relying on **external YAML files**, which enables:
 
 - **Flexible modelling:** Models and system configurations can be defined, extended, or modified directly in configuration files—no changes to the core code are required.
 - **Interoperability:** The GEMS file format supports seamless integration with external tools and workflows, such as converting and simulating PyPSA studies using GemsPy.
@@ -29,13 +29,16 @@ This architecture aims to export the definition of component models and system c
 
 The GEMS architecture enforces a structured approach, separating modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
+Users primarily interact with GEMS by defining the **system to be simulated or optimized** through external configuration files that describe components, constraints, and operating conditions.
+During execution, an internal process may automatically construct an optimization problem from this system description and pass it to an external solver when required, but this remains an implementation detail rather than the primary user concern.
+
 ![Definition_Domains](../../assets/domains.png)
 
-These inputs are external files to the core and consist of:
+These inputs are external files to the core software and consist of:
 
 | **Type of Input**   | **Domain**  | **File**        | **Description & Role**  |
 |---------------------|-------------|-----------------|-------------------------|
-| **Model Libraries** | Abstract modelling | YAML (e.g., `basic-models-library.yml`, `antares-models-library.yml`)  | **Defines Models:** Abstract representations of objects to be simulated. Includes optimization variables, mathematical constraints (internal and binding), objective contributions, parameters, and ports.  |
+| **Model Libraries** | Abstract modelling | YAML (e.g., `basic-models-library.yml`, `antares-models-library.yml`)  |**Defines Models:** Abstract representations of system components to be simulated. **Models are defined in a library file** and specifies its ports, parameters, and internal behavior.These definitions can also include optional constraint and objective contributions used later during simulation. |
 | **System**  | System  | YAML  (`system.yml`) | **Defines Components:** Numerical instantiation of models, linking to model IDs (e.g., `example_library_id.example_model_id`). Specifies parameter values and connections between components via ports, forming the system graph. |
 | **Timeseries**  | System  | Dataseries (e.g., `wind_generation.csv`, `solar_generation.csv`)  | **Time-dependent Data:** Numerical data for parameters varying by time and scenario. Stored as `.csv` or `.tsv` files, typically in a data-series folder.  |
 | **Taxonomy**             | Abstract modelling        | YAML (e.g., `taxonomy.yml`)                | **Model Structure & Categories:** Specifies mandatory parameters, variables, ports, or extra outputs per category. Useful for structuring the UI (user interface) and simulation outputs.                             |
