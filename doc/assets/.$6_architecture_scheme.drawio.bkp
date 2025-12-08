@@ -32,16 +32,16 @@
           <mxGeometry y="30" width="200" height="240" as="geometry" />
         </mxCell>
         <mxCell id="0sBJxVaiiLU8ok0lkxVD-11" value="🪫&amp;nbsp;Model - Storage" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#FFF9C4;strokeColor=#F57F17;fontStyle=1;fontColor=#F57F17;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="-237.78" y="270" width="137.78" height="50" as="geometry" />
+          <mxGeometry x="-246.67000000000002" y="290" width="137.78" height="50" as="geometry" />
         </mxCell>
         <mxCell id="0sBJxVaiiLU8ok0lkxVD-12" value="🔷 Model - Bus" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.square;fillColor=#FFCCBC;strokeColor=#E64A19;fontStyle=1;fontColor=#BF360C;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="-220" y="340" width="90" height="40" as="geometry" />
+          <mxGeometry x="-220" y="364.75" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="0sBJxVaiiLU8ok0lkxVD-13" value="⚡ Model - Generator" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#C8E6C9;strokeColor=#388E3C;fontStyle=1;fontColor=#1B5E20;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="-235" y="210" width="120" height="50" as="geometry" />
+          <mxGeometry x="-235" y="220" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="eFMopd_4k5sXEYCDrICH-1" value="🔗 Model - Binding" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#B2DFDB;strokeColor=#00695C;fontStyle=1;fontColor=#004D40;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="-235" y="490" width="135" height="50" as="geometry" />
+          <mxGeometry x="-235" y="500" width="135" height="50" as="geometry" />
         </mxCell>
         <mxCell id="7JfKOM4HEq4VKIxrzDkl-3" value="⚡&amp;nbsp;&amp;nbsp;Solar 1 ☀️&amp;nbsp;&lt;i&gt;(DC Generator)&lt;/i&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#388E3C;fontStyle=1;fontColor=#1B5E20;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="350" y="160" width="200" height="200" as="geometry" />
@@ -73,7 +73,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="xik5tH5rbYdwW01ZWNMc-2" value="" style="group" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="-225" y="430" width="120" height="48" as="geometry" />
+          <mxGeometry x="-228.89" y="430" width="120" height="48" as="geometry" />
         </mxCell>
         <mxCell id="0sBJxVaiiLU8ok0lkxVD-10" value="🔌 Port Types" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D0BBC1;strokeColor=#C2185B;fontStyle=1;fontColor=#880E4F;" parent="xik5tH5rbYdwW01ZWNMc-2" vertex="1">
           <mxGeometry width="120" height="40" as="geometry" />
