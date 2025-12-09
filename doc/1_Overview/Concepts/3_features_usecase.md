@@ -28,7 +28,7 @@ GEMS was primarily designed for the following purposes:
 
 - **Multi-Energy modelling:** Multi-energy systems can be modeled by GEMS. While ANTARES mainly focuses on the electric grid, GEMS can handle multi-energy systems.
 - **Antares Legacy Integration (Hybrid Mode):** A study can be composed of a "hybrid" simulation made of two simulation parts, one from Legacy and the other from GEMS.
-- **Model Taxonomy:** The framework uses a `taxonomy.yml` file to define model categories and ensure mandatory fields (parameters, variables, ports, extra outputs) for each category.
+- **Model Taxonomy:** In the GEMS framework, taxonomy enforces consistency across models by aligning their categorization, expected outputs, and UI representation, enabling reliable and coherent model interactions.
 
 ---
 
