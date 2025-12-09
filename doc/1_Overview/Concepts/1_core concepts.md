@@ -13,13 +13,13 @@ Unlike traditional algebraic modelling languages such as **AMPL or GAMS**, GEMS 
 
 # Models definition
 
-**Models** are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element.  
+**Models** are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element, called components.  
 
 They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)  
 
 - **Variables ¹** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration.  
 
-- **Parameters (configuration) ¹** are input data declared in the model, but their values, specific for each component.  
+- **Parameters ¹** are data declared in the model, and their values are specific for each component.  
 
 - **Expression** is a mathematical formula used to specify a model's behavior, constraints, and contribution to the overall optimization problem.  
 
@@ -32,7 +32,7 @@ They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Exam
 
 # Component specification
 
-As mentioned before, **components** are instantiations of different **models**. 
+**Components** are instantiations of different **models**. 
 
 *One single model can be referenced by several components; however, one component can only reference one single model.*
 
@@ -43,11 +43,11 @@ Their configuration consists of:
 - **Connections** are the links between two components' ports.
 
 
-## Dataseries
+# Dataseries
 
 Parameters can vary across scenarios, over time, or both. **Data series** are used to represent these variations, providing **scenario-specific and/or time-dependent** values for the parameters as required. [Their structure depends on the system.](../../3_User%20Guide/1_syntax.md#dataseries)
 
-## Illustration with an example
+# Illustration with an example
 
 To get familiar with these concepts, see the table below for a correspondence between theoretical concepts and examples from a thermal plant use case:
 
@@ -63,7 +63,7 @@ To get familiar with these concepts, see the table below for a correspondence be
 |Connection|A link between a generation unit and a node representing the injection from the plant to the energy system's node|
 |Constraint|Value interval accepted for power generation|
 |Binding Constraints|Energy balance inside an area|
-|Scenario dependency|`p_max` can depend on the scenario chosen by the users (and also depends on the time)|
+|Scenario dependency| The maximum power output `p_max` can depend on the scenario chosen by the users (and also depends on the time)|
 |Time dependency|`p_max` is a time dependent parameter (and also depends on the scenario)|
 
 
