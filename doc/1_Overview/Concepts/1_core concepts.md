@@ -77,7 +77,6 @@ To get familiar with these concepts, see the table below for a correspondence be
 |Time dependency|`p_max` is a time dependent parameter (and also depends on the scenario)|
 
 <br/>
-<br/>
 
 ¹: Parameters, Variables, and Constraints can be either scenario-dependent or time-dependent.
 
