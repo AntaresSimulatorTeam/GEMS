@@ -1,0 +1,207 @@
+system:
+  id: system
+  components:
+    - id: bus1
+      model: antares_legacy_models.area
+
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: ens_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+  
+    - id: load_bus
+      model: antares_legacy_models.load
+
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+          value: load
+
+    - id: th1
+      model: antares_legacy_models.thermal
+
+      parameters:
+        - id: p_min_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: p_max_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: startup_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: fixed_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: d_min_up
+          time-dependent: false
+          scenario-dependent: false
+          value: 12
+        - id: d_min_down
+          time-dependent: false
+          scenario-dependent: false
+          value: 12
+        - id: p_min_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: p_max_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: nb_units_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 10
+        - id: nb_units_min
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_forward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_backward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
+    - id: th2
+      model: antares_legacy_models.thermal
+
+      parameters:
+        - id: p_min_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: p_max_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: startup_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 5000
+        - id: fixed_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 500
+        - id: d_min_up
+          time-dependent: false
+          scenario-dependent: false
+          value: 5
+        - id: d_min_down
+          time-dependent: false
+          scenario-dependent: false
+          value: 5
+        - id: p_min_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: p_max_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 500
+        - id: nb_units_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 5
+        - id: nb_units_min
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_forward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_backward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
+    - id: my-sts
+      model: antares_legacy_models.short-term-storage
+
+      parameters:
+        - id: reservoir_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 500
+        - id: initial_level
+          time-dependent: false
+          scenario-dependent: false
+          value: 0.5
+        - id: injection_nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: withdrawal_nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: efficiency_injection
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: efficiency_withdrawal
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: lower_rule_curve
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: upper_rule_curve
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: p_max_injection_modulation
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: p_max_withdrawal_modulation
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: inflows
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
+  connections:
+
+    - component1: bus1
+      component2: load_bus
+      port1: balance_port
+      port2: balance_port
+    - component1: bus1
+      component2: th1
+      port1: balance_port
+      port2: balance_port
+    - component1: bus1
+      component2: th2
+      port1: balance_port
+      port2: balance_port
+    - component1: bus1
+      component2: my-sts
+      port1: balance_port
+      port2: injection_port
+
