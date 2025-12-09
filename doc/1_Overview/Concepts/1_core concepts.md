@@ -11,9 +11,7 @@
 
 Unlike traditional algebraic modelling languages such as **AMPL or GAMS**, GEMS adopts an **object-oriented** and **graph-oriented** approach. Abstract **models** of components are defined in **Libraries** and can then be **instantiated, assembled, and interconnected** to form concrete **Systems**. Systems are graphs of components, that can be translated into an optimization problem.
 
-# Inputs
-
-## Models definition
+# Models definition
 
 **Models** are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element.  
 
@@ -32,7 +30,7 @@ They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Exam
 - **Binding Constraints ¹** are constraints that link expressions shared between components through ports.  
 
 
-## Component specification
+# Component specification
 
 As mentioned before, **components** are instantiations of different **models**. 
 
