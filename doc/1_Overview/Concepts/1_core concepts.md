@@ -11,6 +11,9 @@
 
 Unlike traditional algebraic modelling languages such as **AMPL or GAMS**, GEMS adopts an **object-oriented** and **graph-oriented** approach. Abstract **models** of components are defined in **Libraries** and can then be **instantiated, assembled, and interconnected** to form concrete **Systems**. Systems are graphs of components, that can be translated into an optimization problem.
 
+<br/>
+<br/>
+
 # Models definition
 
 **Models** are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element, called components.  
@@ -29,6 +32,8 @@ They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Exam
 
 - **Binding Constraints ¹** are constraints that link expressions shared between components through ports.  
 
+<br/>
+<br/>
 
 # Component specification
 
@@ -42,10 +47,15 @@ Their configuration consists of:
 - **Parameter value ¹** is set by users.
 - **Connections** are the links between two components' ports.
 
+<br/>
+<br/>
 
 # Dataseries
 
 Parameters can vary across scenarios, over time, or both. **Data series** are used to represent these variations, providing **scenario-specific and/or time-dependent** values for the parameters as required. [Their structure depends on the system.](../../3_User%20Guide/1_syntax.md#dataseries)
+
+<br/>
+<br/>
 
 # Illustration with an example
 
@@ -66,8 +76,8 @@ To get familiar with these concepts, see the table below for a correspondence be
 |Scenario dependency| The maximum power output `p_max` can depend on the scenario chosen by the users (and also depends on the time)|
 |Time dependency|`p_max` is a time dependent parameter (and also depends on the scenario)|
 
-
-
+<br/>
+<br/>
 
 ¹: Parameters, Variables, and Constraints can be either scenario-dependent or time-dependent.
 

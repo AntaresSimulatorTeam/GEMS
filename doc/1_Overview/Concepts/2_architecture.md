@@ -55,6 +55,9 @@ The following scheme shows the interaction of the different core concepts presen
     <img src="../../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
 </p>
 
+<br/>
+<br/>
+
 # Outputs
 
 The outputs of GEMS consist of the results of the modelling, in two main files: **Optimization Problem** and **Business Views**. Their structure is detailed in the [User Guide section](../../3_User%20Guide/1_syntax.md#outputs).
