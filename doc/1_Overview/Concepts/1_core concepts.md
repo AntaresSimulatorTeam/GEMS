@@ -19,9 +19,9 @@ Unlike traditional algebraic modelling languages such as **AMPL or GAMS**, GEMS 
 
 They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)  
 
-- **Variables ¹** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration. Their settings are shared across all model instances and defined in a library file.  
+- **Variables ¹** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration.  
 
-- **Parameters (configuration) ¹** are input data declared in the model, but their values, specific for each component, are set in the system.yml file.  
+- **Parameters (configuration) ¹** are input data declared in the model, but their values, specific for each component.  
 
 - **Expression** is a mathematical formula used to specify a model's behavior, constraints, and contribution to the overall optimization problem.  
 
@@ -35,14 +35,14 @@ They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Exam
 
 ### Component specification
 
-As mentioned before, **components** are instantiations of different **models**. In the system file, their [parameters and connections](../../3_User%20Guide/1_syntax.md#components%20specification%20%28from%20system.yml%29) are defined.
+As mentioned before, **components** are instantiations of different **models**. 
 
 *One single model can be referenced by several components; however, one component can only reference one single model.*
 
 Their configuration consists of:
 
 - **Model ID** is the reference to the model that the component uses.
-- **Parameter value ¹** is set inside the system.yml file but must be previously declared inside the library.yml file.
+- **Parameter value ¹** is set by users.
 - **Connections** are the links between two components' ports.
 
 
