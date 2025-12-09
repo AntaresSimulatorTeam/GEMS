@@ -27,11 +27,10 @@ They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Exam
 
 - **Constraints ¹** are mathematical conditions that restrict the values of variables.  
 
+- **Ports** are communication interfaces for exchanging several expressions between different components, called **fields**. Thus, they let components share information between each other.
+
 - **Binding Constraints ¹** are constraints that link expressions shared between components through ports.  
 
-## Ports  
-
-**Ports** are communication interfaces for exchanging several expressions between different components, called **fields**. Thus, they let components share information between each other.
 
 ## Component specification
 
