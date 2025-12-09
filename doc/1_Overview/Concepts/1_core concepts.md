@@ -45,7 +45,7 @@ Their configuration consists of:
 
 ## Dataseries
 
-Parameters can be **dependent on the scenario and/or over time**. In this case, **dataseries** are needed for specific data. [Their structure depends on the system.](../../3_User%20Guide/1_syntax.md#dataseries)
+Parameters can vary across scenarios, over time, or both. **Data series** are used to represent these variations, providing **scenario-specific and/or time-dependent** values for the parameters as required. [Their structure depends on the system.](../../3_User%20Guide/1_syntax.md#dataseries)
 
 ## Illustration with an example
 
@@ -53,9 +53,9 @@ To get familiar with these concepts, see the table below for a correspondence be
 
 |Concept|Example|
 |-|-|
-|Library|`basic-models-library` |
+|Library|Library (`basic_models_library`) where generator model is defined|
 |Model |The `generator` model |
-|Component|A specific thermal, like a 300MW CCGT Thermal plant from `generator` model|
+|Component|A specific thermal plant, like a 300MW CCGT Thermal plant from `generator` model|
 |Variable|Actual dispatched power ; `generation` from *generator model* |
 |Parameter|The `generation_cost` (specific for each thermal plant, to be entered by the users)|
 |Field|The field `flow` is exchanged through *balance_port*|
