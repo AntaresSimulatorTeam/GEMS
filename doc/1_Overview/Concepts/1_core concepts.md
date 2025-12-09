@@ -56,18 +56,18 @@ To get familiar with these concepts, see the table below for a correspondence be
 
 |Concept|Example|
 |-|-|
-|Library|`basis-models-library` |
-|Model | `generator`, `storage` models |
+|Library|`basic-models-library` |
+|Model |The `generator` model |
 |Component|A specific thermal, like a 300MW CCGT Thermal plant from `generator` model|
 |Variable|Actual dispatched power ; `generation` from *generator model* |
-|Parameter|Maximum Power Capacity `p_max` (specific for each thermal plant, to be entered by the users)|
-|Field|The field `flow` is exchanged through *injection_port*|
-|Port|The `injection_port` let the injection *flow* be transfered|
+|Parameter|The `generation_cost` (specific for each thermal plant, to be entered by the users)|
+|Field|The field `flow` is exchanged through *balance_port*|
+|Port|The `balance_port` let the power *flow* be transfered|
 |Connection|A link between a generation unit and a node representing the injection from the plant to the energy system's node|
 |Constraint|Value interval accepted for power generation|
 |Binding Constraints|Energy balance inside an area|
-|Time dependency|`load` is a time dependent parameter|
-|Scenario dependency|`fix_startup_cost` can depend on the scenario chosen by the users|
+|Scenario dependency|`p_max` can depend on the scenario chosen by the users (and also depends on the time)|
+|Time dependency|`p_max` is a time dependent parameter (and also depends on the senario)|
 
 
 
