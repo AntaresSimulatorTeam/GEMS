@@ -21,7 +21,7 @@ GEMS mainly uses YAML files for defining optimization problems:
 
 ### Models definition
 
-As seen before, the library defines the **models**. They are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element.  
+**Models** are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element.  
 
 They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)  
 
@@ -39,7 +39,7 @@ They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Exam
 
 **Ports** are communication interfaces for exchanging several expressions between different components, called **fields**. Thus, they let components share information between each other.
 
-### Component specification (from system.yml)
+### Component specification
 
 As mentioned before, **components** are instantiations of different **models**. In the system file, their [parameters and connections](../../3_User%20Guide/1_syntax.md#components%20specification%20%28from%20system.yml%29) are defined.
 
@@ -54,7 +54,7 @@ Their configuration consists of:
 
 ## Dataseries
 
-Inside the YAML files, Parameters, Variables, and Constraints can be **dependent on the scenario and/or over time**. In this case, **dataseries** are needed for specific data. [Their structure depends on the system.](../../3_User%20Guide/1_syntax.md#dataseries)
+Parameters can be **dependent on the scenario and/or over time**. In this case, **dataseries** are needed for specific data. [Their structure depends on the system.](../../3_User%20Guide/1_syntax.md#dataseries)
 
 ## Illustration with an example
 
