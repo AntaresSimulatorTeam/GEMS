@@ -62,12 +62,12 @@ To get familiar with these concepts, see the table below for a correspondence be
 |Variable|Actual dispatched power ; `generation` from *generator model* |
 |Parameter|The `generation_cost` (specific for each thermal plant, to be entered by the users)|
 |Field|The field `flow` is exchanged through *balance_port*|
-|Port|The `balance_port` let the power *flow* be transfered|
+|Port|The `balance_port` let the power *flow* be transferred|
 |Connection|A link between a generation unit and a node representing the injection from the plant to the energy system's node|
 |Constraint|Value interval accepted for power generation|
 |Binding Constraints|Energy balance inside an area|
 |Scenario dependency|`p_max` can depend on the scenario chosen by the users (and also depends on the time)|
-|Time dependency|`p_max` is a time dependent parameter (and also depends on the senario)|
+|Time dependency|`p_max` is a time dependent parameter (and also depends on the scenario)|
 
 
 
