@@ -37,13 +37,17 @@ As energy systems become more complex and dynamic, GEMS was developed to address
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
-    <a href="./../../..">Previous Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+  <a href="./../../.." style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+  </button>
   </div>
-    <div style="text-align: center;">
-    <a href="../../../..">Back to Home</a>
-  </div>
+  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+  <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+  </button>
   <div style="text-align: right;">
-    <a href="../2_release_notes">Next Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+  <a href="../2_release_notes" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  </button>
   </div>
 </div>
 
