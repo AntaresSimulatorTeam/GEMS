@@ -12,14 +12,8 @@
 Unlike traditional algebraic modelling languages such as **AMPL or GAMS**, GEMS adopts an **object-oriented** and **graph-oriented** approach. Abstract **models** of components are defined in **Libraries** and can then be **instantiated, assembled, and interconnected** to form concrete **Systems**. Systems are graphs of components, that can be translated into an optimization problem.
 
 # Inputs
-## YAML files
-GEMS mainly uses YAML files for defining optimization problems:
 
-- **library.yml** is a file listing all the **models** representing general, unspecified elements of a study. These models are used as "templates" for creating their instances, called **components**.
-
-- **system.yml** is a file listing all the **components**—the instances of **models**—representing all the specified elements of the simulated energy system. This file also contains all the connections between the components, defining how they interact.
-
-### Models definition
+## Models definition
 
 **Models** are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element.  
 
@@ -75,12 +69,6 @@ To get familiar with these concepts, see the table below for a correspondence be
 |Time dependency|`load` is a time dependent parameter|
 |Scenario dependency|`fix_startup_cost` can depend on the scenario chosen by the users|
 
-# Outputs
-
-The outputs of GEMS consist of the results of the modelling, in two main files: **Optimization Problem** and **Business Views**. Their structure is detailed in the [User Guide section](../../3_User%20Guide/1_syntax.md#outputs).
-
-- **Optimization Problem** contains all the global results of the simulation.
-- **Business Views** consist of the results of the simulation but according to users' [specific needs](../../3_User%20Guide/1_syntax.md#outputs).
 
 
 
