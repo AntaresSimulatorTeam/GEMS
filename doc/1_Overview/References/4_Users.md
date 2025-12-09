@@ -13,11 +13,16 @@ The following entities currently use or have used the GEMS framework for their p
 
 ### RTE 
 
-<img src="../../../assets/4_RTE_logo.svg.png" alt="RTE logo" height="50"/>
+<img src="../../../assets/4_RTE_logo.svg.png" alt="RTE logo" style="height:50px;"/> 
 
-GEMS was designed by RTE for the ANDROMEDE project.
+GEMS was designed by RTE for the ANDROMEDE project. 
 
-RTE is also using it for the Planeterr ([planeterr.fr](https://planeterr.fr/)) project.
+RTE is also using it for the [Planeterr](https://planeterr.fr/) project.
+
+### RTE international
+
+<img src="../../../assets/7_RTEi_logo.png" alt="RTE logo" style="height:50px;"/>
+
 
 ---
 **Navigation**
