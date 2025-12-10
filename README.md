@@ -1,2 +1,2 @@
 # GEMS
-Generic Energy systems Modelling Scheme
+Generic Energy systems Modelling Scheme.
