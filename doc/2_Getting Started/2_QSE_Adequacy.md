@@ -98,7 +98,7 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 The results will be available in the folder `<study_folder>/output`
 
-# Equations
+# Mathematical representation
 
 The objective function to minimize the total dispatch cost for the three-bus system is:
 
