@@ -29,11 +29,29 @@ catalog:
       - taxonomy-group: production
         output-id: proportional_cost
         location-ports: balance_port
-      - taxonomy-group: production #indicates that the "location" column will be filled with the id of the balance objects to which the consumption object is connected through "balance_port"
+      - taxonomy-group: production
         output-id: non_proportional_cost
-        location-ports: balance_port #indicates that the "location" column will be filled with the id of the balance objects to which the consumption object is connected through "balance_port"
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
 
-    terms-operator: sum # Possible values : sum | avg | weighted_sum | weighted_avg # Defines how we aggregate the contributions of the differents terms, over all components 
-    #breakdown: None
-    #filter: None
-    time-operator: sum  # sum | avg | weighted_sum | weighted_avg # Defines how we aggregate over the temporal dimension.
+
+  - id: OP.COST
+    terms:
+      - taxonomy-group: production
+        output-id: proportional_cost
+        location-ports: balance_port
+      - taxonomy-group: production
+        output-id: non_proportional_cost
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
+
+  - id: LOAD
+    terms:
+      - taxonomy-group: consumption
+        output-id: balance_port.flow
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
