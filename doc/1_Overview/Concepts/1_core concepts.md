@@ -36,7 +36,7 @@ They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Exam
 <br/>
 
 # System description
-
+The description of an energy system is a [hypergraph ](https://en.wikipedia.org/wiki/Hypergraph) of Components linked by Connections.
 **Components** are instantiations of different **models**. 
 
 *One single model can be referenced by several components; however, one component can only reference one single model.*
