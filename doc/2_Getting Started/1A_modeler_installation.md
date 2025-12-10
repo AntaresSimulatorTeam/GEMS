@@ -13,7 +13,7 @@ This section outlines the approach for configuring and utilizing the **Antares M
 
 ## Installation
 
-Download [**Antares-Simulator**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v9.3.2), and then, in bin folder one can find **antares-modeler** executable.
+Download [**Antares-Simulator**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v9.3.2) from the official releases page, then locate the Antares Modeler executable in the installation’s bin folder, noting that it is currently a command-line–only tool with no graphical interface yet.
 
 ![Screenshot of bin folder](../assets/2_Modeler_bin.png)
 
@@ -21,9 +21,9 @@ Download [**Antares-Simulator**](https://github.com/AntaresSimulatorTeam/Antares
 
 The **Antares Modeler** is designed to function within the Antares Simulator ecosystem. Therefore, it is necessary to **install Antares Simulator**.
 
-The complete installation documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
+The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
 
-In addition, for running a study, Antares Modeler requires a `parameters.yml` file for its configuration. The creation of this file is detailed in [this section](../3_User%20Guide/2_inputs.md).
+In addition, Antares Modeler requires a `parameters.yml` file to run a GEMS study. , and the process for creating this file is detailed in [this section](../3_User%20Guide/2_inputs.md). Unlike the GEMSPy interpreter, Modeler depends on this configuration file.
 
 
 ## Additional Resources
