@@ -82,3 +82,13 @@ catalog:
         location-ports: in_port
     terms-operator: sum
     time-operator: sum
+
+  - id: RES.GENERATION
+    terms:
+      - taxonomy-group: production
+        output-id: balance_port.flow
+        location-ports: balance_port
+    breakdown:
+      - key: res_id
+    terms-operator: sum
+    time-operator: sum
