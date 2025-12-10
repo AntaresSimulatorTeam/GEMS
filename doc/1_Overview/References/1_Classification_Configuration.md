@@ -21,11 +21,10 @@ The `taxonomy.yml` file defines categories of models and serves multiple utiliti
 
 
 # Configuration of Output Files
-
-With these configurations files, users can define specified results from raw optimization problem outputs:
+Users can can configure output through two dedicated files:
 
 - **`business_metrics.yml`**: Configures the metrics displayed in business views.
-- **`business_view.yml`**: Allows users to select the export format of these chosen outputs.
+- **`business_view.yml`**: Allows users to select a specific output export configuration.
 
 ---
 **Navigation**
