@@ -150,7 +150,62 @@ $$
 
 where $G_n^-$ represents spilled energy at node $n$.
 
+## Balance Constraints
 
+### First Kirchhoff's Law (Power Balance):
+
+$$
+\forall n \in N, \sum_{l \in L_n^+} F_l - \sum_{l \in L_n^-} F_l = \left(G_n^+ + \sum_{\lambda \in \Lambda_n} (H_\lambda - \Pi_\lambda) + \sum_{\theta \in \Theta_n} P_\theta + \sum_{s \in \mathcal{S}} \left(P_s^w - P_s^i\right)\right) - (G_n^- + D_n)
+$$
+
+### Unsupplied Power Constraint:
+
+$$
+\forall n \in N, \quad 0 \leq G_n^+ \leq \max(0, D_n)
+$$
+
+### Spilled Power Constraint:
+
+$$
+\forall n \in N, \quad 0 \leq G_n^- \leq -\min(0, D_n) + \sum_{\lambda \in \Lambda_n} H_\lambda + \sum_{\theta \in \Theta_n} (P_\theta - \underline{P}_\theta)
+$$
+
+## Flow Capacity Constraints
+
+### Positive Flow Constraint:
+
+$$
+\forall l \in L, \quad 0 \leq F_l^+ \leq \gamma_l^+ + (\overline{\gamma_l^+} - \gamma_l^+) x_l
+$$
+
+### Negative Flow Constraint:
+
+$$
+\forall l \in L, \quad 0 \leq F_l^- \leq \gamma_l^- + (\overline{\gamma_l^-} - \gamma_l^-) x_l
+$$
+
+### Flow Definition Constraint:
+
+$$
+\forall l \in L, \quad F_l = F_l^+ - F_l^-
+$$
+
+## Thermal Units
+### Power Output Constraints
+
+Power output is bounded by must-run commitments and power availability:
+
+$$
+\forall n \in N, \forall \theta \in \Theta_n, \quad \underline{P}_\theta \leq P_\theta \leq \overline{P}_\theta
+$$
+
+### Power Output Limits
+
+Power output remains within limits set by minimum stable power and maximum capacity thresholds:
+
+$$
+\forall n \in N, \forall \theta \in \Theta_n, \quad l_\theta M_\theta \leq P_\theta \leq u_\theta M_\theta
+$$
 
 ---
 **Navigation**
