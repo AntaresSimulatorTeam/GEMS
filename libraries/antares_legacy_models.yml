@@ -110,6 +110,7 @@ library:
           expression: sum(flow_direct * flow_direct_hurdle_cost + flow_indirect * flow_indirect_hurdle_cost)
 
     - id: renewable
+      taxonomy-group: fatal_production
       parameters:
         - id: nominal_capacity
         - id: unit_count
