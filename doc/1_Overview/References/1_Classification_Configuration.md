@@ -10,21 +10,21 @@
 
 # Classification of Models (Taxonomy)
 
-GEMS provides the functionality to use a classification of models defined via the configuration file, `taxonomy.yml`. 
-The `taxonomy.yml` file defines categories of models and serves multiple utilities:
+GEMS employs a classification of models defined in `taxonomy.yml` file to organize models into `taxonomy groups` (e.g., production, balance, storage). 
+These groups control how outputs are aggregated, mapped, and filtered, ensuring consistent and logical data combination across components. Therefore, users can filter results by group (e.g., technology type) or spatial location (e.g., zones).
 
+This configuration relies on:
 
-- In this scheme, there are two categories defined inside the taxonomy file, and one model was configured. In this model, 2 parameters and 1 variable are in fact directly configured by the taxonomy file.
+- `taxonomy.yml`: Defines the classification of models into `taxonomy-groups`.
+- `business_metrics.yml`: Specifies which metrics to calculate and how to aggregate them.
+- `business_view.yml`: Lets users customize the output format and exported data.
+
+This approach enables flexible, user-driven output configurations while maintaining consistency across simulations.
+
+In this scheme, there are two categories defined inside the taxonomy file, and one model was configured. In this model, 2 parameters and 1 variable are in fact directly configured by the taxonomy file.
 
 
 ![Taxonomy scheme](../../assets/6_taxonomy.png)
-
-
-# Configuration of Output Files
-Users can can configure output through two dedicated files:
-
-- **`business_metrics.yml`**: Configures the metrics displayed in business views.
-- **`business_view.yml`**: Allows users to select a specific output export configuration.
 
 ---
 **Navigation**
