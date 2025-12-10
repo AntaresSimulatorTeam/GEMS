@@ -13,11 +13,12 @@
 GEMS provides the functionality to use a classification of models defined via the configuration file, `taxonomy.yml`. 
 The `taxonomy.yml` file defines categories of models and serves multiple utilities:
 
-The taxonomy defines **mandatory requirements** for models belonging to a specific category, such as **parameters, variables, ports, and extra-outputs**.
+- The taxonomy defines **mandatory requirements** for models belonging to a specific category, such as **parameters, variables, ports, and extra-outputs**.
 
-This method avoids duplication and uniformization of similar models.
+- This method avoids duplication and uniformization of similar models.
 
-In this scheme, there are two categories defined inside the taxonomy file, and one model was configured. In this model, 2 parameters and 1 variable are in fact directly configured by the taxonomy file.
+- In this scheme, there are two categories defined inside the taxonomy file, and one model was configured. In this model, 2 parameters and 1 variable are in fact directly configured by the taxonomy file.
+
 
 ![Taxonomy scheme](../../assets/6_taxonomy.png)
 
