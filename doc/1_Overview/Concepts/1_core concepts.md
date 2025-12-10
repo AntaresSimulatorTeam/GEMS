@@ -35,7 +35,7 @@ They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Exam
 <br/>
 <br/>
 
-# Component specification
+# System description
 
 **Components** are instantiations of different **models**. 
 
