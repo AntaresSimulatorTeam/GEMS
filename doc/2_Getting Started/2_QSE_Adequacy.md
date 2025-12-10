@@ -51,7 +51,7 @@ tutorial_QSE_adequacy/
 
 ## Step 2: System File
 
-- Creation of `system.yml` [file](../2_Getting%20Started/QSE_Study/input/system.yml)
+- Creation of `system.yml` file
 
 This system models a three-bus network with the following characteristics:
 
@@ -94,9 +94,9 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation.md)
 2. Go to the GEMS study folder, open the terminal
-3. Type in the terminal `antares-modeler QSE_Study/`
+3. Type in the terminal `antares-modeler <study_folder>/`
 
-The results will be available in the folder `QSE_Study/output`
+The results will be available in the folder `<study_folder>/output`
 
 
 ---
