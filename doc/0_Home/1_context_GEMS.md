@@ -12,11 +12,6 @@
 
 The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed by the [Antares Simulator Team](https://antares-simulator.org/) at [RTE](https://www.rte-france.com/), the French Transmission System Operator (TSO). Its goal is to advance tools for **long-term power system adequacy** and **investment planning** studies.
 
-<a href="https://github.com/AntaresSimulatorTeam/Antares_Simulator">
-<img src="../../assets/github-mark.svg" alt="Github Logo" style="height:20px;"/>
-</a> [Link to the Antares Simulator Github repo](https://github.com/AntaresSimulatorTeam/Antares_Simulator)
-
-</br>
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
   <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
