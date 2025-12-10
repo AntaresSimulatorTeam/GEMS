@@ -18,10 +18,11 @@ This tutorial demonstrates adequacy modeling in a meshed three-bus network. Unli
 
 ### Network
 **Components:**
-- **3 Buses** (Regions 1, 2, 3 forming a triangle)
-- **3 Links** (connecting each pair of regions)
-- **3 Generators** (different capacities and costs)
-- **3 Loads** (varying demands)
+
+- 3 Buses (Regions 1, 2, 3 forming a triangle)
+- 3 Links (connecting each pair of regions)
+- 3 Generators (different capacities and costs)
+- 3 Loads (varying demands)
 
 **Time Horizon:** 1 hour is used for this example
 
@@ -47,30 +48,36 @@ tutorial_QSE_adequacy/
 This system models a three-bus network with the following characteristics:
 
 **Network Topology:**
+
 - 3 interconnected buses forming a triangular mesh network
 - 3 bidirectional transmission links connecting each pair of buses
 
 **Generation:**
-- **Generator 1** (Bus 1): 70-100 MW capacity, 35 $/MWh cost
-- **Generator 2** (Bus 2): 50-90 MW capacity, 25 $/MWh cost (cheapest)
-- **Generator 3** (Bus 3): 50-200 MW capacity, 42 $/MWh cost
+
+- Generator 1 (Bus 1): 70-100 MW capacity, 35 $/MWh cost
+- Generator 2 (Bus 2): 50-90 MW capacity, 25 $/MWh cost (cheapest)
+- Generator 3 (Bus 3): 50-200 MW capacity, 42 $/MWh cost
 
 **Demand:**
-- **Bus 1**: 50 MW
-- **Bus 2**: 40 MW
-- **Bus 3**: 150 MW
+
+- Bus 1: 50 MW
+- Bus 2: 40 MW
+- Bus 3: 150 MW
 - **Total Load**: 240 MW
 
 **Transmission Capacities:**
-- **Link 1-2**: 40 MW (bidirectional)
-- **Link 2-3**: 30 MW (bidirectional)
-- **Link 3-1**: 50 MW (bidirectional)
+
+- Link 1-2: 40 MW (bidirectional)
+- Link 2-3: 30 MW (bidirectional)
+- Link 3-1: 50 MW (bidirectional)
 
 **Economic Parameters:**
+
 - Spillage cost: 1000 $/MWh (penalty for wasted energy)
 - Unsupplied energy cost: 10000 $/MWh (high penalty for unmet demand)
 
 **Expected Dispatch:**
+
 Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
 
 ## How to run the study 
