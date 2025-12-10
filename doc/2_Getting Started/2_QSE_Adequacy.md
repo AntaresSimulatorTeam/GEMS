@@ -28,7 +28,7 @@ This tutorial demonstrates adequacy modeling in a meshed three-bus network. Unli
 - 3 Buses (Regions 1, 2, 3 forming a triangle)
 - 3 Links (connecting each pair of regions)
 - 3 Generators (different capacities and costs)
-- 3 Loads (varying demands)
+- 3 Loads (fixed demands)
 
 **Time Horizon:** 1 hour is used for this example
 
