@@ -98,6 +98,123 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 The results will be available in the folder `<study_folder>/output`
 
+# Power System Equations
+
+## Objective Functions
+
+### *Bus* Objective function
+The total system cost for each bus is defined as follows:
+
+$$
+\text{Objective}_{\text{bus}} = \sum (\text{spillage} \times 1000 + \text{unsupplied\_energy} \times 10000)
+$$
+
+### *Generator* Objective function
+The generation costs for each generator are:
+$$
+\text{Objective}_{\text{generator1}} = \sum (35 \times \text{generation}_1)
+$$
+
+$$
+\text{Objective}_{\text{generator1}} = \sum (35 \times \text{generation}_1)
+$$
+
+$$
+\text{Objective}_{\text{generator2}} = \sum (25 \times \text{generation}_2)
+$$
+
+$$
+\text{Objective}_{\text{generator3}} = \sum (42 \times \text{generation}_3)
+$$
+
+## Constraints
+
+### Power Balance Between Load and Generation
+For each bus, the flow balance is given by:
+
+$$
+\sum_{\text{connections}} \text{balance\_port.flow} = \text{spillage} - \text{unsupplied\_energy}
+$$
+
+### Limits on Unsupplied and Spilled Power
+Unsupplied and spilled power are bounded:
+
+$$
+0 \leq \text{unsupplied\_energy}
+$$
+
+$$
+0 \leq \text{spillage}
+$$
+
+### Link Flow Capacity Constraints
+The flows for each link are limited by their capacity:
+
+- For `link_12`:
+
+$$
+-40 \leq \text{flow}_{12} \leq 40
+$$
+
+- For `link_23`:
+
+$$
+-30 \leq \text{flow}_{23} \leq 30
+$$
+
+- For `link_31`:
+
+$$
+-50 \leq \text{flow}_{31} \leq 50
+$$
+
+The relationship between direct and indirect flow is:
+
+$$
+\text{flow} = \text{flow\_direct} - \text{flow\_indirect}
+$$
+
+### Thermal Units
+The output power of the generators is bounded:
+
+- For `generator1`:
+
+$$
+70 \leq \text{generation}_1 \leq 100
+$$
+
+- For `generator2`:
+
+$$
+50 \leq \text{generation}_2 \leq 90
+$$
+
+- For `generator3`:
+
+$$
+50 \leq \text{generation}_3 \leq 200
+$$
+
+### Loads
+The loads for each bus are defined as:
+
+- For `bus_load_1`:
+
+$$
+\text{balance\_port.flow}_1 = -50
+$$
+
+- For `bus_load_2`:
+
+$$
+\text{balance\_port.flow}_2 = -40
+$$
+
+- For `bus_load_3`:
+
+$$
+\text{balance\_port.flow}_3 = -150
+$$
 
 ---
 **Navigation**
