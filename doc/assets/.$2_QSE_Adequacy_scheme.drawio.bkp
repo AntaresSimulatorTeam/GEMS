@@ -11,7 +11,7 @@
           <mxGeometry x="480" y="90" width="200" height="80" as="geometry" />
         </mxCell>
         <mxCell id="4" value="&lt;b&gt;🏙️ Region 3&lt;/b&gt;&lt;br&gt;⚡ Generator: 50-200 MW&lt;br&gt;💰 Cost: 42 €/MWh&lt;br&gt;💡 Load: 150 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27AE60;strokeColor=#1E8449;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
-          <mxGeometry x="350" y="310" width="170" height="80" as="geometry" />
+          <mxGeometry x="310" y="300" width="180" height="80" as="geometry" />
         </mxCell>
         <mxCell id="5" style="rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#7F8C8D;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="2" target="3" edge="1">
           <mxGeometry relative="1" as="geometry" />

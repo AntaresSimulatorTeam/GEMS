@@ -13,26 +13,26 @@
         <mxCell id="4" value="&lt;b&gt;🏙️ Region 3&lt;/b&gt;&lt;br&gt;⚡ Generator: 50-200 MW&lt;br&gt;💰 Cost: 42 €/MWh&lt;br&gt;💡 Load: 150 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27AE60;strokeColor=#1E8449;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="310" y="300" width="180" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="5" style="rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#7F8C8D;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="2" target="3" edge="1">
+        <mxCell id="5" style="startArrow=classic;rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#000000;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="2" target="3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="6" value="&lt;font style=&quot;color: rgb(127, 140, 141);&quot;&gt;↔️ 40 MW&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;strokeColor=none;fontColor=#7F8C8D;fontSize=14;" parent="5" vertex="1" connectable="0">
+        <mxCell id="6" value="&lt;font style=&quot;color: rgba(0, 0, 0);&quot;&gt;↔️ 40 MW&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;strokeColor=none;fontColor=#7F8C8D;fontSize=14;" parent="5" vertex="1" connectable="0">
           <mxGeometry width="70" height="30" relative="1" as="geometry">
             <mxPoint x="-35" y="-25" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="7" style="rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#7F8C8D;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="3" target="4" edge="1">
+        <mxCell id="7" style="startArrow=classic;rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="3" target="4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8" value="&lt;font style=&quot;color: rgb(127, 140, 141);&quot;&gt;↔️ 30 MW&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;strokeColor=none;fontColor=#7F8C8D;fontSize=14;" parent="7" vertex="1" connectable="0">
+        <mxCell id="8" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;↔️ 30 MW&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;strokeColor=none;fontColor=#7F8C8D;fontSize=14;" parent="7" vertex="1" connectable="0">
           <mxGeometry width="70" height="30" relative="1" as="geometry">
             <mxPoint x="-20" y="-5" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="9" style="rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#7F8C8D;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="4" target="2" edge="1">
+        <mxCell id="9" style="startArrow=classic;rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#000000;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="4" target="2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="10" value="&lt;font style=&quot;color: rgb(127, 140, 141);&quot;&gt;↔️ 50 MW&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;strokeColor=none;fontColor=#7F8C8D;fontSize=14;" parent="9" vertex="1" connectable="0">
+        <mxCell id="10" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;↔️ 50 MW&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;strokeColor=none;fontColor=#7F8C8D;fontSize=14;" parent="9" vertex="1" connectable="0">
           <mxGeometry width="70" height="30" relative="1" as="geometry">
             <mxPoint y="-10" as="offset" />
           </mxGeometry>
