@@ -42,7 +42,7 @@ nav:
             - Libraries of models: 1_Overview/References/2_Libraries.md
   - Getting Started:
       - Installation: 2_Getting Started/1_installation.md
-      - Quick Start Examples: 2_Getting Started/2_quick start examples.md
+      - Quick Start Examples: 2_Getting Started/2_QSE_Adequacy.md
   - User Guide:
       - Syntax: 3_User Guide/1_syntax.md
       - Inputs: 3_User Guide/2_inputs.md
