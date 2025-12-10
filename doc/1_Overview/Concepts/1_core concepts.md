@@ -45,7 +45,8 @@ Their configuration consists of:
 
 - **Model ID** is the reference to the model that the component uses.
 - **Parameter value ¹** is set by users.
-- **Connections** are the links between two components' ports.
+
+**Connections** are the links between two components' ports. Connections are typed.
 
 <br/>
 <br/>
