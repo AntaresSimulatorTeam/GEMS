@@ -90,7 +90,7 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 ## How to run the study 
 
-### With Modeler
+### By using Modeler
 
 1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation.md)
 2. Go to the GEMS study folder, open the terminal
