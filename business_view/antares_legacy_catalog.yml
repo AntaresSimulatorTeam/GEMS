@@ -27,14 +27,12 @@ catalog:
         output-id: ens_and_spillage_cost
         location-ports: null 
       - taxonomy-group: production
-        output-id: operational_cost
+        output-id: proportional_cost
         location-ports: balance_port
-      - taxonomy-group: consumption #indicates that the "location" column will be filled with the id of the balance objects to which the consumption object is connected through "balance_port"
-        output-id: operational_cost
+      - taxonomy-group: production #indicates that the "location" column will be filled with the id of the balance objects to which the consumption object is connected through "balance_port"
+        output-id: non_proportional_cost
         location-ports: balance_port #indicates that the "location" column will be filled with the id of the balance objects to which the consumption object is connected through "balance_port"
-      - taxonomy-group: storage
-        output-id: operational_cost
-        location-ports: balance_port #indicates that the "metric_location" column will be filled with the id of the balance objects to which the storage object is connected through "balance_port"
+
     terms-operator: sum # Possible values : sum | avg | weighted_sum | weighted_avg # Defines how we aggregate the contributions of the differents terms, over all components 
     #breakdown: None
     #filter: None
