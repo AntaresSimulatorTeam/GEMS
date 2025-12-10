@@ -73,3 +73,11 @@ catalog:
     breakdown:
       - key: technology
     time-operator: sum
+
+  - id: BALANCE
+    terms:
+      - taxonomy-group: exchange
+        output-id: balance_port.flow
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
