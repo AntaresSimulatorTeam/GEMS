@@ -1,0 +1,54 @@
+name: End-to-End Tests
+
+on:
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Download Antares v9.3.2 release
+      run: |
+        echo "Downloading Antares v9.3.2..."
+        curl -L -f -o antares-9.3.2-Ubuntu-22.04.tar.gz \
+          https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v9.3.2/antares-9.3.2-Ubuntu-22.04.tar.gz
+        
+        if [ ! -f "antares-9.3.2-Ubuntu-22.04.tar.gz" ]; then
+          echo "Error: Download failed"
+          exit 1
+        fi
+        
+        echo "Download successful. File size: $(ls -lh antares-9.3.2-Ubuntu-22.04.tar.gz | awk '{print $5}')"
+    
+    - name: Extract Antares binaries
+      run: |
+        echo "Extracting archive..."
+        tar -xzf antares-9.3.2-Ubuntu-22.04.tar.gz
+    
+    - name: Run end-to-end tests
+      run: |
+        python -m pytest tests/e2e_tests/test_antares_legacy_models.py -v
+    
+    - name: Cleanup
+      if: always()
+      run: |
+        rm -f antares-9.3.2-Ubuntu-22.04.tar.gz
+        rm -rf antares-9.3.2-Ubuntu-22.04
+        echo "Cleanup completed"
