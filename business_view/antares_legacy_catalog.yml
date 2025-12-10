@@ -148,3 +148,14 @@ catalog:
         value: nodu
     terms-operator: sum
     time-operator: sum
+
+  - id: NP.COST # Not quite sure this is right approach ?
+    terms:
+      - taxonomy-group: production
+        output-id: non_proportional_cost
+        location-ports: balance_port
+    filter:
+      - key: cost
+        value: np_cost
+    terms-operator: sum
+    time-operator: sum
