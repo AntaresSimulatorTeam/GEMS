@@ -67,9 +67,9 @@ catalog:
   - id: DTG_BY_TECHNOLOGY
     terms:
       - taxonomy-group: production
-        output-id: generation
+        output-id: balance_port.flow
         location-ports: balance_port
     terms-operator: sum
     breakdown:
       - key: technology
-    time-operator: avg
+    time-operator: sum
