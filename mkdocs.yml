@@ -38,10 +38,9 @@ nav:
           - GemsPy: 1_Overview/GEMS Interpreters/1_gemspy.md
           - Antares Simulator: 1_Overview/GEMS Interpreters/2_antares_simulator_modeler.md      
       - References:
-            - Classification of models: 1_Overview/References/1_Classification.md
+            - Classification of models: 1_Overview/References/1_Classification_Configuration.md
             - Libraries of models: 1_Overview/References/2_Libraries.md
-            - Configuration file: 1_Overview/References/3_Configuration file.md
-            - Users of GEMS: 1_Overview/References/4_Users.md
+            - Users of GEMS: 1_Overview/References/3_Users.md
   - Getting Started:
       - Installation: 2_Getting Started/1_installation.md
       - Quick Start Examples: 2_Getting Started/2_quick start examples.md
