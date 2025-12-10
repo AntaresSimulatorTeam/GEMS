@@ -49,6 +49,10 @@ library:
           expression: spillage_cost * spillage + ens_cost * unsupplied_energy
         - id: marginal_price
           expression: dual(balance)
+        - id: unsupplied_energy_duration
+          expression: unsupplied_energy / (unsupplied_energy + 1)
+        - id: unsupplied_energy_probability
+          expression: (unsupplied_energy / (unsupplied_energy + 1)) * 100
 
     - id: load
       taxonomy-group: consumption
@@ -211,6 +215,8 @@ library:
           expression: generation * generation_cost
         - id: non_proportional_cost
           expression: nb_units_on * fixed_cost + nb_starting * startup_cost
+        - id: distpachable_margin
+          expression: p_max_cluster - generation
 
     - id: short-term-storage
       taxonomy-group: storage

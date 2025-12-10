@@ -159,3 +159,41 @@ catalog:
         value: np_cost
     terms-operator: sum
     time-operator: sum
+
+  - id: AVL.DTG # Can i directly use parameters?
+    terms:
+      - taxonomy-group: production
+        output-id: p_max_cluster
+        location-ports: balance_port
+    filter:
+      - key: distpachable
+        value: max_availability
+    terms-operator: sum
+    time-operator: sum
+
+  - id: DTG.MRG
+    terms:
+      - taxonomy-group: production
+        output-id: distpachable_margin
+        location-ports: balance_port
+    filter:
+      - key: distpachable
+        value: margin
+    terms-operator: sum
+    time-operator: sum
+
+  - id: LOLD
+    terms:
+      - taxonomy-group: balance
+        output-id: unsupplied_energy_duration
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: LOLP
+    terms:
+      - taxonomy-group: balance
+        output-id: unsupplied_energy_probability
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
