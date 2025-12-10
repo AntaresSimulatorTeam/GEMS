@@ -63,7 +63,7 @@ This system models a three-bus network with the following characteristics:
 - Bus 1: 50 MW
 - Bus 2: 40 MW
 - Bus 3: 150 MW
-- **Total Load**: 240 MW
+- **Total Load: 240 MW**
 
 **Transmission Capacities:**
 
