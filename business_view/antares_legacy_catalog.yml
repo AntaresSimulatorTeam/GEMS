@@ -137,3 +137,14 @@ catalog:
         location-ports: null
     terms-operator: sum
     time-operator: sum
+
+  - id: NODU # Not quite sure this is right approach ?
+    terms:
+      - taxonomy-group: production
+        output-id: nb_units_on
+        location-ports: balance_port
+    filter:
+      - key: distpachable
+        value: nodu
+    terms-operator: sum
+    time-operator: sum
