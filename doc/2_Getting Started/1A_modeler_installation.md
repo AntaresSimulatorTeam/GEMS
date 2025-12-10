@@ -9,7 +9,7 @@
 
 # Antares Modeler
 
-This section outlines the approach for configuring and utilizing the **Antares Modeler**, one of the primary interpreters for **GEMS studies**.
+This section outlines the approach for configuring and utilizing the **Antares Modeler**, primary interpreter for **GEMS studies**.
 
 ## Installation
 
