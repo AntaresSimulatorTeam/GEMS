@@ -58,3 +58,11 @@ nav:
       - FAQ: 6_Support & Contributing/1_faq.md
       - Contact: 6_Support & Contributing/2_contact.md
       - Contributing: 6_Support & Contributing/3_contributing.md
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
