@@ -14,6 +14,12 @@
 ## Overview
 This tutorial demonstrates adequacy modeling in a meshed three-bus network. Unlike the previous two-bus example, a three-bus system allows us to illustrate **Kirchhoff's Second Law** (loop flows) and network effects that cannot be shown with only two nodes.
 
+### Adequacy definition
+
+**Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the Production (generator, storage) and Consumption (load, spillage)
+
+![Adequacy Scheme](../assets/2_adequacy_scheme.png)
+
 ## Problem Description
 
 ### Network
@@ -55,7 +61,7 @@ This system models a three-bus network with the following characteristics:
 **Generation:**
 
 - Generator 1 (Bus 1): 70-100 MW capacity, 35 $/MWh cost
-- Generator 2 (Bus 2): 50-90 MW capacity, 25 $/MWh cost (cheapest)
+- Generator 2 (Bus 2): 50-90 MW capacity, 25 $/MWh cost
 - Generator 3 (Bus 3): 50-200 MW capacity, 42 $/MWh cost
 
 **Demand:**
