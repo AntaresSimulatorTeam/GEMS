@@ -63,3 +63,13 @@ catalog:
         location-ports: balance_port
     terms-operator: sum
     time-operator: sum
+
+  - id: DTG_BY_TECHNOLOGY
+    terms:
+      - taxonomy-group: production
+        output-id: generation
+        location-ports: balance_port
+    terms-operator: sum
+    breakdown:
+      - key: technology
+    time-operator: avg
