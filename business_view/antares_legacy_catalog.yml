@@ -47,6 +47,14 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
+  - id: MRG.PRICE
+    terms:
+      - taxonomy-group: area
+        output-id: marginal_price
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
 
   - id: LOAD
     terms:

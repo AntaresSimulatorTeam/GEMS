@@ -47,6 +47,8 @@ library:
       extra-outputs:
         - id: ens_and_spillage_cost
           expression: spillage_cost * spillage + ens_cost * unsupplied_energy
+        - id: marginal_price
+          expression: dual(balance)
 
     - id: load
       taxonomy-group: consumption
