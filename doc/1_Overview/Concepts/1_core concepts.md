@@ -79,7 +79,7 @@ To get familiar with these concepts, see the table below for a correspondence be
 
 <br/>
 
-¹: Parameters, Variables, and Constraints can be either scenario-dependent or time-dependent.
+¹: Parameters, Variables, and Constraints can be scenario-dependent or not ; they can be time-dependent or not.
 
 ---
 
