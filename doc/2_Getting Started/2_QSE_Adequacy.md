@@ -73,10 +73,6 @@ This system models a three-bus network with the following characteristics:
 **Expected Dispatch:**
 Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
 
-## Step 3: Kirchhoff's Law (Balance of Flows)
-
-**Kirchhoff's Second Law** states that the sum of voltages (or flow costs) around any closed loop must equal zero.
-
 ## How to run the study 
 
 ### With Modeler
