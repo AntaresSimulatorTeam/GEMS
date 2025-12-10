@@ -92,3 +92,33 @@ catalog:
       - key: res_id
     terms-operator: sum
     time-operator: sum
+
+  - id: STS.INJECTION
+    terms:
+      - taxonomy-group: storage
+        output-id: p_injection # Is this feasible?
+        location-ports: injection_port
+    breakdown:
+      - key: sts
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.WITHDRAWAL
+    terms:
+      - taxonomy-group: storage
+        output-id: p_withdrawal
+        location-ports: injection_port
+    breakdown:
+      - key: sts
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.LEVEL
+    terms:
+      - taxonomy-group: storage
+        output-id: level
+        location-ports: injection_port
+    breakdown:
+      - key: sts
+    terms-operator: avg
+    time-operator: avg
