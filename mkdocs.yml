@@ -41,9 +41,9 @@ nav:
             - Classification of models: 1_Overview/References/1_Classification.md
             - Libraries of models: 1_Overview/References/2_Libraries.md
   - Getting Started:
-      - GEMSPy Installation: 2_Getting Started/1_gemspy_installation.md
       - Modeler Installation: 2_Getting Started/1A_modeler_installation.md
-      - Support: 2_Getting Started/1B_support.md
+      - GEMSPy Installation: 2_Getting Started/1B_gemspy_installation.md
+      - Support: 2_Getting Started/1C_support.md
       - Quick Start Examples: 2_Getting Started/2_quick start examples.md
   - User Guide:
       - Syntax: 3_User Guide/1_syntax.md
