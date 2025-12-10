@@ -47,7 +47,7 @@ tutorial_QSE_adequacy/
 
 ## Step 1: Library File
 
-- Use `basic-model-library.yml` from [libraries folder](../../libraries/basic_models_library.yml)
+Use `basic_models_library.yml` from the [libraries folder](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml)
 
 ## Step 2: System File
 
