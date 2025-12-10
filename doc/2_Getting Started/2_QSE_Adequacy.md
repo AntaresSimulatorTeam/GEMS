@@ -16,7 +16,7 @@ This tutorial demonstrates adequacy modeling in a meshed three-bus network. Unli
 
 ### Adequacy definition
 
-**Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the Production (generator, storage) and Consumption (load, spillage)
+**Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
 
 ![Adequacy Scheme](../assets/2_adequacy_scheme.png)
 
@@ -31,6 +31,8 @@ This tutorial demonstrates adequacy modeling in a meshed three-bus network. Unli
 - 3 Loads (varying demands)
 
 **Time Horizon:** 1 hour is used for this example
+
+![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
 
 ## Files Structure
 ```
