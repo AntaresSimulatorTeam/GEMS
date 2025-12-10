@@ -15,16 +15,14 @@ catalog:
   taxonomy: my_taxonomy
 
   location:
-    taxonomy-group: area # str | tuple(str)
-    #The category of models in the taxonomy that will serve as "location-ports" for these metrics
-    #balance is the taxonomy group for area, zones... etc
+    taxonomy-group: balance
 
   metrics-definition: 
 
   - id: OV.COST
     terms:
-      - taxonomy-group: area
-        output-id: ens_and_spillage_cost
+      - taxonomy-group: balance
+        output-id: imbalance_cost
         location-ports: null 
       - taxonomy-group: production
         output-id: proportional_cost
@@ -49,11 +47,11 @@ catalog:
 
   - id: MRG.PRICE
     terms:
-      - taxonomy-group: area
+      - taxonomy-group: balance
         output-id: marginal_price
         location-ports: null
-    terms-operator: sum
-    time-operator: sum
+    terms-operator: avg
+    time-operator: avg
 
 
   - id: LOAD
@@ -77,7 +75,10 @@ catalog:
   - id: BALANCE
     terms:
       - taxonomy-group: exchange
-        output-id: balance_port.flow
-        location-ports: balance_port
+        output-id: out_port.flow
+        location-ports: out_port
+      - taxonomy-group: exchange
+        output-id: in_port.flow
+        location-ports: in_port
     terms-operator: sum
     time-operator: sum
