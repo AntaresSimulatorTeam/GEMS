@@ -20,6 +20,16 @@ This tutorial demonstrates adequacy modeling in a meshed three-bus network. Unli
 
 ![Adequacy Scheme](../assets/2_adequacy_scheme.png)
 
+## Files Structure
+```
+tutorial_QSE_adequacy/
+├── input/
+│   ├── library.yml
+│   ├── system.yml
+│   └── data-series/
+│       └──  ...
+└── parameters.yml
+```
 ## Problem Description
 
 ### Network
@@ -34,16 +44,7 @@ This tutorial demonstrates adequacy modeling in a meshed three-bus network. Unli
 
 ![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
 
-## Files Structure
-```
-tutorial_QSE_adequacy/
-├── input/
-│   ├── library.yml
-│   ├── system.yml
-│   └── data-series/
-│       └──  ...
-└── parameters.yml
-```
+
 
 ## Step 1: Library File
 
