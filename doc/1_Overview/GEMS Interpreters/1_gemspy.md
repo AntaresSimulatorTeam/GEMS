@@ -21,7 +21,7 @@ GEMSPy's API allows users to create studies programmatically. To build a study, 
 
 For detailed API usage and examples, see:
 - [Installation Guide](../../2_Getting%20Started/1_installation.md)
-- [Examples section](../../5_Examples/), it is explained how simulations can be run with Modeler.
+- [Examples section](../../5_Examples/), it is explained how simulations can be run with GEMSPy.
 - [Building with GEMSPy API](https://gemspy.readthedocs.io/en/latest/user-guide/building/)
 
 ---
