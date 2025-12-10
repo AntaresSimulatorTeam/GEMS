@@ -98,123 +98,59 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 The results will be available in the folder `<study_folder>/output`
 
-# Power System Equations
+# Equations
 
-## Objective Functions
-
-### *Bus* Objective function
-The total system cost for each bus is defined as follows:
+The objective function to minimize the total dispatch cost for the three-bus system is:
 
 $$
-\text{Objective}_{\text{bus}} = \sum (\text{spillage} \times 1000 + \text{unsupplied\_energy} \times 10000)
+\min(\Omega_{\text{dispatch}})
 $$
 
-### *Generator* Objective function
-The generation costs for each generator are:
-$$
-\text{Objective}_{\text{generator1}} = \sum (35 \times \text{generation}_1)
-$$
+where $\Omega_{\text{dispatch}}$ is composed of the following cost components:
 
 $$
-\text{Objective}_{\text{generator1}} = \sum (35 \times \text{generation}_1)
+\Omega_{\text{dispatch}} = \Omega_{\text{transmission}} + \Omega_{\text{thermal}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
 $$
 
-$$
-\text{Objective}_{\text{generator2}} = \sum (25 \times \text{generation}_2)
-$$
+## Objective function for each component
+
+### Transmission Cost
+
+For the three links in the system :
 
 $$
-\text{Objective}_{\text{generator3}} = \sum (42 \times \text{generation}_3)
+\Omega_{\text{transmission}} = \sum_{l \in L}   \gamma_{l}^+ \cdot F_{l}^+ + \gamma_{l}^- \cdot F_{l}^- 
 $$
 
-## Constraints
+### Thermal Generation Cost
 
-### Power Balance Between Load and Generation
-For each bus, the flow balance is given by:
-
-$$
-\sum_{\text{connections}} \text{balance\_port.flow} = \text{spillage} - \text{unsupplied\_energy}
-$$
-
-### Limits on Unsupplied and Spilled Power
-Unsupplied and spilled power are bounded:
+For the generator in the system:
 
 $$
-0 \leq \text{unsupplied\_energy}
+\Omega_{\text{thermal}} = \sum_{n \in N} \sum_{\theta \in \Theta_n}   \chi_{\theta} \cdot P_{\theta} 
 $$
 
-$$
-0 \leq \text{spillage}
-$$
+### Unsupplied Energy Cost
 
-### Link Flow Capacity Constraints
-The flows for each link are limited by their capacity:
-
-- For `link_12`:
+For the three buses in the system:
 
 $$
--40 \leq \text{flow}_{12} \leq 40
+\Omega_{\text{thermal}} = \sum_{n \in N} \delta_{n}^+ \cdot G_{n}⁺ 
 $$
 
-- For `link_23`:
+where $G_n^+$ represents unsupplied energy at node $n$.
+
+### Spillage Cost
+
+For the three buses in the system:
 
 $$
--30 \leq \text{flow}_{23} \leq 30
+\Omega_{\text{thermal}} = \sum_{n \in N} \delta_{n}^- \cdot G_{n}^- 
 $$
 
-- For `link_31`:
+where $G_n^-$ represents spilled energy at node $n$.
 
-$$
--50 \leq \text{flow}_{31} \leq 50
-$$
 
-The relationship between direct and indirect flow is:
-
-$$
-\text{flow} = \text{flow\_direct} - \text{flow\_indirect}
-$$
-
-### Thermal Units
-The output power of the generators is bounded:
-
-- For `generator1`:
-
-$$
-70 \leq \text{generation}_1 \leq 100
-$$
-
-- For `generator2`:
-
-$$
-50 \leq \text{generation}_2 \leq 90
-$$
-
-- For `generator3`:
-
-$$
-50 \leq \text{generation}_3 \leq 200
-$$
-
-### Loads
-The loads for each bus are defined as:
-
-- For `bus_load_1`:
-
-$$
-\text{balance\_port.flow}_1 = -50
-$$
-
-- For `bus_load_2`:
-
-$$
-\text{balance\_port.flow}_2 = -40
-$$
-
-- For `bus_load_3`:
-
-$$
-\text{balance\_port.flow}_3 = -150
-$$
 
 ---
 **Navigation**
