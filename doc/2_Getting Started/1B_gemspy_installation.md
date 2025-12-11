@@ -23,7 +23,7 @@ This package requires:
 
 ## GEMSPy installation
 
-Currently, GEMSPy must be installed by cloning the repository manually:
+Currently, [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) must be installed by cloning the repository manually:
 
 ```bash
 # Clone the repository
