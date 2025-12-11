@@ -134,23 +134,29 @@ The results will be available in the folder `<study_folder>/output`
 </div>
 <div style="flex: 1; padding: 10px; max-width: 50%">
 
-**Parameters:**
+<strong>Parameters:</strong>
 
-- $$p_{\text{min}} \text{: Minimum production value (lower-bound of `generation`), scenario and time dependent.}$$
-- $$p_{\text{max}} \text{: Maximum production value (upper-bound of `generation`), scenario and time dependent.}$$
-- $$\text{generation\_cost} \text{: Production cost used in the objective function, scenario and time independent.}$$
+$$p_{\text{min}} \text{: Minimum production value}$$
+<div style="margin-left: 20px;">scenario and time dependencyscenario and time dependency
 
-**Variables:**
+$$p_{\text{max}} \text{: Maximum production value}$$
+ - scenario and time dependency
 
-- $$\text{generation} \text{: Continuous variable representing the produced quantity, bounded by } p_{\text{min}} \text{ and } p_{\text{max}}\text{.}$$
+$$generation_\text{cost} \text{ : Production cost in the objective function,}$$
+ - No scenario and time dependency
 
-**Ports:**
+Variables:
 
-- A `flow_port` type port named `balance_port`, where the `flow` field is defined by the `generation` variable.
+- `generation`: `continuous` variable representing the instantaneaous produced power, bounded by `p_min` and `p_max`
+$$p_{\text{min}} \leq \text{generation} \leq p_{\text{max}}$$
 
-**Objective Contributions:**
+Ports:
 
-The objective contribution is given by:
+- `balance_port`: the port exchanges the field `flow` as the generated power sent to another componnent, in this example ; a bus
+
+Objective Contributions:
+
+The objective contribution to the general objective function represents the sum of the `generation cost` of this generator. This overall cost is proportional to `generation`:
 
 $$
 \text{objective} = \sum (\text{generation\_cost} \times \text{generation})
