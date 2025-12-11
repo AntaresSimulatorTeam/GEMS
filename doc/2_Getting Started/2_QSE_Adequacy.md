@@ -134,10 +134,10 @@ The results will be available in the folder `<study_folder>/output`
 </div>
 <div style="flex: 1; padding: 10px; max-width: 50%">
 
-<strong>Parameters:</strong>
+Parameters:
 
 $$p_{\text{min}} \text{: Minimum production value}$$
-<div style="margin-left: 20px;">scenario and time dependencyscenario and time dependency
+scenario and time dependencyscenario and time dependency
 
 $$p_{\text{max}} \text{: Maximum production value}$$
  - scenario and time dependency
@@ -222,7 +222,7 @@ where $G_n^-$ represents spilled energy at node $n$.
 ### First Kirchhoff's Law (Power Balance):
 
 $$
-\forall n \in N, \sum_{l \in L_n^+} F_l - \sum_{l \in L_n^-} F_l = \left(G_n^+ + \sum_{\lambda \in \Lambda_n} (H_\lambda - \Pi_\lambda) + \sum_{\theta \in \Theta_n} P_\theta + \sum_{s \in \mathcal{S}} \left(P_s^w - P_s^i\right)\right) - (G_n^- + D_n)
+\forall n \in N, \sum_{l \in L_n^+} F_l - \sum_{l \in L_n^-} F_l = \left(G_n^+ \sum_{\theta \in \Theta_n} P_\theta + \sum_{s \in \mathcal{S}} \left(P_s^w - P_s^i\right)\right) - (G_n^- + D_n)
 $$
 
 ### Unsupplied Power Constraint:
