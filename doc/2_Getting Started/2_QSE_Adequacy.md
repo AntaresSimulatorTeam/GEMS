@@ -43,7 +43,7 @@ tutorial_QSE_adequacy/
 
 ![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
 
-In this example, the `power flows` on the links are only constrained by thermal capacities
+In this example, the `power flows` on the links are only constrained by thermal capacities.
 
 
 ## Step 1: Library File
@@ -177,7 +177,7 @@ $$
 where $\Omega_{\text{dispatch}}$ is composed of the following cost components:
 
 $$
-\Omega_{\text{dispatch}} = \Omega_{\text{transmission}} + \Omega_{\text{thermal}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
+\Omega_{\text{dispatch}} = \Omega_{\text{transmission}} + \Omega_{\text{generator}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
 $$
 
 ## Objective function for each component
@@ -195,7 +195,7 @@ $$
 For the generator in the system:
 
 $$
-\Omega_{\text{thermal}} = \sum_{n \in N} \sum_{\theta \in \Theta_n}   \chi_{\theta} \cdot P_{\theta} 
+\Omega_{\text{generator}} = \sum_{n \in N} \sum_{\theta \in \Theta_n}   \chi_{\theta} \cdot P_{\theta} 
 $$
 
 ### Unsupplied Energy Cost
@@ -203,7 +203,7 @@ $$
 For the three buses in the system:
 
 $$
-\Omega_{\text{thermal}} = \sum_{n \in N} \delta_{n}^+ \cdot G_{n}⁺ 
+\Omega_{\text{generator}} = \sum_{n \in N} \delta_{n}^+ \cdot G_{n}⁺ 
 $$
 
 where $G_n^+$ represents unsupplied energy at node $n$.
@@ -213,7 +213,7 @@ where $G_n^+$ represents unsupplied energy at node $n$.
 For the three buses in the system:
 
 $$
-\Omega_{\text{thermal}} = \sum_{n \in N} \delta_{n}^- \cdot G_{n}^- 
+\Omega_{\text{generator}} = \sum_{n \in N} \delta_{n}^- \cdot G_{n}^- 
 $$
 
 where $G_n^-$ represents spilled energy at node $n$.
