@@ -8,6 +8,12 @@
 </div>
 
 # Antares Modeler Presentation
+<br>
+<div style="text-align: center;">
+  <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator logo" height="50"/>
+</div>
+
+<br>
 
 The **Antares** Modeler is a graph-based optimization problem builder that provides a comprehensive environment for constructing, configuring, and solving LP, MIP, and MILP problems. Its design emphasizes flexibility, enabling users to tailor mathematical formulations, data structures, and model components to suit the specific requirements of their studies.
 
