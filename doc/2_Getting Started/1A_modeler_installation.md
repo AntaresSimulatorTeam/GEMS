@@ -12,6 +12,7 @@
 This section outlines the approach for configuring and utilizing the **Antares Modeler**, primary interpreter for **GEMS studies**.
 
 ## Installation
+ note last stable version
 
 Download [**Antares-Simulator**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v9.3.2) from the official releases page, then locate the Antares Modeler executable in the installation’s bin folder, noting that it is currently a command-line–only tool with no graphical interface yet.
 
