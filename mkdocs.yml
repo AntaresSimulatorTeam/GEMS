@@ -28,12 +28,15 @@ theme:
         name: Switch to light mode
 
 nav:
-  - Home: index.md
+  - Home:
+    - Home: index.md
+    - Context of GEMS: 0_Home/1_context_GEMS.md
+    - Release Notes: 0_Home/2_release_notes.md 
   - Overview:
       - Concepts:
-          - Architecture: 1_Overview/Concepts/1_architecture.md
-          - Core Concepts: 1_Overview/Concepts/2_core concepts.md
-          - Features: 1_Overview/Concepts/3_features.md
+          - Core Concepts: 1_Overview/Concepts/1_core concepts.md
+          - Architecture: 1_Overview/Concepts/2_architecture.md
+          - Features: 1_Overview/Concepts/3_features_usecase.md
       - GEMS Interpreters:
           - GemsPy: 1_Overview/GEMS Interpreters/1_gemspy.md
           - Antares Simulator: 1_Overview/GEMS Interpreters/2_antares_simulator_modeler.md      
@@ -55,6 +58,9 @@ nav:
       - PyPSA: 4_Interoperability/1_pypsa.md
       - Antares Legacy Format: 4_Interoperability/2_antares legacy.md
       - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
+  - Examples:
+      - Tutorial - Simple economic dispatch problem: 5_Examples/1_optimization_problem.md
+      - Antares Simulator Hybrid study: 5_Examples/2_hybrid.md
   - Support & Contributing:
       - FAQ: 6_Support & Contributing/1_faq.md
       - Contact: 6_Support & Contributing/2_contact.md
