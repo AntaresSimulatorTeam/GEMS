@@ -133,7 +133,7 @@ python -c "import scipy; print(scipy.__version__)"
 
 | Resource              | Link                                                                 |
 |-----------------------|----------------------------------------------------------------------|
-| GitHub Repository     | [GEMSPy on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)   |
+| GitHub Repository     | [GemsPy on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)   |
 | Online Documentation  | [gemspy.readthedocs.io](https://gemspy.readthedocs.io)               |
 | Examples              | See the repository's `examples/` directory                           |
 | FAQ                   | [FAQ](../6_Support%20&%20Contributing/1_faq.md)                      |
