@@ -137,7 +137,7 @@ python -c "import scipy; print(scipy.__version__)"
 | Online Documentation  | [gemspy.readthedocs.io](https://gemspy.readthedocs.io)               |
 | Examples              | See the repository's `examples/` directory                           |
 | FAQ                   | [FAQ](../6_Support%20&%20Contributing/1_faq.md)                      |
-| GitHub Issues         | [GEMSPy Issues](https://github.com/AntaresSimulatorTeam/GemsPy/issues)|
+| GitHub Issues         | [GemsPy Issues](https://github.com/AntaresSimulatorTeam/GemsPy/issues)|
 | Contact Support       | [Contact support](../6_Support%20&%20Contributing/2_contact.md)      |
 
 
