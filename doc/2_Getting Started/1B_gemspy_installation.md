@@ -7,21 +7,6 @@
   </div>
 </div>
 
-
-# Installation
-
-This section provides installation instructions for the different GEMS interpreters and tools available to work with GEMS studies.
-
-
-## Available Interpreters
-
-As mentioned in the Overview section, GEMS studies can be executed using different interpreters:
-
-- [**GEMSPy**](../1_Overview/GEMS%20Interpreters/1_gemspy.md)
-- [**Antares Modeler**](../1_Overview/GEMS%20Interpreters/2_antares_simulator_modeler.md)
-
-The following documentation explains how to install and use these interpreters for the first time.
-
 # GEMSPy
 
 GEMSPy is a Python interpreter for GEMS that allows you to create, manipulate, and simulate energy system models.
