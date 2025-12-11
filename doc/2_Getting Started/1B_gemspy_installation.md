@@ -17,7 +17,7 @@
 This package requires:
 
 - **Python 3.11** (recommended for optimal compatibility and performance) or Python 3.8+
-- Git (for cloning the GEMSPy repository)
+- Git (for cloning the [GemsPy repository](https://github.com/AntaresSimulatorTeam/GemsPy))
 - pip package manager (for installing required Python libraries)
 
 
