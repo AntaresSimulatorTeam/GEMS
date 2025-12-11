@@ -1,4 +1,3 @@
-![Template Banner](../assets/template_banner.svg)
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="../../../..">Main Section</a>
@@ -98,6 +97,67 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 3. Type in the terminal `antares-modeler <study_folder>/`
 
 The results will be available in the folder `<study_folder>/output`
+
+# YAML Block Description: Generator
+
+<div style="display: flex;">
+<div style="flex: 1; padding: 10px; max-width: 50%;">
+
+```yaml
+- id: generator
+  parameters:
+    - id: p_min
+      scenario-dependent: true
+      time-dependent: true
+    - id: p_max
+      scenario-dependent: true
+      time-dependent: true
+    - id: generation_cost
+      scenario-dependent: false
+      time-dependent: false
+  variables:
+    - id: generation
+      lower-bound: p_min
+      upper-bound: p_max
+      variable-type: continuous
+  ports:
+    - id: balance_port
+      type: flow_port
+  port-field-definitions:
+    - port: balance_port
+      field: flow
+      definition: generation
+  objective-contributions:
+    - id: objective
+      expression: sum(generation_cost * generation)
+```
+</div>
+<div style="flex: 1; padding: 10px; max-width: 50%">
+
+**Parameters:**
+
+- $$p_{\text{min}} \text{: Minimum production value (lower-bound of `generation`), scenario and time dependent.}$$
+- $$p_{\text{max}} \text{: Maximum production value (upper-bound of `generation`), scenario and time dependent.}$$
+- $$\text{generation\_cost} \text{: Production cost used in the objective function, scenario and time independent.}$$
+
+**Variables:**
+
+- $$\text{generation} \text{: Continuous variable representing the produced quantity, bounded by } p_{\text{min}} \text{ and } p_{\text{max}}\text{.}$$
+
+**Ports:**
+
+- A `flow_port` type port named `balance_port`, where the `flow` field is defined by the `generation` variable.
+
+**Objective Contributions:**
+
+The objective contribution is given by:
+
+$$
+\text{objective} = \sum (\text{generation\_cost} \times \text{generation})
+$$
+
+</div>
+</div>
 
 # Mathematical representation
 
