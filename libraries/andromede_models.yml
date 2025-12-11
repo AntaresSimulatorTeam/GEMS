@@ -21,7 +21,7 @@ library:
         - id: flow
   models:
 
-    - id: shedding_load
+    - id: flexible_load
       parameters:
         - id: min_load
           time-dependent: true
@@ -29,7 +29,7 @@ library:
         - id: max_load
           time-dependent: true
           scenario-dependent: true
-        - id: marginal_shedding_cost
+        - id: marginal_flexibility_cost
           time-dependent: false
           scenario-dependent: false
       variables:
@@ -39,7 +39,7 @@ library:
           variable-type: continuous
       objective-contributions:
         - id: objective
-          expression: sum((max_load-load)* marginal_shedding_cost)
+          expression: sum((max_load-load)* marginal_flexibility_cost)
       ports:
         - id: balance_port
           type: flow
