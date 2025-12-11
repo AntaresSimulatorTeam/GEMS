@@ -24,6 +24,15 @@ RTE is also using it for the [Planeterr](https://planeterr.fr/) project.
 <img src="../../../assets/7_RTEi_logo.png" alt="RTE logo" style="height:50px;"/>
 
 
+## Academic
+
+### Mines de Paris
+
+[Persee laboratory](https://www.minesparis.psl.eu/persee/) works with GEMS
+
+### TU Delft
+
+[Delft University ](https://www.tudelft.nl/en/) uses GEMS for its projects
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
