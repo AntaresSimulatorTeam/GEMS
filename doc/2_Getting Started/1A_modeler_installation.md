@@ -15,7 +15,9 @@ This section outlines the approach for configuring and utilizing the **Antares M
 
 Note that the current **last stable version** of Antares Simulator is [**9.3.2**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v9.3.2).
 
-Download [**Antares-Simulator**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) from the official releases page, then locate the Antares Modeler executable in the installation’s bin folder, noting that it is currently a command-line–only tool with no graphical interface yet.
+Download [**Antares-Simulator**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) from the official releases page, then locate the **Antares Modeler executable** in the installation’s bin folder, noting that it is currently a command-line–only tool with no graphical interface yet.
+Inside this bin folder, the **Antares Solver executable** is also present to run a study in Antares legacy mode.
+However, **Antares Modeler** is able to [tackle an **hybrid** study](../3_User%20Guide/3_hybrid%20inputs.md) (made from legacy and GEMS models).
 
 ![Screenshot of bin folder](../assets/2_Modeler_bin.png)
 
