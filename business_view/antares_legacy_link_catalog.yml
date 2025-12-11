@@ -1,0 +1,18 @@
+catalog:
+  
+  id: antares_link_output
+
+  taxonomy: my_taxonomy
+
+  location:
+    taxonomy-group: exchange
+
+  metrics-definition: 
+
+  - id: FLOW LIN.
+    terms:
+      - taxonomy-group: exchange
+        output-id: flow
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
