@@ -34,7 +34,7 @@ cd GemsPy
 
 ## Virtual Environment Setup
 
-It is recommended to create a **virtual environment** before installing GEMSPy. This provides a dedicated space with its own libraries, avoiding dependency conflicts and maintaining a clean global Python environment. All required dependencies will be installed automatically within your virtual environment when you run the installation command.
+It is recommended to create a **virtual environment** before installing [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy). This provides a dedicated space with its own libraries, avoiding dependency conflicts and maintaining a clean global Python environment. All required dependencies will be installed automatically within your virtual environment when you run the installation command.
 
 ### Create and Set Up the Virtual Environment
 
