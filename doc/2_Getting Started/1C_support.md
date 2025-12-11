@@ -11,9 +11,9 @@
 
 | Contact Type                             | Link                                                                 |
 |------------------------------------------|----------------------------------------------------------------------|
-| GEMS Support                             | [Contact support](../../6_Support%20&%20Contributing/2_contact.md)   |
-| GEMS Contribution                        | [Contributing Contact](../../6_Support%20&%20Contributing/3_contributing.md) |
-| GEMS FAQ                                 | [FAQ](../../6_Support%20&%20Contributing/1_faq.md)                   |
+| GEMS Support                             | [Contact support](../../6_Support%20&%20Contributing/2_contact)   |
+| GEMS Contribution                        | [Contributing Contact](../../6_Support%20&%20Contributing/3_contributing) |
+| GEMS FAQ                                 | [FAQ](../../6_Support%20&%20Contributing/1_faq)                   |
 | Antares Simulator Contact (GitHub Issue) | [Contact Form Website](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues/new?template=support_request.md) |
 
 
