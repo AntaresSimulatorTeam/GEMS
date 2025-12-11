@@ -60,26 +60,27 @@ List of **main dependencies** installed via **`requirements.txt`**:
   While working with GEMSPy, activate the virtual environment:
 
   - **Windows:**
-    ```bash
+    ```
     gemspy-env\Scripts\activate
     ```
   - **macOS/Linux:**
-    ```bash
+    ```
     source gemspy-env/bin/activate
     ```
 
   When activated, the environment name will be visible in the terminal prompt:
-  ```bash
+  
+  ```
   (gemspy-env) user@machine:~$
   ```
 
 2. **Deactivate the Environment**
 
   Before working on another project, deactivate the environment:
-  ```bash
+  ```
   deactivate
   ```
-
+  
 3. **Delete the Virtual Environment**
 
   If you need to completely remove a virtual environment:
