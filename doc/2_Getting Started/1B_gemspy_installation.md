@@ -9,7 +9,7 @@
 
 # GEMSPy
 
-GEMSPy is a Python interpreter for GEMS that allows you to create, manipulate, and simulate energy system models.
+[GemsPy](https://gemspy.readthedocs.io/en/latest/) is a Python interpreter for GEMS that allows you to create, manipulate, and simulate energy system models.
 
 
 ## Requirements
