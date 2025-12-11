@@ -43,6 +43,7 @@ tutorial_QSE_adequacy/
 
 ![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
 
+In this example, `power flow` is constrained only by thermal capacities
 
 
 ## Step 1: Library File
