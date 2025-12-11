@@ -4,29 +4,35 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-1" value="taxonomy file&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFF4C3;" parent="1" vertex="1">
-          <mxGeometry x="20" y="90" width="240" height="140" as="geometry" />
+        <mxCell id="NffPX4mMYiZH-TiS3kX9-1" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="60" width="240" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-2" value="production" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFF99;" parent="1" vertex="1">
-          <mxGeometry x="50" y="150" width="70" height="70" as="geometry" />
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-1" value="taxonomy file&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFF4C3;" parent="NffPX4mMYiZH-TiS3kX9-1" vertex="1">
+          <mxGeometry width="240" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-3" value="consumption" style="shape=hexagon;whiteSpace=wrap;html=1;fillColor=#99FFFF;" parent="1" vertex="1">
-          <mxGeometry x="140" y="130" width="90" height="50" as="geometry" />
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-2" value="production" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFF99;" parent="NffPX4mMYiZH-TiS3kX9-1" vertex="1">
+          <mxGeometry x="30" y="60" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-7" value="&lt;div&gt;library file&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFCCE6;" parent="1" vertex="1">
-          <mxGeometry y="250" width="280" height="250" as="geometry" />
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-3" value="consumption" style="shape=hexagon;whiteSpace=wrap;html=1;fillColor=#99FFFF;" parent="NffPX4mMYiZH-TiS3kX9-1" vertex="1">
+          <mxGeometry x="120" y="40" width="90" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-8" value="generator model" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;startSize=20;" parent="1" vertex="1">
-          <mxGeometry x="10" y="320" width="131" height="170" as="geometry" />
+        <mxCell id="NffPX4mMYiZH-TiS3kX9-2" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="15" y="160" width="330" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-9" value="Parameters:&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;- param1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;- param2&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- param3&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Variables:&lt;/div&gt;&lt;div&gt;-variable1&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;-variabe2&lt;/span&gt;&lt;/div&gt;&lt;div&gt;-variable3&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;rounded=0;" parent="7u5p2sMOo7Pmm-xxHc1x-8" vertex="1">
-          <mxGeometry x="10" y="30" width="90" height="130" as="geometry" />
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-7" value="&lt;div&gt;library file&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F2FEFF;align=center;" parent="NffPX4mMYiZH-TiS3kX9-2" vertex="1">
+          <mxGeometry width="330" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="jzYwRevjusGAOimQ6yoV-1" value="load model" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
-          <mxGeometry x="160" y="300" width="105" height="170" as="geometry" />
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-8" value="generator model" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;startSize=20;" parent="NffPX4mMYiZH-TiS3kX9-2" vertex="1">
+          <mxGeometry x="10" y="40" width="140" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="jzYwRevjusGAOimQ6yoV-2" value="Parameters:&lt;div&gt;&lt;span style=&quot;background-color: rgb(153, 255, 255);&quot;&gt;- param1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- param2&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Variables:&lt;/div&gt;&lt;div&gt;-variable1&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(153, 255, 255);&quot;&gt;-variabe2&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(153, 255, 255);&quot;&gt;-variable3&lt;/span&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="jzYwRevjusGAOimQ6yoV-1">
-          <mxGeometry x="10" y="30" width="85" height="130" as="geometry" />
+        <mxCell id="7u5p2sMOo7Pmm-xxHc1x-9" value="id :&amp;nbsp;&lt;div&gt;&amp;nbsp; &amp;nbsp; - generator&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;taxonomy-group :&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp; &amp;nbsp;- production&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;parameters :&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;- p_max&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;- p_min&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;- generation_cost&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;...&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;rounded=0;" parent="7u5p2sMOo7Pmm-xxHc1x-8" vertex="1">
+          <mxGeometry x="5" y="30" width="135" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="jzYwRevjusGAOimQ6yoV-1" value="load model" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" parent="NffPX4mMYiZH-TiS3kX9-2" vertex="1">
+          <mxGeometry x="170" y="40" width="140" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="jzYwRevjusGAOimQ6yoV-2" value="id :&amp;nbsp;&lt;div&gt;&amp;nbsp; &amp;nbsp; - generator&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: rgb(153, 255, 255);&quot;&gt;taxonomy-group :&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: rgb(153, 255, 255);&quot;&gt;&amp;nbsp; &amp;nbsp;- consumption&amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;parameters :&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;- load&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;...&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;rounded=0;" parent="jzYwRevjusGAOimQ6yoV-1" vertex="1">
+          <mxGeometry x="10" y="30" width="100" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
