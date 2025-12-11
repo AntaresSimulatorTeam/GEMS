@@ -156,7 +156,7 @@ python -c "import scipy; print(scipy.__version__)"
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1C_support" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../../2A_adequacy" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>

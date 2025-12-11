@@ -32,7 +32,7 @@
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../2_quick start example" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../../3_User Guide/1_syntax" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>
