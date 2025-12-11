@@ -46,10 +46,12 @@ nav:
             - Configuration file: 1_Overview/References/3_Configuration file.md
             - Users: 1_Overview/References/4_Users.md
   - Getting Started:
-      - Modeler Installation: 2_Getting Started/1A_modeler_installation.md
-      - GEMSPy Installation: 2_Getting Started/1B_gemspy_installation.md
+      - Installation:
+        - Modeler Installation: 2_Getting Started/1A_modeler_installation.md
+        - GEMSPy Installation: 2_Getting Started/1B_gemspy_installation.md
+      - Quick Start Examples:
+        - Adequacy: 2_Getting Started/2_quick start examples.md
       - Support: 2_Getting Started/1C_support.md
-      - Quick Start Examples: 2_Getting Started/2_quick start examples.md
   - User Guide:
       - Syntax: 3_User Guide/1_syntax.md
       - Inputs: 3_User Guide/2_inputs.md
