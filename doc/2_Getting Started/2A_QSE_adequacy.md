@@ -142,8 +142,6 @@ This part presents the mathematical representations of the problem. The notation
 | $\Omega_{\text{spillage}}$ | Spillage cost component | \$ |
 | $\gamma_l^+$ | Transmission cost through link $l$ (upstream to downstream) | \$/MW |
 | $\gamma_l^-$ | Transmission cost through link $l$ (downstream to upstream) | \$/MW |
-| $C_l^+$ | Initial transmission capacity (upstream to downstream) | MW |
-| $C_l^-$ | Initial transmission capacity (downstream to upstream) | MW |
 | $\overline{C_l^+}$ | Maximum transmission capacity (upstream to downstream) | MW |
 | $\overline{C_l^-}$ | Maximum transmission capacity (downstream to upstream) | MW |
 | $\underline{P}_g$ | Minimum power output from generator $g$ | MW |
