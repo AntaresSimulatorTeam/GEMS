@@ -101,70 +101,7 @@ The results will be available in the folder `<study_folder>/output`
 
 # YAML Block Description: Generator
 
-<div style="display: flex;">
-<div style="flex: 1; padding: 10px; max-width: 50%;">
-
-```yaml
-- id: generator
-  parameters:
-    - id: p_min
-      scenario-dependent: true
-      time-dependent: true
-    - id: p_max
-      scenario-dependent: true
-      time-dependent: true
-    - id: generation_cost
-      scenario-dependent: false
-      time-dependent: false
-  variables:
-    - id: generation
-      lower-bound: p_min
-      upper-bound: p_max
-      variable-type: continuous
-  ports:
-    - id: balance_port
-      type: flow_port
-  port-field-definitions:
-    - port: balance_port
-      field: flow
-      definition: generation
-  objective-contributions:
-    - id: objective
-      expression: sum(generation_cost * generation)
-```
-</div>
-<div style="flex: 1; padding: 10px; max-width: 50%">
-
-Parameters:
-
-$$p_{\text{min}} \text{: Minimum production value}$$
-scenario and time dependencyscenario and time dependency
-
-$$p_{\text{max}} \text{: Maximum production value}$$
- - scenario and time dependency
-
-$$generation_\text{cost} \text{ : Production cost in the objective function,}$$
- - No scenario and time dependency
-
-Variables:
-
-- `generation`: `continuous` variable representing the instantaneaous produced power, bounded by `p_min` and `p_max`
-$$p_{\text{min}} \leq \text{generation} \leq p_{\text{max}}$$
-
-Ports:
-
-- `balance_port`: the port exchanges the field `flow` as the generated power sent to another componnent, in this example ; a bus
-
-Objective Contributions:
-
-The objective contribution to the general objective function represents the sum of the `generation cost` of this generator. This overall cost is proportional to `generation`:
-
-$$
-\text{objective} = \sum (\text{generation\_cost} \times \text{generation})
-$$
-
-</div>
-</div>
+![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
 
 # Mathematical representation
 
