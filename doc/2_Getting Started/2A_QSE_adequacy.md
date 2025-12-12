@@ -13,7 +13,7 @@
 ## Overview
 This tutorial demonstrates adequacy modeling in a meshed three-bus network.
 
-The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/examples/QSE_1_Adequacy).
+The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/doc/5_Examples/QSE/QSE_1_Adequacy).
 
 ### Adequacy definition
 
