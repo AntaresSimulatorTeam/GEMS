@@ -11,7 +11,7 @@
 # QSE 1 : Three-Bus Adequacy System
 
 ## Overview
-This tutorial demonstrates adequacy modeling in a meshed three-bus network. Unlike the previous two-bus example, a three-bus system allows us to illustrate **Kirchhoff's Second Law** (loop flows) and network effects that cannot be shown with only two nodes.
+This tutorial demonstrates adequacy modeling in a meshed three-bus network.
 
 ### Adequacy definition
 
