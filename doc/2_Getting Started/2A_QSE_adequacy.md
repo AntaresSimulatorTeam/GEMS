@@ -99,6 +99,21 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 The results will be available in the folder `<study_folder>/output`
 
+## Step 3: Outputs
+
+In `output` folder, the simulation table csv file reprensents the results of the simulation.
+
+The following graphs show the merit order of the generator and links.
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="text-align: left;">
+    <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" width="95%"/>
+  </div>
+  <div style="text-align: right;">
+    <img src="../../assets/2_QSE_1_out_Flows.png" alt="Outputs Flows" width="95%"/>
+  </div>
+</div>
+
 # YAML Block Description: Generator
 
 ![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
