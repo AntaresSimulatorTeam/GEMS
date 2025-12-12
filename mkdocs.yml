@@ -55,7 +55,7 @@ nav:
             - Users: 1_Overview/References/4_Users.md
   - Getting Started:
       - Installation: 2_Getting Started/1_installation.md
-      - Quick Example - Adequacy: 2_Getting Started/2_QSE_adequacy.md
+      - Quick Example - Adequacy: 2_Getting Started/2A_QSE_adequacy.md
   - User Guide:
       - Syntax: 3_User Guide/1_syntax.md
       - Inputs: 3_User Guide/2_inputs.md
