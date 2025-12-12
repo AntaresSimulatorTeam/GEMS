@@ -168,7 +168,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: NODU # Not quite sure this is right approach ?
+  - id: NODU.BY.AREA # Not quite sure this is right approach ?
     terms:
       - taxonomy-group: production
         output-id: nb_units_on
@@ -179,7 +179,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: NP.COST # Not quite sure this is right approach ?
+  - id: NP.COST.BY.AREA # Not quite sure this is right approach ?
     terms:
       - taxonomy-group: production
         output-id: non_proportional_cost
@@ -187,6 +187,27 @@ catalog:
     filter:
       - key: cost
         value: np_cost
+    terms-operator: sum
+    time-operator: sum
+
+  - id: NODU.BY.CLUSTER # Not quite sure this is right approach ?
+    terms:
+      - taxonomy-group: production
+        output-id: nb_units_on
+        location-ports: balance_port
+    breakdown:
+      - key: nodu_by_cluster
+    terms-operator: sum
+    time-operator: sum
+
+  - id: NP.COST.BY.CLUSTER # Not quite sure this is right approach ?
+    terms:
+      - taxonomy-group: production
+        output-id: non_proportional_cost
+        location-ports: balance_port
+    filter:
+      - key: cost
+        value: np_cost_by_cluster
     terms-operator: sum
     time-operator: sum
 
