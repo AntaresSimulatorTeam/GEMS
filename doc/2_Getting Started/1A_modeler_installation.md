@@ -15,11 +15,53 @@ This section outlines the approach for configuring and utilizing the **Antares M
 
 Note that the current **last stable version** of Antares Simulator is [**9.3.2**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v9.3.2).
 
-Download [**Antares-Simulator**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) from the official releases page, then locate the **Antares Modeler executable** in the installation’s bin folder, noting that it is currently a command-line–only tool with no graphical interface yet.
-Inside this bin folder, the **Antares Solver executable** is also present to run a study in Antares legacy mode.
-However, **Antares Modeler** is able to [tackle an **hybrid** study](../3_User%20Guide/3_hybrid%20inputs.md) (made from legacy and GEMS models).
+### Download and Extract
 
-![Screenshot of bin folder](../assets/2_Modeler_bin.png)
+1. Go to the [**Antares Simulator releases page**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases)
+2. Download the appropriate archive for your platform:
+    - **Windows**: `rte-antares-<simulator-version>-installer-64bits.zip`
+    - **Linux**: `rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
+3. Extract the archive to your desired location:
+    - **Windows**: Right-click and select "Extraction"
+    - **Linux**: `tar -xzf rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
+
+### Locate the Executables
+
+After extraction, navigate to the `bin` folder inside the extracted directory. You will find:
+
+- **Antares Modeler executable** (`antares-modeler` or `antares-modeler.exe`)
+- **Antares Solver executable** (`antares-solver` or `antares-solver.exe`)
+
+**Antares Modeler** is currently a command-line–only tool with no graphical interface yet. It is able to [tackle an **hybrid** study](../3_User%20Guide/3_hybrid%20inputs.md) (made from legacy and GEMS models).
+
+### Command-Line Usage Examples
+
+**Opening a terminal:**
+
+- **Windows**: Press `Win + R`, type `cmd` or `powershell`, and press Enter
+- **Linux**: Press `Ctrl + Alt + T` or search for "Terminal" in your applications menu
+
+**Run Antares Modeler:**
+
+Assuming you are in the parent directory of `rte-antares-9.3.2-installer-64bits/` (or the extracted folder).
+```bash
+# Windows
+rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe --study <path-to-study>
+
+# Linux
+./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler --study <path-to-study>
+```
+
+**Run Antares Solver:**
+```bash
+# Windows
+rte-antares-9.3.2-installer-64bits\bin\antares-9.3-solver.exe --study <path-to-study>
+
+# Linux
+./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-solver --study <path-to-study>
+```
+
+Replace `<path-to-study>` with the path to your Antares study directory.
 
 ## Requirements
 
