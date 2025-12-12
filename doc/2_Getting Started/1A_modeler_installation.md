@@ -25,6 +25,8 @@ Note that the current **last stable version** of Antares Simulator is [**9.3.2**
     - **Windows**: Right-click and select "Extraction"
     - **Linux**: `tar -xzf rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
 
+![Download Page](../../assets/2_Modeler_download.png)
+
 ### Locate the Executables
 
 After extraction, navigate to the `bin` folder inside the extracted directory. You will find:
@@ -33,6 +35,8 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 - **Antares Solver executable** (`antares-solver` or `antares-solver.exe`)
 
 **Antares Modeler** is currently a command-line–only tool with no graphical interface yet. It is able to [tackle an **hybrid** study](../3_User%20Guide/3_hybrid%20inputs.md) (made from legacy and GEMS models).
+
+![ScreenShoot of bin folder](../../assets/2_Modeler_bin.png)
 
 ### Command-Line Usage Examples
 
@@ -46,19 +50,19 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 Assuming you are in the parent directory of `rte-antares-9.3.2-installer-64bits/` (or the extracted folder).
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe --study <path-to-study>
+rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler --study <path-to-study>
+./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
 ```
 
 **Run Antares Solver:**
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-9.3-solver.exe --study <path-to-study>
+rte-antares-9.3.2-installer-64bits\bin\antares-9.3-solver.exe -i <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-solver --study <path-to-study>
+./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-solver -i <path-to-study>
 ```
 
 Replace `<path-to-study>` with the path to your Antares study directory.
