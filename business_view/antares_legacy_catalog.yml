@@ -98,7 +98,7 @@ catalog:
         output-id: p_injection # Is this feasible?
         location-ports: injection_port
     breakdown:
-      - key: sts
+      - key: sts_group
     terms-operator: sum
     time-operator: sum
 
@@ -108,7 +108,7 @@ catalog:
         output-id: p_withdrawal
         location-ports: injection_port
     breakdown:
-      - key: sts
+      - key: sts_group
     terms-operator: sum
     time-operator: sum
 
@@ -118,7 +118,37 @@ catalog:
         output-id: level
         location-ports: injection_port
     breakdown:
-      - key: sts
+      - key: sts_group
+    terms-operator: avg
+    time-operator: avg
+
+  - id: STS.INJECTION
+    terms:
+      - taxonomy-group: storage
+        output-id: p_injection # Is this feasible?
+        location-ports: injection_port
+    breakdown:
+      - key: sts_id
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.WITHDRAWAL
+    terms:
+      - taxonomy-group: storage
+        output-id: p_withdrawal
+        location-ports: injection_port
+    breakdown:
+      - key: sts_id
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.LEVEL
+    terms:
+      - taxonomy-group: storage
+        output-id: level
+        location-ports: injection_port
+    breakdown:
+      - key: sts_id
     terms-operator: avg
     time-operator: avg
 
