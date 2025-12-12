@@ -101,7 +101,7 @@ The results will be available in the folder `<study_folder>/output`
 
 # YAML Block Description: Generator
 
-![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
+![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_all_models.png)
 
 # Mathematical representation
 
