@@ -13,6 +13,8 @@
 ## Overview
 This tutorial demonstrates adequacy modeling in a meshed three-bus network.
 
+The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/examples/QSE_1_Adequacy).
+
 ### Adequacy definition
 
 **Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
