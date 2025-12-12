@@ -105,6 +105,56 @@ The results will be available in the folder `<study_folder>/output`
 
 # Mathematical representation
 
+This part presents the mathematical representations of the problem. The notations mainly come from the [Wiki - Antares Simulator](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
+
+## Glossary of Mathematical Symbols
+
+### General notation
+
+| Symbol | Description |
+|--------|-------------|
+| $L$ | Set of transmission links (edges of the power system graph) |
+| $B$ | Set of buses, ordered set |
+| $G_b$ | Set of generators installed at bus $b$ |
+| $L_b^+$ | Set of links for which $b$ is the upstream vertex |
+| $L_b^-$ | Set of links for which $b$ is the downstream vertex |
+
+### Decision Variables
+
+| Symbol | Description | Unit |
+|--------|-------------|------|
+| $F_l$ | Net power flow through link $l$ | MW |
+| $F_l^+$ | Power flow through link $l$, from upstream to downstream | MW |
+| $F_l^-$ | Power flow through link $l$, from downstream to upstream | MW |
+| $P_g$ | Power output from generator $g$ | MW |
+| $U_b$ | Unsupplied power at bus $b$ (in nominal state) | MW |
+| $S_b$ | Spilled power at bus $b$ (in nominal state) | MW |
+| $x_l$ | Transmission capacity investment level for link $l$ (binary) | - |
+
+### Parameters
+
+| Symbol | Description | Unit |
+|--------|-------------|------|
+| $\Omega_{\text{dispatch}}$ | Total dispatch cost | \$ |
+| $\Omega_{\text{transmission}}$ | Transmission cost component | \$ |
+| $\Omega_{\text{generator}}$ | Thermal generation cost component | \$ |
+| $\Omega_{\text{unsupplied}}$ | Unsupplied energy cost component | \$ |
+| $\Omega_{\text{spillage}}$ | Spillage cost component | \$ |
+| $\gamma_l^+$ | Transmission cost through link $l$ (upstream to downstream) | \$/MW |
+| $\gamma_l^-$ | Transmission cost through link $l$ (downstream to upstream) | \$/MW |
+| $C_l^+$ | Initial transmission capacity (upstream to downstream) | MW |
+| $C_l^-$ | Initial transmission capacity (downstream to upstream) | MW |
+| $\overline{C_l^+}$ | Maximum transmission capacity (upstream to downstream) | MW |
+| $\overline{C_l^-}$ | Maximum transmission capacity (downstream to upstream) | MW |
+| $\underline{P}_g$ | Minimum power output from generator $g$ | MW |
+| $\overline{P}_g$ | Maximum power output from generator $g$ | MW |
+| $\chi_g$ | Output cost from generator $g$ | \$/MWh |
+| $\delta_b^+$ | Normative unsupplied energy cost at bus $b$ (value of lost load) | \$/MWh |
+| $\delta_b^-$ | Normative spilled energy cost at bus $b$ (value of wasted energy) | \$/MWh |
+| $D_b$ | Net power demand at bus $b$ | MW |
+
+## Optimization Problem
+
 The objective function to minimize the total dispatch cost for the three-bus system is:
 
 $$
@@ -129,10 +179,10 @@ $$
 
 ### Thermal Generation Cost
 
-For the generator in the system:
+For the generators in the system:
 
 $$
-\Omega_{\text{generator}} = \sum_{n \in N} \sum_{\theta \in \Theta_n}   \chi_{\theta} \cdot P_{\theta} 
+\Omega_{\text{generator}} = \sum_{b \in B} \sum_{g \in G_b}   \chi_{g} \cdot P_{g} 
 $$
 
 ### Unsupplied Energy Cost
@@ -140,54 +190,30 @@ $$
 For the three buses in the system:
 
 $$
-\Omega_{\text{generator}} = \sum_{n \in N} \delta_{n}^+ \cdot G_{n}⁺ 
+\Omega_{\text{unsupplied}} = \sum_{b \in B} \delta_{b}^+ \cdot U_{b} 
 $$
 
-where $G_n^+$ represents unsupplied energy at node $n$.
+where $U_b$ represents unsupplied energy at bus $b$.
 
 ### Spillage Cost
 
 For the three buses in the system:
 
 $$
-\Omega_{\text{generator}} = \sum_{n \in N} \delta_{n}^- \cdot G_{n}^- 
+\Omega_{\text{spillage}} = \sum_{b \in B} \delta_{b}^- \cdot S_{b} 
 $$
 
-where $G_n^-$ represents spilled energy at node $n$.
+where $S_b$ represents spilled energy at bus $b$.
 
 ## Balance Constraints
 
 ### First Kirchhoff's Law (Power Balance):
 
 $$
-\forall n \in N, \sum_{l \in L_n^+} F_l - \sum_{l \in L_n^-} F_l = G_n^+ \sum_{\theta \in \Theta_n} P_\theta - (G_n^- + D_n)
-$$
-
-### Unsupplied Power Constraint:
-
-$$
-\forall n \in N, \quad 0 \leq G_n^+ \leq \max(0, D_n)
-$$
-
-### Spilled Power Constraint:
-
-$$
-\forall n \in N, \quad 0 \leq G_n^- \leq -\min(0, D_n) + \sum_{\theta \in \Theta_n} (P_\theta - \underline{P}_\theta)
+\forall b \in B, \sum_{l \in L_b^+} F_l - \sum_{l \in L_b^-} F_l = U_b + \sum_{g \in G_b} P_g - (S_b + D_b)
 $$
 
 ## Flow Capacity Constraints
-
-### Positive Flow Constraint:
-
-$$
-\forall l \in L, \quad 0 \leq F_l^+ \leq \gamma_l^+ + (\overline{\gamma_l^+} - \gamma_l^+) x_l
-$$
-
-### Negative Flow Constraint:
-
-$$
-\forall l \in L, \quad 0 \leq F_l^- \leq \gamma_l^- + (\overline{\gamma_l^-} - \gamma_l^-) x_l
-$$
 
 ### Flow Definition Constraint:
 
@@ -201,7 +227,7 @@ $$
 Power output is bounded by must-run commitments and power availability:
 
 $$
-\forall n \in N, \forall \theta \in \Theta_n, \quad \underline{P}_\theta \leq P_\theta \leq \overline{P}_\theta
+\forall b \in B, \forall g \in G_b, \quad \underline{P}_g \leq P_g \leq \overline{P}_g
 $$
 
 ---
