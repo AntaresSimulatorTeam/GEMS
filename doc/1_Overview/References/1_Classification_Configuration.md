@@ -18,7 +18,9 @@ These groups guarantee certain modelling choices and how outputs are aggregated,
 In this scheme, there are two categories defined inside the taxonomy file, and one model was configured. In this model, 2 parameters and 1 variable are in fact directly configured by the taxonomy file.
 
 
-![Taxonomy scheme](../../assets/6_taxonomy.png)
+| Taxonomy | Decription | link |
+|----------|----------|----------|
+|     `<name of the taxonomy>`    |    <description>      |    <[Github link](https://github.com/AntaresSimulatorTeam/GEMS)>      |
 
 
 # Reference classification of models
