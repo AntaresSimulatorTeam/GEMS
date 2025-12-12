@@ -56,7 +56,7 @@ catalog:
   - id: LOAD
     terms:
       - taxonomy-group: consumption
-        output-id: balance_port.flow
+        output-id: area_load
         location-ports: balance_port
     terms-operator: sum
     time-operator: sum
