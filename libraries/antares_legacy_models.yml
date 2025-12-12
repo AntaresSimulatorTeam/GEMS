@@ -50,9 +50,9 @@ library:
         - id: marginal_price
           expression: dual(balance)
         - id: unsupplied_energy_duration
-          expression: unsupplied_energy / (unsupplied_energy + 1)
+          expression: unsupplied_energy => 0.0001
         - id: unsupplied_energy_probability
-          expression: (unsupplied_energy / (unsupplied_energy + 1)) * 100
+          expression: (unsupplied_energy => 0.0001) * 100
 
     - id: load
       taxonomy-group: consumption
