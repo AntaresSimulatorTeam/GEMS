@@ -1,0 +1,213 @@
+system:
+  id: system
+
+  components:
+
+    - id: bus_1
+      model: basic_models_library.bus
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+
+    - id: bus_2
+      model: basic_models_library.bus
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+          
+    - id: bus_3
+      model: basic_models_library.bus
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+
+    - id: bus_load_1
+      model: basic_models_library.load
+      parameters:
+        - id: load
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+
+    - id: bus_load_2
+      model: basic_models_library.load
+      parameters:
+        - id: load
+          time-dependent: false
+          scenario-dependent: false
+          value: 40
+          
+    - id: bus_load_3
+      model: basic_models_library.load
+      parameters:
+        - id: load
+          time-dependent: false
+          scenario-dependent: false
+          value: 150
+          
+          
+    - id: generator1
+      model: basic_models_library.generator
+      parameters:
+        - id: p_min
+          time-dependent: false
+          scenario-dependent: false
+          value: 70
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 35
+
+    - id: generator2
+      model: basic_models_library.generator
+      parameters:
+        - id: p_min
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 90
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 25
+
+    - id: generator3
+      model: basic_models_library.generator
+      parameters:
+        - id: p_min
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 200
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 42
+
+    - id: link_12
+      model: basic_models_library.link
+      parameters:
+        - id: capacity_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 40
+        - id: capacity_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 40
+    
+    - id: link_23
+      model: basic_models_library.link
+      parameters:
+        - id: capacity_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: capacity_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+    
+    - id: link_31
+      model: basic_models_library.link
+      parameters:
+        - id: capacity_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: capacity_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+
+  connections:
+    # Load connections
+    - component1: bus_1
+      component2: bus_load_1
+      port1: balance_port
+      port2: balance_port
+
+    - component1: bus_2
+      component2: bus_load_2
+      port1: balance_port
+      port2: balance_port
+
+    - component1: bus_3
+      component2: bus_load_3
+      port1: balance_port
+      port2: balance_port
+
+    # Generator connections
+    - component1: bus_1
+      component2: generator1
+      port1: balance_port
+      port2: balance_port
+
+    - component1: bus_2
+      component2: generator2
+      port1: balance_port
+      port2: balance_port
+
+    - component1: bus_3
+      component2: generator3
+      port1: balance_port
+      port2: balance_port
+
+    # Link connections
+    - component1: bus_1
+      component2: link_12
+      port1: balance_port
+      port2: out_port
+
+    - component1: bus_1
+      component2: link_31
+      port1: balance_port
+      port2: in_port
+
+    - component1: bus_2
+      component2: link_12
+      port1: balance_port
+      port2: in_port
+
+    - component1: bus_2
+      component2: link_23
+      port1: balance_port
+      port2: out_port
+
+    - component1: bus_3
+      component2: link_23
+      port1: balance_port
+      port2: in_port
+
+    - component1: bus_3
+      component2: link_31
+      port1: balance_port
+      port2: out_port
