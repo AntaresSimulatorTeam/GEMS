@@ -19,6 +19,7 @@ library:
       description: A port that transfers power flow.
       fields:
         - id: flow
+        - id: price
       area-connection:
         - injection-field: flow
 
@@ -38,6 +39,10 @@ library:
       ports:
         - id: balance_port
           type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: price
+          definition: marginal_price
       binding-constraints:
         - id: balance
           expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy

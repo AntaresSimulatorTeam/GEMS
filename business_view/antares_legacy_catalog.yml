@@ -205,5 +205,15 @@ catalog:
         location-ports: balance_port
     terms-operator: sum
     breakdown:
-      - key: plant_name
+      - key: dtg_by_plant
+    time-operator: sum
+
+  - id: PROFIT.BY.PLANT
+    terms:
+      - taxonomy-group: production
+        output-id: profit_by_plant
+        location-ports: balance_port
+    terms-operator: sum
+    breakdown:
+      - key: profit_by_plant
     time-operator: sum
