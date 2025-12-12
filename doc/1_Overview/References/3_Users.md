@@ -7,6 +7,8 @@
   </div>
 </div>
 
+# Users of GEMS
+
 The following entities currently use or have used the GEMS framework for their projects:
 
 ## Companies
