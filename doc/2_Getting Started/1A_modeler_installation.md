@@ -25,7 +25,9 @@ Note that the current **last stable version** of Antares Simulator is [**9.3.2**
     - **Windows**: Right-click and select "Extraction"
     - **Linux**: `tar -xzf rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
 
-![Download Page](../../assets/2_Modeler_download.png)
+<div style="height: 500px; overflow: hidden;">
+  <img src="../../assets/2_Modeler_download.png" alt="Download Page" style="height: 100%; object-fit: contain;"/>
+</div>
 
 ### Locate the Executables
 
@@ -36,7 +38,9 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 
 **Antares Modeler** is currently a command-line–only tool with no graphical interface yet. It is able to [tackle an **hybrid** study](../3_User%20Guide/3_hybrid%20inputs.md) (made from legacy and GEMS models).
 
-![ScreenShoot of bin folder](../../assets/2_Modeler_bin.png)
+<div style="height: 200px; overflow: hidden;">
+  <img src="../../assets/2_Modeler_bin.png" alt="ScreenShoot of bin folder" style="height: 100%; object-fit: contain;"/>
+</div>
 
 ### Command-Line Usage Examples
 
