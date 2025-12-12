@@ -61,7 +61,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: DTG_BY_TECHNOLOGY
+  - id: DTG.BY.TECHNOLOGY
     terms:
       - taxonomy-group: production
         output-id: balance_port.flow
@@ -196,4 +196,14 @@ catalog:
         output-id: unsupplied_energy_probability
         location-ports: null
     terms-operator: sum
+    time-operator: sum
+
+  - id: DTG.BY.PLANT
+    terms:
+      - taxonomy-group: production
+        output-id: balance_port.flow
+        location-ports: balance_port
+    terms-operator: sum
+    breakdown:
+      - key: plant_name
     time-operator: sum
