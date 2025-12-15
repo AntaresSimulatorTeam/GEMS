@@ -116,13 +116,9 @@ In `output` folder, the simulation table csv file reprensents the results of the
 
 The following graphs show the merit order of the generator and links.
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" width="95%"/>
-  </div>
-  <div style="text-align: right;">
-    <img src="../../assets/2_QSE_1_out_Flows.png" alt="Outputs Flows" width="95%"/>
-  </div>
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:95%; margin-bottom: 24px;"/>
+  <img src="../../assets/2_QSE_1_out_Flows.png" alt="Outputs Flows" style="width:95%;"/>
 </div>
 
 # YAML Block Description: Generator
