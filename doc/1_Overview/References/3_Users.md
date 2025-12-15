@@ -30,12 +30,16 @@ The following entities currently use or have used the GEMS framework for their p
 
 ### Mines de Paris
 
-<img src="../../../assets/1_logo_mines paris.png" alt="RTE logo" style="height:50px;"/>
+<a href="https://www.minesparis.psl.eu/">
+  <img src="../../../assets/1_logo_mines paris.png" alt="Mines de Paris logo" style="height:50px;"/>
+</a>
 
 
 ### TU Delft
 
-<img src="../../../assets/1_logo_TU delft.png" alt="RTE logo" style="height:50px;"/>
+<a href="https://www.tudelft.nl/en/">
+  <img src="../../../assets/1_logo_TU delft.png" alt="TU Delft logo" style="height:50px;"/>
+</a>
 
 
 ---
