@@ -36,13 +36,14 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 - **Antares Modeler executable** (`antares-modeler` or `antares-modeler.exe`)
 - **Antares Solver executable** (`antares-solver` or `antares-solver.exe`)
 
-**Antares Modeler** is currently a command-line–only tool with no graphical interface yet. It is able to [tackle an **hybrid** study](../3_User%20Guide/3_hybrid%20inputs.md) (made from legacy and GEMS models).
+**Antares Modeler** is currently a command-line–only tool with no graphical interface yet. It is used for launching studies with full GEMS syntax.
+**Antares Solver** is designed for running Antares legacy study and hybrid studies comprising a mix of legacy and Gems models.
 
 <div style="height: 200px; overflow: hidden;">
   <img src="../../assets/2_Modeler_bin.png" alt="ScreenShoot of bin folder" style="height: 100%; object-fit: contain;"/>
 </div>
 
-### Command-Line Usage Examples
+### Launch the resolution of a GEMS study
 
 **Opening a terminal:**
 
@@ -54,30 +55,28 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 Assuming you are in the parent directory of `rte-antares-9.3.2-installer-64bits/` (or the extracted folder).
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
+rte-antares-9.3.2-installer-64bits\bin\antares-modeler.exe <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
+./rte-antares-9.3.2-installer-64bits/bin/antares-modeler <path-to-study>
 ```
 
 **Run Antares Solver:**
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-9.3-solver.exe -i <path-to-study>
+rte-antares-9.3.2-installer-64bits\bin\antares-solver.exe <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-solver -i <path-to-study>
+./rte-antares-9.3.2-installer-64bits/bin/antares-solver  <path-to-study>
 ```
 
 Replace `<path-to-study>` with the path to your Antares study directory.
 
 ## Requirements
 
-The **Antares Modeler** is designed to function within the Antares Simulator ecosystem. Therefore, it is necessary to **install Antares Simulator**.
-
 The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
 
-In addition, Antares Modeler requires a `parameters.yml` file to run a GEMS study. , and the process for creating this file is detailed in [this section](../3_User%20Guide/2_inputs.md). Unlike the GEMSPy interpreter, Modeler depends on this configuration file.
+In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User%20Guide/2_inputs.md). Unlike the GEMSPy interpreter, Modeler depends on this configuration file.
 
 
 ## Additional Resources
