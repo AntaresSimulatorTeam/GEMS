@@ -21,7 +21,7 @@ Two different usage mode of the GEMS interpreter are available with [Antares Sim
 - **Hybrid mode**: allows the construction of studies that combine Antares’ legacy components with GEMS components. In terms of temporal and uncertainty modeling, this mode follows the historical approach of [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/). It is executed using `antares-solver`, the traditional Antares Simulator executable.  
 - **Full modeler mode**: exclusively supports GEMS components and provides greater flexibility, as it is not constrained by [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/)’s temporal and uncertainty structures. It is executed using `antares-modeler`.
 
-For detailed Modeler usage and examples, see:
+For detailed usage and examples of [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) and its GEMS interpreter, see:
 
 - [Installation Guide](../../2_Getting%20Started/1_installation.md)
 - [Examples section](../../5_Examples/)
