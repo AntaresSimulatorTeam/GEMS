@@ -32,7 +32,6 @@ The following entities currently use or have used the GEMS framework for their p
 
 <img src="../../../assets/1_logo_mines paris.png" alt="RTE logo" style="height:50px;"/>
 
-[Persee laboratory](https://www.minesparis.psl.eu/persee/) has some investigation projects with GEMS.
 
 ### TU Delft
 
