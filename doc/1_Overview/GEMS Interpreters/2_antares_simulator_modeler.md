@@ -7,7 +7,7 @@
     </div>
 </div>
 
-# Antares Modeler Presentation
+# Antares Simulator's GEMS interpreter
 
 <div style="text-align: center;">
   <img src="../../../assets/5_antares_sim_logo.webp" alt="Antares Simulator logo" style="height: 70px;"/>
