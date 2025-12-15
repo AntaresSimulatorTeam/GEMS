@@ -41,7 +41,6 @@ nav:
           - Architecture: 1_Overview/Concepts/2_architecture.md
           - Features: 1_Overview/Concepts/3_features_usecase.md
       - GEMS Interpreters:
-          - GemsPy: 1_Overview/GEMS Interpreters/1_gemspy.md
           - Antares Simulator: 1_Overview/GEMS Interpreters/2_antares_simulator_modeler.md
           - GemsPy: 1_Overview/GEMS Interpreters/1_gemspy.md
                 
