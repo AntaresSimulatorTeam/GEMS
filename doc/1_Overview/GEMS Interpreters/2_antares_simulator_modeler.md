@@ -13,7 +13,7 @@
   <img src="../../../assets/5_antares_sim_logo.webp" alt="Antares Simulator logo" style="height: 70px;"/>
 </div>
 
-The **Antares** Modeler is a graph-based optimization problem builder that provides a comprehensive environment for constructing, configuring, and solving LP, MIP, and MILP problems. Its design emphasizes flexibility, enabling users to tailor mathematical formulations, data structures, and model components to suit the specific requirements of their studies.
+[Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) includes a GEMS interpreter. This piece of code is a graph-based optimization problem builder that provides a comprehensive environment for constructing, configuring, and solving LP, MIP, and MILP problems. Its design emphasizes flexibility, enabling users to tailor mathematical formulations, data structures, and model components to suit the specific requirements of their studies.
 
 Integrated alongside the **Antares Simulator [^1]**, the Modeler introduces new possibilities for extending legacy optimization structures directly within Antares studies. This integration enables users to broaden the standard simulation framework by creating new models and exploring enhanced problem formulations, all while remaining fully compatible with the Antares Simulator ecosystem.
 
