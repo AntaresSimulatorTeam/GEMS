@@ -38,7 +38,6 @@ The following entities currently use or have used the GEMS framework for their p
 
 <img src="../../../assets/1_logo_TU delft.png" alt="RTE logo" style="height:50px;"/>
 
-[Delft University ](https://www.tudelft.nl/en/) is involved in several research projects with GEMS..
 
 ---
 **Navigation**
