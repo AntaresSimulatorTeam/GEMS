@@ -16,8 +16,6 @@
 GEMSPy's API allows users to create studies programmatically. 
 ## GEMSPy API Overview
 
-2. **Port Connection:** How components are linked.
-3. **System:** The overall system configuration.
 
 For detailed API usage and examples, see:
 
