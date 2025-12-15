@@ -157,8 +157,6 @@ This part presents the mathematical representations of the problem. The notation
 | $\Omega_{\text{generator}}$ | Thermal generation cost component | \$ |
 | $\Omega_{\text{unsupplied}}$ | Unsupplied energy cost component | \$ |
 | $\Omega_{\text{spillage}}$ | Spillage cost component | \$ |
-| $\gamma_l^+$ | Transmission cost through link $l$ (upstream to downstream) | \$/MW |
-| $\gamma_l^-$ | Transmission cost through link $l$ (downstream to upstream) | \$/MW |
 | $\overline{C_l^+}$ | Maximum transmission capacity (upstream to downstream) | MW |
 | $\overline{C_l^-}$ | Maximum transmission capacity (downstream to upstream) | MW |
 | $\underline{P}_g$ | Minimum power output from generator $g$ | MW |
@@ -179,18 +177,10 @@ $$
 where $\Omega_{\text{dispatch}}$ is composed of the following cost components:
 
 $$
-\Omega_{\text{dispatch}} = \Omega_{\text{transmission}} + \Omega_{\text{generator}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
+\Omega_{\text{dispatch}} = \Omega_{\text{generator}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
 $$
 
 ## Objective function for each component
-
-### Transmission Cost
-
-For the three links in the system :
-
-$$
-\Omega_{\text{transmission}} = \sum_{l \in L}   \gamma_{l}^+ \cdot F_{l}^+ + \gamma_{l}^- \cdot F_{l}^- 
-$$
 
 ### Thermal Generation Cost
 
