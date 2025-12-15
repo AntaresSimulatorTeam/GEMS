@@ -7,7 +7,7 @@
   </div>
 </div>
 
-# Antares Modeler
+# Antares Simulator's GEMS interpreter
 
 This section outlines the approach for configuring and utilizing the **Antares Modeler**, the interpreter for the **GEMS language** inside [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator).
 
