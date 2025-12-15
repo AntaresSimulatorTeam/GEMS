@@ -95,9 +95,18 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 ### By using Modeler
 
-1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation.md)
-2. Go to the GEMS study folder, open the terminal
-3. Type in the terminal `antares-modeler <study_folder>/`
+1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
+2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
+3. [Open the terminal](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
+4. Run these command lines :
+
+  ```bash
+  # Windows
+  rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
+
+  # Linux
+  ./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
+  ```
 
 The results will be available in the folder `<study_folder>/output`
 
