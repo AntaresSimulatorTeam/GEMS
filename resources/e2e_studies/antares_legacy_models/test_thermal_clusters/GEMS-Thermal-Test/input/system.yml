@@ -30,11 +30,11 @@ system:
         - id: p_min_unit
           time-dependent: false
           scenario-dependent: false
-          value: 400
+          value: 50
         - id: p_max_unit
           time-dependent: false
           scenario-dependent: false
-          value: 900
+          value: 100
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
