@@ -16,6 +16,10 @@
 [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) includes a GEMS interpreter. This piece of code is a graph-based optimization problem builder that provides a comprehensive environment for constructing, configuring, and solving LP, MIP, and MILP problems. Its design emphasizes flexibility, enabling users to tailor mathematical formulations, data structures, and model components to suit the specific requirements of their studies.
 
 Integrated alongside the **Antares Simulator [^1]**, this GEMS interpreter introduces new possibilities for extending legacy optimization structures directly within Antares studies. This integration enables users to broaden the standard simulation framework by creating new models and exploring enhanced problem formulations, all while remaining fully compatible with the Antares Simulator ecosystem.
+Two different usage mode of the GEMS interpreter are available with [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) :
+
+- **Hybrid mode**: allows the construction of studies that combine Antares’ legacy components with GEMS components. In terms of temporal and uncertainty modeling, this mode follows the historical approach of [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/). It is executed using `antares-solver`, the traditional Antares Simulator executable.  
+- **Full modeler mode**: exclusively supports GEMS components and provides greater flexibility, as it is not constrained by [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/)’s temporal and uncertainty structures. It is executed using `antares-modeler`.
 
 For detailed Modeler usage and examples, see:
 
