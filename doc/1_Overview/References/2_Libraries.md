@@ -8,7 +8,7 @@
 </div>
 
 
-List of referenced libraries for using GEMS:
+List of ready-to-use referenced libraries for using GEMS:
 
 | Library Name         | Description                  | Link                                                      |
 |----------------------|------------------------------|-----------------------------------------------------------|
