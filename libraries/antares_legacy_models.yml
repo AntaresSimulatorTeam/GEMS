@@ -53,13 +53,13 @@ library:
         - id: imbalance_cost
           expression: spillage_cost * spillage + ens_cost * unsupplied_energy
         - id: unsupplied_energy_duration
-          expression: unsupplied_energy => 0.0001
+          expression: unsupplied_energy >= 0.0001
         - id: unsupplied_energy_probability
-          expression: (unsupplied_energy => 0.0001) * 100
+          expression: (unsupplied_energy >= 0.0001) * 100
         - id: marginal_price
           expression: dual(balance)
         - id: near_price_capacity
-          expression: 1 * (dual(balance) => (ens_cost - 5 + 0.01))
+          expression: 1 * (dual(balance) >= (ens_cost - 5 + 0.01))
 
     - id: load
       taxonomy-group: consumption
@@ -132,11 +132,11 @@ library:
         - id: marginal_cost
           expression: dual(flow_direct_indirect)
         - id: congestion_prob_dir
-          expression: (flow_direct => capacity_direct) * 100
+          expression: (flow_direct >= capacity_direct) * 100
         - id: congestion_prob_indir
-          expression: (flow_indirect => capacity_direct) * 100
+          expression: (flow_indirect >= capacity_direct) * 100
         - id: hurdle_cost
-          expression: (flow => 0.0001) * (flow_direct_hurdle_cost * flow) + (flow =< 0.0001) * (flow_indirect_hurdle_cost * flow) * (-1)
+          expression: (flow >= 0.0001) * (flow_direct_hurdle_cost * flow) + (flow =< 0.0001) * (flow_indirect_hurdle_cost * flow) * (-1)
 
     - id: renewable
       taxonomy-group: renewable_production
