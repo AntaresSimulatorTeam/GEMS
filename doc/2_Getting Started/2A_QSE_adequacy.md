@@ -47,84 +47,6 @@ tutorial_QSE_adequacy/
 
 In this example, the `power flows` on the links are only constrained by thermal capacities.
 
-
-## Step 1: Library File
-
-Use `basic_models_library.yml` from the [libraries folder](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml)
-
-## Step 2: System File
-
-- Creation of `system.yml` file
-
-This system models a three-bus network with the following characteristics:
-
-**Network Topology:**
-
-- 3 interconnected buses forming a triangular mesh network
-- 3 bidirectional transmission links connecting each pair of buses
-
-**Generation:**
-
-- Generator 1 (Bus 1): 70-100 MW capacity, 35 $/MWh cost
-- Generator 2 (Bus 2): 50-90 MW capacity, 25 $/MWh cost
-- Generator 3 (Bus 3): 50-200 MW capacity, 42 $/MWh cost
-
-**Demand:**
-
-- Bus 1: 50 MW
-- Bus 2: 40 MW
-- Bus 3: 150 MW
-- **Total Load: 240 MW**
-
-**Transmission Capacities:**
-
-- Link 1-2: 40 MW (bidirectional)
-- Link 2-3: 30 MW (bidirectional)
-- Link 3-1: 50 MW (bidirectional)
-
-**Economic Parameters:**
-
-- Spillage cost: 1000 $/MWh (penalty for wasted energy)
-- Unsupplied energy cost: 10000 $/MWh (high penalty for unmet demand)
-
-**Expected Dispatch:**
-
-Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
-
-## How to run the study 
-
-### By using Modeler
-
-1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
-2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
-3. [Open the terminal](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
-4. Run these command lines :
-
-  ```bash
-  # Windows
-  rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
-
-  # Linux
-  ./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
-  ```
-
-The results will be available in the folder `<study_folder>/output`
-
-## Step 3: Outputs
-
-In `output` folder, the simulation table csv file reprensents the results of the simulation.
-
-The following graphs show the merit order of the generator and links.
-
-<div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
-  <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:45%;"/>
-  <img src="../../assets/2_QSE_1_out_Flows.png" alt="Outputs Flows" style="width:45%;"/>
-</div>
-
-# YAML Block Description: Generator
-
-![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
-
 # Mathematical representation
 
 This part presents the mathematical representations of the problem. The notations mainly come from the [Wiki - Antares Simulator](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
@@ -239,6 +161,83 @@ Power output is bounded by must-run commitments and power availability:
 $$
 \forall b \in B, \forall g \in G_b, \quad \underline{P}_g \leq P_g \leq \overline{P}_g
 $$
+
+# YAML Block Description
+
+![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
+
+## Step 1: Library File
+
+Use `basic_models_library.yml` from the [libraries folder](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml)
+
+## Step 2: System File
+
+- Creation of `system.yml` file
+
+This system models a three-bus network with the following characteristics:
+
+**Network Topology:**
+
+- 3 interconnected buses forming a triangular mesh network
+- 3 bidirectional transmission links connecting each pair of buses
+
+**Generation:**
+
+- Generator 1 (Bus 1): 70-100 MW capacity, 35 $/MWh cost
+- Generator 2 (Bus 2): 50-90 MW capacity, 25 $/MWh cost
+- Generator 3 (Bus 3): 50-200 MW capacity, 42 $/MWh cost
+
+**Demand:**
+
+- Bus 1: 50 MW
+- Bus 2: 40 MW
+- Bus 3: 150 MW
+- **Total Load: 240 MW**
+
+**Transmission Capacities:**
+
+- Link 1-2: 40 MW (bidirectional)
+- Link 2-3: 30 MW (bidirectional)
+- Link 3-1: 50 MW (bidirectional)
+
+**Economic Parameters:**
+
+- Spillage cost: 1000 $/MWh (penalty for wasted energy)
+- Unsupplied energy cost: 10000 $/MWh (high penalty for unmet demand)
+
+**Expected Dispatch:**
+
+Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
+
+## How to run the study 
+
+### By using Modeler
+
+1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
+2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
+3. [Open the terminal](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
+4. Run these command lines :
+
+  ```bash
+  # Windows
+  rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
+
+  # Linux
+  ./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
+  ```
+
+The results will be available in the folder `<study_folder>/output`
+
+## Step 3: Outputs
+
+In `output` folder, the simulation table csv file reprensents the results of the simulation.
+
+The following graphs show the merit order of the generator and links.
+
+<div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
+  <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:45%;"/>
+  <img src="../../assets/2_QSE_1_out_Flows.png" alt="Outputs Flows" style="width:45%;"/>
+</div>
 
 ---
 **Navigation**
