@@ -242,20 +242,10 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: WIND
+  - id: MISC.GEN
     terms:
       - taxonomy-group: fatal_production
         output-id: wind
-        location-ports: null
-    breakdown:
-      - key: technology
-    terms-operator: sum
-    time-operator: sum
-
-  - id: SOLAR
-    terms:
-      - taxonomy-group: fatal_production
-        output-id: near_price_capacity
         location-ports: null
     breakdown:
       - key: technology
