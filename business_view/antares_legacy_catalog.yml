@@ -233,8 +233,34 @@ catalog:
     time-operator: sum
 
   - id: ROW.BAL
+    terms:
+      - taxonomy-group: fatal_production
+        output-id: row
+        location-ports: null
+    breakdown:
+      - key: technology
+    terms-operator: sum
+    time-operator: sum
+
   - id: WIND
+    terms:
+      - taxonomy-group: fatal_production
+        output-id: wind
+        location-ports: null
+    breakdown:
+      - key: technology
+    terms-operator: sum
+    time-operator: sum
+
   - id: SOLAR
+    terms:
+      - taxonomy-group: fatal_production
+        output-id: near_price_capacity
+        location-ports: null
+    breakdown:
+      - key: technology
+    terms-operator: sum
+    time-operator: sum
   - id: MAX.MRG
   - id: H.STOR
   - id: H.PUMP
