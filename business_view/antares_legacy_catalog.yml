@@ -24,10 +24,10 @@ catalog:
       - taxonomy-group: balance
         output-id: imbalance_cost
         location-ports: null 
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: proportional_cost
         location-ports: balance_port
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: non_proportional_cost
         location-ports: balance_port
     terms-operator: sum
@@ -36,10 +36,10 @@ catalog:
 
   - id: OP.COST
     terms:
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: proportional_cost
         location-ports: balance_port
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: non_proportional_cost
         location-ports: balance_port
     terms-operator: sum
@@ -53,6 +53,14 @@ catalog:
     terms-operator: avg
     time-operator: avg
 
+  - id: CO2.EMIS
+    terms:
+      - taxonomy-group: dispatchable_production
+        output-id: co2_emmisions
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
   - id: LOAD
     terms:
       - taxonomy-group: consumption
@@ -63,7 +71,7 @@ catalog:
 
   - id: DTG.BY.TECHNOLOGY
     terms:
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: balance_port.flow
         location-ports: balance_port
     terms-operator: sum
@@ -84,11 +92,11 @@ catalog:
 
   - id: RES.GENERATION
     terms:
-      - taxonomy-group: production
+      - taxonomy-group: renewable_production
         output-id: balance_port.flow
         location-ports: balance_port
     breakdown:
-      - key: res_id
+      - key: technology
     terms-operator: sum
     time-operator: sum
 
@@ -125,7 +133,7 @@ catalog:
   - id: STS.INJECTION
     terms:
       - taxonomy-group: storage
-        output-id: p_injection # Is this feasible?
+        output-id: p_injection
         location-ports: injection_port
     breakdown:
       - key: sts_id
@@ -170,66 +178,33 @@ catalog:
 
   - id: NODU.BY.AREA # Not quite sure this is right approach ?
     terms:
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: nb_units_on
         location-ports: balance_port
-    filter:
-      - key: distpachable
-        value: nodu
     terms-operator: sum
     time-operator: sum
 
   - id: NP.COST.BY.AREA # Not quite sure this is right approach ?
     terms:
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: non_proportional_cost
         location-ports: balance_port
-    filter:
-      - key: cost
-        value: np_cost
-    terms-operator: sum
-    time-operator: sum
-
-  - id: NODU.BY.CLUSTER # Not quite sure this is right approach ?
-    terms:
-      - taxonomy-group: production
-        output-id: nb_units_on
-        location-ports: balance_port
-    breakdown:
-      - key: nodu_by_cluster
-    terms-operator: sum
-    time-operator: sum
-
-  - id: NP.COST.BY.CLUSTER # Not quite sure this is right approach ?
-    terms:
-      - taxonomy-group: production
-        output-id: non_proportional_cost
-        location-ports: balance_port
-    filter:
-      - key: cost
-        value: np_cost_by_cluster
     terms-operator: sum
     time-operator: sum
 
   - id: AVL.DTG # Can i directly use parameters?
     terms:
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: p_max_cluster
         location-ports: balance_port
-    filter:
-      - key: distpachable
-        value: max_availability
     terms-operator: sum
     time-operator: sum
 
   - id: DTG.MRG
     terms:
-      - taxonomy-group: production
+      - taxonomy-group: dispatchable_production
         output-id: distpachable_margin
         location-ports: balance_port
-    filter:
-      - key: distpachable
-        value: margin
     terms-operator: sum
     time-operator: sum
 
@@ -249,22 +224,20 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: DTG.BY.PLANT
+  - id: NP.CAP
     terms:
-      - taxonomy-group: production
-        output-id: balance_port.flow
-        location-ports: balance_port
+      - taxonomy-group: balance
+        output-id: near_price_capacity
+        location-ports: null
     terms-operator: sum
-    breakdown:
-      - key: dtg_by_plant
     time-operator: sum
 
-  - id: PROFIT.BY.PLANT
-    terms:
-      - taxonomy-group: production
-        output-id: profit_by_plant
-        location-ports: balance_port
-    terms-operator: sum
-    breakdown:
-      - key: profit_by_plant
-    time-operator: sum
+  - id: ROW.BAL
+  - id: WIND
+  - id: SOLAR
+  - id: MAX.MRG
+  - id: H.STOR
+  - id: H.PUMP
+  - id: H.OVFL
+  - id: H.VAL
+  - id: H.COST
