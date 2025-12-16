@@ -261,9 +261,45 @@ catalog:
       - key: technology
     terms-operator: sum
     time-operator: sum
-  - id: MAX.MRG
+
+  - id: MAX.MRG # Calulation from hour to hour can differ for this metric max-mrg-utilis.cpp in Simulator 
+
   - id: H.STOR
+    terms:
+      - taxonomy-group: hydro_production
+        output-id: hydro_generation
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
   - id: H.PUMP
+    terms:
+      - taxonomy-group: hydro_production
+        output-id: hydro_pump
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
   - id: H.OVFL
+    terms:
+      - taxonomy-group: hydro_production
+        output-id: hydro_overflow
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
   - id: H.VAL
+    terms:
+      - taxonomy-group: hydro_production
+        output-id: hydro_value
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
   - id: H.COST
+    terms:
+      - taxonomy-group: hydro_production
+        output-id: hydro_cost
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
