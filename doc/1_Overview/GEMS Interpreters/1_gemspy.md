@@ -14,8 +14,6 @@
 ## GemsPy API Overview
 
 GEMSPy's API allows users to create studies programmatically. 
-## GEMSPy API Overview
-
 
 For detailed API usage and examples, see:
 
