@@ -67,36 +67,32 @@ rte-antares-9.3.2-installer-64bits\bin\antares-modeler.exe <path-to-study>
 
 Let’s check if Modeler is installed correctly.
 
-1. **Download the example study:**
 
-   Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
+- **Download the example study:**
 
-2. **Place the folder:**
+  Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
-   Move the "QSE_1_Adequacy" folder into your `rte-antares-9.3.2-installer-64bits` directory.
+- **Place the folder:**
 
-3. **Run the test:**
+  Move the "QSE_1_Adequacy" folder into your `rte-antares-9.3.2-installer-64bits` directory.
 
-   Open a command line in the parent folder of "QSE_1_Adequacy" and run:
+- **Run the test:**
 
-   ```bash
-   # On Windows:
-   .\bin\antares-modeler.exe .\QSE_1_Adequacy
-   (Press Enter)
+```bash
+# On Windows:
+.\bin\antares-modeler.exe .\QSE_1_Adequacy
 
-   # On Linux:
-   ./bin/antares-modeler <path-to-study> QSE_1_Adequacy/
-   (Press Enter)
-   ```
+# On Linux:
+./bin/antares-modeler ./QSE_1_Adequacy
+```
 
-4. **Check for success:**
+- **Check for success:**
 
-   If you see logs like these, your installation is complete !
-   
-   Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv
-`
+  If you see logs like these, your installation is complete!
 
-   ![Modeler installation logs](../../assets/2_Modeler_logs.png)
+  Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
+
+  ![Modeler installation logs](../../assets/2_Modeler_logs.png)
 
 
 #### Antares Solver
