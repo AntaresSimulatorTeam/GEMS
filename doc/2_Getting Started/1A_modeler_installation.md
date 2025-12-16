@@ -63,9 +63,9 @@ rte-antares-9.3.2-installer-64bits\bin\antares-modeler.exe <path-to-study>
 ./rte-antares-9.3.2-installer-64bits/bin/antares-modeler <path-to-study>
 ```
 
-**Test the installation:**
+**First study simulation with Modeler:**
 
-Let’s check if Modeler is installed correctly.
+Let’s check if Modeler is working correctly.
 
 
 - **Download the example study:**
@@ -91,6 +91,7 @@ Let’s check if Modeler is installed correctly.
 
   ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
 
+More quick examples are presented inside the [Getting Started section](../2A_adequacy)
 
 #### Antares Solver
 
