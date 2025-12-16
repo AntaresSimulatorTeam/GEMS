@@ -7,8 +7,9 @@
   </div>
 </div>
 
+# Reference libraries of models
 
-List of ready-to-use referenced libraries for GEMS:
+The following table lists reference model libraries developed within projects that make use of the GEMS modelling framework.
 
 | Library Name         | Description                  | Link                                                      |
 |----------------------|------------------------------|-----------------------------------------------------------|
