@@ -36,7 +36,7 @@ catalog:
   - id: MRG.COST
     terms:
       - taxonomy-group: exchange
-        output-id: congestion_fee_alg
+        output-id: marginal_cost
         location-ports: null 
     terms-operator: sum
     time-operator: sum
