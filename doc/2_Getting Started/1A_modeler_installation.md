@@ -65,29 +65,31 @@ rte-antares-9.3.2-installer-64bits\bin\antares-modeler.exe <path-to-study>
 
 **Test the installation:**
 
-For testing the installation of Modeler, the following test can be done :
+Let’s check if Modeler is installed correctly.
 
-- Download the [first Quick Start Example Study about adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) (QSE_1_Adequacy)
+1. **Download the example study**
+   Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
-- Put the "QSE_1_Adequacy" folder inside the folder "rte-antares-9.3.2-installer-64bits"
+2. **Place the folder**
+   Move the "QSE_1_Adequacy" folder into your `rte-antares-9.3.2-installer-64bits` directory.
 
-- In the parent folder of "QSE_1_Adequacy", run the command line :
+3. **Run the test**
+   Open a command line in the parent folder of "QSE_1_Adequacy" and run:
 
-```bash
-# Windows
-.\bin\antares-modeler.exe .\QSE_1_Adequacy
+   ```bash
+   # On Windows:
+   .\bin\antares-modeler.exe .\QSE_1_Adequacy
+   (Press Enter)
 
-Press Enter key
+   # On Linux:
+   ./bin/antares-modeler <path-to-study> QSE_1_Adequacy/
+   (Press Enter)
+   ```
 
-# Linux
-./bin/antares-modeler <path-to-study> QSE_1_Adequacy/
+4. **Check for success**
+   If you see logs like these, your installation is complete !
+   ![Modeler installation logs](../../assets/2_Modeler_logs.png)
 
-Press Enter key
-```
-
-- Antares Modeler is correctly installed if these logs are present :
-
-![Modeler installation logs](../../assets/2_Modeler_logs.png)
 
 #### Antares Solver
 
