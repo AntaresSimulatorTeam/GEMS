@@ -1,0 +1,88 @@
+<mxfile host="Electron" version="29.0.3">
+  <diagram name="System YAML Description" id="system-yaml">
+    <mxGraphModel dx="1665" dy="824" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="2200" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- BUS 1 -->
+        <mxCell id="bus1-yaml" value="&lt;b&gt;bus_1&lt;/b&gt;&lt;br&gt;- spillage_cost: 1000&lt;br&gt;- unsupplied_energy_cost: 10000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="bus1-math" value="&lt;b&gt;Bus 1&lt;/b&gt;&lt;br&gt;\(S_{b_1}, U_{b_1}\)&lt;br&gt;\(\sum F = S_{b_1} - U_{b_1}\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="320" height="90" as="geometry" />
+        </mxCell>
+        <!-- BUS 2 -->
+        <mxCell id="bus2-yaml" value="&lt;b&gt;bus_2&lt;/b&gt;&lt;br&gt;- spillage_cost: 1000&lt;br&gt;- unsupplied_energy_cost: 10000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="bus2-math" value="&lt;b&gt;Bus 2&lt;/b&gt;&lt;br&gt;\(S_{b_2}, U_{b_2}\)&lt;br&gt;\(\sum F = S_{b_2} - U_{b_2}\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="160" width="320" height="90" as="geometry" />
+        </mxCell>
+        <!-- BUS 3 -->
+        <mxCell id="bus3-yaml" value="&lt;b&gt;bus_3&lt;/b&gt;&lt;br&gt;- spillage_cost: 1000&lt;br&gt;- unsupplied_energy_cost: 10000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="280" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="bus3-math" value="&lt;b&gt;Bus 3&lt;/b&gt;&lt;br&gt;\(S_{b_3}, U_{b_3}\)&lt;br&gt;\(\sum F = S_{b_3} - U_{b_3}\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="320" height="90" as="geometry" />
+        </mxCell>
+        <!-- LOADS -->
+        <mxCell id="load1-yaml" value="&lt;b&gt;bus_load_1&lt;/b&gt;&lt;br&gt;- load: 50" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="load1-math" value="&lt;b&gt;Load 1&lt;/b&gt;&lt;br&gt;\(D_{b_1} = 50\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="400" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="load2-yaml" value="&lt;b&gt;bus_load_2&lt;/b&gt;&lt;br&gt;- load: 40" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="470" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="load2-math" value="&lt;b&gt;Load 2&lt;/b&gt;&lt;br&gt;\(D_{b_2} = 40\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="470" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="load3-yaml" value="&lt;b&gt;bus_load_3&lt;/b&gt;&lt;br&gt;- load: 150" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="540" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="load3-math" value="&lt;b&gt;Load 3&lt;/b&gt;&lt;br&gt;\(D_{b_3} = 150\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="540" width="320" height="60" as="geometry" />
+        </mxCell>
+        <!-- GENERATORS -->
+        <mxCell id="gen1-yaml" value="&lt;b&gt;generator1&lt;/b&gt;&lt;br&gt;- p_min: 70&lt;br&gt;- p_max: 100&lt;br&gt;- generation_cost: 35" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="640" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gen1-math" value="&lt;b&gt;Gen 1&lt;/b&gt;&lt;br&gt;\(70 \leq P_{g_1} \leq 100\)&lt;br&gt;Cost: 35 $/MWh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="640" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gen2-yaml" value="&lt;b&gt;generator2&lt;/b&gt;&lt;br&gt;- p_min: 50&lt;br&gt;- p_max: 90&lt;br&gt;- generation_cost: 25" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="740" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gen2-math" value="&lt;b&gt;Gen 2&lt;/b&gt;&lt;br&gt;\(50 \leq P_{g_2} \leq 90\)&lt;br&gt;Cost: 25 $/MWh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="740" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gen3-yaml" value="&lt;b&gt;generator3&lt;/b&gt;&lt;br&gt;- p_min: 50&lt;br&gt;- p_max: 200&lt;br&gt;- generation_cost: 42" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="840" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gen3-math" value="&lt;b&gt;Gen 3&lt;/b&gt;&lt;br&gt;\(50 \leq P_{g_3} \leq 200\)&lt;br&gt;Cost: 42 $/MWh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="840" width="320" height="80" as="geometry" />
+        </mxCell>
+        <!-- LINKS -->
+        <mxCell id="link12-yaml" value="&lt;b&gt;link_12&lt;/b&gt;&lt;br&gt;- capacity_direct: 40&lt;br&gt;- capacity_indirect: 40" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="960" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="link12-math" value="&lt;b&gt;Link 1-2&lt;/b&gt;&lt;br&gt;\(-40 \leq F_{12} \leq 40\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="960" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="link23-yaml" value="&lt;b&gt;link_23&lt;/b&gt;&lt;br&gt;- capacity_direct: 30&lt;br&gt;- capacity_indirect: 30" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1040" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="link23-math" value="&lt;b&gt;Link 2-3&lt;/b&gt;&lt;br&gt;\(-30 \leq F_{23} \leq 30\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1040" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="link31-yaml" value="&lt;b&gt;link_31&lt;/b&gt;&lt;br&gt;- capacity_direct: 50&lt;br&gt;- capacity_indirect: 50" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1120" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="link31-math" value="&lt;b&gt;Link 3-1&lt;/b&gt;&lt;br&gt;\(-50 \leq F_{31} \leq 50\)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1120" width="320" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

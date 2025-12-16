@@ -210,6 +210,10 @@ This system models a three-bus network with the following characteristics:
 
 Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
 
+### How to write the system YAML file
+
+![system yaml file explanations](../../assets/2_QSE_Adequacy_system.png)
+
 # How to run the study 
 
 ## By using Modeler

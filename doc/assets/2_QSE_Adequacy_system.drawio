@@ -1,0 +1,22 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="System YAML Description" id="system-yaml">
+    <mxGraphModel dx="1663" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="2200" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bus1-yaml" value="&lt;b&gt;bus_1&lt;/b&gt;&lt;br&gt;- spillage_cost: 1000&lt;br&gt;- unsupplied_energy_cost: 10000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="load1-yaml" value="&lt;b&gt;bus_load_1&lt;/b&gt;&lt;br&gt;- load: 50" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="140" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gen1-yaml" value="&lt;b&gt;generator1&lt;/b&gt;&lt;br&gt;- p_min: 70&lt;br&gt;- p_max: 100&lt;br&gt;- generation_cost: 35" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="220" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="link12-yaml" value="&lt;b&gt;link_12&lt;/b&gt;&lt;br&gt;- capacity_direct: 40&lt;br&gt;- capacity_indirect: 40" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="320" width="320" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
