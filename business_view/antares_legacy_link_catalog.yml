@@ -1,0 +1,66 @@
+catalog:
+  
+  id: antares_link_output
+
+  taxonomy: my_taxonomy
+
+  location:
+    taxonomy-group: exchange
+
+  metrics-definition: 
+
+  - id: FLOW LIN.
+    terms:
+      - taxonomy-group: exchange
+        output-id: flow
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: CONG.FEE.ABS
+    terms:
+      - taxonomy-group: exchange
+        output-id: congestion_fee_abs
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: CONG.FEE.ALG
+    terms:
+      - taxonomy-group: exchange
+        output-id: congestion_fee_alg
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: MRG.COST
+    terms:
+      - taxonomy-group: exchange
+        output-id: marginal_cost
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: CONG.PROB.DIR
+    terms:
+      - taxonomy-group: exchange
+        output-id: congestion_prob_dir
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: CONG.PROB.INDIR
+    terms:
+      - taxonomy-group: exchange
+        output-id: congestion_prob_indir
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: HURD.COST
+    terms:
+      - taxonomy-group: exchange
+        output-id: hurdle_cost
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum

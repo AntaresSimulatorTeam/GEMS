@@ -19,11 +19,13 @@ library:
       description: A port that transfers power flow.
       fields:
         - id: flow
+        - id: price
       area-connection:
         - injection-field: flow
 
   models:
     - id: area
+      taxonomy-group: balance
       parameters:
         - id: spillage_cost
         - id: ens_cost
@@ -37,14 +39,30 @@ library:
       ports:
         - id: balance_port
           type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: price
+          definition: dual(balance)
       binding-constraints:
         - id: balance
           expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
       objective-contributions:
         - id: objective
           expression: sum(spillage_cost * spillage + ens_cost * unsupplied_energy)
+      extra-outputs:
+        - id: imbalance_cost
+          expression: spillage_cost * spillage + ens_cost * unsupplied_energy
+        - id: unsupplied_energy_duration
+          expression: unsupplied_energy >= 0.0001
+        - id: unsupplied_energy_probability
+          expression: (unsupplied_energy >= 0.0001) * 100
+        - id: marginal_price
+          expression: dual(balance)
+        - id: near_price_capacity
+          expression: 1 * (dual(balance) >= (ens_cost - 5 + 0.01))
 
     - id: load
+      taxonomy-group: consumption
       parameters:
         - id: load
           time-dependent: true
@@ -56,8 +74,12 @@ library:
         - port: balance_port
           field: flow
           definition: -load
+      extra-outputs:
+        - id: area_load
+          expression: load
 
     - id: link
+      taxonomy-group: exchange
       parameters:
         - id: capacity_direct
           time-dependent: true
@@ -102,8 +124,22 @@ library:
       objective-contributions:
         - id: objective
           expression: sum(flow_direct * flow_direct_hurdle_cost + flow_indirect * flow_indirect_hurdle_cost)
+      extra-outputs:
+        - id: congestion_fee_abs
+          expression: abs((out_port.price - in_port.price) * flow)
+        - id: congestion_fee_alg
+          expression: (out_port.price - in_port.price) * flow
+        - id: marginal_cost
+          expression: dual(flow_direct_indirect)
+        - id: congestion_prob_dir
+          expression: (flow_direct >= capacity_direct) * 100
+        - id: congestion_prob_indir
+          expression: (flow_indirect >= capacity_direct) * 100
+        - id: hurdle_cost
+          expression: (flow >= 0.0001) * (flow_direct_hurdle_cost * flow) + (flow <= 0.0001) * (flow_indirect_hurdle_cost * flow) * (-1)
 
     - id: renewable
+      taxonomy-group: renewable_production
       parameters:
         - id: nominal_capacity
         - id: unit_count
@@ -119,6 +155,7 @@ library:
           definition: generation
 
     - id: thermal
+      taxonomy-group: dispatchable_production
       parameters:
         - id: p_min_cluster
           scenario-dependent: true
@@ -133,6 +170,9 @@ library:
         - id: fixed_cost
         - id: d_min_up
         - id: d_min_down
+        - id: co2_emmisions
+        - id: unit_count
+        - id: min_stable_power
         - id: nb_units_min # Equals to ceil(p_min_cluster/p_max_unit), to be done in preprocessing
           scenario-dependent: true
           time-dependent: true
@@ -191,8 +231,20 @@ library:
       objective-contributions:
         - id: objective
           expression: sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on)
+      extra-outputs:
+        - id: proportional_cost
+          expression: generation * generation_cost
+        - id: non_proportional_cost
+          expression: nb_units_on * fixed_cost + nb_starting * startup_cost
+        - id: distpachable_margin
+          expression: p_max_cluster - generation
+        - id: profit_by_plant
+          expression: (balance_port.price - generation_cost) * generation
+        - id: co2_emmisions
+          expression: co2_emmisions * generation
 
     - id: short-term-storage
+      taxonomy-group: storage
       parameters:
         - id: reservoir_capacity
           time-dependent: false

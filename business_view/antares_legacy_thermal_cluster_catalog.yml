@@ -1,0 +1,50 @@
+catalog:
+  
+  id: antares_thermal_cluster_output
+
+  taxonomy: my_taxonomy
+
+  location:
+    taxonomy-group: dispatchable_production
+
+  metrics-definition: 
+
+  - id: DTG.BY.CLUSTER
+    terms:
+      - taxonomy-group: dispatchable_production
+        output-id: generation
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: MIN.DTG.BY.CLUSTER
+    terms:
+      - taxonomy-group: dispatchable_production
+        output-id: p_min_cluster * unit_count * min_stable_power
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: PROFIT.BY.CLUSTER
+    terms:
+      - taxonomy-group: dispatchable_production
+        output-id: profit_by_plant
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: NODU.BY.PLANT # Not quite sure this is right approach ?
+    terms:
+      - taxonomy-group: dispatchable_production
+        output-id: nb_units_on
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: NP.COST.BY.CLUSTER # Not quite sure this is right approach ?
+    terms:
+      - taxonomy-group: dispatchable_production
+        output-id: non_proportional_cost
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
