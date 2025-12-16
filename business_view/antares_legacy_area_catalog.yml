@@ -245,7 +245,7 @@ catalog:
   - id: MISC.GEN
     terms:
       - taxonomy-group: fatal_production
-        output-id: wind
+        output-id: generation
         location-ports: null
     breakdown:
       - key: technology
