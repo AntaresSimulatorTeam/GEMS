@@ -72,8 +72,6 @@ Let’s check if Modeler is installed correctly.
 
   Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
-- **Place the folder:**
-
 - **Run the test:**
 
 ```bash
