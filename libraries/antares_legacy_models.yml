@@ -136,7 +136,7 @@ library:
         - id: congestion_prob_indir
           expression: (flow_indirect >= capacity_direct) * 100
         - id: hurdle_cost
-          expression: (flow >= 0.0001) * (flow_direct_hurdle_cost * flow) + (flow =< 0.0001) * (flow_indirect_hurdle_cost * flow) * (-1)
+          expression: (flow >= 0.0001) * (flow_direct_hurdle_cost * flow) + (flow <= 0.0001) * (flow_indirect_hurdle_cost * flow) * (-1)
 
     - id: renewable
       taxonomy-group: renewable_production
