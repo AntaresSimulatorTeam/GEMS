@@ -74,25 +74,24 @@ Let’s check if Modeler is installed correctly.
 
 - **Place the folder:**
 
-  Move the "QSE_1_Adequacy" folder into your `rte-antares-9.3.2-installer-64bits` directory.
-
 - **Run the test:**
 
 ```bash
 # On Windows:
-.\bin\antares-modeler.exe .\QSE_1_Adequacy
+.\bin\antares-modeler.exe .\<absolute path to QSE_1_Adequacy study folder>
 
 # On Linux:
-./bin/antares-modeler ./QSE_1_Adequacy
+./bin/antares-modeler ./<absolute path to QSE_1_Adequacy study folder>
 ```
+
 
 - **Check for success:**
 
-  If you see logs like these, your installation is complete!
+  If you see logs like these, Modeler works correctly !
 
   Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
 
-  ![Modeler installation logs](../../assets/2_Modeler_logs.png)
+  ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
 
 
 #### Antares Solver
