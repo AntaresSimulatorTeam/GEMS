@@ -16,10 +16,10 @@
         <mxCell id="link12-yaml" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; - id: link_12&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; model: basic_models_library.&lt;b&gt;link&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; parameters:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; - id: &lt;b&gt;capacity_direct&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; time-dependent: false&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; scenario-dependent: false&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; value: 40&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; - id: &lt;b&gt;capacity_indirect&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; time-dependent: false&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; scenario-dependent: false&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; value: 40&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#82b366;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" parent="1" vertex="1">
           <mxGeometry x="40" y="1010" width="320" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-1" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the componnent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-1" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="400" width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-2" value="reference the model to instantiate for this componnent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-2" value="reference the model to instantiate for this component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="400" y="45" width="250" height="50" as="geometry" />
         </mxCell>
         <mxCell id="TCsENvAEQNeR9IOau68P-3" value="" style="rounded=1;whiteSpace=wrap;html=1;opacity=30;fillColor=#F8CECC;" vertex="1" parent="1">
@@ -64,10 +64,10 @@
             <mxPoint x="360" y="160" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-15" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the componnent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-15" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="405" y="330" width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-16" value="reference the model to instantiate for this componnent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-16" value="reference the model to instantiate for this component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="405" y="380" width="250" height="50" as="geometry" />
         </mxCell>
         <mxCell id="TCsENvAEQNeR9IOau68P-17" value="" style="rounded=1;whiteSpace=wrap;html=1;opacity=30;fillColor=#F8CECC;" vertex="1" parent="1">
@@ -100,10 +100,10 @@
             <mxPoint x="365" y="490" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-27" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the componnent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-27" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="390" y="610" width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-28" value="reference the model to instantiate for this componnent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-28" value="reference the model to instantiate for this component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="390" y="650" width="250" height="50" as="geometry" />
         </mxCell>
         <mxCell id="TCsENvAEQNeR9IOau68P-29" value="" style="rounded=1;whiteSpace=wrap;html=1;opacity=30;fillColor=#F8CECC;" vertex="1" parent="1">
@@ -148,10 +148,10 @@
             <mxPoint x="345" y="750" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-39" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the componnent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-39" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="405" y="1010" width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-40" value="reference the model to instantiate for this componnent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-40" value="reference the model to instantiate for this component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="405" y="1050" width="250" height="50" as="geometry" />
         </mxCell>
         <mxCell id="TCsENvAEQNeR9IOau68P-41" value="" style="rounded=1;whiteSpace=wrap;html=1;opacity=30;fillColor=#F8CECC;" vertex="1" parent="1">
@@ -196,16 +196,16 @@
             <mxPoint x="360" y="1150" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-51" value="How to configure a &lt;b&gt;bus&lt;/b&gt; componnent :" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-51" value="How to configure a &lt;b&gt;bus&lt;/b&gt; component :" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="35" y="-40" width="285" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-52" value="How to configure a &lt;b&gt;bus_load&lt;/b&gt; componnent :" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-52" value="How to configure a &lt;b&gt;bus_load&lt;/b&gt; component :" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="40" y="300" width="285" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-53" value="How to configure a &lt;b&gt;generator&lt;/b&gt; componnent :" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-53" value="How to configure a &lt;b&gt;generator&lt;/b&gt; component :" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="40" y="570" width="285" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TCsENvAEQNeR9IOau68P-54" value="How to configure a &lt;b&gt;link&lt;/b&gt; componnent :" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TCsENvAEQNeR9IOau68P-54" value="How to configure a &lt;b&gt;link&lt;/b&gt; component :" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="40" y="970" width="285" height="30" as="geometry" />
         </mxCell>
       </root>
