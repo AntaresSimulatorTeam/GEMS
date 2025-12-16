@@ -164,13 +164,14 @@ $$
 
 # YAML Block Description
 
+
+## Library File
+
 ![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
 
-## Step 1: Library File
+## System File
 
-Use `basic_models_library.yml` from the [libraries folder](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml)
-
-## Step 2: System File
+### Overview
 
 - Creation of `system.yml` file
 
@@ -209,9 +210,9 @@ This system models a three-bus network with the following characteristics:
 
 Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
 
-## How to run the study 
+# How to run the study 
 
-### By using Modeler
+## By using Modeler
 
 1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
 2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
@@ -228,7 +229,7 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 The results will be available in the folder `<study_folder>/output`
 
-## Step 3: Outputs
+## Outputs
 
 In `output` folder, the simulation table csv file reprensents the results of the simulation.
 
