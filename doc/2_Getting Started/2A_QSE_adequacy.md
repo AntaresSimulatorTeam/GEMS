@@ -220,7 +220,7 @@ where $S_b$ represents spilled energy at bus $b$.
 ### First Kirchhoff's Law (Power Balance):
 
 $$
-\forall b \in B, \sum_{l \in L_b^+} F_l - \sum_{l \in L_b^-} F_l = U_b + \sum_{g \in G_b} P_g - (S_b + D_b)
+\forall b \in B, \sum_{g \in G_b} P_g - D_b + \sum_{l \in L_b^+} F_l - \sum_{l \in L_b^-} F_l = S_b - U_b
 $$
 
 ## Flow Capacity Constraints
