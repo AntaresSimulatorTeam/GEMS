@@ -23,6 +23,7 @@ This table contains all the referenced taxonomies of models created by different
 
 Some reference classification of models will be shared soon.
 
+---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
