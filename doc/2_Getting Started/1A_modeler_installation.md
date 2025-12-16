@@ -52,17 +52,6 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 
 #### Antares Modeler
 
-**Run Antares Modeler:**
-
-In the parent directory of `rte-antares-9.3.2-installer-64bits/` (or the extracted folder).
-```bash
-# Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-modeler.exe <path-to-study>
-
-# Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-modeler <path-to-study>
-```
-
 **First study simulation with Modeler:**
 
 Let’s check if Modeler is working correctly.
@@ -72,7 +61,7 @@ Let’s check if Modeler is working correctly.
 
   Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
-- **Run the test:**
+- **Run simulation:**
 
 ```bash
 # On Windows:
