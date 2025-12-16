@@ -8,6 +8,15 @@
 </div>
 
 
+List of referenced libraries for using GEMS:
+
+| Library Name         | Description                  | Link                                                      |
+|----------------------|------------------------------|-----------------------------------------------------------|
+| Basic Model Library  | Basic library for newcomers  | [basic-model-library.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) |
+| Andromede Models | Library of models from RTE's Andromede project         | [andromede_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/andromede_models.yml)  |
+|Antares Legacy Models|Library of models of the legacy [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/user-guide/03-getting_started/)|[antares_legacy_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml)|
+|PyPSA Models|Library of models available on [PyPSA](https://docs.pypsa.org/latest/home/installation/)|[pypsa_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/pypsa_models.yml)|
+
 
 ---
 **Navigation**
