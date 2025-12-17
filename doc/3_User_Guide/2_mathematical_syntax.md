@@ -83,6 +83,29 @@ Parameters can be time-dependent (having a separate value for each time step of 
 
 You can use parameters freely in arithmetic operations. Since parameters are constants from the solver’s perspective (their values are fixed input), they may appear in linear or non-linear positions without violating linearity rules. For instance, multiplying two parameters or dividing by a parameter is allowed. However, dividing by a parameter that could be zero should be avoided, as this would create an undefined expression in some cases (ensure your data never gives zero for such parameters).
 
+## Variables
+
+Variables in MEL correspond to the decision variables of the optimization. They are defined in a model’s definition (within a library) with an `ID`, a type (`continuous`, `integer`, or `binary`), and optional bounds. All variables are referenced by their `ID` in expressions, just like parameters. For example, if a model defines a variable with `id: generation`, you can use `generation` in an expression:
+```yaml
+expression: generation * generation_cost
+```
+In such use, `generation` represents the variable’s value, and `cost_per_unit` is a parameter.
+
+A crucial rule in MEL is that all expressions must be linear in the decision variables. This means non-linear combinations of variables are not allowed. Each term in an expression can be at most a variable multiplied by a constant (or parameter). The expression cannot include products or divisions where a variable appears in a non-linear way. Violating this will result in an invalid model definition.
+
+Some examples of prohibited expressions (non-linear in variables):
+
+variable_a * variable_b – product of two variables (bilinear term)
+gemspy.readthedocs.io
+
+3 / variable_a – a variable in the denominator (non-linear reciprocal)
+
+binary_var * continuous_var – product of two variables, even if one is binary (still nonlinear)
+
+variable^2 or sqrt(variable) – exponentiation or non-linear function of a variable.
+
+
+
 # Dataseries
 Currently, the framework supports defining **dataseries** using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
 
