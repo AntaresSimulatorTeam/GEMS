@@ -38,6 +38,10 @@ Inside the YAML files, **Parameters, Variables, and Constraints** can be depende
 
 # Outputs
 
+## Taxonomy 
+
+![Taxonomy scheme](../assets/6_taxonomy.png)
+
 The outputs of GEMS contain the results of the modelisation, in a LP format (**Optimization Problem**) and for hybrid and pure modeler studies in CSV format (**simulation table**), there are also **extra-outputs**. Their structure is detailed inside UserGuide section.
 
 - **Optimization Problem**
