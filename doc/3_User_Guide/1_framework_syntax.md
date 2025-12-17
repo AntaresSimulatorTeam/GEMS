@@ -53,7 +53,7 @@ Mathematical syntax is **solver-agnostic** and intentionally restricted to ensur
 
 > Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where variables come from or how models are wired together.
 
-➡️ See: **Mathematical Syntax and Rules**
+➡️ See: [**Mathematical Syntax and Rules**](../2_mathematical_syntax)
 
 ---
 
@@ -87,7 +87,7 @@ Each file type has:
 
 > Although YAML is used as the file format, the Configuration Syntax is **GEMS-specific** and goes far beyond generic YAML rules.
 
-➡️ See: **Configuration Syntax (YAML)**
+➡️ See: [**Configuration Syntax (YAML)**](../3_configuration_syntax)
 
 ---
 
