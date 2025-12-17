@@ -22,8 +22,15 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 - Network transmission limits
 - System reserve requirements
 
-![Unit Commitment Scheme](../assets/3_unit_commitment_scheme.png)
+Region A:                    Region B:
+- Coal Plant (200 MW)        - Nuclear Plant (300 MW)
+- Gas Plant (150 MW)         - Peaker Plant (100 MW)
+- Wind Farm (100 MW)         - Solar Farm (80 MW)
+- Load (80-180 MW)           - Load (120-250 MW)
+         \                    /
+          \--- Link 100MW ---/
 
+          
 ## Files Structure
 ```
 tutorial_QSE_unit_commitment/
