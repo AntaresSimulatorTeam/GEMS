@@ -28,12 +28,13 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 QSE_2_Unit_Commitment/
 ├── input/
 │   ├── system.yml
-│   ├── model-librairies/
+│   ├── model-libraries/
 │   │   └── unit_commitment_library.yml
 │   └── data-series/
-│       ├── load_ts.csv
-│       ├── wind_generation_ts.csv
-│       └── solar_generation_ts.csv
+│       ├── load_bus_A.csv
+│       ├── load_bus_B.csv
+│       ├── wind_generation.csv
+│       └── solar_generation.csv
 └── parameters.yml
 ```
 
@@ -197,21 +198,11 @@ The library file defines the models for buses, loads, generators, renewables, an
       variable-type: continuous
   ports:
     - id: balance_port
-      type: flow
-    - id: energy_port
-      type: energy
-    - id: emission_port
-      type: emission
+      type: flow_port
   port-field-definitions:
     - port: balance_port
       field: flow
       definition: generation
-    - port: energy_port
-      field: cumulative_energy
-      definition: sum(generation)
-    - port: emission_port
-      field: co2
-      definition: sum(generation * co2_emission_factor)
   objective-contributions:
     - id: objective
       expression: sum(generation_cost * generation)
@@ -227,7 +218,7 @@ The library file defines the models for buses, loads, generators, renewables, an
       scenario-dependent: true
   ports:
     - id: balance_port
-      type: flow
+      type: flow_port
   port-field-definitions:
     - port: balance_port
       field: flow
@@ -264,155 +255,218 @@ system:
   id: system
 
   components:
+
     # === BUSES ===
     - id: bus_A
       model: unit_commitment_library.bus
+
       parameters:
         - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
           value: 1000
         - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
           value: 10000
 
     - id: bus_B
       model: unit_commitment_library.bus
+
       parameters:
         - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
           value: 1000
         - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
           value: 10000
+
+    # === LOADS ===
+    - id: load_A
+      model: unit_commitment_library.load
+
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+          value: load_bus_A
+
+    - id: load_B
+      model: unit_commitment_library.load
+
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+          value: load_bus_B
 
     # === THERMAL GENERATORS ===
     - id: coal_plant_A
       model: unit_commitment_library.generator
+
       parameters:
         - id: p_min
+          time-dependent: false
+          scenario-dependent: false
           value: 80
         - id: p_max
+          time-dependent: false
+          scenario-dependent: false
           value: 200
         - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
           value: 35
         - id: co2_emission_factor
+          time-dependent: false
+          scenario-dependent: false
           value: 0.9
 
     - id: gas_plant_A
       model: unit_commitment_library.generator
+
       parameters:
         - id: p_min
+          time-dependent: false
+          scenario-dependent: false
           value: 30
         - id: p_max
+          time-dependent: false
+          scenario-dependent: false
           value: 150
         - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
           value: 50
         - id: co2_emission_factor
+          time-dependent: false
+          scenario-dependent: false
           value: 0.4
 
     - id: nuclear_plant_B
       model: unit_commitment_library.generator
+
       parameters:
         - id: p_min
+          time-dependent: false
+          scenario-dependent: false
           value: 200
         - id: p_max
+          time-dependent: false
+          scenario-dependent: false
           value: 300
         - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
           value: 15
         - id: co2_emission_factor
+          time-dependent: false
+          scenario-dependent: false
           value: 0
 
     - id: gas_plant_B
       model: unit_commitment_library.generator
+
       parameters:
         - id: p_min
+          time-dependent: false
+          scenario-dependent: false
           value: 10
         - id: p_max
+          time-dependent: false
+          scenario-dependent: false
           value: 100
         - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
           value: 80
         - id: co2_emission_factor
+          time-dependent: false
+          scenario-dependent: false
           value: 0.5
 
     # === RENEWABLES ===
     - id: wind_farm_A
       model: unit_commitment_library.renewable
+
       parameters:
         - id: generation
           time-dependent: true
           scenario-dependent: true
-          timeseries: wind_generation_ts
+          value: wind_generation
 
     - id: solar_farm_B
       model: unit_commitment_library.renewable
+
       parameters:
         - id: generation
           time-dependent: true
           scenario-dependent: true
-          timeseries: solar_generation_ts
-
-    # === LOADS ===
-    - id: load_A
-      model: unit_commitment_library.load
-      parameters:
-        - id: load
-          time-dependent: true
-          scenario-dependent: true
-          timeseries: load_A_ts
-
-    - id: load_B
-      model: unit_commitment_library.load
-      parameters:
-        - id: load
-          time-dependent: true
-          scenario-dependent: true
-          timeseries: load_B_ts
+          value: solar_generation
 
     # === TRANSMISSION ===
     - id: link_AB
       model: unit_commitment_library.link
+
       parameters:
         - id: capacity_direct
+          time-dependent: false
+          scenario-dependent: false
           value: 100
         - id: capacity_indirect
+          time-dependent: false
+          scenario-dependent: false
           value: 100
 
   connections:
-    # Region A
+
     - component1: bus_A
       component2: load_A
       port1: balance_port
       port2: balance_port
+
+    - component1: bus_B
+      component2: load_B
+      port1: balance_port
+      port2: balance_port
+
     - component1: bus_A
       component2: coal_plant_A
       port1: balance_port
       port2: balance_port
+
     - component1: bus_A
       component2: gas_plant_A
       port1: balance_port
       port2: balance_port
+
     - component1: bus_A
       component2: wind_farm_A
       port1: balance_port
       port2: balance_port
+
+    - component1: bus_B
+      component2: nuclear_plant_B
+      port1: balance_port
+      port2: balance_port
+
+    - component1: bus_B
+      component2: gas_plant_B
+      port1: balance_port
+      port2: balance_port
+
+    - component1: bus_B
+      component2: solar_farm_B
+      port1: balance_port
+      port2: balance_port
+
     - component1: bus_A
       component2: link_AB
       port1: balance_port
       port2: out_port
 
-    # Region B
-    - component1: bus_B
-      component2: load_B
-      port1: balance_port
-      port2: balance_port
-    - component1: bus_B
-      component2: nuclear_plant_B
-      port1: balance_port
-      port2: balance_port
-    - component1: bus_B
-      component2: gas_plant_B
-      port1: balance_port
-      port2: balance_port
-    - component1: bus_B
-      component2: solar_farm_B
-      port1: balance_port
-      port2: balance_port
     - component1: bus_B
       component2: link_AB
       port1: balance_port
@@ -423,21 +477,35 @@ system:
 
 ## Load Profiles
 
-Weekly load profiles with typical daily patterns for both regions.
+Weekly load profiles with typical daily patterns for both regions. Each load has its own CSV file.
 
-**data-series/load_ts.csv** (168 values for each region):
+**data-series/load_bus_A.csv** (168 values, no header):
 ```csv
-load_A,load_B
-100,150
-95,145
-90,140
-85,135
-85,135
-90,145
-110,170
-140,200
-160,220
-170,235
+100
+95
+90
+85
+85
+90
+110
+140
+160
+170
+...
+```
+
+**data-series/load_bus_B.csv** (168 values, no header):
+```csv
+150
+145
+140
+135
+135
+145
+170
+200
+220
+235
 ...
 ```
 
@@ -448,9 +516,8 @@ load_A,load_B
 
 ## Renewable Generation Profiles
 
-**data-series/wind_generation_ts.csv:**
+**data-series/wind_generation.csv** (168 values, no header):
 ```csv
-available_power
 45
 50
 55
@@ -459,9 +526,8 @@ available_power
 - Variable wind with occasional high production periods
 - Average capacity factor ~50%
 
-**data-series/solar_generation_ts.csv:**
+**data-series/solar_generation.csv** (168 values, no header):
 ```csv
-available_power
 0
 0
 ...
@@ -548,7 +614,7 @@ import matplotlib.pyplot as plt
 # Load and solve
 solver = Solver()
 solver.load_system("input/system.yml")
-solver.load_library("input/model-librairies/unit_commitment_library.yml")
+solver.load_library("input/model-libraries/unit_commitment_library.yml")
 solver.solve()
 
 # Extract results
@@ -615,13 +681,13 @@ Total CO2 emissions from each generator, calculated using the emission factors.
 
 ## Problem Size
 
-- **Variables:** ~1,500 (168 hours × ~9 variables per hour)
-- **Constraints:** ~2,000
+- **Variables:** 1,848
+- **Constraints:** 504
 - All continuous variables (LP problem)
 
 ## Solving Time
 
-- Typically solves in seconds with modern LP solvers
+- Typically solves in milliseconds with modern LP solvers
 - COIN-OR CBC solver used in this example
 
 ## Solver Settings
