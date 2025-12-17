@@ -1,0 +1,143 @@
+# Unit Commitment Models Library
+# This library defines models with binary commitment variables,
+# startup/shutdown costs, and minimum up/down time constraints.
+
+library:
+  id: unit_commitment_library
+  description: Models for unit commitment 
+
+  port-types:
+    - id: flow_port
+      description: A port that transfers a power flow.
+      fields:
+        - id: flow
+
+  models:
+
+    - id: bus
+      parameters:
+        - id: spillage_cost
+        - id: unsupplied_energy_cost
+      variables:
+        - id: spillage
+          lower-bound: 0
+          variable-type: continuous
+        - id: unsupplied_energy
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow_port
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+      objective-contributions:
+        - id: objective
+          expression: sum(spillage * spillage_cost + unsupplied_energy * unsupplied_energy_cost)
+      extra-outputs:
+        - id: marginal_price
+          expression: dual(balance)
+
+
+    - id: load
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow_port
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: -load
+
+    - id: link
+      parameters:
+        - id: capacity_direct
+          time-dependent: true
+          scenario-dependent: true
+        - id: capacity_indirect
+          time-dependent: true
+          scenario-dependent: true
+      variables:
+        - id: flow_direct
+          lower-bound: 0
+          upper-bound: capacity_direct
+          variable-type: continuous
+        - id: flow_indirect
+          lower-bound: 0
+          upper-bound: capacity_indirect
+          variable-type: continuous
+        - id: flow
+          lower-bound: -capacity_indirect
+          upper-bound: capacity_direct
+          variable-type: continuous
+      ports:
+        - id: out_port
+          type: flow_port
+        - id: in_port
+          type: flow_port
+      port-field-definitions:
+        - port: out_port
+          field: flow
+          definition: flow
+        - port: in_port
+          field: flow
+          definition: -flow
+      constraints:
+        - id: flow_direct_indirect
+          expression: flow = flow_direct - flow_indirect
+
+    - id: generator
+      parameters:
+        - id: p_min
+          scenario-dependent: true
+          time-dependent: true
+        - id: p_max
+          scenario-dependent: true
+          time-dependent: true
+        - id: generation_cost
+          scenario-dependent: false
+          time-dependent: false
+        - id: co2_emission_factor
+          scenario-dependent: false
+          time-dependent: false
+      variables:
+        - id: generation
+          lower-bound: p_min
+          upper-bound: p_max
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+        - id: energy_port
+          type: energy
+        - id: emission_port
+          type: emission
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+        - port: energy_port
+          field: cumulative_energy
+          definition: sum(generation)
+        - port: emission_port
+          field: co2
+          definition: sum(generation * co2_emission_factor)
+      objective-contributions:
+        - id: objective
+          expression: sum(generation_cost * generation)
+
+    - id: renewable
+      parameters:
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
