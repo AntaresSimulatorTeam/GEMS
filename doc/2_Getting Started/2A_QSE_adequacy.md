@@ -237,11 +237,11 @@ The results will be available in the folder `<study_folder>/output`
 
 In `output` folder, the simulation table csv file reprensents the results of the simulation.
 
-The following graphs show the merit order of the generator and links.
+The following graphs show the merit order of the generator and links flows :
 
 <div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
   <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:45%;"/>
-  <img src="../../assets/2_QSE_1_out_Flows.png" alt="Outputs Flows" style="width:45%;"/>
+  <img src="../../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:45%;"/>
 </div>
 
 ---
