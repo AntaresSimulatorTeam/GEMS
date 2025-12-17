@@ -16,11 +16,7 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 
 ### Economic Dispatch Definition
 
-**Economic Dispatch** is the problem of determining the optimal power output from generation units over a planning horizon while satisfying:
-- Load demand at each time step
-- Generator capacity constraints (min/max power)
-- Network transmission limits
-- CO2 emission tracking
+**Economic Dispatch** is the problem of determining the optimal power output from generation units over a 7 days horizon.
 
 ## Files Structure
 
@@ -44,7 +40,7 @@ QSE_2_Unit_Commitment/
 - 2 Buses (Region A and Region B)
 - 1 Link (connecting the two regions)
 - 4 Thermal Generators (with capacity and cost constraints)
-- 2 Renewable Sources (wind and solar with variable profiles)
+- 2 Renewable Generators (wind and solar with variable profiles)
 - 2 Loads (variable demand over the week)
 
 **Time Horizon:** 168 hours (1 week) with hourly resolution
