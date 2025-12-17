@@ -1,4 +1,3 @@
-![Template Banner](../assets/template_banner.svg)
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="../../../..">Main Section</a>
@@ -12,11 +11,11 @@
 
 # Model definition (from system.yml)
 
-Model and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
+Model and its configuration is defined in [Overview section](../1_Overview/Concepts/1_core_concepts)
 
 # Components specification (from system.yml)
 
-Components and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
+Components and its configuration is defined in [Overview section](../1_Overview/Concepts/1_core_concepts)
 
 # Dataseries
 Currently, the framework supports defining **dataseries** using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
