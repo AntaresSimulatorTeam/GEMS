@@ -31,10 +31,10 @@ Mathematical expressions use standard arithmetic notation. The following binary 
 
 | Operator | Example |
 |------|--------------------------|
-| Addition| A + B |
-| Subtraction | A - B |
-| Multiplication | A * B |
-| Division | A / B |
+| Addition| ```generation + storage``` |
+| Subtraction | ```generation - load``` |
+| Multiplication | ```generation * generation_cost``` |
+| Division |  ```generation / 2``` |
 
 These operate with conventional precedence (multiplication and division bind tighter than addition and subtraction). You may use parentheses (...) to group sub-expressions as needed for clarity or to override precedence.
 
@@ -58,8 +58,34 @@ TODO : dual, reduced_cost, pow, min, max
 
 GEMS framework **Mathematical Expression Syntax** does not support certain operations common in programming or math notation. For example, exponentiation (^ or **), modul, and non-linear functions (log, sin, etc.) are not part of the expression syntax. Only the operators listed above can be used. If a mathematical relationship is non-linear, it must be linearized or reformulated.
 
+## Numeric Constants (Scalars)
+
+Numeric literals (constants) can be used anywhere in an expression. Scalars may be written as integers or floats (use . for a decimal point). For example, all of the following are valid constants: `42`, `0.5`, `3.14`, `100.0`.
+
+**Example:**
+
+```yaml
+expression: 3 * 66.32 - 5 / 3.14
+```
+
+This expression uses literal constants (67.43, 5, 3.14) in a valid way. Constants can appear in any part of an expression, either standalone or multiplied/divided with other terms.
+
+## Parameters
+
+**Parameters** represent fixed input data values (not decision variables) that can be referenced by their ID in expressions. In a models library (reference to models library part on parameters), parameters are defined with an id and flags for whether they vary by time and/or scenario. In expressions, simply use the parameter’s ID as a symbol to include its value. For example:
+
+```yaml
+expression: 3 * parameter_1 + 6.345 / parameter_2
+```
+This would use the numeric value of `parameter_1` and `parameter_2` as provided in the system input data. No special notation (like `$` or `%`) is needed – just the ID.
+
+Parameters can be time-dependent (having a separate value for each time step of the simulation horizon) or scenario-dependent (having different values under different scenario cases), or both. If a parameter is time-dependent, think of it as a series **`p(t)`** over time; if scenario-dependent, as **`p(s)`** varying by scenario; it can even be **`p(t,s)`** if varying across both dimensions.
+
+You can use parameters freely in arithmetic operations. Since parameters are constants from the solver’s perspective (their values are fixed input), they may appear in linear or non-linear positions without violating linearity rules. For instance, multiplying two parameters or dividing by a parameter is allowed. However, dividing by a parameter that could be zero should be avoided, as this would create an undefined expression in some cases (ensure your data never gives zero for such parameters).
+
 # Dataseries
 Currently, the framework supports defining **dataseries** using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
+
 
 ## Scenario / Time Dependency
 Inside the YAML files, **Parameters, Variables, and Constraints** can be dependent on the scenario and/or over time.
