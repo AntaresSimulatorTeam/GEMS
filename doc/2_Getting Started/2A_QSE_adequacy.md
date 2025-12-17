@@ -223,13 +223,13 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 3. [Open the terminal](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
 4. Run these command lines :
 
-  ```bash
-  # Windows
-  rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
+```bash
+# Windows
+rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
 
-  # Linux
-  ./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
-  ```
+# Linux
+./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
+```
 
 The results will be available in the folder `<study_folder>/output`
 
