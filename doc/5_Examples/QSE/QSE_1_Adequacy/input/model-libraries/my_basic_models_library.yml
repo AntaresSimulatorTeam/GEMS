@@ -30,6 +30,9 @@ library:
       objective-contributions:
         - id: objective
           expression: sum(spillage * spillage_cost + unsupplied_energy * unsupplied_energy_cost)
+      extra-outputs:
+        - id: marginal_price
+          expression: dual(balance)
 
     - id: load
       parameters:
