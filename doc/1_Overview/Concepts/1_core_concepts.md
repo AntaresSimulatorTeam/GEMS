@@ -1,6 +1,6 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <div style="text-align: left;">
-        <a href="../../../index.md">Main Section</a>
+        <a href="../../../..">Main Section</a>
     </div>
     <div style="text-align: right;">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
@@ -18,7 +18,7 @@ Unlike traditional algebraic modelling languages such as **AMPL or GAMS**, GEMS 
 
 **Models** are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element, called components.  
 
-They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User%20Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)  
+They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User_Guide/2_mathematical_syntax.md#model-definition-from-systemyml)  
 
 - **Variables [^1]** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration.  
 
@@ -53,7 +53,7 @@ Their configuration consists of:
 
 # Dataseries
 
-Parameters can vary across scenarios, over time, or both. **Data series** are used to represent these variations, providing **scenario-specific and/or time-dependent** values for the parameters as required. [Their structure depends on the system.](../../3_User%20Guide/1_syntax.md#dataseries)
+Parameters can vary across scenarios, over time, or both. **Data series** are used to represent these variations, providing **scenario-specific and/or time-dependent** values for the parameters as required. [Their structure depends on the system.](../../3_User_Guide/2_mathematical_syntax.md#dataseries)
 
 <br/>
 <br/>

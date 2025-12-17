@@ -1,6 +1,6 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
-    <a href="../../index.md">Main Section</a>
+    <a href="../../..">Main Section</a>
   </div>
   <div style="text-align: right;">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
@@ -49,7 +49,7 @@ These inputs are external files to the core software and consist of:
 
 ## Files Interaction
 
-The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](../../../libraries/basic_models_library.yml) included in this documentation.
+The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) included in this documentation.
 
 <p align="center">
     <img src="../../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
@@ -60,11 +60,11 @@ The following scheme shows the interaction of the different core concepts presen
 
 # Outputs
 
-The outputs of GEMS consist of three main categories of objects: **Optimization Problem**, **Simulation Table** and **Business Views**. Their structure is detailed in the [User Guide section](../../3_User%20Guide/1_syntax.md#outputs).
+The outputs of GEMS consist of three main categories of objects: **Optimization Problem**, **Simulation Table** and **Business Views**. Their structure is detailed in the [User Guide section](../../3_User_Guide/5_outputs.md).
 
 - **Optimization Problem** represents the global mathematical formulation of the energy system simulation/optimization.
 - **Simulation Table** contains the raw results of the simulation or optimization, including the optimal values of decision variables and the values of expressions computed from them.
-- **Business Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../../3_User%20Guide/1_syntax.md#outputs).
+- **Business Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../../3_User_Guide/5_outputs.md).
 
 ---
 

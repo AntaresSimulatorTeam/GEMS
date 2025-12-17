@@ -1,11 +1,20 @@
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="text-align: left;">
+    <a href="../../../..">Main Section</a>
+  </div>
+  <div style="text-align: right;">
+    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+  </div>
+</div>
+
 # GEMS Framework Syntax
 
 The **GEMS framework** relies on a well-defined, declarative syntax to describe optimisation problems in a clear, solver-independent, and reproducible way.
 
 From a user and documentation perspective, the GEMS syntax can be explicitly separated into **two complementary layers**, each serving a distinct purpose:
 
-- **Mathematical Syntax** — describes *what is being modeled*
-- **Configuration Syntax** — describes *how it is declared and structured*
+- **Mathematical Syntax** — [describes *what is being modeled*](2_mathematical_syntax.md)
+- **Configuration Syntax** — [describes *how it is declared and structured*](3_configuration_syntax.md)
 
 This separation is fundamental to understanding how GEMS models are written, interpreted, and validated.
 
