@@ -60,11 +60,11 @@ The following scheme shows the interaction of the different core concepts presen
 
 # Outputs
 
-The outputs of GEMS consist of three main categories of objects: **Optimization Problem**, **Simulation Table** and **Business Views**. Their structure is detailed in the [User Guide section](../../3_User%20Guide/1_syntax.md#outputs).
+The outputs of GEMS consist of three main categories of objects: **Optimization Problem**, **Simulation Table** and **Business Views**. Their structure is detailed in the [User Guide section](../../3_User_Guide/1_syntax.md#outputs).
 
 - **Optimization Problem** represents the global mathematical formulation of the energy system simulation/optimization.
 - **Simulation Table** contains the raw results of the simulation or optimization, including the optimal values of decision variables and the values of expressions computed from them.
-- **Business Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../../3_User%20Guide/1_syntax.md#outputs).
+- **Business Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../../3_User_Guide/1_syntax.md#outputs).
 
 ---
 
@@ -73,7 +73,7 @@ The outputs of GEMS consist of three main categories of objects: **Optimization 
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1_core concepts" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    <a href="../1_core_concepts" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
