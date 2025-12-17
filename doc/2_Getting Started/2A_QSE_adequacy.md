@@ -218,9 +218,9 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 ## By using Modeler
 
-1. Get Modeler installed through this [tutorial](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
+1. Get Modeler installed through this [tutorial](./1_installation.md)
 2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
-3. [Open the terminal](../2_Getting%20Started/1_installation### Command-Line Usage Examples)
+3. Open the terminal
 4. Run these command lines :
 
 ```bash
@@ -235,7 +235,9 @@ The results will be available in the folder `<study_folder>/output`
 
 ## Outputs
 
-In `output` folder, the simulation table csv file reprensents the results of the simulation.
+In `output` folder, the simulation table csv file represents the results of the simulation.
+
+The simulation outputs contains the optimised value of marginal price which is, in this example, **35 €/MW**.  
 
 The following graphs show the merit order of the generator and links flows :
 
