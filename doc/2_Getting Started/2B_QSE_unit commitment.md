@@ -22,16 +22,8 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 - Network transmission limits
 - System reserve requirements
 
-Region A:                    Region B:
-- Coal Plant (200 MW)        - Nuclear Plant (300 MW)
-- Gas Plant (150 MW)         - Peaker Plant (100 MW)
-- Wind Farm (100 MW)         - Solar Farm (80 MW)
-- Load (80-180 MW)           - Load (120-250 MW)
-         \                    /
-          \--- Link 100MW ---/
-
-          
 ## Files Structure
+
 ```
 tutorial_QSE_unit_commitment/
 ├── input/
@@ -46,8 +38,6 @@ tutorial_QSE_unit_commitment/
 
 ## Problem Description
 
-### System Overview
-
 **Components:**
 - 2 Buses (Region A and Region B)
 - 1 Link (connecting the two regions)
@@ -57,16 +47,7 @@ tutorial_QSE_unit_commitment/
 
 **Time Horizon:** 168 hours (1 week) with hourly resolution
 
-![QSE Unit Commitment Scheme](../assets/3_QSE_UC_scheme.png)
-
-### Key Unit Commitment Features
-
-This example introduces:
-1. **Binary commitment variables** - Generators can be ON or OFF
-2. **Minimum up/down times** - Once started, generators must run for minimum duration
-3. **Start-up costs** - Cost incurred when starting a generator
-4. **Ramping constraints** - Limited rate of power change between hours
-5. **Minimum stable generation** - Generators have minimum output when running
+![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
 # Mathematical Representation
 
