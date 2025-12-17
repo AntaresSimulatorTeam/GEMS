@@ -37,38 +37,37 @@ nav:
     - Release Notes: 0_Home/2_release_notes.md 
   - Overview:
       - Concepts:
-          - Core Concepts: 1_Overview/Concepts/1_core concepts.md
+          - Core Concepts: 1_Overview/Concepts/1_core_concepts.md
           - Architecture: 1_Overview/Concepts/2_architecture.md
           - Features: 1_Overview/Concepts/3_features_usecase.md
       - GEMS Interpreters:
-          - Antares Simulator: 1_Overview/GEMS Interpreters/2_antares_simulator_modeler.md
-          - GemsPy: 1_Overview/GEMS Interpreters/1_gemspy.md
+          - Antares Simulator: 1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md
+          - GemsPy: 1_Overview/GEMS_Interpreters/1_gemspy.md
                 
       - References:
             - Classification of models: 1_Overview/References/1_Classification_Configuration.md
             - Libraries of models: 1_Overview/References/2_Libraries.md
             - Users of GEMS: 1_Overview/References/3_Users.md
   - Getting Started:
-      - Installation: 2_Getting Started/1_installation.md
-      - Quick Start Examples: 2_Getting Started/2_quick start examples.md
+      - Installation: 2_Getting_Started/1_installation.md
+      - Quick Start Examples: 2_Getting_Started/2_quick_start_examples.md
   - User Guide:
       - Syntax: 
           - GEMS Framework Syntax: 3_User_Guide/1_framework_syntax.md
           - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md
           - Configuration Syntax: 3_User_Guide/3_configuration_syntax.md
-      - Inputs: 3_User_Guide/2_inputs.md
-      - Antares Hybrid Mode Inputs: 3_User_Guide/3_hybrid_inputs.md
-      - Outputs: 3_User_Guide/4_outputs.md
-      - Optimization: 3_User_Guide/5_optimization.md
-      - Glossary: 3_User_Guide/6_glossary.md
+      - Antares Hybrid Mode Inputs: 3_User_Guide/4_hybrid_inputs.md
+      - Outputs: 3_User_Guide/5_outputs.md
+      - Optimization: 3_User_Guide/6_optimization.md
+      - Glossary: 3_User_Guide/7_glossary.md
   - Interoperability:
       - PyPSA: 4_Interoperability/1_pypsa.md
-      - Antares Legacy Format: 4_Interoperability/2_antares legacy.md
+      - Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
       - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
   - Examples:
       - Tutorial - Simple economic dispatch problem: 5_Examples/1_optimization_problem.md
       - Antares Simulator Hybrid study: 5_Examples/2_hybrid.md
   - Support & Contributing:
-      - FAQ: 6_Support & Contributing/1_faq.md
-      - Contact: 6_Support & Contributing/2_contact.md
-      - Contributing: 6_Support & Contributing/3_contributing.md
+      - FAQ: 6_Support_Contributing/1_faq.md
+      - Contact: 6_Support_Contributing/2_contact.md
+      - Contributing: 6_Support_Contributing/3_contributing.md
