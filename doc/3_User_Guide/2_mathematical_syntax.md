@@ -54,6 +54,7 @@ The outputs of GEMS contain the results of the modelisation, in a LP format (**O
 
 - **Business Views**
     Output files with metrics specifically designed for users purposes. It made from the simulation table.
+
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
