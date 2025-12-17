@@ -9,6 +9,7 @@ system:
 
     - id: bus_A
       model: unit_commitment_library.bus
+
       parameters:
         - id: spillage_cost
           time-dependent: false
@@ -21,6 +22,7 @@ system:
 
     - id: bus_B
       model: unit_commitment_library.bus
+
       parameters:
         - id: spillage_cost
           time-dependent: false
@@ -33,22 +35,25 @@ system:
 
     - id: load_A
       model: unit_commitment_library.load
+
       parameters:
         - id: load
           time-dependent: true
           scenario-dependent: true
-          timeseries: load_A_ts
+          value: load_bus_A
 
     - id: load_B
       model: unit_commitment_library.load
+
       parameters:
         - id: load
           time-dependent: true
           scenario-dependent: true
-          timeseries: load_B_ts
+          value: load_bus_B
 
     - id: coal_plant_A
       model: unit_commitment_library.generator
+
       parameters:
         - id: p_min
           time-dependent: false
@@ -69,6 +74,7 @@ system:
 
     - id: gas_plant_A
       model: unit_commitment_library.generator
+
       parameters:
         - id: p_min
           time-dependent: false
@@ -89,14 +95,16 @@ system:
 
     - id: wind_farm_A
       model: unit_commitment_library.renewable
+
       parameters:
         - id: generation
           time-dependent: true
           scenario-dependent: true
-          timeseries: wind_generation_ts
+          value: wind_generation
 
     - id: nuclear_plant_B
       model: unit_commitment_library.generator
+
       parameters:
         - id: p_min
           time-dependent: false
@@ -117,6 +125,7 @@ system:
 
     - id: gas_plant_B
       model: unit_commitment_library.generator
+
       parameters:
         - id: p_min
           time-dependent: false
@@ -137,14 +146,16 @@ system:
 
     - id: solar_farm_B
       model: unit_commitment_library.renewable
+
       parameters:
         - id: generation
           time-dependent: true
           scenario-dependent: true
-          timeseries: solar_generation_ts
+          value: solar_generation
 
     - id: link_AB
       model: unit_commitment_library.link
+
       parameters:
         - id: capacity_direct
           time-dependent: false
@@ -156,6 +167,7 @@ system:
           value: 100
 
   connections:
+
     - component1: bus_A
       component2: load_A
       port1: balance_port
@@ -187,7 +199,7 @@ system:
       port2: balance_port
 
     - component1: bus_B
-      component2: peaker_plant_B
+      component2: gas_plant_B
       port1: balance_port
       port2: balance_port
 
