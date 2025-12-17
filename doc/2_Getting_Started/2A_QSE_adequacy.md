@@ -237,7 +237,17 @@ The results will be available in the folder `<study_folder>/output`
 
 In `output` folder, the simulation table csv file represents the results of the simulation.
 
-The simulation outputs contains the optimised value of marginal price which is, in this example, **35 €/MW**.  
+The simulation outputs contain the optimized value of marginal price for each bus. The power flows between buses can be visualized as follows:
+
+![outputs diagram](../../assets/2_QSE_1_out_scheme.png)
+
+You can copy and import this XML into [draw.io](https://app.diagrams.net/) to visualize the three-bus power flow diagram.
+
+- bus_1 : **35 €/MW**, as it only consums 
+- bus_2 : **35 €/MW**, not *25 €/MW* because bus_2 imports power from bus_1 produced at 35€/MW
+- bus_3 : **42 €/MW**, because bus_3 produces its own power produced at 42 €/MW
+
+
 
 The following graphs show the merit order of the generator and links flows :
 
@@ -266,4 +276,4 @@ The following graphs show the merit order of the generator and links flows :
 
 ---
 
-© GEMS (LICENSE)
+© GEMS (LICENSE) 
