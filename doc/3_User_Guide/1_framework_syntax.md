@@ -21,7 +21,7 @@ Each layer plays a different role:
 | Layer | Purpose | Typical Content |
 |------|--------|----------------|
 | Mathematical Syntax | Express optimisation logic | Equations, constraints, objectives |
-| Configuration Syntax | Declare and organize models | YAML structure, keywords, sections |
+| Configuration Syntax | Declare and organize models and system | YAML structure, keywords, sections |
 
 Keeping these concerns separate improves readability, validation, and long-term maintainability of models.
 
@@ -58,7 +58,7 @@ It specifies:
 
 - How models are defined in libraries
 - How variables, parameters, ports, and constraints are declared
-- How components are assembled in the system file
+- How components are instantiated and connected in the system file
 - How parameters are provided and referenced
 - How optimisation options are configured
 
@@ -71,12 +71,12 @@ The Configuration Syntax applies to all GEMS configuration files, including:
 - **Model libraries**
 - **System file**
 - **Parameter files**
-- **Optimization configuration (`optim-config`)**
+- **Optimization configuration**
 
 Each file type has:
 - A well-defined structure
 - Allowed keywords and sections
-- Validation rules and dependencies
+- Validation rules
 
 !!! note
     Although YAML is used as the file format, the Configuration Syntax is
