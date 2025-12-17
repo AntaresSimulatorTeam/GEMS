@@ -33,3 +33,12 @@ The site will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 - [MkDocs Documentation](https://www.mkdocs.org/)
 - [MkDocs Material Theme](https://squidfunk.github.io/mkdocs-material/)
+
+## Quick run
+
+```bash
+python3 -m venv documentation_env
+source documentation_env/bin/activate
+pip install mkdocs mkdocs-material
+mkdocs serve
+```
