@@ -3,7 +3,7 @@
     <a href="../../../..">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
@@ -167,7 +167,7 @@ $$
 
 ## Library File
 
-![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
+![YAML Block description with mathematical equations](../assets/2_QSE_Adequacy_maths.png)
 
 ## System File
 
@@ -212,7 +212,7 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 ### How to write the system YAML file
 
-![system yaml file explanations](../../assets/2_QSE_Adequacy_system.png)
+![system yaml file explanations](../assets/2_QSE_Adequacy_system.png)
 
 # How to run the study 
 
@@ -242,8 +242,8 @@ The simulation outputs contains the optimised value of marginal price which is, 
 The following graphs show the merit order of the generator and links flows :
 
 <div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
-  <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:45%;"/>
-  <img src="../../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:45%;"/>
+  <img src="../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:45%;"/>
+  <img src="../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:45%;"/>
 </div>
 
 ---

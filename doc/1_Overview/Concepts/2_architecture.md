@@ -49,7 +49,7 @@ These inputs are external files to the core software and consist of:
 
 ## Files Interaction
 
-The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](../../../libraries/basic_models_library.yml) included in this documentation.
+The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) included in this documentation.
 
 <p align="center">
     <img src="../../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
