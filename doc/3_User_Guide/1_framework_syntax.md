@@ -13,8 +13,8 @@ The **GEMS framework** relies on a well-defined, declarative syntax to describe 
 
 From a user and documentation perspective, the GEMS syntax can be explicitly separated into **two complementary layers**, each serving a distinct purpose:
 
-- **Mathematical Syntax** — [describes *what is being modeled*](2_mathematical_syntax.md)
-- **Configuration Syntax** — [describes *how it is declared and structured*](3_configuration_syntax.md)
+- **Mathematical Syntax** — [describes *what is being modeled*](../2_mathematical_syntax)
+- **Configuration Syntax** — [describes *how it is declared and structured*](../3_configuration_syntax)
 
 This separation is fundamental to understanding how GEMS models are written, interpreted, and validated.
 
