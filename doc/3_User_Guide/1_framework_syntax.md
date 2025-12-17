@@ -58,7 +58,7 @@ It specifies:
 
 - How models are defined in libraries
 - How variables, parameters, ports, and constraints are declared
-- How models are assembled in the system file
+- How components are assembled in the system file
 - How parameters are provided and referenced
 - How optimisation options are configured
 

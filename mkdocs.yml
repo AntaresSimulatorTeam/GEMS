@@ -52,12 +52,15 @@ nav:
       - Installation: 2_Getting Started/1_installation.md
       - Quick Start Examples: 2_Getting Started/2_quick start examples.md
   - User Guide:
-      - Syntax: 3_User Guide/1_syntax.md
-      - Inputs: 3_User Guide/2_inputs.md
-      - Antares Hybrid Mode Inputs: 3_User Guide/3_hybrid inputs.md
-      - Outputs: 3_User Guide/4_outputs.md
-      - Optimization: 3_User Guide/5_optimization.md
-      - Glossary: 3_User Guide/6_glossary.md
+      - Syntax: 
+          - GEMS Framework Syntax: 3_User_Guide/1_framework_syntax.md
+          - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md
+          - Configuration Syntax: 3_User_Guide/3_configuration_syntax.md
+      - Inputs: 3_User_Guide/2_inputs.md
+      - Antares Hybrid Mode Inputs: 3_User_Guide/3_hybrid_inputs.md
+      - Outputs: 3_User_Guide/4_outputs.md
+      - Optimization: 3_User_Guide/5_optimization.md
+      - Glossary: 3_User_Guide/6_glossary.md
   - Interoperability:
       - PyPSA: 4_Interoperability/1_pypsa.md
       - Antares Legacy Format: 4_Interoperability/2_antares legacy.md
