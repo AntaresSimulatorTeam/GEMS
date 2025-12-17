@@ -1,4 +1,3 @@
-![Template Banner](../assets/template_banner.svg)
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="folder1/home1.md">Main Section</a>
@@ -10,13 +9,54 @@
 
 *This section coms from Overview.concepts file*
 
-# Model definition (from system.yml)
+# GEMS Mathematical Expression Syntax
 
-Model and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
+GEMS includes a **Mathematical Expression Syntax** that allows modelers to write equations for optimization models in a clear, math-like syntax within configuration files
+. This language is independent of any programming code – model equations are specified as human-readable text, which GEMS interprets to build the mathematical optimization problem.
 
-# Components specification (from system.yml)
+In this section, we detail the **Mathematical Expression Syntax**, supported operators, linearity requirements, use of parameters/variables/ports, time and scenario indexing, aggregation functions, constraint forms, naming rules, and some modeling best practices.
 
-Components and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
+
+## Operators
+
+Operators can be divided into three groups:
+
+- **Arithmetic Operators**
+- **Comparison Operators**
+- **Advance Operators**
+
+### Arithmetic Operators
+Mathematical expressions use standard arithmetic notation. The following binary arithmetic operators are supported:
+
+
+| Operator | Example |
+|------|--------------------------|
+| Addition| A + B |
+| Subtraction | A - B |
+| Multiplication | A * B |
+| Division | A / B |
+
+These operate with conventional precedence (multiplication and division bind tighter than addition and subtraction). You may use parentheses (...) to group sub-expressions as needed for clarity or to override precedence.
+
+### Comparison Operators
+
+Comparison operators are used to form constraints (equations or inequalities).
+
+| Operator | Description | Example|
+|------|--------------------------| ---------------|
+| Equality `=`| Used in constraint definitions to enforce that left-hand side equals right-hand side | `var1 = var2` |
+| Less-than-or-equal `<=` | Used in constraints to require `LHS ≤ RHS` | `var 1 <= var2`|
+| Greater-than-or-equal `>=` | Used in constraints to require `LHS ≥ RHS` | `var 1 >= var2`|
+
+Important: Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions). Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
+ dividing the expression into a left-hand side (LHS) and right-hand side (RHS). Chained comparisons (e.g. `A <= B <= C`) are not permitted; if needed, break them into separate constraints.
+
+### Advance Operators
+
+TODO : dual, reduced_cost, pow, min, max
+
+
+GEMS framework **Mathematical Expression Syntax** does not support certain operations common in programming or math notation. For example, exponentiation (^ or **), modul, and non-linear functions (log, sin, etc.) are not part of the expression syntax. Only the operators listed above can be used. If a mathematical relationship is non-linear, it must be linearized or reformulated.
 
 # Dataseries
 Currently, the framework supports defining **dataseries** using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
