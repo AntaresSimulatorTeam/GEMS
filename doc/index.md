@@ -25,7 +25,7 @@ You can use GEMS with the following interpreters:
         <a href="../1_Overview/Concepts/1_architecture/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔍 Core Concepts</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/GEMS Interpreters/1_gemspy/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🤖 Interpreters</a>
+        <a href="../1_Overview/GEMS_Interpreters/1_gemspy/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🤖 Interpreters</a>
       </div>
       <div style="margin-bottom: 5px;">
         <a href="../1_Overview/References/1_Classification/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📄 References</a>
@@ -40,10 +40,10 @@ You can use GEMS with the following interpreters:
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../2_Getting Started/1_installation/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
+        <a href="../2_Getting_Started/1_installation/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../2_Getting Started/2_quick start examples/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start Examples</a>
+        <a href="../2_Getting_Started/2_quick_start_examples/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start Examples</a>
       </div>
     </div>
   </div>
@@ -55,13 +55,13 @@ You can use GEMS with the following interpreters:
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/1_syntax/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
+        <a href="../3_User_Guide/1_syntax/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/3_inputs/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
+        <a href="../3_User_Guide/3_inputs/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/4_outputs/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
+        <a href="../3_User_Guide/4_outputs/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
       </div>
     </div>
   </div>
@@ -76,7 +76,7 @@ You can use GEMS with the following interpreters:
         <a href="../4_Interoperability/1_pypsa/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔄 PyPSA</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/2_antares legacy/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📜 Antares Legacy</a>
+        <a href="../4_Interoperability/2_antares_legacy/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📜 Antares Legacy</a>
       </div>
       <div style="margin-bottom: 5px;">
         <a href="../4_Interoperability/3_hybrid/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid</a>

@@ -3,7 +3,7 @@
     <a href="../../../..">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
@@ -45,7 +45,7 @@ QSE_2_Unit_Commitment/
 
 **Time Horizon:** 168 hours (1 week) with hourly resolution
 
-![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
+![QSE_2 system description diagram](../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
 # Mathematical Representation
 
@@ -585,7 +585,7 @@ Generators are dispatched according to their variable cost (merit order):
 
 ## By Using Modeler
 
-1. Install Modeler through the [installation tutorial](../2_Getting%20Started/1_installation.md)
+1. Install Modeler through the [installation tutorial](../1_installation)
 2. Navigate to the parent folder of `rte-antares-9.3.2-installer-64bits/`
 3. Open the terminal
 4. Run these commands:

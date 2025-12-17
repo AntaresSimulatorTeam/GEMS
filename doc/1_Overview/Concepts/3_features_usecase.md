@@ -45,7 +45,7 @@ GEMS was primarily designed for the following purposes:
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-  <a href="../../GEMS Interpreters/1_gemspy" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  <a href="../../GEMS_Interpreters/1_gemspy" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>
