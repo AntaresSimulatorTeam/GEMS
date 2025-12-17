@@ -53,7 +53,7 @@
           <mxGeometry x="517" y="190" width="220" height="30" as="geometry" />
         </mxCell>
         <!-- Region B - Peaker -->
-        <mxCell id="region-b-peaker" value="🔥 Peaker Plant: 100 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFFFFF;fontStyle=0;" vertex="1" parent="1">
+        <mxCell id="region-b-peaker" value="⚡ Gas Plant: 100 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFFFFF;fontStyle=0;" vertex="1" parent="1">
           <mxGeometry x="507" y="225" width="220" height="20" as="geometry" />
         </mxCell>
         <!-- Region B - Peaker Details -->
