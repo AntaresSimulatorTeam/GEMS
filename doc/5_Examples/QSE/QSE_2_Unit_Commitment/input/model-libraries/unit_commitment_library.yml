@@ -1,10 +1,10 @@
 # Unit Commitment Models Library
-# This library defines models with binary commitment variables,
-# startup/shutdown costs, and minimum up/down time constraints.
+# This library defines models for a simple unit commitment problem
+# with generator, renewable sources, and load.
 
 library:
   id: unit_commitment_library
-  description: Models for unit commitment 
+  description: Models for unit commitment optimization
 
   port-types:
     - id: flow_port
@@ -14,6 +14,7 @@ library:
 
   models:
 
+    # Bus model: central node for power balance
     - id: bus
       parameters:
         - id: spillage_cost
@@ -34,11 +35,9 @@ library:
       objective-contributions:
         - id: objective
           expression: sum(spillage * spillage_cost + unsupplied_energy * unsupplied_energy_cost)
-      extra-outputs:
-        - id: marginal_price
-          expression: dual(balance)
 
 
+    # Load model: consumes power (negative flow)
     - id: load
       parameters:
         - id: load
@@ -52,73 +51,85 @@ library:
           field: flow
           definition: -load
 
-    - id: link
-      parameters:
-        - id: capacity_direct
-          time-dependent: true
-          scenario-dependent: true
-        - id: capacity_indirect
-          time-dependent: true
-          scenario-dependent: true
-      variables:
-        - id: flow_direct
-          lower-bound: 0
-          upper-bound: capacity_direct
-          variable-type: continuous
-        - id: flow_indirect
-          lower-bound: 0
-          upper-bound: capacity_indirect
-          variable-type: continuous
-        - id: flow
-          lower-bound: -capacity_indirect
-          upper-bound: capacity_direct
-          variable-type: continuous
-      ports:
-        - id: out_port
-          type: flow_port
-        - id: in_port
-          type: flow_port
-      port-field-definitions:
-        - port: out_port
-          field: flow
-          definition: flow
-        - port: in_port
-          field: flow
-          definition: -flow
-      constraints:
-        - id: flow_direct_indirect
-          expression: flow = flow_direct - flow_indirect
 
-    - id: generator
+    # Thermal model: dispatchable thermal units
+    - id: thermal
       parameters:
-        - id: p_min
+        - id: p_min_cluster
           scenario-dependent: true
           time-dependent: true
-        - id: p_max
+        - id: p_max_cluster # timeseries that takes outages into account
           scenario-dependent: true
           time-dependent: true
+        - id: p_min_unit
+        - id: p_max_unit
         - id: generation_cost
-          scenario-dependent: false
-          time-dependent: false
-        - id: co2_emission_factor
-          scenario-dependent: false
-          time-dependent: false
+        - id: startup_cost
+        - id: fixed_cost
+        - id: d_min_up
+        - id: d_min_down
+        - id: nb_units_min # Equals to ceil(p_min_cluster/p_max_unit), to be done in preprocessing
+          scenario-dependent: true
+          time-dependent: true
+        - id: nb_units_max # Equals to ceil(p_max_cluster/p_max_unit), to be done in preprocessing
+          scenario-dependent: true
+          time-dependent: true
+        - id: nb_units_max_variation_forward
+          scenario-dependent: true
+          time-dependent: true
+        - id: nb_units_max_variation_backward
+          scenario-dependent: true
+          time-dependent: true
       variables:
         - id: generation
-          lower-bound: p_min
-          upper-bound: p_max
+          lower-bound: p_min_cluster
+          upper-bound: p_max_cluster
           variable-type: continuous
+        - id: nb_units_on
+          lower-bound: nb_units_min
+          upper-bound: nb_units_max
+          variable-type: integer
+        - id: nb_starting
+          lower-bound: 0
+          upper-bound: nb_units_max
+          variable-type: integer
+        - id: nb_stopping
+          lower-bound: 0
+          upper-bound: nb_units_max
+          variable-type: integer
+        - id: nb_failing
+          lower-bound: 0
+          upper-bound: nb_units_max
+          variable-type: integer
       ports:
         - id: balance_port
-          type: flow_port
+          type: flow
       port-field-definitions:
         - port: balance_port
           field: flow
           definition: generation
+      constraints:
+        - id: max_generation
+          expression: generation <= nb_units_on * p_max_unit
+        - id: min_generation
+          expression: generation >= nb_units_on * p_min_unit
+        - id: on_units_dynamics
+          expression: nb_units_on = nb_units_on[t-1] + nb_starting - nb_stopping
+        - id: nb_failing_lower_than_stopping
+          expression: nb_failing <= nb_stopping
+        - id: nb_failing_lower_than_max_variation
+          expression: nb_failing <= nb_units_max_variation_forward
+        - id: min_up_duration
+          expression: sum(t-d_min_up + 1 .. t, nb_starting - nb_failing) <= nb_units_on
+        - id: min_down_duration
+          expression: sum(t-d_min_down + 1 .. t, nb_stopping) <= nb_units_max[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, nb_units_max_variation_backward)
       objective-contributions:
         - id: objective
-          expression: sum(generation_cost * generation)
+          expression: sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on)
 
+
+
+    # Renewable model: non-dispatchable generation (solar, wind)
     - id: renewable
       parameters:
         - id: generation
