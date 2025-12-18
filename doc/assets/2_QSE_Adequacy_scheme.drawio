@@ -4,13 +4,13 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2" value="&lt;b&gt;🏙️ Region 1&lt;/b&gt;&lt;br&gt;⚡ Generator: 70-100 MW&lt;br&gt;💰 Cost: 35 €/MWh&lt;br&gt;💡 Load: 50 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8E44AD;strokeColor=#483465;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
+        <mxCell id="2" value="&lt;b&gt;🏙️ Bus 1&lt;/b&gt;&lt;br&gt;⚡ Generator: 70-100 MW&lt;br&gt;💰 Cost: 35 €/MWh&lt;br&gt;💡 Load: 50 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8E44AD;strokeColor=#483465;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="90" y="90" width="190" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="3" value="&lt;b&gt;🏙️ Region 2&lt;/b&gt;&lt;br&gt;⚡ Generator: 50-90 MW&lt;br&gt;💰 Cost: 25 €/MWh&lt;br&gt;💡 Load: 40 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2980B9;strokeColor=#1A5276;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
+        <mxCell id="3" value="&lt;b&gt;🏙️ Bus 2&lt;/b&gt;&lt;br&gt;⚡ Generator: 50-90 MW&lt;br&gt;💰 Cost: 25 €/MWh&lt;br&gt;💡 Load: 40 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2980B9;strokeColor=#1A5276;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="520" y="90" width="200" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="4" value="&lt;b&gt;🏙️ Region 3&lt;/b&gt;&lt;br&gt;⚡ Generator: 50-200 MW&lt;br&gt;💰 Cost: 42 €/MWh&lt;br&gt;💡 Load: 150 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27AE60;strokeColor=#1E8449;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
+        <mxCell id="4" value="&lt;b&gt;🏙️ Bus 3&lt;/b&gt;&lt;br&gt;⚡ Generator: 50-200 MW&lt;br&gt;💰 Cost: 42 €/MWh&lt;br&gt;💡 Load: 150 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27AE60;strokeColor=#1E8449;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="310" y="300" width="180" height="80" as="geometry" />
         </mxCell>
         <mxCell id="5" style="startArrow=classic;rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#000000;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="2" target="3" edge="1">
