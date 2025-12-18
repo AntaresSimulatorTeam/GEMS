@@ -99,16 +99,16 @@ This section presents the mathematical formulation of the economic dispatch prob
 
 ## Optimization Problem
 
-The objective function minimizes total system cost over the week:
+The objective function minimizes dispatch system cost over the week:
 
 $$
-\min(\Omega_{\text{total}})
+\min(\Omega_{\text{dispatch}})
 $$
 
 where:
 
 $$
-\Omega_{\text{total}} = \Omega_{\text{generation}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
+\Omega_{\text{dispatch}} = \Omega_{\text{generation}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
 $$
 
 ## Objective Function Components
@@ -131,7 +131,7 @@ $$
 
 ### Spillage Cost
 
-Penalty for wasted renewable energy:
+Penalty for wasted renewable energy for all 3 buses:
 
 $$
 \Omega_{\text{spillage}} = \sum_{t \in T} \sum_{b \in B} \delta_b^- \cdot S_{b,t}
@@ -170,18 +170,21 @@ The library file defines the models for buses, loads, generators, renewables, an
 - Create `system.yml` with the following characteristics:
 
 **Region A:**
+
 - Coal plant: 200 MW max, 80 MW min, $35/MWh, CO2 factor 0.9
 - Gas plant: 150 MW max, 30 MW min, $50/MWh, CO2 factor 0.4
 - Wind farm: Variable generation from timeseries
 - Load: Variable demand from timeseries
 
 **Region B:**
+
 - Nuclear plant: 300 MW max, 200 MW min, $15/MWh, CO2 factor 0
 - Gas plant: 100 MW max, 10 MW min, $80/MWh, CO2 factor 0.5
 - Solar farm: Variable generation from timeseries
 - Load: Variable demand from timeseries
 
 **Transmission:**
+
 - Link A-B: 100 MW bidirectional capacity
 
 ### How to write the system YAML file
