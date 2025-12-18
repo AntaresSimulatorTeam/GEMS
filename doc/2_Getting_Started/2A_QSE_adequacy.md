@@ -263,8 +263,6 @@ The following graphs show the merit order of the generator and links flows :
     <img src="../../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:100%;"/>
     <figcaption style="text-align:center; margin-top:8px;">
       Above the blue absciss axis, the flow represents import, below it's export.
-      
-      In this example, bus_3 and bus_1 are importing while bus 2 is exporting.
     </figcaption>
   </figure>
 </div>
