@@ -194,15 +194,21 @@ The library file defines the models for buses, loads, generators, renewables, an
 
 Weekly load profiles with typical daily patterns for both regions. Each load has its own CSV file.
 
-Here the profile of load for bus_A :
+Here the load profiles for bus_A and bus_B :
 
-![load A profile](../../assets/2_QSE2_Unit_Com_ts_load_A.png)
+<div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
+  <img src="../../assets/2_QSE2_Unit_Com_ts_load_A.png" alt="load A profile" style="width:45%;"/>
+  <img src="../../assets/2_QSE2_Unit_Com_ts_load_B.png" alt="load B profile" style="width:45%;"/>
+</div>
 
 ## Renewable Generation Profiles
 
-Here the profile of solar generation :
+Here the profile of solar and wind generation :
+<div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
+  <img src="../../assets/2_QSE2_Unit_Com_ts_solar.png" alt="solar profile" style="width:45%;"/>
+  <img src="../../assets/2_QSE2_Unit_Com_ts_wind.png" alt="wind profile" style="width:45%;"/>
+</div>
 
-![solar profile](../../assets/2_QSE2_Unit_Com_ts_solar.png)
 
 # How to Run the Study
 
