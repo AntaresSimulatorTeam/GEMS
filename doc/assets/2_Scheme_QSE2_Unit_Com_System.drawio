@@ -62,10 +62,10 @@
           <mxGeometry x="360" y="215" width="107" height="50" as="geometry" />
         </mxCell>
         <mxCell id="diagram-title" value="Unit Commitment System - Week-Long Optimization (168 hours)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="80" y="40" width="667" height="40" as="geometry" />
+          <mxGeometry x="80.5" y="60" width="667" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="time-note" value="⏱️ Time Horizon: 168 hours (1 week) | Problem Type: Mixed Integer Linear Programming (MILP)" style="text;html=1;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;fontColor=#F57F17;" parent="1" vertex="1">
-          <mxGeometry x="190" y="380" width="467" height="30" as="geometry" />
+        <mxCell id="time-note" value="⏱️ Time Horizon: 168 hours (1 week)" style="text;html=1;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;fontColor=#F57F17;" parent="1" vertex="1">
+          <mxGeometry x="304" y="380" width="220" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
