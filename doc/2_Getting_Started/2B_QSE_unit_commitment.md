@@ -231,8 +231,6 @@ The results will be available in the folder `<study_folder>/output`
 
 In `output` folder, the simulation table csv file represents the results of the simulation.
 
-The simulation outputs contains the optimised value of marginal price which is, in this example, **-813 €/MW**.  
-
 The following graphs show the merit order of the generator and links flows :
 
 <div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
