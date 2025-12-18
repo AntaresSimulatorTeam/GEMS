@@ -7,16 +7,12 @@
   </div>
 </div>
 
-# QSE 2: Economic Dispatch - Week-Long Optimization
+# QSE 2: Unit Commitment - Simple Example
 
 ## Overview
-This tutorial demonstrates economic dispatch optimization over a one-week time horizon. Economic dispatch determines the optimal power output from each generator at each time period to meet demand at minimum cost.
+This tutorial demonstrates a simple unit commitment optimization. Unit commitment determines the optimal power output from a generator at each time period to meet demand at minimum cost.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/doc/5_Examples/QSE/QSE_2_Unit_Commitment).
-
-**Definition :** 
-
-**Economic Dispatch** is the problem of determining the optimal power output from generation units over a 7 days horizon.
 
 ## Files Structure
 
@@ -27,10 +23,9 @@ QSE_2_Unit_Commitment/
 │   ├── model-libraries/
 │   │   └── unit_commitment_library.yml
 │   └── data-series/
-│       ├── load_bus_A.csv
-│       ├── load_bus_B.csv
-│       ├── wind_generation.csv
-│       └── solar_generation.csv
+│       ├── solar.csv
+│       ├── wind.csv
+│       └── load.csv
 └── parameters.yml
 ```
 
@@ -38,19 +33,19 @@ QSE_2_Unit_Commitment/
 
 **Components:**
 
-  - 2 Buses (Region A and Region B)
-  - 1 Link (connecting the two regions)
-  - 4 Thermal Generators (with capacity and cost constraints)
-  - 2 Renewable Generators (wind and solar with variable profiles)
-  - 2 Loads (variable demand over the week)
+  - 1 Bus
+  - 1 Generator (10 MW capacity) with 10 units of 1 MW
+  - 1 Solar Plant
+  - 1 Wind Plant
+  - 1 Load (variable demand)
 
-**Time Horizon:** 168 hours (1 week) with hourly resolution
+**Time Horizon:** 1 week with hourly resolution
 
 ![QSE_2 system description diagram](../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
 # Mathematical Representation
 
-This section presents the mathematical formulation of the economic dispatch problem. The notation is adapted from the [Antares Simulator Wiki](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
+This section presents the mathematical formulation of the unit commitment problem.
 
 ## Glossary of Mathematical Symbols
 
@@ -58,48 +53,36 @@ This section presents the mathematical formulation of the economic dispatch prob
 
 | Symbol | Description |
 |--------|-------------|
-| $T$ | Set of time periods (hours), $t \in \{1, 2, ..., 168\}$ |
-| $B$ | Set of buses (regions) |
-| $G_b$ | Set of thermal generators at bus $b$ |
-| $R_b$ | Set of renewable generators at bus $b$ |
-| $L$ | Set of transmission links |
+| $T$ | Set of time periods (hours), $t \in \{1, 2, ..., 12\}$ |
+| $b$ | The single bus in the system |
 
 ### Decision Variables
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
-| $P_{g,t}$ | Power output from generator $g$ at time $t$ | MW |
-| $F_{l,t}$ | Net power flow through link $l$ at time $t$ | MW |
-| $U_{b,t}$ | Unsupplied power at bus $b$ at time $t$ | MW |
-| $S_{b,t}$ | Spilled power at bus $b$ at time $t$ | MW |
+| $P_{t}$ | Power output from generator at time $t$ | MW |
+| $U_{t}$ | Unsupplied power at time $t$ | MW |
+| $S_{t}$ | Spilled power at time $t$ | MW |
 
-### Parameters - Generator Technical Constraints
-
-| Symbol | Description | Unit |
-|--------|-------------|------|
-| $\underline{P}_g$ | Minimum power output | MW |
-| $\overline{P}_g$ | Maximum power output | MW |
-| $\epsilon_g$ | CO2 emission factor | tCO2/MWh |
-
-### Parameters - Economic
+### Parameters - Generator
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
-| $\chi_g$ | Variable generation cost | \$/MWh |
-| $\delta_b^+$ | Unsupplied energy cost (value of lost load) | \$/MWh |
-| $\delta_b^-$ | Spillage cost | \$/MWh |
+| $\underline{P}$ | Minimum power output (0 MW) | MW |
+| $\overline{P}$ | Maximum power output (10 MW) | MW |
+| $\chi$ | Variable generation cost (50 $/MWh) | $/MWh |
 
 ### Parameters - System
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
-| $D_{b,t}$ | Load demand at bus $b$ at time $t$ | MW |
-| $\overline{W}_{r,t}$ | Available renewable generation from source $r$ at time $t$ | MW |
-| $\overline{F}_l$ | Transmission capacity of link $l$ | MW |
+| $D_{t}$ | Load demand at time $t$ | MW |
+| $\delta^+$ | Unsupplied energy cost (10000 $/MWh) | $/MWh |
+| $\delta^-$ | Spillage cost (1000 $/MWh) | $/MWh |
 
 ## Optimization Problem
 
-The objective function minimizes dispatch system cost over the week:
+The objective function minimizes total system cost:
 
 $$
 \min(\Omega_{\text{dispatch}})
@@ -115,53 +98,43 @@ $$
 
 ### Generation Cost
 
-Variable cost of running generators:
-
 $$
-\Omega_{\text{generation}} = \sum_{t \in T} \sum_{b \in B} \sum_{g \in G_b} \chi_g \cdot P_{g,t}
+\Omega_{\text{generation}} = \sum_{t \in T} \chi \cdot P_{t}
 $$
 
 ### Unsupplied Energy Cost
 
-Penalty for not meeting demand:
-
 $$
-\Omega_{\text{unsupplied}} = \sum_{t \in T} \sum_{b \in B} \delta_b^+ \cdot U_{b,t}
+\Omega_{\text{unsupplied}} = \sum_{t \in T} \delta^+ \cdot U_{t}
 $$
 
 ### Spillage Cost
 
-Penalty for wasted renewable energy for all 3 buses:
-
 $$
-\Omega_{\text{spillage}} = \sum_{t \in T} \sum_{b \in B} \delta_b^- \cdot S_{b,t}
+\Omega_{\text{spillage}} = \sum_{t \in T} \delta^- \cdot S_{t}
 $$
 
 ## Constraints
 
-### First Kirchhoff's Law (Power Balance)
+### Power Balance (Kirchhoff's Law)
 
-For each bus and time period:
+For each time period:
 
 $$
-\forall b \in B, \forall t \in T: \quad \sum_{g \in G_b} P_{g,t} + \sum_{r \in R_b} \overline{W}_{r,t} - D_{b,t} + \sum_{l \in L_b^+} F_{l,t} - \sum_{l \in L_b^-} F_{l,t} = S_{b,t} - U_{b,t}
+\forall t \in T: \quad P_{t} - D_{t} = S_{t} - U_{t}
 $$
 
 ### Generator Output Limits
 
-Power output must respect capacity bounds:
-
 $$
-\forall g \in G, \forall t \in T: \quad \underline{P}_g \leq P_{g,t} \leq \overline{P}_g
+\forall t \in T: \quad \underline{P} \leq P_{t} \leq \overline{P}
 $$
 
 # YAML Block Description
 
 ## Library File
 
-The library file defines the models for buses, loads, generators, renewables, and transmission links.
-
-![YAML Block Library with LATEX](../..assets/2_QSE_UC_library.png)
+The library file defines the models for bus, load, and generator.
 
 ## System File
 
@@ -169,49 +142,11 @@ The library file defines the models for buses, loads, generators, renewables, an
 
 - Create `system.yml` with the following characteristics:
 
-**Region A:**
+**Single Area:**
 
-- Coal plant: 200 MW max, 80 MW min, $35/MWh, CO2 factor 0.9
-- Gas plant: 150 MW max, 30 MW min, $50/MWh, CO2 factor 0.4
-- Wind farm: Variable generation from timeseries
-- Load: Variable demand from timeseries
-
-**Region B:**
-
-- Nuclear plant: 300 MW max, 200 MW min, $15/MWh, CO2 factor 0
-- Gas plant: 100 MW max, 10 MW min, $80/MWh, CO2 factor 0.5
-- Solar farm: Variable generation from timeseries
-- Load: Variable demand from timeseries
-
-**Transmission:**
-
-- Link A-B: 100 MW bidirectional capacity
-
-### How to write the system YAML file
-
-![System yaml file explanations](../../assets/2_QSE2_Unit_Com_System_File.png)
-
-# Time Series Data
-
-## Load Profiles
-
-Weekly load profiles with typical daily patterns for both regions. Each load has its own CSV file.
-
-Here the load profiles for bus_A and bus_B :
-
-<div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
-  <img src="../../assets/2_QSE2_Unit_Com_ts_load_A.png" alt="load A profile" style="width:45%;"/>
-  <img src="../../assets/2_QSE2_Unit_Com_ts_load_B.png" alt="load B profile" style="width:45%;"/>
-</div>
-
-## Renewable Generation Profiles
-
-Here the profile of solar and wind generation :
-<div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
-  <img src="../../assets/2_QSE2_Unit_Com_ts_solar.png" alt="solar profile" style="width:45%;"/>
-  <img src="../../assets/2_QSE2_Unit_Com_ts_wind.png" alt="wind profile" style="width:45%;"/>
-</div>
-
+- Bus: spillage_cost = 1000 $/MWh, unsupplied_energy_cost = 10000 $/MWh
+- Generator: 10 MW max, 0 MW min, $50/MWh, CO2 factor 0.4
+- Load: Variable demand from timeseries (5-10 MW range)
 
 # How to Run the Study
 
@@ -231,17 +166,6 @@ rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
 ```
 
 The results will be available in the folder `<study_folder>/output`
-
-## Outputs
-
-In `output` folder, the simulation table csv file represents the results of the simulation.
-
-The following graphs show the merit order of the generator and links flows :
-
-<div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
-  <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:45%;"/>
-  <img src="../../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:45%;"/>
-</div>
 
 ---
 
