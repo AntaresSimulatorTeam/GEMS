@@ -103,7 +103,7 @@ library:
           variable-type: integer
       ports:
         - id: balance_port
-          type: flow
+          type: flow_port
       port-field-definitions:
         - port: balance_port
           field: flow
