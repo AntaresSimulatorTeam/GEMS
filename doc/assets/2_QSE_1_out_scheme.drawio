@@ -40,7 +40,7 @@
         </mxCell>
         <mxCell id="ZHwVyxWx9xz-ORZm-dGL-8" value="&lt;font style=&quot;font-size: 14px; color: rgb(0, 0, 0);&quot;&gt;Thermal capacity sent to bus_1&amp;nbsp;&lt;/font&gt;&lt;div style=&quot;color: rgb(127, 140, 141);&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;20 MW&lt;/font&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="ZHwVyxWx9xz-ORZm-dGL-7" vertex="1" connectable="0">
           <mxGeometry x="0.05" y="4" relative="1" as="geometry">
-            <mxPoint x="6" y="-14" as="offset" />
+            <mxPoint x="6" y="-24" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
