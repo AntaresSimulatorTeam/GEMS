@@ -253,8 +253,20 @@ The simulation outputs contain the optimized value of marginal price for each bu
 The following graphs show the merit order of the generator and links flows :
 
 <div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
-  <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:45%;"/>
-  <img src="../../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:45%;"/>
+  <figure style="width:45%; margin:0;">
+    <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:100%;"/>
+    <figcaption style="text-align:center; margin-top:8px;">
+      This graph shows the power output of each generator in the system, illustrating how the optimizer allocates generation based on cost and capacity constraints.
+    </figcaption>
+  </figure>
+  <figure style="width:45%; margin:0;">
+    <img src="../../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:100%;"/>
+    <figcaption style="text-align:center; margin-top:8px;">
+      Above the blue absciss axis, the flow represents import, below it's export.
+      
+      In this example, bus_3 and bus_1 are importing while bus 2 is exporting.
+    </figcaption>
+  </figure>
 </div>
 
 ---
