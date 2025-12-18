@@ -223,6 +223,7 @@ Instantiation of components `bus_1`, `bus_load_1`, `generator_1` and `link_12` i
 
 Based on the connection via components from `connections` section in `system.yml` file, optimization graph can be build. 
 
+![complete diagram with ports](../../assets/2_QSE_1_system_complete.png)
 
 # How to run the study 
 
