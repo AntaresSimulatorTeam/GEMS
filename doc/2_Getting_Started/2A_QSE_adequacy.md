@@ -217,7 +217,7 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 
 Following diagrams represents part of the `system.yml` where user is able to instantiate components (buses, links, generators etc.) and connect them via ports into the optimization graph.
 
-Instantiation of components `bus_1`, `bus_load_1`, `generator_1` and `link_12` is represented as well as connection between `bus_1` and `bus_load_1` components. Entire system file can be found, link to the example system file!!! TODO
+Instantiation of components `bus_1`, `bus_load_1`, `generator_1` and `link_12` is represented as well as connection between `bus_1` and `bus_load_1` components. Entire system file can be found [in this repo](https://github.com/AntaresSimulatorTeam/GEMS/blob/15b4821113a09a417b73d00b3bc24f819ef44c99/doc/5_Examples/QSE/QSE_1_Adequacy/input/system.yml).
 
 ![system yaml file explanations](../assets/2_QSE_Adequacy_system.png)
 
