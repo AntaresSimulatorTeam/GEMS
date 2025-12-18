@@ -194,11 +194,15 @@ The library file defines the models for buses, loads, generators, renewables, an
 
 Weekly load profiles with typical daily patterns for both regions. Each load has its own CSV file.
 
-graph
+Here the profile of load for bus_A :
+
+![load A profile](../../assets/2_QSE2_Unit_Com_ts_load_A.png)
 
 ## Renewable Generation Profiles
 
-graph
+Here the profile of solar generation :
+
+![solar profile](../../assets/2_QSE2_Unit_Com_ts_solar.png)
 
 # How to Run the Study
 
