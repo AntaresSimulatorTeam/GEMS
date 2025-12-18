@@ -85,7 +85,7 @@ You can use parameters freely in arithmetic operations. Since parameters are con
 
 ## Variables
 
-Variables in MEL correspond to the decision variables of the optimization. They are defined in a model’s definition (within a library) with an `ID`, a type (`continuous`, `integer`, or `binary`), and optional bounds. All variables are referenced by their `ID` in expressions, just like parameters. For example, if a model defines a variable with `id: generation`, you can use `generation` in an expression:
+Variables correspond to the decision variables of the optimization. They are defined in a model’s definition (within a library) with an `ID`, a type (`continuous`, `integer`, or `binary`), and optional bounds. All variables are referenced by their `ID` in expressions, just like parameters. For example, if a model defines a variable with `id: generation`, you can use `generation` in an expression:
 ```yaml
 expression: generation * generation_cost
 ```
@@ -129,7 +129,7 @@ This single constraint will enforce that the total of flow from all connected co
 
 **Direct port.field usage**: If you know a port has exactly one connection (or you want to treat a single connection's value), you could reference `port_id.field_id` directly in an expression. However, for generality and clarity, it is recommended to use `sum_connections` even for single-connection cases – it makes the intent clear and will also handle multiple connections if the model is extended.
 
-Similar to variables, port field values must enter expressions linearly. Since a port field ultimately either comes from another model’s variable or is defined by a linear expression in this model, using port.field in linear combinations is fine, but you cannot, for example, multiply two port fields together or divide by a port field (these would imply non-linear relationships and are not allowed, just as with variables).
+Similar to variables, port field values must enter expressions linearly. Since a port field ultimately either comes from another model’s variable or is defined by a linear expression in this model, using `port.field` in linear combinations is fine, but you cannot, for example, multiply two port fields together or divide by a port field (these would imply non-linear relationships and are not allowed, just as with variables).
 
 ### We need to have dedicated page for detailed port explanation along with clear and plain example First Kirchhoff Law! On this page we gave a teaser and intro theory, on another page we are going to have optimization graph, mathematical equation and explanation how we are actually parsing linear expression via ports and use them to implement necessary constraint. Dedicated Ports page should be right after this one !!!
 
@@ -178,7 +178,7 @@ If a constraint expression includes any time-indexed element (e.g. a time-depend
 
 ## Scenario Operator
 
-GEMS can handle multiple scenarios (two stage stochastic) for data and variables. Scenario-dependent parameters or variables have values that differ by scenario (similar to having an extra scenario index s). MEL currently provides an operator to aggregate across the scenario dimension:
+GEMS can handle multiple scenarios (two stage stochastic) for data and variables. Scenario-dependent parameters or variables have values that differ by scenario (similar to having an extra scenario index s). **Mathematical Expression Syntax**  currently provides an operator to aggregate across the scenario dimension:
 
 Need more informations for Scenario operator. In Modeler documentation I found that behaviour for this operator is unknown? This operator is not even implemented! I would exclude it from documentation
 
