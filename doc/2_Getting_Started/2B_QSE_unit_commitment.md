@@ -139,7 +139,7 @@ $$
 
 ## Constraints
 
-### Power Balance (First Kirchhoff's Law)
+### First Kirchhoff's Law (Power Balance)
 
 For each bus and time period:
 
