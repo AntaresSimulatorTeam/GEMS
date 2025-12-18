@@ -186,7 +186,7 @@ The library file defines the models for buses, loads, generators, renewables, an
 
 ### How to write the system YAML file
 
-![System yaml file explanations](../assets/2_QSE_UC_system.png)
+![System yaml file explanations](../../assets/2_QSE2_Unit_Com_System_File.png)
 
 # Time Series Data
 
