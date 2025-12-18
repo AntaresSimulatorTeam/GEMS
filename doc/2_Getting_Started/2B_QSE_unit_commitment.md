@@ -23,9 +23,15 @@ QSE_2_Unit_Commitment/
 │   ├── model-libraries/
 │   │   └── unit_commitment_library.yml
 │   └── data-series/
+│       ├── load.csv
 │       ├── solar.csv
 │       ├── wind.csv
-│       └── load.csv
+│       ├── thermal_p_min.csv
+│       ├── thermal_p_max.csv
+│       ├── thermal_nb_units_min.csv
+│       ├── thermal_nb_units_max.csv
+│       ├── thermal_nb_units_max_var_fwd.csv
+│       └── thermal_nb_units_max_var_bwd.csv
 └── parameters.yml
 ```
 
@@ -33,13 +39,13 @@ QSE_2_Unit_Commitment/
 
 **Components:**
 
-  - 1 Bus
-  - 1 Generator (10 MW capacity) with 10 units of 1 MW
-  - 1 Solar Plant
-  - 1 Wind Plant
-  - 1 Load (variable demand)
+  - 1 Bus (central node for power balance)
+  - 1 Thermal cluster (10 units of 1 MW each, 10 MW total capacity)
+  - 1 Solar Plant (up to 80 MW)
+  - 1 Wind Plant (up to 100 MW)
+  - 1 Load (variable demand, 35-125 MW)
 
-**Time Horizon:** 1 week with hourly resolution
+**Time Horizon:** 1 week with hourly resolution (168 hours)
 
 ![QSE_2 system description diagram](../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
@@ -53,53 +59,73 @@ This section presents the mathematical formulation of the unit commitment proble
 
 | Symbol | Description |
 |--------|-------------|
-| $T$ | Set of time periods (hours), $t \in \{1, 2, ..., 12\}$ |
+| $T$ | Set of time periods (hours), $t \in \{1, 2, ..., 168\}$ |
 | $b$ | The single bus in the system |
+| $N$ | Number of thermal units (10) |
 
-### Decision Variables
+### Decision Variables - Thermal
+
+| Symbol | Description | Unit | Type |
+|--------|-------------|------|------|
+| $P_{t}$ | Total power output from thermal cluster at time $t$ | MW | Continuous |
+| $n^{on}_{t}$ | Number of units ON at time $t$ | - | Integer |
+| $n^{start}_{t}$ | Number of units starting at time $t$ | - | Integer |
+| $n^{stop}_{t}$ | Number of units stopping at time $t$ | - | Integer |
+
+### Decision Variables - System
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
-| $P_{t}$ | Power output from generator at time $t$ | MW |
 | $U_{t}$ | Unsupplied power at time $t$ | MW |
 | $S_{t}$ | Spilled power at time $t$ | MW |
 
-### Parameters - Generator
+### Parameters - Thermal
+
+| Symbol | Description | Value | Unit |
+|--------|-------------|-------|------|
+| $\underline{P}^{unit}$ | Minimum power per unit | 0 | MW |
+| $\overline{P}^{unit}$ | Maximum power per unit | 1 | MW |
+| $\chi^{gen}$ | Variable generation cost | 50 | $/MWh |
+| $\chi^{start}$ | Startup cost | 100 | $ |
+| $\chi^{fix}$ | Fixed cost (per unit ON) | 10 | $/h |
+| $\tau^{up}$ | Minimum up time | 2 | hours |
+| $\tau^{down}$ | Minimum down time | 2 | hours |
+
+### Parameters - Renewables
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
-| $\underline{P}$ | Minimum power output (0 MW) | MW |
-| $\overline{P}$ | Maximum power output (10 MW) | MW |
-| $\chi$ | Variable generation cost (50 $/MWh) | $/MWh |
+| $R^{solar}_{t}$ | Solar generation at time $t$ | MW |
+| $R^{wind}_{t}$ | Wind generation at time $t$ | MW |
 
 ### Parameters - System
 
-| Symbol | Description | Unit |
-|--------|-------------|------|
-| $D_{t}$ | Load demand at time $t$ | MW |
-| $\delta^+$ | Unsupplied energy cost (10000 $/MWh) | $/MWh |
-| $\delta^-$ | Spillage cost (1000 $/MWh) | $/MWh |
+| Symbol | Description | Value | Unit |
+|--------|-------------|-------|------|
+| $D_{t}$ | Load demand at time $t$ | 35-125 | MW |
+| $\delta^+$ | Unsupplied energy cost | 10000 | $/MWh |
+| $\delta^-$ | Spillage cost | 1000 | $/MWh |
 
 ## Optimization Problem
 
 The objective function minimizes total system cost:
 
 $$
-\min(\Omega_{\text{dispatch}})
+\min(\Omega_{\text{total}})
 $$
 
 where:
 
 $$
-\Omega_{\text{dispatch}} = \Omega_{\text{generation}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
+\Omega_{\text{total}} = \Omega_{\text{thermal}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
 $$
 
 ## Objective Function Components
 
-### Generation Cost
+### Thermal Generation Cost
 
 $$
-\Omega_{\text{generation}} = \sum_{t \in T} \chi \cdot P_{t}
+\Omega_{\text{thermal}} = \sum_{t \in T} \left( \chi^{gen} \cdot P_{t} + \chi^{start} \cdot n^{start}_{t} + \chi^{fix} \cdot n^{on}_{t} \right)
 $$
 
 ### Unsupplied Energy Cost
@@ -118,35 +144,113 @@ $$
 
 ### Power Balance (Kirchhoff's Law)
 
-For each time period:
+For each time period, generation must equal demand plus spillage minus unsupplied:
 
 $$
-\forall t \in T: \quad P_{t} - D_{t} = S_{t} - U_{t}
+\forall t \in T: \quad P_{t} + R^{solar}_{t} + R^{wind}_{t} - D_{t} = S_{t} - U_{t}
 $$
 
-### Generator Output Limits
+### Thermal Generation Limits
+
+The thermal output is bounded by the number of units ON:
 
 $$
-\forall t \in T: \quad \underline{P} \leq P_{t} \leq \overline{P}
+\forall t \in T: \quad n^{on}_{t} \cdot \underline{P}^{unit} \leq P_{t} \leq n^{on}_{t} \cdot \overline{P}^{unit}
+$$
+
+### Unit Dynamics
+
+The number of units ON follows the commitment dynamics:
+
+$$
+\forall t \in T: \quad n^{on}_{t} = n^{on}_{t-1} + n^{start}_{t} - n^{stop}_{t}
+$$
+
+### Minimum Up Time
+
+Once started, a unit must stay ON for at least $\tau^{up}$ hours:
+
+$$
+\forall t \in T: \quad \sum_{\tau = t - \tau^{up} + 1}^{t} n^{start}_{\tau} \leq n^{on}_{t}
+$$
+
+### Minimum Down Time
+
+Once stopped, a unit must stay OFF for at least $\tau^{down}$ hours:
+
+$$
+\forall t \in T: \quad \sum_{\tau = t - \tau^{down} + 1}^{t} n^{stop}_{\tau} \leq N - n^{on}_{t}
 $$
 
 # YAML Block Description
 
 ## Library File
 
-The library file defines the models for bus, load, and generator.
+The library file `unit_commitment_library.yml` defines four models:
+
+- **bus**: Central node with power balance constraint, spillage and unsupplied energy variables
+- **load**: Consumes power (negative flow into the bus)
+- **thermal**: Dispatchable thermal cluster with unit commitment logic (integer variables for units ON/starting/stopping)
+- **renewable**: Non-dispatchable generation for solar and wind plants
 
 ## System File
 
 ### System Configuration
 
-- Create `system.yml` with the following characteristics:
+The `system.yml` file defines:
 
-**Single Area:**
+**Bus:**
+- `spillage_cost` = 1000 $/MWh
+- `unsupplied_energy_cost` = 10000 $/MWh
 
-- Bus: spillage_cost = 1000 $/MWh, unsupplied_energy_cost = 10000 $/MWh
-- Generator: 10 MW max, 0 MW min, $50/MWh, CO2 factor 0.4
-- Load: Variable demand from timeseries (5-10 MW range)
+**Thermal Cluster (10 units of 1 MW):**
+- `p_min_unit` = 0 MW, `p_max_unit` = 1 MW
+- `generation_cost` = 50 $/MWh
+- `startup_cost` = 100 $
+- `fixed_cost` = 10 $/h
+- `d_min_up` = 2 hours, `d_min_down` = 2 hours
+
+**Renewables:**
+- Solar: generation from `solar.csv` timeseries
+- Wind: generation from `wind.csv` timeseries
+
+**Load:**
+- Variable demand from `load.csv` timeseries (35-125 MW range)
+
+# Understanding the Results
+
+## Output Variables
+
+The simulation outputs are saved in `output/simulation_table--<timestamp>.csv`. Key variables include:
+
+### Thermal Unit Commitment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `thermal,nb_units_on` | **Number of units currently ON** (0-10). This is the key output showing how many thermal units are committed at each hour. |
+| `thermal,nb_starting` | Number of units starting up at this hour |
+| `thermal,nb_stopping` | Number of units shutting down at this hour |
+| `thermal,generation` | Total power output from the thermal cluster (MW) |
+
+### System Variables
+
+| Variable | Description |
+|----------|-------------|
+| `bus,spillage` | Excess power that cannot be absorbed (MW) |
+| `bus,unsupplied_energy` | Demand that cannot be met (MW) |
+
+### How to Read `nb_units_on`
+
+The `nb_units_on` variable shows how the optimizer commits thermal units based on:
+- **Renewable availability**: When solar/wind are high, fewer thermal units are needed
+- **Load level**: Higher demand requires more units ON
+- **Startup/fixed costs**: The optimizer avoids frequent on/off cycling
+- **Min up/down constraints**: Units must stay ON or OFF for at least 2 hours
+
+Example output pattern:
+- **Night with low wind**: 8-10 units ON (thermal compensates for no solar)
+- **Sunny midday**: 0-3 units ON (solar covers most demand)
+- **Evening peak**: 5-8 units ON (solar declining, load still high)
 
 # How to Run the Study
 

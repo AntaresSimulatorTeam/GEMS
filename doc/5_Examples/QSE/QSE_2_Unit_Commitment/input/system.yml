@@ -1,107 +1,21 @@
-# Unit Commitment System Configuration
-# Single-area system with generator, solar, wind, and load
-# Time horizon: 1 week with hourly resolution (168 hours)
-
 system:
   id: system
-
   components:
-
-    # Central bus node
-    - id: bus
-      model: unit_commitment_library.bus
+    - id: bus1
+      model: antares_legacy_models.area
 
       parameters:
         - id: spillage_cost
           time-dependent: false
           scenario-dependent: false
           value: 1000
-        - id: unsupplied_energy_cost
+        - id: ens_cost
           time-dependent: false
           scenario-dependent: false
           value: 10000
-
-    # Thermal generator: 10 MW capacity (10 units of 1 MW each)
-    - id: thermal
-      model: unit_commitment_library.thermal
-
-      parameters:
-        - id: p_min_cluster
-          time-dependent: true
-          scenario-dependent: true
-          value: thermal_p_min
-        - id: p_max_cluster
-          time-dependent: true
-          scenario-dependent: true
-          value: thermal_p_max
-        - id: p_min_unit
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
-        - id: p_max_unit
-          time-dependent: false
-          scenario-dependent: false
-          value: 1
-        - id: generation_cost
-          time-dependent: false
-          scenario-dependent: false
-          value: 50
-        - id: startup_cost
-          time-dependent: false
-          scenario-dependent: false
-          value: 100
-        - id: fixed_cost
-          time-dependent: false
-          scenario-dependent: false
-          value: 10
-        - id: d_min_up
-          time-dependent: false
-          scenario-dependent: false
-          value: 2
-        - id: d_min_down
-          time-dependent: false
-          scenario-dependent: false
-          value: 2
-        - id: nb_units_min
-          time-dependent: true
-          scenario-dependent: true
-          value: thermal_nb_units_min
-        - id: nb_units_max
-          time-dependent: true
-          scenario-dependent: true
-          value: thermal_nb_units_max
-        - id: nb_units_max_variation_forward
-          time-dependent: true
-          scenario-dependent: true
-          value: thermal_nb_units_max_var_fwd
-        - id: nb_units_max_variation_backward
-          time-dependent: true
-          scenario-dependent: true
-          value: thermal_nb_units_max_var_bwd
-
-    # Solar power plant
-    - id: solar
-      model: unit_commitment_library.renewable
-
-      parameters:
-        - id: generation
-          time-dependent: true
-          scenario-dependent: true
-          value: solar
-
-    # Wind power plant
-    - id: wind
-      model: unit_commitment_library.renewable
-
-      parameters:
-        - id: generation
-          time-dependent: true
-          scenario-dependent: true
-          value: wind
-
-    # Load (variable demand)
-    - id: load
-      model: unit_commitment_library.load
+          
+    - id: load_bus
+      model: antares_legacy_models.load
 
       parameters:
         - id: load
@@ -109,24 +23,132 @@ system:
           scenario-dependent: true
           value: load
 
+    - id: th1
+      model: antares_legacy_models.thermal
+
+      parameters:
+        - id: p_min_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: p_max_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: startup_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: fixed_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: d_min_up
+          time-dependent: false
+          scenario-dependent: false
+          value: 12
+        - id: d_min_down
+          time-dependent: false
+          scenario-dependent: false
+          value: 12
+        - id: p_min_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: p_max_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: nb_units_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 10
+        - id: nb_units_min
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_forward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_backward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
+    - id: th2
+      model: antares_legacy_models.thermal
+
+      parameters:
+        - id: p_min_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: p_max_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: startup_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 5000
+        - id: fixed_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 500
+        - id: d_min_up
+          time-dependent: false
+          scenario-dependent: false
+          value: 5
+        - id: d_min_down
+          time-dependent: false
+          scenario-dependent: false
+          value: 5
+        - id: p_min_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: p_max_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 500
+        - id: nb_units_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 5
+        - id: nb_units_min
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_forward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_backward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
+
   connections:
 
-    - component1: bus
-      component2: thermal
+    - component1: bus1
+      component2: load_bus
       port1: balance_port
       port2: balance_port
-
-    - component1: bus
-      component2: solar
+    - component1: bus1
+      component2: th1
       port1: balance_port
       port2: balance_port
-
-    - component1: bus
-      component2: wind
-      port1: balance_port
-      port2: balance_port
-
-    - component1: bus
-      component2: load
+    - component1: bus1
+      component2: th2
       port1: balance_port
       port2: balance_port
