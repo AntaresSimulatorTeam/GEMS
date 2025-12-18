@@ -221,7 +221,7 @@ Instantiation of components `bus_1`, `bus_load_1`, `generator_1` and `link_12` i
 
 ![system yaml file explanations](../assets/2_QSE_Adequacy_system.png)
 
-Based on the connection via components from `connections` section in `system.yml` file, optimization graph can be build. 
+Based on the connection via components from `connections` section in `system.yml` file, optimization graph can be build. Following graph represents optimization graph of **Three-bus Adequacy example**.
 
 ![complete diagram with ports](../../assets/2_QSE_1_system_complete.png)
 
