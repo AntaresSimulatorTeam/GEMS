@@ -166,14 +166,41 @@ Using these time operators, you can create advanced temporal constraints. For ex
 # Enforce that each period's production <= average of next 3 periods
 expression: production[t] <= (1/3) * sum(t+1 .. t+3, production)
 ```
+
+## Constraints
+
+A constraint is described by a single expression containing a comparison (`=`, `<=`, or `>=`). The left and right sides of that comparison are linear expressions as discussed above. Here are the key points about constraints:
+
+- A constraint must have exactly one comparison operator dividing the expression. For example: `generation <= capacity` or `supply = demand`.
+- The expression on each side of operators `=/<=/>=` can include any allowed terms: constants, parameters, variables, port fields, and the time/scenario operators as needed (subject to the linearity and dependency rules). Both sides of the comparator are evaluated and the inequality/equality enforced by the solver.
+
+**Example:** In the generator model example below, an internal constraint ensures the generator’s minimum output when it’s on:
+
+```yaml
+expression: active_power >= is_on * min_active_power
+```
+
 ### Time-Dependent Constraints vs. Aggregation
 
 If a constraint expression includes any time-indexed element (e.g. a time-dependent variable), that constraint implicitly applies at each time step across the horizon. In other words, the model interpreter "unfolds" it into a series of constraints, one per period `t`. To instead enforce a single aggregate constraint across time, you must eliminate the free t index by using a `sum(...)` aggregator. For example, `x[t] <= 100` in a constraint would apply for every time step `t`. But `sum(x) <= 100` applies once, to the total sum over time.
+
+
 
 |  Constraint | Functionality  |
 | -----------  | ----------  |
 |`x[t] <= 100`| For each time-step apply constraint|
 |`sum(x) <= 100`| Single constrant over entire time horizon|
+
+## Objective Function
+
+Objective function is described by an expression which should be a linear expression of variables, parameters, and scalars.
+
+**Example:** A generator might have an objective term for its production cost:
+
+```yaml
+expression: sum(generation * generation_cost)
+```
+
 
 ## Scenario Operator
 
