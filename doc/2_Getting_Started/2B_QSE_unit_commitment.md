@@ -14,7 +14,7 @@ This tutorial demonstrates economic dispatch optimization over a one-week time h
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/doc/5_Examples/QSE/QSE_2_Unit_Commitment).
 
-### Economic Dispatch Definition
+**Definition :** 
 
 **Economic Dispatch** is the problem of determining the optimal power output from generation units over a 7 days horizon.
 
