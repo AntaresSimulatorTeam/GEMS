@@ -155,14 +155,6 @@ $$
 \forall g \in G, \forall t \in T: \quad \underline{P}_g \leq P_{g,t} \leq \overline{P}_g
 $$
 
-### Transmission Constraints
-
-Power flows are limited by line capacity:
-
-$$
-\forall l \in L, \forall t \in T: \quad -\overline{F}_l \leq F_{l,t} \leq \overline{F}_l
-$$
-
 # YAML Block Description
 
 ## Library File
