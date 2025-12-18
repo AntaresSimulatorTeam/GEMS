@@ -162,12 +162,13 @@ $$
 \forall b \in B, \forall g \in G_b, \quad \underline{P}_g \leq P_g \leq \overline{P}_g
 $$
 
-# YAML Block Description
+# GEMS Representation
 
+In following sections it will be represented how mathematical model is translated, how user can instantiate components from models and how optimization graph is been built into the GEMS Framework specific files.
 
 ## Library File
 
-This diagram shows what is the significance of each YAML block inside the library :
+This section shows how mathematical model is implemented for every power system element that figures in optimization problem. File in which models are defined is called `library file`. **TODO: create a link to the library file docs file, we don't still have it, create it in different PR**
 
 ![YAML Block description with mathematical equations](../assets/2_QSE_Adequacy_maths.png)
 
@@ -212,11 +213,16 @@ This system models a three-bus network with the following characteristics:
 
 Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
 
-### How to write the system YAML file
+## System file and Optimization Graph
 
-The next diagram explains how to fill the system YAML step by step :
+Following diagrams represents part of the `system.yml` where user is able to instantiate components (buses, links, generators etc.) and connect them via ports into the optimization graph.
+
+Instantiation of components `bus_1`, `bus_load_1`, `generator_1` and `link_12` is represented as well as connection between `bus_1` and `bus_load_1` components. Entire system file can be found, link to the example system file!!! TODO
 
 ![system yaml file explanations](../assets/2_QSE_Adequacy_system.png)
+
+Based on the connection via components from `connections` section in `system.yml` file, optimization graph can be build. 
+
 
 # How to run the study 
 
