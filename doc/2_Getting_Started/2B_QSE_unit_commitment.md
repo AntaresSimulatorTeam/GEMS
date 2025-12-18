@@ -37,11 +37,12 @@ QSE_2_Unit_Commitment/
 ## Problem Description
 
 **Components:**
-- 2 Buses (Region A and Region B)
-- 1 Link (connecting the two regions)
-- 4 Thermal Generators (with capacity and cost constraints)
-- 2 Renewable Generators (wind and solar with variable profiles)
-- 2 Loads (variable demand over the week)
+
+  - 2 Buses (Region A and Region B)
+  - 1 Link (connecting the two regions)
+  - 4 Thermal Generators (with capacity and cost constraints)
+  - 2 Renewable Generators (wind and solar with variable profiles)
+  - 2 Loads (variable demand over the week)
 
 **Time Horizon:** 168 hours (1 week) with hourly resolution
 
