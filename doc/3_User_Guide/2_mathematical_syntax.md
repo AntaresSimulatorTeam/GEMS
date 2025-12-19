@@ -205,7 +205,9 @@ expression: sum(generation * generation_cost)
 
 GEMS can handle multiple scenarios (two stage stochastic) for data and variables. Scenario-dependent parameters or variables have values that differ by scenario (similar to having an extra scenario index s). **Mathematical Expression Syntax**  currently provides an operator to aggregate across the scenario dimension:
 
-Need more informations for Scenario operator. In Modeler documentation I found that behaviour for this operator is unknown? This operator is not even implemented! I would exclude it from documentation
+- **expec(X)** aggregator: where `X` is the scenario-dependent operand, this operator computes its expected value (i.e. its scenario-wise average).
+
+
 
 
 ---
