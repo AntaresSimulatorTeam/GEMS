@@ -239,7 +239,7 @@ These n-ary operators `max(u, v, ...)`/`min(u, v, ...)` are used within any expr
 expression: paramter_1 < max(parameter_2, 100)
 ```
 
- In the context of a extracting results, its operands can be literals, parameters or varibles.
+ In the context of a extracting results, its operands can be literals, parameters or variables.
 ```yaml
 expression: min(variable_1, parameter_1)
 ```
