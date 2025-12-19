@@ -49,8 +49,12 @@ nav:
             - Libraries of models: 1_Overview/References/2_Libraries.md
             - Users of GEMS: 1_Overview/References/3_Users.md
   - Getting Started:
-      - Installation: 2_Getting Started/1_installation.md
-      - Quick Start Examples: 2_Getting Started/2_quick start examples.md
+      - Installation:
+        - Antares Simulator's GEMS Interpreter: 2_Getting Started/1A_modeler_installation.md
+        - GEMSPy: 2_Getting Started/1B_gemspy_installation.md
+      - Quick Start Examples:
+        - Adequacy: 2_Getting Started/2A_adequacy.md
+      - Support: 2_Getting Started/1C_support.md
   - User Guide:
       - Syntax: 3_User Guide/1_syntax.md
       - Inputs: 3_User Guide/2_inputs.md
