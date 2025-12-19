@@ -8,9 +8,9 @@
 </div>
 
 
-# QSE 1 : Three-Bus Adequacy System
+# Quick-start example 1: three-bus adequacy system
 
-## Overview
+## Overview and problem description
 This tutorial demonstrates adequacy modeling in a meshed three-bus network.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/doc/5_Examples/QSE/QSE_1_Adequacy).
@@ -21,16 +21,6 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 
 ![Adequacy Scheme](../assets/2_adequacy_scheme.png)
 
-## Files Structure
-```
-tutorial_QSE_adequacy/
-├── input/
-│   ├── library.yml
-│   ├── system.yml
-│   └── data-series/
-│       └──  ...
-└── parameters.yml
-```
 ## Problem Description
 
 ### Network
@@ -47,13 +37,7 @@ tutorial_QSE_adequacy/
 
 In this example, the `power flows` on the links are only constrained by thermal capacities.
 
-## System File
 
-### Overview
-
-- Creation of `system.yml` file
-
-This system models a three-bus network with the following characteristics:
 
 **Network Topology:**
 
@@ -88,7 +72,24 @@ This system models a three-bus network with the following characteristics:
 
 Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
 
-## System file and Optimization Graph
+## The GEMS study
+
+### Files Structure
+```
+tutorial_QSE_adequacy/
+├── input/
+│   ├── library.yml
+│   ├── system.yml
+│   └── data-series/
+│       └──  ...
+└── parameters.yml
+```
+
+### Library file
+
+[library](3_QSE_adequacy_math_model.md)
+
+### System file and Optimization Graph
 
 Following diagrams represents part of the `system.yml` where user is able to instantiate components (buses, links, generators etc.) and connect them via ports into the optimization graph.
 
@@ -100,9 +101,7 @@ Based on the connection via components from `connections` section in `system.yml
 
 ![complete diagram with ports](../../assets/2_QSE_1_system_complete.png)
 
-# How to run the study 
-
-## By using Modeler
+## Running the GEMS study with Antares Modeler
 
 1. Get Modeler installed through this [tutorial](../1_installation)
 2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
