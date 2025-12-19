@@ -41,7 +41,7 @@ QSE_2_Unit_Commitment/
 
 **Time Horizon:** 1 week with hourly resolution (168 hours)
 
-![QSE_2 system description diagram](../assets/2_Scheme_QSE2_Unit_Com_System.png)
+![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
 # Mathematical Representation
 
@@ -206,17 +206,17 @@ The `system.yml` file defines:
 
 <div style="display: flex; gap: 24px; align-items: flex-start;">
   <div>
-    <img src="../assets/2_QSE2_UC_ts_solar.png" alt="solar profile"/>
+    <img src="../../assets/2_QSE2_UC_ts_solar.png" alt="solar profile"/>
   </div>
   <div>
-    <img src="../assets/2_QSE2_UC_ts_wind.png" alt="wind profile"/>
+    <img src="../../assets/2_QSE2_UC_ts_wind.png" alt="wind profile"/>
   </div>
 </div>
 
 **Load:**
 - Variable demand from `load.csv` timeseries 
 
-![load profile](../assets/2_QSE2_UC_ts_load.png)
+![load profile](../../assets/2_QSE2_UC_ts_load.png)
 
 # Understanding the Results
 
@@ -239,7 +239,7 @@ The simulation outputs are saved in `output/simulation_table--<timestamp>.csv`. 
 
 ## By Using Modeler
 
-1. Get Modeler installed through this [tutorial](./1_installation.md)
+1. Get Modeler installed through this [tutorial](../1_installation)
 2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
 3. Open the terminal
 4. Run these command lines :
