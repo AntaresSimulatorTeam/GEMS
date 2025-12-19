@@ -23,18 +23,17 @@ system:
           scenario-dependent: true
           value: load
 
-    - id: th1
+    - id: gas_plant
       model: antares_legacy_models.thermal
-
       parameters:
         - id: p_min_unit
           time-dependent: false
           scenario-dependent: false
-          value: 50
+          value: 0
         - id: p_max_unit
           time-dependent: false
           scenario-dependent: false
-          value: 100
+          value: 3
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
@@ -62,7 +61,7 @@ system:
         - id: p_max_cluster
           time-dependent: false
           scenario-dependent: false
-          value: 1000
+          value: 30
         - id: nb_units_max
           time-dependent: false
           scenario-dependent: false
@@ -80,62 +79,37 @@ system:
           scenario-dependent: false
           value: 0
 
-    - id: th2
-      model: antares_legacy_models.thermal
-
+    - id: solar_farm
+      model: antares_legacy_models.renewable
       parameters:
-        - id: p_min_unit
+        - id: nominal_capacity
           time-dependent: false
           scenario-dependent: false
           value: 50
-        - id: p_max_unit
+        - id: unit_count
           time-dependent: false
           scenario-dependent: false
-          value: 100
-        - id: generation_cost
+          value: 1
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+          value: solar
+
+    - id: wind_farm
+      model: antares_legacy_models.renewable
+      parameters:
+        - id: nominal_capacity
           time-dependent: false
           scenario-dependent: false
-          value: 50
-        - id: startup_cost
+          value: 35
+        - id: unit_count
           time-dependent: false
           scenario-dependent: false
-          value: 5000
-        - id: fixed_cost
-          time-dependent: false
-          scenario-dependent: false
-          value: 500
-        - id: d_min_up
-          time-dependent: false
-          scenario-dependent: false
-          value: 5
-        - id: d_min_down
-          time-dependent: false
-          scenario-dependent: false
-          value: 5
-        - id: p_min_cluster
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
-        - id: p_max_cluster
-          time-dependent: false
-          scenario-dependent: false
-          value: 500
-        - id: nb_units_max
-          time-dependent: false
-          scenario-dependent: false
-          value: 5
-        - id: nb_units_min
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
-        - id: nb_units_max_variation_forward
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
-        - id: nb_units_max_variation_backward
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
+          value: 1
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+          value: wind
 
 
   connections:
@@ -145,10 +119,14 @@ system:
       port1: balance_port
       port2: balance_port
     - component1: bus1
-      component2: th1
+      component2: gas_plant
       port1: balance_port
       port2: balance_port
     - component1: bus1
-      component2: th2
+      component2: solar_farm
+      port1: balance_port
+      port2: balance_port
+    - component1: bus1
+      component2: wind_farm
       port1: balance_port
       port2: balance_port
