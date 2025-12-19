@@ -58,7 +58,7 @@ nav:
         - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
         - GEMSPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
-        - Adequacy: 2_Getting_Started/2A_adequacy.md
+        - Adequacy: 2_Getting_Started/2A_QSE_adequacy.md
         - Unit Commitment: 2_Getting_Started/2B_QSE_unit_commitment.md
       - Support: 2_Getting_Started/1C_support.md
   - User Guide:
