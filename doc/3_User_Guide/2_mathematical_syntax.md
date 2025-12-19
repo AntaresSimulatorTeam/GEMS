@@ -201,14 +201,48 @@ expression: sum(generation * generation_cost)
 ```
 
 
-## Scenario Operator
+## Additional Operators
+
+### Scenario Operator
 
 GEMS can handle multiple scenarios (two stage stochastic) for data and variables. Scenario-dependent parameters or variables have values that differ by scenario (similar to having an extra scenario index s). **Mathematical Expression Syntax**  currently provides an operator to aggregate across the scenario dimension:
 
 - **expec(X)** aggregator: where `X` is the scenario-dependent operand, this operator computes its expected value (i.e. its scenario-wise average).
 
 
+### Dual Operators
 
+In some cases, there is a  need to access dual results of variables / constraints of the linear problem. Depending on the case, the dual unary operator is :
+
+- dual result of a variable whose id is my_var is accessed by `-reduced_cost(variable_id)`
+- dual result of a constraint whose if is my_constraint is accessed by `dual(constraint_id)`
+
+### Power Operator
+
+This binary operator `^` is used within any expression, but with following restrictions.
+
+In the context of a linear problem construction, its operands can only be literals or parameters.
+```yaml
+expression: parameter_1^(1 + parameter_2)
+```
+
+ In the context of a extracting results, its operands can be literals, parameters or variables.
+```yaml
+expression: variable_1^(1 + parameter_1)
+```
+### Min/Max Operators
+
+These n-ary operators `max(u, v, ...)`/`min(u, v, ...)` are used within any expression, but with following restrictions.
+
+ In the context of a linear problem construction, its operands can only be literals or parameters.
+```yaml
+expression: paramter_1 < max(parameter_2, 100)
+```
+
+ In the context of a extracting results, its operands can be literals, parameters or varibles.
+```yaml
+expression: min(variable_1, parameter_1)
+```
 
 ---
 **Navigation**
