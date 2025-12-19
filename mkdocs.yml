@@ -55,11 +55,11 @@ nav:
             - Users of GEMS: 1_Overview/References/3_Users.md
   - Getting Started:
       - Installation:
-        - Antares Simulator's GEMS Interpreter: 2_Getting Started/1A_modeler_installation.md
-        - GEMSPy: 2_Getting Started/1B_gemspy_installation.md
+        - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
+        - GEMSPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
         - Adequacy: 2_Getting_Started/2A_QSE_adequacy.md
-      - Support: 2_Getting Started/1C_support.md
+      - Support: 2_Getting_Started/1C_support.md
   - User Guide:
       - Syntax: 3_User_Guide/1_syntax.md
       - Inputs: 3_User_Guide/2_inputs.md
