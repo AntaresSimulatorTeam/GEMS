@@ -41,6 +41,8 @@ QSE_2_Unit_Commitment/
 
 **Time Horizon:** 1 week with hourly resolution (168 hours)
 
+The next diagram explains the different connections of each components :
+
 ![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
 # Mathematical Representation
@@ -160,22 +162,6 @@ $$
 \forall t \in T: \quad n^{on}_{t} = n^{on}_{t-1} + n^{start}_{t} - n^{stop}_{t}
 $$
 
-### Minimum Up Time
-
-Once started, a unit must stay ON for at least $\tau^{up}$ hours:
-
-$$
-\forall t \in T: \quad \sum_{\tau = t - \tau^{up} + 1}^{t} n^{start}_{\tau} \leq n^{on}_{t}
-$$
-
-### Minimum Down Time
-
-Once stopped, a unit must stay OFF for at least $\tau^{down}$ hours:
-
-$$
-\forall t \in T: \quad \sum_{\tau = t - \tau^{down} + 1}^{t} n^{stop}_{\tau} \leq N - n^{on}_{t}
-$$
-
 # YAML Block Description
 
 ## Library File
@@ -194,13 +180,16 @@ The library file `antares_legacy_models.yml` defines four models:
 The `system.yml` file defines:
 
 **Bus:**
+
 - `spillage_cost` = 1000 $/MWh
 - `unsupplied_energy_cost` = 10000 $/MWh
 
 **Thermal Cluster (10 units of 1 MW):**
+
 - All thermal parameters (min/max power, costs, min up/down, number of units) are set directly in `system.yml`.
 
 **Renewables:**
+
 - Solar: generation from `solar.csv` timeseries
 - Wind: generation from `wind.csv` timeseries
 
@@ -214,6 +203,7 @@ The `system.yml` file defines:
 </div>
 
 **Load:**
+
 - Variable demand from `load.csv` timeseries 
 
 ![load profile](../../assets/2_QSE2_UC_ts_load.png)
@@ -226,12 +216,17 @@ The simulation outputs are saved in `output/simulation_table--<timestamp>.csv`. 
 
 ## Thermal Unit Commitment Variables
 
+This table give the key to understand the different output variables relevant to this example of unit commitment.
+
 | Variable | Description |
 |----------|-------------|
 | `thermal,nb_units_on` | **Number of units currently ON** (0-10). This is the key output showing how many thermal units are committed at each hour. |
 | `thermal,nb_starting` | Number of units starting up at this hour |
 | `thermal,nb_stopping` | Number of units shutting down at this hour |
 | `thermal,generation` | Total power output from the thermal cluster (MW) |
+
+
+This graph illustrates how the number of thermal units generating power changes over the simulation week, reflecting the **unit commitment** feature. At night, when solar generation is unavailable, more thermal units are solicited to meet demand. Around midday, increased solar output often reduces the need for thermal generation, resulting in fewer thermal units operating.
 
 ![nb units on profile](../assets/2_QSE2_UC_ts_units.png)
 
