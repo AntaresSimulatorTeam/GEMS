@@ -10,7 +10,7 @@
 # QSE 2: Unit Commitment - Simple Example
 
 ## Overview
-This tutorial demonstrates a simple unit commitment optimization. Unit commitment determines the optimal power output from a generator at each time period to meet demand at minimum cost.
+This tutorial demonstrates a simple unit commitment optimization. Unit commitment determines the optimal number of units generating power from one single generator at each time period to meet demand at minimum cost.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/doc/5_Examples/QSE/QSE_2_Unit_Commitment).
 
@@ -25,13 +25,7 @@ QSE_2_Unit_Commitment/
 │   └── data-series/
 │       ├── load.csv
 │       ├── solar.csv
-│       ├── wind.csv
-│       ├── thermal_p_min.csv
-│       ├── thermal_p_max.csv
-│       ├── thermal_nb_units_min.csv
-│       ├── thermal_nb_units_max.csv
-│       ├── thermal_nb_units_max_var_fwd.csv
-│       └── thermal_nb_units_max_var_bwd.csv
+│       └── wind.csv
 └── parameters.yml
 ```
 
@@ -40,9 +34,9 @@ QSE_2_Unit_Commitment/
 **Components:**
 
   - 1 Bus (central node for power balance)
-  - 1 Thermal cluster (10 units of 1 MW each, 10 MW total capacity)
-  - 1 Solar Plant (up to 80 MW)
-  - 1 Wind Plant (up to 100 MW)
+  - 1 Thermal cluster (10 units of 3 MW each, 30 MW total capacity)
+  - 1 Solar Plant
+  - 1 Wind Plant
   - 1 Load (variable demand, 35-125 MW)
 
 **Time Horizon:** 1 week with hourly resolution (168 hours)
@@ -186,7 +180,7 @@ $$
 
 ## Library File
 
-The library file `unit_commitment_library.yml` defines four models:
+The library file `antares_legacy_models.yml` defines four models:
 
 - **bus**: Central node with power balance constraint, spillage and unsupplied energy variables
 - **load**: Consumes power (negative flow into the bus)
@@ -204,18 +198,25 @@ The `system.yml` file defines:
 - `unsupplied_energy_cost` = 10000 $/MWh
 
 **Thermal Cluster (10 units of 1 MW):**
-- `p_min_unit` = 0 MW, `p_max_unit` = 1 MW
-- `generation_cost` = 50 $/MWh
-- `startup_cost` = 100 $
-- `fixed_cost` = 10 $/h
-- `d_min_up` = 2 hours, `d_min_down` = 2 hours
+- All thermal parameters (min/max power, costs, min up/down, number of units) are set directly in `system.yml`.
 
 **Renewables:**
 - Solar: generation from `solar.csv` timeseries
 - Wind: generation from `wind.csv` timeseries
 
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+  <div>
+    <img src="../assets/2_QSE2_UC_ts_solar.png" alt="solar profile"/>
+  </div>
+  <div>
+    <img src="../assets/2_QSE2_UC_ts_wind.png" alt="wind profile"/>
+  </div>
+</div>
+
 **Load:**
-- Variable demand from `load.csv` timeseries (35-125 MW range)
+- Variable demand from `load.csv` timeseries 
+
+![load profile](../assets/2_QSE2_UC_ts_load.png)
 
 # Understanding the Results
 
@@ -223,7 +224,7 @@ The `system.yml` file defines:
 
 The simulation outputs are saved in `output/simulation_table--<timestamp>.csv`. Key variables include:
 
-### Thermal Unit Commitment Variables
+## Thermal Unit Commitment Variables
 
 | Variable | Description |
 |----------|-------------|
@@ -232,25 +233,7 @@ The simulation outputs are saved in `output/simulation_table--<timestamp>.csv`. 
 | `thermal,nb_stopping` | Number of units shutting down at this hour |
 | `thermal,generation` | Total power output from the thermal cluster (MW) |
 
-### System Variables
-
-| Variable | Description |
-|----------|-------------|
-| `bus,spillage` | Excess power that cannot be absorbed (MW) |
-| `bus,unsupplied_energy` | Demand that cannot be met (MW) |
-
-### How to Read `nb_units_on`
-
-The `nb_units_on` variable shows how the optimizer commits thermal units based on:
-- **Renewable availability**: When solar/wind are high, fewer thermal units are needed
-- **Load level**: Higher demand requires more units ON
-- **Startup/fixed costs**: The optimizer avoids frequent on/off cycling
-- **Min up/down constraints**: Units must stay ON or OFF for at least 2 hours
-
-Example output pattern:
-- **Night with low wind**: 8-10 units ON (thermal compensates for no solar)
-- **Sunny midday**: 0-3 units ON (solar covers most demand)
-- **Evening peak**: 5-8 units ON (solar declining, load still high)
+![nb units on profile](../assets/2_QSE2_UC_ts_units.png)
 
 # How to Run the Study
 
