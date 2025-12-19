@@ -9,8 +9,7 @@
 
 # GEMS Mathematical Expression Syntax
 
-GEMS includes a **Mathematical Expression Syntax** that allows modelers to write equations for optimization models in a clear, math-like syntax within configuration files
-. **Mathematical Expression Syntax** is independent of any programming code – model equations are specified as human-readable text, which GEMS interprets to build the mathematical optimization problem.
+GEMS includes a **Mathematical Expression Syntax** that allows modelers to write equations for optimization problems in a clear, math-like syntax within configuration files. **Mathematical Expression Syntax** is independent of any programming code – model equations are specified as human-readable text, which GEMS interprets to build the mathematical optimization problem.
 
 This section provides a description of the supported operators, linearity condition, the usage of parameters, variables, and ports in mathematical expressions, and the mechanisms for time and scenario indexing and aggregation.
 
@@ -172,7 +171,7 @@ expression: production[t] <= (1/3) * sum(t+1 .. t+3, production)
 A constraint is described by a single expression containing a comparison (`=`, `<=`, or `>=`). The left and right sides of that comparison are linear expressions as discussed above. Here are the key points about constraints:
 
 - A constraint must have exactly one comparison operator dividing the expression. For example: `generation <= capacity` or `supply = demand`.
-- The expression on each side of operators `=/<=/>=` can include any allowed terms: constants, parameters, variables, port fields, and the time/scenario operators as needed (subject to the linearity and dependency rules). Both sides of the comparator are evaluated and the inequality/equality enforced by the solver.
+- The expression on each side of operators `=/<=/>=` can include any allowed terms: constants, parameters, variables, port fields (subject to the linearity and dependency rules). Both sides of the comparator are evaluated and the inequality/equality enforced by the solver.
 
 **Example:** In the generator model example below, an internal constraint ensures the generator’s minimum output when it’s on:
 
