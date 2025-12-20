@@ -72,15 +72,22 @@ Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer w
 ## The GEMS study
 
 ### Files Structure
+
+Following block represents GEMS Framework study folder structure.
 ```
 tutorial_QSE_adequacy/
 ├── input/
-│   ├── library.yml
+│   ├── basic_models_library.yml
 │   ├── system.yml
 │   └── data-series/
 │       └──  ...
 └── parameters.yml
 ```
+The example study makes use of models provided by the [GEMS library](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries). For maintainability reasons, the library is stored separately in the repository and is not included directly in the example study. Consequently, users must copy the [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) files into the example study directory prior to execution.
+
+Since this example performs the simulation over a single time step, the data-series folder does not contain any time-series data.
+
+Solver options can be configured in the parameters.yml file. For more details on available solver options, refer to the following [link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/user-guide/modeler/04-parameters.md).
 
 ### Library file
 
