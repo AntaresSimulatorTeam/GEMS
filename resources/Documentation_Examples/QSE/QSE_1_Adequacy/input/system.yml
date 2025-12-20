@@ -79,6 +79,10 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 35
+        - id: co2_emission_factor
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
 
     - id: generator2
       model: basic_models_library.generator
@@ -95,6 +99,10 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 25
+        - id: co2_emission_factor
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
 
     - id: generator3
       model: basic_models_library.generator
@@ -111,6 +119,10 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 42
+        - id: co2_emission_factor
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
 
     - id: link_12
       model: basic_models_library.link
