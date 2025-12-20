@@ -21,28 +21,25 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 
 ![Adequacy Scheme](../assets/2_adequacy_scheme.png)
 
-## Problem Description
+### Problem Description
 
-### Network
-**Components:**
+**Time Horizon:** This example considers a single one-hour time step.
+
+**Network Components:**
 
 - 3 Buses (Regions 1, 2, 3 forming a triangle)
 - 3 Links (connecting each pair of regions)
 - 3 Generators (different capacities and costs)
 - 3 Loads (fixed demands)
 
-**Time Horizon:** 1 hour is used for this example
-
-![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
-
-In this example, the `power flows` on the links are only constrained by thermal capacities.
-
-
-
 **Network Topology:**
 
 - 3 interconnected buses forming a triangular mesh network
 - 3 bidirectional transmission links connecting each pair of buses
+
+![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
+
+In this example, the `power flows` on the links are only constrained by thermal capacities.
 
 **Generation:**
 
@@ -70,7 +67,7 @@ In this example, the `power flows` on the links are only constrained by thermal 
 
 **Expected Dispatch:**
 
-Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 170 MW while respecting transmission constraints.
+Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 240 MW while respecting transmission constraints.
 
 ## The GEMS study
 
