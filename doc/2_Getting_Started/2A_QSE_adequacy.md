@@ -25,7 +25,7 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 
 **Time Horizon:** This example considers a single one-hour time step.
 
-**Network ddComponents:**
+**Network Components:**
 
 - 3 Buses (Regions 1, 2, 3 forming a triangle)
 - 3 Links (connecting each pair of regions)
