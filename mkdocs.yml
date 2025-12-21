@@ -59,6 +59,7 @@ nav:
         - GEMSPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
         - Adequacy: 2_Getting_Started/2A_QSE_adequacy.md
+        - Adequacy Problem Formulation: 2_Getting_Started/3_QSE_adequacy_math_model.md
       - Support: 2_Getting_Started/1C_support.md
   - User Guide:
       - Syntax: 3_User_Guide/1_syntax.md
