@@ -111,7 +111,7 @@ Based on the connection via components from `connections` section in `system.yml
 
 ## Running the GEMS study with Antares Modeler
 
-1. Get Modeler installed through this [tutorial](../1_installation)
+1. Get Antares Modeler installed through this [tutorial](../1_installation)
 2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
 3. Open the terminal
 4. Run these command lines :
