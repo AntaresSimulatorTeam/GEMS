@@ -75,7 +75,9 @@ Following block represents GEMS Framework study folder structure.
 ```
 tutorial_QSE_adequacy/
 ├── input/
-│   ├── basic_models_library.yml
+│   ├──model-libraries/
+│   │  ├── basic_models_library.yml
+│   │  └── ...
 │   ├── system.yml
 │   └── data-series/
 │       └──  ...
