@@ -113,10 +113,10 @@ Based on the connection via components from `connections` section in `system.yml
 
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
+rte-antares-9.3.2-installer-64bits\bin\antares-modeler.exe <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
+./antares-9.3.2-Ubuntu-22.04/bin/antares-modeler <path-to-study>
 ```
 
 ## Outputs
