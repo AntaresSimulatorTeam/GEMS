@@ -32,11 +32,6 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 - 3 Generators (different capacities and costs)
 - 3 Loads (fixed demands)
 
-**Network Topology:**
-
-
-![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
-
 In this example, the `power flows` on the links are only constrained by thermal capacities.
 
 **Generation:**
