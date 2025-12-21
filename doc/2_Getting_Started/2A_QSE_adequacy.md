@@ -36,9 +36,9 @@ In this example, the `power flows` on the links are only constrained by thermal 
 
 **Generation:**
 
-- Generator 1 (Bus 1): 70-100 MW capacity, 35 $/MWh cost
-- Generator 2 (Bus 2): 50-90 MW capacity, 25 $/MWh cost
-- Generator 3 (Bus 3): 50-200 MW capacity, 42 $/MWh cost
+- Generator 1 (Bus 1): 70-100 MW capacity, 35 €/MWh cost
+- Generator 2 (Bus 2): 50-90 MW capacity, 25 €/MWh cost
+- Generator 3 (Bus 3): 50-200 MW capacity, 42 €/MWh cost
 
 **Demand:**
 
@@ -55,8 +55,8 @@ In this example, the `power flows` on the links are only constrained by thermal 
 
 **Economic Parameters:**
 
-- Spillage cost: 1000 $/MWh (penalty for wasted energy)
-- Unsupplied energy cost: 10000 $/MWh (high penalty for unmet demand)
+- Spillage cost: 1000 €/MWh (penalty for wasted energy)
+- Unsupplied energy cost: 10000 €/MWh (high penalty for unmet demand)
 
 **Network Topology:**
 
