@@ -34,8 +34,6 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 
 **Network Topology:**
 
-- 3 interconnected buses forming a triangular mesh network
-- 3 bidirectional transmission links connecting each pair of buses
 
 ![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
 
@@ -65,9 +63,9 @@ In this example, the `power flows` on the links are only constrained by thermal 
 - Spillage cost: 1000 $/MWh (penalty for wasted energy)
 - Unsupplied energy cost: 10000 $/MWh (high penalty for unmet demand)
 
-**Expected Dispatch:**
+**Network Topology:**
 
-Given the generator costs (Generator 2 is cheapest at 25 $/MWh), the optimizer will prioritize Generator 2, then Generator 1, and finally Generator 3 as needed to meet the total demand of 240 MW while respecting transmission constraints.
+![QSE_Adequacy scheme](../assets/2_QSE_Adequacy_scheme.png)
 
 ## The GEMS study
 
