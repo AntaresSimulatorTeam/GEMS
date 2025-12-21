@@ -34,24 +34,23 @@ This part presents the optimization problem formulation of the example [QSE_Adeq
 | $P_g$ | Power output from generator $g$ | MW |
 | $U_b$ | Unsupplied power at bus $b$ (in nominal state) | MW |
 | $S_b$ | Spilled power at bus $b$ (in nominal state) | MW |
-| $x_l$ | Transmission capacity investment level for link $l$ (binary) | - |
 
 ### Parameters
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
-| $\Omega_{\text{dispatch}}$ | Total dispatch cost | \$ |
-| $\Omega_{\text{transmission}}$ | Transmission cost component | \$ |
-| $\Omega_{\text{generator}}$ | Thermal generation cost component | \$ |
-| $\Omega_{\text{unsupplied}}$ | Unsupplied energy cost component | \$ |
-| $\Omega_{\text{spillage}}$ | Spillage cost component | \$ |
+| $\Omega_{\text{dispatch}}$ | Total dispatch cost | € |
+| $\Omega_{\text{transmission}}$ | Transmission cost component | € |
+| $\Omega_{\text{generator}}$ | Thermal generation cost component | € |
+| $\Omega_{\text{unsupplied}}$ | Unsupplied energy cost component | € |
+| $\Omega_{\text{spillage}}$ | Spillage cost component | € |
 | $\overline{C_l^+}$ | Maximum transmission capacity (upstream to downstream) | MW |
 | $\overline{C_l^-}$ | Maximum transmission capacity (downstream to upstream) | MW |
 | $\underline{P}_g$ | Minimum power output from generator $g$ | MW |
 | $\overline{P}_g$ | Maximum power output from generator $g$ | MW |
-| $\chi_g$ | Output cost from generator $g$ | \$/MWh |
-| $\delta_b^+$ | Normative unsupplied energy cost at bus $b$ (value of lost load) | \$/MWh |
-| $\delta_b^-$ | Normative spilled energy cost at bus $b$ (value of wasted energy) | \$/MWh |
+| $\chi_g$ | Output cost from generator $g$ | €/MWh |
+| $\delta_b^+$ | Normative unsupplied energy cost at bus $b$ (value of lost load) | €/MWh |
+| $\delta_b^-$ | Normative spilled energy cost at bus $b$ (value of wasted energy) | €/MWh |
 | $D_b$ | Net power demand at bus $b$ | MW |
 
 ## Optimization Problem
@@ -133,6 +132,14 @@ This section shows how mathematical model is implemented for every power system 
 
 ![YAML Block description with mathematical equations](../assets/2_QSE_Adequacy_maths.png)
 
+# Summary
+This mathematical description serves as the formal reference for the optimization problem, while the GEMS library provides its implementation layer within the GEMS framework. In other words:
+
+- the **mathematical model** defines what problem is being solved,
+
+- the **GEMS library** defines how this problem is represented and can be assembled in the optimization graph.
+
+Together, the [library models](#library-file) and the [system configuration](2A_QSE_adequacy.md/#system-file-and-optimization-graph), with input data, fully reproduce the optimization problem described in the [mathematical formulation](#mathematical-representation).
 
 
 ---

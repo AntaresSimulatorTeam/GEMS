@@ -87,11 +87,15 @@ The example study makes use of models provided by the [GEMS library](https://git
 
 Since this example performs the simulation over a single time step, the data-series folder does not contain any time-series data.
 
-Solver options can be configured in the parameters.yml file. For more details on available solver options, refer to the following [link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/user-guide/modeler/04-parameters.md).
+Simulation options can be configured in the `parameters.yml` file. For more details on available simulation options, refer to the following [link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/user-guide/modeler/04-parameters.md).
 
-### Library file
+### Models Library
 
-[library](3_QSE_adequacy_math_model.md)
+System of the **Three-bus Adequacy** example rely on models defined in the GEMS library file [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml). These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimization problem.
+
+The complete mathematical formulation corresponding to this example — including decision variables, parameters, objective function, and constraints — is detailed in the following document:
+
+[**Mathematical representation of the Three-bus Adequacy problem**](3_QSE_adequacy_math_model.md)
 
 ### System file and Optimization Graph
 
