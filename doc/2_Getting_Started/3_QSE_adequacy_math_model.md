@@ -39,11 +39,6 @@ This part presents the optimization problem formulation of the example [QSE_Adeq
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
-| $\Omega_{\text{dispatch}}$ | Total dispatch cost | € |
-| $\Omega_{\text{transmission}}$ | Transmission cost component | € |
-| $\Omega_{\text{generator}}$ | Thermal generation cost component | € |
-| $\Omega_{\text{unsupplied}}$ | Unsupplied energy cost component | € |
-| $\Omega_{\text{spillage}}$ | Spillage cost component | € |
 | $\overline{C_l^+}$ | Maximum transmission capacity (upstream to downstream) | MW |
 | $\overline{C_l^-}$ | Maximum transmission capacity (downstream to upstream) | MW |
 | $\underline{P}_g$ | Minimum power output from generator $g$ | MW |
