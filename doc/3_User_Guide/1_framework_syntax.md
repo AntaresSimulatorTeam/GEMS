@@ -9,7 +9,7 @@
 
 # GEMS Framework Syntax
 
-The **GEMS framework** relies on a well-defined, declarative syntax to describe optimisation problems in a clear, solver-independent, and reproducible way.
+The **GEMS framework** relies on a well-defined, declarative syntax to describe energy systems - and more generally, graph-based optimisation problems - in a clear, stand-alone, solver-independent, and reproducible way.
 
 From a user and documentation perspective, the GEMS syntax can be explicitly separated into **two complementary layers**, each serving a distinct purpose:
 
