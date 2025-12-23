@@ -49,8 +49,6 @@ Comparison operators are used to form constraints (equations or inequalities).
 
 GEMS framework **Mathematical Expression Syntax** does not support certain operations common in programming or math notation. For example, non-linear functions (log, sin, etc.) are not part of the expression syntax. If a mathematical relationship is non-linear, it must be linearized or reformulated.
 
-Throughout the following sections several advanced operators that will be referenced as they become relevant to each topic.
-
 ## Numeric Constants (Literals)
 
 Numeric constants can be used anywhere in an expression. Literals may be written as integers or floats (use . for a decimal point). For example, all of the following are valid constants: `42`, `0.5`, `3.14`, `100.0`.
