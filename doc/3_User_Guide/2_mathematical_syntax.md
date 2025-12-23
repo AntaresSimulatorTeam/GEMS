@@ -40,9 +40,9 @@ Comparison operators are used to form constraints (equations or inequalities).
 
 | Operator | Description | Example|
 |------|--------------------------| ---------------|
-| `=`| Used in constraint definitions to enforce equality  | `var1 = var2` |
-| `<=` | Used in constraints to require `LHS ≤ RHS` |`var 1 <= var2`|
-| `>=` | Used in constraints to require `LHS ≥ RHS` | `var 1 >= var2`|
+| `=`| Used in constraint definitions to enforce equality  | `expression_1 = expression_2` |
+| `<=` | Used in constraints to require `LHS ≤ RHS` |`expression_1 <= expression_2`|
+| `>=` | Used in constraints to require `LHS ≥ RHS` | `expression_1 >= expression_2`|
 
 **Important:** Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions). Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
  dividing the expression into a left-hand side (LHS) and right-hand side (RHS). Chained comparisons (e.g. `A <= B <= C`) are not permitted; if needed, break them into separate constraints.
@@ -63,7 +63,7 @@ This expression uses literal constants (`67.43`, `5`, `3.14`) in a valid way. Co
 
 ## Parameters
 
-**Parameters** represent fixed input data values (not decision variables) that can be referenced by their `ID` as a simbol to include it's value in expressions. For example:
+**Parameters** represent fixed input data values that can be referenced by their `ID` as a simbol to include it's value in expressions. For example:
 
 ```yaml
 expression: 3 * parameter_1 + 6.345 / parameter_2
