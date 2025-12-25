@@ -127,9 +127,9 @@ This section shows how mathematical model is implemented for every power system 
 ## Summary
 This mathematical description serves as the formal reference for the optimization problem, while the GEMS library provides its implementation layer within the GEMS framework. In other words:
 
-- the **mathematical model** defines what problem is being solved,
+- the **mathematical model** defines what problem is being solved
 
-- the **GEMS library** defines how this problem is represented and can be assembled in the optimization graph.
+- the **GEMS library** defines how this problem is represented and can be assembled in the optimization graph
 
 Together, the [library models](#library-file) and the [system configuration](2A_QSE_adequacy.md/#system-file-and-optimization-graph), with input data, fully reproduce the optimization problem described in the [mathematical formulation](#mathematical-representation).
 

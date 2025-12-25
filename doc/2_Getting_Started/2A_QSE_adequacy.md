@@ -109,22 +109,21 @@ Based on the connection via components from `connections` section in `system.yml
 1. Download [QSE_1_Adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy)
 2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_1_adequacy/input/model-libraries/`
 3. Get Antares Modeler installed through this [tutorial](../1_installation)
-4. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
+4. Locate **bin** folder
 5. Open the terminal
 6. Run these command lines :
 
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-modeler.exe <path-to-study>
+antares-modeler.exe <path-to-study>
 
 # Linux
-./antares-9.3.2-Ubuntu-22.04/bin/antares-modeler <path-to-study>
+./antares-modeler <path-to-study>
 ```
 
 ## Outputs
 
-The results are available in the folder:
-- `QSE_1_Adequacy/output/simulation_table--YYYYMMDD-HHMM.csv`
+The results are available in the csv file `QSE_1_Adequacy/output/simulation_table--YYYYMMDD-HHMM.csv`
 
 The simulation outputs contain the optimized value of optimization problem variables, the status of all contraints and bounds, as well as user defined extra output, as described on the following [page](../3_User_Guide/4_outputs.md).
 
