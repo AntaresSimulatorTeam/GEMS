@@ -10,7 +10,7 @@
 
 ## Mathematical representation
 
-This part presents the optimization problem formulation of the example [QSE_Adequacy ](2A_QSE_adequacy.md) that can be build up from [`basic-models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library. The utilized library contains additional models that are not used in the example consequentely they are not part of the optimization problem formulation.
+This part represents the optimization problem formulation of the example [QSE_Adequacy ](2A_QSE_adequacy.md) that can be build up from [`basic-models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library. The utilized library contains additional models that are not used in the example consequentely they are not part of the optimization problem formulation.
 
 ### Glossary of Mathematical Symbols
 
