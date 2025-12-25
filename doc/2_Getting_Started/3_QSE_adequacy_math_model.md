@@ -10,7 +10,7 @@
 
 ## Mathematical representation
 
-This part represents the optimization problem formulation of the example [QSE_Adequacy ](2A_QSE_adequacy.md) that can be build up from [`basic-models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library. The utilized library contains additional models that are not used in the example consequentely they are not part of the optimization problem formulation.
+This part represents the optimization problem formulation of the example [QSE_Adequacy ](2A_QSE_adequacy.md) that is built up from [`basic-models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library. The referenced library includes additional models that are not used in the example and are therefore not included in the optimization problem formulation.
 
 ### Glossary of Mathematical Symbols
 
@@ -118,13 +118,9 @@ $$
 \forall b \in B, \forall g \in G_b, \quad \underline{P}_g \leq P_g \leq \overline{P}_g
 $$
 
-## GEMS Representation
+## GEMS Representation and Library File
 
-In the following sections, the previously described optimization problem is translated into models within the GEMS framework..  
-
-### Library File
-
-This section shows how mathematical model is implemented for every power system element that figures in optimization problem. File in which models are defined is called `library file`, in this case [`basic-models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library.
+This section shows how mathematical model is implemented for every power system element that figures in optimization problem. File in which models are defined is called *library file*, in this case [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library.
 
 ![YAML Block description with mathematical equations](../assets/2_QSE_Adequacy_maths.png)
 
