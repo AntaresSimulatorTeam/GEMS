@@ -19,7 +19,7 @@ The diagram below illustrates the typical organization of a GEMS study:
 
 ---
 
-**TODO**: Put folder/file structure graph, either in png format, or via mkcos tools for building graphs.
+**TODO**: Put folder/file structure graph, either in png format, or via mkcos tools for building graphs. Put link reference for each specific file?
 
 ---
 
