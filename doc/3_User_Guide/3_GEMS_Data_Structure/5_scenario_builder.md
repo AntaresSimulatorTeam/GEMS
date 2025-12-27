@@ -7,7 +7,38 @@
   </div>
 </div>
 
-# User Guide
+# Scenario Builder
+
+The `modeler-scenariobuilder.dat` file, located in the `data-series` directory, is used to map simulation scenarios to data series. Each line defines an association between a **group name** and a **Monte Carlo year** (referred to as *year*) with a **data series identifier** (referred to as *time series number*).
+
+## Purpose
+
+The scenario builder associates:
+
+- **group ID**
+- **Monte Carlo year** (referred to as *year*)
+- **time series number**
+
+allowing the model to select which data series column is used for a given group and simulation year.
+
+## File Format
+
+Each line in the `modeler-scenariobuilder.dat` file defines a single mapping using the following format:
+
+```text
+group_id, year = time_series_number
+```
+
+
+## Example
+
+```text
+thermal_group, 0 = 1
+thermal_group, 1 = 5
+hydro_group, 2 = 7
+```
+
+
 
 **Navigation**
 
