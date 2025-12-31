@@ -11,7 +11,7 @@
 
 The [**GEMS framework**](../index.md) provides a declarative way to describe energy systems — and more generally, graph-based optimization problems — in a clear, stand-alone, solver-independent, and reproducible manner.
 
-Rather than writing imperative code, users define a study through **structured configuration files**, **mathematical expressions**, and **well-defined concepts** that together allow GEMS to:
+Rather than writing imperative code, users define a study through **structured configuration files**, **mathematical expressions**, and **well-defined concepts** that together allow [GEMS](../index.md) to:
 
 - interpret a system as a connected graph of components,
 - construct the corresponding optimization problem,
@@ -22,13 +22,13 @@ From a documentation perspective, the User Guide is organized into **four comple
 
 - [**Mathematical Syntax**](#mathematical-syntax) — rules for writing mathematical expressions
 
-- [**File Structure**](#file-structure) — rules for configuring GEMS YAML files and how they reference each other  
+- [**File Structure**](#file-structure) — rules for configuring [GEMS](../index.md) YAML files and how they reference each other  
 
 - [**Theoretical Concepts**](#theoretical-concepts) — core ideas behind the system representation and optimization formulation
 
 - [**Outputs**](#outputs) — produced result formats and how to interpret them  
 
-This separation is fundamental to understanding how GEMS models are written, interpreted, validated, and analysed.
+This separation is fundamental to understanding how [GEMS](../index.md) models are written, interpreted, validated, and analysed.
 
 ---
 
@@ -67,13 +67,13 @@ It specifies:
 - How optimization options are configured
 - (When applicable) How to create Business View configuration file
 
-These rules governs the **structure and semantics** of all GEMS YAML files.
+These rules governs the **structure and semantics** of all [GEMS](../index.md) YAML files.
 
 See: [**File Structure**](./3_GEMS_File_Structure/1_overview.md)
 
 ## Theoretical Concepts
 
-The **Theoretical Concepts** section explains the core ideas behind how GEMS represents a system and builds an optimization model.
+The **Theoretical Concepts** section explains the core ideas behind how [GEMS](../index.md) represents a system and builds an optimization model.
 
 It introduces:
 
@@ -89,7 +89,7 @@ See: [**Theoretical Concepts**](../4_theoretical_concepts)
 
 ## Outputs
 
-The **Outputs** section describes what GEMS produces after interpretation and solving, and how to consume results.
+The **Outputs** section describes what [GEMS](../index.md) produces after interpretation and solving, and how to consume results.
 
 It covers:
 
