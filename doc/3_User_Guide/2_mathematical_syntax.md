@@ -154,7 +154,7 @@ Using an integer expression *N* in square brackets accesses the value at the *N-
 
 ### **Relative shift** `[t+N] / [t-N]`
 
-This allows shifting the time index forward or backward by *N* steps. For example, `X[t+1]` is the value of *X* at the next time step, and `X[t-1]` is the previous time step. The offset *N* can be an expression (using scalars/parameters) that evaluates to an integer. Depending on the study time semantics, shifted indices (e.g. `[t+1]` at the last timestep) may wrap around to keep the horizon periodic.
+This allows shifting the time index forward or backward by *N* steps. For example, `X[t+1]` is the value of *X* at the next time step, and `X[t-1]` is the previous time step. The offset *N* can be an expression (using scalars and parameters) that evaluates to an integer. Depending on the study time semantics, shifted indices (e.g. `[t+1]` at the last timestep) may wrap around to keep the horizon periodic.
 This is commonly used for cyclic constraints such as storage dynamics.
 
 ```yaml
@@ -165,7 +165,7 @@ Now, it can be concluded that terms `levels[T+1]` and `levels[0]` are reffering 
 
 ### **Time summation (full horizon)** `sum(X)`
 
-Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. If *X* is defined for each time step from *0* to *T-1*, then `sum(X)` produces a single scalar equal to $\sum_{t=0}^{T-1} X_t$. This is especially useful when objectives or constraints depend on totals across all time periods.
+Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. If *X* is defined for each time step from *0* to *T-1*, then `sum(X)` produces a single scalar equal to $\sum_{t=0}^{T-1} X_t$.
 
 ### **Time summation (range)** `sum(S .. E, X)`
 
@@ -175,7 +175,7 @@ Here *S* and *E* can be either:
 
 - A constant or parameter expression that resolves to a time index
 
-- A relative expression involving *t*. For example, `sum(t-3 .. t, X)` would sum *X* from 3 periods ago up to the current period *t*. Both *S* and *E* are evaluated as integers. This form allows moving window calculations (e.g., sum over a rolling horizon up to the current time).
+- A relative expression involving *t*. For example, `sum(t-3 .. t, X)` would sum *X* from 3 periods ago up to the current period *t*. Both *S* and *E* are evaluated as integers. This form allows moving window calculations (e.g., sum over a rolling horizon up to the current time)
 
 Using these time operators, advanced temporal constraints can be created. For example:
 
@@ -186,7 +186,7 @@ expression: production[t] <= (1/3) * sum(t .. t+3, production)
 
 ## Constraints
 
-A constraint is described by a single expression containing a comparison (`=`, `<=`, or `>=`). The left and right sides of that comparison must be a linear expressions. Here are the key points about constraints:
+A constraint is described by a single expression containing a comparison operator (`=`, `<=`, or `>=`). The left and right sides must be a linear expressions. Here are the key points about constraints:
 
 - A constraint must have exactly one comparison operator dividing the expression. For example: `generation <= capacity` or `supply = demand`.
 - The expression on each side of operators `=/<=/>=` can include any allowed terms: constants, parameters, variables, port fields (subject to the linearity and dependency rules).
@@ -199,7 +199,7 @@ expression: active_power >= is_on * min_active_power
 
 ### Time-Dependent Constraints vs. Aggregation
 
-If a constraint expression includes any time-indexed element (e.g. a time-dependent variable), that constraint implicitly applies at each time step across the horizon. In other words, the model interpreter "unfolds" it into a series of constraints, one per period `t`. To instead enforce a single aggregate constraint across time, `sum(...)` aggregator should be used in constraint expression.
+If a constraint expression includes any time-indexed element (e.g. a time-dependent variable), that constraint implicitly applies at each time step across the horizon. In other words, the model interpreter *unfolds* it into a series of constraints, one per period `t`. To instead enforce a single aggregate constraint across time, `sum(...)` aggregator should be used in constraint expression.
 
 |  Constraint | Functionality  |
 | -----------  | ----------  |
