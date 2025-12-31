@@ -58,7 +58,7 @@ nav:
   - User Guide:
       - Introduction: 3_User_Guide/1_introduction.md
       - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md
-      - Data Structure:
+      - File Structure:
         - Overview: 3_User_Guide/3_GEMS_Data_Structure/1_overview.md
         - Library File: 3_User_Guide/3_GEMS_Data_Structure/2_library.md
         - System File: 3_User_Guide/3_GEMS_Data_Structure/3_system.md
