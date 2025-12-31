@@ -9,26 +9,26 @@
 
 # GEMS Framework Introduction
 
-The **GEMS framework** provides a declarative way to describe energy systems — and more generally, graph-based optimisation problems — in a clear, stand-alone, solver-independent, and reproducible manner.
+The [**GEMS framework**](../index.md) provides a declarative way to describe energy systems — and more generally, graph-based optimization problems — in a clear, stand-alone, solver-independent, and reproducible manner.
 
-Rather than writing imperative code, users define a study through **structured configuration files**, **mathematical expressions**, and **well-defined concepts** that together allow GEMS to:
+Rather than writing imperative code, users define a study through **structured configuration files**, **mathematical expressions**, and **well-defined concepts** that together allow [GEMS](../index.md) to:
 
 - interpret a system as a connected graph of components,
-- construct the corresponding optimisation problem,
-- solve it with a selected backend,
+- construct the corresponding optimization problem,
+- solve it with a selected solver,
 - and expose results in consistent output formats.
 
 From a documentation perspective, the User Guide is organized into **four complementary sections**, each serving a distinct purpose:
 
-- [**Mathematical Syntax**](#mathematical-syntax) — rules for writing mathematical expressions used in constraints and objectives  
+- [**Mathematical Syntax**](#mathematical-syntax) — rules for writing mathematical expressions
 
-- [**Data Structure**](#data-structure) — rules for configuring GEMS YAML files and how they reference each other  
+- [**File Structure**](#file-structure) — rules for configuring [GEMS](../index.md) YAML files and how they reference each other  
 
-- [**Theoretical Concepts**](#theoretical-concepts) — core ideas behind the system representation and optimisation formulation
+- [**Theoretical Concepts**](#theoretical-concepts) — core ideas behind the system representation and optimization formulation
 
 - [**Outputs**](#outputs) — produced result formats and how to interpret them  
 
-This separation is fundamental to understanding how GEMS models are written, interpreted, validated, and analysed.
+This separation is fundamental to understanding how [GEMS](../index.md) models are written, interpreted, validated, and analysed.
 
 ---
 
@@ -47,15 +47,15 @@ It defines:
 
 Mathematical syntax is **solver-agnostic** and intentionally restricted to ensure that all models remain linear (LP/MILP) and unambiguous.
 
-> Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where variables come from or how models are wired together.
+Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where variables come from or how models are wired together.
 
-➡️ See: [**Mathematical Syntax and Rules**](../2_mathematical_syntax)
+See: [**Mathematical Syntax and Rules**](../2_mathematical_syntax)
 
 ---
 
-## Data Structure
+## File Structure
 
-The **GEMS Framework Data Structure** defines how optimisation models are **declared, structured, and connected** using YAML files.
+The **GEMS Framework File Structure** defines how optimization models are **declared, structured, and connected** using YAML files.
 
 It specifies:
 
@@ -64,33 +64,32 @@ It specifies:
 - How components are instantiated
 - How parameters are defined in a component
 - How to use ports to connect components to form a system graph
-- How optimisation options are configured
+- How optimization options are configured
 - (When applicable) How to create Business View configuration file
 
-These rules governs the **structure and semantics** of all GEMS YAML files.
+These rules governs the **structure and semantics** of all [GEMS](../index.md) YAML files.
 
-➡️ See: [**Data Structure**](../3_configuration_syntax)
+See: [**File Structure**](./3_GEMS_File_Structure/1_overview.md)
 
 ## Theoretical Concepts
 
-The **Theoretical Concepts** section explains the core ideas behind how GEMS represents a system and builds an optimisation model.
+The **Theoretical Concepts** section explains the core ideas behind how [GEMS](../index.md) represents a system and builds an optimization model.
 
 It introduces:
 
 - The **hypergraph representation** of a system (components + ports + connections)
 - The distinction between **models** (templates) and **components** (instances)
-- How constraints and objectives are assembled into a global optimisation problem
+- How constraints and objectives are assembled into a global optimization problem
 - How time and scenarios unfold into a larger deterministic or stochastic formulation
 - (When applicable) concepts behind **two-stage** stochastic modelling
 
-> This section is conceptual: it explains *why* the file structure and syntax are designed the way they are.
+This section is conceptual: it explains *why* the file structure and syntax are designed the way they are.
 
-➡️ See: [**Theoretical Concepts**](../4_theoretical_concepts)
-
+See: [**Theoretical Concepts**](../4_theoretical_concepts)
 
 ## Outputs
 
-The **Outputs** section describes what GEMS produces after interpretation and solving, and how to consume results.
+The **Outputs** section describes what [GEMS](../index.md) produces after interpretation and solving, and how to consume results.
 
 It covers:
 
@@ -98,10 +97,9 @@ It covers:
 - The exported **optimization problem**
 - **Business View**: configured aggregations and indicators for analysis/reporting
 
-> Outputs depend on the selected interpreter and run configuration, but the documentation provides a consistent way to locate and interpret results.
+Outputs depend on the selected interpreter and run configuration, but the documentation provides a consistent way to locate and interpret results.
 
-➡️ See: [**Outputs and Result Formats**](../5_outputs)
-
+See: [**Outputs and Result Formats**](./5_Outputs/1_simulation_table.md)
 
 ---
 **Navigation**

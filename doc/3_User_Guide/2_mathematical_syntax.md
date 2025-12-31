@@ -9,7 +9,7 @@
 
 # GEMS Mathematical Expression Syntax
 
-GEMS includes a **Mathematical Expression Syntax** that allows users to write equations for optimization problems in a clear, math-like syntax within specific configuration files. **Mathematical Expression Syntax** is independent of any programming code – model equations are specified as human-readable text, which GEMS interprets to build the mathematical optimization problem.
+[GEMS](../index.md) includes a **Mathematical Expression Syntax** that allows users to write equations for optimization problems in a clear, math-like syntax within specific configuration files. **Mathematical Expression Syntax** is independent of any programming code – model equations are specified as human-readable text, which [GEMS](../index.md) interprets to build the mathematical optimization problem.
 
 This section provides a description of the supported operators, linearity condition, the usage of parameters, variables, and ports in mathematical expressions, and the mechanisms for time and scenario indexing and aggregation.
 
@@ -22,6 +22,7 @@ Basic operators can be divided into two groups:
 - **Comparison Operators**
 
 ### Arithmetic Operators
+
 Mathematical expressions use standard arithmetic notation. The following binary arithmetic operators are supported:
 
 
@@ -47,7 +48,7 @@ Comparison operators are used to form constraints (equations or inequalities).
 **Important:** Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions). Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
  dividing the expression into a left-hand side (LHS) and right-hand side (RHS). Chained comparisons (e.g. `A <= B <= C`) are not permitted; if needed, break them into separate constraints.
 
-GEMS framework **Mathematical Expression Syntax** does not support certain operations common in programming or math notation. For example, non-linear functions (log, sin, etc.) are not part of the expression syntax. If a mathematical relationship is non-linear, it must be linearized or reformulated.
+[**GEMS framework**](../index.md) **Mathematical Expression Syntax** does not support certain operations common in programming or math notation. For example, non-linear functions (log, sin, etc.) are not part of the expression syntax. If a mathematical relationship is non-linear, it must be linearized or reformulated.
 
 ---
 
@@ -63,7 +64,7 @@ expression: 3 * 66.32 - 5 / 3.14
 
 ## Parameters
 
-Parameters represent fixed input data values that can be referenced by their `ID` as a simbol to include it's value in expressions. For example:
+Parameters represent fixed input data values that can be referenced by their `id` as a simbol to include it's value in expressions. For example:
 
 ```yaml
 expression: 3 * parameter_1 + 6.345 / parameter_2
@@ -77,7 +78,7 @@ Parameters can be used freely in arithmetic operations. Since parameters are con
 
 ## Variables
 
-Variables correspond to the decision variables of an optimization problem. All variables are referenced by their `ID` in expressions, just like parameters. For example, if a model defines a variable with `id: generation`, it can be used  in an expression as:
+Variables correspond to the decision variables of an optimization problem. All variables are referenced by their `id` in expressions, just like parameters. For example, if a model defines a variable with `id: generation`, it can be used  in an expression as:
 
 ```yaml
 expression: generation * generation_cost
@@ -100,7 +101,7 @@ Some examples of prohibited expressions (non-linear in variables):
 
 Variables inherently can have a value for each time step (and scenario) unless defined or used in a way that makes them constant. If a variable is time-dependent, it means conceptually there is a vector of that variable across the simulation timeline (e.g. $x_t$ for each hour $t$). Likewise, a scenario-dependent variable has independent values per scenario $s$. The **Mathematical Expression Syntax** does not require writing an index for a time-dependent variable in most cases; instead, the context of the constraint or objective will determine how it’s applied (explained under [**Time Operators**](#time-operators-and-indexing)).
 
-If a variable is time-dependent (or scenario-dependent), it can only be used in a constraint that is also time-dependent (or scenario-dependent), or else aggregated appropriately. In practice, this means if a time-indexed variable is included in an expression, that expression is treated as a separate equation at each time step by default (the interpreter "unfolds" the equation over time). Similarly, scenario-indexed variables lead to constraints unfolding per scenario.
+If a variable is time-dependent (or scenario-dependent), it can only be used in a constraint that is also time-dependent (or scenario-dependent), or else aggregated appropriately. In practice, this means if a time-indexed variable is included in an expression, that expression is treated as a separate equation at each time step by default (the interpreter *unfolds* the equation over time). Similarly, scenario-indexed variables lead to constraints unfolding per scenario.
 
 ## Ports
 
@@ -108,7 +109,7 @@ Ports are the mechanism by which models exchange linear expressions. A port has 
 
 When using a port field in an expression, the same dependency rules apply: if linear expressions of a port varies by time or scenario (which is deduced from how it’s defined – typically depending on time-dependent variables or parameters), then it can only be used in time-dependent or scenario-dependent constraints respectively.
 
-If a port’s linear expressions need to be used in a time-independent manner (for example, when calculating a total over the full time horizon), an aggregator must be applied to remove the time index. See the section on the [**Time Summation Operator**](#time-summation-full-horizon-sumx) for details. A practical implementation is provided in [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) where the `emmision_port` is used to support pollutant-related constraints.
+If a port’s linear expressions need to be used in a time-independent manner (for example, when calculating a sum over the full time horizon), an aggregator must be applied to remove the time index. See the section on the [**Time Summation Operator**](#time-summation-full-horizon-sumx) for details. A practical implementation is provided in [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) where the `emmision_port` is used to support pollutant-related constraints.
 
 ### Port Operator
 
@@ -121,7 +122,8 @@ Use `sum_connections` in constraints that need the combined effect of multiple i
 ```yaml
 expression: sum_connections(injections.flow) = 0
 ```
-This single constraint will enforce that the total of flow from all connected components on port injections is zero.
+
+This constraint will enforce that the total of flow from all connected components on port injections is zero.
 
 ### Direct port field usage
 
@@ -152,7 +154,7 @@ Using an integer expression *N* in square brackets accesses the value at the *N-
 
 ### **Relative shift** `[t+N] / [t-N]`
 
-This allows shifting the time index forward or backward by *N* steps. For example, `X[t+1]` is the value of *X* at the next time step, and `X[t-1]` is the previous time step. The offset *N* can be an expression (using scalars/parameters) that evaluates to an integer. Depending on the study time semantics, shifted indices (e.g. `[t+1]` at the last timestep) may wrap around to keep the horizon periodic.
+This allows shifting the time index forward or backward by *N* steps. For example, `X[t+1]` is the value of *X* at the next time step, and `X[t-1]` is the previous time step. The offset *N* can be an expression (using scalars and parameters) that evaluates to an integer. Depending on the study time semantics, shifted indices (e.g. `[t+1]` at the last timestep) may wrap around to keep the horizon periodic.
 This is commonly used for cyclic constraints such as storage dynamics.
 
 ```yaml
@@ -161,11 +163,11 @@ expression: levels[t+1] = levels + injection - withdrwal
 
 Now, it can be concluded that terms `levels[T+1]` and `levels[0]` are reffering to the same variable.
 
-### **Time summation (full horizon)** `sum(X)`:
+### **Time summation (full horizon)** `sum(X)`
 
-Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. If *X* is defined for each time step from *0* to *T-1*, then `sum(X)` produces a single scalar equal to $\sum_{t=0}^{T-1} X_t$. This is especially useful when objectives or constraints depend on totals across all time periods.
+Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. If *X* is defined for each time step from *0* to *T-1*, then `sum(X)` produces a single scalar equal to $\sum_{t=0}^{T-1} X_t$.
 
-### **Time summation (range)** `sum(S .. E, X)`:
+### **Time summation (range)** `sum(S .. E, X)`
 
 Sums the operand X from time *S* to time *E*.
 
@@ -173,7 +175,7 @@ Here *S* and *E* can be either:
 
 - A constant or parameter expression that resolves to a time index
 
-- A relative expression involving *t*. For example, `sum(t-3 .. t, X)` would sum *X* from 3 periods ago up to the current period *t*. Both *S* and *E* are evaluated as integers. This form allows moving window calculations (e.g., sum over a rolling horizon up to the current time).
+- A relative expression involving *t*. For example, `sum(t-3 .. t, X)` would sum *X* from 3 periods ago up to the current period *t*. Both *S* and *E* are evaluated as integers. This form allows moving window calculations (e.g., sum over a rolling horizon up to the current time)
 
 Using these time operators, advanced temporal constraints can be created. For example:
 
@@ -184,7 +186,7 @@ expression: production[t] <= (1/3) * sum(t .. t+3, production)
 
 ## Constraints
 
-A constraint is described by a single expression containing a comparison (`=`, `<=`, or `>=`). The left and right sides of that comparison must be a linear expressions. Here are the key points about constraints:
+A constraint is described by a single expression containing a comparison operator (`=`, `<=`, or `>=`). The left and right sides must be a linear expressions. Here are the key points about constraints:
 
 - A constraint must have exactly one comparison operator dividing the expression. For example: `generation <= capacity` or `supply = demand`.
 - The expression on each side of operators `=/<=/>=` can include any allowed terms: constants, parameters, variables, port fields (subject to the linearity and dependency rules).
@@ -197,9 +199,7 @@ expression: active_power >= is_on * min_active_power
 
 ### Time-Dependent Constraints vs. Aggregation
 
-If a constraint expression includes any time-indexed element (e.g. a time-dependent variable), that constraint implicitly applies at each time step across the horizon. In other words, the model interpreter "unfolds" it into a series of constraints, one per period `t`. To instead enforce a single aggregate constraint across time, `sum(...)` aggregator should be used in constraint expression.
-
-
+If a constraint expression includes any time-indexed element (e.g. a time-dependent variable), that constraint implicitly applies at each time step across the horizon. In other words, the model interpreter *unfolds* it into a series of constraints, one per period `t`. To instead enforce a single aggregate constraint across time, `sum(...)` aggregator should be used in constraint expression.
 
 |  Constraint | Functionality  |
 | -----------  | ----------  |
@@ -216,15 +216,13 @@ Objective function is described by an expression which should be a linear expres
 expression: sum(generation * generation_cost)
 ```
 
-
 ## Additional Operators
 
 ### Scenario Operator
 
-GEMS can handle multiple scenarios (two stage stochastic) for data and variables. Scenario-dependent parameters or variables have values that differ by scenario (similar to having an extra scenario index s). **Mathematical Expression Syntax**  currently provides an operator to aggregate across the scenario dimension:
+[GEMS](../index.md) can handle multiple scenarios (two stage stochastic) for data and variables. Scenario-dependent parameters or variables have values that differ by scenario (similar to having an extra scenario index s). **Mathematical Expression Syntax**  currently provides an operator to aggregate across the scenario dimension:
 
 - **expec(X)** aggregator: where `X` is the scenario-dependent operand, this operator computes its expected value (i.e. its scenario-wise average).
-
 
 ### Dual Operators
 
@@ -238,24 +236,29 @@ In some cases, there is a  need to access dual results of variables or constrain
 This binary operator `^` is used within any expression, but with following restrictions.
 
 In the context of a linear problem construction, its operands can only be literals or parameters.
+
 ```yaml
 expression: parameter_1^(1 + parameter_2)
 ```
 
  In the context of a extracting results, its operands can be literals, parameters or variables.
+
 ```yaml
 expression: variable_1^(1 + parameter_1)
 ```
+
 ### Min/Max Operators
 
 These n-ary operators `max(u, v, ...)`/`min(u, v, ...)` are used within any expression, but with following restrictions.
 
  In the context of a linear problem construction, its operands can only be literals or parameters.
+
 ```yaml
 expression: paramter_1 < max(parameter_2, 100)
 ```
 
  In the context of a extracting results, its operands can be literals, parameters or variables.
+
 ```yaml
 expression: min(variable_1, parameter_1)
 ```
