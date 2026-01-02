@@ -9,7 +9,7 @@
 
 # File Structure
 
-This section provides a high-level overview of the specific files used by GEMS Framework and how they collectively describe a complete GEMS study.
+This section provides a high-level overview of the specific files used by [**GEMS framework**](../../index.md) and how they collectively describe a complete GEMS study.
 
 These files describe the models logic, input data, scenarios, solver settings, and output representations. A summary of the expected files and their roles is provided in the [GEMS Architecture](../../1_Overview/Concepts/2_architecture.md).
 
