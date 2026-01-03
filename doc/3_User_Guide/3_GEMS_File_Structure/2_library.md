@@ -14,7 +14,7 @@ A library file defines a library of two collections of abstract objects:
 - Models - Contains the mathematical formulation for component type
 - Ports Types - Describe the kinds of connections models can have
 
-The library file is a YAML file with a single root key, `library`. Under this root, the library’s identifier, an optional description, and the collections of `port-types` and `models` are defined. All fields, unless explicitly marked as optional, must be present for the library to be considered valid. The following example illustrates the structure of a simple library file.:
+The library file is a YAML file with a single root key, `library`. Under this root, the library’s identifier, an optional description, and the collections of `port-types` and `models` are defined. All fields, unless explicitly marked as optional, must be present for the library to be considered valid. The following example illustrates the structure of a simple library file:
 
 ```yaml
 library:
@@ -83,6 +83,7 @@ port-types:
         - id: field_1
         - id: field_2
 ```
+
 | Element | Description |
 |------|--------------------------|
 |`port-types`| A list of port types definitions that models can use for connecting to other models.|
@@ -250,7 +251,6 @@ constraints:
   - id: initial_level_constraint
     expression: level[0] = initial_level * reservoir_capacity
 ```
-
 
 Constraint **expression** must comply with the [**Mathematical Expression Syntax**](../2_mathematical_syntax.md#constraints) to ensure it is interpreted correctly during model evaluation.
 
