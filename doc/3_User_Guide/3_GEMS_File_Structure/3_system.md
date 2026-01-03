@@ -17,29 +17,29 @@ The system file is a YAML file with a single root key `system`. The system conta
 system:
   id: my_system
   description: "An example system with one load and one node"
-  model-libraries: my_library1, my_library2
+  model-libraries: my_library_1, my_library_2
   components:
-    - id: demand1
-      model: my_library.load
+    - id: load_1
+      model: my_library_1.load
       parameters:
         - id: load
           time-dependent: true
           scenario-dependent: false
           value: demand_profile
-    - id: node1
-      model: my_library2.node
+    - id: bus_1
+      model: my_library_2.bus
   connections:
-    - component1: node1
-      port1: balance
-      component2: demand1
-      port2: balance
+    - component1: bus_1
+      component2: load_1
+      port1: balance_port
+      port2: balance_port
 ```
 
-In this example, the system file defines a system with two model libraries, `my_library1` and `my_library2`. These libraries provide the model definitions used to instantiate the system components.
+In this example, the system file defines a system with two model libraries, `my_library_1` and `my_library_2`. These libraries provide the model definitions used to instantiate the system components.
 
-The system `my_system` instantiates two components: `demand1`, which is an instance of the `load` model defined in `my_library1`, and `node1`, which is an instance of the `node` model defined in `my_library2`. The `demand1` component assigns a time-dependent parameter `load`, whose value is provided by the data series identified as `demand_profile`.
+The system `my_system` instantiates two components: `load_1`, which is an instance of the `load` model defined in `my_library_1`, and `bus_1`, which is an instance of the `bus` model defined in `my_library_2`. The `load_1` component assigns a time-dependent parameter `load`, whose value is provided by the data series identified as `demand_profile`.
 
-The `connections` section specifies how components are linked. In this case, the `balance` port of `demand1` is connected to the `balance` port of `node1`, indicating that the load is connected to the node
+The `connections` section specifies how components are linked. In this case, the `balance_port` port of `load_1` is connected to the `balance_port` port of `bus_1`, indicating that the load is connected to the node
 
 ## Components
 
@@ -84,7 +84,7 @@ A list of connections between component ports. Each connection entry defines a l
 
 The two ports being connected must be of the same port type.
 
-Port `connections` determine how linear expressions are exchanged between components. If a model defines a port only in the ports section, it acts as a **receiver** for that port and collects linear expressions emitted by connected components. A typical example is a **bus** model, which receives flow expressions from adjacent components.
+Port `connections` determine how linear expressions are exchanged between components. If a model defines a port only in the ports section, it acts as a **receiver** for that port and collects linear expressions emitted by connected components. A typical example is a **bus** model, which receives flow expressions from connected components (generators, load etc.).
 
 If a model additionally defines **port-field-definitions**, it acts as an **emitter** for that port. In this case, the model exposes linear expressions through the port, allowing connected receiver component to consume them. A common example is a generator model, which emits it's `generation` variable to connected bus component.
 
