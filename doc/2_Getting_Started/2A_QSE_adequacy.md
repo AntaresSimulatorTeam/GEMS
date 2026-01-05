@@ -133,9 +133,9 @@ The power flows between buses can be visualized as follows:
 
 By utilizing the extra output feature, the marginal price is obtained as the dual value of the power balance constraint at each bus:
 
-- `bus_1` : **35 €**, because `generator_1` generation cost is 35 €/MW
-- `bus_2` : **35 €**, as `generator_2` is at its maximum rate, so the next produced 1MWh will be produced from `generator_1`. Therefore, the marginal price for `bus_2` is 35€/MW.
-- `bus_3` : **42 €**, because `generator_3` generation cost is 42 €/MW
+- `bus_1` : **35 €**, because `generator_1` generation cost is 35 €/MWh
+- `bus_2` : **35 €**, as `generator_2` is at its maximum rate, so the next produced 1MWh will be produced from `generator_1`. Therefore, the marginal price for `bus_2` is 35€/MWh.
+- `bus_3` : **42 €**, because `generator_3` generation cost is 42 €/MWh
 
 
 The following graphs show the merit order of the generator and links flows :
