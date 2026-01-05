@@ -109,11 +109,21 @@ Following diagrams represents part of the `system.yml` where user is able to ins
 
 Instantiation of components `bus_1`, `bus_load_1`, `generator_1` and `link_12` is represented as well as connection between `bus_1` and `bus_load_1` components and connection between `bus_1` and `link_12` components. Entire system file can be found [in this repo](https://github.com/AntaresSimulatorTeam/GEMS/blob/15b4821113a09a417b73d00b3bc24f819ef44c99/doc/5_Examples/QSE/QSE_1_Adequacy/input/system.yml).
 
-![system yaml file explanations](../assets/2_QSE_Adequacy_system.png)
+![system yaml file explanations](../assets/2_QSE_Adequacy_system_only_one.png)
 
-Based on the connection via components from `connections` section in `system.yml` file, optimization graph can be build. Following graph represents optimization graph of **Three-bus Adequacy example**.
+<details>
+<summary>System file description</summary>
+<p>
+  <img src="../../assets/2_QSE_Adequacy_system.png" alt="system yaml file explanations" style="max-width:100%;">
+</p>
+<p>
+  Based on the connection via components from <code>connections</code> section in the <code>system.yml</code> file, the optimization graph can be built. The following graph represents the optimization graph of the Three-bus Adequacy example.
+</p>
+<p>
+  <img src="../../assets/2_QSE_1_system_complete.png" alt="complete diagram with ports" style="max-width:100%;">
+</p>
+</details>
 
-![complete diagram with ports](../../assets/2_QSE_1_system_complete.png)
 
 ## Running the GEMS study with Antares Modeler
 
