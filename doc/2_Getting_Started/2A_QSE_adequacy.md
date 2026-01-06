@@ -11,7 +11,7 @@
 # Quick-start example 1: three-bus adequacy system
 
 ## Overview and problem description
-This tutorial demonstrates adequacy modeling using a simplified three-bus meshed network over a single time-step. The example is intended solely to illustrate modeling concepts and should not be interpreted as a realistic system representation; however, it provides a foundation for developing more detailed and realistic models.
+This tutorial demonstrates **adequacy** modeling using a simplified three-bus meshed network over **one single time-step**. The example is intended to illustrate modeling concepts and should not be interpreted as a realistic system representation; however, it provides a foundation for developing more detailed and realistic models.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy).
 
@@ -39,7 +39,7 @@ The example study makes use of models provided by the [GEMS library](https://git
 
 Since this example performs the simulation over a single time step, the data-series folder does not contain any time-series data.
 
-Simulation options can be configured in the `parameters.yml` file. For more details on available simulation options, refer to the following [link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/user-guide/modeler/04-parameters.md).
+Simulation options can be configured in the `parameters.yml` file. For more details on available simulation options, refer to the [following link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/user-guide/modeler/04-parameters.md).
 
 ## Relations between library and system file
 
@@ -50,7 +50,7 @@ Simulation options can be configured in the `parameters.yml` file. For more deta
 <details>
   <summary><strong>Library and System relations in details </strong></summary>
   <p>
-    The following diagram represents the <code>system.yml</code> file, where users can instantiate components (such as buses, links, generators, etc.) and connect them via ports to form the optimization graph. It also illustrates the relationship between the library file and the system file for this adequacy example.
+    The previous diagram represents the <code>system.yml</code> file, where users can instantiate components (such as buses, links, generators, etc.) and connect them via ports to form the optimization graph. It also illustrates the relationship between the library file and the system file for this adequacy example.
   </p>
   <ul>
     <li>
@@ -135,7 +135,10 @@ The following graphs show the merit order of the generators and link flows:
 <details>
 <summary>Problem description in detail</summary>
 
-Time Horizon: This example considers a single one-hour time step.
+Time Horizon: 
+<ul>
+  <li> This example considers a single one-hour time step. </li>
+</ul>
 
 Network Components:
 <ul>
