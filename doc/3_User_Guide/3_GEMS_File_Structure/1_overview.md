@@ -15,13 +15,24 @@ These files describe the models logic, input data, scenarios, solver settings, a
 
 Understanding how these files fit together is essential for building, modifying, maintaining and analyzing GEMS studies.
 
-The diagram below illustrates the typical organization of a GEMS study:
+The diagram below illustrates the typical organisation of a GEMS study:
 
----
+<div style="background: #f5f5f5; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace; margin: 20px 0;">
 
-**TODO**: Put folder/file structure graph, either in png format, or via mkcos tools for building graphs. Put link reference for each specific file?
+📁 **QSE_1_adequacy/**  
+├── 📁 **input/**  
+│   ├── 📁 **model-libraries/**  
+│   │   ├── 📄 library_1.yml <small>→ [<i>example: basic_models_library</i>](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml)</small>  
+│   │   ├── 📄 library_2.yml  
+│   │   └── ...  
+│   ├── 📄 **system.yml** <small>→ [<i>example from QSE 1</i>](https://github.com/AntaresSimulatorTeam/GEMS/blob/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml)</small>  
+│   └── 📁 **data-series/**  
+│       ├── 📊 data-series_1.csv  
+│       ├── 📊 data-series_2.csv  
+│       └── ...  
+└── 📄 **parameters.yml** <small>→ [<i>example</i>](https://github.com/AntaresSimulatorTeam/GEMS/blob/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy/parameters.yml)</small>
 
----
+</div>
 
 The following pages of this section describe each file and folder in detail. Each page focuses on the role of a specific file, its expected structure, and how it interacts with the rest of the file to form a consistent and executable GEMS study.
 
