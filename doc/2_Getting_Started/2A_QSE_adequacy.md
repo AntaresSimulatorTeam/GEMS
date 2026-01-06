@@ -11,20 +11,20 @@
 # Quick-start example 1: three-bus adequacy system
 
 ## Overview and problem description
-This tutorial demonstrates resource adequacy modeling using a simplified three-bus meshed network over a single time-step. The example is intended solely to illustrate modeling concepts and should not be interpreted as a realistic system representation; however, it provides a foundation for developing more detailed and realistic models.
+This tutorial demonstrates adequacy modeling using a simplified three-bus meshed network over a single time-step. The example is intended solely to illustrate modeling concepts and should not be interpreted as a realistic system representation; however, it provides a foundation for developing more detailed and realistic models.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy).
 
 ### Adequacy definition
 
-**Resource Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
+**Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
 
 ![Adequacy Scheme](../assets/2_adequacy_scheme.png)
 ## The GEMS study
 
 ### Files Structure
 
-Following block represents GEMS Framework study folder structure.
+The following block represents the GEMS Framework study folder structure.
 ```
 QSE_1_adequacy/
 ├── input/
@@ -87,7 +87,7 @@ antares-modeler.exe <path-to-study>
 
 The results are available in the csv file `QSE_1_Adequacy/output/simulation_table--YYYYMMDD-HHMM.csv`
 
-The simulation outputs contain the optimized value of optimization problem variables, the status of all contraints and bounds, as well as user defined extra output, as described on the [following page](../3_User_Guide/4_outputs.md).
+The simulation outputs contain the optimised value of optimisation problem variables, the status of all constraints and bounds, as well as user-defined extra output, as described on the [following page](../3_User_Guide/4_outputs.md).
 
 The power flows between buses can be visualized as follows:
 
@@ -96,7 +96,7 @@ The power flows between buses can be visualized as follows:
 <details class="more-details">
   <summary><strong>Outputs in details </strong></summary>
 
-By utilizing the extra output feature, the marginal price is obtained as the dual value of the power balance constraint at each bus:
+By utilising the extra output feature, the marginal price is obtained as the dual value of the power balance constraint at each bus:
 
 <ul>
   <li>
@@ -111,19 +111,19 @@ By utilizing the extra output feature, the marginal price is obtained as the dua
 </ul>
 
 
-The following graphs show the merit order of the generator and links flows :
+The following graphs show the merit order of the generators and link flows:
 
 <div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
   <figure style="width:45%; margin:0;">
     <img src="../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:100%;"/>
     <figcaption style="text-align:center; margin-top:8px;">
-      This graph shows the power output of each generator in the system, illustrating how the optimizer allocates generation based on cost and capacity constraints.
+      This graph shows the power output of each generator in the system, illustrating how the optimiser allocates generation based on cost and capacity constraints.
     </figcaption>
   </figure>
   <figure style="width:45%; margin:0;">
     <img src="../../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:100%;"/>
     <figcaption style="text-align:center; margin-top:8px;">
-      Above the blue absciss axis, the flow represents import, below it's export.
+      Above the blue abscissa axis, the flow represents import; below, it represents export.
     </figcaption>
   </figure>
 </div>
@@ -134,7 +134,7 @@ The following graphs show the merit order of the generator and links flows :
 
 ## Problem description
 <details>
-<summary>Problems description in details</summary>
+<summary>Problem description in detail</summary>
 
 Time Horizon: This example considers a single one-hour time step.
 
@@ -187,7 +187,7 @@ Economic Parameters:
     <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml" target="_blank">
       <code>basic_models_library.yml</code>
     </a>.
-    These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimization problem.
+    These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimisation problem.
   </p>
   <p>
     The complete mathematical formulation corresponding to this example — including decision variables, parameters, objective function, and constraints — is detailed in the following document:
