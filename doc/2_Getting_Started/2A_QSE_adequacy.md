@@ -29,8 +29,7 @@ The following block represents the GEMS Framework study folder structure.
 QSE_1_adequacy/
 ├── input/
 │   ├──model-libraries/
-│   │  ├── basic_models_library.yml
-│   │  └── ...
+│   │  └──  basic_models_library.yml 
 │   ├── system.yml
 │   └── data-series/
 │       └──  ...
