@@ -14,6 +14,7 @@ theme:
     - navigation.expand
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.indexes
     - content.action.copy
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -58,8 +59,9 @@ nav:
         - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
         - GEMSPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
-        - Adequacy: 2_Getting_Started/2A_QSE_adequacy.md
-        - Adequacy Problem Formulation: 2_Getting_Started/3_QSE_adequacy_math_model.md
+        - Three-bus system - Simple Adequacy Example: 
+          - Overview : 2_Getting_Started/2A_QSE_adequacy.md
+          - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
       - Support: 2_Getting_Started/1C_support.md
   - User Guide:
       - Syntax: 3_User_Guide/1_syntax.md
