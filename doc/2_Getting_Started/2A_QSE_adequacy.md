@@ -20,7 +20,6 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 **Resource Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
 
 ![Adequacy Scheme](../assets/2_adequacy_scheme.png)
-
 ## The GEMS study
 
 ### Files Structure
