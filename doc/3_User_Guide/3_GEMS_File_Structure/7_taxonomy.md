@@ -1,3 +1,4 @@
+![Template Banner](../assets/template_banner.svg)
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="../../../..">Main Section</a>
@@ -7,7 +8,7 @@
   </div>
 </div>
 
-# User Guide
+# User Guide - Taxonomy
 
 **Navigation**
 
