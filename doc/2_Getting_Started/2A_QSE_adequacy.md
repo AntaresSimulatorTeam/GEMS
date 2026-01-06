@@ -130,7 +130,7 @@ The following graphs show the merit order of the generators and link flows:
 
 </details>
 
-# Detailed explanations
+# Further in-depth explanations
 
 ## Problem description
 <details>
