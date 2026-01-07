@@ -9,7 +9,7 @@
 
 # QSE 2: Unit Commitment - Mathematical Representation
 
-This section presents the mathematical formulation of the unit commitment problem.
+This part represents the optimization problem formulation of the example [QSE_Unit_Commitment](2B_QSE_unit_commitment.md) that is built up from [`antares-legacy-models.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml) library. The referenced library includes additional models that are not used in the example and are therefore not included in the optimization problem formulation.
 
 ## Glossary of Mathematical Symbols
 
