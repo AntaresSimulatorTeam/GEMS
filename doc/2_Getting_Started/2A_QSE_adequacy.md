@@ -129,9 +129,9 @@ The following graphs show the merit order of the generators and link flows:
 
 </details>
 
-# Further in-depth explanations
+## Further in-depth explanations
 
-## Problem description
+### Problem description
 <details>
 <summary>Problem description in detail</summary>
 
@@ -179,7 +179,7 @@ Economic Parameters:
 </ul>
 </details>
 
-## Models Library
+### Models Library
 
 <details>
 <summary>Models Library details</summary>
@@ -204,7 +204,7 @@ Economic Parameters:
 
 </details>
 
-## System file configuration
+### System file configuration
 
 These diagrams explain how to configure the system file :
 
