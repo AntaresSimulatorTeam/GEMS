@@ -50,6 +50,25 @@ QSE_2_Unit_Commitment/
   </p>
 </details>
 
+## Running the GEMS study with Antares Modeler
+
+1. Download [QSE_2_unit_commitment](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_2_unit_commitment)
+2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_2_unit_commitment/input/model-libraries/`
+3. Get Antares Modeler installed through this [tutorial](../1_installation)
+4. Locate **bin** folder
+5. Open the terminal
+6. Run these command lines :
+
+```bash
+# Windows
+antares-modeler.exe <path-to-study>
+
+# Linux
+./antares-modeler <path-to-study>
+```
+
+The results will be available in the folder `<study_folder>/output`.
+
 ## Outputs
 
 ## Output Variables
@@ -86,26 +105,6 @@ This graph illustrates how the number of thermal units generating power changes 
     </tr>
   </table>
 </details>
-
-
-## Running the GEMS study with Antares Modeler
-
-1. Download [QSE_2_unit_commitment](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_2_unit_commitment)
-2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_2_unit_commitment/input/model-libraries/`
-3. Get Antares Modeler installed through this [tutorial](../1_installation)
-4. Locate **bin** folder
-5. Open the terminal
-6. Run these command lines :
-
-```bash
-# Windows
-antares-modeler.exe <path-to-study>
-
-# Linux
-./antares-modeler <path-to-study>
-```
-
-The results will be available in the folder `<study_folder>/output`
 
 ## Further in-depth explanations
 
