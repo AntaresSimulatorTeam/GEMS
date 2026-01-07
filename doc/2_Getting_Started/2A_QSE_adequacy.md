@@ -132,6 +132,10 @@ The following graphs show the merit order of the generators and link flows:
 ## Further in-depth explanations
 
 ### Problem description
+<p align="center">
+  <img src="../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
+</p>
+
 <details>
 <summary>Problem description in detail</summary>
 
