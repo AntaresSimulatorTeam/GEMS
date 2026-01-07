@@ -19,7 +19,10 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 
 **Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
 
-![Adequacy Scheme](../assets/2_adequacy_scheme.png)
+<p align="center">
+  <img src="../../assets/2_adequacy_scheme.png" alt="Adequacy Scheme" style="width:75%">
+</p>
+
 ### Problem description
 
 <p align="center">
