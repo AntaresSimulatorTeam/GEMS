@@ -1,71 +1,59 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.2.9 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" scale="1" border="0" version="29.2.9">
   <diagram name="QSE2_Unit_Commitment_System" id="qse2-uc-system">
-    <mxGraphModel dx="1665" dy="824" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1663" dy="822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="region-a-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9966CC;strokeColor=#6B4C9A;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
-          <mxGeometry x="80" y="120" width="260" height="240" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD966;strokeColor=#A08A3F;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px; text-align: left;&quot;&gt;☀️ Solar Farm: 80 MW&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="210" x="520" y="120" as="geometry" />
         </mxCell>
-        <mxCell id="region-a-title" value="⚡ Region A" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#FFFFFF;" parent="1" vertex="1">
-          <mxGeometry x="80" y="130" width="260" height="30" as="geometry" />
+        <mxCell id="region-b-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1976D2;strokeColor=#0D47A1;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;span style=&quot;font-size: 18px; font-weight: 700;&quot;&gt;⚡ Bus&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="320" y="200" as="geometry" />
         </mxCell>
-        <mxCell id="region-a-coal" value="🏭 Coal Plant: 200 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFFFFF;fontStyle=0;" parent="1" vertex="1">
-          <mxGeometry x="100" y="170" width="220" height="20" as="geometry" />
+        <mxCell id="diagram-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#333333;" value="Unit Commitment System" vertex="1">
+          <mxGeometry height="40" width="270" x="160" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="region-a-coal-details" value="💰 Cost: 35 €/MWh&#xa;🔧 Min up: 12h, Startup: 5000€" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#E6E6FA;" parent="1" vertex="1">
-          <mxGeometry x="110" y="190" width="220" height="30" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-3" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="50" width="195" x="282.5" y="360" as="geometry" />
         </mxCell>
-        <mxCell id="region-a-gas" value="⚡ Gas Plant: 150 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFFFFF;fontStyle=0;" parent="1" vertex="1">
-          <mxGeometry x="100" y="225" width="220" height="20" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-2" parent="TUvCcXH0GGjaxbEp0lOu-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;strokeColor=#756882;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 18px; font-weight: 700; text-align: left;&quot;&gt;💡 Load: 35 - 125 MW&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="195" as="geometry" />
         </mxCell>
-        <mxCell id="region-a-gas-details" value="💰 Cost: 50 €/MWh&#xa;🔧 Min up: 4h, Startup: 1500€" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#E6E6FA;" parent="1" vertex="1">
-          <mxGeometry x="110" y="245" width="220" height="30" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-6" connectable="0" parent="1" style="group;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="50" width="220" x="520" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="region-a-wind" value="🌬️ Wind Farm: 100 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFFFFF;fontStyle=0;" parent="1" vertex="1">
-          <mxGeometry x="100" y="280" width="220" height="20" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-7" parent="TUvCcXH0GGjaxbEp0lOu-6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#99FFFF;strokeColor=#61A2A2;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px;&quot;&gt;🌬️ Wind Farm : 100 MW&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="220" as="geometry" />
         </mxCell>
-        <mxCell id="region-a-load" value="💡 Load: 80-180 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFEB3B;fontStyle=1;" parent="1" vertex="1">
-          <mxGeometry x="100" y="310" width="220" height="30" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-9" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="85" width="210" x="60" y="187.5" as="geometry" />
         </mxCell>
-        <mxCell id="region-b-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1976D2;strokeColor=#0D47A1;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
-          <mxGeometry x="487" y="120" width="260" height="240" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-10" parent="TUvCcXH0GGjaxbEp0lOu-9" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;strokeColor=#756882;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;font style=&quot;font-size: 18px; color: rgb(0, 0, 0);&quot;&gt;&lt;b&gt;⚡ Gas Plant: 30 MW&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;b&gt;nb units = 10&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="85" width="210" as="geometry" />
         </mxCell>
-        <mxCell id="region-b-title" value="⚡ Region B" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#FFFFFF;" parent="1" vertex="1">
-          <mxGeometry x="487" y="130" width="260" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="region-b-nuclear" value="⚛️ Nuclear Plant: 300 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFFFFF;fontStyle=0;" parent="1" vertex="1">
-          <mxGeometry x="507" y="170" width="220" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="region-b-nuclear-details" value="💰 Cost: 15 €/MWh&#xa;🔧 Min up: 24h, Startup: 50000€" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#E6F3FF;" parent="1" vertex="1">
-          <mxGeometry x="517" y="190" width="220" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="region-b-peaker" value="⚡ Gas Plant: 100 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFFFFF;fontStyle=0;" parent="1" vertex="1">
-          <mxGeometry x="507" y="225" width="220" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="region-b-peaker-details" value="💰 Cost: 80 €/MWh&#xa;🔧 Min up: 1h, Startup: 200€" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#E6F3FF;" parent="1" vertex="1">
-          <mxGeometry x="517" y="245" width="220" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="region-b-solar" value="☀️ Solar Farm: 80 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFFFFF;fontStyle=0;" parent="1" vertex="1">
-          <mxGeometry x="507" y="280" width="220" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="region-b-load" value="💡 Load: 120-250 MW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#FFEB3B;fontStyle=1;" parent="1" vertex="1">
-          <mxGeometry x="507" y="310" width="220" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="link-a-to-b" value="" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=3;strokeColor=#4CAF50;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="region-a-box" target="region-b-box" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="340" y="240" as="sourcePoint" />
-            <mxPoint x="487" y="240" as="targetPoint" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-12" edge="1" parent="1" source="TUvCcXH0GGjaxbEp0lOu-10" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="region-b-box" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="240" y="240" as="sourcePoint" />
+            <mxPoint x="470" y="250" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="link-label" value="🔌 Transmission Link&#xa;Capacity: 100 MW (bidirectional)" style="text;html=1;strokeColor=none;fillColor=#E8F5E9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;fontColor=#2E7D32;" parent="1" vertex="1">
-          <mxGeometry x="360" y="215" width="107" height="50" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-13" edge="1" parent="1" source="region-b-box" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" target="TUvCcXH0GGjaxbEp0lOu-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="360" y="250" as="sourcePoint" />
+            <mxPoint x="460" y="250" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="diagram-title" value="Unit Commitment System - Week-Long Optimization (168 hours)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="80.5" y="60" width="667" height="40" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-14" edge="1" parent="1" source="region-b-box" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" target="TUvCcXH0GGjaxbEp0lOu-7" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="470" y="280" as="sourcePoint" />
+            <mxPoint x="600" y="230" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="time-note" value="⏱️ Time Horizon: 168 hours (1 week)" style="text;html=1;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;fontColor=#F57F17;" parent="1" vertex="1">
-          <mxGeometry x="304" y="380" width="220" height="30" as="geometry" />
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-16" edge="1" parent="1" source="region-b-box" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="TUvCcXH0GGjaxbEp0lOu-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="480" y="250" as="sourcePoint" />
+            <mxPoint x="610" y="270" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
