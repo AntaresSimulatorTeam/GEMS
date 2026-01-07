@@ -10,18 +10,18 @@
 # QSE 2: Unit Commitment - Simple Example
 
 ## Overview
-This tutorial demonstrates a simple unit commitment optimization. Unit commitment determines the optimal number of units generating power from one single generator at each time period to meet demand at minimum cost.
+This tutorial demonstrates a simple unit commitment optimization. Unit commitment determines the **optimal number of units generating power** from **one single generator** at each time period to meet demand at minimum cost.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/doc/5_Examples/QSE/QSE_2_Unit_Commitment).
 
-## Files Structure
+### Files Structure
 
 ```
 QSE_2_Unit_Commitment/
 ├── input/
 │   ├── system.yml
 │   ├── model-libraries/
-│   │   └── unit_commitment_library.yml
+│   │   └── antares_legacy_models.yml
 │   └── data-series/
 │       ├── load.csv
 │       ├── solar.csv
@@ -29,225 +29,137 @@ QSE_2_Unit_Commitment/
 └── parameters.yml
 ```
 
-## Problem Description
-
-**Components:**
-
-  - 1 Bus (central node for power balance)
-  - 1 Thermal cluster (10 units of 3 MW each, 30 MW total capacity)
-  - 1 Solar Plant
-  - 1 Wind Plant
-  - 1 Load (variable demand, 35-125 MW)
-
-**Time Horizon:** 1 week with hourly resolution (168 hours)
-
-The next diagram explains the different connections of each components :
+### Problem Description
 
 ![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
-# Mathematical Representation
+<details>
+  <summary><strong>Unit Commitment example description in details</strong></summary>
+  <p>
+    The diagram above shows the connections between the main components:
+  </p>
+  <ul>
+    <li><strong>1 Bus:</strong> Central node for power balance</li>
+    <li><strong>1 Thermal cluster:</strong> 10 units of 3 MW each (30 MW total capacity)</li>
+    <li><strong>1 Solar Plant</strong></li>
+    <li><strong>1 Wind Plant</strong></li>
+    <li><strong>1 Load:</strong> Variable demand (35-125 MW)</li>
+  </ul>
+  <p>
+    <strong>Time Horizon:</strong> 1 week with hourly resolution (168 hours)
+  </p>
+</details>
 
-This section presents the mathematical formulation of the unit commitment problem.
-
-## Glossary of Mathematical Symbols
-
-### General notation
-
-| Symbol | Description |
-|--------|-------------|
-| $T$ | Set of time periods (hours), $t \in \{1, 2, ..., 168\}$ |
-| $b$ | The single bus in the system |
-| $N$ | Number of thermal units (10) |
-
-### Decision Variables - Thermal
-
-| Symbol | Description | Unit | Type |
-|--------|-------------|------|------|
-| $P_{t}$ | Total power output from thermal cluster at time $t$ | MW | Continuous |
-| $n^{on}_{t}$ | Number of units ON at time $t$ | - | Integer |
-| $n^{start}_{t}$ | Number of units starting at time $t$ | - | Integer |
-| $n^{stop}_{t}$ | Number of units stopping at time $t$ | - | Integer |
-
-### Decision Variables - System
-
-| Symbol | Description | Unit |
-|--------|-------------|------|
-| $U_{t}$ | Unsupplied power at time $t$ | MW |
-| $S_{t}$ | Spilled power at time $t$ | MW |
-
-### Parameters - Thermal
-
-| Symbol | Description | Value | Unit |
-|--------|-------------|-------|------|
-| $\underline{P}^{unit}$ | Minimum power per unit | 0 | MW |
-| $\overline{P}^{unit}$ | Maximum power per unit | 1 | MW |
-| $\chi^{gen}$ | Variable generation cost | 50 | $/MWh |
-| $\chi^{start}$ | Startup cost | 100 | $ |
-| $\chi^{fix}$ | Fixed cost (per unit ON) | 10 | $/h |
-| $\tau^{up}$ | Minimum up time | 2 | hours |
-| $\tau^{down}$ | Minimum down time | 2 | hours |
-
-### Parameters - Renewables
-
-| Symbol | Description | Unit |
-|--------|-------------|------|
-| $R^{solar}_{t}$ | Solar generation at time $t$ | MW |
-| $R^{wind}_{t}$ | Wind generation at time $t$ | MW |
-
-### Parameters - System
-
-| Symbol | Description | Value | Unit |
-|--------|-------------|-------|------|
-| $D_{t}$ | Load demand at time $t$ | 35-125 | MW |
-| $\delta^+$ | Unsupplied energy cost | 10000 | $/MWh |
-| $\delta^-$ | Spillage cost | 1000 | $/MWh |
-
-## Optimization Problem
-
-The objective function minimizes total system cost:
-
-$$
-\min(\Omega_{\text{total}})
-$$
-
-where:
-
-$$
-\Omega_{\text{total}} = \Omega_{\text{thermal}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
-$$
-
-## Objective Function Components
-
-### Thermal Generation Cost
-
-$$
-\Omega_{\text{thermal}} = \sum_{t \in T} \left( \chi^{gen} \cdot P_{t} + \chi^{start} \cdot n^{start}_{t} + \chi^{fix} \cdot n^{on}_{t} \right)
-$$
-
-### Unsupplied Energy Cost
-
-$$
-\Omega_{\text{unsupplied}} = \sum_{t \in T} \delta^+ \cdot U_{t}
-$$
-
-### Spillage Cost
-
-$$
-\Omega_{\text{spillage}} = \sum_{t \in T} \delta^- \cdot S_{t}
-$$
-
-## Constraints
-
-### Power Balance (Kirchhoff's Law)
-
-For each time period, generation must equal demand plus spillage minus unsupplied:
-
-$$
-\forall t \in T: \quad P_{t} + R^{solar}_{t} + R^{wind}_{t} - D_{t} = S_{t} - U_{t}
-$$
-
-### Thermal Generation Limits
-
-The thermal output is bounded by the number of units ON:
-
-$$
-\forall t \in T: \quad n^{on}_{t} \cdot \underline{P}^{unit} \leq P_{t} \leq n^{on}_{t} \cdot \overline{P}^{unit}
-$$
-
-### Unit Dynamics
-
-The number of units ON follows the commitment dynamics:
-
-$$
-\forall t \in T: \quad n^{on}_{t} = n^{on}_{t-1} + n^{start}_{t} - n^{stop}_{t}
-$$
-
-# YAML Block Description
-
-## Library File
-
-The library file `antares_legacy_models.yml` defines four models:
-
-- **bus**: Central node with power balance constraint, spillage and unsupplied energy variables
-- **load**: Consumes power (negative flow into the bus)
-- **thermal**: Dispatchable thermal cluster with unit commitment logic (integer variables for units ON/starting/stopping)
-- **renewable**: Non-dispatchable generation for solar and wind plants
-
-## System File
-
-### System Configuration
-
-The `system.yml` file defines:
-
-**Bus:**
-
-- `spillage_cost` = 1000 $/MWh
-- `unsupplied_energy_cost` = 10000 $/MWh
-
-**Thermal Cluster (10 units of 1 MW):**
-
-- All thermal parameters (min/max power, costs, min up/down, number of units) are set directly in `system.yml`.
-
-**Renewables:**
-
-- Solar: generation from `solar.csv` timeseries
-- Wind: generation from `wind.csv` timeseries
-
-<div style="display: flex; gap: 24px; align-items: flex-start;">
-  <div>
-    <img src="../../assets/2_QSE2_UC_ts_solar.png" alt="solar profile"/>
-  </div>
-  <div>
-    <img src="../../assets/2_QSE2_UC_ts_wind.png" alt="wind profile"/>
-  </div>
-</div>
-
-**Load:**
-
-- Variable demand from `load.csv` timeseries 
-
-![load profile](../../assets/2_QSE2_UC_ts_load.png)
-
-# Understanding the Results
+## Outputs
 
 ## Output Variables
-
-The simulation outputs are saved in `output/simulation_table--<timestamp>.csv`. Key variables include:
-
-## Thermal Unit Commitment Variables
-
-This table give the key to understand the different output variables relevant to this example of unit commitment.
-
-| Variable | Description |
-|----------|-------------|
-| `thermal,nb_units_on` | **Number of units currently ON** (0-10). This is the key output showing how many thermal units are committed at each hour. |
-| `thermal,nb_starting` | Number of units starting up at this hour |
-| `thermal,nb_stopping` | Number of units shutting down at this hour |
-| `thermal,generation` | Total power output from the thermal cluster (MW) |
-
 
 This graph illustrates how the number of thermal units generating power changes over the simulation week, reflecting the **unit commitment** feature. At night, when solar generation is unavailable, more thermal units are solicited to meet demand. Around midday, increased solar output often reduces the need for thermal generation, resulting in fewer thermal units operating.
 
 ![nb units on profile](../assets/2_QSE2_UC_ts_units.png)
 
-# How to Run the Study
+<details>
+  <summary><strong>Key outputs variables in details</strong></summary>
+  <p>
+    The simulation outputs are saved in <code>output/simulation_table--&lt;timestamp&gt;.csv</code>. This table gives the key to understand the different output variables relevant to this example of unit commitment.
+  </p>
+  <table>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>thermal,nb_units_on</code></td>
+      <td><strong>Number of units currently ON</strong> (0-10). This is the key output showing how many thermal units are committed at each hour.</td>
+    </tr>
+    <tr>
+      <td><code>thermal,nb_starting</code></td>
+      <td>Number of units starting up at this hour</td>
+    </tr>
+    <tr>
+      <td><code>thermal,nb_stopping</code></td>
+      <td>Number of units shutting down at this hour</td>
+    </tr>
+    <tr>
+      <td><code>thermal,generation</code></td>
+      <td>Total power output from the thermal cluster (MW)</td>
+    </tr>
+  </table>
+</details>
 
-## By Using Modeler
 
-1. Get Modeler installed through this [tutorial](../1_installation)
-2. Go to the Parent folder of `rte-antares-9.3.2-installer-64bits/`
-3. Open the terminal
-4. Run these command lines :
+## Running the GEMS study with Antares Modeler
+
+1. Download [QSE_2_unit_commitment](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_2_unit_commitment)
+2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_2_unit_commitment/input/model-libraries/`
+3. Get Antares Modeler installed through this [tutorial](../1_installation)
+4. Locate **bin** folder
+5. Open the terminal
+6. Run these command lines :
 
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-9.3-modeler.exe <path-to-study>
+antares-modeler.exe <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-9.3-modeler <path-to-study>
+./antares-modeler <path-to-study>
 ```
 
 The results will be available in the folder `<study_folder>/output`
+
+## Further in-depth explanations
+
+### Library File
+
+<details>
+  <summary><strong>Details of the <code>antares_legacy_models.yml</code> Library File</strong></summary>
+  <ul>
+    <li><strong>bus:</strong> Central node with power balance constraint, spillage and unsupplied energy variables</li>
+    <li><strong>load:</strong> Consumes power (negative flow into the bus)</li>
+    <li><strong>thermal:</strong> Dispatchable thermal cluster with unit commitment logic (integer variables for units ON/starting/stopping)</li>
+    <li><strong>renewable:</strong> Non-dispatchable generation for solar and wind plants</li>
+  </ul>
+</details>
+
+### System File
+<details>
+  <summary><strong>Details of the <code>system.yml</code> File</strong></summary>
+  <p>
+    <strong>Bus:</strong>
+  </p>
+  <ul>
+    <li><code>spillage_cost</code> = 1000 $/MWh</li>
+    <li><code>unsupplied_energy_cost</code> = 10000 $/MWh</li>
+  </ul>
+  <p>
+    <strong>Thermal Cluster (10 units of 1 MW):</strong>
+  </p>
+  <ul>
+    <li>All thermal parameters (min/max power, costs, min up/down, number of units) are set directly in <code>system.yml</code>.</li>
+  </ul>
+  <p>
+    <strong>Renewables:</strong>
+  <ul>
+    <li><strong>Solar:</strong> generation from <code>solar.csv</code> timeseries</li>
+  </ul>
+  <div>
+    <img src="../../assets/2_QSE2_UC_ts_solar.png" alt="solar profile"/>
+  </div>
+  <ul>
+    <li><strong>Wind:</strong> generation from <code>wind.csv</code> timeseries</li>
+  </ul>
+  <div>
+    <img src="../../assets/2_QSE2_UC_ts_wind.png" alt="wind profile"/>
+  </div>
+    <strong>Load:</strong>
+  </p>
+  <ul>
+    <li>Variable demand from <code>load.csv</code> timeseries</li>
+  </ul>
+  <p>
+    <img src="../../assets/2_QSE2_UC_ts_load.png" alt="load profile"/>
+  </p>
+</details>
 
 ---
 
