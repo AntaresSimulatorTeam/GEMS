@@ -20,6 +20,59 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 **Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
 
 ![Adequacy Scheme](../assets/2_adequacy_scheme.png)
+### Problem description
+
+<p align="center">
+  <img src="../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
+</p>
+
+<details>
+<summary>Problem description in detail</summary>
+
+Time Horizon: 
+<ul>
+  <li> This example considers a single one-hour time step. </li>
+</ul>
+
+Network Components:
+<ul>
+  <li>3 Buses (Regions 1, 2, 3 forming a triangle)</li>
+  <li>3 Links (connecting each pair of regions)</li>
+  <li>3 Generators (different capacities and costs)</li>
+  <li>3 Loads (fixed demands)</li>
+</ul>
+
+In this example, the power flows on the links are constrained only by thermal capacities.
+
+Generation:
+<ul>
+  <li><code>Generator 1</code> (Bus 1): 70-100 MW capacity, 35 €/MWh cost</li>
+  <li><code>Generator 2</code> (Bus 2): 50-90 MW capacity, 25 €/MWh cost</li>
+  <li><code>Generator 3</code> (Bus 3): 50-200 MW capacity, 42 €/MWh cost</li>
+</ul>
+
+Demand:
+<ul>
+  <li>Bus 1: 50 MW</li>
+  <li>Bus 2: 40 MW</li>
+  <li>Bus 3: 150 MW</li>
+  <li>Total Load: 240 MW</li>
+</ul>
+
+Transmission Capacities:
+<ul>
+  <li>Link 1-2: 40 MW (bidirectional)</li>
+  <li>Link 2-3: 30 MW (bidirectional)</li>
+  <li>Link 3-1: 50 MW (bidirectional)</li>
+</ul>
+
+Economic Parameters:
+<ul>
+  <li>Spillage cost: 1000 €/MWh (penalty for wasted energy)</li>
+  <li>Unsupplied energy cost: 10000 €/MWh (high penalty for unmet demand)</li>
+</ul>
+</details>
+
 ## The GEMS study
 
 ### Files Structure
@@ -130,58 +183,6 @@ The following graphs show the merit order of the generators and link flows:
 </details>
 
 ## Further in-depth explanations
-
-### Problem description
-<p align="center">
-  <img src="../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
-</p>
-
-<details>
-<summary>Problem description in detail</summary>
-
-Time Horizon: 
-<ul>
-  <li> This example considers a single one-hour time step. </li>
-</ul>
-
-Network Components:
-<ul>
-  <li>3 Buses (Regions 1, 2, 3 forming a triangle)</li>
-  <li>3 Links (connecting each pair of regions)</li>
-  <li>3 Generators (different capacities and costs)</li>
-  <li>3 Loads (fixed demands)</li>
-</ul>
-
-In this example, the power flows on the links are constrained only by thermal capacities.
-
-Generation:
-<ul>
-  <li><code>Generator 1</code> (Bus 1): 70-100 MW capacity, 35 €/MWh cost</li>
-  <li><code>Generator 2</code> (Bus 2): 50-90 MW capacity, 25 €/MWh cost</li>
-  <li><code>Generator 3</code> (Bus 3): 50-200 MW capacity, 42 €/MWh cost</li>
-</ul>
-
-Demand:
-<ul>
-  <li>Bus 1: 50 MW</li>
-  <li>Bus 2: 40 MW</li>
-  <li>Bus 3: 150 MW</li>
-  <li>Total Load: 240 MW</li>
-</ul>
-
-Transmission Capacities:
-<ul>
-  <li>Link 1-2: 40 MW (bidirectional)</li>
-  <li>Link 2-3: 30 MW (bidirectional)</li>
-  <li>Link 3-1: 50 MW (bidirectional)</li>
-</ul>
-
-Economic Parameters:
-<ul>
-  <li>Spillage cost: 1000 €/MWh (penalty for wasted energy)</li>
-  <li>Unsupplied energy cost: 10000 €/MWh (high penalty for unmet demand)</li>
-</ul>
-</details>
 
 ### Models Library
 
