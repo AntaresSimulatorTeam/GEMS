@@ -12,7 +12,7 @@
 ## Overview
 This tutorial demonstrates a simple **unit commitment optimization**. Unit commitment determines the **optimal number of units generating power** from **one single generator** at each time period to meet demand at minimum cost.
 
-The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/doc/5_Examples/QSE/QSE_2_Unit_Commitment).
+The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 
 ### Files Structure
 
