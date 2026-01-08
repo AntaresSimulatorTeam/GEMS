@@ -13,7 +13,7 @@
 ## Overview and problem description
 This tutorial demonstrates **adequacy** modeling using a simplified three-bus meshed network over **one single time-step**. The example is intended to illustrate modeling concepts and should not be interpreted as a realistic system representation; however, it provides a foundation for developing more detailed and realistic models.
 
-The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy).
+The study folder is on the [GEMS Github repository]([system](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy).
 
 ### Adequacy definition
 
@@ -24,7 +24,7 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 </p>
 
 ### Problem description
-
+The following diagram represents the simulated [system](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
 <p align="center">
   <img src="../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
 </p>
@@ -97,7 +97,9 @@ Since this example performs the simulation over a single time step, the data-ser
 
 Simulation options can be configured in the `parameters.yml` file. For more details on available simulation options, refer to the [following link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/user-guide/modeler/04-parameters.md).
 
-## Relations between library and system file
+## Relations between library and system files
+
+The following diagram depicts the structural relationships between the [library file](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/model-libraries/basic_models_library.yml) and the [system file](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
 
 <p>
   <img src="../../assets/2_QSE_1_system_complete.png" alt="complete diagram with ports" style="max-width:95%;">
@@ -214,7 +216,7 @@ The following graphs show the merit order of the generators and link flows:
 
 ### System file configuration
 
-These diagrams explain how to configure the system file :
+These diagrams explain the structure of the [system file](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml) :
 
 ![diagram with only one bus](../assets/2_QSE_Adequacy_system_only_one.png)
 
