@@ -34,20 +34,49 @@ QSE_2_Unit_Commitment/
 ![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
 <details>
-  <summary><strong>Unit Commitment example description in details</strong></summary>
-  <p>
-    The diagram above shows the connections between the main components:
-  </p>
+  <summary><strong>System Overview</strong></summary>
+
   <ul>
-    <li><strong>1 Bus:</strong> Central node for power balance</li>
-    <li><strong>1 Thermal cluster:</strong> 10 units of 3 MW each (30 MW total capacity)</li>
-    <li><strong>1 Solar Plant</strong></li>
-    <li><strong>1 Wind Plant</strong></li>
-    <li><strong>1 Load:</strong> Variable demand (35-125 MW)</li>
+    <li>
+      <strong>Bus</strong> (central node for power balance)
+      <ul>
+        <li><code>spillage_cost</code>: 1000 $/MWh</li>
+        <li><code>unsupplied_energy_cost</code>: 10000 $/MWh</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Thermal cluster</strong> (dispatchable)
+      <ul>
+        <li>10 units, each 3 MW (30 MW total capacity)</li>
+        <li>All parameters (min/max power, costs, min up/down, number of units) are set in <code>system.yml</code></li>
+      </ul>
+    </li>
+    <li>
+      <strong>Solar plant</strong>
+      <ul>
+        <li>Generation profile from <code>solar.csv</code> timeseries :</li>
+        <li><img src="../../assets/2_QSE2_UC_ts_solar.png" alt="solar profile"/></li>
+      </ul>
+    </li>
+    <li>
+      <strong>Wind plant</strong>
+      <ul>
+        <li>Generation profile from <code>wind.csv</code> timeseries :</li>
+        <li><img src="../../assets/2_QSE2_UC_ts_wind.png" alt="wind profile"/></li>
+      </ul>
+    </li>
+    <li>
+      <strong>Load</strong>
+      <ul>
+        <li>Variable demand (35–125 MW) from <code>load.csv</code> timeseries :</li>
+        <li><img src="../../assets/2_QSE2_UC_ts_load.png" alt="load profile"/></li>
+      </ul>
+    </li>
   </ul>
-  <p>
-    <strong>Time Horizon:</strong> 1 week with hourly resolution (168 hours)
-  </p>
+  <ul>
+    <li><strong>Time Horizon:</strong> 1 week, hourly resolution (168 hours)</li>
+    <li>The diagram above shows the connections between these components.</li>
+  </ul>
 </details>
 
 ## Running the GEMS study with Antares Modeler
@@ -111,54 +140,155 @@ This graph illustrates how the number of thermal units generating power changes 
 
 ### Library File
 
-<details>
-  <summary><strong>Details of the <code>antares_legacy_models.yml</code> Library File</strong></summary>
-  <ul>
-    <li><strong>bus:</strong> Central node with power balance constraint, spillage and unsupplied energy variables</li>
-    <li><strong>load:</strong> Consumes power (negative flow into the bus)</li>
-    <li><strong>thermal:</strong> Dispatchable thermal cluster with unit commitment logic (integer variables for units ON/starting/stopping)</li>
-    <li><strong>renewable:</strong> Non-dispatchable generation for solar and wind plants</li>
-  </ul>
-</details>
+The library file **antares_legacy_models.yml** defines the main component models used in this example:
+
+- **bus**: Central node with power balance constraint, spillage, and unsupplied energy variables.
+- **load**: Consumes power (negative flow into the bus).
+- **thermal**: Dispatchable thermal cluster with unit commitment logic (integer variables for units ON/starting/stopping).
+- **renewable**: Non-dispatchable generation for solar and wind plants.
 
 ### System File
+
+The description of an energy system is the combination of a model library and a graph of components (instanciation of models) described in the system file. This part contains an extract of this **system file**.
+
 <details>
   <summary><strong>Details of the <code>system.yml</code> File</strong></summary>
-  <p>
-    <strong>Bus:</strong>
-  </p>
-  <ul>
-    <li><code>spillage_cost</code> = 1000 $/MWh</li>
-    <li><code>unsupplied_energy_cost</code> = 10000 $/MWh</li>
-  </ul>
-  <p>
-    <strong>Thermal Cluster (10 units of 1 MW):</strong>
-  </p>
-  <ul>
-    <li>All thermal parameters (min/max power, costs, min up/down, number of units) are set directly in <code>system.yml</code>.</li>
-  </ul>
-  <p>
-    <strong>Renewables:</strong>
-  <ul>
-    <li><strong>Solar:</strong> generation from <code>solar.csv</code> timeseries</li>
-  </ul>
-  <div>
-    <img src="../../assets/2_QSE2_UC_ts_solar.png" alt="solar profile"/>
-  </div>
-  <ul>
-    <li><strong>Wind:</strong> generation from <code>wind.csv</code> timeseries</li>
-  </ul>
-  <div>
-    <img src="../../assets/2_QSE2_UC_ts_wind.png" alt="wind profile"/>
-  </div>
-    <strong>Load:</strong>
-  </p>
-  <ul>
-    <li>Variable demand from <code>load.csv</code> timeseries</li>
-  </ul>
-  <p>
-    <img src="../../assets/2_QSE2_UC_ts_load.png" alt="load profile"/>
-  </p>
+
+The next lines are an extract of the whole system file of this study:
+
+```yaml
+system:
+  id: system
+  components:
+    - id: bus1
+      model: antares_legacy_models.area
+
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: ens_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+          
+    - id: load_bus
+      model: antares_legacy_models.load
+
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+          value: load
+
+    - id: gas_plant
+      model: antares_legacy_models.thermal
+      parameters:
+        - id: p_min_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: p_max_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 3
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: startup_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: fixed_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: d_min_up
+          time-dependent: false
+          scenario-dependent: false
+          value: 12
+        - id: d_min_down
+          time-dependent: false
+          scenario-dependent: false
+          value: 12
+        - id: p_min_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: p_max_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: nb_units_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 10
+        - id: nb_units_min
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_forward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_backward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
+    - id: solar_farm
+      model: antares_legacy_models.renewable
+      parameters:
+        - id: nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: unit_count
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+          value: solar
+
+    - id: wind_farm
+      model: antares_legacy_models.renewable
+      parameters:
+        - id: nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 35
+        - id: unit_count
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+          value: wind
+
+  connections:
+
+    - component1: bus1
+      component2: load_bus
+      port1: balance_port
+      port2: balance_port
+    - component1: bus1
+      component2: gas_plant
+      port1: balance_port
+      port2: balance_port
+    - component1: bus1
+      component2: solar_farm
+      port1: balance_port
+      port2: balance_port
+    - component1: bus1
+      component2: wind_farm
+      port1: balance_port
+      port2: balance_port
+```
 </details>
 
 ---
