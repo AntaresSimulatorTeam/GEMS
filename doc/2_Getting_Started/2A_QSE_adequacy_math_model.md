@@ -7,14 +7,13 @@
   </div>
 </div>
 
-
-## Mathematical representation
+# Mathematical representation
 
 This part represents the optimization problem formulation of the example [QSE_Adequacy ](2A_QSE_adequacy.md) that is built up from [`basic-models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library. The referenced library includes additional models that are not used in the example and are therefore not included in the optimization problem formulation.
 
-### Glossary of Mathematical Symbols
+## Glossary of Mathematical Symbols
 
-#### General notation
+### General notation
 
 | Symbol | Description |
 |--------|-------------|
@@ -24,7 +23,7 @@ This part represents the optimization problem formulation of the example [QSE_Ad
 | $L_b^+$ | Set of links for which $b$ is the upstream vertex |
 | $L_b^-$ | Set of links for which $b$ is the downstream vertex |
 
-#### Decision Variables
+### Decision Variables
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
@@ -35,7 +34,7 @@ This part represents the optimization problem formulation of the example [QSE_Ad
 | $U_b$ | Unsupplied power at bus $b$ (in nominal state) | MW |
 | $S_b$ | Spilled power at bus $b$ (in nominal state) | MW |
 
-#### Parameters
+### Parameters
 
 | Symbol | Description | Unit |
 |--------|-------------|------|
@@ -48,7 +47,7 @@ This part represents the optimization problem formulation of the example [QSE_Ad
 | $\delta_b^-$ | Normative spilled energy cost at bus $b$ (value of wasted energy) | €/MWh |
 | $D_b$ | Net power demand at bus $b$ | MW |
 
-### Optimization Problem
+## Optimization Problem
 
 The objective function to minimize the total dispatch cost for the three-bus system is:
 
@@ -62,9 +61,9 @@ $$
 \Omega_{\text{dispatch}} = \Omega_{\text{generator}} + \Omega_{\text{unsupplied}} + \Omega_{\text{spillage}}
 $$
 
-### Objective function for each component
+## Objective function for each component
 
-#### Thermal Generation Cost
+### Thermal Generation Cost
 
 For the generators in the system:
 
@@ -72,7 +71,7 @@ $$
 \Omega_{\text{generator}} = \sum_{b \in B} \sum_{g \in G_b}   \chi_{g} \cdot P_{g} 
 $$
 
-#### Unsupplied Energy Cost
+### Unsupplied Energy Cost
 
 For the three buses in the system:
 
@@ -82,7 +81,7 @@ $$
 
 where $U_b$ represents unsupplied energy at bus $b$.
 
-#### Spillage Cost
+### Spillage Cost
 
 For the three buses in the system:
 
@@ -92,25 +91,25 @@ $$
 
 where $S_b$ represents spilled energy at bus $b$.
 
-### Balance Constraints
+## Balance Constraints
 
-#### First Kirchhoff's Law (Power Balance):
+### First Kirchhoff's Law (Power Balance):
 
 $$
 \forall b \in B, \sum_{g \in G_b} P_g - D_b + \sum_{l \in L_b^+} F_l - \sum_{l \in L_b^-} F_l = S_b - U_b
 $$
 
-### Flow Capacity Constraints
+## Flow Capacity Constraints
 
-#### Flow Definition Constraint:
+### Flow Definition Constraint:
 
 $$
 \forall l \in L, \quad F_l = F_l^+ - F_l^-
 $$
 
-### Thermal Units
+## Thermal Units
 
-#### Power Output Constraints
+### Power Output Constraints
 
 Power output is bounded by must-run commitments and power availability:
 
@@ -118,13 +117,13 @@ $$
 \forall b \in B, \forall g \in G_b, \quad \underline{P}_g \leq P_g \leq \overline{P}_g
 $$
 
-## GEMS Representation and Library File
+# GEMS Representation and Library File
 
 This section shows how mathematical model is implemented for every power system element that figures in optimization problem. File in which models are defined is called *library file*, in this case [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library.
 
 ![YAML Block description with mathematical equations](../assets/2_QSE_Adequacy_maths.png)
 
-## Summary
+# Summary
 This mathematical description serves as the formal reference for the optimization problem, while the GEMS library provides its implementation layer within the GEMS framework. In other words:
 
 - the **mathematical model** defines what problem is being solved
