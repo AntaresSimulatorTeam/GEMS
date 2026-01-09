@@ -14,6 +14,7 @@ theme:
     - navigation.expand
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.indexes
     - content.action.copy
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -28,48 +29,55 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
   - footnotes
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
   - Home:
     - Home: index.md
     - Context of GEMS: 0_Home/1_context_GEMS.md
-    - Release Notes: 0_Home/2_release_notes.md 
+    - Release Notes: 0_Home/2_release_notes.md
   - Overview:
       - Concepts:
-          - Core Concepts: 1_Overview/Concepts/1_core concepts.md
+          - Core Concepts: 1_Overview/Concepts/1_core_concepts.md
           - Architecture: 1_Overview/Concepts/2_architecture.md
           - Features: 1_Overview/Concepts/3_features_usecase.md
       - GEMS Interpreters:
-          - Antares Simulator: 1_Overview/GEMS Interpreters/2_antares_simulator_modeler.md
-          - GemsPy: 1_Overview/GEMS Interpreters/1_gemspy.md
-                
+          - Antares Simulator: 1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md
+          - GemsPy: 1_Overview/GEMS_Interpreters/1_gemspy.md      
       - References:
             - Classification of models: 1_Overview/References/1_Classification_Configuration.md
             - Libraries of models: 1_Overview/References/2_Libraries.md
             - Users of GEMS: 1_Overview/References/3_Users.md
   - Getting Started:
       - Installation:
-        - Antares Simulator's GEMS Interpreter: 2_Getting Started/1A_modeler_installation.md
-        - GEMSPy: 2_Getting Started/1B_gemspy_installation.md
+        - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
+        - GEMSPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
-        - Adequacy: 2_Getting Started/2A_adequacy.md
-      - Support: 2_Getting Started/1C_support.md
+        - Three-bus system - Simple Adequacy Example: 
+          - Overview : 2_Getting_Started/2A_QSE_adequacy.md
+          - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
+      - Support: 2_Getting_Started/1C_support.md
   - User Guide:
-      - Syntax: 3_User Guide/1_syntax.md
-      - Inputs: 3_User Guide/2_inputs.md
-      - Antares Hybrid Mode Inputs: 3_User Guide/3_hybrid inputs.md
-      - Outputs: 3_User Guide/4_outputs.md
-      - Optimization: 3_User Guide/5_optimization.md
-      - Glossary: 3_User Guide/6_glossary.md
+      - Syntax: 3_User_Guide/1_syntax.md
+      - Inputs: 3_User_Guide/2_inputs.md
+      - Antares Hybrid Mode Inputs: 3_User_Guide/3_hybrid_inputs.md
+      - Outputs: 3_User_Guide/4_outputs.md
+      - Optimization: 3_User_Guide/5_optimization.md
+      - Glossary: 3_User_Guide/6_glossary.md
   - Interoperability:
       - PyPSA: 4_Interoperability/1_pypsa.md
-      - Antares Legacy Format: 4_Interoperability/2_antares legacy.md
+      - Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
       - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
   - Examples:
       - Tutorial - Simple economic dispatch problem: 5_Examples/1_optimization_problem.md
       - Antares Simulator Hybrid study: 5_Examples/2_hybrid.md
   - Support & Contributing:
-      - FAQ: 6_Support & Contributing/1_faq.md
-      - Contact: 6_Support & Contributing/2_contact.md
-      - Contributing: 6_Support & Contributing/3_contributing.md
+      - FAQ: 6_Support_Contributing/1_faq.md
+      - Contact: 6_Support_Contributing/2_contact.md
+      - Contributing: 6_Support_Contributing/3_contributing.md

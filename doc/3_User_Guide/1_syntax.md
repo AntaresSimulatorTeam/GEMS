@@ -12,11 +12,11 @@
 
 # Model definition (from system.yml)
 
-Model and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
+Model and its configuration is defined in [Overview section](../1_Overview/Concepts/1_core_concepts.md)
 
 # Components specification (from system.yml)
 
-Components and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
+Components and its configuration is defined in [Overview section](../1_Overview/Concepts/1_core_concepts.md)
 
 # Dataseries
 Currently, the framework supports defining **dataseries** using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
