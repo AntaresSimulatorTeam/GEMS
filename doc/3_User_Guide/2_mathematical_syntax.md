@@ -254,7 +254,7 @@ These n-ary operators `max(u, v, ...)`/`min(u, v, ...)` are used within any expr
  In the context of a linear problem construction, its operands can only be literals or parameters.
 
 ```yaml
-expression: paramter_1 < max(parameter_2, 100)
+expression: parameter_1 < max(parameter_2, 100)
 ```
 
  In the context of a extracting results, its operands can be literals, parameters or variables.
