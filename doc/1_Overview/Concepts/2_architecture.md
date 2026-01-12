@@ -73,7 +73,7 @@ The outputs of GEMS consist of three main categories of objects: **Optimization 
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1_core concepts" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    <a href="../1_core_concepts" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">

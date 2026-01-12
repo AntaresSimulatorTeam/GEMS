@@ -145,6 +145,8 @@ env.bak/
 venv.bak/
 documentation_env/
 
+output/
+
 # Spyder project settings
 .spyderproject
 .spyproject

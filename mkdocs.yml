@@ -14,6 +14,7 @@ theme:
     - navigation.expand
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.indexes
     - content.action.copy
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -28,6 +29,8 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
   - footnotes
   - pymdownx.superfences:
       custom_fences:
@@ -35,11 +38,15 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 nav:
   - Home:
     - Home: index.md
     - Context of GEMS: 0_Home/1_context_GEMS.md
-    - Release Notes: 0_Home/2_release_notes.md 
+    - Release Notes: 0_Home/2_release_notes.md
   - Overview:
       - Concepts:
           - Core Concepts: 1_Overview/Concepts/1_core_concepts.md
