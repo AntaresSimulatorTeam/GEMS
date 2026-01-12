@@ -18,7 +18,7 @@ Unlike traditional algebraic modelling languages such as **AMPL or GAMS**, GEMS 
 
 **Models** are abstract mathematical configurations representing the general features of a category of energy system element. Users can then specify any instance of this model to create each simulated system element, called components.  
 
-They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User_Guide/2_mathematical_syntax.md#model-definition-from-systemyml)  
+They are defined by *variables*, *parameters*, *ports*, and *constraints*. [Examples are provided in the User Guide section.](../../3_User_Guide/1_syntax.md#model%20definition%20%28from%20system.yml%29)  
 
 - **Variables [^1]** are abstract mathematical variables of a model, whose values are optimized by the solver. The optimization problem is to find the best set of variables based on their configuration.  
 
