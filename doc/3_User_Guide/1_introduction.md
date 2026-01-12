@@ -22,7 +22,7 @@ From a documentation perspective, the User Guide is organized into **four comple
 
 - [**Mathematical Syntax**](#mathematical-syntax) — rules for writing mathematical expressions
 
-- [**File Structure**](#file-structure) — rules for configuring [GEMS](../index.md) YAML files and how they reference each other  
+- [**File Structure**](#file-structure) — rules for writing [GEMS](../index.md) YAML files and how they reference each other  
 
 - [**Theoretical Concepts**](#theoretical-concepts) — core ideas behind the system representation and optimization formulation
 
