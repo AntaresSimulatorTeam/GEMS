@@ -13,17 +13,16 @@
 GEMS employs a classification of models defined in `taxonomy.yml` file to organize models into `taxonomy groups` (e.g., production, balance, storage). 
 These groups guarantee certain modelling choices and how outputs are aggregated, mapped and filtered. This ensures consistent and logical data combination across components.
 
-# Reference classification of models
-
 This table contains all the referenced taxonomies of models created by different projects:
-
-.***Some reference classification of models will be shared soon.***
 
 | Taxonomy | Description | Link |
 |----------|-------------|------|
 | `<name of the taxonomy>` | `<description>` | [Github link](https://github.com/AntaresSimulatorTeam/GEMS) |
 
----
+# Reference classification of models
+
+Some reference classification of models will be shared soon.
+
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">

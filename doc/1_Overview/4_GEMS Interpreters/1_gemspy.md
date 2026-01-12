@@ -9,11 +9,13 @@
 
 # GEMSPy Presentation
 
-[GemsPy ](https://gemspy.readthedocs.io/en/latest/) is a stand-alone Python package to interpret the language GEMS. At this point, this Python package it still a prototype. For large-scale use cases, it is recommended to use the [GEMS intepreter inside Antares Simulator](2_antares_simulator_modeler.md).
+[GemsPy ](https://gemspy.readthedocs.io/en/latest/) is a stand-alone Python package to interpret the language GEMS. At this point, this Python package it still a prototype.
 
 ## GemsPy API Overview
 
 GEMSPy's API allows users to create studies programmatically. 
+## GEMSPy API Overview
+
 
 For detailed API usage and examples, see:
 
