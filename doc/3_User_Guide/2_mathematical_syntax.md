@@ -127,16 +127,16 @@ This constraint will enforce that the total of flow from all connected component
 
 ### Direct port field usage
 
-Direct usage of a port’s field (e.g. `balance_port.flow`) inside a constraint is not permitted in [GEMS](../index.md). Any attempt to reference a port field directly in a constraint will result in an error. Even when a port has only a single incoming connection, the sum_connections aggregator must be used to include that port’s field in constraint or objective expressions. Direct references to port fields are allowed exclusively in the **extra-output** section of a model. This rule enforces proper modeling practices by making all port contributions explicit and avoids errors in systems with multiple connections.
+Direct usage of a port’s field (e.g. `balance_port.flow`) inside a constraint is not permitted in [GEMS](../index.md). Any attempt to reference a port field directly in a constraint will result in an error. Even when a port has only a single incoming connection, the `sum_connections` operator must be used to include that port’s field in constraint expressions. Direct references to port fields are allowed exclusively in the **extra-output** section of a model. This rule enforces proper modeling practices by making all port contributions explicit and avoids errors in systems with multiple connections.
 
-**Example**: Instead of writing a constraint like `balance_port.flow` = 100 (which will cause an error), use the aggregator to sum the port’s value:
+**Example**: Instead of writing a constraint like `balance_port.flow = 0` (which will cause an error), use the operator to sum the port’s value:
 
 ```yaml
 # Incorrect usage (will cause an error):
-expression: portA.flow = 100
+expression: balance_port.flow = 0
  
 # Correct usage (using sum_connections):
-expression: sum_connections(balance_port.flow) = 100
+expression: sum_connections(balance_port.flow) = 0
 ```
 
 ## Time Operators and Indexing
