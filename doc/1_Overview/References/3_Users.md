@@ -33,14 +33,14 @@ The following entities currently use or have used the GEMS framework for their p
 ### Mines de Paris
 
 <a href="https://www.minesparis.psl.eu/">
-  <img src="../../../assets/1_logo_mines paris.png" alt="Mines de Paris logo" style="height:50px;"/>
+  <img src="../../../assets/1_logo_mines_paris.png" alt="Mines de Paris logo" style="height:50px;"/>
 </a>
 
 
 ### TU Delft
 
 <a href="https://www.tudelft.nl/en/">
-  <img src="../../../assets/1_logo_TU delft.png" alt="TU Delft logo" style="height:50px;"/>
+  <img src="../../../assets/1_logo_TU_delft.png" alt="TU Delft logo" style="height:50px;"/>
 </a>
 
 
@@ -57,7 +57,7 @@ The following entities currently use or have used the GEMS framework for their p
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../2_Getting Started/1_installation" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../../2_Getting_Started/1_installation" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>

@@ -28,7 +28,7 @@ This table contains all the referenced taxonomies of models created by different
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../GEMS Interpreters/2_antares_simulator_modeler" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    <a href="../../GEMS_Interpreters/2_antares_simulator_modeler" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
