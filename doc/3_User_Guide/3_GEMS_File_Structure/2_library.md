@@ -121,6 +121,9 @@ The `models` collection defines all model types that can be instantiated within 
       objective-contributions:
         - id: objective
           expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+      extra-outputs:
+        - id: marginal_price
+          expression: dual(balance)
 
     - id: storage
       parameters:
@@ -291,6 +294,25 @@ objective-contributions:
 ```
 
 Note that a model may define multiple objective contributions, each identified by its own `id`. This enables advanced formulations such as [two-stage stochastic](../4_Theoretical_Concepts/2_optimization_problem.md) optimisation, where different objective terms belong to different optimisation stages (e.g. investment vs. operation).
+
+#### Extra Output
+
+The `extra-outputs` section allows each model to define additional calculated outputs that are **evaluated after optimization**, using the optimal values of decision variables.
+
+These outputs can be useful for:
+
+- Post-processing or diagnostics
+- Reporting custom KPIs or summaries
+- Tracing internal behavior of a model without affecting the optimization
+
+Each entry under `extra-outputs` must contain:
+
+| Field | Description |
+|--------------|-----------------|
+| `id` | Unique identifier for the extra output within the model. Must follow standard ID rules (lowercase, alphanumeric, underscores). |
+| `expression` | A mathematical expression computed after optimization. Can use variables, parameters, and port fields. Must be linear and evaluable from optimal values. |
+
+Unlike in constraints, [direct port field usage] **is allowed** in `extra-outputs`.
 
 **Navigation**
 
