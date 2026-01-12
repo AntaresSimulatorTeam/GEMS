@@ -45,7 +45,7 @@ It defines:
 - Linearity rules
 - Additional Operators
 
-Mathematical syntax is **solver-agnostic** and intentionally restricted to ensure that all models remain linear (LP/MILP) and unambiguous.
+Mathematical syntax is **solver-agnostic** and intentionally restricted to ensure that all optimization problems - representing systems - remain linear (LP/MILP) and unambiguous.
 
 Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where variables come from or how models are wired together.
 
