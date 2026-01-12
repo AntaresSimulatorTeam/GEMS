@@ -55,7 +55,8 @@ nav:
           - Features: 1_Overview/Concepts/3_features_usecase.md
       - GEMS Interpreters:
           - Antares Simulator: 1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md
-          - GemsPy: 1_Overview/GEMS_Interpreters/1_gemspy.md      
+          - GemsPy: 1_Overview/GEMS_Interpreters/1_gemspy.md
+                
       - References:
             - Classification of models: 1_Overview/References/1_Classification_Configuration.md
             - Libraries of models: 1_Overview/References/2_Libraries.md
@@ -73,12 +74,24 @@ nav:
           - Mathematical Formulation: 2_Getting_Started/2B_QSE_unit_commitment_math_model.md
       - Support: 2_Getting_Started/1C_support.md
   - User Guide:
-      - Syntax: 3_User_Guide/1_syntax.md
-      - Inputs: 3_User_Guide/2_inputs.md
-      - Antares Hybrid Mode Inputs: 3_User_Guide/3_hybrid_inputs.md
-      - Outputs: 3_User_Guide/4_outputs.md
-      - Optimization: 3_User_Guide/5_optimization.md
-      - Glossary: 3_User_Guide/6_glossary.md
+      - Introduction: 3_User_Guide/1_introduction.md
+      - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md
+      - File Structure:
+        - Overview: 3_User_Guide/3_GEMS_Data_Structure/1_overview.md
+        - Library File: 3_User_Guide/3_GEMS_Data_Structure/2_library.md
+        - System File: 3_User_Guide/3_GEMS_Data_Structure/3_system.md
+        - Dataseries File: 3_User_Guide/3_GEMS_Data_Structure/4_data_series.md
+        - Scenario Builder File: 3_User_Guide/3_GEMS_Data_Structure/5_scenario_builder.md
+        - Solver parameters and optimization configuration files: 3_User_Guide/3_GEMS_Data_Structure/6_solver_optimizatio.md
+        - Taxonomy File: 3_User_Guide/3_GEMS_Data_Structure/7_taxonomy.md
+        - Business Views configuration files: 3_User_Guide/3_GEMS_Data_Structure/8_bussines_view.md
+      - Theoretical Concepts:
+        - Hypergraph Structure: 3_User_Guide/4_Theoretical_Concepts/1_hypergraph_structure.md
+        - Optimization Problem: 3_User_Guide/4_Theoretical_Concepts/2_optimization_problem.md
+      - Outputs:
+        - Simulation Table: 3_User_Guide/5_Outputs/1_simulation_table.md
+        - Optimization Problem files: 3_User_Guide/5_Outputs/2_optimization_problem_files.md
+        - Business View: 3_User_Guide/5_Outputs/3_business_view.md
   - Interoperability:
       - PyPSA: 4_Interoperability/1_pypsa.md
       - Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
