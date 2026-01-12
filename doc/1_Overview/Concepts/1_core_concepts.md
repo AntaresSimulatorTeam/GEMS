@@ -53,7 +53,7 @@ Their configuration consists of:
 
 # Dataseries
 
-Parameters can vary across scenarios, over time, or both. **Data series** are used to represent these variations, providing **scenario-specific and/or time-dependent** values for the parameters as required. [Their structure depends on the system.](../../3_User_Guide/2_mathematical_syntax.md#dataseries)
+Parameters can vary across scenarios, over time, or both. **Data series** are used to represent these variations, providing **scenario-specific and/or time-dependent** values for the parameters as required. [Their structure depends on the system.](../../3_User_Guide/1_syntax.md#dataseries)
 
 <br/>
 <br/>
