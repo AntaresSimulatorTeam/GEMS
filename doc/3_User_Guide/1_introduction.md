@@ -73,7 +73,7 @@ See: [**File Structure**](./3_GEMS_File_Structure/1_overview.md)
 
 ## Theoretical Concepts
 
-The **Theoretical Concepts** section explains the core ideas behind how [GEMS](../index.md) represents a system and builds an optimization model.
+The **Theoretical Concepts** section explains the core ideas behind how [GEMS](../index.md) represents a system and builds an optimization problem.
 
 It introduces:
 
