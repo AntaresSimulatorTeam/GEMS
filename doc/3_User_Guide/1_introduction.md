@@ -34,7 +34,7 @@ This separation is fundamental to understanding how [GEMS](../index.md) models a
 
 ## Mathematical Syntax
 
-The **GEMS Framework Mathematical Syntax** represents set of rules for creating mathematical expression which will be used in building an optimization problem.
+The **GEMS Framework Mathematical Syntax** represents set of rules for creating mathematical expressions which will be used in building an optimization problem.
 
 It defines:
 
