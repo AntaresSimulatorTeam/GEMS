@@ -28,7 +28,7 @@ From a documentation perspective, the User Guide is organized into **four comple
 
 - [**Outputs**](#outputs) — produced result formats and how to interpret them  
 
-This separation is fundamental to understanding how [GEMS](../index.md) models are written, interpreted, validated, and analysed.
+This separation is fundamental to understanding how [GEMS](../index.md) systems are written, interpreted, validated, and analysed.
 
 ---
 
