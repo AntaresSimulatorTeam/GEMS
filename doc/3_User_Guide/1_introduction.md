@@ -55,7 +55,7 @@ See: [**Mathematical Syntax and Rules**](../2_mathematical_syntax)
 
 ## File Structure
 
-The **GEMS Framework File Structure** defines how optimization models are **declared, structured, and connected** using YAML files.
+The **GEMS Framework File Structure** defines how components are **declared, structured, and connected**  to form a system, and how these systems can be translated as optimization problems, using YAML files.
 
 It specifies:
 
