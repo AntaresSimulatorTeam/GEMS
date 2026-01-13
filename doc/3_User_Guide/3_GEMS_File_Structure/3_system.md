@@ -21,6 +21,7 @@ system:
   components:
     - id: load_1
       model: my_library_1.load
+      scenario-group: load_group
       parameters:
         - id: load
           time-dependent: true
@@ -45,16 +46,16 @@ The `connections` section specifies how components are linked. In this case, the
 
 The system file describes the energy system to be simulated. Each component defined in the system represents a concrete instantiation of a model from one of the referenced libraries. For every component, the following fields are specified:
 
- Element | Description |
+| Element | Description |
 |------|--------------------------|
-| `id`| Unique identifier for the component within this system.|
-| `model` | Specifies which model this component instantiates. The format is `library_id.model_id`.|
+|`id`| Unique identifier for the component within this system.|
+| `model` | Specifies which model this component instantiates The format is `library_id.model_id`.|
 |`scenario-group`|The `id` of the scenario group this component belongs to. |
 |`parameters`|Collection of values assigned to the model’s parameters. All parameters defined by the model must be assigned a value.|
 
 For each parameter definition, the following fields must be provided:
 
- Element | Description |
+| Element | Description |
 |------|--------------------------|
 | `id`| The `id` of the parameter, as defined by the model.|
 | `time-dependent` | `true` or `false`, indicates whether the parameter depends on time or is constant across the whole simulation horizon. If the model parameter is not time-dependent, this can't be set to true.|
