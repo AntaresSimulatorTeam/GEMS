@@ -43,7 +43,7 @@ This part represents the optimization problem formulation of the example [QSE_Un
 |--------|-------------|-------|------|
 | $\underline{P}^{unit}$ | Minimum power per unit | 0 | MW |
 | $\overline{P}^{unit}$ | Maximum power per unit | 1 | MW |
-| $\chi^{gen}$ | Variable generation cost | 50 | $/MWh |
+| $\chi^{gen}$ | Variable generation cost | 50 | €/MWh |
 | $\chi^{start}$ | Startup cost | 100 | $ |
 | $\chi^{fix}$ | Fixed cost (per unit ON) | 10 | $/h |
 | $\tau^{up}$ | Minimum up time | 2 | hours |
@@ -61,8 +61,8 @@ This part represents the optimization problem formulation of the example [QSE_Un
 | Symbol | Description | Value | Unit |
 |--------|-------------|-------|------|
 | $D_{t}$ | Load demand at time $t$ | 35-125 | MW |
-| $\delta^+$ | Unsupplied energy cost | 10000 | $/MWh |
-| $\delta^-$ | Spillage cost | 1000 | $/MWh |
+| $\delta^+$ | Unsupplied energy cost | 10000 | €/MWh |
+| $\delta^-$ | Spillage cost | 1000 | €/MWh |
 
 ## Optimization Problem
 
