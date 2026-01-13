@@ -16,7 +16,7 @@ The `modeler-scenariobuilder.dat` file, located in the `data-series` directory, 
 The scenario builder associates:
 
 - **scenario group ID**
-- **Monte Carlo year** (referred to as *year*)
+- **Monte Carlo scenario** (referred to as *scenario*)
 - **time series index**
 
 allowing the model to select which data series column is used for a given scenario group and simulation scenario.
