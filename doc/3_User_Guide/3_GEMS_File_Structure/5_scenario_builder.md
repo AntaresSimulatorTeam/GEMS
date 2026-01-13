@@ -26,7 +26,7 @@ allowing the model to select which data series column is used for a given group 
 Each line in the `modeler-scenariobuilder.dat` file defines a single mapping using the following format:
 
 ```text
-group_id, year = time_series_number
+scenario_group_id, scenario = time_series_index
 ```
 
 
