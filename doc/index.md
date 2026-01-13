@@ -79,13 +79,13 @@ The following **interpreters** can be used to run Gems modelling language :
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/Concepts/1_architecture/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔍 Core Concepts</a>
+        <a href="../1_Overview/1_Architecture" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔍 Architecture</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/GEMS Interpreters/1_gemspy/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🤖 Interpreters</a>
+        <a href="../1_Overview/4_GEMS Interpreters/1_gemspy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🤖 Interpreters</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/References/1_Classification/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📄 References</a>
+        <a href="../1_Overview/5_References/1_Classification_Configuration" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📄 References</a>
       </div>
     </div>
   </div>
@@ -97,10 +97,10 @@ The following **interpreters** can be used to run Gems modelling language :
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../2_Getting Started/1_installation/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
+        <a href="../2_Getting Started/1A_modeler_installation" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../2_Getting Started/2_quick start examples/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start Examples</a>
+        <a href="../2_Getting Started/2A_adequacy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start</a>
       </div>
     </div>
   </div>
@@ -112,13 +112,13 @@ The following **interpreters** can be used to run Gems modelling language :
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/1_syntax/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
+        <a href="../3_User Guide/1_syntax" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/3_inputs/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
+        <a href="../3_User Guide/2_inputs" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/4_outputs/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
+        <a href="../3_User Guide/4_outputs" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
       </div>
     </div>
   </div>
@@ -130,13 +130,13 @@ The following **interpreters** can be used to run Gems modelling language :
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/1_pypsa/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔄 PyPSA</a>
+        <a href="../4_Interoperability/1_pypsa" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔄 PyPSA</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/2_antares legacy/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📜 Antares Legacy</a>
+        <a href="../4_Interoperability/2_antares legacy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📜 Antares Legacy</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/3_hybrid/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid</a>
+        <a href="../4_Interoperability/3_hybrid" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid</a>
       </div>
     </div>
   </div>
@@ -148,13 +148,10 @@ The following **interpreters** can be used to run Gems modelling language :
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../5_Examples/1_optimization_problem/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📚 Tutorial</a>
+        <a href="../5_Examples/1_optimization_problem" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📚 Tutorial</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../5_Examples/2_hybrid/" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid Examples</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="XXX" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📊 Opendata usecases</a>
+        <a href="../5_Examples/2_hybrid" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid Examples</a>
       </div>
     </div>
   </div>
