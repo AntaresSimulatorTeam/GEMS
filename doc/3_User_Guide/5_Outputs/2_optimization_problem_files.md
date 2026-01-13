@@ -14,7 +14,7 @@ The exported file contains the complete linear or mixed-integer formulation cons
 
 This export is primarily intended for **verification, debugging, and external analysis** of the optimisation problem.
 
-[GEMS](../../index.md) generates an MPS file in the study **output directory**.  
+[GEMS](../../index.md) generates a MPS file in the study **output directory**.  
 For example, the file `1-1.mps` is automatically created in the output folder and represents the exact optimisation problem solved during the execution.
 
 The file is typically overwritten each time the study is executed.
