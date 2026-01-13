@@ -297,13 +297,7 @@ Note that a model may define multiple objective contributions, each identified b
 
 #### Extra Output
 
-The `extra-outputs` section allows each model to define additional calculated outputs that are **evaluated after optimization**, using the optimal values of decision variables.
-
-These outputs can be useful for:
-
-- Post-processing or diagnostics
-- Reporting custom KPIs or summaries
-- Tracing internal behavior of a model without affecting the optimization
+The `extra-outputs` section allows each model to define additional calculated outputs that are **evaluated after optimization**.
 
 Each entry under `extra-outputs` must contain:
 
@@ -312,7 +306,7 @@ Each entry under `extra-outputs` must contain:
 | `id` | Unique identifier for the extra output within the model. Must follow standard ID rules (lowercase, alphanumeric, underscores). |
 | `expression` | A mathematical expression computed after optimization. Can use variables, parameters, and port fields. Must be linear and evaluable from optimal values. |
 
-Unlike in constraints, [direct port field usage] **is allowed** in `extra-outputs`.
+Unlike in constraints, [direct port field usage](../2_mathematical_syntax.md#direct-port-field-usage) **is allowed** in `extra-outputs`.
 
 **Navigation**
 
