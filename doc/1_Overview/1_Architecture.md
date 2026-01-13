@@ -29,15 +29,15 @@ This architecture of GEMS aims to export the definition of component models and 
 
 
 <div style="border: 2px solid #2196F3; padding: 15px; border-radius: 8px; background-color: #e8f4ff; max-width: 400px; position: relative;">
-  <strong>ℹ️ Pour en savoir plus :</strong>
-  <br>
-  <a href="../2_File_structure" target="_blank" title="Lien vers page File Structure">
-    YAML File structure
-  </a>
+  <strong>ℹ️ For more information:</strong>
     <br>
-  <a href="../4_GEMS Interpreters/1_gemspy" target="_blank" title="Lien vers page GemsPy">
-    GemsPy Interpreter
-  </a>
+    <a href="../2_File_structure" target="_blank" title="YAML File Structure">
+      YAML File Structure
+    </a>
+    <br>
+    <a href="../4_GEMS Interpreters/1_gemspy" target="_blank" title="GemsPy Interpreter">
+      GemsPy Interpreter
+    </a>
 </div>
 
 **Navigation**
