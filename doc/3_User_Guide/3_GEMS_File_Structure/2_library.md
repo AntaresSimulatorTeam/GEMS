@@ -32,7 +32,7 @@ library:
     - id: bus
       description: "A simple balance node model"
       ports:
-        - id: balanace_port
+        - id: balance_port
           type: flow_port
       binding-constraints:
         - id: balance
