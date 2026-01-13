@@ -19,7 +19,7 @@ GEMSPy's API allows users to create studies programmatically.
 
 For detailed API usage and examples, see:
 
-- [Installation Guide](../../2_Getting%20Started/1_installation.md)
+- [Installation Guide](../../2_Getting%20Started/1_installation)
 - [Examples section](../../5_Examples/), it is explained how simulations can be run with GemsPy.
 - [Building with GEMSPy API](https://gemspy.readthedocs.io/en/latest/user-guide/building/)
 
@@ -30,11 +30,11 @@ For detailed API usage and examples, see:
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../Concepts/3_features_usecase" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    <a href="../../../1_Overview/3_Difference_with_other_languages" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="../../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">

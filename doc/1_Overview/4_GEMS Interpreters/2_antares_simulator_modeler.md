@@ -23,7 +23,7 @@ Two different usage mode of the GEMS interpreter are available with [Antares Sim
 
 For detailed usage and examples of [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) and its GEMS interpreter, see:
 
-- [Installation Guide](../../2_Getting%20Started/1_installation.md)
+- [Installation Guide](../../2_Getting%20Started/1_installation)
 - [Examples section](../../5_Examples/)
 - [The official Antares Simulator Documentation - Modeler section](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/)
 
@@ -41,11 +41,11 @@ For detailed usage and examples of [Antares Simulator](https://antares-simulator
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="../../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../References/1_Classification" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../../5_References/1_Classification_Configuration" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>

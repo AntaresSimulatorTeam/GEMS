@@ -1,9 +1,9 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
-    <a href="../../index.md">Main Section</a>
+    <a href="../../../..">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
@@ -52,4 +52,27 @@ Adding new component formulations or behaviours requires **Python development sk
 PLEXOS follows a philosophy similar to Antares Simulator, relying on a fixed and **predefined file-based structure** to describe studies.
 While powerful, this approach offers limited flexibility when adapting or extending model structures.
 GEMS, by contrast, provides a fully configurable modelling language where system structure and component behaviour can evolve without modifying the solver core.
+
+<br/>
+<br/>
+
+---
+
+**Navigation**
+
+<div style="display: flex; justify-content: space-between;">
+  <div style="text-align: left;">
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="../2_File_structure" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+  </button>
+  </div>
+  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="../../index" style="text-decoration:none; color: #FFFFFF">Index</a>
+  </button>
+  <div style="text-align: right;">
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="../4_GEMS Interpreters/1_gemspy" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  </button>
+  </div>
+</div>
 
