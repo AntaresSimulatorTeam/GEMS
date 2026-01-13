@@ -19,7 +19,7 @@ The scenario builder associates:
 - **Monte Carlo year** (referred to as *year*)
 - **time series index**
 
-allowing the model to select which data series column is used for a given group and simulation year.
+allowing the model to select which data series column is used for a given scenario group and simulation scenario.
 
 ## File Format
 
