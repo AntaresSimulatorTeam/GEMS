@@ -1,0 +1,64 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.2.9 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.2.9">
+  <diagram name="System YAML Description" id="system-yaml">
+    <mxGraphModel dx="1663" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="2200" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; - id: bus_1&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; model: basic_models_library.&lt;b&gt;bus&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; parameters:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; - id: &lt;b&gt;spillage_cost&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; time-dependent: false&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; scenario-dependent: false&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; value: 1000&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; - id: &lt;b&gt;unsupplied_energy_cost&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; time-dependent: false&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; scenario-dependent: false&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; value: 10000&lt;/div&gt;" vertex="1">
+          <mxGeometry height="240" width="320" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" value="write the &lt;b&gt;id&lt;/b&gt;&amp;nbsp;of the component" vertex="1">
+          <mxGeometry height="30" width="230" x="360" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" value="reference the model from the library &lt;i&gt;basics_models_library&lt;/i&gt; to instantiate for this component" vertex="1">
+          <mxGeometry height="60" width="250" x="360" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;opacity=30;fillColor=#F8CECC;" value="" vertex="1">
+          <mxGeometry height="20" width="80" x="50" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;opacity=30;fillColor=#FFF2CC;" value="" vertex="1">
+          <mxGeometry height="20" width="230" x="50" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFF99;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" value="in the parameters section, each parameter is configured" vertex="1">
+          <mxGeometry height="50" width="250" x="360" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;opacity=15;fillColor=#CCFF99;" value="" vertex="1">
+          <mxGeometry height="160" width="245" x="45" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCFF;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingLeft=10;spacingTop=10;" value="- write the &lt;b&gt;id&lt;/b&gt; of the parameter to configure&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;- enter the time / scenario dependency&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;- enter its constant value&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="340" x="360" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;opacity=35;fillColor=#FFCCFF;" value="" vertex="1">
+          <mxGeometry height="60" width="220" x="60" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-11" edge="1" parent="1" source="nUM9ZADQDyPRqAXFVjbI-3" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="nUM9ZADQDyPRqAXFVjbI-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="550" y="280" as="sourcePoint" />
+            <mxPoint x="600" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-12" edge="1" parent="1" source="nUM9ZADQDyPRqAXFVjbI-4" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="nUM9ZADQDyPRqAXFVjbI-6" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="540" y="100" as="sourcePoint" />
+            <mxPoint x="310" y="125" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-13" edge="1" parent="1" source="nUM9ZADQDyPRqAXFVjbI-7" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.219;entryDx=0;entryDy=0;entryPerimeter=0;" target="nUM9ZADQDyPRqAXFVjbI-8" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="410" y="130" as="sourcePoint" />
+            <mxPoint x="330" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-14" edge="1" parent="1" source="nUM9ZADQDyPRqAXFVjbI-9" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="nUM9ZADQDyPRqAXFVjbI-10" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="390" y="215" as="sourcePoint" />
+            <mxPoint x="320" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nUM9ZADQDyPRqAXFVjbI-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="How to configure the&amp;nbsp;&lt;b&gt;bus_1&lt;/b&gt; component :" vertex="1">
+          <mxGeometry height="30" width="285" y="10" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -34,7 +34,7 @@
     </button>
     <div style="text-align: right;">
     <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../1_Overview/Concepts/1_core concepts" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../../1_Overview/Concepts/1_core_concepts" style="text-decoration:none; color: #000000">Next page ➡️</a>
     </button>
     </div>
 </div>

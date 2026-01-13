@@ -22,19 +22,19 @@ From a documentation perspective, the User Guide is organized into **four comple
 
 - [**Mathematical Syntax**](#mathematical-syntax) — rules for writing mathematical expressions
 
-- [**File Structure**](#file-structure) — rules for configuring [GEMS](../index.md) YAML files and how they reference each other  
+- [**File Structure**](#file-structure) — rules for writing [GEMS](../index.md) YAML files and how they reference each other  
 
 - [**Theoretical Concepts**](#theoretical-concepts) — core ideas behind the system representation and optimization formulation
 
 - [**Outputs**](#outputs) — produced result formats and how to interpret them  
 
-This separation is fundamental to understanding how [GEMS](../index.md) models are written, interpreted, validated, and analysed.
+This separation is fundamental to understanding how [GEMS](../index.md) systems are written, interpreted, validated, and analysed.
 
 ---
 
 ## Mathematical Syntax
 
-The **GEMS Framework Mathematical Syntax** represents set of rules for creating mathematical expression which will be used in building an optimization problem.
+The **GEMS Framework Mathematical Syntax** represents set of rules for creating mathematical expressions which will be used in building an optimization problem.
 
 It defines:
 
@@ -45,9 +45,9 @@ It defines:
 - Linearity rules
 - Additional Operators
 
-Mathematical syntax is **solver-agnostic** and intentionally restricted to ensure that all models remain linear (LP/MILP) and unambiguous.
+Mathematical syntax is **solver-agnostic** and intentionally restricted to ensure that all optimization problems - representing systems - remain linear (LP/MILP) and unambiguous.
 
-Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where variables come from or how models are wired together.
+Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where parameters and variables come from or how components are wired together as a system.
 
 See: [**Mathematical Syntax and Rules**](../2_mathematical_syntax)
 
@@ -55,7 +55,7 @@ See: [**Mathematical Syntax and Rules**](../2_mathematical_syntax)
 
 ## File Structure
 
-The **GEMS Framework File Structure** defines how optimization models are **declared, structured, and connected** using YAML files.
+The **GEMS Framework File Structure** defines how components are **declared, structured, and connected**  to form a system, and how these systems can be translated as optimization problems, using YAML files.
 
 It specifies:
 
@@ -73,7 +73,7 @@ See: [**File Structure**](./3_GEMS_File_Structure/1_overview.md)
 
 ## Theoretical Concepts
 
-The **Theoretical Concepts** section explains the core ideas behind how [GEMS](../index.md) represents a system and builds an optimization model.
+The **Theoretical Concepts** section explains the core ideas behind how [GEMS](../index.md) represents a system and builds an optimization problem.
 
 It introduces:
 

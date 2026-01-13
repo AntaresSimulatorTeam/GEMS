@@ -127,9 +127,17 @@ This constraint will enforce that the total of flow from all connected component
 
 ### Direct port field usage
 
-A single port on a model can be designed to have exactly one connection, its field may be used directly in an expression as `port_id.field_id`. However, for clarity and generality, it is recommended to use `sum_connections` even in single-connection cases. This approach clearly conveys the modeling intent and ensures that the expression remains valid if the model is later extended to include multiple connections.
+Direct usage of a port’s field (e.g. `balance_port.flow`) inside a constraint is not permitted in [GEMS](../index.md). Any attempt to reference a port field directly in a constraint will result in an error. Even when a port has only a single incoming connection, the `sum_connections` operator must be used to include that port’s field in constraint expressions. Direct references to port fields are allowed exclusively in the **extra-output** section of a model. This rule enforces proper modeling practices by making all port contributions explicit and avoids errors in systems with multiple connections.
 
-As with variables, port field values must be used linearly within expressions. Because a port field ultimately represents either another model’s variable or a linear expression within the current model, including `port.field` in linear combinations is valid. Non-linear operations such as multiplying two port fields or dividing by a port field are not permitted, as they would introduce non-linear relationships.
+**Example**: Instead of writing a constraint like `balance_port.flow = 0` (which will cause an error), use the operator to sum the port’s value:
+
+```yaml
+# Incorrect usage (will cause an error):
+expression: balance_port.flow = 0
+ 
+# Correct usage (using sum_connections):
+expression: sum_connections(balance_port.flow) = 0
+```
 
 ## Time Operators and Indexing
 
@@ -220,7 +228,7 @@ expression: sum(generation * generation_cost)
 
 ### Scenario Operator
 
-[GEMS](../index.md) can handle multiple scenarios (two stage stochastic) for data and variables. Scenario-dependent parameters or variables have values that differ by scenario (similar to having an extra scenario index s). **Mathematical Expression Syntax**  currently provides an operator to aggregate across the scenario dimension:
+[GEMS](../index.md) can handle multiple scenarios  for data and variables. These scenarios are independent or coupled for two-stage stochastic optimization. Scenario-dependent parameters or variables have values that differ by scenario (similar to having an extra scenario index s). **Mathematical Expression Syntax**  currently provides an operator to aggregate across the scenario dimension:
 
 - **expec(X)** aggregator: where `X` is the scenario-dependent operand, this operator computes its expected value (i.e. its scenario-wise average).
 
@@ -254,7 +262,7 @@ These n-ary operators `max(u, v, ...)`/`min(u, v, ...)` are used within any expr
  In the context of a linear problem construction, its operands can only be literals or parameters.
 
 ```yaml
-expression: paramter_1 < max(parameter_2, 100)
+expression: parameter_1 < max(parameter_2, 100)
 ```
 
  In the context of a extracting results, its operands can be literals, parameters or variables.
