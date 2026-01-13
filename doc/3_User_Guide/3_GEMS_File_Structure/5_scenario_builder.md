@@ -17,7 +17,7 @@ The scenario builder associates:
 
 - **group ID**
 - **Monte Carlo year** (referred to as *year*)
-- **time series number**
+- **time series index**
 
 allowing the model to select which data series column is used for a given group and simulation year.
 
