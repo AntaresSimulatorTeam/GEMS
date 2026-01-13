@@ -82,7 +82,7 @@ nav:
         - System File: 3_User_Guide/3_GEMS_File_Structure/3_system.md
         - Dataseries File: 3_User_Guide/3_GEMS_File_Structure/4_data_series.md
         - Scenario Builder File: 3_User_Guide/3_GEMS_File_Structure/5_scenario_builder.md
-        - Solver parameters and optimization configuration files: 3_User_Guide/3_GEMS_File_Structure/6_solver_optimizatio.md
+        - Solver parameters and optimization configuration files: 3_User_Guide/3_GEMS_File_Structure/6_solver_optimization.md
         - Taxonomy File: 3_User_Guide/3_GEMS_File_Structure/7_taxonomy.md
         - Business Views configuration files: 3_User_Guide/3_GEMS_File_Structure/8_bussines_view.md
       - Theoretical Concepts:
