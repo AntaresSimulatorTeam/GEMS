@@ -1,10 +1,10 @@
-plugins:
-  - redirects
-
 docs_dir: doc
 site_name: GEMS - Generic Energy system Modelling Scheme
 repo_url: https://github.com/AntaresSimulatorTeam/GEMS
 edit_uri: edit/doc/doc/
+
+plugins:
+  - redirects
 
 theme:
   name: material
@@ -17,6 +17,7 @@ theme:
     - navigation.expand
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.indexes
     - content.action.copy
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -30,34 +31,43 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 nav:
   - Home:
-    - About GEMS: index.md
-    - Core concepts: 0_Home/2_core_concepts.md
-    - Use cases: 0_Home/3_use_cases.md
-    - Release Notes: 0_Home/4_release_notes.md 
+    - Home: index.md
+    - Core Concepts: 0_Home/2_core_concepts.md
+    - Use Cases: 0_Home/3_use_cases.md
+    - Release Notes: 0_Home/4_release_notes.md
   - Overview:
-    - Architecture Breakthrough : 1_Overview/1_Architecture.md
-    - File Structure and Description : 1_Overview/2_File_structure.md
-    - Difference with other languages : 1_Overview/3_Difference_with_other_languages.md
-    - GEMS Interpreters:
+      - Architecture: 1_Overview/1_Architecture.md
+      - File Structure: 1_Overview/2_File_structure.md
+      - Difference with other languages: 1_Overview/3_Difference_with_other_languages.md
+      - GEMS Interpreters:
           - GemsPy: 1_Overview/4_GEMS Interpreters/1_gemspy.md
-          - Antares Simulator: 1_Overview/4_GEMS Interpreters/2_antares_simulator_modeler.md      
-    - References:
-            - Classification of models: 1_Overview/5_References/1_Classification_Configuration.md
-            - Libraries of models: 1_Overview/5_References/2_Libraries.md
-            - Users of GEMS: 1_Overview/5_References/3_Users.md
+          - Antares Simulator: 1_Overview/4_GEMS Interpreters/2_antares_simulator_modeler.md
+      - References:
+          - Classification of models: 1_Overview/5_References/1_Classification_Configuration.md
+          - Libraries of models: 1_Overview/5_References/2_Libraries.md
+          - Users of GEMS: 1_Overview/5_References/3_Users.md
   - Getting Started:
       - Installation:
-        - Modeler Installation: 2_Getting Started/1A_modeler_installation.md
-        - GEMSPy Installation: 2_Getting Started/1B_gemspy_installation.md
+        - Antares Simulator's GEMS Interpreter: 2_Getting Started/1A_modeler_installation.md
+        - GEMSPy: 2_Getting Started/1B_gemspy_installation.md
       - Quick Start Examples:
-        - Adequacy: 2_Getting Started/2A_adequacy.md
+        - Adequacy Example: 2_Getting Started/2A_adequacy.md
       - Support: 2_Getting Started/1C_support.md
   - User Guide:
       - Syntax: 3_User Guide/1_syntax.md
       - Inputs: 3_User Guide/2_inputs.md
-      - Antares Hybrid Mode Inputs: 3_User Guide/3_hybrid inputs.md
+      - Hybrid Inputs: 3_User Guide/3_hybrid inputs.md
       - Outputs: 3_User Guide/4_outputs.md
       - Optimization: 3_User Guide/5_optimization.md
       - Glossary: 3_User Guide/6_glossary.md
