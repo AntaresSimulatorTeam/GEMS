@@ -1,10 +1,9 @@
-![Template Banner](../assets/template_banner.svg)
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
-    <a href="folder1/home1.md">Main Section</a>
+    <a href="../../../..">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
@@ -12,11 +11,11 @@
 
 # Model definition (from system.yml)
 
-Model and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
+Model and its configuration is defined in [Overview section](../1_Overview/Concepts/1_core_concepts)
 
 # Components specification (from system.yml)
 
-Components and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
+Components and its configuration is defined in [Overview section](../1_Overview/Concepts/1_core_concepts)
 
 # Dataseries
 Currently, the framework supports defining **dataseries** using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
@@ -55,6 +54,7 @@ The outputs of GEMS contain the results of the modelisation, in a LP format (**O
 
 - **Business Views**
     Output files with metrics specifically designed for users purposes. It made from the simulation table.
+
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">

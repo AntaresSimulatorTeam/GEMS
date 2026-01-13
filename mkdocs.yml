@@ -18,6 +18,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.indexes
+    - navigation.indexes
     - content.action.copy
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -34,7 +35,13 @@ theme:
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.arithmatex:
+      generic: true
   - footnotes
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
@@ -59,8 +66,8 @@ nav:
           - Users of GEMS: 1_Overview/5_References/3_Users.md
   - Getting Started:
       - Installation:
-        - Antares Simulator's GEMS Interpreter: 2_Getting Started/1A_modeler_installation.md
-        - GEMSPy: 2_Getting Started/1B_gemspy_installation.md
+        - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
+        - GEMSPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
         - Adequacy Example: 2_Getting Started/2A_adequacy.md
       - Support: 2_Getting Started/1C_support.md
@@ -73,7 +80,7 @@ nav:
       - Glossary: 3_User Guide/6_glossary.md
   - Interoperability:
       - PyPSA: 4_Interoperability/1_pypsa.md
-      - Antares Legacy Format: 4_Interoperability/2_antares legacy.md
+      - Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
       - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
   - Examples:
       - Tutorial - Simple economic dispatch problem: 5_Examples/1_optimization_problem.md

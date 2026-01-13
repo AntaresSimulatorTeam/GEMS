@@ -1,0 +1,45 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="Page-1" id="XNlLZ8XkYJxXmYLd3Jn4">
+    <mxGraphModel dx="705" dy="824" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="&lt;b&gt;🏙️ Region 1&lt;/b&gt;&lt;br&gt;⚡ Generator: 70-100 MW&lt;br&gt;💰 Cost: 35 €/MWh&lt;br&gt;💡 Load: 50 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8E44AD;strokeColor=#483465;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="90" y="90" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;b&gt;🏙️ Region 2&lt;/b&gt;&lt;br&gt;⚡ Generator: 50-90 MW&lt;br&gt;💰 Cost: 25 €/MWh&lt;br&gt;💡 Load: 40 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2980B9;strokeColor=#1A5276;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="520" y="90" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="&lt;b&gt;🏙️ Region 3&lt;/b&gt;&lt;br&gt;⚡ Generator: 50-200 MW&lt;br&gt;💰 Cost: 42 €/MWh&lt;br&gt;💡 Load: 150 MW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27AE60;strokeColor=#1E8449;fontColor=#FFFFFF;align=center;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="310" y="300" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="5" style="startArrow=classic;rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#000000;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="2" target="3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U4eSvUKT4R-9kYWHPl_7-10" value="&lt;font style=&quot;forced-color-adjust: none; font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; color: rgb(0, 0, 0); background-color: light-dark(#FFFFFF,var(--ge-dark-color, #121212)); font-size: 14px;&quot;&gt;↔️ Thermal capacity:&amp;nbsp;&lt;/font&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(127, 140, 141); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); background-color: light-dark(#FFFFFF,var(--ge-dark-color, #121212)); font-size: 14px;&quot;&gt;40 MW&lt;/font&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="5">
+          <mxGeometry x="-0.0125" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" style="startArrow=classic;rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="3" target="4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U4eSvUKT4R-9kYWHPl_7-16" value="&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;↔️ Thermal capacity:&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 12px; background-color: rgb(255, 255, 255);&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;30 MW&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="7">
+          <mxGeometry x="-0.1351" relative="1" as="geometry">
+            <mxPoint x="-12" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" style="startArrow=classic;rounded=0;endArrow=classic;endFill=1;html=1;strokeColor=#000000;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="4" target="2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U4eSvUKT4R-9kYWHPl_7-15" value="&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;↔️ Thermal capacity:&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;50 MW&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9">
+          <mxGeometry x="-0.0129" y="-2" relative="1" as="geometry">
+            <mxPoint x="-4" y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
