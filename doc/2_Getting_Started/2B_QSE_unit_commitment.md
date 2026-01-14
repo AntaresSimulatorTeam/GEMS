@@ -107,6 +107,10 @@ This graph illustrates how the number of thermal units generating power changes 
 
 ![nb units on profile](../assets/2_QSE2_UC_ts_units.png)
 
+Focus on the flows of all components :
+
+![flows of all components](../assets/2_QSE2_UC_outputs.png)
+
 <details>
   <summary><strong>Key outputs variables in details</strong></summary>
   <p>
