@@ -8,7 +8,52 @@
   </div>
 </div>
 
-# User Guide - Business Views
+# Taxonomy
+
+The **taxonomy** defines a shared classification system used to organize models and components according to their functional role within the system. Each model declares a `taxonomy-group` (for example `production`, `consumption`, `storage`, or `balance`) that describes how its components participate in the overall system architecture. This classification is structural and descriptive, and does not define any calculations, constraints, or result aggregation by itself.  
+
+**Intermediary Outputs** represent the detailed technical results produced directly by the simulation and optimization process. These outputs include decision variable values, evaluated port fields, extra outputs defined in models, and solver-related information such as objective values or dual variables. Intermediary Outputs should be stored in the `simulation_table`, which serves as the simulator’s internal memory across time blocks and scenarios.
+
+## Example: Taxonomy Usage in a Model Definition
+
+A simplified example of taxonomy usage in a model definition is shown below:
+
+```yaml
+models:
+  - id: generator
+    taxonomy-group: production
+```
+
+Example of catalog file:
+
+```yaml
+catalog:
+  
+  id: antares_area_output
+
+  taxonomy: my_taxonomy
+
+  location:
+    taxonomy-group: balance
+
+  metrics-definition: 
+
+  - id: OV.COST
+    terms:
+      - taxonomy-group: balance
+        output-id: imbalance_cost
+        location-ports: null 
+      - taxonomy-group: dispatchable_production
+        output-id: proportional_cost
+        location-ports: balance_port
+      - taxonomy-group: dispatchable_production
+        output-id: non_proportional_cost
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+```
+
+The taxonomy structure and the definition of Intermediary Outputs are still under active development.
 
 **Navigation**
 
