@@ -47,7 +47,7 @@ QSE_2_Unit_Commitment/
     <li>
       <strong>Thermal cluster</strong> (dispatchable)
       <ul>
-        <li>10 units, each 3 MW (30 MW total capacity)</li>
+        <li>10 units, each 10 MW (100 MW total capacity)</li>
         <li>All parameters (min/max power, costs, min up/down, number of units) are set in <code>system.yml</code></li>
       </ul>
     </li>
