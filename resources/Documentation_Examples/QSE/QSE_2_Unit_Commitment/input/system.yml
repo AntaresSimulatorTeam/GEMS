@@ -29,11 +29,11 @@ system:
         - id: p_min_unit
           time-dependent: false
           scenario-dependent: false
-          value: 0
+          value: 3
         - id: p_max_unit
           time-dependent: false
           scenario-dependent: false
-          value: 3
+          value: 10
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
@@ -61,7 +61,7 @@ system:
         - id: p_max_cluster
           time-dependent: false
           scenario-dependent: false
-          value: 30
+          value: 100
         - id: nb_units_max
           time-dependent: false
           scenario-dependent: false
