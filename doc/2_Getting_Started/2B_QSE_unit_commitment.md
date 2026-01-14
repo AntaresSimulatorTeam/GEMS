@@ -142,6 +142,10 @@ Focus on the flows of all components :
 
 ## Further in-depth explanations
 
+### Mathematical formulation 
+
+This usecase is mathematically modelised inside the [Antares Simuator documentation](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
+
 ### Library File
 
 The library file **antares_legacy_models.yml** defines the main component models used in this example:
