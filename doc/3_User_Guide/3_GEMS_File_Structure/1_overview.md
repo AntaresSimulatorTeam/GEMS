@@ -19,7 +19,7 @@ The diagram below illustrates the typical organisation of a GEMS study:
 
 ```mermaid
 flowchart LR
-    Study["📁 QSE_1_adequacy/"]
+    Study["📁 GEMS_Study/"]
     Input["📁 input/"]
     ModelLib["📁 model-libraries/"]
     DataSeries["📁 data-series/"]
@@ -30,6 +30,7 @@ flowchart LR
     Lib2["📄 library_2.yml"]
     Data1["📊 data-series_1.csv"]
     Data2["📊 data-series_2.csv"]
+    Scenario["📄 modeler-scenariobuilder.dat"]
     
     Study --> Input
     Study --> Params
@@ -40,6 +41,7 @@ flowchart LR
     ModelLib --> Lib2
     DataSeries --> Data1
     DataSeries --> Data2
+    DataSeries --> Scenario
     
     style Study fill:#fff3cd,stroke:#ffc107,stroke-width:3px
     style Input fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
@@ -51,10 +53,14 @@ flowchart LR
     style Lib2 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
     style Data1 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
     style Data2 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    style Scenario fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+
     
-    click Lib1 "https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml" "Example: basic_models_library"
-    click System "https://github.com/AntaresSimulatorTeam/GEMS/blob/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml" "Example: system file from Quick Start Example 1"
-    click Params "https://github.com/AntaresSimulatorTeam/GEMS/blob/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy/parameters.yml" "Example: parameters file"
+    click ModelLib "../2_library/"
+    click System "../3_system/"
+    click DataSeries "../4_data_series/"
+    click Scenario "../5_scenario_builder/"
+    click Params "../6_solver_optimization/"
 ```
 
 The following pages of this section describe each file and folder in detail. Each page focuses on the role of a specific file, its expected structure, and how it interacts with the rest of the file to form a consistent and executable GEMS study.

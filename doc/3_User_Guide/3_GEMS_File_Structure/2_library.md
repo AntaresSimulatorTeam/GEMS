@@ -11,8 +11,8 @@
 
 A library file defines a library of two collections of abstract objects:
 
-- Models - Contains the mathematical formulation for component type
-- Ports Types - Describe the kinds of connections models can have
+- [Models](#models) - Contains the mathematical formulation for component type
+- [Ports Types](#port-types) - Describe the kinds of connections models can have
 
 The library file is a YAML file with a single root key, `library`. Under this root, the library’s identifier, an optional description, and the collections of `port-types` and `models` are defined. All fields, unless explicitly marked as optional, must be present for the library to be considered valid. The following example illustrates the structure of a simple library file:
 
@@ -32,7 +32,7 @@ library:
     - id: bus
       description: "A simple balance node model"
       ports:
-        - id: balanace_port
+        - id: balance_port
           type: flow_port
       binding-constraints:
         - id: balance

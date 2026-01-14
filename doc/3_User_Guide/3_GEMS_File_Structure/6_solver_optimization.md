@@ -14,7 +14,7 @@ Global simulation and optimization parameters are defined in the `parameters.yml
 The `parameters.yml` file is only required when using the **Antares Modeler interpreter**.  
 When other interpreters or programmatic APIs are used, these parameters may be provided through alternative configuration mechanisms or default settings.
 
-This file controls:
+This file currently controls:
 
 - solver selection and behaviour
 - simulation horizon definition

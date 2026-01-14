@@ -9,26 +9,25 @@
 
 # Scenario Builder
 
-The `modeler-scenariobuilder.dat` file, located in the `data-series` directory, is used to map simulation scenarios to data series. Each line defines an association between a **group name** and a **Monte Carlo year** (referred to as *year*) with a **data series identifier** (referred to as *time series number*).
+The `modeler-scenariobuilder.dat` file, located in the `data-series` directory, is used to map simulation scenarios to columns of data series. Each line defines an association between a [**scenario group**](3_system.md#components) name and a **Monte Carlo scenario** (referred to as *scenario*) with a **data series column identifier** (referred to as *time series index*).
 
 ## Purpose
 
 The scenario builder associates:
 
-- **group ID**
-- **Monte Carlo year** (referred to as *year*)
-- **time series number**
+- **scenario group ID**
+- **Monte Carlo scenario** (referred to as *scenario*)
+- **time series index**
 
-allowing the model to select which data series column is used for a given group and simulation year.
+allowing the model to select which data series column is used for a given [**scenario group**](3_system.md#components) and simulation scenario.
 
 ## File Format
 
 Each line in the `modeler-scenariobuilder.dat` file defines a single mapping using the following format:
 
 ```text
-group_id, year = time_series_number
+scenario_group_id, scenario = time_series_index
 ```
-
 
 ## Example
 
@@ -37,8 +36,6 @@ thermal_group, 0 = 1
 thermal_group, 1 = 5
 hydro_group, 2 = 7
 ```
-
-
 
 **Navigation**
 
