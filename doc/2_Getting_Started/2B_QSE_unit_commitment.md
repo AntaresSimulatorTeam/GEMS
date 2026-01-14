@@ -101,15 +101,13 @@ QSE_2_Unit_Commitment/
 
 ## Outputs
 
-## Output Variables
-
 This graph illustrates how the number of thermal units generating power changes over the simulation week, reflecting the **unit commitment** feature. At night, when solar generation is unavailable, more thermal units are solicited to meet demand. Around midday, increased solar output often reduces the need for thermal generation, resulting in fewer thermal units operating.
 
-![nb units on profile](../assets/2_QSE2_UC_ts_units.png)
+![nb units on profile](../../assets/2_QSE2_UC_ts_units.png)
 
-Focus on the flows of all components :
+Focus on the flows of all components:
 
-![flows of all components](../assets/2_QSE2_UC_outputs.png)
+![flows of all components](../../assets/2_QSE2_UC_outputs.png)
 
 <details>
   <summary><strong>Key outputs variables in details</strong></summary>
@@ -144,7 +142,7 @@ Focus on the flows of all components :
 
 ### Mathematical formulation 
 
-This usecase is mathematically modelised inside the [Antares Simuator documentation](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
+This usecase is mathematically modeled inside the [Antares Simulator documentation](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
 
 ### Library File
 
@@ -157,7 +155,7 @@ The library file **antares_legacy_models.yml** defines the main component models
 
 ### System File
 
-The description of an energy system is the combination of a model library and a graph of components (instanciation of models) described in the system file. This part contains an extract of this **system file**.
+The description of an energy system is the combination of a model library and a graph of components (instantiation of models) described in the system file. This part contains an extract of this **system file**.
 
 <details>
   <summary><strong>Details of the <code>system.yml</code> File</strong></summary>
