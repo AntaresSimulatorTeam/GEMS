@@ -7,10 +7,141 @@
   </div>
 </div>
 
-# Hypergraph Structure
+# Hypergraph-Based Structure in GEMS
 
-GEMS organizes energy system models into components, ports, and connections. Each component represents a physical unit (e.g. generator, load, storage, bus) with internal parameters, variables, and equations. Ports are named interaction points on components through which quantities (like power flow) are exchanged. A port has a specified port type defining what fields it carries (e.g. a dc_port has a single flow field for power). Connections link one component’s port to another’s, allowing the flow value to pass between them. In each connection, one component acts as the emitter (it defines the port’s flow value via its internal variable or equation) and the other acts as the receiver (it uses that incoming value in its own equations). When defining a connection in YAML, you list the two component IDs and their port names, and exactly one of those components must define the port’s flow field in its model definition. This framework ensures a clear structure where components communicate through ports and all interactions are explicitly modeled.
+[GEMS](../../index.md) represents a system as a **hypergraph**.  
 
+Vertices correspond to **components**, while edges are realized through **ports** and **connections**.  
+
+This abstraction allows multiple components to contribute linear expressions to a single aggregation point, where system-level behavior is defined.
+
+In this structure, **components** play either an **emitter** or **receiver**
+role, while ports remain neutral connection interfaces.
+
+## Emitter and Receiver Role
+
+A **component** is an instance of a model and represents a system element
+(e.g. generator, load, storage, bus).
+
+Depending how [port](../3_GEMS_File_Structure/2_library.md#ports) is defined inside a model, component can act as:
+
+### Role definition rule
+
+- If a model defines `port-field-definitions` for a given port, the component acts as an **emitter** for that port. The linear expression specified in the `definition` field is **emitted** through the port and made available to connected components.
+
+- If a model defines a port **without** any `port-field-definitions`, the component acts as a **receiver** for that port. In this case, the component does not emit any expression and instead **aggregates expressions** emitted by connected components to define its behavior. The receiver uses these aggregated expressions to define one or more `binding-constraints` in its model.
+
+The emitter/receiver role is therefore a **model-level property**, inferred from the model definition, and not an attribute of the port itself.
+
+#### Example of receiver model
+
+```yaml
+- id: bus
+      parameters:
+        - id: spillage_cost
+        - id: unsupplied_energy_cost
+      variables:
+        - id: spillage
+          lower-bound: 0
+          variable-type: continuous
+        - id: unsupplied_energy
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+      objective-contributions:
+        - id: objective
+          expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+```
+
+In this example, model defines the `port` but does not define any `port-field-definitions`. The component therefore acts as a **receiver**, aggregating all expressions emitted to `balance_port` and using them to construct **balance** constraint.
+
+#### Example of emitter model
+
+```yaml
+- id: load
+  parameters:
+    - id: load
+      time-dependent: true
+      scenario-dependent: true
+  ports:
+    - id: balance_port
+      type: flow
+  port-field-definitions:
+    - port: balance_port
+      field: flow
+      definition: -load
+```
+
+In this example, the model defines a `port-field-definition` for `balance_port`. The expression `-load` is emitted through the port and contributes to connected **receiver** components.
+
+## Example: Kirchhoff’s First Law Constraint
+
+### Hypergraph topology
+
+- One **bus** component (receiver vertex)
+- Three **emitter** components (generator, load, wind)
+- All emitters connect to the same bus port
+
+```mermaid
+flowchart BT
+    Bus["bus"]
+    Generator["generator"]
+    Load["load"]
+    Wind["wind"]
+
+    Generator --> Bus
+    Load --> Bus
+    Wind --> Bus
+
+    style Bus fill:#fff3cd,stroke:#ffc107,stroke-width:3px
+    style Generator fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
+    style Load fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
+    style Wind fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
+```
+
+### System Connections
+
+In [system](../3_GEMS_File_Structure/3_system.md) file, users must define connections between emitter and receiver components. In this case connections will be:
+
+```yaml
+connections:
+  - component1: bus
+    component2: load
+    port1: balance_port
+    port2: balance_port
+  - component1: bus
+    component2: generator
+    port1: balance_port
+    port2: balance_port
+  - component1: bus
+    component2: wind
+    port1: balance_port
+    port2: balance_port
+```
+
+### Mathematical Equation
+
+Based on connections GEMS will create following constraint:
+
+$$
+P_g - D_b  = S_b - U_b
+$$
+
+Where:
+
+- $P_g$ — power generated by the generator  
+- $D_b$ — demand at the bus (from load emitters)  
+- $S_b$ — spillage at the bus  
+- $U_b$ — unsupplied energy at the bus  
+
+## Summary
+
+GEMS represents energy systems as hypergraphs where components exchange linear expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior. Kirchhoff’s First Law is one example of this aggregation pattern.
 
 **Navigation**
 
