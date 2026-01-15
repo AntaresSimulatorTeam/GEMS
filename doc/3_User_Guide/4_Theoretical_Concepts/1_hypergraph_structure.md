@@ -60,7 +60,7 @@ The emitter/receiver role is therefore a **model-level property**, inferred from
 
 In this example, model defines the `port` but does not define any `port-field-definitions`. The component therefore acts as a **receiver**, aggregating all expressions emitted to `balance_port` and using them to construct **balance** constraint.
 
-#### Example of emitter model
+#### Example of emitter models
 
 ```yaml
 - id: load
@@ -137,9 +137,9 @@ flowchart BT
     Load["load"]
     Renewable["renewable"]
 
-    Generator --> Bus
-    Load --> Bus
-    Renewable --> Bus
+    Generator --balance_port--> Bus
+    Load --balance_port--> Bus
+    Renewable --balance_port--> Bus
 
     style Bus fill:#fff3cd,stroke:#ffc107,stroke-width:3px
     style Generator fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
@@ -169,7 +169,7 @@ connections:
 
 ### Mathematical Equation
 
-Based on connections GEMS will create following constraint:
+Based on connections [GEMS](../../index.md) will create following constraint:
 
 $$
 \forall b \in B, \sum_{g \in G_b} P_g - D_b + R_b  = S_b - U_b
@@ -186,7 +186,7 @@ Where:
 
 ## Summary
 
-GEMS represents energy systems as hypergraphs where components exchange linear expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior. Kirchhoff’s First Law is one example of this aggregation pattern.
+[GEMS](../../index.md) represents energy systems as hypergraphs where components exchange linear expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior. Kirchhoff’s First Law is one example of this aggregation pattern.
 
 **Navigation**
 
