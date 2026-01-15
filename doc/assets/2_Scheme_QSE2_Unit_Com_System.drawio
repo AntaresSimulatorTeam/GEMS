@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="TUvCcXH0GGjaxbEp0lOu-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD966;strokeColor=#A08A3F;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px; text-align: left;&quot;&gt;☀️ Solar Farm: 80 MW&lt;/b&gt;" vertex="1">
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD966;strokeColor=#A08A3F;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px; text-align: left;&quot;&gt;☀️ Solar Farm: 45 MW&lt;/b&gt;" vertex="1">
           <mxGeometry height="50" width="210" x="520" y="120" as="geometry" />
         </mxCell>
         <mxCell id="region-b-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B7FE2;strokeColor=#0D47A1;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;span style=&quot;font-size: 18px; font-weight: 700;&quot;&gt;🔷 Bus&lt;/span&gt;" vertex="1">
@@ -22,7 +22,7 @@
         <mxCell id="TUvCcXH0GGjaxbEp0lOu-6" connectable="0" parent="1" style="group;fillColor=none;" value="" vertex="1">
           <mxGeometry height="50" width="220" x="520" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="TUvCcXH0GGjaxbEp0lOu-7" parent="TUvCcXH0GGjaxbEp0lOu-6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#99FFFF;strokeColor=#61A2A2;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px;&quot;&gt;🌬️ Wind Farm : 100 MW&lt;/b&gt;" vertex="1">
+        <mxCell id="TUvCcXH0GGjaxbEp0lOu-7" parent="TUvCcXH0GGjaxbEp0lOu-6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#99FFFF;strokeColor=#61A2A2;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px;&quot;&gt;🌬️ Wind Farm : 60 MW&lt;/b&gt;" vertex="1">
           <mxGeometry height="50" width="220" as="geometry" />
         </mxCell>
         <mxCell id="TUvCcXH0GGjaxbEp0lOu-9" connectable="0" parent="1" style="group" value="" vertex="1">
