@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
   <diagram name="Page-1" id="lOXxaC2xbihVH8rXdj5s">
-    <mxGraphModel dx="1938" dy="510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2490" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -178,7 +178,7 @@
         <mxCell id="0sBJxVaiiLU8ok0lkxVD-13" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#C8E6C9;strokeColor=#388E3C;fontStyle=1;fontColor=#1B5E20;rounded=1;" value="⚡ Model - Generator" vertex="1">
           <mxGeometry height="50" width="120" x="-235" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="eFMopd_4k5sXEYCDrICH-1" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#B2DFDB;strokeColor=#00695C;fontStyle=1;fontColor=#004D40;rounded=1;" value="🔗 Model - CO2 quota Binding Constraints" vertex="1">
+        <mxCell id="eFMopd_4k5sXEYCDrICH-1" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#B2DFDB;strokeColor=#00695C;fontStyle=1;fontColor=#004D40;rounded=1;" value="🔗 Model - CO2 quota" vertex="1">
           <mxGeometry height="50" width="160" x="-255" y="500" as="geometry" />
         </mxCell>
         <mxCell id="7JfKOM4HEq4VKIxrzDkl-9" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFCCBC;strokeColor=#E64A19;fontStyle=1;fontColor=#BF360C;rounded=1;" value="🔷 Bus" vertex="1">
