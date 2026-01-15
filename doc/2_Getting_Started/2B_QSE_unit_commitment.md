@@ -85,7 +85,7 @@ QSE_2_Unit_Commitment/
   <summary><strong>Detailed steps for running GEMS study with Antares Modeler</strong></summary>
   <ol>
     <li>Download <a href="https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_2_unit_commitment">QSE_2_unit_commitment</a></li>
-    <li>Copy <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml"><code>basic_models_library.yml</code></a> into the <code>QSE_2_unit_commitment/input/model-libraries/</code></li>
+    <li>Copy <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/antares_legacy_models.yml"><code>antares_legacy_models.yml</code></a> into the <code>QSE_2_unit_commitment/input/model-libraries/</code></li>
     <li>Get Antares Modeler installed through this <a href="../1_installation">tutorial</a></li>
     <li>Locate <strong>bin</strong> folder</li>
     <li>Open the terminal</li>
