@@ -49,7 +49,7 @@ extra_javascript:
 
 nav:
   - Home:
-    - Home: index.md
+    - About GEMS: index.md
     - Core Concepts: 0_Home/2_core_concepts.md
     - Use Cases: 0_Home/3_use_cases.md
     - Release Notes: 0_Home/4_release_notes.md
