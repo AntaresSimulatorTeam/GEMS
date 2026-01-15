@@ -67,7 +67,7 @@ GEMS, by contrast, provides a fully configurable modelling language where system
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../index" style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="../../index" style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
