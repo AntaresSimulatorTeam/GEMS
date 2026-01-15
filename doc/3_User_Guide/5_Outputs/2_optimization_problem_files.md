@@ -9,8 +9,7 @@
 
 # Optimization Problem MPS File
 
-GEMS exports the fully assembled optimisation problem in a **standard mathematical programming format** (**MPS**).  
-The exported file contains the complete linear or mixed-integer formulation constructed from the system configuration, model libraries, and input data.
+[GEMS](../../index.md) exports the fully assembled optimisation problem in a **standard mathematical programming format** (**MPS**). The exported file contains the complete linear or mixed-integer formulation constructed from the system configuration, model libraries, and input data.
 
 This export is primarily intended for **verification, debugging, and external analysis** of the optimisation problem.
 
