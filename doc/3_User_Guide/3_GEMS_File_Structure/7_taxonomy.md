@@ -53,7 +53,7 @@ catalog:
     time-operator: sum
 ```
 
-The taxonomy structure and the definition of Intermediary Outputs are still under active development.
+**The taxonomy structure and the definition of Intermediary Outputs are still under active development.**
 
 **Navigation**
 
