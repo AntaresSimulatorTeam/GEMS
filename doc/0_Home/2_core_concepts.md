@@ -10,9 +10,9 @@
 
 # An Optimisation Language Tailored for Energy System Modelling
 
-**GEMS** is a graph-based algebraic modelling language for building, managing, and solving optimization problems that describe energy systems.
+**GEMS** is a graph-based [algebraic modelling language](https://en.wikipedia.org/wiki/Algebraic_modeling_language) for building, managing, and solving optimization problems that describe energy systems.
 
-This language **differs from traditional optimization languages** in several ways by natively accounting for the specific needs of energy system modeling. Its underlying motivation is to provide essential features for advancing energy modeling: **a readable and user-friendly syntax, strong flexibility, and a tool-agnostic design.**
+This language **differs from traditional optimization languages** in several ways by natively accounting for the specific needs of energy system modelling. Its underlying motivation is to provide essential features for advanced energy modelling: **a readable and user-friendly syntax, strong flexibility, and a tool-agnostic design.**
 
 
 <div style="height: 500px; overflow: hidden;">
@@ -31,13 +31,13 @@ This language **differs from traditional optimization languages** in several way
        alt="Graph oriented icon"/>
 
   <p style="margin: 0;">
-    GEMS as a modelling language adopts an approach that clearly distinguishes <strong>model definition</strong> from <strong>solver execution</strong>. This allows users to focus on the structure and behavior of energy systems without being immediately concerned with optimization details. Models, described as objects and graphs, remain independent of the algorithm or solver used. This separation <strong> facilitates reuse, experimentation, and maintenance of models </strong>, while making it easy to test different solvers or resolution settings as needed.
+    GEMS as a modelling language adopts an approach that clearly distinguishes <strong>model definition</strong> from <strong>solver execution</strong>. This allows users to focus on the structure and behavior of energy systems without being immediately concerned with optimization details. Mathematical equations ruling energy system components are not hard-coded, they are dynamically interpreted: they remain independent from the simulation tool and from the underlying optimization solver. This separation <strong> facilitates reuse, experimentation, and maintenance of models </strong>, while making it easy to test different solvers or resolution settings as needed.
   </p>
 </div>
 
 
 
-## Model Energy Systems as Connected Objects
+## Model Energy Systems as Connected Objects (Hypergraphs)
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_graph_oriented.png"
        width="40"
@@ -56,7 +56,7 @@ This language **differs from traditional optimization languages** in several way
   </p>
 </div>
 
-## Integrated Time and Uncertainty Dimension
+## Integrated Time and Uncertainty Dimensions
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_time_scenario.png" width="40" alt="Time Scenario icon"/>
 
@@ -79,11 +79,11 @@ This language **differs from traditional optimization languages** in several way
 
     <ul style="margin: 0; padding-left: 20px;">
       <li>
-        <strong>Mixed Integer Linear Programming (MILP)</strong> problems, enabling the representation
-        of discrete investment decisions alongside continuous operational variables.
+        <strong>Mixed Integer Linear Programming ([MILP](https://en.wikipedia.org/wiki/Integer_programming))</strong> problems, enabling the representation
+        of discrete operational or investment decisions alongside continuous operational variables.
       </li>
       <li>
-        <strong>Two-stage stochastic optimisation problems</strong>, where first-stage (here-and-now)
+        <strong>[Two-stage stochastic optimisation](https://en.wikipedia.org/wiki/Stochastic_programming) problems</strong>, where first-stage (here-and-now)
         decisions are coupled with second-stage (recourse) decisions, providing a robust
         framework for decision-making under uncertainty.
       </li>
