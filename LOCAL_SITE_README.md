@@ -16,7 +16,7 @@ source documentation_env/bin/activate
 ## 2. Install required libraries
 
 ```bash
-pip install mkdocs mkdocs-material mkdocs-redirects
+pip install mkdocs mkdocs-material
 ```
 
 ## 3. Run the site locally
