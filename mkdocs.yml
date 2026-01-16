@@ -3,9 +3,6 @@ site_name: GEMS - Generic Energy system Modelling Scheme
 repo_url: https://github.com/AntaresSimulatorTeam/GEMS
 edit_uri: edit/doc/doc/
 
-plugins:
-  - redirects
-
 theme:
   name: material
   logo: assets/gemsV2.png
