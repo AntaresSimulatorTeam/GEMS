@@ -27,7 +27,7 @@ role, while ports remain neutral connection interfaces.
 A **component** is an instance of a model and represents a system element
 (e.g. generator, load, storage, bus).
 
-Depending how [port](../3_GEMS_File_Structure/2_library.md#ports) is defined inside a model, component can act as:
+Depending how [port](../3_GEMS_File_Structure/2_library.md#ports) is defined inside the model it refers to, a component can act as:
 
 ### Role definition rule
 
