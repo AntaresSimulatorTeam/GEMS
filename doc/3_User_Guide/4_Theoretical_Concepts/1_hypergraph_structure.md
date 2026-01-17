@@ -131,7 +131,7 @@ In this example, the model defines a `port-field-definition` for `balance_port`.
 ### Hypergraph topology
 
 - One **receiver** vertex : a **bus** component 
-- Three **emitter** components (generator, load, renewable)
+- Three **emitter** vertices: generator, load, renewable components.
 - All emitters connect to the same `balance_port`
 
 ```mermaid
