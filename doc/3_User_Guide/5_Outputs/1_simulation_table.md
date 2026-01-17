@@ -1,15 +1,22 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <a href="../../../..">Main Section</a>
-  </div>
-  <div style="text-align: right;">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </div>
+    <div style="text-align: left;">
+        <a href="../../../..">Main Section</a>
+    </div>
+    <div style="text-align: right;">
+        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    </div>
 </div>
 
-# Simulation Table
+# Simulation Table: abstract definition
 
-The **Simulation Table** is a structured `csv` file that contains the values of all decision variables and constraints from the solved optimization and extra output. It essentially provides a flat table of the optimization solution, with enough information to identify each value’s context (which component, which variable or output, which time and scenario). This is the richest output in terms of level of detail – it’s meant for analysts or developers who want to examine the full solution or feed it into further processing.
+The **Simulation Table** is a structured table that contains the values of all 
+
+- [Variables](../3_GEMS_File_Structure/2_library.md/#variables)
+- [Constraints](../3_GEMS_File_Structure/2_library.md/#constraints)
+- [Port Fields](../3_GEMS_File_Structure/2_library.md/#port-field-definition)
+- [Extra Outputs](../3_GEMS_File_Structure/2_library.md/#extra-output)
+
+from the solved [optimization problem](2_optimization_problem.md). It essentially provides a flat table of the optimization solution, with enough information to identify each value’s context (which component, which variable or other output, which time and scenario). This is the most granular output data that we can think of – it’s meant for analysts or developers who want to examine the full solution or feed it into further processing.
 
 **Contents and Structure**: Each row of the simulation table corresponds to a specific model output at a specific index. The table includes the following columns (as `csv` header):
 
@@ -24,7 +31,9 @@ The **Simulation Table** is a structured `csv` file that contains the values of 
 |`value`|The value of the output (variable). None for constraints.|
 |`basis_status`| The status in the solver basis for this variable or constraint. Possible values are, *Free*, *At lower bound*, *At upper bound*, *Fixed value*, *Basic*, *None (not available or not applicable)*|
 
-The `csv` file is named with a prefix **simulation_table** plus timestamp (e.g. simulation_table_20251223-1015.csv) to distinguish runs. By default, the file will reside in the study’s output directory (output/simulation_table_...csv).
+# Simulation Table exported by [Antares Simulator](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md)
+
+[Antares Simulator](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md) exports the **Simulation Table** as a .csv file. The `csv` file is named `simulation_table_{timestamp}.csv` (e.g. `simulation_table_20251223-1015.csv`) to distinguish runs. By default, the file will reside in the study’s output directory (`outputs/simulation_table_{timestamp}.csv`).
 
 **Example:** To illustrate, here are a couple of rows from a simulation table:
 
