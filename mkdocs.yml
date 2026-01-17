@@ -71,7 +71,9 @@ nav:
         - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
         - GEMSPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
-        - Adequacy Example: 2_Getting Started/2A_adequacy.md
+        - Three-bus system - Simple Adequacy Example: 
+          - Overview : 2_Getting_Started/2A_QSE_adequacy.md
+          - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
       - Support: 2_Getting Started/1C_support.md
   - User Guide:
       - Introduction: 3_User_Guide/1_introduction.md
