@@ -34,6 +34,7 @@ This language **differs from traditional optimization languages** in several way
 </div>
 
 ## Model Energy Systems as Connected Objects (Hypergraphs)
+
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_graph_oriented.png"
        width="40"
@@ -53,6 +54,7 @@ This language **differs from traditional optimization languages** in several way
 </div>
 
 ## Integrated Time and Uncertainty Dimensions
+
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_time_scenario.png" width="40" alt="Time Scenario icon"/>
 
@@ -64,6 +66,7 @@ This language **differs from traditional optimization languages** in several way
 </div>
 
 ## Supported Optimisation Problem Classes
+
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_optimisation_problems.png" width="40" alt="Optimisation icon"/>
 
@@ -88,6 +91,7 @@ This language **differs from traditional optimization languages** in several way
 </div>
 
 ## YAML-Based, User-Friendly Model Definition
+
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_yaml_file.png" width="40" alt="YAML file icon"/>
   <p style="margin: 0;">

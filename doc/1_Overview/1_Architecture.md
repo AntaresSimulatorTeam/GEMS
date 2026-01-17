@@ -9,24 +9,20 @@
 
 # GEMS Architecture Breakthrough
 
-
 GEMS represents a fundamental change from classical **OOME architectures (Object-Oriented Modelling Environment)**, where mathematical models are typically **hard-coded** in the software itself.
 
 <div style="text-align: center;">
   <img src="../../../assets/Architecture_OOME.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
 </div>
 
-
 This architecture of GEMS aims to export the definition of component models and system configuration from the core software, by relying on **external YAML files**, which enables:
 
 - **Flexible modelling:** Models and system configurations can be defined, extended, or modified directly in configuration files—no changes to the core code are required.
 - **Interoperability:** The GEMS file format supports seamless integration with external tools and workflows, such as converting and simulating PyPSA studies using GemsPy.
 
-
 <div style="text-align: center; width:1000px;">
   <img src="../../../assets/Architecture_GEMS.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
 </div>
-
 
 <div style="border: 2px solid #2196F3; padding: 15px; border-radius: 8px; background-color: #e8f4ff; max-width: 400px; position: relative;">
   <strong>ℹ️ For more information:</strong>

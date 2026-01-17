@@ -56,7 +56,6 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 
 Let’s check if Modeler is working correctly.
 
-
 - **Download the example study:**
 
   Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
@@ -70,7 +69,6 @@ Let’s check if Modeler is working correctly.
 # On Linux:
 ./bin/antares-modeler ./<absolute path to QSE_1_Adequacy study folder>
 ```
-
 
 - **Check for success:**
 
@@ -100,7 +98,6 @@ Replace `<path-to-study>` with the path to your Antares study directory.
 The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
 
 In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User%20Guide/2_inputs.md). Unlike the GEMSPy interpreter, Modeler depends on this configuration file.
-
 
 ## Additional Resources
 
@@ -135,6 +132,5 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 </div>
 
 ---
-
 
 © GEMS (LICENSE)

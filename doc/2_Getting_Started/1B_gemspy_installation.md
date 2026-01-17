@@ -11,7 +11,6 @@
 
 [GemsPy](https://gemspy.readthedocs.io/en/latest/) is a Python interpreter for GEMS that allows you to create, manipulate, and simulate energy system models.
 
-
 ## Requirements
 
 This package requires:
@@ -19,7 +18,6 @@ This package requires:
 - **Python 3.11** (recommended for optimal compatibility and performance) or Python 3.8+
 - Git (for cloning the [GemsPy repository](https://github.com/AntaresSimulatorTeam/GemsPy))
 - pip package manager (for installing required Python libraries)
-
 
 ## GEMSPy installation
 
@@ -30,7 +28,6 @@ Currently, [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) must be inst
 git clone https://github.com/AntaresSimulatorTeam/GemsPy.git
 cd GemsPy
 ```
-
 
 ## Virtual Environment Setup
 
@@ -52,7 +49,6 @@ List of **main dependencies** installed via **`requirements.txt`**:
 - pandas
 - scipy
 
-
 ### Working with Virtual Environments
 
 1. **Activate the Virtual Environment**
@@ -69,7 +65,7 @@ List of **main dependencies** installed via **`requirements.txt`**:
       ```
 
     When activated, the environment name will be visible in the terminal prompt:
-    
+
     ```
     (gemspy-env) user@machine:~$
     ```
@@ -80,7 +76,7 @@ List of **main dependencies** installed via **`requirements.txt`**:
     ```
     deactivate
     ```
-    
+
 3. **Delete the Virtual Environment**
 
     If you need to completely remove a virtual environment:
@@ -88,7 +84,6 @@ List of **main dependencies** installed via **`requirements.txt`**:
     - Delete the `gemspy-env` folder directly.
 
     **Note:** Ensure you have saved any important work before deleting the environment.
-
 
 ## Troubleshooting
 
@@ -128,7 +123,6 @@ pip install -r requirements.txt
 python -c "import scipy; print(scipy.__version__)"
 ```
 
-
 ## Additional Resources
 
 | Resource              | Link                                                                 |
@@ -139,7 +133,6 @@ python -c "import scipy; print(scipy.__version__)"
 | FAQ                   | [FAQ](../6_Support%20&%20Contributing/1_faq.md)                      |
 | GitHub Issues         | [GemsPy Issues](https://github.com/AntaresSimulatorTeam/GemsPy/issues)|
 | Contact Support       | [Contact support](../6_Support%20&%20Contributing/2_contact.md)      |
-
 
 ---
 

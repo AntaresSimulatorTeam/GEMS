@@ -27,8 +27,6 @@ For detailed usage and examples of [Antares Simulator](https://antares-simulator
 - [Examples section](../../5_Examples/)
 - [The official Antares Simulator Documentation - Modeler section](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/)
 
-
-
 [^1]: **Antares Simulator** is an open-source power system simulator designed to quantify the adequacy and economic performance of interconnected energy systems in the long term. It is used by transmission system operators for probabilistic simulations of energy consumption, generation, and transportation.
 
 ---

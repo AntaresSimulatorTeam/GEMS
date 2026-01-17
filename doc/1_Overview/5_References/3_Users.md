@@ -13,10 +13,9 @@ The following entities currently use or have used the GEMS framework for their p
 
 ## Companies
 
-### RTE 
+### RTE
 
 <img src="../../../assets/4_RTE_logo.svg.png" alt="RTE logo" style="height:50px;"/> 
-
 
 [RTE](https://www.rte-france.com/) is using GEMS for the [Planeterr](https://planeterr.fr/) project.
 
@@ -34,16 +33,15 @@ The following entities currently use or have used the GEMS framework for their p
   <img src="../../../assets/1_logo_mines_paris.png" alt="Mines de Paris logo" style="height:50px;"/>
 </a>
 
-
 ### TU Delft
 
 <a href="https://www.tudelft.nl/en/">
   <img src="../../../assets/1_logo_TU_delft.png" alt="TU Delft logo" style="height:50px;"/>
 </a>
 
-
 ---
 **Navigation**
+
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">

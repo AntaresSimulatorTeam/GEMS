@@ -16,7 +16,6 @@
 | GEMS FAQ                                 | [FAQ](../../6_Support%20&%20Contributing/1_faq)                   |
 | Antares Simulator Contact (GitHub Issue) | [Contact Form Website](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues/new?template=support_request.md) |
 
-
 ---
 
 **Navigation**
@@ -38,6 +37,5 @@
 </div>
 
 ---
-
 
 © GEMS (LICENSE)

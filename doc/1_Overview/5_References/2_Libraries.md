@@ -7,8 +7,6 @@
   </div>
 </div>
 
-
-
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
