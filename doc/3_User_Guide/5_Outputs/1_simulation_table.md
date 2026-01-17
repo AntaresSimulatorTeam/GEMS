@@ -9,7 +9,14 @@
 
 # Simulation Table
 
-The **Simulation Table** is a structured `csv` file that contains the values of all decision variables and constraints from the solved optimization and extra output. It essentially provides a flat table of the optimization solution, with enough information to identify each value’s context (which component, which variable or output, which time and scenario). This is the richest output in terms of level of detail – it’s meant for analysts or developers who want to examine the full solution or feed it into further processing.
+The **Simulation Table** is a structured table that contains the values of all 
+
+- [Variables](../3_GEMS_File_Structure/2_library.md/#variables)
+- [Constraints](../3_GEMS_File_Structure/2_library.md/#constraints)
+- [Port Fields](../3_GEMS_File_Structure/2_library.md/#port-field-definition)
+- [Extra Outputs](../3_GEMS_File_Structure/2_library.md/#extra-output)
+
+from the solved [optimization problem](2_optimization_problem.md). It essentially provides a flat table of the optimization solution, with enough information to identify each value’s context (which component, which variable or other output, which time and scenario). This is the most granular output data that we can think of – it’s meant for analysts or developers who want to examine the full solution or feed it into further processing.
 
 **Contents and Structure**: Each row of the simulation table corresponds to a specific model output at a specific index. The table includes the following columns (as `csv` header):
 
