@@ -39,92 +39,102 @@ The emitter/receiver role is therefore a **model-level property**, inferred from
 
 #### Example of receiver model
 
-```yaml
-- id: bus
-      parameters:
-        - id: spillage_cost
-        - id: unsupplied_energy_cost
-      variables:
-        - id: spillage
-          lower-bound: 0
-          variable-type: continuous
-        - id: unsupplied_energy
-          lower-bound: 0
-          variable-type: continuous
-      ports:
-        - id: balance_port
-          type: flow
-      binding-constraints:
-        - id: balance
-          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
-      objective-contributions:
-        - id: objective
-          expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
-```
-
 In this example, model defines the `port` but does not define any `port-field-definitions`. The component therefore acts as a **receiver**, aggregating all expressions emitted to `balance_port` and using them to construct **balance** constraint.
+
+<details>
+  <summary><strong>Receiver Model</strong></summary>
+
+  <pre><code>
+  - id: bus
+    parameters:
+      - id: spillage_cost
+      - id: unsupplied_energy_cost
+    variables:
+      - id: spillage
+        lower-bound: 0
+        variable-type: continuous
+      - id: unsupplied_energy
+        lower-bound: 0
+        variable-type: continuous
+    ports:
+      - id: balance_port
+        type: flow
+    binding-constraints:
+      - id: balance
+        expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+    objective-contributions:
+      - id: objective
+        expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+</code></pre>
+
+</details>
 
 #### Example of emitter models
 
-```yaml
-- id: load
-  parameters:
-    - id: load
-      time-dependent: true
-      scenario-dependent: true
-  ports:
-    - id: balance_port
-      type: flow
-  port-field-definitions:
-    - port: balance_port
-      field: flow
-      definition: -load
-
-- id: renewable
-  parameters:
-    - id: generation
-      time-dependent: true
-      scenario-dependent: true
-  ports:
-    - id: balance_port
-      type: flow
-  port-field-definitions:
-    - port: balance_port
-      field: flow
-      definition: generation
-
-- id: generator
-  parameters:
-    - id: p_min
-      scenario-dependent: true
-      time-dependent: true
-    - id: p_max
-      scenario-dependent: true
-      time-dependent: true
-    - id: generation_cost
-      scenario-dependent: false
-      time-dependent: false
-    - id: co2_emission_factor
-      scenario-dependent: false
-      time-dependent: false
-  variables:
-    - id: generation
-      lower-bound: p_min
-      upper-bound: p_max
-      variable-type: continuous
-  ports:
-    - id: balance_port
-      type: flow
-  port-field-definitions:
-    - port: balance_port
-      field: flow
-      definition: generation
-  objective-contributions:
-    - id: objective
-      expression: sum(generation_cost * generation)
-```
-
 In this example, the model defines a `port-field-definition` for `balance_port`. For load model, the expression `-load` is emitted through the port and contributes to connected **receiver** components.
+
+<details>
+  <summary><strong>Emitter Model</strong></summary>
+
+  <pre><code>
+  - id: load
+    parameters:
+      - id: load
+        time-dependent: true
+        scenario-dependent: true
+    ports:
+      - id: balance_port
+        type: flow
+    port-field-definitions:
+      - port: balance_port
+        field: flow
+        definition: -load
+
+  - id: renewable
+    parameters:
+      - id: generation
+        time-dependent: true
+        scenario-dependent: true
+    ports:
+      - id: balance_port
+        type: flow
+    port-field-definitions:
+      - port: balance_port
+        field: flow
+        definition: generation
+
+  - id: generator
+    parameters:
+      - id: p_min
+        scenario-dependent: true
+        time-dependent: true
+      - id: p_max
+        scenario-dependent: true
+        time-dependent: true
+      - id: generation_cost
+        scenario-dependent: false
+        time-dependent: false
+      - id: co2_emission_factor
+        scenario-dependent: false
+        time-dependent: false
+    variables:
+      - id: generation
+        lower-bound: p_min
+        upper-bound: p_max
+        variable-type: continuous
+    ports:
+      - id: balance_port
+        type: flow
+    port-field-definitions:
+      - port: balance_port
+        field: flow
+        definition: generation
+    objective-contributions:
+      - id: objective
+        expression: sum(generation_cost * generation)
+</code></pre>
+
+</details>
 
 ## Example: Kirchhoff’s First Law Constraint
 
