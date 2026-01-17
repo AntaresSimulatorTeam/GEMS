@@ -31,7 +31,7 @@ Depending how [port](../3_GEMS_File_Structure/2_library.md#ports) is defined ins
 
 ### Role definition rule
 
-- If a model defines `port-field-definitions` for a given port, the component acts as an **emitter** for that port. The linear expression specified in the `definition` field is **emitted** through the port and made available to connected components.
+- **Emitter**: If a model defines `port-field-definitions` for a given port, the component acts as an **emitter** for that port. The expression specified in the `definition` field is **emitted** through the port and made available to connected components.
 
 - If a model defines a port **without** any `port-field-definitions`, the component acts as a **receiver** for that port. In this case, the component does not emit any expression and instead **aggregates expressions** emitted by connected components to define its behavior. The receiver uses these aggregated expressions to define one or more `binding-constraints` in its model.
 
