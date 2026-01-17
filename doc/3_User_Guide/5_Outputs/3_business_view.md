@@ -9,7 +9,9 @@
 </div>
 
 # Business Views
+*Business Views** are result tables designed to meet business-user expectations. Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
 
+## Business Views & advanced (graphical) representation
 Output representation describes how simulation results are exposed and formatted for end users. It operates downstream of **Business Views** and does not affect simulation or metric calculations. This layer is responsible only for structuring and presenting already computed Business Outputs.
 
 **The output representation layer and its supported formats are still under active development.**
