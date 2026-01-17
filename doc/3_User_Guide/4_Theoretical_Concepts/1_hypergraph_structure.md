@@ -9,7 +9,7 @@
 
 # The Hypergraph of a GEMS sysetm
 
-[GEMS](../../index.md) represents a system as a **hypergraph**.  
+[GEMS](../../index.md) represents a system as a **[hypergraph](https://en.wikipedia.org/wiki/Hypergraph)**.  This is precisely the content of a [system](../3_GEMS_File_Structure/3_system.md) file.
 
 Vertices correspond to **components**, while edges are realized through **ports** and **connections**.  
 
