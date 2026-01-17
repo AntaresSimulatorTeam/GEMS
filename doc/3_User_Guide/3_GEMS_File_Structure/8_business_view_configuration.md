@@ -12,7 +12,9 @@
 
 **Business Outputs**, also referred to as **Business Views**, represent result tables designed to meet business-user expectations.  
 Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
-These variables are computed exclusively from the data contained in the **Intermediary Outputs**.
+These numerical values are computed exclusively from 
+- the data contained in the **[Simulation Table](../5_Outputs/1_simulation_table.md)**,
+- the hypergraph representation of the [system](../3_GEMS_File_Structure/3_system.md).
 
 **The configuration and capabilities of Business Outputs are still under active development.**
 
