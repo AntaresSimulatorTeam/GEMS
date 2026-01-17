@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 # Use Cases
 
 GEMS modelling language was primarily designed for the following purposes:
@@ -24,8 +23,6 @@ GEMS modelling language was primarily designed for the following purposes:
 </div>
 
 As a general-purpose language, other use cases can also be envisioned.
-
-
 
 ---
 
