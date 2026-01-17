@@ -7,7 +7,7 @@
   </div>
 </div>
 
-# Hypergraph-Based Structure in GEMS
+# The Hypergraph of a GEMS sysetm
 
 [GEMS](../../index.md) represents a system as a **hypergraph**.  
 
