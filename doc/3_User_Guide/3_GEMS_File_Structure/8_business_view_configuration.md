@@ -10,7 +10,7 @@
 
 # Business Views Configuration Files
 
-**Business Outputs**, also referred to as **Business Views**, represent result tables designed to meet business-user expectations.  
+ **[Business Views](../5_Outputs/3_business_view/)** are result tables designed to meet business-user expectations.  
 Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
 These numerical values are computed exclusively from 
 - the data contained in the **[Simulation Table](../5_Outputs/1_simulation_table.md)**,
