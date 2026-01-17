@@ -31,6 +31,8 @@ from the solved [optimization problem](2_optimization_problem.md). It essentiall
 |`value`|The value of the output (variable). None for constraints.|
 |`basis_status`| The status in the solver basis for this variable or constraint. Possible values are, *Free*, *At lower bound*, *At upper bound*, *Fixed value*, *Basic*, *None (not available or not applicable)*|
 
+# Simulation Table exported by [Antares Simulator](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md)
+
 The `csv` file is named with a prefix **simulation_table** plus timestamp (e.g. simulation_table_20251223-1015.csv) to distinguish runs. By default, the file will reside in the study’s output directory (output/simulation_table_...csv).
 
 **Example:** To illustrate, here are a couple of rows from a simulation table:
