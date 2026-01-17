@@ -33,7 +33,7 @@ from the solved [optimization problem](2_optimization_problem.md). It essentiall
 
 # Simulation Table exported by [Antares Simulator](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md)
 
-The `csv` file is named with a prefix **simulation_table** plus timestamp (e.g. simulation_table_20251223-1015.csv) to distinguish runs. By default, the file will reside in the study’s output directory (output/simulation_table_...csv).
+[Antares Simulator](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md) exports the **Simulation Table** as a .csv file. The `csv` file is named `simulation_table_{timestamp}.csv` (e.g. `simulation_table_20251223-1015.csv`) to distinguish runs. By default, the file will reside in the study’s output directory (`outputs/simulation_table_{timestamp}.csv`).
 
 **Example:** To illustrate, here are a couple of rows from a simulation table:
 
