@@ -22,7 +22,7 @@ This abstraction enables [GEMS](../../index.md) users to represent information e
 In this structure, **components** play either an **emitter** or **receiver**
 role, while ports remain neutral connection interfaces.
 
-## Emitter and Receiver Role
+## Emitter and Receiver Roles
 
 A **component** is an instance of a model and represents a system element
 (e.g. generator, load, storage, bus).
