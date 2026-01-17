@@ -11,8 +11,6 @@
 
 The **Taxonomy** defines a shared classification of GEMS models. It is used to organize models and components according to their functional role within the described energy systems. Each model declares a `taxonomy-group` (for example `production`, `consumption`, `storage`, or `balance`) that describes how its components participate in the overall system architecture. This classification is structural and descriptive, and does not define any calculations, constraints, or result aggregation by itself.  
 
-
-
 **The structure a GEMS file describing a Taxonomy of models is still under active development and will be available soon.**
 
 **Navigation**
@@ -20,15 +18,15 @@ The **Taxonomy** defines a shared classification of GEMS models. It is used to o
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../1_Overview/References/4_Users" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+  <a href="../6_solver_optimization" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+  <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1B_gemspy_installation" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  <a href="../8_business_view_configuration" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>
