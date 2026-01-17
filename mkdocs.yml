@@ -58,7 +58,7 @@ nav:
   - Overview:
       - Architecture: 1_Overview/1_Architecture.md
       - File Structure: 1_Overview/2_File_structure.md
-      - Difference with other languages: 1_Overview/3_Difference_with_other_languages.md
+      - Difference with other languages & tools: 1_Overview/3_Difference_with_other_languages.md
       - GEMS Interpreters:
           - GemsPy: 1_Overview/4_GEMS Interpreters/1_gemspy.md
           - Antares Simulator: 1_Overview/4_GEMS Interpreters/2_antares_simulator_modeler.md
