@@ -76,3 +76,7 @@ While powerful, this approach offers limited flexibility when adapting or extend
   </button>
   </div>
 </div>
+
+---
+
+© GEMS (LICENSE)

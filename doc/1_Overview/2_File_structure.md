@@ -91,3 +91,7 @@ The outputs of GEMS consist of three main categories of objects: **Optimization 
   </button>
   </div>
 </div>
+
+---
+
+© GEMS (LICENSE)
