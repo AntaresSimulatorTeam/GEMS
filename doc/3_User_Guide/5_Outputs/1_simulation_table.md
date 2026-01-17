@@ -7,7 +7,7 @@
   </div>
 </div>
 
-# Simulation Table
+# Simulation Table: abstract definition
 
 The **Simulation Table** is a structured table that contains the values of all 
 
