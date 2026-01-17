@@ -17,7 +17,7 @@
 - [Hyperedges ](https://en.wikipedia.org/wiki/Glossary_of_graph_theory#hyperedge) corresponds to **[connections](../3_GEMS_File_Structure/3_system.md#connections)**, which are characterized by **ports**.
 
 
-This abstraction allows multiple components to contribute linear expressions to a single aggregation point, where system-level behavior is defined.
+This abstraction enables [GEMS](../../index.md) users to represent information exchanges between components. A connection allows a component to share (Linear) Expressions with others.
 
 In this structure, **components** play either an **emitter** or **receiver**
 role, while ports remain neutral connection interfaces.
