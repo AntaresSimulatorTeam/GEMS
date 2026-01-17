@@ -14,7 +14,7 @@ The **taxonomy** defines a shared classification system used to organize models 
 
 
 
-**The taxonomy structure and the definition of Intermediary Outputs are still under active development.**
+**The structure a GEMS file describing a Taxonomy of models is still under active development and will be available soon.**
 
 **Navigation**
 
