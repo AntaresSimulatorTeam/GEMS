@@ -11,7 +11,10 @@
 
 [GEMS](../../index.md) represents a system as a **[hypergraph](https://en.wikipedia.org/wiki/Hypergraph)**.  This is precisely the content of a [system](../3_GEMS_File_Structure/3_system.md) file.
 
-Vertices correspond to **components**, while edges are realized through **ports** and **connections**.  
+
+- [Vertices](https://en.wikipedia.org/wiki/Vertex_(graph_theory)) correspond to **[components](../3_GEMS_File_Structure/3_system.md#components)**, 
+- [Hyperedges ](https://en.wikipedia.org/wiki/Glossary_of_graph_theory#hyperedge) corresponds to **[connections](../3_GEMS_File_Structure/3_system.md#connections)**, which are characterized by **ports**.
+
 
 This abstraction allows multiple components to contribute linear expressions to a single aggregation point, where system-level behavior is defined.
 
