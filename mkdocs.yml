@@ -86,7 +86,7 @@ nav:
         - Scenario Builder File: 3_User_Guide/3_GEMS_File_Structure/5_scenario_builder.md
         - Solver parameters and optimization configuration files: 3_User_Guide/3_GEMS_File_Structure/6_solver_optimization.md
         - Taxonomy File: 3_User_Guide/3_GEMS_File_Structure/7_taxonomy.md
-        - Business Views configuration files: 3_User_Guide/3_GEMS_File_Structure/8_bussines_view.md
+        - Business Views configuration files: 3_User_Guide/3_GEMS_File_Structure/8_business_view_configuration.md
       - Theoretical Concepts:
         - Hypergraph Structure: 3_User_Guide/4_Theoretical_Concepts/1_hypergraph_structure.md
         - Optimization Problem: 3_User_Guide/4_Theoretical_Concepts/2_optimization_problem.md
@@ -102,6 +102,6 @@ nav:
       - Tutorial - Simple economic dispatch problem: 5_Examples/1_optimization_problem.md
       - Antares Simulator Hybrid study: 5_Examples/2_hybrid.md
   - Support & Contributing:
-      - FAQ: 6_Support & Contributing/1_faq.md
-      - Contact: 6_Support & Contributing/2_contact.md
-      - Contributing: 6_Support & Contributing/3_contributing.md
+      - FAQ: 6_Support_Contributing/1_faq.md
+      - Contact: 6_Support_Contributing/2_contact.md
+      - Contributing: 6_Support_Contributing/3_contributing.md
