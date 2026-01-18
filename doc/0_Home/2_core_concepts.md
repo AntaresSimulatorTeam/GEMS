@@ -78,11 +78,11 @@ This language **differs from traditional optimization languages** in several way
 
     <ul style="margin: 0; padding-left: 20px;">
       <li>
-        <strong>Mixed Integer Linear Programming ([MILP](https://en.wikipedia.org/wiki/Integer_programming))</strong> problems, enabling the representation
+        <strong> <a href="https://en.wikipedia.org/wiki/Integer_programming">Mixed Integer Linear Programming (MILP)</a> </strong> problems, enabling the representation
         of discrete operational or investment decisions alongside continuous operational variables.
       </li>
       <li>
-        <strong>[Two-stage stochastic optimisation](https://en.wikipedia.org/wiki/Stochastic_programming) problems</strong>, where first-stage (here-and-now)
+        <strong> <a href="https://en.wikipedia.org/wiki/Stochastic_programming">Two-stage stochastic optimisation </a> </strong> problems, where first-stage (here-and-now)
         decisions are coupled with second-stage (recourse) decisions, providing a robust
         framework for decision-making under uncertainty.
       </li>
