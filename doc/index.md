@@ -96,10 +96,10 @@ The following **interpreters** can be used to run Gems modelling language :
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../2_Getting Started/1A_modeler_installation" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
+        <a href="../2_Getting_Started/1A_modeler_installation" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../2_Getting Started/2A_adequacy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start</a>
+        <a href="../2_Getting_Started/2A_QSE_adequacy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start</a>
       </div>
     </div>
   </div>
@@ -111,13 +111,13 @@ The following **interpreters** can be used to run Gems modelling language :
     </div>
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/1_syntax" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
+        <a href="../3_User_Guide/2_mathematical_syntax" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/2_inputs" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
+        <a href="../3_User_Guide/3_GEMS_File_Structure/1_overview" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
       </div>
       <div style="margin-bottom: 5px;">
-        <a href="../3_User Guide/4_outputs" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
+        <a href="../3_User_Guide/5_Outputs/1_simulation_table" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
       </div>
     </div>
   </div>
