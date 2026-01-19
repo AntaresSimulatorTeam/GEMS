@@ -78,7 +78,7 @@ Let’s check if Modeler is working correctly.
 
   ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
 
-More quick examples are presented inside the [Getting Started section](../2A_adequacy)
+More quick examples are presented inside the [Getting Started section](../2A_QSE_adequacy)
 
 #### Antares Solver
 
