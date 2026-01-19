@@ -10,7 +10,7 @@
 # QSE 2: Unit Commitment - Simple Example
 
 ## Overview
-This tutorial demonstrates a simple **unit commitment optimization**. Unit commitment determines the **optimal number of units generating power** from **one single thermal cluster** at each time period to meet demand at minimum cost.
+This tutorial demonstrates a simple example of a **unit commitment** problem stated with GEMS. Unit commitment involves determining the optimal number of dispatchable generating units at each time period in order to meet residual demand at the lowest possible cost. This example is intended to illustrate modelling concepts and should not be interpreted as representing a realistic system.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 
