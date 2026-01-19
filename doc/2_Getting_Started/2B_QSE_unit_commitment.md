@@ -32,7 +32,7 @@ QSE_2_Unit_Commitment/
 ### Problem Description
 
 ![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
-The unit commitment problem here involves determining the number of thermal units needed to generate the required power changes over the simulation week, while ensuring adequate production and load balancing, given the intermittent nature of solar and wind generation.
+The *Unit Commitment* problem here involves determining the on/off scheme and dispatch of thermal units required to ensure adequate production and load balancing, given the intermittent nature of solar and wind generation. Modelling the thermal units takes into account dynamic constraints and non-proportional costs, such as start-up and fixed costs.```
 
 <details>
   <summary><strong>System Overview</strong></summary>
