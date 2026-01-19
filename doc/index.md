@@ -134,7 +134,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Find here **Support** for using GEMS. How to **Contribute** to GEMS.
 
-    [:octicons-arrow-right-24: Support](../doc/2_Getting_Started/1C_support.md)
+    [:octicons-arrow-right-24: Support](../doc/0_Home/5_support.md)
     [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
 
 </div>
