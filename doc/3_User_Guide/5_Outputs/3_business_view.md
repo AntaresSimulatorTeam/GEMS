@@ -9,6 +9,8 @@
 
 # Business Views
 
+## What are Business Views?
+
 **Business Views** are result tables designed to meet business-user expectations. Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
 
 **The generation of Business View is still under active development in GEMS interpreters.**
