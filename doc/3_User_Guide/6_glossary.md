@@ -1,4 +1,3 @@
-
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="../../../..">Main Section</a>
@@ -10,13 +9,15 @@
 
 # Glossary
 
+This section is a glossary of the main concepts used by GEMS.
+
 ## Input Files
 
 | Term    | Definition    |
 |---------|---------------|
 | Library | A file listing all the models representing general unspecified elements of a study. These models are used as "template" for creating their instances, called components|
 | System  | A file listing all the "components", the instances of models defined by the system yaml file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
-| Dataseries | A table containing all the data throught the time, it's used by time/scenario dependent components|
+| Dataseries | A table containing all the data through time. It is used by time/scenario dependent components|
 
 
 ## Concepts
@@ -28,7 +29,7 @@
 | Model       | An abstract mathematical configuration representing the general features of a category of grid element. Users can specify any instance of this model for creating each simulated grid's element  |
 | Component   | An instance using a model as a template. Each component is a specific detailed instance of a model representing a real object. Multiple components can use the same model within a system, each with different parameter values |
 
-## Optimization configuration
+### Optimization Configuration
 
 | Concept              | Definition        |
 |----------------------|-------------------|
@@ -46,7 +47,7 @@
 | Binding Constraint | A constraint that links variables or ports across different models or components |
 | Connection         | A link between two components' ports |
 
-### Time and Scenario dependency Configuration
+### Time and Scenario Dependency
 
 | Concept            | Definition            |
 |--------------------|-----------------------|
