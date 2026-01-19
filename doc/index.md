@@ -1,8 +1,25 @@
 <div align="center">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="800"/>
+    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="800"/>
 </div>
 
 # Context of GEMS
+# Context of GEMS
+
+The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed by the [Antares Simulator Team](https://antares-simulator.org/) at [RTE](https://www.rte-france.com/), the French Transmission System Operator (TSO). Its goal is to advance tools and communities for **long-term power system adequacy** and **investment planning** studies.
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img src="../../assets/4_RTE_logo.svg.png" alt="RTE Logo" style="height: 80px"/>
+      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>RTE - French Transmission System Operator</em></div>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" style="height: 80px"/>
+      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>Antares Simulator Team</em></div>
+    </div>
+  </div>
+</div>
 
 The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed by the [Antares Simulator Team](https://antares-simulator.org/) at [RTE](https://www.rte-france.com/), the French Transmission System Operator (TSO). Its goal is to advance tools and communities for **long-term power system adequacy** and **investment planning** studies.
 
@@ -60,6 +77,13 @@ The following **interpreters** can be used to run Gems modelling language :
 
 - [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator), an open-source power system simulator
 - [GEMSPy](https://github.com/AntaresSimulatorTeam/GemsPy), a stand-alone Python package, maintained for prototyping purposes
+
+**Converters** are available to translate existing studies into the [GEMS](../index.md) modelling language:
+
+- [Antares Legacy Models to GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) : a Python package that enables the migration of Antares Legacy Models to [GEMS](../index.md)
+- [PyPSA to Gems Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](./3_User_Guide/3_GEMS_File_Structure/3_system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./1_Overview/1_Architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
+
+<br>
 
 **Converters** are available to translate existing studies into the [GEMS](../index.md) modelling language:
 
@@ -142,6 +166,14 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
 
+</div>
+
+---
+**Navigation**
+<div style="display: flex; justify-content: flex-end;">
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+  <a href="../0_Home/2_core_concepts" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  </button>
 </div>
 
 ---

@@ -45,10 +45,8 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
@@ -77,7 +75,9 @@ nav:
         - Three-bus system - Simple Adequacy Example: 
           - Overview : 2_Getting_Started/2A_QSE_adequacy.md
           - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
-      - Support: 2_Getting Started/1C_support.md
+        - Unit Commitment Example:
+          - Overview : 2_Getting_Started/2B_QSE_unit_commitment.md
+      - Support: 2_Getting_Started/1C_support.md
   - User Guide:
       - Introduction: 3_User_Guide/1_introduction.md
       - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md
