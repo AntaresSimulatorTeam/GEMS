@@ -127,6 +127,7 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
     <a href="../1B_gemspy_installation" style="text-decoration:none; color: #000000">Next page ➡️</a>
+>>>>>>> main:doc/2_Getting Started/1A_modeler_installation.md
   </button>
   </div>
 </div>
