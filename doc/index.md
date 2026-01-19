@@ -1,25 +1,8 @@
 <div align="center">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="800"/>
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="800"/>
 </div>
 
 # Context of GEMS
-# Context of GEMS
-
-The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed by the [Antares Simulator Team](https://antares-simulator.org/) at [RTE](https://www.rte-france.com/), the French Transmission System Operator (TSO). Its goal is to advance tools and communities for **long-term power system adequacy** and **investment planning** studies.
-
-<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="../../assets/4_RTE_logo.svg.png" alt="RTE Logo" style="height: 80px"/>
-      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>RTE - French Transmission System Operator</em></div>
-    </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" style="height: 80px"/>
-      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>Antares Simulator Team</em></div>
-    </div>
-  </div>
-</div>
 
 The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed by the [Antares Simulator Team](https://antares-simulator.org/) at [RTE](https://www.rte-france.com/), the French Transmission System Operator (TSO). Its goal is to advance tools and communities for **long-term power system adequacy** and **investment planning** studies.
 
@@ -166,14 +149,6 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
 
-</div>
-
----
-**Navigation**
-<div style="display: flex; justify-content: flex-end;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-  <a href="../0_Home/2_core_concepts" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
 </div>
 
 ---
