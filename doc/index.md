@@ -70,90 +70,80 @@ The following **interpreters** can be used to run Gems modelling language :
 
 # Documentation Highlights
 
-<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
-  <!-- Card Overview -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      📖 <strong>Overview</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/1_Architecture" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔍 Architecture</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/4_GEMS Interpreters/1_gemspy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🤖 Interpreters</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/5_References/1_Classification_Configuration" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📄 References</a>
-      </div>
-    </div>
-  </div>
+## Quick Links
 
-  <!-- Card Getting Started -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      🚀 <strong>Getting Started</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../2_Getting_Started/1A_modeler_installation" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../2_Getting_Started/2A_QSE_adequacy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start</a>
-      </div>
-    </div>
-  </div>
+<div class="grid cards" markdown>
 
-  <!-- Card User Guide -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      🧑‍🏫 <strong>User Guide</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../3_User_Guide/2_mathematical_syntax" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../3_User_Guide/3_GEMS_File_Structure/1_overview" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../3_User_Guide/5_Outputs/1_simulation_table" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
-      </div>
-    </div>
-  </div>
+-   :material-clock-fast:{ .lg .middle } **Getting Started**
 
-  <!-- Card Interoperability -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      ↕️ <strong>Interoperability</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/1_pypsa" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔄 PyPSA</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/2_antares legacy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📜 Antares Legacy</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/3_hybrid" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid</a>
-      </div>
-    </div>
-  </div>
+    ---
 
-  <!-- Card Examples -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      ✏️ <strong>Examples</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../5_Examples/1_optimization_problem" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📚 Tutorial</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../5_Examples/2_hybrid" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid Examples</a>
-      </div>
-    </div>
-  </div>
+    [:octicons-arrow-right-24: Installation](2_Getting_Started/1A_modeler_installation.md)
+
+    [:octicons-arrow-right-24: Quick Start](2_Getting_Started/2A_QSE_adequacy.md)
+
+-   :material-view-list:{ .lg .middle } **Overview**
+
+    ---
+
+    [:octicons-arrow-right-24: Architecture](1_Overview/1_Architecture.md)
+
+    [:octicons-arrow-right-24: Interpreters](1_Overview/4_GEMS_Interpreters/1_gemspy.md)
+
+-   :material-new-box:{ .lg .middle } **Release Notes**
+
+    ---
+
+    Check out the latest features, bug fixes and improvements in the release notes.
+
+    [:octicons-arrow-right-24: What's new](0_Home/4_release_notes.md)
+
+-   :material-scale-balance:{ .lg .middle } **Open Source, Apache 2.0**
+
+    ---
+
+    GEMS is licensed under Apache 2.0 and available on [GitHub](https://github.com/AntaresSimulatorTeam/GEMS).
+
+    [:octicons-arrow-right-24: License](../LICENSE)
+
+</div>
+
+## Sections
+
+<div class="grid cards" markdown>
+
+-   :material-bookshelf:{ .lg .middle } **User Guide**
+
+    ---
+
+    Find a detailed description of GEMS **syntax**, **file structure**, and how to configure **optimization problems**.
+
+    [:octicons-arrow-right-24: User Guide](3_User_Guide/1_introduction.md)
+
+-   :material-notebook-multiple:{ .lg .middle } **Examples**
+
+    ---
+
+    Many different examples from setting up a **basic optimization problem** to **hybrid models** can be found here.
+
+    [:octicons-arrow-right-24: Examples](5_Examples/1_optimization_problem.md)
+
+-   :material-swap-horizontal:{ .lg .middle } **Interoperability**
+
+    ---
+
+    Learn how to use GEMS with **PyPSA**, **Antares Legacy** models, or create **hybrid** configurations.
+
+    [:octicons-arrow-right-24: Interoperability](4_Interoperability/1_pypsa.md)
+
+-   :fontawesome-solid-users:{ .lg .middle } **Contributing**
+
+    ---
+
+    GEMS is an **open source project** and we welcome any contributions. Find out how to **contribute here**.
+
+    [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
+
 </div>
 
 ---
