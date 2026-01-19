@@ -7,10 +7,10 @@
   </div>
 </div>
 
-
 # Quick-start example 1: three-bus adequacy system
 
 ## Overview and problem description
+
 This tutorial demonstrates **adequacy** modeling using a simplified three-bus meshed network over **one single time-step**. The example is intended to illustrate modeling concepts and should not be interpreted as a realistic system representation; however, it provides a foundation for developing more detailed and realistic models.
 
 The study folder is on the [GEMS Github repository](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy).
@@ -32,7 +32,7 @@ The following diagram represents the simulated [system](../../resources/Document
 <details>
 <summary>Problem description in detail</summary>
 
-Time Horizon: 
+Time Horizon:
 <ul>
   <li> This example considers a single one-hour time step. </li>
 </ul>
@@ -167,7 +167,6 @@ By utilising the extra output feature, the marginal price is obtained as the dua
   </li>
 </ul>
 
-
 The following graphs show the merit order of the generators and link flows:
 
 <div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
@@ -197,7 +196,7 @@ The complete mathematical formulation corresponding to this example — includin
 
 ### System file configuration
 
-The description of an energy system is the combination of a model library and a graph of components (instanciation of models) described in the system file. 
+The description of an energy system is the combination of a model library and a graph of components (instanciation of models) described in the system file.
 For example, for the component bus_1, here is an extract of the [system file](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml) :
 
 ![diagram with only one bus](../assets/2_QSE_Adequacy_system_only_one.png)
@@ -219,7 +218,7 @@ The following diagrams explains the structure of the system file for the Three-b
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">

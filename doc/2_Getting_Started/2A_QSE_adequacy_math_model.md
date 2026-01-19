@@ -124,6 +124,7 @@ This section shows how mathematical model is implemented for every power system 
 ![YAML Block description with mathematical equations](../assets/2_QSE_Adequacy_maths.png)
 
 # Summary
+
 This mathematical description serves as the formal reference for the optimization problem, while the GEMS library provides its implementation layer within the GEMS framework. In other words:
 
 - the **mathematical model** defines what problem is being solved
@@ -134,7 +135,6 @@ Together, the [library models](#library-file) and the [system configuration](2A_
 
 Note that this example is configured with a single time step. As a result, parameter attributes related to time and scenario dependency are overridden in the system configuration.
 
-
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
@@ -144,7 +144,7 @@ Note that this example is configured with a single time step. As a result, param
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">

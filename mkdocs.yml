@@ -15,6 +15,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.indexes
+    - navigation.indexes
     - content.action.copy
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -32,14 +33,6 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - footnotes
-
-  - pymdownx.arithmatex:
-      generic: true
-
-extra_javascript:
-  - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -47,32 +40,28 @@ extra_javascript:
           format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-
-extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
-  - Home:
+  - About GEMS:
     - Home: index.md
-    - Context of GEMS: 0_Home/1_context_GEMS.md
-    - Release Notes: 0_Home/2_release_notes.md
+    - Core Concepts: 0_Home/2_core_concepts.md
+    - Use Cases: 0_Home/3_use_cases.md
+    - Release Notes: 0_Home/4_release_notes.md
   - Overview:
-      - Concepts:
-          - Core Concepts: 1_Overview/Concepts/1_core_concepts.md
-          - Architecture: 1_Overview/Concepts/2_architecture.md
-          - Features: 1_Overview/Concepts/3_features_usecase.md
+      - Architecture: 1_Overview/1_Architecture.md
+      - File Structure: 1_Overview/2_File_structure.md
+      - Difference with other languages & tools: 1_Overview/3_Difference_with_other_languages.md
       - GEMS Interpreters:
-          - Antares Simulator: 1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md
-          - GemsPy: 1_Overview/GEMS_Interpreters/1_gemspy.md
-                
+          - GemsPy: 1_Overview/4_GEMS Interpreters/1_gemspy.md
+          - Antares Simulator: 1_Overview/4_GEMS Interpreters/2_antares_simulator_modeler.md
       - References:
-            - Classification of models: 1_Overview/References/1_Classification_Configuration.md
-            - Libraries of models: 1_Overview/References/2_Libraries.md
-            - Users of GEMS: 1_Overview/References/3_Users.md
+          - Classification of models: 1_Overview/5_References/1_Classification_Configuration.md
+          - Libraries of models: 1_Overview/5_References/2_Libraries.md
+          - Users of GEMS: 1_Overview/5_References/3_Users.md
   - Getting Started:
       - Installation:
         - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md

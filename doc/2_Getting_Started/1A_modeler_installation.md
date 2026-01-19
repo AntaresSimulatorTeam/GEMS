@@ -56,7 +56,6 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 
 Let’s check if Modeler is working correctly.
 
-
 - **Download the example study:**
 
   Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
@@ -70,7 +69,6 @@ Let’s check if Modeler is working correctly.
 # On Linux:
 ./bin/antares-modeler ./<absolute path to QSE_1_Adequacy study folder>
 ```
-
 
 - **Check for success:**
 
@@ -101,7 +99,6 @@ The complete installation, documentation is available on the [official documenta
 
 In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User%20Guide/2_inputs.md). Unlike the GEMSPy interpreter, Modeler depends on this configuration file.
 
-
 ## Additional Resources
 
 | Resource                | Link                                                                 |
@@ -121,16 +118,15 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../1_Overview/References/4_Users" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    <a href="../../1_Overview/5_References/3_Users" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
     <a href="../1B_gemspy_installation" style="text-decoration:none; color: #000000">Next page ➡️</a>
->>>>>>> main:doc/2_Getting Started/1A_modeler_installation.md
   </button>
   </div>
 </div>
