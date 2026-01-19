@@ -52,9 +52,9 @@ GEMS relies on a **self-contained** and exhaustive mathematical formulation, ens
 
 <br>
 
-# Ressources
+# Resources
 
-The **GEMS documentation, pre-defined model libraries and quick-start examples** are hosted in the Github repository :  [GEMS](https://github.com/AntaresSimulatorTeam/Gems)
+The **GEMS documentation, pre-defined model libraries and quick-start examples** are hosted in the GitHub repository: [GEMS](https://github.com/AntaresSimulatorTeam/Gems)
 
 The following **interpreters** can be used to run Gems modelling language :
 
@@ -78,13 +78,17 @@ The following **interpreters** can be used to run Gems modelling language :
 
     ---
 
+    How to **install** GEMS and create a **first study** (*Adequacy problem* and *Unit Commitment*).
+
     [:octicons-arrow-right-24: Installation](2_Getting_Started/1A_modeler_installation.md)
 
-    [:octicons-arrow-right-24: Quick Start](2_Getting_Started/2A_QSE_adequacy.md)
+    [:octicons-arrow-right-24: Quick Start Examples](2_Getting_Started/2A_QSE_adequacy.md)
 
 -   :material-view-list:{ .lg .middle } **Overview**
 
     ---
+
+    **Understand** about GEMS framework and its interpreters.
 
     [:octicons-arrow-right-24: Architecture](1_Overview/1_Architecture.md)
 
@@ -135,6 +139,7 @@ The following **interpreters** can be used to run Gems modelling language :
     Find here **Support** for using GEMS. How to **Contribute** to GEMS.
 
     [:octicons-arrow-right-24: Support](../doc/0_Home/5_support.md)
+
     [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
 
 </div>
