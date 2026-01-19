@@ -11,6 +11,7 @@
 
 **Business Views** are result tables designed to meet business-user expectations. Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
 
+**The generation of Business View is still under active development in GEMS interpreters.**
 ## Business Views & advanced (graphical) representation
 
 Output representation describes how simulation results are exposed and formatted for end users. It operates downstream of **Business Views** and does not affect simulation or metric calculations. This layer is responsible only for structuring and presenting already computed Business Outputs.
