@@ -143,7 +143,7 @@ Focus on the flows of all components:
 
 ### Mathematical formulation 
 
-This usecase is mathematically modeled inside the [Antares Simulator documentation](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
+The mathematical modelling used for this study case is inspired from Antares Simulator legacy approach: [Antares Simulator documentation](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
 
 ### Library File
 
