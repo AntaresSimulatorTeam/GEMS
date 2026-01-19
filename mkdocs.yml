@@ -94,7 +94,7 @@ nav:
         - Simulation Table: 3_User_Guide/5_Outputs/1_simulation_table.md
         - Optimization Problem files: 3_User_Guide/5_Outputs/2_optimization_problem_files.md
         - Business View: 3_User_Guide/5_Outputs/3_business_view.md
-      - Glossary: 3_User_Guide/6_glossary.md
+      - Glossary: 3_User_Guide/3_glossary.md
   - Interoperability:
       - PyPSA: 4_Interoperability/1_pypsa.md
       - Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
