@@ -81,7 +81,7 @@ The unit commitment problem here involves determining the number of thermal unit
 </details>
 
 ## Running the GEMS study with Antares Modeler
-
+Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
 <details>
   <summary><strong>Detailed steps for running GEMS study with Antares Modeler</strong></summary>
   <ol>
