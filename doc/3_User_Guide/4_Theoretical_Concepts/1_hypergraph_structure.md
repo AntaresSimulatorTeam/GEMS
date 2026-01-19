@@ -200,7 +200,7 @@ Where:
 
 ## Summary
 
-[GEMS](../../index.md) represents energy systems as hypergraphs where components exchange (linear) expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior. Kirchhoff’s First Law is one example of this aggregation pattern.
+[GEMS](../../index.md) represents energy systems as [hypergraphs ](https://en.wikipedia.org/wiki/Hypergraph) where components exchange (linear) expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior. 
 
 **Navigation**
 
