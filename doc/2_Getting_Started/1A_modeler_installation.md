@@ -107,9 +107,9 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 | Online Documentation     | [Antares Simulator Docs](https://antares-simulator.readthedocs.io/en/latest/) |
 | Modeler Documentation    | [GEMS Modeler Docs](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/) |
 | Examples                 | See the repository's `examples/` directory                           |
-| FAQ                      | [FAQ](../../6_Support%20&%20Contributing/1_faq.md)                   |
+| FAQ                      | [FAQ](../6_Support_Contributing/1_faq.md)                   |
 | GitHub Issues            | [Antares Simulator Issues](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues) |
-| Contact Support          | [Contact support](../../6_Support%20&%20Contributing/2_contact.md)   |
+| Contact Support          | [Contact support](../6_Support_Contributing/2_contact.md)   |
 
 ---
 
