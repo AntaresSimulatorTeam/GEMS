@@ -78,7 +78,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     ---
 
-    How to **install** GEMS and create a **first study** (*Adequacy problem* and *Unit Commitment*).
+    How to **install** GEMS and create 2 **first studies** (*Adequacy problem* and *Unit Commitment*).
 
     [:octicons-arrow-right-24: Installation](2_Getting_Started/1A_modeler_installation.md)
 
