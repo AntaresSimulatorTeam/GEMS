@@ -111,7 +111,7 @@ Focus on the flows of all components:
 ![flows of all components](../../assets/2_QSE2_UC_outputs.png)
 
 <details>
-  <summary><strong>Key outputs variables in details</strong></summary>
+  <summary><strong>Key outputs variables in the Simulation Table</strong></summary>
   <p>
     The simulation outputs are saved in <code>output/simulation_table--&lt;timestamp&gt;.csv</code>. This table gives the key to understand the different output variables relevant to this example of unit commitment.
   </p>
