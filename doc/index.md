@@ -88,7 +88,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: Architecture](1_Overview/1_Architecture.md)
 
-    [:octicons-arrow-right-24: Interpreters](1_Overview/4_GEMS_Interpreters/1_gemspy.md)
+    [:octicons-arrow-right-24: Interpreters](../doc/1_Overview/4_GEMS%20Interpreters/1_gemspy.md)
 
 -   :material-new-box:{ .lg .middle } **Release Notes**
 
@@ -97,14 +97,6 @@ The following **interpreters** can be used to run Gems modelling language :
     Check out the latest features, bug fixes and improvements in the release notes.
 
     [:octicons-arrow-right-24: What's new](0_Home/4_release_notes.md)
-
--   :material-scale-balance:{ .lg .middle } **Open Source, Apache 2.0**
-
-    ---
-
-    GEMS is licensed under Apache 2.0 and available on [GitHub](https://github.com/AntaresSimulatorTeam/GEMS).
-
-    [:octicons-arrow-right-24: License](../LICENSE)
 
 </div>
 
@@ -116,7 +108,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     ---
 
-    Find a detailed description of GEMS **syntax**, **file structure**, and how to configure **optimization problems**.
+    Detailed presentation of GEMS **syntax**, **file structure**, and how to configure **optimization studies**.
 
     [:octicons-arrow-right-24: User Guide](3_User_Guide/1_introduction.md)
 
@@ -124,7 +116,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     ---
 
-    Many different examples from setting up a **basic optimization problem** to **hybrid models** can be found here.
+    Examples can be found here from the **first steps with GEMS** to handling **hybrid studies**.
 
     [:octicons-arrow-right-24: Examples](5_Examples/1_optimization_problem.md)
 
@@ -132,16 +124,17 @@ The following **interpreters** can be used to run Gems modelling language :
 
     ---
 
-    Learn how to use GEMS with **PyPSA**, **Antares Legacy** models, or create **hybrid** configurations.
+    How to run **PyPSA** and **Antares Legacy**(Hybrid studies) studies with GEMS.
 
     [:octicons-arrow-right-24: Interoperability](4_Interoperability/1_pypsa.md)
 
--   :fontawesome-solid-users:{ .lg .middle } **Contributing**
+-   :fontawesome-solid-users:{ .lg .middle } **Support and Contributing**
 
     ---
 
-    GEMS is an **open source project** and we welcome any contributions. Find out how to **contribute here**.
+    Find here **Support** for using GEMS. How to **Contribute** to GEMS.
 
+    [:octicons-arrow-right-24: Support](../doc/2_Getting_Started/1C_support.md)
     [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
 
 </div>
