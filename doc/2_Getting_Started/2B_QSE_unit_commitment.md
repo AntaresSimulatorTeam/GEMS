@@ -15,7 +15,7 @@ This tutorial demonstrates a simple example of a **unit commitment** problem sta
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 
 ### Files Structure
-
+The diagram below describe the file structure of the [study](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 ```
 QSE_2_Unit_Commitment/
 ├── input/
