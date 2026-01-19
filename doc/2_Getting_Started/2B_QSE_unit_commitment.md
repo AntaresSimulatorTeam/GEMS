@@ -153,7 +153,7 @@ The mathematical modelling used for this study case is inspired from Antares Sim
 
 ### Library File
 
-The library file [**antares_legacy_models.yml**](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml) defines the main component models used in this example:
+The library file [**antares_legacy_models.yml**](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml) defines the main component [models](../3_User_Guide/3_GEMS_File_Structure/2_library.md#models) used in this example:
 
 - **bus**: Central node with power balance constraint, spillage, and unsupplied energy variables.
 - **load**: Consumes power (negative flow into the bus).
