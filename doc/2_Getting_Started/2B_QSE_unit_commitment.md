@@ -10,13 +10,16 @@
 # QSE 2: Unit Commitment - Simple Example
 
 ## Overview
+
 This tutorial demonstrates a simple example of a **unit commitment** problem stated with GEMS. Unit commitment involves determining the optimal number of dispatchable generating units at each time period in order to meet residual demand at the lowest possible cost. This example is intended to illustrate modelling concepts and should not be interpreted as representing a realistic system.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 
 ### Files Structure
+
 The diagram below describe the file structure of the [study](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
-```
+
+```text
 QSE_2_Unit_Commitment/
 ├── input/
 │   ├── system.yml
@@ -32,7 +35,8 @@ QSE_2_Unit_Commitment/
 ### Problem Description
 
 ![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
-The *Unit Commitment* problem here involves determining the on/off scheme and dispatch of thermal units required to ensure adequate production and load balancing, given the intermittent nature of solar and wind generation. Modelling the thermal units takes into account dynamic constraints and non-proportional costs, such as start-up and fixed costs.```
+
+The *Unit Commitment* problem here involves determining the on/off scheme and dispatch of thermal units required to ensure adequate production and load balancing, given the intermittent nature of solar and wind generation. Modelling the thermal units takes into account dynamic constraints and non-proportional costs, such as start-up and fixed costs.
 
 <details>
   <summary><strong>System Overview</strong></summary>
@@ -81,7 +85,9 @@ The *Unit Commitment* problem here involves determining the on/off scheme and di
 </details>
 
 ## Running the GEMS study with Antares Modeler
+
 Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
+
 <details>
   <summary><strong>Detailed steps for running GEMS study with Antares Modeler</strong></summary>
   <ol>
@@ -141,7 +147,7 @@ Focus on the flows of all components:
 
 ## Further in-depth explanations
 
-### Mathematical formulation 
+### Mathematical formulation
 
 The mathematical modelling used for this study case is inspired from Antares Simulator legacy approach: [Antares Simulator documentation](https://xwiki.antares-simulator.org/xwiki/bin/view/Reference%20guide/4.%20Active%20windows/5.Optimization%20problem/).
 
@@ -296,6 +302,7 @@ system:
       port1: balance_port
       port2: balance_port
 ```
+
 </details>
 
 ---
