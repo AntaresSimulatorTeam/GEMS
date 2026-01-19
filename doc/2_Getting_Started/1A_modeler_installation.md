@@ -97,7 +97,7 @@ Replace `<path-to-study>` with the path to your Antares study directory.
 
 The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
 
-In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User%20Guide/2_inputs.md). Unlike the GemsPy interpreter, Modeler depends on this configuration file.
+In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User_Guide/3_GEMS_File_Structure/6_solver_optimization.md). Unlike the GemsPy interpreter, Modeler depends on this configuration file.
 
 ## Additional Resources
 
