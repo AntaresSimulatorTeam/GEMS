@@ -59,7 +59,7 @@ The **GEMS documentation, pre-defined model libraries and quick-start examples**
 The following **interpreters** can be used to run Gems modelling language :
 
 - [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator), an open-source power system simulator
-- [GEMSPy](https://github.com/AntaresSimulatorTeam/GemsPy), a stand-alone Python package, maintained for prototyping purposes
+- [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy), a stand-alone Python package, maintained for prototyping purposes
 
 **Converters** are available to translate existing studies into the [GEMS](../index.md) modelling language:
 

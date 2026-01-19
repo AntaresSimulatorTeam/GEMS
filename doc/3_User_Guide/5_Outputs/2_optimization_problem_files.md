@@ -13,7 +13,7 @@ One can expect from any [GEMS](../../index.md) interpreter to export the fully a
 
 This export is primarily intended for **verification, debugging, and external analysis** of the optimisation problem.
 
-A [GEMS interpreter](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md) generates a MPS file in the study **output directory**. This functionality is available only in the [Antares Modeler interpreter](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md). The [GEMSPy interpreter](../../1_Overview/GEMS_Interpreters/1_gemspy.md) does not currently have a native function for this purpose; using the dedicated method of the underlying `OR-Tools` object that represents the optimisation problem is one possible way to export the MPS file.
+A [GEMS interpreter](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md) generates a MPS file in the study **output directory**. This functionality is available only in the [Antares Modeler interpreter](../../1_Overview/GEMS_Interpreters/2_antares_simulator_modeler.md). The [GemsPy interpreter](../../1_Overview/GEMS_Interpreters/1_gemspy.md) does not currently have a native function for this purpose; using the dedicated method of the underlying `OR-Tools` object that represents the optimisation problem is one possible way to export the MPS file.
 
 For example, the file `1-1.mps` is automatically created in the output folder and represents the exact optimisation problem solved during the execution.
 
