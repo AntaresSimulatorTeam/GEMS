@@ -51,15 +51,15 @@ Visit the [Support & Contributing section](../../6_Support_Contributing/4_suppor
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
   <div style="text-align: left;">
     <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-      <a href="2_contact.md" style="text-decoration:none; color: #000000">⬅️ Previous</a>
+      <a href="../../5_Examples/2_hybrid" style="text-decoration:none; color: #000000">⬅️ Previous</a>
     </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../index.md" style="text-decoration:none; color: #FFFFFF">📚 Home</a>
+    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
     <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-      <a href="2_contact.md" style="text-decoration:none; color: #000000">Next ➡️</a>
+      <a href="../2_contact" style="text-decoration:none; color: #000000">Next ➡️</a>
     </button>
   </div>
 </div>
