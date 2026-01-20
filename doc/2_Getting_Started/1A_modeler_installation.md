@@ -78,7 +78,7 @@ Let’s check if Modeler is working correctly.
 
   ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
 
-More quick examples are presented inside the [Getting Started section](../2A_adequacy)
+More quick examples are presented inside the [Getting Started section](../2A_QSE_adequacy)
 
 #### Antares Solver
 
@@ -97,7 +97,7 @@ Replace `<path-to-study>` with the path to your Antares study directory.
 
 The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
 
-In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User%20Guide/2_inputs.md). Unlike the GEMSPy interpreter, Modeler depends on this configuration file.
+In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User_Guide/3_GEMS_File_Structure/6_solver_optimization.md). Unlike the GemsPy interpreter, Modeler depends on this configuration file.
 
 ## Additional Resources
 
@@ -107,9 +107,9 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 | Online Documentation     | [Antares Simulator Docs](https://antares-simulator.readthedocs.io/en/latest/) |
 | Modeler Documentation    | [GEMS Modeler Docs](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/) |
 | Examples                 | See the repository's `examples/` directory                           |
-| FAQ                      | [FAQ](../../6_Support%20&%20Contributing/1_faq.md)                   |
+| FAQ                      | [FAQ](../6_Support_Contributing/1_faq.md)                   |
 | GitHub Issues            | [Antares Simulator Issues](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues) |
-| Contact Support          | [Contact support](../../6_Support%20&%20Contributing/2_contact.md)   |
+| Contact Support          | [Contact support](../6_Support_Contributing/2_contact.md)   |
 
 ---
 
