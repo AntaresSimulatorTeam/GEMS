@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 # Frequently Asked Questions
 
 ## General Questions
@@ -18,32 +17,32 @@ Currently, there is no GUI integrated into the [Antares Simulator repository](ht
 
 ### Can I use GEMS studies with Antares Legacy and vice versa?
 
-Yes, bidirectional compatibility is supported. You can run GEMS studies with Antares Legacy and legacy studies with GEMS. For detailed instructions, see the [Interoperability tutorial](../../4_Interoperability/2_antares_legacy).
+Yes, bidirectional compatibility is supported. You can run GEMS studies with Antares Legacy and legacy studies with GEMS. For detailed instructions, see the [Interoperability tutorial](../4_Interoperability/2_antares_legacy.md).
 
 ### Can I model unit commitment with GEMS?
 
-Yes, unit commitment is fully supported in GEMS. For a practical example, refer to the [Unit Commitment tutorial](../../2_Getting_Started/2B_QSE_unit_commitment).
+Yes, unit commitment is fully supported in GEMS. For a practical example, refer to the [Unit Commitment tutorial](../2_Getting_Started/2B_QSE_unit_commitment.md).
 
 ## Modeling & Simulation
 
 ### What file formats does GEMS support?
 
-Converters are designed for read files fit for PyPSA and Antares Legacy in addition to GEMS format files. You can get more information in the [Interoperability](../../4_Interoperability/1_pypsa) section.
+Converters are designed for read files fit for PyPSA and Antares Legacy in addition to GEMS format files. You can get more information in the [Interoperability](../4_Interoperability/1_pypsa.md) section.
 
 ### How do I get started with GEMS modeling?
 
-Start with the [Getting Started guide](../2_Getting_Started/1A_modeler_installation.md) which covers installation and basic setup. Then explore the [User Guide](../../3_User_Guide/1_introduction) for detailed modeling concepts.
+Start with the [Getting Started guide](../2_Getting_Started/1A_modeler_installation.md) which covers installation and basic setup. Then explore the [User Guide](../3_User_Guide/1_introduction.md) for detailed modeling concepts.
 
 ### Where can I find examples?
 
-The [Examples section](../../5_Examples/1_optimization_problem) contains various use cases and complete working models to help you understand GEMS capabilities.
+The [Examples section](../5_Examples/1_optimization_problem.md) contains various use cases and complete working models to help you understand GEMS capabilities.
 
 ## Support
 
 ### How do I report issues or get support?
 
-Visit the [Support & Contributing section](../../6_Support_Contributing/4_support) for contact information and support channels.
- 
+Visit the [Support & Contributing section](./2_contact.md) for contact information and support channels.
+
 ---
 
 **Navigation**
@@ -66,4 +65,4 @@ Visit the [Support & Contributing section](../../6_Support_Contributing/4_suppor
 
 ---
 
-© GEMS ([LICENSE](../../LICENSE))
+© GEMS (LICENSE)

@@ -7,16 +7,17 @@
   </div>
 </div>
 
+# Support and Contact
 
-# Contact
+To contact the GEMS development team, please use the following GitHub issue trackers: :
 
-For contacting developers on GEMS, please find the flowing links to Github issues :
-
-- [GemsPy, the GEMS API](https://github.com/AntaresSimulatorTeam/GemsPy/issues)
-- [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter/issues)
-- [AntaresLegacyModels-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/issues)
-- [GEMS documentation](https://github.com/AntaresSimulatorTeam/GEMS/issues)
-- [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues)
+| Project | Description |
+|--------|------------|
+| [**GemsPy**](https://github.com/AntaresSimulatorTeam/GemsPy/issues) | GEMS Python Package |
+| [**PyPSA-to-GEMS-Converter**](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter/issues ) | Converter from PyPSA models to GEMS|
+| [**AntaresLegacyModels-to-GEMS-Converter**](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/issues) | Converter from Antares legacy models to GEMS |
+| [**GEMS Documentation**](https://github.com/AntaresSimulatorTeam/GEMS/issues) | Documentation and general issues related to GEMS |
+| [**Antares Simulator**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues ) | Antares Simulator core project|
 
 ---
 **Navigation**

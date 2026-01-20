@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 # Contributing
 
 GEMS welcomes any contribution in all forms.
