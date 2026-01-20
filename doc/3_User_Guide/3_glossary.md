@@ -28,7 +28,7 @@ This section is a glossary of the main concepts used by GEMS.
 |[Model](./3_GEMS_File_Structure/2_library.md#models)| An abstract mathematical configuration representing the general features of a category of grid element. Users can specify any instance of this model for creating each simulated grid's element  |
 |[Component](./3_GEMS_File_Structure/3_system.md#components)| An instance using a model as a template. Each component is a specific detailed instance of a model representing a real object. Multiple components can use the same model within a system, each with different parameter values |
 
-### Optimization Configuration
+### Abstract modelling: Optimization 
 
 | Concept              | Definition        |
 |----------------------|-------------------|
