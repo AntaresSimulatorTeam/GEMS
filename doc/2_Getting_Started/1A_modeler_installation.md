@@ -58,7 +58,7 @@ Let’s check if Modeler is working correctly.
 
 - **Download the example study:**
 
-  Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
+  Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
 - **Run simulation:**
 
@@ -76,9 +76,7 @@ Let’s check if Modeler is working correctly.
 
   Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
 
-  ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
-
-More quick examples are presented inside the [Getting Started section](../2A_QSE_adequacy)
+  ![Modeler installation test logs](../assets/2_Modeler_logs.png)
 
 #### Antares Solver
 
