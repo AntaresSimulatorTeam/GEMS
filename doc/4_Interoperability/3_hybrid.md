@@ -11,6 +11,34 @@
 
 # Hybrid studies
 
+This page aims to explain how to run a study made with Modeler part and Legacy part with Antares Simulator.
+
+# Definition
+
+To define a hybrid study, it's a solver study, with modeler files and directories in the input directory.    
+The parameter.yml file from modeler studies is not needed (if it exists, it will be ignored). The solver parameters are used, since hybrid studies are conducted using antares-solver
+
+```
+solver-study/
+├── input/
+│   ├── areas/
+│   ├── bindingconstraints/
+│   ├── ...
+│   └── modeler-study/    <-- Modeler files go here
+├── layers/
+├── logs/
+├── output/
+├── settings/
+├── user/
+├── Desktop.ini
+├── Logs.log
+└── study.antares
+```
+
+# Running an hybrid study
+
+## How to connect the modeler part and the solver part
+
 
 
 ---
