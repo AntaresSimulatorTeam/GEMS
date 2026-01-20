@@ -23,7 +23,7 @@ Yes, bidirectional compatibility is supported. You can run GEMS studies with Ant
 
 Yes, unit commitment is fully supported in GEMS. For a practical example, refer to the [Unit Commitment tutorial](../2_Getting_Started/2B_QSE_unit_commitment.md).
 
-## Modeling & Simulation
+## Modelling & Simulation
 
 ### What study cases may be exported/converted in GEMS format?
 
