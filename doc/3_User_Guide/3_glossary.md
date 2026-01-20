@@ -32,9 +32,9 @@ This section is a glossary of the main concepts used by GEMS.
 
 | Concept              | Definition        |
 |----------------------|-------------------|
-| Variable             | An abstract mathematical variable of a model, whose value is optimized by the solver. The optimization problem is to find the best set of variables based on the variable's configuration, shared across all model instances. |
-| Parameter            | An input data declared in the model, with a value specific to each component (set in the system.yml file). The optimization problem seeks the best set of variables according to these parameters.               |
-| Objective function   | The mathematical expression optimized by the solver. Variables are selected to achieve its global minimum based on the input parameters. |
+| [Variable](./2_mathematical_syntax.md#variables)             | An abstract mathematical variable of a model, whose value is optimized by the solver. The optimization problem is to find the best set of variables based on the variable's configuration, shared across all model instances. |
+| [Parameter](./2_mathematical_syntax.md#parameters)            | An input data declared in the model, with a value specific to each component (set in the system.yml file). The optimization problem seeks the best set of variables according to these parameters.               |
+| [Objective function](./2_mathematical_syntax.md#objective-function)   | The mathematical expression optimized by the solver. Variables are selected to achieve its global minimum based on the input parameters. |
 
 ### Interfaces and Relationships
 
