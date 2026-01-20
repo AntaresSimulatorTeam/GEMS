@@ -9,8 +9,17 @@
 </div>
 
 
-# Support
+# Frequently Asked Questions
 
+* Has Modeler (GEMS interpreter) a GUI ?
+  > Currently, there is no GUI coded for modeler inside the [Antares Simulator repository](https://github.com/AntaresSimulatorTeam/Antares_Simulator). But, the creation of a GUI is under progress.
+
+* Is it possible to run a GEMS Study with Antares Legacy and run a Legacy Study with GEMS ?
+  > Yes it is. The instruction for running theses studies are in this [tutorial](../../4_Interoperability/2_antares_legacy) of this documentation.
+
+* Can I model unit commitment with GEMS ?
+  > Yes you can. An example of an unit commitment can be [found in this documentation](../../2_Getting_Started/2B_QSE_unit_commitment).
+ 
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
