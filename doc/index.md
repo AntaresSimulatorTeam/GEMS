@@ -135,7 +135,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     ---
 
-    How to run **PyPSA** and **Antares Legacy**(Hybrid studies) studies with GEMS.
+    How to export **PyPSA** and **Antares Legacy** study cases in GEMS format and run them with GEMS interpreters.
 
     [:octicons-arrow-right-24: Interoperability](4_Interoperability/1_pypsa.md)
 
