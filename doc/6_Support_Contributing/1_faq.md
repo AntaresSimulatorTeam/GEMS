@@ -27,7 +27,7 @@ Yes, unit commitment is fully supported in GEMS. For a practical example, refer 
 
 ### What study cases may be exported/converted in GEMS format?
 
-Converters are designed for read files fit for PyPSA and Antares Legacy in addition to GEMS format files. You can get more information in the [Interoperability](../4_Interoperability/1_pypsa.md) section.
+Converters are currently being developed to export either PyPSA or Antares Legacy test cases in the GEMS format/data structure. More information available in the [Interoperability](../4_Interoperability/1_pypsa.md) section.
 
 ### How do I get started with GEMS modeling?
 
