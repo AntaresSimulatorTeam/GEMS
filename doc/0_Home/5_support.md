@@ -9,7 +9,7 @@
 </div>
 
 
-# Contributing
+# Support
 
 ---
 **Navigation**
