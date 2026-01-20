@@ -18,10 +18,13 @@ GEMS welcomes any contribution in all forms.
 <details><summary> Code contribution details </summary>
 
 1. **Fork the repository** - Create your own copy of the GEMS repository
-  GEMS repos containing code :
-  - GemsPY
-  - PyPSA-to-GEMS-Converter
-  - AntaresLegacyModels-to-GEMS-Converter
+
+  GEMS repos containing code:
+
+  - [GemsPY](https://github.com/AntaresSimulatorTeam/GemsPy)
+  - [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter)
+  - [AntaresLegacyModels-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter)
+
 2. **Clone your fork** - `git clone https://github.com/YOUR_USERNAME/GEMS.git`
 3. **Create a feature branch** - `git checkout -b feature/your-feature-name`
 4. **Make your changes** - Follow the existing code style and conventions
@@ -29,6 +32,7 @@ GEMS welcomes any contribution in all forms.
 6. **Commit your changes** - Use clear, descriptive commit messages
 7. **Push to your fork** - `git push origin feature/your-feature-name`
 8. **Open a Pull Request** - Submit your changes for review
+
 
 </details>
 
@@ -47,7 +51,7 @@ GEMS welcomes any contribution in all forms.
 
 </details>
 
-* For adding or suggesting change on ready-to-use libraries and examples:
+* For adding or suggesting change on ready-to-use **libraries** and **examples**:
 
 <details><summary> Documentation contribution details </summary>
 
@@ -61,6 +65,9 @@ GEMS welcomes any contribution in all forms.
 - **Open a Pull Request** - Submit your documentation updates for review, with the label "Libraries"
 
 </details>
+
+* For contributing on **Antares Simulator**, please follow [these instructions](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/CONTRIBUTING.md).
+
 
 ---
 **Navigation**
