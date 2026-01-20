@@ -75,9 +75,18 @@ port-type:
     - injection-field: flow
 ```
 
-### How to run a hybrid study
+## How to run a hybrid study
 
 After following the [previous instructions](#how-to-connect-the-modeler-part-and-the-solver-part), the study is able to be run by Antares Simulator
+
+# Example
+
+
+# Limitation
+
+GEMS Time-Series size must be compliant with Antares Simulator optimization and simulation horizon.
+If GEMS model introduce integer or binary variables, Antares Simulator must use MILP unit commitment mode.
+
 
 ---
 **Navigation**
