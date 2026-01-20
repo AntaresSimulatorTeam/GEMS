@@ -18,13 +18,15 @@ This page aims to explain how to run a study made with Modeler part and Legacy p
 To define a hybrid study, it's a solver study, with modeler files and directories in the input directory.    
 The parameter.yml file from modeler studies is not needed (if it exists, it will be ignored). The solver parameters are used, since hybrid studies are conducted using antares-solver
 
-```
+```yaml
 solver-study/
-├── input/
+├── input/                    <-- Modeler files go here
 │   ├── areas/
 │   ├── bindingconstraints/
 │   ├── ...
-│   └── modeler-study/    <-- Modeler files go here
+│   ├── model-libraries/ # Modeler libraries folder
+│   ├── system.yml       # Modeler system file
+│   └── data-series/     # Modeler dataseries folder
 ├── layers/
 ├── logs/
 ├── output/
@@ -34,6 +36,7 @@ solver-study/
 ├── Logs.log
 └── study.antares
 ```
+
 
 # Running an hybrid study
 
@@ -82,6 +85,7 @@ port-type:
 After following the [previous instructions](#how-to-connect-the-modeler-part-and-the-solver-part), the study is able to be run by Antares Simulator
 
 # Example
+
 
 
 # Limitation
