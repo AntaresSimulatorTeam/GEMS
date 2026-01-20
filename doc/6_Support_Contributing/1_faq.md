@@ -11,7 +11,7 @@
 
 ## General Questions
 
-### Does Modeler (GEMS interpreter) have a GUI?
+### Do GEMS interpreters have a GUI?
 
 Currently, there is no GUI integrated into the [Antares Simulator repository](https://github.com/AntaresSimulatorTeam/Antares_Simulator). However, a GUI is under active development and will be available in future releases.
 
