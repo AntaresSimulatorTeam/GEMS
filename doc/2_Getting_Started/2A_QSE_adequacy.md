@@ -13,7 +13,7 @@
 
 This tutorial demonstrates **adequacy** modeling using a simplified three-bus meshed network over **one single time-step**. The example is intended to illustrate modeling concepts and should not be interpreted as a realistic system representation; however, it provides a foundation for developing more detailed and realistic models.
 
-The study folder is on the [GEMS Github repository](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy).
+The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy).
 
 ### Adequacy definition
 
@@ -24,7 +24,8 @@ The study folder is on the [GEMS Github repository](../../resources/Documentatio
 </p>
 
 ### Problem description
-The following diagram represents the simulated [system](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
+
+The following diagram represents the simulated [system](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
 <p align="center">
   <img src="../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
 </p>
@@ -81,7 +82,8 @@ Economic Parameters:
 ### Files Structure
 
 The following block represents the GEMS Framework study folder structure.
-```
+
+```text
 QSE_1_adequacy/
 ├── input/
 │   ├──model-libraries/
@@ -91,6 +93,7 @@ QSE_1_adequacy/
 │       └──  ...
 └── parameters.yml
 ```
+
 The example study makes use of models provided by the [GEMS library](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries). For maintainability reasons, the library is stored separately in the repository and is not included directly in the example study. Consequently, users must copy the [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) file into the example study directory (`QSE_1_adequacy/input/model-libraries/`) prior to execution.
 
 Since this example performs the simulation over a single time step, the data-series folder does not contain any time-series data.
@@ -99,7 +102,7 @@ Simulation options can be configured in the `parameters.yml` file. For more deta
 
 ### Relations between library and system files
 
-The following diagram depicts the structural relationships between the [library file](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/model-libraries/basic_models_library.yml) and the [system file](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
+The following diagram depicts the structural relationships between the [library file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) and the [system file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
 
 <p>
   <img src="../../assets/2_QSE_1_system_complete.png" alt="complete diagram with ports" style="max-width:95%;">
@@ -127,7 +130,7 @@ The following diagram depicts the structural relationships between the [library 
 
 1. Download [QSE_1_Adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy)
 2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_1_adequacy/input/model-libraries/`
-3. Get Antares Modeler installed through this [tutorial](../1_installation)
+3. Get Antares Modeler installed through this [tutorial](./1A_modeler_installation.md)
 4. Locate **bin** folder
 5. Open the terminal
 6. Run these command lines :
@@ -144,11 +147,11 @@ antares-modeler.exe <path-to-study>
 
 The results are available in the csv file `QSE_1_Adequacy/output/simulation_table--YYYYMMDD-HHMM.csv`
 
-The simulation outputs contain the optimised value of optimisation problem variables, the status of all constraints and bounds, as well as user-defined extra output, as described on the [following page](../3_User_Guide/4_outputs.md).
+The simulation outputs contain the optimised value of optimisation problem variables, the status of all constraints and bounds, as well as user-defined extra output, as described on the [following page](../3_User_Guide/5_Outputs/1_simulation_table.md).
 
 The power flows between buses can be visualized as follows:
 
-![outputs diagram](../../assets/2_QSE_1_out_scheme.png)
+![outputs diagram](../assets/2_QSE_1_out_scheme.png)
 
 <details class="more-details">
   <summary><strong>Outputs in details </strong></summary>
@@ -190,14 +193,14 @@ The following graphs show the merit order of the generators and link flows:
 
 ### Models Library
 
-System of the **Three-bus Adequacy** example relies on models defined in the GEMS library file [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml). These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimisation problem.
+System of the **Three-bus Adequacy** example relies on models defined in the GEMS library file [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries). These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimisation problem.
 
-The complete mathematical formulation corresponding to this example — including decision variables, parameters, objective function, and constraints — is detailed in the following document: **[detailed mathematical formulation and expressions](../2A_QSE_adequacy_math_model)**.
+The complete mathematical formulation corresponding to this example — including decision variables, parameters, objective function, and constraints — is detailed in the following document: **[detailed mathematical formulation and expressions](./2A_QSE_adequacy_math_model.md)**.
 
 ### System file configuration
 
 The description of an energy system is the combination of a model library and a graph of components (instanciation of models) described in the system file.
-For example, for the component bus_1, here is an extract of the [system file](../../resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml) :
+For example, for the component bus_1, here is an extract of the [system file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml) :
 
 ![diagram with only one bus](../assets/2_QSE_Adequacy_system_only_one.png)
 
