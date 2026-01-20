@@ -17,22 +17,27 @@ GEMS welcomes any contribution in all forms.
 
 <details><summary> Code contribution details </summary>
 
-1. **Fork the repository** - Create your own copy of the GEMS repository
-
-  GEMS repos containing code:
-
-  - [GemsPY](https://github.com/AntaresSimulatorTeam/GemsPy)
-  - [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter)
-  - [AntaresLegacyModels-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter)
-
-2. **Clone your fork** - `git clone https://github.com/YOUR_USERNAME/GEMS.git`
-3. **Create a feature branch** - `git checkout -b feature/your-feature-name`
-4. **Make your changes** - Follow the existing code style and conventions
-5. **Write tests** - Ensure your code is covered by appropriate tests
-6. **Commit your changes** - Use clear, descriptive commit messages
-7. **Push to your fork** - `git push origin feature/your-feature-name`
-8. **Open a Pull Request** - Submit your changes for review
-
+<ul>
+<li><strong>GEMS repositories containing code:</strong>
+<ul>
+<li><a href="https://github.com/AntaresSimulatorTeam/GemsPy">GemsPY</a></li>
+<li><a href="https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter">PyPSA-to-GEMS-Converter</a></li>
+<li><a href="https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter">AntaresLegacyModels-to-GEMS-Converter</a></li>
+</ul>
+</li>
+<li><strong>Steps to contribute:</strong>
+<ul>
+<li><strong>Fork the repository</strong> - Create your own copy of the GEMS repository</li>
+<li><strong>Clone your fork</strong> - <code>git clone https://github.com/YOUR_USERNAME/GEMS.git</code></li>
+<li><strong>Create a feature branch</strong> - <code>git checkout -b feature/your-feature-name</code></li>
+<li><strong>Make your changes</strong> - Follow the existing code style and conventions</li>
+<li><strong>Write tests</strong> - Ensure your code is covered by appropriate tests</li>
+<li><strong>Commit your changes</strong> - Use clear, descriptive commit messages</li>
+<li><strong>Push to your fork</strong> - <code>git push origin feature/your-feature-name</code></li>
+<li><strong>Open a Pull Request</strong> - Submit your changes for review</li>
+</ul>
+</li>
+</ul>
 
 </details>
 
@@ -40,29 +45,53 @@ GEMS welcomes any contribution in all forms.
 
 <details><summary> Documentation contribution details </summary>
 
-- **Fork the repository** - Create your own copy of the GEMS documentation repository
-- **Clone your fork** - `git clone https://github.com/YOUR_USERNAME/GEMS.git`
-- **Create a feature branch** - `git checkout -b docs/your-doc-name`
-- **Edit documentation** - Use Markdown format and follow the existing structure
-- **Review your changes** - Test the documentation locally if possible
-- **Commit your changes** - Use clear, descriptive commit messages
-- **Push to your fork** - `git push origin docs/your-doc-name`
-- **Open a Pull Request** - Submit your documentation updates for review, with the label "Documentation"
+<ul>
+<li><strong>GEMS repository containing documentation:</strong>
+<ul>
+<li><a href="https://github.com/AntaresSimulatorTeam/GEMS">GEMS</a></li>
+</ul>
+</li>
+<li><strong>Steps to contribute:</strong>
+<ul>
+<li><strong>Fork the repository</strong> - Create your own copy of the GEMS documentation repository</li>
+<li><strong>Clone your fork</strong> - <code>git clone https://github.com/YOUR_USERNAME/GEMS.git</code></li>
+<li><strong>Create a feature branch</strong> - <code>git checkout -b docs/your-doc-name</code></li>
+<li><strong>Edit documentation</strong> - Use Markdown format and follow the existing structure</li>
+<li><strong>Review your changes</strong> - Test the documentation locally if possible</li>
+<li><strong>Commit your changes</strong> - Use clear, descriptive commit messages</li>
+<li><strong>Push to your fork</strong> - <code>git push origin docs/your-doc-name</code></li>
+<li><strong>Open a Pull Request</strong> - Submit your documentation updates for review, with the label "Documentation"</li>
+</ul>
+</li>
+</ul>
 
 </details>
 
-* For adding or suggesting change on ready-to-use **libraries** and **examples**:
+</details>
 
-<details><summary> Documentation contribution details </summary>
+* For adding or suggesting changes on ready-to-use **libraries** and **examples**:
 
-- **Fork the repository** - Create your own copy of the GEMS documentation repository
-- **Clone your fork** - `git clone https://github.com/YOUR_USERNAME/GEMS.git`
-- **Create a feature branch** - `git checkout -b docs/your-doc-name`
-- **Write your library** - Put your new yml file in libraries folder
-- **Test your library** - Test your library with at least one example study and provide it inside the resources folder
-- **Commit your changes** - Use clear, descriptive commit messages
-- **Push to your fork** - `git push origin docs/your-doc-name`
-- **Open a Pull Request** - Submit your documentation updates for review, with the label "Libraries"
+<details><summary> Libraries and Examples contribution details </summary>
+
+<ul>
+<li><strong>GEMS repository containing libraries and examples:</strong>
+<ul>
+<li><a href="https://github.com/AntaresSimulatorTeam/GEMS">GEMS</a></li>
+</ul>
+</li>
+<li><strong>Steps to contribute:</strong>
+<ul>
+<li><strong>Fork the repository</strong> - Create your own copy of the GEMS documentation repository</li>
+<li><strong>Clone your fork</strong> - <code>git clone https://github.com/YOUR_USERNAME/GEMS.git</code></li>
+<li><strong>Create a feature branch</strong> - <code>git checkout -b docs/your-doc-name</code></li>
+<li><strong>Write your library</strong> - Put your new yml file in libraries folder</li>
+<li><strong>Test your library</strong> - Test your library with at least one example study and provide it inside the resources folder</li>
+<li><strong>Commit your changes</strong> - Use clear, descriptive commit messages</li>
+<li><strong>Push to your fork</strong> - <code>git push origin docs/your-doc-name</code></li>
+<li><strong>Open a Pull Request</strong> - Submit your documentation updates for review, with the label "Libraries"</li>
+</ul>
+</li>
+</ul>
 
 </details>
 
