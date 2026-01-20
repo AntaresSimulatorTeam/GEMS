@@ -30,6 +30,8 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.arithmatex:
@@ -40,6 +42,9 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -53,6 +58,7 @@ nav:
     - Core Concepts: 0_Home/2_core_concepts.md
     - Use Cases: 0_Home/3_use_cases.md
     - Release Notes: 0_Home/4_release_notes.md
+    - Support: 0_Home/5_support.md
   - Overview:
       - Architecture: 1_Overview/1_Architecture.md
       - File Structure: 1_Overview/2_File_structure.md
@@ -67,14 +73,13 @@ nav:
   - Getting Started:
       - Installation:
         - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
-        - GEMSPy: 2_Getting_Started/1B_gemspy_installation.md
+        - GemsPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
         - Three-bus system - Simple Adequacy Example: 
           - Overview : 2_Getting_Started/2A_QSE_adequacy.md
           - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
         - Unit Commitment Example:
           - Overview : 2_Getting_Started/2B_QSE_unit_commitment.md
-      - Support: 2_Getting_Started/1C_support.md
   - User Guide:
       - Introduction: 3_User_Guide/1_introduction.md
       - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md

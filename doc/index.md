@@ -52,108 +52,96 @@ GEMS relies on a **self-contained** and exhaustive mathematical formulation, ens
 
 <br>
 
-# Ressources
+# Resources
 
-The **GEMS documentation, pre-defined model libraries and quick-start examples** are hosted in the Github repository :  [GEMS](https://github.com/AntaresSimulatorTeam/Gems)
+The **GEMS documentation, pre-defined model libraries and quick-start examples** are hosted in the GitHub repository: [GEMS](https://github.com/AntaresSimulatorTeam/Gems)
 
 The following **interpreters** can be used to run Gems modelling language :
 
 - [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator), an open-source power system simulator
-- [GEMSPy](https://github.com/AntaresSimulatorTeam/GemsPy), a stand-alone Python package, maintained for prototyping purposes
+- [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy), a stand-alone Python package, maintained for prototyping purposes
 
-**Converters** are available to translate existing studies into the [GEMS](../index.md) modelling language:
+**Converters** are available to translate existing studies into the GEMS modelling language:
 
-- [Antares Legacy Models to GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) : a Python package that enables the migration of Antares Legacy Models to [GEMS](../index.md)
+- [Antares Legacy Models to GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) : a Python package that enables the migration of Antares Legacy Models to GEMS.
 - [PyPSA to Gems Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](./3_User_Guide/3_GEMS_File_Structure/3_system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./1_Overview/1_Architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
 
 <br>
 
 # Documentation Highlights
 
-<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
-  <!-- Card Overview -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      📖 <strong>Overview</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/1_Architecture" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔍 Architecture</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/4_GEMS Interpreters/1_gemspy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🤖 Interpreters</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../1_Overview/5_References/1_Classification_Configuration" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📄 References</a>
-      </div>
-    </div>
-  </div>
+## Quick Links
 
-  <!-- Card Getting Started -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      🚀 <strong>Getting Started</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../2_Getting_Started/1A_modeler_installation" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">💿 Installation</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../2_Getting_Started/2A_QSE_adequacy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🏁 Quick Start</a>
-      </div>
-    </div>
-  </div>
+<div class="grid cards" markdown>
 
-  <!-- Card User Guide -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      🧑‍🏫 <strong>User Guide</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../3_User_Guide/2_mathematical_syntax" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📝 Syntax</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../3_User_Guide/3_GEMS_File_Structure/1_overview" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↘️ Inputs</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../3_User_Guide/5_Outputs/1_simulation_table" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">↗️ Outputs</a>
-      </div>
-    </div>
-  </div>
+-   :material-clock-fast:{ .lg .middle } **Getting Started**
 
-  <!-- Card Interoperability -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      ↕️ <strong>Interoperability</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/1_pypsa" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔄 PyPSA</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/2_antares legacy" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📜 Antares Legacy</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../4_Interoperability/3_hybrid" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid</a>
-      </div>
-    </div>
-  </div>
+    ---
 
-  <!-- Card Examples -->
-  <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 10px 0; background-color: #f9f9f9; width: 190px;">
-    <div style="font-size: 1.2em; margin-bottom: 8px;">
-      ✏️ <strong>Examples</strong>
-    </div>
-    <div style="margin-left: 10px;">
-      <div style="margin-bottom: 5px;">
-        <a href="../5_Examples/1_optimization_problem" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">📚 Tutorial</a>
-      </div>
-      <div style="margin-bottom: 5px;">
-        <a href="../5_Examples/2_hybrid" style="background-color: #1e3a8a; color: #FFFFFF; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; display: block; width: 100%; max-width: 150px;">🔰 Hybrid Examples</a>
-      </div>
-    </div>
-  </div>
+    How to **install** GEMS interpreters and create 2 **simples studies** (*Adequacy problem* and *Unit Commitment*).
+
+    [:octicons-arrow-right-24: Installation](2_Getting_Started/1A_modeler_installation.md)
+
+    [:octicons-arrow-right-24: Quick Start Examples](2_Getting_Started/2A_QSE_adequacy.md)
+
+-   :material-view-list:{ .lg .middle } **Overview**
+
+    ---
+
+    **Understand** about GEMS framework and its interpreters.
+
+    [:octicons-arrow-right-24: Architecture](1_Overview/1_Architecture.md)
+
+    [:octicons-arrow-right-24: Interpreters](../doc/1_Overview/4_GEMS%20Interpreters/1_gemspy.md)
+
+-   :material-new-box:{ .lg .middle } **Release Notes**
+
+    ---
+
+    Check out the latest features, bug fixes and improvements in the release notes.
+
+    [:octicons-arrow-right-24: What's new](0_Home/4_release_notes.md)
+
+</div>
+
+## Sections
+
+<div class="grid cards" markdown>
+
+-   :material-bookshelf:{ .lg .middle } **User Guide**
+
+    ---
+
+    Detailed presentation of GEMS **syntax**, **file structure**, and how to configure **optimization studies**.
+
+    [:octicons-arrow-right-24: User Guide](3_User_Guide/1_introduction.md)
+
+-   :material-notebook-multiple:{ .lg .middle } **Examples**
+
+    ---
+
+    Examples can be found here from the **first steps with GEMS** to handling **hybrid studies**.
+
+    [:octicons-arrow-right-24: Examples](5_Examples/1_optimization_problem.md)
+
+-   :material-swap-horizontal:{ .lg .middle } **Interoperability**
+
+    ---
+
+    How to export **PyPSA** and **Antares Legacy** study cases in GEMS format and run them with GEMS interpreters.
+
+    [:octicons-arrow-right-24: Interoperability](4_Interoperability/1_pypsa.md)
+
+-   :fontawesome-solid-users:{ .lg .middle } **Support and Contributing**
+
+    ---
+
+    Find here **Support** for using GEMS. How to **Contribute** to GEMS.
+
+    [:octicons-arrow-right-24: Support](../doc/0_Home/5_support.md)
+
+    [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
+
 </div>
 
 ---
