@@ -7,16 +7,31 @@
   </div>
 </div>
 
-# Support Contact
+# Support & Getting Help
 
-| Contact Type                             | Link                                                                 |
-|------------------------------------------|----------------------------------------------------------------------|
-| GEMS Support                             | [Contact support](../2_contact)   |
-| GEMS Contribution                        | [Contributing Contact](../3_contributing) |
-| GEMS FAQ                                 | [FAQ](../1_faq)                   |
-| Antares Simulator Contact (GitHub Issue) | [Simulator Form Github](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues/new?template=support_request.md) |
-| GEMSPy Contact (GitHub Issue) | [GEMSPy Form Github](https://github.com/AntaresSimulatorTeam/GemsPy/issues/new) |
+Different channels are available for getting assistance on GEMS.
 
+## Direct Support
+
+| Channel | Purpose | Link |
+|---------|---------|------|
+| **General Support** | Questions about GEMS usage and features | [Contact Support](2_contact.md) |
+| **Frequently Asked Questions** | Quick answers to common questions | [FAQ](1_faq.md) |
+
+## Contributing & Development
+
+| Channel | Purpose | Link |
+|---------|---------|------|
+| **Contributing** | Information about contributing to GEMS | [Contributing Guide](3_contributing.md) |
+
+## Issue Tracking
+
+Report bugs, request features, or get technical support through our GitHub repositories:
+
+| Project | Purpose | Link |
+|---------|---------|------|
+| **Antares Simulator** | Core simulator issues and feature requests | [Report Issue](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues/new?template=support_request.md) |
+| **GEMSPy** | GEMSPy Python library issues and support | [Report Issue](https://github.com/AntaresSimulatorTeam/GemsPy/issues/new) |
 
 
 
