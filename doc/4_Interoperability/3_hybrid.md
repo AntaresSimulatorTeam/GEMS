@@ -75,6 +75,9 @@ port-type:
     - injection-field: flow
 ```
 
+### How to run a hybrid study
+
+After following the [previous instructions](#how-to-connect-the-modeler-part-and-the-solver-part), the study is able to be run by Antares Simulator
 
 ---
 **Navigation**
