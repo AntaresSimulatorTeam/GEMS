@@ -49,7 +49,7 @@ Mathematical syntax is **solver-agnostic** and intentionally restricted to ensur
 
 Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where parameters and variables come from or how components are wired together as a system.
 
-See: [**Mathematical Syntax and Rules**](../2_mathematical_syntax)
+See: [**Mathematical Syntax and Rules**](./2_mathematical_syntax.md)
 
 ---
 
@@ -85,7 +85,7 @@ It introduces:
 
 This section is conceptual: it explains *why* the file structure and syntax are designed the way they are.
 
-See: [**Theoretical Concepts**](../4_theoretical_concepts)
+See: [**Theoretical Concepts**](./4_Theoretical_Concepts/1_hypergraph_structure.md)
 
 ## Outputs
 
