@@ -34,7 +34,7 @@ QSE_2_Unit_Commitment/
 
 ### Problem Description
 
-![QSE_2 system description diagram](../../assets/2_Scheme_QSE2_Unit_Com_System.png)
+![QSE_2 system description diagram](../assets/2_Scheme_QSE2_Unit_Com_System.png)
 
 The *Unit Commitment* problem here involves determining the on/off scheme and dispatch of thermal units required to ensure adequate production and load balancing, given the intermittent nature of solar and wind generation. Modelling the thermal units takes into account dynamic constraints and non-proportional costs, such as start-up and fixed costs.
 
@@ -110,11 +110,11 @@ Instructions to run this GEMS study with [Antares Simulator](https://github.com/
 
 This graph illustrates how the number of thermal units generating power changes over the simulation week, reflecting the **unit commitment** feature. At night, when solar generation is unavailable, more thermal units are solicited to meet demand. Around midday, increased solar output often reduces the need for thermal generation, resulting in fewer thermal units operating.
 
-![nb units on profile](../../assets/2_QSE2_UC_ts_units.png)
+![nb units on profile](../assets/2_QSE2_UC_ts_units.png)
 
 Focus on the flows of all components:
 
-![flows of all components](../../assets/2_QSE2_UC_outputs.png)
+![flows of all components](../assets/2_QSE2_UC_outputs.png)
 
 <details>
   <summary><strong>Key outputs variables in the Simulation Table</strong></summary>
