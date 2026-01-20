@@ -38,7 +38,7 @@ Start with the [Getting Started guide](../2_Getting_Started/1A_modeler_installat
 
 The [Examples section](../../5_Examples/1_optimization_problem) contains various use cases and complete working models to help you understand GEMS capabilities.
 
-## Support & Troubleshooting
+## Support
 
 ### How do I report issues or get support?
 
