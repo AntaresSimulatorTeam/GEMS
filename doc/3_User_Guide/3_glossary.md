@@ -51,7 +51,7 @@ This section is a glossary of the main concepts used by GEMS.
 | Concept            | Definition            |
 |--------------------|-----------------------|
 | Time dependent     | A parameter depending on time. In this case, the parameters are represented as a dataseries|
-| Scenario dependent | A parameter depending on the scenario type. In this case, the parameters are represented as a dataseries |
+| Scenario dependent | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as as a dataseries. |
 
 ---
 **Navigation**
