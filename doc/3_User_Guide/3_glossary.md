@@ -40,11 +40,11 @@ This section is a glossary of the main concepts used by GEMS.
 
 | Concept            | Definition        |
 |--------------------|-------------------|
-| Port               | A communication interface for exchanging expressions, called "fields"     |
-| Field              | An expression exchanged by a port    |
-| Constraint         | A mathematical relationship or condition that restricts the values of variables |
-| Binding Constraint | A constraint that links variables or ports across different models or components |
-| Connection         | A link between two components' ports |
+| [Port](./3_GEMS_File_Structure/2_library.md#ports)| A communication interface for exchanging expressions, called "fields"     |
+| [Field](./3_GEMS_File_Structure/2_library.md#ports) | An expression exchanged by a port    |
+| [Constraint](./3_GEMS_File_Structure/2_library.md#constraints)| A mathematical relationship or condition that restricts the values of variables |
+| [Binding Constraint](./3_GEMS_File_Structure/2_library.md#binding-constraints) | A constraint that links variables or ports across different models or components |
+| [Connection](./3_GEMS_File_Structure/3_system.md#connections)| A link between two components' ports |
 
 ### Time and Scenario Dependency
 
