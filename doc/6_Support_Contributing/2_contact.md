@@ -17,7 +17,7 @@ For contacting developers on GEMS, please find the flowing links to Github issue
 - [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter/issues)
 - [AntaresLegacyModels-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/issues)
 - [GEMS documentation](https://github.com/AntaresSimulatorTeam/GEMS/issues)
-- [Antares Simulator]((https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues)
+- [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues)
 
 ---
 **Navigation**
