@@ -28,13 +28,15 @@ This section is a glossary of the main concepts used by GEMS.
 |[Model](./3_GEMS_File_Structure/2_library.md#models)| An abstract mathematical configuration representing the general features of a category of grid element. Users can specify any instance of this model for creating each simulated grid's element  |
 |[Component](./3_GEMS_File_Structure/3_system.md#components)| An instance using a model as a template. Each component is a specific detailed instance of a model representing a real object. Multiple components can use the same model within a system, each with different parameter values |
 
-### Abstract modelling: Optimization 
+### Abstract modelling: Optimization
 
 | Concept              | Definition        |
 |----------------------|-------------------|
-| [Variable](./2_mathematical_syntax.md#variables)             | An abstract mathematical variable of a model, whose value is optimized by the solver. The optimization problem is to find the best set of variables based on the variable's configuration, shared across all model instances. |
-| [Parameter](./2_mathematical_syntax.md#parameters)            | An input data declared in the model, with a value specific to each component (set in the system.yml file). The optimization problem seeks the best set of variables according to these parameters.               |
-| [Objective function](./2_mathematical_syntax.md#objective-function)   | The mathematical expression optimized by the solver. Variables are selected to achieve its global minimum based on the input parameters. |
+| [Variable](./3_GEMS_File_Structure/2_library.md#variables)             | An abstract mathematical variable of a model, whose value is optimized by the solver. The optimization problem is to find the best set of variables based on the variable's configuration, shared across all model instances. |
+| [Parameter](./3_GEMS_File_Structure/2_library.md#parameters)            | An input data declared in the model, with a value specific to each component (set in the system.yml file). The optimization problem seeks the best set of variables according to these parameters.               |
+| [Objective function](./3_GEMS_File_Structure/2_library.md#objective-contribution)   | The mathematical expression optimized by the solver. Variables are selected to achieve its global minimum based on the input parameters. |
+| [Constraint](./3_GEMS_File_Structure/2_library.md#constraints)| A mathematical relationship or condition that restricts the values of variables |
+| [Binding Constraint](./3_GEMS_File_Structure/2_library.md#binding-constraints) | A constraint that links variables or ports across different models or components |
 
 ### Interfaces and Relationships
 
@@ -42,16 +44,14 @@ This section is a glossary of the main concepts used by GEMS.
 |--------------------|-------------------|
 | [Port](./3_GEMS_File_Structure/2_library.md#ports)| A communication interface for exchanging expressions, called "fields"     |
 | [Field](./3_GEMS_File_Structure/2_library.md#ports) | An expression exchanged by a port    |
-| [Constraint](./3_GEMS_File_Structure/2_library.md#constraints)| A mathematical relationship or condition that restricts the values of variables |
-| [Binding Constraint](./3_GEMS_File_Structure/2_library.md#binding-constraints) | A constraint that links variables or ports across different models or components |
 | [Connection](./3_GEMS_File_Structure/3_system.md#connections)| A link between two components' ports |
 
 ### Time and Scenario Dependency
 
 | Concept            | Definition            |
 |--------------------|-----------------------|
-| Time dependent     | A parameter depending on time. In this case, the parameters are represented as a dataseries|
-| Scenario dependent | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as as a dataseries. |
+| [Time dependent](./2_mathematical_syntax.md#time-operators-and-indexing)     |  A parameter or variable depending on time. In this case, the parameter is instantiated as a dataseries. |
+| [Scenario dependent](./2_mathematical_syntax.md#scenario-operator) | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as a dataseries. |
 
 ---
 **Navigation**
