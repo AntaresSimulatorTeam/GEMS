@@ -41,6 +41,8 @@ solver-study/
 
 A connection must be established between the GEMS component and the Legacy area on which the component refers to.
 
+Connecting GEMS Generator component to Antares area user is adding variable generation to the area balance constraint of Antares area.
+
 The following steps describe how to connect the modeler-study (GEMS framework) with the solver-study (Legacy framework):
 
 ### Define the connections (in the system.yml file)
