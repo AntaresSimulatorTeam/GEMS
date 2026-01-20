@@ -13,7 +13,7 @@
 
 ### Do GEMS interpreters have a GUI?
 
-Currently, there is no GUI integrated into the [Antares Simulator repository](https://github.com/AntaresSimulatorTeam/Antares_Simulator). However, a GUI is under active development and will be available in future releases.
+Currently, there is no GUI integrated into the [Antares Simulator repository](https://github.com/AntaresSimulatorTeam/Antares_Simulator) that is compatible with GEMS. However, [AntaresWeb](However, AntaresWeb's compatibility with GEMS is currently under development and will be available in future releases.)'s compatibility with GEMS is currently under development and will be available in future releases.
 
 ### Can I use GEMS studies with Antares Legacy and vice versa?
 
