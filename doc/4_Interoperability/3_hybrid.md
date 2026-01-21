@@ -45,7 +45,7 @@ In practical terms, connecting a GEMS Generator component to an Antares area inj
 
 ### Define the connections (in the system.yml file)
 
-Use the `area-connections` section of the **system.yml** to declare each link between a GEMS component and a legacy Antares area. For every component that should supply or interact with an area, add an entry specifying the component, the port through which it connects, and the target area name. The port must be one that supports area injection (we’ll ensure that in the library definition). For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`’s port named injection, you would include:
+The `area-connections` section of the **system.yml** is to declare each link between a GEMS component and a legacy Antares area. For every component that should supply or interact with an area, an entry adds specifying the component, the port through which it connects, and the target area name. The port must be one that supports area injection (we’ll ensure that in the library definition). For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`’s port named injection, the following configuration is used:
 
 ```yaml
 area-connections:
@@ -56,7 +56,7 @@ area-connections:
 
 ### Define the area-connection fields (in the library.yml file)
 
-For a GEMS component’s port to successfully inject into an Antares area, the port’s type must declare which field represents the power injection. This is configured in the model library YAML (e.g., a **library.yml** in the *model-libraries* folder). Within the port type definition, include an `area-connection` section that specifies an `injection-field`. The `injection-field` designates which field of that port will be added to the connected area’s balance equation. For example, suppose we have a port type that carries power flow. We define it in the library as follows:
+For a GEMS component’s port to successfully inject into an Antares area, the port’s type must declare which field represents the power injection. This is configured in the model library YAML (e.g., a **library.yml** in the *model-libraries* folder). Within the port type definition, an `area-connection` specifies an `injection-field`. The `injection-field` designates which field of that port will be added to the connected area’s balance equation. For example, considering a port type that carries power flow, it's defined in the library as follows:
 
 ```yaml 
   port-types:
@@ -65,7 +65,7 @@ For a GEMS component’s port to successfully inject into an Antares area, the p
       fields:
         - id: flow
   # area-connection is the name of the optional section to use.
-  # It is mandatory if you want to use such a port type to connect modeler components to solver areas.
+  # It is mandatory to use such a port type to connect modeler components to solver areas.
   area-connection:
     # injection-field: the field to use when adding the contribution of this port bearer to a connected area
     - injection-field: flow
@@ -73,9 +73,9 @@ For a GEMS component’s port to successfully inject into an Antares area, the p
 
 ## How to run a hybrid study
 
-After setting up the connections as described above, running a hybrid study is done in the same way as running a standard Antares simulation. Open or launch the study with Antares Simulator (using the GUI or the command-line solver). The presence of system.yml and modeler libraries in the input folder will trigger the Antares solver’s GEMS interpreter to load those components. The solver will then construct a combined optimization problem that includes both the legacy elements (areas, thermal plants, hydro, etc.) and the new GEMS modeler components you defined.
+After setting up the connections as described above, running a hybrid study is done in the same way as running a standard Antares simulation. The study can be opened or launched with Antares Simulator (using the GUI or the command-line solver). The presence of system.yml and modeler libraries in the input folder will trigger the Antares solver’s GEMS interpreter to load those components. The solver will then construct a combined optimization problem that includes both the legacy elements (areas, thermal plants, hydro, etc.) and the new GEMS modeler components defined by the user.
 
-From the user’s perspective, you execute the simulation as usual (for example, by clicking Run in the Antares interface or using antares-solver on the study folder). The solver will read the hybrid study configuration and automatically integrate the modeler part. Once the run starts, it will simulate with the combined model. Results for the GEMS components (e.g., generation output of a custom component) will appear alongside the usual Antares results for areas, provided that you have configured output for those components (the GEMS framework will handle output storage in the study results).
+From the user’s perspective, the simulation is executed as usual (for example, by clicking Run in the Antares interface or using antares-solver on the study folder). The solver will read the hybrid study configuration and automatically integrate the modeler part. Once the run starts, it will simulate with the combined model. Results for the GEMS components (e.g., generation output of a custom component) will appear alongside the usual Antares results for areas, provided that output has been configured for those components (the GEMS framework will handle output storage in the study results).
 
 # Example
 
@@ -127,11 +127,11 @@ This section presents a simple example of a hybrid study findable in the [resour
 
 # Limitation
 
-When constructing hybrid studies, keep in mind a couple of important constraints:
+When constructing hybrid studies, the following important constraints should be considered:
 
 Time Series Length: The time series data used in GEMS modeler components (for example, the generation profile of a renewable) must align with the Antares simulation horizon and resolution. In practice, this means the number of time steps and the granularity of GEMS time-dependent inputs should match the solver’s expectations (e.g., 8760 hourly values for a yearly hourly simulation). The hybrid solver will not accept a modeler time series that doesn’t fit the configured simulation timeframe.
 
-Integer/Binary Decision Variables: If any GEMS component introduces integer or binary decision variables (for instance, a component that has an on/off state or unit commitment logic), you must run Antares in MILP mode. Antares Simulator’s solver has to be set to Mixed-Integer Linear Programming (the unit commitment MILP option) to handle discrete variables. In hybrid mode, the solver will incorporate those binary/integer variables into the optimization, but only if the MILP solver is enabled. If you attempt to run with continuous (LP) mode while using components that require integer decisions, the simulation will not handle them correctly. Thus, ensure the study’s optimization settings are configured for MILP (unit commitment) when needed.
+Integer/Binary Decision Variables: If any GEMS component introduces integer or binary decision variables (for instance, a component that has an on/off state or unit commitment logic), Antares must be run in MILP mode. Antares Simulator’s solver has to be set to Mixed-Integer Linear Programming (the unit commitment MILP option) to handle discrete variables. In hybrid mode, the solver will incorporate those binary/integer variables into the optimization, but only if the MILP solver is enabled. If running with continuous (LP) mode while using components that require integer decisions, the simulation will not handle them correctly. Thus, the study’s optimization settings must be configured for MILP (unit commitment) when needed.
 
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
