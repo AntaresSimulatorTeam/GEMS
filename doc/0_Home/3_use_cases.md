@@ -18,10 +18,6 @@ GEMS modelling language was primarily designed for the following purposes:
 - **[Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) Legacy Integration (Hybrid Mode):** GEMS can be used in conjunction with [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) legacy studies through a hybrid simulation mode, where a study combines two modelling components: one based on the legacy framework and one based on GEMS.
 - **Model Taxonomy:** Within the GEMS framework, model taxonomy enforces consistency by aligning model categorisation, expected outputs, and user-interface representation, enabling coherent and reliable interactions between models.
 
-<div style="display: flex; justify-content: center; align-items: center; height: 500px; overflow: hidden;">
-  <img src="../../assets/Use_cases.png" alt="Use cases" style="max-height: 100%; max-width: 100%; object-fit: contain;">
-</div>
-
 As a general-purpose language, other use cases can also be envisioned.
 
 ---
