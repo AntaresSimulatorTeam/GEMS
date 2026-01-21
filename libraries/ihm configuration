@@ -3,66 +3,66 @@ id : ihm_configuration_1
 taxonomy : my_taxonomy
 
 maps-interface :
-  visual graph node : 
-    - taxonomy-category : balance
-  visual graph edge type 1 :
-    - taxonomy-category : link
+	visual graph node : 
+		- taxonomy-category : balance
+	visual graph edge type 1 :
+		- taxonomy-category : link
   visual graph edge type 2 :
-    - taxonomy-category : converter
+    	- taxonomy-category : converter
 
 windows-interface :
-  id : node interface 
-	  hosted category :
-	    - taxonomy-category : balance
-    primary filter :
-      - taxonomy-category : balance
+	id : node interface 
+		hosted category :
+			- taxonomy-category : balance
+    	primary filter :
+     		 - taxonomy-category : balance
 
   id : one-node connection models interface 
-	  hosted category :
-	    - taxonomy-category : production 
-	    - taxonomy-category : consumption
-	    - taxonomy-category : storage
-  	  host category :
-  	    - taxonomy-category : balance 
-        connection :
-          - connection : connection 1
-	  primary filter :
-      - taxonomy-group : balance
-  	  connection filter :
-        - taxonomy-group : connection 1
+		hosted category :
+	    	- taxonomy-category : production 
+	    	- taxonomy-category : consumption
+	    	- taxonomy-category : storage
+  	  		host category :
+			- taxonomy-category : balance 
+        	connection :
+          		- connection : connection 1
+		primary filter :
+			- taxonomy-group : balance
+  	  		connection filter :
+				- taxonomy-group : connection 1
 
-  id : edge type 1 interface 
-	  hosted category :
-	    - taxonomy-category : link 
-  	  host category :
-  	    - taxonomy-category : balance 
-        connection :
-          - connection : connection 2
-	  primary filter :
-      - taxonomy-group : balance
-  	  connection filter :
-        - taxonomy-group : connection 2
+	id : edge type 1 interface 
+		hosted category :
+	    	- taxonomy-category : link 
+  	  		host category :
+  	    		- taxonomy-category : balance 
+       				connection :
+          				- connection : connection 2
+		primary filter :
+      		- taxonomy-group : balance
+  	  		connection filter :
+				- taxonomy-group : connection 2
 
-  id : edge type 2 interface 
-	  hosted category :
-	    - taxonomy-category : converter 
-  	  host category :
-  	    - taxonomy-category : balance 
-        connection :
-          - connection : connection 2
-	  primary filter :
-      - taxonomy-group : balance
-  	  connection filter :
-        - taxonomy-group : connection 2
+	id : edge type 2 interface 
+		hosted category :
+	    	- taxonomy-category : converter 
+  	  		host category :
+  	    		- taxonomy-category : balance 
+        		connection :
+         			 - connection : connection 2
+		primary filter :
+			- taxonomy-group : balance
+  	  		connection filter :
+        		- taxonomy-group : connection 2
 
-  id : coupling interface  
-	  hosted category :
-	    - taxonomy-category : Quota 
-  	  host category :
-  	    - taxonomy-category : production 
-  	    - taxonomy-category : consumption
-  	    - taxonomy-category : storage
-        connection :
-            - connection : connection 3
-	    - taxonomy-category : Flow-Based 
+	id : coupling interface  
+		hosted category :
+	    	- taxonomy-category : Quota 
+  	  	host category :
+	  	    - taxonomy-category : production 
+	  	    - taxonomy-category : consumption
+	  	    - taxonomy-category : storage
+        	connection :
+            	- connection : connection 3
+	    			- taxonomy-category : Flow-Based 
 	
