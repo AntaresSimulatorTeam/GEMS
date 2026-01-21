@@ -13,7 +13,7 @@ This section outlines the approach for configuring and utilizing the **Antares M
 
 ## Installation
 
-Note that the current **last stable version** of Antares Simulator is [**9.3.2**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v9.3.2).
+The following link provides access to the most recent stable version of the [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
 
 ### Download and Extract
 
