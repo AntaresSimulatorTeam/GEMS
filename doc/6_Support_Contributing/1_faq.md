@@ -35,7 +35,7 @@ Start with the [Getting Started guide](../2_Getting_Started/1A_modeler_installat
 
 ### Where can I find examples?
 
-The [Examples section](../5_Examples/1_optimization_problem.md) contains various use cases and complete working models to help you understand GEMS capabilities.
+The [Examples section](../5_Examples/1_unit_commitment.md) contains various use cases and complete working models to help you understand GEMS capabilities.
 
 ## Support
 
