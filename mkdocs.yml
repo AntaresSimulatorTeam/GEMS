@@ -59,6 +59,7 @@ nav:
     - Support: 0_Home/5_support.md
   - Overview:
       - Architecture: 1_Overview/1_Architecture.md
+      - Core Concepts: 3_User_Guide/3_glossary.md
       - File Structure: 1_Overview/2_File_structure.md
       - Difference with other languages & tools: 1_Overview/3_Difference_with_other_languages.md
       - GEMS Interpreters:
