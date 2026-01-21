@@ -5,72 +5,78 @@ taxonomy : my_taxonomy
 maps-interface :
 	visual graph node : 
 		- taxonomy-category : balance
+		- instantiation : true
 	visual graph edge type 1 :
 		- taxonomy-category : link
+		- instantiation : true
   	visual graph edge type 2 :
     	- taxonomy-category : converter
+		- instantiation : true
+
 
 windows-interface :
 	id : node interface 
-		hosted category :
+		displayed category :
 			- taxonomy-category : balance
-    	primary filter :
+    	locational category :
 			- taxonomy-category : balance
+		locational filter : 
+		      	- taxonomy-group : balance
 
   id : one-node connection models interface 
-		hosted category :
+		displayed category :
 	    	- taxonomy-category : production 
 	    	- taxonomy-category : consumption
 	    	- taxonomy-category : storage
-  	  		host category :
-				- taxonomy-category : balance 
-        		connection :
-          			- connection : connection 1
-		primary filter :
+		locational category :
 			- taxonomy-group : balance
-  	  		connection filter :
+  	  		connection :
 				- taxonomy-group : connection 1
+		locational filter : 
+		      	- taxonomy-group : balance
+	  	  		connection filter :  
+					- connection : connection 1
 
 	id : edge type 1 interface 
-		hosted category :
+		displayed category :
 	    	- taxonomy-category : link 
-  	  		host category :
-  	    		- taxonomy-category : balance 
-       				connection :
-          				- connection : connection 2
-  	    		- taxonomy-category : balance 
-       				connection :
-          				- connection : connection 2_bis
-		primary filter :
+		locational category :
       		- taxonomy-group : balance
-  	  		connection filter :
+  	  		connection :
 				- connection : connection 2
+			- taxonomy-group : balance
+  	  		connection :
 				- connection : connection 2_bis
+		locational filter : 
+		      	- taxonomy-group : balance
+	  	  		connection filter :  # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
+					- connection : connection 2
+					- connection : connection 2_bis
 
 	id : edge type 2 interface 
-		hosted category :
+		displayed category :
 	    	- taxonomy-category : converter 
-  	  		host category :
-  	    		- taxonomy-category : balance 
-       				connection :
-          				- connection : connection 2
-  	    		- taxonomy-category : balance 
-       				connection :
-          				- connection : connection 2_bis
-		primary filter :
+		locational category :
       		- taxonomy-group : balance
-  	  		connection filter :
+  	  		connection :
 				- connection : connection 2
+			- taxonomy-group : balance
+  	  		connection :
 				- connection : connection 2_bis
+		locational filter : 
+		      	- taxonomy-group : balance
+	  	  		connection filter :    # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
+					- connection : connection 2
+					- connection : connection 2_bis
 
 	id : coupling interface  
-		hosted category :
+		displayed category :
 	    	- taxonomy-category : Quota 
-  	  	host category :
+  	  	locational category :
 	  	    - taxonomy-category : production 
 	  	    - taxonomy-category : consumption
 	  	    - taxonomy-category : storage
         	connection :
             	- connection : connection 3
-	    			- taxonomy-category : Flow-Based 
-	
+
+
