@@ -2,7 +2,7 @@ Taxonomie configuration :
 
 - id: my_taxonomy
 	
-- category :
+-  taxonomy-category :
   id : balance
     required inputs :
       variables :
