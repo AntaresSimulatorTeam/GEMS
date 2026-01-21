@@ -32,7 +32,7 @@ connections :
          ports :
             - id : in_port
 
-   - id : connection 3
+   - id : connection 2_bis
       receiving category :
          taxonomy-category : 
             - id : balance  
