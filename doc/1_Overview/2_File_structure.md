@@ -19,7 +19,7 @@ The GEMS architecture enforces a structured approach, separating modelling logic
 
 # Types of files and roles
 
-These inputs are external files to the core software and consist of:
+The different types of files describing a GEMS study case are:
 
 | **Type of File**   | **Domain**  | **File**        | **Description & Role**  |
 |---------------------|-------------|-----------------|-------------------------|
