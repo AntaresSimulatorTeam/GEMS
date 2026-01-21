@@ -64,7 +64,7 @@ For each parameter definition, the following fields must be provided:
 |`scenario-dependent`|`true` or `false`, indicates whether the parameter changes depending on the simulated scenario, or is the same for all scenarios. If the model parameter is not scenario-dependent, this can't be set to true. |
 |`value`|Value assigned to the parameter.|
 
-The `value` field is interpreted as follows:
+For each parameter, the `value` field should be defined as follows:
 
 - For `constant parameters`, a numeric value must be provided (data series `id's` are not allowed).
 
