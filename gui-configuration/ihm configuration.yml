@@ -1,0 +1,82 @@
+id : ihm_configuration_1
+
+taxonomy : my_taxonomy
+
+maps-interface :
+	visual graph node : 
+		- taxonomy-category : balance
+		- instantiation : true
+	visual graph edge type 1 :
+		- taxonomy-category : link
+		- instantiation : true
+  	visual graph edge type 2 :
+    	- taxonomy-category : converter
+		- instantiation : true
+
+
+windows-interface :
+	id : node interface 
+		displayed category :
+			- taxonomy-category : balance
+    	locational category :
+			- taxonomy-category : balance
+		locational filter : 
+		      	- taxonomy-group : balance
+
+  id : one-node connection models interface 
+		displayed category :
+	    	- taxonomy-category : production 
+	    	- taxonomy-category : consumption
+	    	- taxonomy-category : storage
+		locational category :
+			- taxonomy-group : balance
+  	  		connection :
+				- taxonomy-group : connection 1
+		locational filter : 
+		      	- taxonomy-group : balance
+	  	  		connection filter :  
+					- connection : connection 1
+
+	id : edge type 1 interface 
+		displayed category :
+	    	- taxonomy-category : link 
+		locational category :
+      		- taxonomy-group : balance
+  	  		connection :
+				- connection : connection 2
+			- taxonomy-group : balance
+  	  		connection :
+				- connection : connection 2_bis
+		locational filter : 
+		      	- taxonomy-group : balance
+	  	  		connection filter :  # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
+					- connection : connection 2
+					- connection : connection 2_bis
+
+	id : edge type 2 interface 
+		displayed category :
+	    	- taxonomy-category : converter 
+		locational category :
+      		- taxonomy-group : balance
+  	  		connection :
+				- connection : connection 2
+			- taxonomy-group : balance
+  	  		connection :
+				- connection : connection 2_bis
+		locational filter : 
+		      	- taxonomy-group : balance
+	  	  		connection filter :    # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
+					- connection : connection 2
+					- connection : connection 2_bis
+
+	id : coupling interface  
+		displayed category :
+	    	- taxonomy-category : Quota 
+  	  	locational category :
+	  	    - taxonomy-category : production 
+	  	    - taxonomy-category : consumption
+	  	    - taxonomy-category : storage
+        	connection :
+            	- connection : connection 3
+
+
