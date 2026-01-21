@@ -66,13 +66,9 @@ For each parameter definition, the following fields must be provided:
 
 For each parameter, the `value` field should be defined as follows:
 
-- For `constant parameters`, a numeric value must be provided (data series `id's` are not allowed).
+- If `time-dependent : false` and `scenario-dependent : true`, the numerical value of the parameter (`float` or `integer`)
 
-- For `time-dependent` parameters, the value must be the `id` of a time-dependent data series.
-
-- For `scenario-dependent` parameters, the value must be the `id` of a scenario-dependent data series.
-
-- For `time-and-scenario-dependent` parameters, the value must be the `id` of a data series that varies across both dimensions.
+- Else, the `id` of a `time-dependent` data series
 
 ## Connections
 
