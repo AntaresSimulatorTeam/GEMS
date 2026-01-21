@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 # Hybrid studies
 
 This page explains how to configure and run a **hybrid study** that combines the Modeler part (GEMS components) with the Legacy part (standard Antares solver) in Antares Simulator. In a hybrid study, the GEMS modeler files are integrated into a solver study’s directory structure, allowing the Antares solver to incorporate custom model components defined by GEMS.
@@ -17,7 +16,7 @@ This page explains how to configure and run a **hybrid study** that combines the
 A **hybrid study** is essentially a **solver-based Antares** study that includes **additional GEMS** modeler data in its input folder. It uses the regular Antares solver (antares-solver) to run the simulation, but the input directory contains GEMS-specific files (such as system.yml, model libraries, etc.) describing custom components. 
 The usual *parameter.yml from a pure modeler study is not used in this mode* – if it exists, it will be ignored. Instead, the study relies on the standard solver configuration (the *study.antares* file and other solver parameters) for simulation settings. In summary, the hybrid study’s input directory merges the modeler files with the typical Antares files, and the Antares solver’s built-in GEMS interpreter handles the GEMS part during the simulation.
 
-```
+```text
 solver-study/
 ├── input/
 │   ├── areas/
@@ -35,6 +34,7 @@ solver-study/
 ├── Logs.log
 └── study.antares
 ```
+
 # Running a hybrid study
 
 ## How to connect the modeler part and the solver part
@@ -46,7 +46,7 @@ In practical terms, connecting a GEMS Generator component to an Antares area inj
 
 In order to successfully inject a GEMS component’s port into an Antares area, the port’s type must declare which field represents the power injection. This is configured in the model **library.yml** file (e.g., a **library.yml** in the *model-libraries* folder). Within the port type definition, an `area-connection` section specifies an `injection-field`. The `injection-field` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow`, it is defined in the library as follows:
 
-```yaml 
+```yaml
   port-types:
     - id: flow
       description: A port that transfers a power flow.
@@ -129,12 +129,12 @@ This section presents a simple example of hybrid study findable in the [resource
 
 When constructing hybrid studies, the following important constraints should be considered:
 
-* **Time Series Length**: 
+* **Time Series Length**:
 
 The time series data used in GEMS modeler components (for example, the generation profile of a renewable) must align with the Antares simulation horizon and resolution. In practice, this means the number of time steps and the granularity of GEMS time-dependent inputs should match the solver’s expectations (e.g., 8760 hourly values for a yearly hourly simulation). The hybrid solver will not accept a modeler time series that doesn’t fit the configured simulation timeframe.
 
 * **Integer/Binary Decision Variables**:
- 
+
 If any GEMS component introduces integer or binary decision variables (for instance, a component that has an on/off state or unit commitment logic), Antares must be run in MILP mode. Antares Simulator’s solver has to be set to Mixed-Integer Linear Programming (the unit commitment MILP option) to handle discrete variables. In hybrid mode, the solver will incorporate those binary/integer variables into the optimization, but only if the MILP solver is enabled. If running with continuous (LP) mode while using components that require integer decisions, the simulation will not handle them correctly. Thus, the study’s optimization settings must be configured for MILP (unit commitment) when needed.
 
 <div style="display: flex; justify-content: space-between;">
