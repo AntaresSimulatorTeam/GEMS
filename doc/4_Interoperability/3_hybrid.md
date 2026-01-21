@@ -102,35 +102,53 @@ This section presents a simple example of hybrid study findable in the [resource
 
 <p><strong>library.yml :</strong></p>
 
-<pre><code class="language-yaml">  port-types:
-  - id: flow
-    description: A port that transfers a power flow.
-    fields:
+<pre><code class="language-yaml">
+library:
+  id: example_library
+
+  port-types:
     - id: flow
-    area-connection:
-    - injection-field: flow
-...
-  - id: renewable
-    parameters:
-    - id: generation
-      time-dependent: true
-      scenario-dependent: true
-    ports:
-    - id: balance_port
-      type: flow
-    port-field-definitions:
-    - port: balance_port
-      field: flow
-      definition: generation
+      description: A port that transfers a power flow.
+      fields:
+      - id: flow
+      area-connection:
+      - injection-field: flow
+
+  models:
+    - id: renewable
+      parameters:
+      - id: generation
+        time-dependent: true
+        scenario-dependent: true
+      ports:
+      - id: balance_port
+        type: flow
+      port-field-definitions:
+      - port: balance_port
+        field: flow
+        definition: generation
 </code></pre>
 
 <p><strong>system.yml :</strong></p>
 
 <pre><code class="language-yaml">
+system:
+  id: system
+
+  components:
+
+    - id: wind_farm
+      model: example_library.renewable
+      parameters:
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+          value: wind
+
   area-connections:
-  - component: wind_farm
-    port: balance_port
-    area: area1
+    - component: wind_farm
+      port: balance_port
+      area: Area
 </code></pre>
 
 </details>
