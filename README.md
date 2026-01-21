@@ -34,17 +34,11 @@ This approach is particularly important as future energy systems — strategic b
 
 GEMS has the key attributes required to support and sustain such a community.
 
-- **Versatility**
-<br>
-GEMS is a generic optimisation language capable of representing a wide range of energy systems and use cases, from operational studies to long-term planning, across multiple energy carriers and scales.
+- **Versatility:** GEMS is a generic optimisation language capable of representing a wide range of energy systems and use cases, from operational studies to long-term planning, across multiple energy carriers and scales.
 
-- **Code Stability and Maintainability**
-<br>
-By clearly **separating model definition from problem resolution**, GEMS promotes robust, modular, and maintainable code that can evolve over time without breaking existing models.
+- **Code Stability and Maintainability:** By clearly **separating model definition from problem resolution**, GEMS promotes robust, modular, and maintainable code that can evolve over time without breaking existing models.
 
-- **Interoperability/Interpretability**
-<br>
-GEMS relies on a **self-contained** and exhaustive mathematical formulation, ensuring that all modelling assumptions, variables, and constraints are explicitly defined. This guarantees unambiguous interpretability of models, which is a key enabler for true interoperability between tools, solvers, and modelling frameworks.
+- **Interoperability:** GEMS relies on a **self-contained** and exhaustive mathematical formulation, ensuring that all modelling assumptions, variables, and constraints are explicitly defined. This guarantees unambiguous interpretability of models, which is a key enabler for true interoperability between tools, solvers, and modelling frameworks.
 
 <div align="center">
     <img src="./doc/assets/Context_Gems_Example_Model.png" alt="GEMS Logo" width="500"/>
@@ -67,5 +61,3 @@ The following **interpreters** can be used to run Gems modelling language :
 - [PyPSA to Gems Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](./3_User_Guide/3_GEMS_File_Structure/3_system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./1_Overview/1_Architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
 
 <h2 align="center">🌐 <a href="https://gems-energy.readthedocs.io/en/latest/">Visit Website</a></h2>
-
-
