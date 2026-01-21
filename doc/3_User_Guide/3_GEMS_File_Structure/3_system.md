@@ -78,7 +78,7 @@ For each parameter, the `value` field should be defined as follows:
 
 A list of connections between component ports. Each connection entry defines a link between two components’ ports, allowing them to interact.
 
- Element | Description |
+|Element | Description |
 |------|--------------------------|
 | `component1`| The `id` of the first component being connected.|
 | `component2` | The `id` of the second component being connected.|
