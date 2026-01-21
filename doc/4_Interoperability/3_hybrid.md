@@ -37,7 +37,6 @@ solver-study/
 └── study.antares
 ```
 
-
 # Running an hybrid study
 
 ## How to connect the modeler part and the solver part
@@ -86,7 +85,7 @@ After following the [previous instructions](#how-to-connect-the-modeler-part-and
 
 # Example
 
-
+An example of an hybrid study with a renewable component from the [**basic-mdoels-library**](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) and a simple study made for a solver study.
 
 # Limitation
 
