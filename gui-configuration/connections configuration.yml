@@ -6,12 +6,12 @@ taxonomy : my_taxonomy
 connections : 
 
  - id : connection 1
-      receiving category :
+      category 1:
         taxonomy-category : 
           - id : balance  
         ports :
           - id : balance_port
-      emitting category  :
+      category 2  :
          taxonomy-category : 
             - id : production
             - id : consumption  
@@ -20,12 +20,12 @@ connections :
             - id : balance_port
 
  - id : connection 2
-      receiving category :
+      category 1 :
          taxonomy-category : 
             - id : balance  
          ports :
             - id : balance_port
-      emitting category :
+      category 2 :
          taxonomy-category : 
             - id : link
             - id : converter  
@@ -33,12 +33,12 @@ connections :
             - id : in_port
 
    - id : connection 2_bis
-      receiving category :
+      category 1 :
          taxonomy-category : 
             - id : balance  
          ports :
             - id : balance_port
-      emitting category :
+      category 2 :
          taxonomy-category : 
             - id : link
             - id : converter  
@@ -46,12 +46,12 @@ connections :
             - id : out_port
 
  - id : connection 4
-      receiving category :
+      category 1 :
          taxonomy-category : 
             - id : quota  
          ports :
             - id : emissions
-      emitting category :
+      category 2 :
          taxonomy-category : 
             - id : production
             - id : consumption  
