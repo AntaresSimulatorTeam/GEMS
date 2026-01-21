@@ -85,7 +85,53 @@ After following the [previous instructions](#how-to-connect-the-modeler-part-and
 
 # Example
 
-An example of an hybrid study with a renewable component from the [**basic-mdoels-library**](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) and a simple study made for a solver study.
+This section presents a simple example of an hybrid study findable in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples).
+
+This example is depicted by the following scheme :
+
+![Hybrid Study Scheme](../assets/4_hybrid_study_scheme.png)
+
+<details>
+<summary>Hybrid Study Example Details</summary>
+
+<p>This consists of an area from Solver framework with a constant load of 1000 MW and a wind farm component made from the <em>renewable</em> <strong>model</strong> from the <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml"><strong>basic-models-library</strong></a>.</p>
+
+<p>Concerning the connection between the area and the renewable component, it's configured by these yaml files:</p>
+
+<p><strong>library.yml :</strong></p>
+
+<pre><code class="language-yaml">  port-types:
+  - id: flow
+    description: A port that transfers a power flow.
+    fields:
+    - id: flow
+    area-connection:
+    - injection-field: flow
+...
+  - id: renewable
+    parameters:
+    - id: generation
+      time-dependent: true
+      scenario-dependent: true
+    ports:
+    - id: balance_port
+      type: flow
+    port-field-definitions:
+    - port: balance_port
+      field: flow
+      definition: generation
+</code></pre>
+
+<p><strong>system.yml :</strong></p>
+
+<pre><code class="language-yaml">...
+  area-connections:
+  - component: wind_farm
+    port: balance_port
+    area: Area
+</code></pre>
+
+</details>
 
 # Limitation
 
