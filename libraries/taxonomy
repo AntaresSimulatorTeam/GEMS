@@ -1,0 +1,40 @@
+Taxonomie configuration :
+
+- id: my_taxonomy
+	
+- category :
+  id : balance
+    required inputs :
+      variables :
+        - id : spillage
+        - id : unsupplied_energy
+      parameters :
+         - id : spillage_cost
+         - id : unsupplied_energy_cost
+      ports :
+         - id : balance_port
+      constraints :
+         - id : balance
+      outputs :
+         - id : operational_cost
+      properties :
+         - id : carrier
+
+id : production
+  required input :
+    variables :
+      - id : production
+  category  :
+    - id : dispatchable production 
+    - id : don-Dispatchable production
+
+id : consumption
+  category  :
+    - id : fatal consumption
+    - id : flexible consumption
+
+  id : storage
+  id : link
+  id : converter
+  id : coupling models
+  id : investment decisions
