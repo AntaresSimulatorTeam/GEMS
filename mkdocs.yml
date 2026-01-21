@@ -53,7 +53,7 @@ extra_javascript:
 nav:
   - About GEMS:
     - Home: index.md
-    - Core Concepts: 0_Home/2_core_concepts.md
+    - Key Principles: 0_Home/2_core_concepts.md
     - Use Cases: 0_Home/3_use_cases.md
     - Release Notes: 0_Home/4_release_notes.md
     - Support: 0_Home/5_support.md
