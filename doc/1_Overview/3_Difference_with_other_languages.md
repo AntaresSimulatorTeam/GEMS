@@ -78,5 +78,3 @@ While powerful, this approach offers limited flexibility when adapting or extend
 </div>
 
 ---
-
-© GEMS (LICENSE)

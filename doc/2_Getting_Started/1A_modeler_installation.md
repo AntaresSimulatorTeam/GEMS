@@ -130,5 +130,3 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 </div>
 
 ---
-
-© GEMS (LICENSE)

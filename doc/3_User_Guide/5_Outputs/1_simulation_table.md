@@ -64,4 +64,3 @@ block,component,output,absolute_time_index,block_time_index,scenario_index,value
 ---
 
 
-© GEMS (LICENSE)

@@ -40,5 +40,3 @@ Some reference classification of models will be shared soon.
 </div>
 
 ---
-
-© GEMS (LICENSE)

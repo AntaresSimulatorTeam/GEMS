@@ -79,4 +79,3 @@ $$
 
 ---
 
-© GEMS (LICENSE)

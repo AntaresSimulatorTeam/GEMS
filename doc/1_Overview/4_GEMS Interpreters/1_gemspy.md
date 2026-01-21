@@ -42,5 +42,3 @@ For detailed API usage and examples, see:
 </div>
 
 ---
-
-© GEMS (LICENSE)

@@ -117,4 +117,3 @@ GEMS welcomes any contribution in all forms.
 
 ---
 
-© GEMS (LICENSE)

@@ -325,5 +325,3 @@ system:
 </div>
 
 ---
-
-© GEMS (LICENSE)

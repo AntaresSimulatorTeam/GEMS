@@ -49,5 +49,3 @@ For detailed usage and examples of [Antares Simulator](https://antares-simulator
 </div>
 
 ---
-
-© GEMS (LICENSE)

@@ -231,5 +231,3 @@ The following diagrams explains the structure of the system file for the Three-b
 </div>
 
 ---
-
-© GEMS (LICENSE) 

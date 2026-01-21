@@ -26,5 +26,3 @@
 </div>
 
 ---
-
-© GEMS (LICENSE)

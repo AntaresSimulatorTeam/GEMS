@@ -37,5 +37,3 @@
 </div>
 
 ---
-
-© GEMS (LICENSE)

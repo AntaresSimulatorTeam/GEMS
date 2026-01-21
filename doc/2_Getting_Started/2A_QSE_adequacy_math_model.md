@@ -154,5 +154,3 @@ Note that this example is configured with a single time step. As a result, param
 </div>
 
 ---
-
-© GEMS (LICENSE) 

@@ -123,5 +123,3 @@ This language **differs from traditional optimization languages** in several way
 </div>
 
 ---
-
-© GEMS (LICENSE)

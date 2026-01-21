@@ -109,4 +109,3 @@ If a model additionally defines **port-field-definitions**, it acts as an **emit
 
 ---
 
-© GEMS (LICENSE)

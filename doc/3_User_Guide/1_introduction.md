@@ -122,4 +122,3 @@ See: [**Outputs and Result Formats**](./5_Outputs/1_simulation_table.md)
 
 ---
 
-© GEMS (LICENSE)

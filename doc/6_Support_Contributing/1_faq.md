@@ -65,4 +65,3 @@ Visit the [Support & Contributing section](./2_contact.md) for contact informati
 
 ---
 
-© GEMS (LICENSE)

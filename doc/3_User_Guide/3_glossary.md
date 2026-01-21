@@ -73,4 +73,4 @@ This section is a glossary of the main concepts used by GEMS.
 
 ---
 
-© GEMS (LICENSE)
+

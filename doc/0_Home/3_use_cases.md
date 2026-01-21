@@ -45,5 +45,3 @@ As a general-purpose language, other use cases can also be envisioned.
 </div>
 
 ---
-
-© GEMS (LICENSE)

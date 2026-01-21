@@ -57,4 +57,3 @@ hydro_group, 2 = 7
 
 ---
 
-© GEMS (LICENSE)

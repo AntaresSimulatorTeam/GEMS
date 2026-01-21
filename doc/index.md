@@ -154,4 +154,3 @@ The following **interpreters** can be used to run Gems modelling language :
 
 ---
 
-© GEMS (LICENSE)

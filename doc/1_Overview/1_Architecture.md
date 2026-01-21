@@ -55,5 +55,3 @@ This architecture of GEMS aims to export the definition of component models and 
 </div>
 
 ---
-
-© GEMS (LICENSE)

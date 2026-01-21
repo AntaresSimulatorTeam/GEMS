@@ -40,5 +40,3 @@
 </div>
 
 ---
-
-© GEMS (LICENSE)
