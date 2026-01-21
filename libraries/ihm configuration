@@ -38,22 +38,31 @@ windows-interface :
   	    		- taxonomy-category : balance 
        				connection :
           				- connection : connection 2
+  	    		- taxonomy-category : balance 
+       				connection :
+          				- connection : connection 2_bis
 		primary filter :
       		- taxonomy-group : balance
   	  		connection filter :
 				- taxonomy-group : connection 2
+				- taxonomy-group : connection 2_bis
+
 
 	id : edge type 2 interface 
 		hosted category :
 	    	- taxonomy-category : converter 
   	  		host category :
   	    		- taxonomy-category : balance 
-        		connection :
-         			 - connection : connection 2
+       				connection :
+          				- connection : connection 2
+  	    		- taxonomy-category : balance 
+       				connection :
+          				- connection : connection 2_bis
 		primary filter :
-			- taxonomy-group : balance
+      		- taxonomy-group : balance
   	  		connection filter :
-        		- taxonomy-group : connection 2
+				- taxonomy-group : connection 2
+				- taxonomy-group : connection 2_bis
 
 	id : coupling interface  
 		hosted category :
