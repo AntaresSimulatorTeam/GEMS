@@ -37,7 +37,7 @@ solver-study/
 └── study.antares
 ```
 
-# Running an hybrid study
+# Running a hybrid study
 
 ## How to connect the modeler part and the solver part
 
@@ -60,9 +60,9 @@ area-connections:
    port: injection
    area: area1
 ```
-### Define the are-connection fieds (in the library.yml file)
+### Define the area-connection fields (in the library.yml file)
 
-As it mentions above, the port field needs to be defined in order to specify what data will be exchange between the component and the area.
+As it mentions above, the port field needs to be defined in order to specify what data will be exchanged between the component and the area.
 
 This area-connection field is defined inside the port type definition inside the library file:
 
@@ -85,7 +85,7 @@ After following the [previous instructions](#how-to-connect-the-modeler-part-and
 
 # Example
 
-This section presents a simple example of an hybrid study findable in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples).
+This section presents a simple example of a hybrid study findable in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples).
 
 This example is depicted by the following scheme :
 
