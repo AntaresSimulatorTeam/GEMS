@@ -25,6 +25,8 @@ studies_folder = current_dir / "resources" / "e2e_studies" / "antares_legacy_mod
 thermal_cluster_studies_path = studies_folder / "test_thermal_clusters"
 sts_studies_path = studies_folder / "test_sts"
 
+doc_examples_path = current_dir / "resources" / "Documentation_Examples" / "QSE"
+
 antares_root = current_dir / "antares-9.3.2-Ubuntu-22.04"
 antares_solver_bin = antares_root / "bin" / "antares-solver"
 antares_modeler_bin = antares_root / "bin" / "antares-modeler"
@@ -48,6 +50,7 @@ def get_gems_objective_function_value(file_name: Path) -> float:
     result = df.query("output == 'OBJECTIVE_VALUE'")["value"]
     return float(result.iloc[0])
 
+
 def get_antares_objective_function_value(file_name: Path) -> float:
     """Read an objective function value from txt file."""
     exp_value: float | None = None
@@ -62,33 +65,38 @@ def get_antares_objective_function_value(file_name: Path) -> float:
     return exp_value
 
 
-def copy_folders(
-    antares_zip_name: str,
-    gems_study_name: str,
+def copy_antares_zip_to_tmp(*, zip_name: str, source_dir: Path, tmp_root: Path) -> Path:
+    """Copy an Antares study ZIP to tmp_root and return the copied ZIP path."""
+    src = source_dir / zip_name
+    if not src.is_file():
+        pytest.fail(f"Antares ZIP file not found: {src}")
+
+    dst = tmp_root / zip_name
+    shutil.copy(src, dst)
+    return dst
+
+
+def copy_study_dir_to_tmp(
+    *,
+    study_name: str,
     source_dir: Path,
     tmp_root: Path,
-) -> None:
+    preserve_symlinks: bool,
+) -> Path:
     """
-    Copy Antares ZIP and GEMS study (directory or ZIP) into tmp_root.
+    Copy a study directory (source_dir/study_name) into tmp_root/study_name.
+    Returns the copied study path.
     """
-    # Antares ZIP
-    antares_src = source_dir / antares_zip_name
-    if not antares_src.is_file():
-        pytest.fail(f"Antares ZIP file not found: {antares_src}")
-    shutil.copy(antares_src, tmp_root)
+    src = source_dir / study_name
+    if not src.is_dir():
+        pytest.fail(f"Study folder not found: {src}")
 
-    # GEMS study: prefer directory, but also accept zip in case of mixed setups
-    gems_src = source_dir / gems_study_name
-    if gems_src.is_dir():
-        gems_target = tmp_root / gems_study_name
-        if gems_target.exists():
-            shutil.rmtree(gems_target, ignore_errors=True)
-        shutil.copytree(gems_src, gems_target)
-    elif gems_src.is_file():
-        # fallback: if someone still has it as zip, we just copy the file
-        shutil.copy(gems_src, tmp_root)
-    else:
-        pytest.fail(f"GEMS study not found as directory or file: {gems_src}")
+    dst = tmp_root / study_name
+    if dst.exists():
+        shutil.rmtree(dst, ignore_errors=True)
+
+    shutil.copytree(src, dst, symlinks=preserve_symlinks)
+    return dst
 
 
 def unzip_antares_study(zip_folder: Path, antares_zip_name: str) -> Path:
@@ -112,44 +120,40 @@ def unzip_antares_study(zip_folder: Path, antares_zip_name: str) -> Path:
     return study_dir
 
 
-def copy_library_to_gems_study(gems_study_path: Path) -> None:
-    """Copy antares_legacy_models.yml into input/model-libraries of the GEMS study."""
-    source_file = current_dir / "libraries" / "antares_legacy_models.yml"
+def copy_model_library(gems_study_path: Path, library_filename: str) -> None:
+    """
+    Install a model library into <study>/input/model-libraries.
+    If a symlink (even dangling) already exists at that path, it is removed first.
+    """
+    source_file = current_dir / "libraries" / library_filename
     if not source_file.is_file():
-        pytest.fail(f"Source file does not exist: {source_file}")
+        pytest.fail(f"Library source file does not exist: {source_file}")
 
     target_folder = gems_study_path / "input" / "model-libraries"
+    target_folder.mkdir(parents=True, exist_ok=True)
 
-    if not target_folder.exists():
-        try:
-            target_folder.mkdir(parents=True, exist_ok=True)
-        except Exception as e:
-            pytest.fail(f"Failed to create target folder {target_folder}: {e}")
-    elif not target_folder.is_dir():
-        pytest.fail(f"Expected directory for model-libraries, found a file: {target_folder}")
+    target_path = target_folder / library_filename
 
-    target_path = target_folder / source_file.name
-    try:
-        shutil.copy(source_file, target_path)
-    except Exception as e:
-        pytest.fail(f"Failed to copy {source_file} to {target_path}: {e}")
+    # If it's a dangling symlink, exists() may be False, so check is_symlink() too
+    if target_path.is_symlink() or target_path.exists():
+        target_path.unlink()
 
+    shutil.copy(source_file, target_path)
+    assert target_path.is_file(), f"Library was not installed correctly: {target_path}"
 
 
 def get_gems_study_objective(study_dir: Path) -> float:
     """Run GEMS (Antares modeler) and return the objective value."""
     logger.info(f"Running Antares modeler with study directory: {study_dir}")
 
-    try:
-        subprocess.run(
-            [str(antares_modeler_bin), str(study_dir)],
-            capture_output=True,
-            text=True,
-            check=False,
-            cwd=str(antares_modeler_bin.parent),
-        )
-    except subprocess.CalledProcessError as e:
-        raise Exception(f"Antares modeler failed with error: {e}") from e
+    # NOTE: check=False to avoid raising, but you may still want to inspect stdout/stderr
+    subprocess.run(
+        [str(antares_modeler_bin), str(study_dir)],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=str(antares_modeler_bin.parent),
+    )
 
     logger.info("Getting GEMS study objective")
 
@@ -197,14 +201,32 @@ def get_antares_study_objective(study_dir: Path) -> float:
     result_file = subdirs[0] / "annualSystemCost.txt"
     if not result_file.is_file():
         raise FileNotFoundError(f"Result file not found: {result_file}")
-    
-    exp_value = get_antares_objective_function_value(file_name=result_file)
 
+    exp_value = get_antares_objective_function_value(file_name=result_file)
     if exp_value is None:
         raise ValueError(f"Could not find EXP line in {result_file}")
 
     logger.info(f"Antares study objective (EXP) = {exp_value}")
     return exp_value
+
+
+def prepare_and_run_doc_study(tmp_root: Path, study_name: str, library_filename: str) -> float:
+    """
+    Copy a documentation study into tmp, install its required model library,
+    run the modeler, and return the objective.
+    """
+    gems_path = copy_study_dir_to_tmp(
+        study_name=study_name,
+        source_dir=doc_examples_path,
+        tmp_root=tmp_root,
+        preserve_symlinks=True,  # doc examples may contain symlinks
+    )
+
+    copy_model_library(gems_path, library_filename)
+
+    obj = get_gems_study_objective(gems_path)
+    logger.info(f"[{study_name}] Using {library_filename} -> objective: {obj}")
+    return obj
 
 
 # -----------------------------------------------------------------------------
@@ -244,51 +266,65 @@ def clean_tmp(tmp_root: Path) -> None:
         else:
             item.unlink(missing_ok=True)
 
+
 # -----------------------------------------------------------------------------
-# Parametrized tests
+# Tests
 # -----------------------------------------------------------------------------
 @pytest.mark.parametrize(
-    "antares_zip, gems_zip, source_dir",
+    "antares_zip, gems_study, source_dir",
     [
         ("Antares-Simulator-Thermal-Test.zip", "GEMS-Thermal-Test", thermal_cluster_studies_path),
-        ("Antares-Simulator-STS-Test.zip",    "GEMS-STS-Test",    sts_studies_path),
+        ("Antares-Simulator-STS-Test.zip", "GEMS-STS-Test", sts_studies_path),
     ],
 )
 def test_study_equivalence(
     tmp_root: Path,
     antares_zip: str,
-    gems_zip: str,
+    gems_study: str,
     source_dir: Path,
 ) -> None:
-    # Copy Antares zip and GEMS study folder into tmp
-    copy_folders(
-        antares_zip_name=antares_zip,
-        gems_study_name=gems_zip,
+    # Copy Antares zip + GEMS study into tmp
+    copy_antares_zip_to_tmp(zip_name=antares_zip, source_dir=source_dir, tmp_root=tmp_root)
+
+    # These e2e studies are regular dirs (no symlinks expected); keep old behavior
+    gems_path = copy_study_dir_to_tmp(
+        study_name=gems_study,
         source_dir=source_dir,
         tmp_root=tmp_root,
+        preserve_symlinks=False,
     )
 
-    # Unzip Antares study
+    # Install required library
+    copy_model_library(gems_path, "antares_legacy_models.yml")
+
+    # Unzip Antares study and run solver
     antares_path = unzip_antares_study(tmp_root, antares_zip)
 
-    # GEMS study is now a directory (already copied)
-    gems_path = tmp_root / gems_zip
-
-    # Copy library into GEMS study
-    copy_library_to_gems_study(gems_path)
-
-    # Compute objectives
     gems_objective = get_gems_study_objective(gems_path)
     antares_objective = get_antares_study_objective(antares_path)
 
     logger.info(f"GEMS objective    : {gems_objective}")
     logger.info(f"Antares objective : {antares_objective}")
 
-    # Sanity checks
-    assert (tmp_root / antares_zip).exists()
-    assert (tmp_root / gems_zip).exists()
-    assert antares_path.is_dir()
-    assert gems_path.is_dir()
-
-    # Objectives close within absolute tolerance
     assert gems_objective == pytest.approx(antares_objective, abs=OBJECTIVE_ATOL)
+
+
+def test_doc_qse_1_adequacy(tmp_root: Path) -> None:
+    gems_objective = prepare_and_run_doc_study(
+        tmp_root=tmp_root,
+        study_name="QSE_1_Adequacy",
+        library_filename="basic_models_library.yml",
+    )
+
+    assert gems_objective == pytest.approx(7990.0, abs=OBJECTIVE_ATOL)
+
+
+
+def test_doc_qse_2_unit_commitment(tmp_root: Path) -> None:
+    gems_objective = prepare_and_run_doc_study(
+        tmp_root=tmp_root,
+        study_name="QSE_2_Unit_Commitment",
+        library_filename="antares_legacy_models.yml",
+    )
+
+    assert gems_objective == pytest.approx(817550.0, abs=OBJECTIVE_ATOL)
