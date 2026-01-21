@@ -53,6 +53,8 @@ The system file describes the energy system to be simulated. Each component defi
 |`scenario-group`|The `id` of the scenario group this component belongs to. |
 |`parameters`|Collection of values assigned to the model’s parameters. All parameters defined by the model must be assigned a value.|
 
+### Parameters
+
 For each parameter definition, the following fields must be provided:
 
 | Element | Description |
