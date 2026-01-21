@@ -19,7 +19,7 @@ The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed b
   </div>
 </div>
 
-It provides a high-level Modelling language, close to mathematical syntax, and a data structure for describing energy systems.
+It provides a high-level modelling language, close to mathematical syntax, and a data structure for describing energy systems.
 
 <br>
 
