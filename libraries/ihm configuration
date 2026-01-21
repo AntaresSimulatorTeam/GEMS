@@ -7,7 +7,7 @@ maps-interface :
 		- taxonomy-category : balance
 	visual graph edge type 1 :
 		- taxonomy-category : link
-  visual graph edge type 2 :
+  	visual graph edge type 2 :
     	- taxonomy-category : converter
 
 windows-interface :
@@ -15,7 +15,7 @@ windows-interface :
 		hosted category :
 			- taxonomy-category : balance
     	primary filter :
-     		 - taxonomy-category : balance
+			- taxonomy-category : balance
 
   id : one-node connection models interface 
 		hosted category :
@@ -23,9 +23,9 @@ windows-interface :
 	    	- taxonomy-category : consumption
 	    	- taxonomy-category : storage
   	  		host category :
-			- taxonomy-category : balance 
-        	connection :
-          		- connection : connection 1
+				- taxonomy-category : balance 
+        		connection :
+          			- connection : connection 1
 		primary filter :
 			- taxonomy-group : balance
   	  		connection filter :
@@ -44,9 +44,8 @@ windows-interface :
 		primary filter :
       		- taxonomy-group : balance
   	  		connection filter :
-				- taxonomy-group : connection 2
-				- taxonomy-group : connection 2_bis
-
+				- connection : connection 2
+				- connection : connection 2_bis
 
 	id : edge type 2 interface 
 		hosted category :
@@ -61,8 +60,8 @@ windows-interface :
 		primary filter :
       		- taxonomy-group : balance
   	  		connection filter :
-				- taxonomy-group : connection 2
-				- taxonomy-group : connection 2_bis
+				- connection : connection 2
+				- connection : connection 2_bis
 
 	id : coupling interface  
 		hosted category :
