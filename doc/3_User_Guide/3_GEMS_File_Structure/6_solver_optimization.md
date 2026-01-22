@@ -161,4 +161,3 @@ no-output: false
 
 ---
 
-© GEMS (LICENSE)

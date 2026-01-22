@@ -53,20 +53,21 @@ extra_javascript:
 nav:
   - About GEMS:
     - Home: index.md
-    - Core Concepts: 0_Home/2_core_concepts.md
+    - Key Principles: 0_Home/2_core_concepts.md
     - Use Cases: 0_Home/3_use_cases.md
     - Release Notes: 0_Home/4_release_notes.md
     - Support: 0_Home/5_support.md
   - Overview:
       - Architecture: 1_Overview/1_Architecture.md
+      - Core Concepts: 3_User_Guide/3_glossary.md
       - File Structure: 1_Overview/2_File_structure.md
       - Difference with other languages & tools: 1_Overview/3_Difference_with_other_languages.md
       - GEMS Interpreters:
           - GemsPy: 1_Overview/4_GEMS Interpreters/1_gemspy.md
           - Antares Simulator: 1_Overview/4_GEMS Interpreters/2_antares_simulator_modeler.md
       - References:
-          - Classification of models: 1_Overview/5_References/1_Classification_Configuration.md
-          - Libraries of models: 1_Overview/5_References/2_Libraries.md
+          - Libraries of models: 1_Overview/5_References/1_Libraries.md
+          - Classification of models: 1_Overview/5_References/2_Classification_Configuration.md
           - Users of GEMS: 1_Overview/5_References/3_Users.md
   - Getting Started:
       - Installation:
@@ -97,13 +98,13 @@ nav:
         - Simulation Table: 3_User_Guide/5_Outputs/1_simulation_table.md
         - Optimization Problem files: 3_User_Guide/5_Outputs/2_optimization_problem_files.md
         - Business View: 3_User_Guide/5_Outputs/3_business_view.md
+      - Glossary: 3_User_Guide/3_glossary.md
   - Interoperability:
       - PyPSA: 4_Interoperability/1_pypsa.md
-      - Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
+      #- Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
       - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
   - Examples:
-      - Tutorial - Simple economic dispatch problem: 5_Examples/1_optimization_problem.md
-      - Antares Simulator Hybrid study: 5_Examples/2_hybrid.md
+      - Adequacy Example: 5_Examples/1_adequacy_example.md
   - Support & Contributing:
       - FAQ: 6_Support_Contributing/1_faq.md
       - Contact: 6_Support_Contributing/2_contact.md

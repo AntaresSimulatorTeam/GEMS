@@ -39,4 +39,3 @@ The file is typically overwritten each time the study is executed.
 
 ---
 
-© GEMS (LICENSE)

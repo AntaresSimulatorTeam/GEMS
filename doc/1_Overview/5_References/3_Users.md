@@ -59,5 +59,3 @@ The following entities currently use or have used the GEMS framework for their p
 </div>
 
 ---
-
-© GEMS (LICENSE)

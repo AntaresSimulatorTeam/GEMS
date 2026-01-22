@@ -24,18 +24,6 @@ This architecture of GEMS aims to export the definition of component models and 
   <img src="../../../assets/Architecture_GEMS.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
 </div>
 
-<div style="border: 2px solid #2196F3; padding: 15px; border-radius: 8px; background-color: #e8f4ff; max-width: 400px; position: relative;">
-  <strong>ℹ️ For more information:</strong>
-    <br>
-    <a href="../2_File_structure" target="_blank" title="YAML File Structure">
-      YAML File Structure
-    </a>
-    <br>
-    <a href="../4_GEMS Interpreters/1_gemspy" target="_blank" title="GemsPy Interpreter">
-      GemsPy Interpreter
-    </a>
-</div>
-
 **Navigation**
 
 <div style="display: flex; justify-content: space-between;">
@@ -55,5 +43,3 @@ This architecture of GEMS aims to export the definition of component models and 
 </div>
 
 ---
-
-© GEMS (LICENSE)

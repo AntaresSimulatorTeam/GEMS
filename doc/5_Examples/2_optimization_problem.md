@@ -72,4 +72,3 @@ $$
 
 ---
 
-© GEMS (LICENSE)

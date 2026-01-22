@@ -155,6 +155,3 @@ python -c "import scipy; print(scipy.__version__)"
 </div>
 
 ---
-
-
-© GEMS (LICENSE)
