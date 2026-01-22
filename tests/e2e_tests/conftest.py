@@ -19,11 +19,11 @@ def paths():
     return get_paths()
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="session", autouse=True)
 def check_antares_binaries(paths) -> None:
-    """Check if Antares binaries are available before running tests."""
+    """Fail test session if Antares binaries are not available."""
     if not paths.antares_root.is_dir():
-        pytest.skip(
+        pytest.fail(
             "Antares binaries not found. They are expected at: "
             f"{paths.antares_root} (CI downloads/extracts them in the workflow)."
         )
