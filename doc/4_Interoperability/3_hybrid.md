@@ -39,7 +39,7 @@ Antares-Simulator-Study/
 
 ## Hybrid connections: coupling GEMS Components with Legacy Areas
 
-In a **hybrid study**, it is crucial to **connect each GEMS component to an appropriate Antares area** so that the component’s can participate in the simulation. Establishing this connection ensures that, for example, a GEMS generator’s output is included in the power balance of a specific Antares area.
+In a **hybrid study**, a `area-connection` between a GEMS component and a Legacy Area means that the component contributes to the energy balance at the given node, through a given port (field).
 
 <details>
 In practical terms, connecting a GEMS **Generator** component to an Antares Legacy Area injects the generator’s power output into that area’s balance equation (the supply-demand constraint). *Without this connection, the GEMS component would remain isolated*. 
