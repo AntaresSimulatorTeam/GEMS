@@ -34,4 +34,3 @@ The content will provide a model-agnostic representation of the optimization pro
 ---
 
 
-© GEMS (LICENSE)

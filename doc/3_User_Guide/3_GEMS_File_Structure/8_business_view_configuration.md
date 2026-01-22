@@ -40,4 +40,3 @@ The algorithmic process to compute a Business View from this data is made explic
 ---
 
 
-© GEMS (LICENSE)

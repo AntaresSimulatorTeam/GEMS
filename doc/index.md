@@ -19,7 +19,7 @@ The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed b
   </div>
 </div>
 
-It provides a high-level Modelling language, close to mathematical syntax, and a data structure for describing energy systems.
+It provides a high-level modelling language, close to mathematical syntax, and a data structure for describing energy systems.
 
 <br>
 
@@ -92,7 +92,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: Architecture](1_Overview/1_Architecture.md)
 
-    [:octicons-arrow-right-24: Interpreters](../doc/1_Overview/4_GEMS%20Interpreters/1_gemspy.md)
+    [:octicons-arrow-right-24: Interpreters](./1_Overview/4_GEMS%20Interpreters/1_gemspy.md)
 
 -   :material-new-box:{ .lg .middle } **Release Notes**
 
@@ -122,7 +122,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Examples can be found here from the **first steps with GEMS** to handling **hybrid studies**.
 
-    [:octicons-arrow-right-24: Examples](5_Examples/1_optimization_problem.md)
+    [:octicons-arrow-right-24: Examples](./5_Examples/1_adequacy_example.md)
 
 -   :material-swap-horizontal:{ .lg .middle } **Interoperability**
 
@@ -138,7 +138,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Find here **Support** for using GEMS. How to **Contribute** to GEMS.
 
-    [:octicons-arrow-right-24: Support](../doc/0_Home/5_support.md)
+    [:octicons-arrow-right-24: Support](./0_Home/5_support.md)
 
     [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
 
@@ -154,4 +154,3 @@ The following **interpreters** can be used to run Gems modelling language :
 
 ---
 
-© GEMS (LICENSE)

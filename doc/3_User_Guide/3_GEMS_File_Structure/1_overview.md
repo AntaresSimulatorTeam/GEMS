@@ -84,5 +84,3 @@ The following pages of this section describe each file and folder in detail. Eac
 </div>
 
 ---
-
-© GEMS (LICENSE)

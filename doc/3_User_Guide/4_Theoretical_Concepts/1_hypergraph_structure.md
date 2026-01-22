@@ -223,4 +223,3 @@ Where:
 ---
 
 
-© GEMS (LICENSE)

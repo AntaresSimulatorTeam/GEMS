@@ -67,4 +67,3 @@ Here, the first row contains the values at time-step 0 for scenarios 1, 2, 3 res
 
 ---
 
-© GEMS (LICENSE)

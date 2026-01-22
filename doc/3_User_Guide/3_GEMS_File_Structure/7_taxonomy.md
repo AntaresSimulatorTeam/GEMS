@@ -34,4 +34,3 @@ The **Taxonomy** defines a shared classification of GEMS models. It is used to o
 ---
 
 
-© GEMS (LICENSE)
