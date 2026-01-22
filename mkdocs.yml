@@ -11,10 +11,8 @@ theme:
   features:
     - navigation.instant
     - navigation.top
-    - navigation.expand
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.indexes
     - navigation.indexes
     - content.action.copy
   palette:
@@ -77,8 +75,7 @@ nav:
         - Three-bus system - Simple Adequacy Example: 
           - Overview : 2_Getting_Started/2A_QSE_adequacy.md
           - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
-        - Unit Commitment Example:
-          - Overview : 2_Getting_Started/2B_QSE_unit_commitment.md
+        - Unit Commitment Example: 2_Getting_Started/2B_QSE_unit_commitment.md
   - User Guide:
       - Introduction: 3_User_Guide/1_introduction.md
       - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md
