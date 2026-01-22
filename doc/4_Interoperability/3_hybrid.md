@@ -41,7 +41,11 @@ Antares-Simulator-Study/
 
 In a **hybrid study**, it is crucial to **connect each GEMS component to an appropriate Antares area** so that the component’s can participate in the simulation. Establishing this connection ensures that, for example, a GEMS generator’s output is included in the power balance of a specific Antares area.
 
-In practical terms, connecting a GEMS **Generator** component to an Antares area injects the generator’s power output into that area’s balance equation (the supply-demand constraint). *Without this connection, the modeler component would remain isolated and not influence the solver’s optimization problem*. The following steps describe how to **link the modeler part to the solver part**:
+<details>
+In practical terms, connecting a GEMS **Generator** component to an Antares Legacy Area injects the generator’s power output into that area’s balance equation (the supply-demand constraint). *Without this connection, the GEMS component would remain isolated*. 
+<details>
+
+The following steps describe how to **link the modeler part to the solver part**:
 
 ### Abstract definition of the area-connection field type (in the library.yml file)
 
