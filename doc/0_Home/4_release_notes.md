@@ -9,15 +9,12 @@
 
 # Release Notes
 
-## Version 0.0.1
+## Version 0.1.0
 
-**Release Date:** *29/12/2029*
+**Release Date:** *22/01/2026*
 
-| Type         | Description            |
-|--------------|-----------------------|
-| Feature      | New feature added      |
-| Bug Fix      | Fixed a bug           |
-| Improvement  | Improved performance  |
+* Initialization of the documentation
+
 
 ---
 
@@ -40,5 +37,3 @@
 </div>
 
 ---
-
-© GEMS (LICENSE)

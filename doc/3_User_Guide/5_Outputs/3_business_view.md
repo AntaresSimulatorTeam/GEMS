@@ -38,4 +38,3 @@ Output representation describes how simulation results are exposed and formatted
 
 ---
 
-© GEMS (LICENSE)

@@ -40,4 +40,3 @@ To contact the GEMS development team, please use the following GitHub issue trac
 
 ---
 
-© GEMS (LICENSE)

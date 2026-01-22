@@ -290,4 +290,3 @@ expression: min(variable_1, parameter_1)
 
 ---
 
-© GEMS (LICENSE)

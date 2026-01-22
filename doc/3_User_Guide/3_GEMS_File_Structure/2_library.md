@@ -328,4 +328,3 @@ Unlike in constraints, [direct port field usage](../2_mathematical_syntax.md#dir
 
 ---
 
-© GEMS (LICENSE)

@@ -13,7 +13,7 @@ This section outlines the approach for configuring and utilizing the **Antares M
 
 ## Installation
 
-Note that the current **last stable version** of Antares Simulator is [**9.3.2**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v9.3.2).
+The following link provides access to the most recent stable version of the [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
 
 ### Download and Extract
 
@@ -58,7 +58,7 @@ Let’s check if Modeler is working correctly.
 
 - **Download the example study:**
 
-  Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
+  Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
 - **Run simulation:**
 
@@ -76,19 +76,17 @@ Let’s check if Modeler is working correctly.
 
   Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
 
-  ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
-
-More quick examples are presented inside the [Getting Started section](../2A_QSE_adequacy)
+  ![Modeler installation test logs](../assets/2_Modeler_logs.png)
 
 #### Antares Solver
 
 **Run Antares Solver:**
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-solver.exe <path-to-study>
+rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-solver  <path-to-study>
+./rte-antares-x.x.x-installer-64bits/bin/antares-solver  <path-to-study>
 ```
 
 Replace `<path-to-study>` with the path to your Antares study directory.
@@ -132,5 +130,3 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 </div>
 
 ---
-
-© GEMS (LICENSE)

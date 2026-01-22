@@ -11,9 +11,6 @@
 
 The GEMS architecture enforces a structured approach, separating modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
-Users primarily interact with GEMS by defining the **system to be simulated or optimized** through external configuration files that describe components, constraints, and operating conditions.
-During execution, an internal process may automatically construct an optimization problem from this system description and pass it to an external solver when required, but this remains an implementation detail rather than the primary user concern.
-
 <div style="display: flex; justify-content: center; align-items: center; height: 500px; overflow: hidden;">
   <img src="../../assets/domains.png" alt="File structure" style="height: 100%; object-fit: contain;"/>
 </div>
@@ -22,7 +19,7 @@ During execution, an internal process may automatically construct an optimizatio
 
 # Types of files and roles
 
-These inputs are external files to the core software and consist of:
+The different types of files describing a GEMS study case are:
 
 | **Type of File**   | **Domain**  | **File**        | **Description & Role**  |
 |---------------------|-------------|-----------------|-------------------------|
@@ -93,5 +90,3 @@ The outputs of GEMS consist of three main categories of objects: **Optimization 
 </div>
 
 ---
-
-© GEMS (LICENSE)
