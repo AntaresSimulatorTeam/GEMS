@@ -11,7 +11,7 @@
 
 This page explains how to configure and run a **hybrid study** that combines the **Modeler** part (GEMS components) with the **Legacy** part (standard Antares solver) in **Antares Simulator**. In a hybrid study, the GEMS files are integrated into a Antares Simulator study’s directory structure, allowing the Antares solver to incorporate GEMS components.
 
-# Definition
+## Definition
 
 A **hybrid study** is essentially a **Antares Simulator** study that includes additional **GEMS** modeler data in its input folder. It uses the regular Antares solver (*antares-solver*) to run the simulation, but the input directory contains **GEMS-specific files** (such as system.yml, model libraries and data-series) describing GEMS components.
 
@@ -36,15 +36,15 @@ Antares-Simulator-Study/
 └── study.antares
 ```
 
-# Running a hybrid study
+## Running a hybrid study
 
-## Component-Area Coupling Between Modeler and Antares Simulator
+### Component-Area Coupling Between Modeler and Antares Simulator
 
 In a **hybrid study**, it is crucial to **connect each GEMS component to an appropriate Antares area** so that the component’s can participate in the simulation. Establishing this connection ensures that, for example, a GEMS generator’s output is included in the power balance of a specific Antares area.
 
 In practical terms, connecting a GEMS **Generator** component to an Antares area injects the generator’s power output into that area’s balance equation (the supply-demand constraint). *Without this connection, the modeler component would remain isolated and not influence the solver’s optimization problem*. The following steps describe how to **link the modeler part to the solver part**:
 
-### Define the area-connection fields (in the library.yml file)
+#### Define the area-connection fields (in the library.yml file)
 
 In order to successfully inject a GEMS component’s port into an Antares area, the port’s type must declare which field represents the power injection. This is configured in the model **library.yml** file (e.g., a **library.yml** in the *model-libraries* folder). Within the port type definition, an `area-connection` section specifies an `injection-field`. The `injection-field` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow`, it is defined in the library as follows:
 
@@ -62,7 +62,7 @@ The `area-connection` section is optional in general, but becomes mandatory when
 
 The `injection-field` explicitly designates which field of the port contributes to the area balance equation in the legacy Antares Simulator study.
 
-### Define the connections (in the system.yml file)
+#### Define the connections (in the system.yml file)
 
 The `area-connections` section of the **system.yml** file is used to declare each connection between a GEMS component and a legacy Antares area.
 
@@ -81,13 +81,13 @@ Explanation of fields:
 - **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding port type must include an `area-connection` section in the model library definition, and must specify an `injection-field` that will be used by the solver
 - **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area’s balance constraint during simulation.
 
-## How to run a hybrid study
+### How to run a hybrid study
 
 After setting up the connections as described above, **running a hybrid study** is done in the same way as running a standard Antares simulation. The study can be opened or launched with Antares Simulator (using the GUI or the command-line solver). The presence of **system.yml** and **libraries** in the input folder will trigger the Antares solver’s GEMS interpreter to load those components. The solver will then construct a combined optimization problem that includes both the legacy elements (areas, thermal plants, hydro, etc.) and the new GEMS components defined by the user.
 
 Once the run starts, it will simulate with the combined model. Results for the GEMS components (e.g., generation output of a custom component) will appear alongside the usual Antares results for areas, provided that output has been configured for those components (the GEMS framework will handle output storage in the study results).
 
-# Example
+## Example
 
 This section represents a simple example of a hybrid study that demonstrates how to integrate GEMS models into Antares Simulator. The example can be found in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples) and covers a one-week time horizon.
 
@@ -174,7 +174,7 @@ If any GEMS component introduces integer or binary decision variables (for insta
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../2_antares_legacy" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    <a href="../1_pypsa" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
@@ -182,7 +182,7 @@ If any GEMS component introduces integer or binary decision variables (for insta
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../5_Examples/1_optimization_problem" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../../5_Examples/1_adequacy_example" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>
