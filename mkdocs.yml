@@ -104,7 +104,7 @@ nav:
       #- Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
       - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
   - Examples:
-      - Unit Commitment: 5_Examples/1_unit_commitment.md
+      - Adequacy Example: 5_Examples/1_adequacy_example.md
   - Support & Contributing:
       - FAQ: 6_Support_Contributing/1_faq.md
       - Contact: 6_Support_Contributing/2_contact.md

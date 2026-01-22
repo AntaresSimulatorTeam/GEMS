@@ -24,7 +24,7 @@ Two different usage mode of the GEMS interpreter are available with [Antares Sim
 For detailed usage and examples of [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) and its GEMS interpreter, see:
 
 - [Installation Guide](../../2_Getting_Started/1A_modeler_installation.md)
-- [Examples section](../../5_Examples/1_unit_commitment.md)
+- [Examples section](../../5_Examples/1_adequacy_example.md)
 - [The official Antares Simulator Documentation - Modeler section](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/)
 
 [^1]: **Antares Simulator** is an open-source power system simulator designed to quantify the adequacy and economic performance of interconnected energy systems in the long term. It is used by transmission system operators for probabilistic simulations of energy consumption, generation, and transportation.

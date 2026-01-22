@@ -35,7 +35,7 @@ Start with the [Getting Started guide](../2_Getting_Started/1A_modeler_installat
 
 ### Where can I find examples?
 
-The [Examples section](../5_Examples/1_unit_commitment.md) contains various use cases and complete working models to help you understand GEMS capabilities.
+The [Examples section](../5_Examples/1_adequacy_example.md) contains various use cases and complete working models to help you understand GEMS capabilities.
 
 ## Support
 
@@ -50,7 +50,7 @@ Visit the [Support & Contributing section](./2_contact.md) for contact informati
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
   <div style="text-align: left;">
     <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-      <a href="../../5_Examples/2_hybrid" style="text-decoration:none; color: #000000">⬅️ Previous</a>
+      <a href="../../5_Examples/1_adequacy_example" style="text-decoration:none; color: #000000">⬅️ Previous</a>
     </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">

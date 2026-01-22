@@ -122,7 +122,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Examples can be found here from the **first steps with GEMS** to handling **hybrid studies**.
 
-    [:octicons-arrow-right-24: Examples](./5_Examples/1_unit_commitment.md)
+    [:octicons-arrow-right-24: Examples](./5_Examples/1_adequacy_example.md)
 
 -   :material-swap-horizontal:{ .lg .middle } **Interoperability**
 
