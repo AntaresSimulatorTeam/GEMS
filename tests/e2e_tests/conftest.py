@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from .antares_env import get_paths
+from .env import get_paths
 
 
 # -----------------------------------------------------------------------------

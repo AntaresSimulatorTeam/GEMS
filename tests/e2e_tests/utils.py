@@ -13,7 +13,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from .antares_env import AntaresPaths
+from .env import AntaresPaths
 
 
 logger = logging.getLogger(__name__)

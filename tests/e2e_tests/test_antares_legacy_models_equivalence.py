@@ -2,8 +2,8 @@ import logging
 
 import pytest
 
-from .antares_env import OBJECTIVE_ATOL
-from .antares_utils import (
+from .env import OBJECTIVE_ATOL
+from .utils import (
     copy_antares_zip_to_tmp,
     copy_model_library,
     copy_study_dir_to_tmp,

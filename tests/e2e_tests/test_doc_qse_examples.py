@@ -3,8 +3,8 @@ from pathlib import Path
 
 import pytest
 
-from .antares_env import OBJECTIVE_ATOL, AntaresPaths
-from .antares_utils import (
+from .env import OBJECTIVE_ATOL, AntaresPaths
+from .utils import (
     copy_model_library,
     copy_study_dir_to_tmp,
     get_gems_study_objective,
