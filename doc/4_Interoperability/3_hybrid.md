@@ -38,7 +38,7 @@ Antares-Simulator-Study/
 
 ## Running a hybrid study
 
-### Component-Area Coupling Between Modeler and Antares Simulator
+## Hybrid connections: coupling GEMS Components with Legacy Areas
 
 In a **hybrid study**, it is crucial to **connect each GEMS component to an appropriate Antares area** so that the component’s can participate in the simulation. Establishing this connection ensures that, for example, a GEMS generator’s output is included in the power balance of a specific Antares area.
 
