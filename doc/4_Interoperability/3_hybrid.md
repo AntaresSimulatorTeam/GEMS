@@ -36,7 +36,6 @@ Antares-Simulator-Study/
 └── study.antares
 ```
 
-## Running a hybrid study
 
 ## Hybrid connections: coupling GEMS Components with Legacy Areas
 
