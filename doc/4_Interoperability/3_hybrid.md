@@ -65,7 +65,7 @@ The `area-connection` section is optional in general, but becomes mandatory when
 
 The `injection-field` explicitly designates which field of the port contributes to the area balance equation in the legacy Antares Simulator study.
 
-#### Define the connections (in the system.yml file)
+### Definition of the area-onnections (in the system file)
 
 The `area-connections` section of the system file is used to declare each connection between a GEMS component and a Antares Legacy Area.
 
