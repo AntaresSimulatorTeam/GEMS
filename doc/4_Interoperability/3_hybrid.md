@@ -36,14 +36,11 @@ Antares-Simulator-Study/
 └── study.antares
 ```
 
-
 ## Hybrid connections: coupling GEMS Components with Legacy Areas
 
 In a **hybrid study**, a `area-connection` between a GEMS component and a Legacy Area means that the component contributes to the energy balance at the given node, through a given port (field).
 
-<details>
-In practical terms, connecting a GEMS **Generator** component to an Antares Legacy Area injects the generator’s power output into that area’s balance equation (the supply-demand constraint). *Without this connection, the GEMS component would remain isolated*. 
-<details>
+In practical terms, connecting a GEMS **Generator** component to an Antares Legacy Area injects the generator’s power output into that area’s balance equation (the supply-demand constraint). *Without this connection, the GEMS component would remain isolated*.
 
 The following steps describe how to **link the modeler part to the solver part**:
 
@@ -69,7 +66,7 @@ The `injection-field` explicitly designates which field of the port contributes 
 
 The `area-connections` section of the system file is used to declare each connection between a GEMS component and a Antares Legacy Area.
 
-For every component that should supply or interact with an Antares area, an entry is added specifying the component, the port through which it connects, and the target area name. The port must support the area injection field type. For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`’s port named `balance_port`, the following configuration is used:
+For every component that should supply or interact with an Antares Area, an entry is added specifying the component, the port through which it connects, and the target area name. The port must support the area injection field type. For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`’s port named `balance_port`, the following configuration is used:
 
 ```yaml
 area-connections:
