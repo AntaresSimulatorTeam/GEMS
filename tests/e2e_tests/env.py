@@ -12,7 +12,7 @@ OBJECTIVE_ATOL = 1e-4
 
 
 @dataclass(frozen=True)
-class AntaresPaths:
+class EnvironmentPaths:
     repo_root: Path
     studies_folder: Path
     thermal_cluster_studies_path: Path
@@ -24,7 +24,7 @@ class AntaresPaths:
     antares_modeler_bin: Path
 
 
-def get_paths() -> AntaresPaths:
+def get_paths() -> EnvironmentPaths:
     """
     Central place for:
     - repo paths
@@ -43,7 +43,7 @@ def get_paths() -> AntaresPaths:
     antares_solver_bin = antares_root / "bin" / "antares-solver"
     antares_modeler_bin = antares_root / "bin" / "antares-modeler"
 
-    return AntaresPaths(
+    return EnvironmentPaths(
         repo_root=repo_root,
         studies_folder=studies_folder,
         thermal_cluster_studies_path=thermal_cluster_studies_path,

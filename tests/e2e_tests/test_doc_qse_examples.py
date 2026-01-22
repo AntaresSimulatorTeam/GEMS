@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from .env import OBJECTIVE_ATOL, AntaresPaths
+from .env import OBJECTIVE_ATOL, EnvironmentPaths
 from .utils import (
     copy_model_library,
     copy_study_dir_to_tmp,
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 def prepare_and_run_doc_study(
-    paths: AntaresPaths,
+    paths: EnvironmentPaths,
     tmp_root: Path,
     study_name: str,
     library_filename: str,

@@ -13,7 +13,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from .env import AntaresPaths
+from .env import EnvironmentPaths
 
 
 logger = logging.getLogger(__name__)
@@ -100,7 +100,7 @@ def unzip_antares_study(zip_folder: Path, antares_zip_name: str) -> Path:
     return study_dir
 
 
-def copy_model_library(paths: AntaresPaths, gems_study_path: Path, library_filename: str) -> None:
+def copy_model_library(paths: EnvironmentPaths, gems_study_path: Path, library_filename: str) -> None:
     """
     Install a model library into <study>/input/model-libraries.
     If a symlink (even dangling) already exists at that path, it is removed first.
@@ -122,7 +122,7 @@ def copy_model_library(paths: AntaresPaths, gems_study_path: Path, library_filen
     assert target_path.is_file(), f"Library was not installed correctly: {target_path}"
 
 
-def get_gems_study_objective(paths: AntaresPaths, study_dir: Path) -> float:
+def get_gems_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
     """Run GEMS (Antares modeler) and return the objective value."""
     logger.info("Running Antares modeler with study directory: %s", study_dir)
 
@@ -148,7 +148,7 @@ def get_gems_study_objective(paths: AntaresPaths, study_dir: Path) -> float:
     return get_gems_objective_function_value(result_files[-1])
 
 
-def get_antares_study_objective(paths: AntaresPaths, study_dir: Path) -> float:
+def get_antares_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
     """Run Antares solver and return the objective value from annualSystemCost.txt."""
     logger.info("Running Antares Simulator with study directory: %s", study_dir)
 
