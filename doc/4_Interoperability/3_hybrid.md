@@ -9,7 +9,7 @@
 
 # Antares Simulator Hybrid studies
 
-This page explains how to configure and run a **hybrid study** that combines the **Modeler** part (GEMS components) with the **Legacy** part (standard Antares solver) in **Antares Simulator**. In a hybrid study, the GEMS files are integrated into a Antares Simulator study’s directory structure, allowing the Antares solver to incorporate GEMS components.
+This page explains how to configure and run a **hybrid study** i.e. a study combining **GEMS components** and **Antares Simulator's Legacy Components**. In a hybrid study, the GEMS files are integrated into a Antares Simulator study’s directory structure, allowing Antares Simulator to incorporate GEMS components.
 
 ## Definition
 
