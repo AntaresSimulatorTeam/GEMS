@@ -13,7 +13,7 @@ This page explains how to configure and run a **hybrid study** i.e. a study comb
 
 ## Definition
 
-A **hybrid study** is essentially a **Antares Simulator** study that includes additional **GEMS** modeler data in its input folder. It uses the regular Antares solver (*antares-solver*) to run the simulation, but the input directory contains **GEMS-specific files** (such as system.yml, model libraries and data-series) describing GEMS components.
+A **hybrid study** is essentially a **Antares Simulator** study that includes additional **GEMS** input data (in the `input/` folder). The Antares Simulator executable (*antares-solver*) is able to run such a simulation, although the input directory contains **GEMS-specific files** (such as system, model libraries and data-series) describing GEMS components.
 
 The usual *parameter.yml from a pure modeler study is not used in this mode* – if it exists, it will be ignored. Instead, the study relies on the Antares Simulator simulation settings. In summary, the **hybrid study’s** input directory merges the modeler files with the typical Antares files, and the Antares solver’s built-in GEMS interpreter handles the GEMS part during the simulation.
 
