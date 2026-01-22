@@ -89,14 +89,14 @@ Once the run starts, it will simulate with the combined model. Results for the G
 
 # Example
 
-This section presents a simple example of a hybrid study that demonstrates how to integrate GEMS models into Antares Simulator. The example can be found in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples) and covers a one-week time horizon. Since the wind farm does not generate enough energy to meet the load demand, the results include ENS (Energy Not Served).
+This section represents a simple example of a hybrid study that demonstrates how to integrate GEMS models into Antares Simulator. The example can be found in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples) and covers a one-week time horizon.
 
 ![Hybrid Study Scheme](../assets/4_hybrid_study_scheme.png)
 
 <details>
 <summary>Hybrid Study Example Details</summary>
 
-<p>This consists of an area from Solver framework with a constant load of 1000 MW throughout one week and a wind farm component made from the <em>renewable</em> <strong>model</strong> from the <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml"><strong>basic-models-library</strong></a>.</p>
+<p>This consists of an area from Solver framework with a constant demand of 60 MW throughout one week and a wind farm component made from the <em>renewable</em> <strong>model</strong> from the <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml"><strong>basic-models-library</strong></a>.</p>
 
 <p>Concerning the connection between the area and the renewable component, it's configured by these yaml files:</p>
 
@@ -152,6 +152,12 @@ system:
 </code></pre>
 
 </details>
+
+Since the wind farm does not produce enough energy to fully cover the demand, the results include **Energy Not Served (ENS)**.
+
+This example is intended solely to demonstrate how the **GEMS component**, when connected to an **Antares Simulator area**, emits a linear expression that is incorporated into the area’s balance constraint.
+
+In this specific case, wind generation during the first hour is 20MW and demand is 60MW. As a result, the Antares area reports an ENS of 40MW, which is consistent with the balance shown in the simulation results.
 
 # Limitation
 
