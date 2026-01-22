@@ -89,7 +89,7 @@ Once the run starts, it will simulate with the combined model. Results for the G
 
 # Example
 
-This section presents a simple example of hybrid study findable in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples) with a time dimension of one week.
+This section presents a simple example of hybrid study that only shows how to integrate GEMS models into Antares Simulator. It can be found in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples) with a time dimension of one week.
 
 ![Hybrid Study Scheme](../assets/4_hybrid_study_scheme.png)
 
