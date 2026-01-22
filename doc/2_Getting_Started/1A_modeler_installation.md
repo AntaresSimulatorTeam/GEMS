@@ -83,10 +83,10 @@ Let’s check if Modeler is working correctly.
 **Run Antares Solver:**
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-solver.exe <path-to-study>
+rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-solver  <path-to-study>
+./rte-antares-x.x.x-installer-64bits/bin/antares-solver  <path-to-study>
 ```
 
 Replace `<path-to-study>` with the path to your Antares study directory.
