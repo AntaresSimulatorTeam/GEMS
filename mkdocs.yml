@@ -6,7 +6,7 @@ edit_uri: edit/doc/doc/
 theme:
   name: material
   logo: assets/gemsV2.png
-  favicon: assets/gemsV2.png
+  favicon: assets/0_gems_favicon.png
   prev_next_buttons_location: none
   features:
     - navigation.instant
