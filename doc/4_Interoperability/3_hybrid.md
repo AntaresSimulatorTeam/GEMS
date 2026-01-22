@@ -81,7 +81,7 @@ Explanation of fields:
 - **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding port type must include an `area-connection` section in the model library definition, and must specify an `injection-field` that will be used by the solver
 - **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area’s balance constraint during simulation.
 
-### How to run a hybrid study
+## How to run a hybrid study
 
 After setting up the connections as described above, **running a hybrid study** is done in the same way as running a standard Antares simulation. The study can be opened or launched with Antares Simulator (using the GUI or the command-line solver). The presence of **system.yml** and **libraries** in the input folder will trigger the Antares solver’s GEMS interpreter to load those components. The solver will then construct a combined optimization problem that includes both the legacy elements (areas, thermal plants, hydro, etc.) and the new GEMS components defined by the user.
 
