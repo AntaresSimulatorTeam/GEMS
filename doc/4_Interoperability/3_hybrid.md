@@ -64,7 +64,7 @@ The `injection-field` explicitly designates which field of the port contributes 
 
 #### Define the connections (in the system.yml file)
 
-The `area-connections` section of the **system.yml** file is used to declare each connection between a GEMS component and a legacy Antares area.
+The `area-connections` section of the system file is used to declare each connection between a GEMS component and a Antares Legacy Area.
 
 For every component that should supply or interact with an Antares area, an entry is added specifying the component, the port through which it connects, and the target area name. The port must support the area injection field type. For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`’s port named `balance_port`, the following configuration is used:
 
