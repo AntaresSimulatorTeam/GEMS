@@ -49,7 +49,7 @@ The following steps describe how to **link the modeler part to the solver part**
 
 ### Abstract definition of the area-connection field type (in the library.yml file)
 
-In order to successfully inject a GEMS component’s port into an Antares area, the port’s type must declare which field represents the power injection. This is configured in the model **library.yml** file (e.g., a **library.yml** in the *model-libraries* folder). Within the port type definition, an `area-connection` section specifies an `injection-field`. The `injection-field` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow`, it is defined in the library as follows:
+In order to successfully inject a GEMS component’s port into an Antares Legacy Area, the port’s type must declare which field represents the power injection. This is configured in the library of the component's model (e.g., a file `model-libraries/library.yml`). Within the port type definition, an `area-connection` section specifies an `injection-field`. The `injection-field` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow`, it is defined in the library as follows:
 
 ```yaml
   port-types:
