@@ -37,23 +37,19 @@ def prepare_and_run_doc_study(
     return obj
 
 
-def test_doc_qse_1_adequacy(tmp_root, paths) -> None:
+@pytest.mark.parametrize(
+    "study_name, library_filename, expected_objective",
+    [
+        ("QSE_1_Adequacy", "basic_models_library.yml", 7990.0),
+        ("QSE_2_Unit_Commitment", "antares_legacy_models.yml", 817550.0),
+    ],
+)
+def test_doc_qse_examples(tmp_root, paths, study_name: str, library_filename: str, expected_objective: float) -> None:
     gems_objective = prepare_and_run_doc_study(
         paths=paths,
         tmp_root=tmp_root,
-        study_name="QSE_1_Adequacy",
-        library_filename="basic_models_library.yml",
+        study_name=study_name,
+        library_filename=library_filename,
     )
 
-    assert gems_objective == pytest.approx(7990.0, abs=OBJECTIVE_ATOL)
-
-
-def test_doc_qse_2_unit_commitment(tmp_root, paths) -> None:
-    gems_objective = prepare_and_run_doc_study(
-        paths=paths,
-        tmp_root=tmp_root,
-        study_name="QSE_2_Unit_Commitment",
-        library_filename="antares_legacy_models.yml",
-    )
-
-    assert gems_objective == pytest.approx(817550.0, abs=OBJECTIVE_ATOL)
+    assert gems_objective == pytest.approx(expected_objective, abs=OBJECTIVE_ATOL)
