@@ -18,7 +18,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="gems-title" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;size=27;position=0.48;fillColor=#D1F2EB;strokeColor=#059669;strokeWidth=1;fontSize=12;fontStyle=1;fontColor=#059669;base=12;" value="GEMS" vertex="1">
-          <mxGeometry height="50" width="97" x="615.5" y="180" as="geometry" />
+          <mxGeometry height="50" width="97" x="604" y="178" as="geometry" />
         </mxCell>
         <mxCell id="gems-wind" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#10B981;strokeColor=#059669;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=13;shadow=1;" value="⚡ Wind_Farm&lt;div&gt;Variable Output&lt;/div&gt;" vertex="1">
           <mxGeometry height="70" width="150" x="589" y="242" as="geometry" />
