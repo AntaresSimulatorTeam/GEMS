@@ -159,7 +159,7 @@ This example is intended solely to demonstrate how the **GEMS component**, when 
 
 In this specific case, wind generation during the first hour is 20MW and demand is 60MW. As a result, the Antares area reports an ENS of 40MW, which is consistent with the balance shown in the simulation results.
 
-# Limitation
+## Limitation
 
 When constructing hybrid studies, the following important constraints should be considered:
 
