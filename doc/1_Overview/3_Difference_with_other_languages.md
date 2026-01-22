@@ -9,7 +9,7 @@
 
 # Differences with other modelling languages and tools
 
-## MODELICA Language
+## <img src="../../assets/1_modelica_logo.png" alt="Modelica Logo" width="60" style="vertical-align: middle;"/> MODELICA Language
 
 [Modelica](https://modelica.org/) is a language designed for modelling physical systems based **on differential and algebraic equations**, with a strong focus on dynamic behaviour and simulation.
 In contrast, [GEMS](../index.md) is dedicated to the formulation of **mathematical optimisation problems**, making it better suited for long-term energy system studies.
@@ -17,7 +17,7 @@ While [Modelica](https://modelica.org/) excels at component-level dynamics, [GEM
 
 <br>
 
-## GAMS - General Algebraic Modeling System
+## <img src="../../assets/1_gams_logo.png" alt="GAMS Logo" width="60" style="vertical-align: middle;"/> GAMS - General Algebraic Modeling System
 
 [GAMS](https://www.gams.com/) is a powerful language for expressing mathematical optimisation problems in an algebraic form.
 However, it does **not provide a native object-oriented or graph-based modelling paradigm**.
@@ -25,14 +25,14 @@ However, it does **not provide a native object-oriented or graph-based modelling
 
 <br>
 
-## Linopy - Python Package -  Linear optimization with n-dimensional labeled variables
+## <img src="../../assets/1_linopy_logo.webp" alt="Linopy Logo" width="60" style="vertical-align: middle;"/> Linopy - Python Package -  Linear optimization with n-dimensional labeled variables
 While both [Linopy](https://linopy.readthedocs.io/en/latest/index.html) and [GEMS](../index.md) are used to formulate optimisation problems, they serve fundamentally different purposes. [Linopy](https://linopy.readthedocs.io/en/latest/index.html) is a Python-based modelling library designed to conveniently express and solve optimisation problems within a **specific software ecosystem, closely tied to Python workflows** and solver interfaces. In contrast, [GEMS](../index.md) is conceived as a generic, self-contained optimisation language that explicitly formultes the energy system, its components, and their behaviour independently of any particular implementation or solver.
 <br> <br>
 **By separating model definition from problem resolution**, [GEMS](../index.md) prioritises interpretability, interoperability, and long-term maintainability, enabling models to be shared, reused, and understood across tools, institutions, and time horizons—an essential requirement for long-term energy system studies and collaborative modelling communities.
 
 <br>
 
-## Antares Simulator (Legacy)
+## <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Logo" width="60" style="vertical-align: middle;"/> Antares Simulator (Legacy)
 
 Historically, [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/), an open-source tool for long-term energy system studies, relies on a **fixed file tree structure** as its main input format.
 This structure is hard-coded in the tool, which limits flexibility and extensibility.
@@ -40,7 +40,7 @@ Introducing new objects or behaviours typically requires **modifying the C++ sou
 
 <br>
 
-## PyPSA – Python for Power System Analysis
+## <img src="../../assets/1_pypsa_logo.png" alt="PyPSA Logo" width="60" style="vertical-align: middle;"/> PyPSA – Python for Power System Analysis
 
 [PyPSA](https://pypsa.org/) enables the generation of energy system studies using flexible configuration files and **produces a NetCDF** representation of the resulting model.
 However, **the component models themselves are hard-coded** in the [PyPSA](https://pypsa.org/) core, which limits extensibility.
@@ -48,7 +48,7 @@ Adding new component formulations or behaviours requires **Python development sk
 
 <br>
 
-## PLEXOS® Energy Modeling Software
+## <img src="../../assets/1_plexos_logo.webp" alt="PLEXOS Logo" width="60" style="vertical-align: middle;"/> PLEXOS® Energy Modeling Software
 
 [PLEXOS®](https://www.energyexemplar.com/plexos) follows a philosophy similar to [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/), relying on a fixed and **predefined file-based structure** to describe studies.
 While powerful, this approach offers limited flexibility when adapting or extending model structures.
