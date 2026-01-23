@@ -1,0 +1,18 @@
+system:
+  id: system
+
+  components:
+
+    - id: wind_farm
+      model: basic_models_library.renewable
+      
+      parameters:
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+          value: wind
+
+  area-connections:
+    - component: wind_farm
+      port: balance_port
+      area: Area
