@@ -170,7 +170,8 @@ The time series data used in GEMS modeler components (for example, the generatio
 **Integer/Binary Decision Variables**:
 
 If any GEMS component introduces integer or binary decision variables (for instance, a component that has an on/off state or unit commitment logic), Antares must be run in MILP mode. Antares Simulator’s solver has to be set to Mixed-Integer Linear Programming (the unit commitment MILP option) to handle discrete variables. In hybrid mode, the solver will incorporate those binary/integer variables into the optimization, but only if the MILP solver is enabled. If running with continuous (LP) mode while using components that require integer decisions, the simulation will not handle them correctly. Thus, the study’s optimization settings must be configured for MILP (unit commitment) when needed.
-
+**Scenario dependency of Variables**:
+In Antares Simulator Legacy mode, each MC scenario is optimized separately. Thus, hybrid studies cannot contain scenario-independent variables. If you try to use such a variable in hybrid mode, the solver will fail.
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
