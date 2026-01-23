@@ -42,7 +42,7 @@ In a **hybrid study**, a `area-connection` between a GEMS component and a Legacy
 
 In practical terms, connecting a GEMS **Generator** component to an Antares Legacy Area injects the generator’s power output into that area’s balance equation (the supply-demand constraint). *Without this connection, the GEMS component would remain isolated*.
 
-The following steps describe how to **link the modeler part to the solver part**:
+The following steps describe how to **link the GEMS part of the study to the Legacy part**:
 
 ### Abstract definition of the area-connection field type (in the library.yml file)
 
