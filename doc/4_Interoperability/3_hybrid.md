@@ -44,9 +44,9 @@ In practical terms, connecting a GEMS **Generator** component to an Antares Lega
 
 The following steps describe how to **link the GEMS part of the study to the Legacy part**:
 
-### Abstract definition of the area-connection field type (in the [library](3_User_Guide/3_GEMS_File_Structure/2_library.md) file)
+### Abstract definition of the area-connection field type (in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) file)
 
-In order to successfully inject a GEMS component’s port into an Antares Legacy Area, the port’s type must declare which field represents the power injection. This is configured in the [library](3_User_Guide/3_GEMS_File_Structure/2_library.md) of the component's model (e.g., a file `model-libraries/library.yml`). Within the port type definition, an `area-connection` section specifies an `injection-field`. The `injection-field` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow`, it is defined in the library as follows:
+In order to successfully inject a GEMS component’s port into an Antares Legacy Area, the port’s type must declare which field represents the power injection. This is configured in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) of the component's model (e.g., a file `model-libraries/library.yml`). Within the port type definition, an `area-connection` section specifies an `injection-field`. The `injection-field` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow`, it is defined in the library as follows:
 
 ```yaml
   port-types:
@@ -62,7 +62,7 @@ The `area-connection` section is optional in general, but becomes mandatory when
 
 The `injection-field` explicitly designates which field of the port contributes to the area balance equation in the legacy Antares Simulator study.
 
-### Definition of the area-onnections (in the [system](3_User_Guide/3_GEMS_File_Structure/3_system.md) file)
+### Definition of the area-onnections (in the [system](../3_User_Guide/3_GEMS_File_Structure/3_system.md) file)
 
 The `area-connections` section of the system file is used to declare each connection between a GEMS component and a Antares Legacy Area.
 
