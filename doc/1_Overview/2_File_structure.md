@@ -3,7 +3,7 @@
     <a href="../../../..">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
@@ -12,7 +12,7 @@
 The GEMS architecture enforces a structured approach, separating modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
 <div style="display: flex; justify-content: center; align-items: center; height: 500px; overflow: hidden;">
-  <img src="../../assets/domains.png" alt="File structure" style="height: 100%; object-fit: contain;"/>
+  <img src="../assets/domains.png" alt="File structure" style="height: 100%; object-fit: contain;"/>
 </div>
 
 <br>
@@ -36,7 +36,7 @@ The different types of files describing a GEMS study case are:
 The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) included in this documentation.
 
 <p align="center">
-    <img src="../../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
+    <img src="../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
 </p>
 
 <br/>
