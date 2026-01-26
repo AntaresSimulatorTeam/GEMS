@@ -3,7 +3,7 @@
         <a href="../../../..">Main Section</a>
     </div>
     <div style="text-align: right;">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+        <img src="../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
     </div>
 </div>
 
@@ -14,7 +14,7 @@
 This language **differs from traditional optimization languages** in several ways by natively accounting for the specific needs of energy system modelling. Its underlying motivation is to provide essential features for advanced energy modelling: **a readable and user-friendly syntax, strong flexibility, and a tool-agnostic design.**
 
 <div style="height: 500px; overflow: hidden;">
-  <img src="../../assets/Gems_core_concepts.png" alt="Core Concepts" style="height: 100%; object-fit: contain;"/>
+  <img src="../assets/Gems_core_concepts.png" alt="Core Concepts" style="height: 100%; object-fit: contain;"/>
 </div>
 
 <br>
@@ -24,7 +24,7 @@ This language **differs from traditional optimization languages** in several way
 ## Separating Model Definition from Solver Execution
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
-  <img src="../../assets/Core_concept_solver_modeler.png"
+  <img src="../assets/Core_concept_solver_modeler.png"
        width="40"
        alt="Graph oriented icon"/>
 
@@ -36,7 +36,7 @@ This language **differs from traditional optimization languages** in several way
 ## Model Energy Systems as Connected Objects (Hypergraphs)
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
-  <img src="../../assets/Core_concept_graph_oriented.png"
+  <img src="../assets/Core_concept_graph_oriented.png"
        width="40"
        alt="Graph oriented icon"/>
 
@@ -56,7 +56,7 @@ This language **differs from traditional optimization languages** in several way
 ## Integrated Time and Uncertainty Dimensions
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
-  <img src="../../assets/Core_concept_time_scenario.png" width="40" alt="Time Scenario icon"/>
+  <img src="../assets/Core_concept_time_scenario.png" width="40" alt="Time Scenario icon"/>
 
   <p style="margin: 0;">
   GEMS natively incorporates <strong> time and scenario dimensions</strong> into its modelling framework.
@@ -68,7 +68,7 @@ This language **differs from traditional optimization languages** in several way
 ## Supported Optimisation Problem Classes
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
-  <img src="../../assets/Core_concept_optimisation_problems.png" width="40" alt="Optimisation icon"/>
+  <img src="../assets/Core_concept_optimisation_problems.png" width="40" alt="Optimisation icon"/>
 
   <div>
     <p style="margin: 0 0 8px 0;">
@@ -93,7 +93,7 @@ This language **differs from traditional optimization languages** in several way
 ## YAML-Based, User-Friendly Model Definition
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
-  <img src="../../assets/Core_concept_yaml_file.png" width="40" alt="YAML file icon"/>
+  <img src="../assets/Core_concept_yaml_file.png" width="40" alt="YAML file icon"/>
   <p style="margin: 0;">
   GEMS relies on <strong> YAML configuration files </strong> to provide a user-friendly and transparent
   modelling interface.
