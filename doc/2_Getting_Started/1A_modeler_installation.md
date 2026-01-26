@@ -13,7 +13,7 @@ This section outlines the approach for configuring and utilizing the **Antares M
 
 ## Installation
 
-Note that the current **last stable version** of Antares Simulator is [**9.3.2**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v9.3.2).
+The following link provides access to the most recent stable version of the [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
 
 ### Download and Extract
 
@@ -56,10 +56,9 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 
 Let’s check if Modeler is working correctly.
 
-
 - **Download the example study:**
 
-  Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/doc/5_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
+  Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
 - **Run simulation:**
 
@@ -71,26 +70,23 @@ Let’s check if Modeler is working correctly.
 ./bin/antares-modeler ./<absolute path to QSE_1_Adequacy study folder>
 ```
 
-
 - **Check for success:**
 
   If you see logs like these, Modeler works correctly !
 
   Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
 
-  ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
-
-More quick examples are presented inside the [Getting Started section](../2A_adequacy)
+  ![Modeler installation test logs](../assets/2_Modeler_logs.png)
 
 #### Antares Solver
 
 **Run Antares Solver:**
 ```bash
 # Windows
-rte-antares-9.3.2-installer-64bits\bin\antares-solver.exe <path-to-study>
+rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
 
 # Linux
-./rte-antares-9.3.2-installer-64bits/bin/antares-solver  <path-to-study>
+./rte-antares-x.x.x-installer-64bits/bin/antares-solver  <path-to-study>
 ```
 
 Replace `<path-to-study>` with the path to your Antares study directory.
@@ -99,8 +95,7 @@ Replace `<path-to-study>` with the path to your Antares study directory.
 
 The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
 
-In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User%20Guide/2_inputs.md). Unlike the GEMSPy interpreter, Modeler depends on this configuration file.
-
+In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../3_User_Guide/3_GEMS_File_Structure/6_solver_optimization.md). Unlike the GemsPy interpreter, Modeler depends on this configuration file.
 
 ## Additional Resources
 
@@ -110,9 +105,9 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 | Online Documentation     | [Antares Simulator Docs](https://antares-simulator.readthedocs.io/en/latest/) |
 | Modeler Documentation    | [GEMS Modeler Docs](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/) |
 | Examples                 | See the repository's `examples/` directory                           |
-| FAQ                      | [FAQ](../../6_Support%20&%20Contributing/1_faq.md)                   |
+| FAQ                      | [FAQ](../6_Support_Contributing/1_faq.md)                   |
 | GitHub Issues            | [Antares Simulator Issues](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues) |
-| Contact Support          | [Contact support](../../6_Support%20&%20Contributing/2_contact.md)   |
+| Contact Support          | [Contact support](../6_Support_Contributing/2_contact.md)   |
 
 ---
 
@@ -121,11 +116,11 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../1_Overview/References/4_Users" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    <a href="../../1_Overview/5_References/3_Users" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
@@ -135,6 +130,3 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 </div>
 
 ---
-
-
-© GEMS (LICENSE)

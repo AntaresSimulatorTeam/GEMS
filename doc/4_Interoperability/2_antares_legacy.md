@@ -8,7 +8,7 @@
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
-    <a href="folder1/home1.md">Main Section</a>
+    <a href="../../../..">Main Section</a>
   </div>
   <div style="text-align: right;">
     <img src="assets/gemsV2.png" alt="GEMS Logo" width="150"/>
@@ -68,7 +68,7 @@ $$
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="Home/Main_Home/1_context_GEMS.md" style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="Home/Main_Home/1_context_GEMS.md" style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
@@ -79,4 +79,3 @@ $$
 
 ---
 
-© GEMS (LICENSE)

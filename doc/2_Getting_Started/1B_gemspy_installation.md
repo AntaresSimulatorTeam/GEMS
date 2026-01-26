@@ -7,10 +7,9 @@
   </div>
 </div>
 
-# GEMSPy
+# GemsPy
 
 [GemsPy](https://gemspy.readthedocs.io/en/latest/) is a Python interpreter for GEMS that allows you to create, manipulate, and simulate energy system models.
-
 
 ## Requirements
 
@@ -20,8 +19,7 @@ This package requires:
 - Git (for cloning the [GemsPy repository](https://github.com/AntaresSimulatorTeam/GemsPy))
 - pip package manager (for installing required Python libraries)
 
-
-## GEMSPy installation
+## GemsPy installation
 
 Currently, [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) must be installed by cloning the repository manually:
 
@@ -30,7 +28,6 @@ Currently, [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) must be inst
 git clone https://github.com/AntaresSimulatorTeam/GemsPy.git
 cd GemsPy
 ```
-
 
 ## Virtual Environment Setup
 
@@ -42,8 +39,8 @@ It is recommended to create a **virtual environment** before installing [GemsPy]
 |-----------------------------|----------------------------------------------|--------------------------------------------|
 | Create virtual environment  | `python -m venv gemspy-env`                  | `python3 -m venv gemspy-env`               |
 | Activate environment        | `gemspy-env\Scripts\activate`               | `source gemspy-env/bin/activate`           |
-| Clone GEMSPy repository     | `git clone https://github.com/AntaresSimulatorTeam/GemsPy.git` | `git clone https://github.com/AntaresSimulatorTeam/GemsPy.git` |
-| Enter GEMSPy directory      | `cd GemsPy`                                  | `cd GemsPy`                                |
+| Clone GemsPy repository     | `git clone https://github.com/AntaresSimulatorTeam/GemsPy.git` | `git clone https://github.com/AntaresSimulatorTeam/GemsPy.git` |
+| Enter GemsPy directory      | `cd GemsPy`                                  | `cd GemsPy`                                |
 | Install requirements        | `pip install -r requirements.txt`            | `pip install -r requirements.txt`          |
 
 List of **main dependencies** installed via **`requirements.txt`**:
@@ -52,12 +49,11 @@ List of **main dependencies** installed via **`requirements.txt`**:
 - pandas
 - scipy
 
-
 ### Working with Virtual Environments
 
 1. **Activate the Virtual Environment**
 
-    While working with GEMSPy, activate the virtual environment:
+    While working with GemsPy, activate the virtual environment:
 
     - **Windows:**
       ```
@@ -69,7 +65,7 @@ List of **main dependencies** installed via **`requirements.txt`**:
       ```
 
     When activated, the environment name will be visible in the terminal prompt:
-    
+
     ```
     (gemspy-env) user@machine:~$
     ```
@@ -80,7 +76,7 @@ List of **main dependencies** installed via **`requirements.txt`**:
     ```
     deactivate
     ```
-    
+
 3. **Delete the Virtual Environment**
 
     If you need to completely remove a virtual environment:
@@ -88,7 +84,6 @@ List of **main dependencies** installed via **`requirements.txt`**:
     - Delete the `gemspy-env` folder directly.
 
     **Note:** Ensure you have saved any important work before deleting the environment.
-
 
 ## Troubleshooting
 
@@ -128,7 +123,6 @@ pip install -r requirements.txt
 python -c "import scipy; print(scipy.__version__)"
 ```
 
-
 ## Additional Resources
 
 | Resource              | Link                                                                 |
@@ -136,10 +130,9 @@ python -c "import scipy; print(scipy.__version__)"
 | GitHub Repository     | [GemsPy on GitHub](https://github.com/AntaresSimulatorTeam/GemsPy)   |
 | Online Documentation  | [gemspy.readthedocs.io](https://gemspy.readthedocs.io)               |
 | Examples              | See the repository's `examples/` directory                           |
-| FAQ                   | [FAQ](../6_Support%20&%20Contributing/1_faq.md)                      |
+| FAQ                   | [FAQ](../6_Support_Contributing/1_faq.md)                      |
 | GitHub Issues         | [GemsPy Issues](https://github.com/AntaresSimulatorTeam/GemsPy/issues)|
-| Contact Support       | [Contact support](../6_Support%20&%20Contributing/2_contact.md)      |
-
+| Contact Support       | [Contact support](../6_Support_Contributing/2_contact.md)      |
 
 ---
 
@@ -152,16 +145,13 @@ python -c "import scipy; print(scipy.__version__)"
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../2A_adequacy" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../2A_QSE_adequacy" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>
 
 ---
-
-
-© GEMS (LICENSE)

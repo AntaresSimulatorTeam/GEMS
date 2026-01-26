@@ -49,7 +49,7 @@ Mathematical syntax is **solver-agnostic** and intentionally restricted to ensur
 
 Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where parameters and variables come from or how components are wired together as a system.
 
-See: [**Mathematical Syntax and Rules**](../2_mathematical_syntax)
+See: [**Mathematical Syntax and Rules**](./2_mathematical_syntax.md)
 
 ---
 
@@ -85,7 +85,7 @@ It introduces:
 
 This section is conceptual: it explains *why* the file structure and syntax are designed the way they are.
 
-See: [**Theoretical Concepts**](../4_theoretical_concepts)
+See: [**Theoretical Concepts**](./4_Theoretical_Concepts/1_hypergraph_structure.md)
 
 ## Outputs
 
@@ -103,22 +103,22 @@ See: [**Outputs and Result Formats**](./5_Outputs/1_simulation_table.md)
 
 ---
 **Navigation**
+
 <div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../2_Getting_Started/2_quick_start_examples" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../2_mathematical_syntax" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
+    <div style="text-align: left;">
+    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="../../2_Getting_Started/2B_QSE_unit_commitment" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    </button>
+    </div>
+    <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
+    </button>
+    <div style="text-align: right;">
+    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="../2_mathematical_syntax" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    </button>
+    </div>
 </div>
 
 ---
 
-© GEMS (LICENSE)

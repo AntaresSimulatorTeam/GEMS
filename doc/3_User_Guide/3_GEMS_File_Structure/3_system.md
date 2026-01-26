@@ -53,6 +53,8 @@ The system file describes the energy system to be simulated. Each component defi
 |`scenario-group`|The `id` of the scenario group this component belongs to. |
 |`parameters`|Collection of values assigned to the model’s parameters. All parameters defined by the model must be assigned a value.|
 
+### Parameters
+
 For each parameter definition, the following fields must be provided:
 
 | Element | Description |
@@ -62,21 +64,17 @@ For each parameter definition, the following fields must be provided:
 |`scenario-dependent`|`true` or `false`, indicates whether the parameter changes depending on the simulated scenario, or is the same for all scenarios. If the model parameter is not scenario-dependent, this can't be set to true. |
 |`value`|Value assigned to the parameter.|
 
-The `value` field is interpreted as follows:
+For each parameter, the `value` field should be defined as follows:
 
-- For `constant parameters`, a numeric value must be provided (data series `id's` are not allowed).
+- If `time-dependent : false` and `scenario-dependent : true`, the numerical value of the parameter (`float` or `integer`)
 
-- For `time-dependent` parameters, the value must be the `id` of a time-dependent data series.
-
-- For `scenario-dependent` parameters, the value must be the `id` of a scenario-dependent data series.
-
-- For `time-and-scenario-dependent` parameters, the value must be the `id` of a data series that varies across both dimensions.
+- Else, the `id` of a `time-dependent` data series
 
 ## Connections
 
 A list of connections between component ports. Each connection entry defines a link between two components’ ports, allowing them to interact.
 
- Element | Description |
+|Element | Description |
 |------|--------------------------|
 | `component1`| The `id` of the first component being connected.|
 | `component2` | The `id` of the second component being connected.|
@@ -89,26 +87,23 @@ Port `connections` determine how linear expressions are exchanged between compon
 
 If a model additionally defines **port-field-definitions**, it acts as an **emitter** for that port. In this case, the model exposes linear expressions through the port, allowing connected receiver component to consume them. A common example is a generator model, which emits it's `generation` variable to connected bus component.
 
-
 **Navigation**
 
 <div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../1_Overview/References/4_Users" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1B_gemspy_installation" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
+    <div style="text-align: left;">
+    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="../2_library" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    </button>
+    </div>
+    <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
+    </button>
+    <div style="text-align: right;">
+    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+        <a href="../4_data_series" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    </button>
+    </div>
 </div>
 
 ---
 
-
-© GEMS (LICENSE)
