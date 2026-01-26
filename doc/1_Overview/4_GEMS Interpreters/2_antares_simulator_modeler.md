@@ -3,14 +3,14 @@
         <a href="../../../..">Main Section</a>
     </div>
     <div style="text-align: right;">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+        <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
     </div>
 </div>
 
 # Antares Simulator's GEMS interpreter
 
 <div style="text-align: center;">
-  <img src="../../../assets/5_antares_sim_logo.webp" alt="Antares Simulator logo" style="height: 70px;"/>
+  <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Simulator logo" style="height: 70px;"/>
 </div>
 
 [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) includes a GEMS interpreter. This piece of code is a graph-based optimization problem builder that provides a comprehensive environment for constructing, configuring, and solving LP, MIP, and MILP problems. Its design emphasizes flexibility, enabling users to tailor mathematical formulations, data structures, and model components to suit the specific requirements of their studies.
