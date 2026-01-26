@@ -7,7 +7,7 @@
   </div>
 </div>
 
-# WORK IN PROGRESS
+# This documentation page is currently under development. For further information, please consult the GitHub repository of the [PyPSA-to-GEMS converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter).
 
 ---
 **Navigation**
