@@ -15,9 +15,9 @@
 
 Currently, there is no GUI integrated into the [Antares Simulator repository](https://github.com/AntaresSimulatorTeam/Antares_Simulator) that is compatible with GEMS. However, [AntaresWeb](https://github.com/AntaresSimulatorTeam/AntaREST)'s compatibility with GEMS is currently under development and will be available in future releases.
 
-### Can I use GEMS studies with Antares Legacy and vice versa?
+### Can I use GEMS components inside a Legacy Study ?
 
-Yes, bidirectional compatibility is supported. You can run GEMS studies with Antares Legacy and legacy studies with GEMS. For detailed instructions, see the [Interoperability tutorial](../4_Interoperability/2_antares_legacy.md).
+Yes, you can run hybrid studies (a Legacy study with GEMS components inside) with Antares Legacy. For a pratical tutorial, refer to the [Hybrid Study Section](../4_Interoperability/3_hybrid.md).
 
 ### Can I model unit commitment with GEMS?
 
