@@ -29,7 +29,7 @@ This language **differs from traditional optimization languages** in several way
        alt="Graph oriented icon"/>
 
   <p style="margin: 0;">
-    GEMS as a modelling language adopts an approach that clearly distinguishes <strong>model definition</strong> from <strong>solver execution</strong>. This allows users to focus on the structure and behavior of energy systems without being immediately concerned with optimization details. Mathematical equations ruling energy system components are not hard-coded, they are dynamically interpreted: they remain independent from the simulation tool and from the underlying optimization solver. This separation <strong> facilitates reuse, experimentation, and maintenance of models </strong>, while making it easy to test different solvers or resolution settings as needed.
+    GEMS as a modelling language adopts an approach that clearly distinguishes <strong>model definition</strong> from <strong>numerical computations</strong>. This allows users to focus on the structure and behavior of energy systems without being immediately concerned with optimization details. Mathematical equations ruling energy system components are not hard-coded in a software code, they are dynamically interpreted: they remain independent from the simulation tool and from the underlying optimization solver (independence from the optimisation solver is admittedly more standard). This separation <strong> facilitates reuse, experimentation, and maintenance of models </strong>, while making it easy to test different solvers or resolution settings as needed.
   </p>
 </div>
 
