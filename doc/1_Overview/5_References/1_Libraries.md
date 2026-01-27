@@ -23,7 +23,7 @@ The following table lists reference model libraries developed within projects th
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1_Classification_Configuration" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    <a href="../../3_Difference_with_other_languages" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
   </button>
   </div>
   <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
@@ -31,7 +31,7 @@ The following table lists reference model libraries developed within projects th
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../3_Users" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../2_Classification_Configuration" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>
