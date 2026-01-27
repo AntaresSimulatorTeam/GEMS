@@ -225,7 +225,7 @@ The following diagrams explains the structure of the system file for the Three-b
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../2B_QSE_Unit_Commitment" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../2B_QSE_unit_commitment" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>

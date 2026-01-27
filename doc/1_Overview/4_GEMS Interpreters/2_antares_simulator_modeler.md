@@ -43,7 +43,7 @@ For detailed usage and examples of [Antares Simulator](https://antares-simulator
   </button>
   <div style="text-align: right;">
   <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../5_References/1_Classification_Configuration" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    <a href="../../5_References/1_Libraries" style="text-decoration:none; color: #000000">Next page ➡️</a>
   </button>
   </div>
 </div>
