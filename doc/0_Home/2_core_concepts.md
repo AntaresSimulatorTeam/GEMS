@@ -60,8 +60,7 @@ This language **differs from traditional optimization languages** in several way
 
   <p style="margin: 0;">
   GEMS natively incorporates <strong> time and scenario dimensions</strong> into its modelling framework.
-  <strong>Temporal resolutions</strong> (e.g. hourly, daily, yearly) and <strong>multiple scenarios</strong> (such as demand uncertainty, technology availability, or policy assumptions) are first-class concepts of the language, rather than external extensions.
-  This allows users to define <strong>dynamic behaviours, inter-temporal constraints, and scenario-based analyses</strong> in a clear and structured way, while ensuring consistency and scalability of the resulting optimisation problems.
+  <strong>Temporal </strong> and <strong>scenarios </strong> indices are natively available in the language, either in an implicit or explicit form. This allows users to easly define <strong>dynamic behaviours, inter-temporal constraints, and scenario-based analyses</strong> in a clear and structured way, while ensuring consistency and scalability of the resulting optimisation problems.
   </p>
 </div>
 
