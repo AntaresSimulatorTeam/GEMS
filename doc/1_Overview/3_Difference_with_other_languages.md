@@ -26,11 +26,9 @@ However, it does **not provide a native object-oriented or graph-based modelling
 <br>
 
 ## <img src="../../assets/1_linopy_logo.webp" alt="Linopy Logo" width="60" style="vertical-align: middle;"/> Linopy - Python Package -  Linear optimization with n-dimensional labeled variables
-While both [Linopy](https://linopy.readthedocs.io/en/latest/index.html) and [GEMS](../index.md) are used to formulate optimisation problems, they serve fundamentally different purposes. [Linopy](https://linopy.readthedocs.io/en/latest/index.html) is a Python-based modelling library designed to conveniently express and solve optimisation problems within a **specific software ecosystem, closely tied to Python workflows** and solver interfaces. In contrast, [GEMS](../index.md) is conceived as a generic, self-contained optimisation language that explicitly formultes the energy system, its components, and their behaviour independently of any particular implementation or solver.
-<br> <br>
-**By separating model definition from problem resolution**, [GEMS](../index.md) prioritises interpretability, interoperability, and long-term maintainability, enabling models to be shared, reused, and understood across tools, institutions, and time horizons—an essential requirement for long-term energy system studies and collaborative modelling communities.
+Although both [Linopy](https://linopy.readthedocs.io/en/latest/index.html) and [GEMS](../index.md) are used to formulate optimisation problems, they do not fulfil the same functions. [Linopy](https://linopy.readthedocs.io/en/latest/index.html) is a Python-based modelling multisolver interface whereas [GEMS](../index.md) is conceived as a modelling language to explicitly formulate the energy systems, their components, and their behaviour independently of any particular implementation. [GEMS](../index.md) plays at the level of the system (there it is graph-oriented) whereas [Linopy](https://linopy.readthedocs.io/en/latest/index.html) plays at the level of the linear problem (it is vector-oriented, and one should build a layer on top of that to manage the system graphs). [GEMS](../index.md) interpreters may be built on top of multisolver interfaces, such as [Linopy](https://linopy.readthedocs.io/en/latest/index.html) or [Google OR-Tools](https://developers.google.com/optimization?hl=fr). 
+<br> 
 
-<br>
 
 ## <img src="../../assets/5_antares_sim_logo.webp" alt="Antares Logo" width="60" style="vertical-align: middle;"/> Antares Simulator (Legacy)
 
