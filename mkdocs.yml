@@ -97,7 +97,13 @@ nav:
         - Business View: 3_User_Guide/5_Outputs/3_business_view.md
       - Glossary: 3_User_Guide/3_glossary.md
   - Interoperability:
-      - PyPSA: 4_Interoperability/1_pypsa.md
+      - PyPSA to GEMS Converter: 
+        - Overview: 4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview.md
+        - How the Converter Works: 4_Interoperability/1_PyPSA_to_GEMS_converter/2_how_the_converter_works.md
+        - Input and Output of the Converter: 4_Interoperability/1_PyPSA_to_GEMS_converter/3_input_and_output.md
+        - Current Limitations of the Converter: 4_Interoperability/1_PyPSA_to_GEMS_converter/4_current_limitations.md
+        - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: 4_Interoperability/1_PyPSA_to_GEMS_converter/5_step_by_step_guide.md
+        - Comparing Results Between GEMS Modeler and PyPSA: 4_Interoperability/1_PyPSA_to_GEMS_converter/6_comparing_results.md
       #- Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
       - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
   - Examples:

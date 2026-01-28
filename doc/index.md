@@ -130,7 +130,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     How to export **PyPSA** and **Antares Legacy** study cases in GEMS format and run them with GEMS interpreters.
 
-    [:octicons-arrow-right-24: Interoperability](4_Interoperability/1_pypsa.md)
+    [:octicons-arrow-right-24: Interoperability](4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview.md)
 
 -   :fontawesome-solid-users:{ .lg .middle } **Support and Contributing**
 
