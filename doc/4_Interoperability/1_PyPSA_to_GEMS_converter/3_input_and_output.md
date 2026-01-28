@@ -25,18 +25,19 @@
 <h3>Output</h3>
 <p>The converter generates a <strong>structured GEMS study directory</strong> at the provided output path.</p>
 <p>The directory layout follows the conventions expected by the GEMS modeler:</p>
-<pre><code>study_directory/
+```text
+study_directory/
 └── systems/
     └── system_name/
         └── input/
-            ├── optim-config.yml   --------&gt; Benders decomposition parameters, used by the modeler to generate MPS files
-            ├── system.yml         -------------&gt; Main system description
-            ├── parameters.yml     -----------&gt; Solver and simulation parameters
+            ├── optim-config.yml   -------> Benders decomposition parameters, used by the modeler to generate MPS files
+            ├── system.yml         -------> Main system description
+            ├── parameters.yml     -------> Solver and simulation parameters
             ├── model-libraries/
-            │   └── pypsa_models.yml ---&gt; Model library definitions
-            └── data-series/       -----------&gt; Time and/or scenarion dependent parameters
+            │   └── pypsa_models.yml -----> Model library definitions
+            └── data-series/       -------> Time and/or scenarion dependent parameters
                 └── ...
-</code></pre>
+```
 </div>
 
 ---

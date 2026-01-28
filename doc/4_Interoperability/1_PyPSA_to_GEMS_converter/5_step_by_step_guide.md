@@ -11,7 +11,8 @@
 
 <ol>
 <li><strong>Build or load a PyPSA network</strong>
-<pre><code class="language-python"># Setup
+```python
+# Setup
 logger = logging.getLogger(__name__)
 study_dir = Path("tmp/my_study")  # Absolute path to the GEMS study directory
 
@@ -22,28 +23,33 @@ network.add("Load", "load1", bus="bus1", p_set=[10, 20, 30])
 network.add("Generator", "gen1", bus="bus1", p_nom=100, marginal_cost=50)
 
 # Option B: load the network from a file
-network = Network("simple_network.nc")  # Absolute path to the PyPSA file</code></pre>
+network = Network("simple_network.nc")  # Absolute path to the PyPSA file
+```
 </li>
 
 <li><strong>Convert the PyPSA network to a GEMS study</strong>
-<pre><code class="language-python"># Convert PyPSA network to GEMS
+```python
+# Convert PyPSA network to GEMS
 converter = PyPSAStudyConverter(
     pypsa_network=network,
     logger=logger,
     study_dir=study_dir,
     series_file_format=".tsv",  # Supported formats: .tsv, .csv, tsv, csv
-).to_gems_study()</code></pre>
+).to_gems_study()
+```
 </li>
 
 <li><strong>Run the GEMS(Antares) optimization</strong>
-<pre><code class="language-python"># Path to the Antares modeler binary
+```python
+# Path to the Antares modeler binary
 modeler_bin = Path("antares-9.3.5-Ubuntu-22.04/bin/antares-modeler")
 
 # Run the optimization
 subprocess.run([
     str(modeler_bin),
     str(study_dir / "systems")
-])</code></pre>
+])
+```
 </li>
 </ol>
 </div>
