@@ -10,8 +10,7 @@ GEMS is a high-level modelling language, close to mathematical syntax, and a dat
 
 # Vision and Ambitions for GEMS
 
-The ambition behind the GEMS language is to **build and support a community of energy modellers and energy foresight practitioners** who can easily share models, assumptions, and studies.
-This approach is particularly important as future energy systems — strategic by nature — are increasingly conceived in a **multi-energy, multi-actor landscape**, characterised by rising systemic complexity and tightly coupled interactions across scales.
+The ambition behind the GEMS language is to **build and support a community of energy modellers and energy foresight practitioners** who can easily share models, assumptions, and studies. This approach is particularly important as future energy systems are increasingly conceived in a **multi-energy, multi-sector landscape**, characterised by rising complexity and tightly coupled interactions between energy carriers and sectors.
 
 <div align="center">
     <img src="./assets/Communaute.jpg" alt="GEMS Logo" width="150px"/>
@@ -19,17 +18,11 @@ This approach is particularly important as future energy systems — strategic b
 
 GEMS has the key attributes required to support and sustain such a community.
 
-- **Versatility**
-<br>
-GEMS is a generic optimisation language capable of representing a wide range of energy systems and use cases, from operational studies to long-term planning, across multiple energy carriers and scales.
+- **Versatility** : GEMS is a generic optimisation language capable of representing a wide range of energy systems and use cases, from operational studies to long-term planning, across multiple energy carriers and scales.
 
-- **Code Stability and Maintainability**
-<br>
-By clearly **separating model definition from problem resolution**, GEMS promotes robust, modular, and maintainable code that can evolve over time without breaking existing models.
+- **Code Stability and Maintainability** : By clearly **separating model definition from problem resolution**, GEMS promotes robust, modular, and maintainable code that can evolve over time without breaking existing models.
 
-- **Interoperability/Interpretability**
-<br>
-GEMS relies on a **self-contained** and exhaustive mathematical formulation, ensuring that all modelling assumptions, variables, and constraints are explicitly defined. This guarantees unambiguous interpretability of models, which is a key enabler for true interoperability between tools, solvers, and modelling frameworks.
+- **Interoperability/Interpretability** : GEMS relies on a **self-contained** and exhaustive mathematical formulation, ensuring that all modelling assumptions, variables, and constraints are explicitly defined. This guarantees unambiguous interpretability of models, which is a key enabler for true interoperability between tools, solvers, and modelling frameworks.
 
 <div align="center">
     <img src="./assets/Context_Gems_Example_Model.png" alt="GEMS Logo" width="500"/>
