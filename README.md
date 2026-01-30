@@ -2,25 +2,9 @@
     <img src="./doc/assets/gemsV2.png" alt="GEMS Logo" width="800"/>
 </div>
 
-# Context of GEMS
+# What is GEMS?
 
-The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed by the [Antares Simulator Team](https://antares-simulator.org/) at [RTE](https://www.rte-france.com/), the French Transmission System Operator (TSO). Its goal is to advance tools and communities for **long-term power system adequacy** and **investment planning** studies.
-
-<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="./doc/assets/4_RTE_logo.svg.png" alt="RTE Logo" style="height: 80px"/>
-      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>RTE - French Transmission System Operator</em></div>
-    </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="./doc/assets/5_antares_sim_logo.webp" alt="Antares Simulator Logo" style="height: 80px"/>
-      <div style="font-size: 0.9em; color: #555; margin-top: 8px;"><em>Antares Simulator Team</em></div>
-    </div>
-  </div>
-</div>
-
-It provides a high-level modelling language, close to mathematical syntax, and a data structure for describing energy systems.
-
+**GEMS** is a high-level modelling language, close to mathematical syntax, and a data structure for describing energy systems. Compared to other algebraic modelling languages, **GEMS** is object- and graph-oriented, making it particularly well-suited to representing energy systems.
 <br>
 
 # Vision and Ambitions for GEMS
