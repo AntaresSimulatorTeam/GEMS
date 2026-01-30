@@ -7,7 +7,7 @@
   </div>
 </div>
 <div>
-<h2>About</h2>
+<h1>About</h1>
 <p>The <a href="https://pypsa.org/">PyPSA</a>-to-<a href="https://gems-energy.readthedocs.io/en/latest/">GEMS</a> Converter is an open-source &amp; standalone python package that enables the conversion of studies conducted in PyPSA into the GEMS format: it exports a <a href="https://docs.pypsa.org/latest/api/networks/network/">PyPSA Network</a> as a <a href="https://gems-energy.readthedocs.io/en/latest/3_User_Guide/3_GEMS_File_Structure/1_overview/">GEMS</a> folder.</p>
 <p>This converter is based on the representation of the PyPSA models of components as a GEMS library of models: <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/pypsa_models.yml">pypsa_models.yml</a>.</p>
 

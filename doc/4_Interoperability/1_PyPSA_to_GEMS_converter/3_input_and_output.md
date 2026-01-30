@@ -7,9 +7,9 @@
   </div>
 </div>
 <div>
-<h2>Input and Output of the Converter</h2>
+<h1>Input and Output of the Converter</h1>
 
-<h3>Input</h3>
+<h2>Input</h2>
 <p>The converter requires the following inputs:</p>
 <ul>
   <li><strong>PyPSA network object</strong><br/>
@@ -22,7 +22,7 @@
   Format used for exported time-dependent data (e.g. csv, tsv).</li>
 </ul>
 
-<h3>Output</h3>
+<h2>Output</h2>
 <p>The converter generates a <strong>structured GEMS study directory</strong> at the provided output path.</p>
 <p>The directory layout follows the conventions expected by the GEMS modeler:</p>
 ```text
