@@ -7,35 +7,35 @@
   </div>
 </div>
 <div>
-<h2>Current Limitations of the Converter</h2>
+<h1>Current Limitations of the Converter</h1>
 <p>We explicit here the <strong>current</strong> limitation of the PyPSA-to-GEMS converter, that are related to the current state of development of the converter. We foresee no limitations in terms of the expressiveness of the GEMS modelling language.</p>
 
-<h3>Unsupported PyPSA Components</h3>
+<h2>Unsupported PyPSA Components</h2>
 <ul>
   <li>Lines (not implemented)</li>
   <li>Transformers (not implemented)</li>
 </ul>
 
-<h3>Component Restrictions</h3>
+<h2>Component Restrictions</h2>
 
-<h4>Generators</h4>
+<h3>Generators</h3>
 <ul>
   <li><strong><code>active = 1</code></strong> — All generators are included in the optimization.</li>
   <li><strong><code>marginal_cost_quadratic = 0</code></strong> — Only linear generation costs are supported.</li>
   <li><strong><code>committable = False</code></strong> — Unit commitment (on/off decisions) is not supported.</li>
 </ul>
 
-<h4>Loads</h4>
+<h3>Loads</h3>
 <ul>
   <li><strong><code>active = 1</code></strong> — All loads are fixed and always active.</li>
 </ul>
 
-<h4>Links</h4>
+<h3>Links</h3>
 <ul>
   <li><strong><code>active = 1</code></strong> — All links are always active.</li>
 </ul>
 
-<h4>Storage Units</h4>
+<h3>Storage Units</h3>
 <ul>
   <li><strong><code>active = 1</code></strong> — All storage units are included in the optimization.</li>
   <li><strong><code>sign = 1</code></strong> — Storage operates with positive dispatch direction.</li>
@@ -43,7 +43,7 @@
   <li><strong><code>marginal_cost_quadratic = 0</code></strong> — Only linear storage costs are supported.</li>
 </ul>
 
-<h4>Stores</h4>
+<h3>Stores</h3>
 <ul>
   <li><strong><code>active = 1</code></strong> — All stores are included in the optimization.</li>
   <li><strong><code>sign = 1</code></strong> — Store energy flows are positive.</li>
@@ -51,7 +51,7 @@
   <li><strong><code>marginal_cost_quadratic = 0</code></strong> — Only linear storage costs are supported.</li>
 </ul>
 
-<h4>Global Constraints</h4>
+<h3>Global Constraints</h3>
 <ul>
   <li><strong><code>type = primary_energy</code></strong> — Only primary energy constraints are supported.</li>
   <li><strong><code>carrier.co2_emissions</code></strong> — CO₂ accounting must be defined at the carrier level.</li>
