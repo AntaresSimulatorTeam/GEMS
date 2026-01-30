@@ -47,6 +47,11 @@ library:
         - port: balance_port
           field: flow
           definition: -load
+      taxonomy-category : load
+      properties required : 
+        - id : carrier
+        - id : technology
+
 
 
     - id: electrolyser
@@ -74,3 +79,7 @@ library:
         - port: hydrogen_port
           field: flow
           definition: efficiency * power
+      taxonomy-category : converter
+      properties required : 
+        - id : carrier
+        - id : technology
