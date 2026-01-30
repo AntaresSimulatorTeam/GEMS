@@ -7,7 +7,7 @@
   </div>
 </div>
 <div>
-<h2>Step-by-Step Guide: Manually Executing a Simulation in GEMS Modeler</h2>
+<h1>Step-by-Step Guide: Manually Executing a Simulation in GEMS Modeler</h1>
 
 <ol>
 <li><strong>Build or load a PyPSA network</strong>
