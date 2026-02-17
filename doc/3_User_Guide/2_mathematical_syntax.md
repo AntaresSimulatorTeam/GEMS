@@ -269,6 +269,21 @@ expression: parameter_1 < max(parameter_2, 100)
 expression: min(variable_1, parameter_1)
 ```
 
+### Floor/Ceil Operator
+
+These unary operators `floor(X)` and `ceil(X)` are used within any expression, but with following restrictions.
+
+  When `X` is time-dependent (a parameter, variable, or port field with time dimension), the operators apply pointwise on the underlying time-series. 
+
+  In the context of a linear problem construction (any context but **extra-output**), the argument of
+`floor` or `ceil` must not depend on decision variables
+
+```yaml
+expression : floor(parameter_1 * 2)
+
+expression : ceil(parameter_1 / 2)
+```
+
 ---
 **Navigation**
 
