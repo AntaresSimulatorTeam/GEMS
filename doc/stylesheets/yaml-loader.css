@@ -1,0 +1,132 @@
+/**
+ * Styles pour YAML Dynamic Loader
+ */
+
+.yaml-loader-container {
+    margin: 20px 0;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.yaml-loader-container.yaml-loader-loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Styles pour les boutons */
+.yaml-loader-buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.yaml-loader-button {
+    padding: 8px 16px;
+    border: 1px solid #0066cc;
+    background-color: white;
+    color: #0066cc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.yaml-loader-button:hover {
+    background-color: #f0f7ff;
+    border-color: #0052a3;
+}
+
+.yaml-loader-button.active {
+    background-color: #0066cc;
+    color: white;
+    border-color: #0052a3;
+}
+
+.yaml-loader-button:active {
+    transform: scale(0.98);
+}
+
+/* Styles pour le contenu */
+.yaml-loader-sections-wrapper {
+    margin-top: 16px;
+}
+
+.yaml-loader-content {
+    display: none;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.yaml-loader-content pre {
+    margin: 0;
+    padding: 12px;
+    background-color: #f5f5f5;
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: 'Courier New', monospace;
+}
+
+.yaml-loader-content code {
+    display: block;
+    color: #333;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Styles pour les messages d'erreur */
+.yaml-loader-error {
+    padding: 12px 16px;
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    font-size: 14px;
+    margin: 16px 0;
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+    .yaml-loader-container {
+        background-color: #1e1e1e;
+        border-color: #404040;
+    }
+
+    .yaml-loader-button {
+        border-color: #66b3ff;
+        color: #66b3ff;
+        background-color: transparent;
+    }
+
+    .yaml-loader-button:hover {
+        background-color: rgba(102, 179, 255, 0.1);
+        border-color: #4d94ff;
+    }
+
+    .yaml-loader-button.active {
+        background-color: #0066cc;
+        color: white;
+        border-color: #0052a3;
+    }
+
+    .yaml-loader-content {
+        background-color: #2d2d2d;
+        border-color: #404040;
+    }
+
+    .yaml-loader-content pre {
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+    }
+
+    .yaml-loader-error {
+        background-color: #332701;
+        border-color: #664d00;
+        color: #ffb84d;
+    }
+}

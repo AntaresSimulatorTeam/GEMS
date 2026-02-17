@@ -1,0 +1,44 @@
+sections:
+  - title: "Configuration de base"
+    content: |
+      Ce fichier définit les paramètres par défaut.
+      Les valeurs doivent être modifiées manuellement.
+      
+      Paramètres principaux :
+        - database_host: localhost
+        - database_port: 5432
+        - debug_mode: false
+        - log_level: info
+  
+  - title: "Options avancées"
+    content: |
+      Les options avancées sont réservées aux utilisateurs experts.
+      À utiliser avec précaution.
+      
+      Options avancées :
+        - enable_caching: true
+        - cache_ttl: 3600
+        - max_connections: 100
+        - timeout_seconds: 30
+        - enable_compression: true
+  
+  - title: "Configuration réseau"
+    content: |
+      Paramètres réseau et communication.
+      
+      Réseau :
+        - server_address: 0.0.0.0
+        - api_port: 8080
+        - websocket_port: 8081
+        - ssl_enabled: true
+        - certificate_path: /path/to/cert.pem
+  
+  - title: "Documentation supplémentaire"
+    content: |
+      Pour plus d'informations, consultez la documentation officielle.
+      
+      Ressources :
+        - Documentation principale : https://docs.example.com
+        - Guide utilisateur : https://docs.example.com/guide
+        - API Reference : https://api.example.com/docs
+        - Support communautaire : https://github.com/example/repo/discussions

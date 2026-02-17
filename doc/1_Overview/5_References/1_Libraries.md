@@ -18,6 +18,9 @@ The following table lists reference model libraries developed within projects th
 |Antares Legacy Models|Library of models of the legacy [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/user-guide/03-getting_started/)|[antares_legacy_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml)|
 |PyPSA Models|Library of models available on [PyPSA](https://docs.pypsa.org/latest/home/installation/)|[pypsa_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/pypsa_models.yml)|
 
+
+<div class="yaml-loader-container" data-yaml-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml"></div>
+
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">

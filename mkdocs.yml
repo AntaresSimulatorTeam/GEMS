@@ -47,6 +47,13 @@ extra_javascript:
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  # YAML Dynamic Loader - Dependencies
+  - https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js
+  # YAML Dynamic Loader - Custom script
+  - javascripts/yaml-loader.js
+
+extra_css:
+  - stylesheets/yaml-loader.css
 
 nav:
   - About GEMS:
