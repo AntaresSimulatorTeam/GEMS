@@ -300,12 +300,17 @@
                     modelDef.variables.forEach(variable => {
                         const varName = variable.id || 'Unknown';
                         const varType = variable['variable-type'] || '';
-                        const lowerBound = variable['lower-bound'] !== undefined ? ` [${variable['lower-bound']}` : '';
-                        const upperBound = variable['upper-bound'] !== undefined ? `, ${variable['upper-bound']}]` : '';
+                        
+                        let boundsText = '';
+                        if (variable['lower-bound'] !== undefined || variable['upper-bound'] !== undefined) {
+                            const lower = variable['lower-bound'] !== undefined ? variable['lower-bound'] : '...';
+                            const upper = variable['upper-bound'] !== undefined ? variable['upper-bound'] : '...';
+                            boundsText = ` [${lower}, ${upper}]`;
+                        }
                         
                         const varLi = document.createElement('li');
                         const varCode = document.createElement('code');
-                        varCode.textContent = escapeHtml(varName + ': ' + varType + lowerBound + upperBound);
+                        varCode.textContent = escapeHtml(varName + ': ' + varType + boundsText);
                         varLi.appendChild(varCode);
                         varsList.appendChild(varLi);
                     });
