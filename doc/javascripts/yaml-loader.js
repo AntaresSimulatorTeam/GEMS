@@ -300,7 +300,7 @@
                     const varsList = document.createElement('ul');
                     modelDef.variables.forEach(variable => {
                         const varName = variable.id || 'Unknown';
-                        const varType = variable['variable-type'] || 'Unknown';
+                        const varType = variable['variable-type'] || '';
                         const lowerBound = variable['lower-bound'] !== undefined ? ` [${variable['lower-bound']}` : '';
                         const upperBound = variable['upper-bound'] !== undefined ? `, ${variable['upper-bound']}]` : '';
                         
