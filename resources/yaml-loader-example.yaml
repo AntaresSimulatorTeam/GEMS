@@ -1,44 +1,44 @@
 sections:
-  - title: "Configuration de base"
+  - title: "Basic Configuration"
     content: |
-      Ce fichier définit les paramètres par défaut.
-      Les valeurs doivent être modifiées manuellement.
+      This file defines the default parameters.
+      Values must be modified manually.
       
-      Paramètres principaux :
+      Main parameters:
         - database_host: localhost
         - database_port: 5432
         - debug_mode: false
         - log_level: info
   
-  - title: "Options avancées"
+  - title: "Advanced Options"
     content: |
-      Les options avancées sont réservées aux utilisateurs experts.
-      À utiliser avec précaution.
+      Advanced options are reserved for expert users.
+      Use with caution.
       
-      Options avancées :
+      Advanced options:
         - enable_caching: true
         - cache_ttl: 3600
         - max_connections: 100
         - timeout_seconds: 30
         - enable_compression: true
   
-  - title: "Configuration réseau"
+  - title: "Network Configuration"
     content: |
-      Paramètres réseau et communication.
+      Network and communication parameters.
       
-      Réseau :
+      Network:
         - server_address: 0.0.0.0
         - api_port: 8080
         - websocket_port: 8081
         - ssl_enabled: true
         - certificate_path: /path/to/cert.pem
   
-  - title: "Documentation supplémentaire"
+  - title: "Additional Documentation"
     content: |
-      Pour plus d'informations, consultez la documentation officielle.
+      For more information, please refer to the official documentation.
       
-      Ressources :
-        - Documentation principale : https://docs.example.com
-        - Guide utilisateur : https://docs.example.com/guide
-        - API Reference : https://api.example.com/docs
-        - Support communautaire : https://github.com/example/repo/discussions
+      Resources:
+        - Main documentation: https://docs.example.com
+        - User guide: https://docs.example.com/guide
+        - API Reference: https://api.example.com/docs
+        - Community support: https://github.com/example/repo/discussions

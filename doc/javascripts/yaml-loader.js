@@ -39,24 +39,24 @@
     }
 
     /**
-     * Rend une interface hiérarchique pour une librairie GEMS
-     * @param {Object} data - Données du fichier library
-     * @param {HTMLElement} container - Conteneur cible
+     * Renders a hierarchical interface for a GEMS library
+     * @param {Object} data - Library file data
+     * @param {HTMLElement} container - Target container
      */
     function renderGEMSLibrary(data, container) {
         container.innerHTML = '';
         
         const lib = data.library || {};
         if (!lib || Object.keys(lib).length === 0) {
-            container.innerHTML = '<p style="color: red;">Erreur: La libraire est vide</p>';
+            container.innerHTML = '<p style="color: red;">Error: The library is empty</p>';
             return;
         }
         
-        // Wrapper principal
+        // Main wrapper
         const wrapper = document.createElement('div');
         wrapper.className = 'yaml-library-wrapper';
         
-        // === NIVEAU 1: BIBLIOTHÈQUE ===
+        // === LEVEL 1: LIBRARY ===
         const libLevel1 = document.createElement('div');
         libLevel1.className = 'yaml-library-level-1';
         
@@ -65,7 +65,7 @@
         libButton.innerHTML = `📚 <strong>${escapeHtml(lib.id || 'Library')}</strong>`;
         libLevel1.appendChild(libButton);
         
-        // === CONTENU LIBRARY ===
+        // === LIBRARY CONTENT ===
         const libContent = document.createElement('div');
         libContent.className = 'yaml-library-content';
         
@@ -88,9 +88,9 @@
         
         libContent.appendChild(libInfo);
         
-        // === NIVEAU 2: PORT TYPES ===
+        // === LEVEL 2: PORT TYPES ===
         if (lib['port-types'] && Array.isArray(lib['port-types']) && lib['port-types'].length > 0) {
-            // Titre
+            // Title
             const portTitle = document.createElement('h3');
             portTitle.style.marginTop = '20px';
             portTitle.style.borderBottom = '2px solid #0066cc';
@@ -98,7 +98,7 @@
             portTitle.textContent = '🔌 Port Types';
             libContent.appendChild(portTitle);
             
-            // Boutons ports
+            // Port buttons
             const portButtonsWrapper = document.createElement('div');
             portButtonsWrapper.className = 'yaml-library-level-2';
             portButtonsWrapper.style.display = 'flex';
@@ -119,7 +119,7 @@
             
             libContent.appendChild(portButtonsWrapper);
             
-            // Contenu des ports
+            // Port content
             lib['port-types'].forEach((portDef, index) => {
                 const portName = portDef.id || `port_${index}`;
                 const sanitizedPortName = portName.replace(/[^a-z0-9]/gi, '-').toLowerCase();
@@ -163,9 +163,9 @@
             });
         }
         
-        // === NIVEAU 2: MODELS ===
+        // === LEVEL 2: MODELS ===
         if (lib.models && Array.isArray(lib.models) && lib.models.length > 0) {
-            // Titre
+            // Title
             const modelTitle = document.createElement('h3');
             modelTitle.style.marginTop = '20px';
             modelTitle.style.borderBottom = '2px solid #0066cc';
@@ -173,7 +173,7 @@
             modelTitle.textContent = '🔧 Models';
             libContent.appendChild(modelTitle);
             
-            // Boutons models
+            // Model buttons
             const modelButtonsWrapper = document.createElement('div');
             modelButtonsWrapper.className = 'yaml-library-level-2';
             modelButtonsWrapper.style.display = 'flex';
@@ -194,7 +194,7 @@
             
             libContent.appendChild(modelButtonsWrapper);
             
-            // Contenu des modèles
+            // Model content
             lib.models.forEach((modelDef, index) => {
                 const modelName = modelDef.id || `model_${index}`;
                 const sanitizedModelName = modelName.replace(/[^a-z0-9]/gi, '-').toLowerCase();
@@ -321,7 +321,7 @@
             });
         }
         
-        // Ajouter tout au wrapper
+        // Add everything to wrapper
         wrapper.appendChild(libLevel1);
         wrapper.appendChild(libContent);
         container.appendChild(wrapper);

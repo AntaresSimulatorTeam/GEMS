@@ -1,5 +1,5 @@
 /**
- * Styles pour YAML Dynamic Loader
+ * Styles for YAML Dynamic Loader
  */
 
 .yaml-loader-container {
@@ -15,7 +15,7 @@
     pointer-events: none;
 }
 
-/* Styles pour les boutons */
+/* Button styles */
 .yaml-loader-buttons-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -50,7 +50,7 @@
     transform: scale(0.98);
 }
 
-/* Styles pour le contenu */
+/* Content styles */
 .yaml-loader-sections-wrapper {
     margin-top: 16px;
 }
@@ -79,7 +79,7 @@
     word-break: break-word;
 }
 
-/* Styles pour les messages d'erreur */
+/* Error message styles */
 .yaml-loader-error {
     padding: 12px 16px;
     background-color: #fff3cd;
@@ -90,7 +90,7 @@
     margin: 16px 0;
 }
 
-/* Mode sombre */
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
     .yaml-loader-container {
         background-color: #1e1e1e;
@@ -131,7 +131,7 @@
     }
 }
 
-/* ===== STYLES POUR INTERFACE HIÉRARCHIQUE LIBRARY ===== */
+/* ===== STYLES FOR HIERARCHICAL LIBRARY INTERFACE ===== */
 
 .yaml-library-wrapper {
     margin: 20px 0;
@@ -179,7 +179,7 @@
     transform: scale(0.98);
 }
 
-/* Niveau 2: Boutons Port/Model */
+/* Level 2: Port/Model Buttons */
 .yaml-library-level-2 {
     display: flex;
     flex-wrap: wrap;
@@ -212,7 +212,7 @@
     border-color: #0052a3;
 }
 
-/* Contenu des sections */
+/* Section content */
 .yaml-library-content {
     background-color: white;
     border: 1px solid #e0e0e0;
@@ -309,7 +309,7 @@
     opacity: 0.8;
 }
 
-/* Mode sombre pour library interface */
+/* Dark mode for library interface */
 @media (prefers-color-scheme: dark) {
     .yaml-library-wrapper {
         background-color: #1e1e1e;
