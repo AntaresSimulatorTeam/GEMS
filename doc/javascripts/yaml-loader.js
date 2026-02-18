@@ -44,11 +44,19 @@
      * @param {HTMLElement} container - Target container
      */
     function renderGEMSLibrary(data, container) {
+        // Preserve the library selector if it exists
+        const selector = container.querySelector('.yaml-library-selector');
+        const yamlUrl = container.getAttribute('data-yaml-url');
         container.innerHTML = '';
+        
+        // Re-add the selector if it existed
+        if (selector) {
+            container.appendChild(selector.cloneNode(true));
+        }
         
         const lib = data.library || {};
         if (!lib || Object.keys(lib).length === 0) {
-            container.innerHTML = '<p style="color: red;">Error: The library is empty</p>';
+            container.innerHTML += '<p style="color: red;">Error: The library is empty</p>';
             return;
         }
         
@@ -64,6 +72,18 @@
         libButton.className = 'yaml-library-button yaml-library-button-lib active';
         libButton.innerHTML = `📚 <strong>${escapeHtml(lib.id || 'Library')}</strong>`;
         libLevel1.appendChild(libButton);
+        
+        // GitHub link button next to library name
+        if (yamlUrl) {
+            const githubLink = document.createElement('a');
+            githubLink.href = yamlUrl.replace('raw.githubusercontent.com', 'github.com').replace('/main/', '/blob/main/');
+            githubLink.target = '_blank';
+            githubLink.rel = 'noopener noreferrer';
+            githubLink.className = 'yaml-github-link-btn';
+            githubLink.innerHTML = '🔗 GitHub';
+            githubLink.title = 'View on GitHub';
+            libLevel1.appendChild(githubLink);
+        }
         
         // === LIBRARY CONTENT ===
         const libContent = document.createElement('div');
@@ -328,7 +348,7 @@
         
         // === EVENT LISTENERS ===
         
-        // Clic sur bouton port
+        // Clic sur bouton library (reset everything)
         libButton.addEventListener('click', () => {
             libContent.querySelectorAll('.yaml-library-port-content').forEach(el => el.style.display = 'none');
             libContent.querySelectorAll('.yaml-library-model-content').forEach(el => el.style.display = 'none');
@@ -343,30 +363,62 @@
         libContent.querySelectorAll('.yaml-library-button-port').forEach(portBtn => {
             portBtn.addEventListener('click', (e) => {
                 const portData = e.currentTarget.dataset.port;
-                libContent.querySelectorAll('.yaml-library-port-content').forEach(el => el.style.display = 'none');
-                libContent.querySelectorAll('.yaml-library-model-content').forEach(el => el.style.display = 'none');
                 
+                // Toggle port content
                 const portContent = libContent.querySelector(`.yaml-library-port-content[data-port="${portData}"]`);
-                if (portContent) portContent.style.display = 'block';
+                const isCurrentlyVisible = portContent && portContent.style.display === 'block';
                 
-                libButton.classList.remove('active');
-                libContent.querySelectorAll('.yaml-library-button-port').forEach(btn => btn.classList.remove('active'));
-                e.currentTarget.classList.add('active');
+                if (isCurrentlyVisible) {
+                    // Hide the port if already visible
+                    portContent.style.display = 'none';
+                    e.currentTarget.classList.remove('active');
+                } else {
+                    // Hide all ports, then show the selected one
+                    libContent.querySelectorAll('.yaml-library-port-content').forEach(el => el.style.display = 'none');
+                    libContent.querySelectorAll('.yaml-library-button-port').forEach(btn => btn.classList.remove('active'));
+                    
+                    if (portContent) {
+                        portContent.style.display = 'block';
+                        e.currentTarget.classList.add('active');
+                    }
+                }
+                
+                // Hide library info when viewing specific content
+                if (portContent && portContent.style.display === 'block') {
+                    libInfo.style.display = 'none';
+                    libButton.classList.remove('active');
+                }
             });
         });
         
         libContent.querySelectorAll('.yaml-library-button-model').forEach(modelBtn => {
             modelBtn.addEventListener('click', (e) => {
                 const modelData = e.currentTarget.dataset.model;
-                libContent.querySelectorAll('.yaml-library-port-content').forEach(el => el.style.display = 'none');
-                libContent.querySelectorAll('.yaml-library-model-content').forEach(el => el.style.display = 'none');
                 
+                // Toggle model content
                 const modelContent = libContent.querySelector(`.yaml-library-model-content[data-model="${modelData}"]`);
-                if (modelContent) modelContent.style.display = 'block';
+                const isCurrentlyVisible = modelContent && modelContent.style.display === 'block';
                 
-                libButton.classList.remove('active');
-                libContent.querySelectorAll('.yaml-library-button-model').forEach(btn => btn.classList.remove('active'));
-                e.currentTarget.classList.add('active');
+                if (isCurrentlyVisible) {
+                    // Hide the model if already visible
+                    modelContent.style.display = 'none';
+                    e.currentTarget.classList.remove('active');
+                } else {
+                    // Hide all models, then show the selected one
+                    libContent.querySelectorAll('.yaml-library-model-content').forEach(el => el.style.display = 'none');
+                    libContent.querySelectorAll('.yaml-library-button-model').forEach(btn => btn.classList.remove('active'));
+                    
+                    if (modelContent) {
+                        modelContent.style.display = 'block';
+                        e.currentTarget.classList.add('active');
+                    }
+                }
+                
+                // Hide library info when viewing specific content
+                if (modelContent && modelContent.style.display === 'block') {
+                    libInfo.style.display = 'none';
+                    libButton.classList.remove('active');
+                }
             });
         });
         
@@ -374,8 +426,30 @@
             portRef.addEventListener('click', (e) => {
                 const portRefData = e.currentTarget.dataset.portRef;
                 const correspondingPortBtn = libContent.querySelector(`.yaml-library-button-port[data-port="${portRefData}"]`);
-                if (correspondingPortBtn) {
-                    correspondingPortBtn.click();
+                const portContent = libContent.querySelector(`.yaml-library-port-content[data-port="${portRefData}"]`);
+                
+                if (correspondingPortBtn && portContent) {
+                    // Force display without toggle - hide other ports only
+                    libContent.querySelectorAll('.yaml-library-port-content').forEach(el => {
+                        if (el.dataset.port !== portRefData) {
+                            el.style.display = 'none';
+                        }
+                    });
+                    libContent.querySelectorAll('.yaml-library-button-port').forEach(btn => {
+                        if (btn.dataset.port !== portRefData) {
+                            btn.classList.remove('active');
+                        }
+                    });
+                    
+                    // Always show the referenced port
+                    portContent.style.display = 'block';
+                    correspondingPortBtn.classList.add('active');
+                    
+                    // Hide library info
+                    libInfo.style.display = 'none';
+                    libButton.classList.remove('active');
+                    
+                    // Scroll to button
                     correspondingPortBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             });
@@ -442,12 +516,60 @@
     }
 
     /**
+     * Gets cached YAML data from localStorage
+     * @param {string} yamlUrl - URL of the YAML file
+     * @returns {string|null} Cached YAML string or null if not found
+     */
+    function getFromCache(yamlUrl) {
+        try {
+            const cacheKey = `yaml-loader-cache-${btoa(yamlUrl)}`;
+            const cached = localStorage.getItem(cacheKey);
+            if (cached) {
+                const data = JSON.parse(cached);
+                // Check if cache is still valid (24 hours)
+                if (Date.now() - data.timestamp < 24 * 60 * 60 * 1000) {
+                    return data.content;
+                } else {
+                    localStorage.removeItem(cacheKey);
+                }
+            }
+        } catch (error) {
+            console.warn('Cache read error:', error);
+        }
+        return null;
+    }
+
+    /**
+     * Saves YAML data to localStorage cache
+     * @param {string} yamlUrl - URL of the YAML file
+     * @param {string} content - YAML content to cache
+     */
+    function saveToCache(yamlUrl, content) {
+        try {
+            const cacheKey = `yaml-loader-cache-${btoa(yamlUrl)}`;
+            const data = {
+                content: content,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(cacheKey, JSON.stringify(data));
+        } catch (error) {
+            console.warn('Cache write error:', error);
+        }
+    }
+
+    /**
      * Loads and parses a YAML file from a URL
      * @param {string} yamlUrl - URL of the raw YAML file (raw.githubusercontent.com)
      * @returns {Promise} YAML string on success, throws error otherwise
      */
     async function fetchYAML(yamlUrl) {
         try {
+            // Try to get from cache first
+            const cached = getFromCache(yamlUrl);
+            if (cached) {
+                return cached;
+            }
+
             const response = await fetch(yamlUrl);
             
             if (!response.ok) {
@@ -459,6 +581,9 @@
             if (!text.trim()) {
                 throw new Error('The YAML file is empty.');
             }
+
+            // Save to cache
+            saveToCache(yamlUrl, text);
 
             return text;
         } catch (error) {
@@ -584,14 +709,48 @@
     }
 
     /**
+     * Displays a loading spinner in the container
+     * @param {HTMLElement} container - Target container
+     * @param {string} libraryName - Name of the library being loaded
+     */
+    function displayLoadingSpinner(container, libraryName) {
+        // Preserve the library selector if it exists
+        const selector = container.querySelector('.yaml-library-selector');
+        const selectorClone = selector ? selector.cloneNode(true) : null;
+        
+        container.innerHTML = '';
+        container.classList.add(CONFIG.LOADING_CLASS);
+        
+        // Re-add the selector if it existed
+        if (selectorClone) {
+            container.appendChild(selectorClone);
+        }
+        
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'yaml-loader-spinner-wrapper';
+        
+        const spinner = document.createElement('div');
+        spinner.className = 'yaml-loader-spinner';
+        
+        const text = document.createElement('p');
+        text.className = 'yaml-loader-loading-text';
+        text.textContent = `Loading ${libraryName} libraries...`;
+        
+        loadingDiv.appendChild(spinner);
+        loadingDiv.appendChild(text);
+        container.appendChild(loadingDiv);
+    }
+
+    /**
      * Main function: loads and displays YAML content
      * @param {HTMLElement} container - HTML container to display content
      * @param {string} yamlUrl - URL of the YAML file
      */
     async function loadYAML(container, yamlUrl) {
-        // Show loading state
-        container.classList.add(CONFIG.LOADING_CLASS);
-        container.innerHTML = '<p>Loading YAML file...</p>';
+        const libraryName = container.getAttribute('data-library-name') || 'YAML';
+        
+        // Show loading state with spinner
+        displayLoadingSpinner(container, libraryName);
 
         try {
             // Validate the URL
@@ -621,6 +780,9 @@
                 renderYAMLContent(data, container);
             }
 
+            // Reinitialize library nav buttons if they exist
+            initializeLibraryNavButtons();
+
         } catch (error) {
             container.classList.remove(CONFIG.LOADING_CLASS);
             displayError(container, error.message);
@@ -645,12 +807,49 @@
         });
     }
 
+    /**
+     * Initializes library navigation buttons
+     */
+    function initializeLibraryNavButtons() {
+        const navButtons = document.querySelectorAll('.yaml-library-nav-btn');
+        const mainContainer = document.getElementById('yaml-loader-main');
+
+        if (!mainContainer || navButtons.length === 0) {
+            return;
+        }
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const yamlUrl = button.getAttribute('data-url');
+                const libraryName = button.getAttribute('data-name');
+
+                // Update active button
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update container attributes and reload
+                mainContainer.setAttribute('data-yaml-url', yamlUrl);
+                mainContainer.setAttribute('data-library-name', libraryName);
+
+                // Load the new YAML
+                loadYAML(mainContainer, yamlUrl);
+
+                // Scroll to container
+                mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    }
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeYAMLLoaders);
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeYAMLLoaders();
+            initializeLibraryNavButtons();
+        });
     } else {
         // If script is loaded after DOM
         initializeYAMLLoaders();
+        initializeLibraryNavButtons();
     }
 
     // Expose loadYAML function globally for manual usage
