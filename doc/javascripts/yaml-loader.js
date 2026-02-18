@@ -239,7 +239,7 @@
                     portsDiv.style.marginTop = '15px';
                     
                     const portsTitle = document.createElement('strong');
-                    portsTitle.textContent = '� Ports:';
+                    portsTitle.textContent = '🔌 Ports:';
                     portsDiv.appendChild(portsTitle);
                     
                     const portsSpanDiv = document.createElement('div');
@@ -269,7 +269,7 @@
                     portFieldDefsDiv.style.marginTop = '15px';
                     
                     const portFieldDefsTitle = document.createElement('strong');
-                    portFieldDefsTitle.textContent = '� Port Field Definitions:';
+                    portFieldDefsTitle.textContent = '📑 Port Field Definitions:';
                     portFieldDefsDiv.appendChild(portFieldDefsTitle);
                     
                     const portFieldDefsList = document.createElement('ul');
@@ -293,7 +293,7 @@
                     paramsDiv.style.marginTop = '15px';
                     
                     const paramsTitle = document.createElement('strong');
-                    paramsTitle.textContent = '⚙️ Parameters:';
+                    paramsTitle.textContent = '📊 Parameters:';
                     paramsDiv.appendChild(paramsTitle);
                     
                     const paramsList = document.createElement('ul');
@@ -317,7 +317,7 @@
                     varsDiv.style.marginTop = '15px';
                     
                     const varsTitle = document.createElement('strong');
-                    varsTitle.textContent = '📊 Variables:';
+                    varsTitle.textContent = '🔢 Variables:';
                     varsDiv.appendChild(varsTitle);
                     
                     const varsList = document.createElement('ul');
