@@ -239,7 +239,7 @@
                     portsDiv.style.marginTop = '15px';
                     
                     const portsTitle = document.createElement('strong');
-                    portsTitle.textContent = '🔗 Ports:';
+                    portsTitle.textContent = '� Ports:';
                     portsDiv.appendChild(portsTitle);
                     
                     const portsSpanDiv = document.createElement('div');
@@ -269,7 +269,7 @@
                     portFieldDefsDiv.style.marginTop = '15px';
                     
                     const portFieldDefsTitle = document.createElement('strong');
-                    portFieldDefsTitle.textContent = '📌 Port Field Definitions:';
+                    portFieldDefsTitle.textContent = '� Port Field Definitions:';
                     portFieldDefsDiv.appendChild(portFieldDefsTitle);
                     
                     const portFieldDefsList = document.createElement('ul');
@@ -376,7 +376,7 @@
                     constraintsDiv.style.marginTop = '15px';
                     
                     const constraintsTitle = document.createElement('strong');
-                    constraintsTitle.textContent = '🔗 Constraints:';
+                    constraintsTitle.textContent = '⚖️ Constraints:';
                     constraintsDiv.appendChild(constraintsTitle);
                     
                     const constraintsList = document.createElement('ul');
@@ -405,7 +405,7 @@
                     constraintsDiv.style.marginTop = '15px';
                     
                     const constraintsTitle = document.createElement('strong');
-                    constraintsTitle.textContent = '🔗 Constraints:';
+                    constraintsTitle.textContent = '⚖️ Constraints:';
                     constraintsDiv.appendChild(constraintsTitle);
                     
                     const constraintsList = document.createElement('ul');
