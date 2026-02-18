@@ -264,6 +264,30 @@
                     modelContentDiv.appendChild(portsDiv);
                 }
                 
+                if (modelDef['port-field-definitions'] && Array.isArray(modelDef['port-field-definitions']) && modelDef['port-field-definitions'].length > 0) {
+                    const portFieldDefsDiv = document.createElement('div');
+                    portFieldDefsDiv.style.marginTop = '15px';
+                    
+                    const portFieldDefsTitle = document.createElement('strong');
+                    portFieldDefsTitle.textContent = '📌 Port Field Definitions:';
+                    portFieldDefsDiv.appendChild(portFieldDefsTitle);
+                    
+                    const portFieldDefsList = document.createElement('ul');
+                    modelDef['port-field-definitions'].forEach(pfd => {
+                        const portName = pfd.port || 'Unknown';
+                        const fieldName = pfd.field || 'Unknown';
+                        const definition = pfd.definition || 'Unknown';
+                        
+                        const pfdLi = document.createElement('li');
+                        const pfdCode = document.createElement('code');
+                        pfdCode.textContent = escapeHtml(portName + ' . ' + fieldName + ' = ' + definition);
+                        pfdLi.appendChild(pfdCode);
+                        portFieldDefsList.appendChild(pfdLi);
+                    });
+                    portFieldDefsDiv.appendChild(portFieldDefsList);
+                    modelContentDiv.appendChild(portFieldDefsDiv);
+                }
+                
                 if (modelDef.parameters && Array.isArray(modelDef.parameters) && modelDef.parameters.length > 0) {
                     const paramsDiv = document.createElement('div');
                     paramsDiv.style.marginTop = '15px';
@@ -318,6 +342,35 @@
                     modelContentDiv.appendChild(varsDiv);
                 }
                 
+                if (modelDef['objective-contributions'] && Array.isArray(modelDef['objective-contributions']) && modelDef['objective-contributions'].length > 0) {
+                    const objectiveDiv = document.createElement('div');
+                    objectiveDiv.style.marginTop = '15px';
+                    
+                    const objectiveTitle = document.createElement('strong');
+                    objectiveTitle.textContent = '🎯 Objective Contributions:';
+                    objectiveDiv.appendChild(objectiveTitle);
+                    
+                    const objectiveList = document.createElement('ul');
+                    modelDef['objective-contributions'].forEach(obj => {
+                        const objName = obj.id || 'Unknown';
+                        const objExpression = obj.expression || '';
+                        
+                        const objLi = document.createElement('li');
+                        const objCode = document.createElement('code');
+                        
+                        let objText = escapeHtml(objName);
+                        if (objExpression) {
+                            objText += ': ' + escapeHtml(objExpression);
+                        }
+                        
+                        objCode.textContent = objText;
+                        objLi.appendChild(objCode);
+                        objectiveList.appendChild(objLi);
+                    });
+                    objectiveDiv.appendChild(objectiveList);
+                    modelContentDiv.appendChild(objectiveDiv);
+                }
+                
                 if (modelDef['binding-constraints'] && Array.isArray(modelDef['binding-constraints']) && modelDef['binding-constraints'].length > 0) {
                     const constraintsDiv = document.createElement('div');
                     constraintsDiv.style.marginTop = '15px';
@@ -329,10 +382,46 @@
                     const constraintsList = document.createElement('ul');
                     modelDef['binding-constraints'].forEach(constraint => {
                         const constraintName = constraint.id || 'Unknown';
+                        const constraintExpression = constraint.expression || '';
                         
                         const constraintLi = document.createElement('li');
                         const constraintCode = document.createElement('code');
-                        constraintCode.textContent = escapeHtml(constraintName);
+                        
+                        let constraintText = escapeHtml(constraintName);
+                        if (constraintExpression) {
+                            constraintText += ': ' + escapeHtml(constraintExpression);
+                        }
+                        
+                        constraintCode.textContent = constraintText;
+                        constraintLi.appendChild(constraintCode);
+                        constraintsList.appendChild(constraintLi);
+                    });
+                    constraintsDiv.appendChild(constraintsList);
+                    modelContentDiv.appendChild(constraintsDiv);
+                }
+                
+                if (modelDef.constraints && Array.isArray(modelDef.constraints) && modelDef.constraints.length > 0) {
+                    const constraintsDiv = document.createElement('div');
+                    constraintsDiv.style.marginTop = '15px';
+                    
+                    const constraintsTitle = document.createElement('strong');
+                    constraintsTitle.textContent = '🔗 Constraints:';
+                    constraintsDiv.appendChild(constraintsTitle);
+                    
+                    const constraintsList = document.createElement('ul');
+                    modelDef.constraints.forEach(constraint => {
+                        const constraintName = constraint.id || 'Unknown';
+                        const constraintExpression = constraint.expression || '';
+                        
+                        const constraintLi = document.createElement('li');
+                        const constraintCode = document.createElement('code');
+                        
+                        let constraintText = escapeHtml(constraintName);
+                        if (constraintExpression) {
+                            constraintText += ': ' + escapeHtml(constraintExpression);
+                        }
+                        
+                        constraintCode.textContent = constraintText;
                         constraintLi.appendChild(constraintCode);
                         constraintsList.appendChild(constraintLi);
                     });
