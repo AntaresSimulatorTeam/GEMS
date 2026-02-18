@@ -19,7 +19,16 @@ The following table lists reference model libraries developed within projects th
 |PyPSA Models|Library of models available on [PyPSA](https://docs.pypsa.org/latest/home/installation/)|[pypsa_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/pypsa_models.yml)|
 
 
-<div class="yaml-loader-container" data-yaml-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml"></div>
+## Library Viewer
+
+<div class="yaml-loader-container" id="yaml-loader-main" data-yaml-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-library-name="Basic Model Library">
+  <div class="yaml-library-selector">
+    <button class="yaml-library-nav-btn active" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-name="Basic Model Library">Basic Model Library</button>
+    <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/andromede_models.yml" data-name="Andromede Models">Andromede Models</button>
+    <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/antares_legacy_models.yml" data-name="Antares Legacy Models">Antares Legacy Models</button>
+    <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/pypsa_models.yml" data-name="PyPSA Models">PyPSA Models</button>
+  </div>
+</div>
 
 ---
 **Navigation**
