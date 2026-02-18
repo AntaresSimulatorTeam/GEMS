@@ -280,9 +280,8 @@
                         
                         const paramLi = document.createElement('li');
                         const paramCode = document.createElement('code');
-                        paramCode.textContent = escapeHtml(paramName);
+                        paramCode.textContent = escapeHtml(paramName + timeDependent + scenarioDependent);
                         paramLi.appendChild(paramCode);
-                        paramLi.innerHTML += `${timeDependent}${scenarioDependent}`;
                         paramsList.appendChild(paramLi);
                     });
                     paramsDiv.appendChild(paramsList);
@@ -306,9 +305,8 @@
                         
                         const varLi = document.createElement('li');
                         const varCode = document.createElement('code');
-                        varCode.textContent = escapeHtml(varName);
+                        varCode.textContent = escapeHtml(varName + ': ' + varType + lowerBound + upperBound);
                         varLi.appendChild(varCode);
-                        varLi.innerHTML += `: ${escapeHtml(varType)}${lowerBound}${upperBound}`;
                         varsList.appendChild(varLi);
                     });
                     varsDiv.appendChild(varsList);
