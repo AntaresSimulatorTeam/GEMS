@@ -342,7 +342,8 @@
 }
 
 .yaml-library-button-port,
-.yaml-library-button-model {
+.yaml-library-button-model,
+.yaml-library-button-constraint {
     padding: 8px 12px;
     border: 1px solid #6c757d;
     background-color: #f8f9fa;
@@ -354,13 +355,15 @@
 }
 
 .yaml-library-button-port:hover,
-.yaml-library-button-model:hover {
+.yaml-library-button-model:hover,
+.yaml-library-button-constraint:hover {
     background-color: #e9ecef;
     border-color: #495057;
 }
 
 .yaml-library-button-port.active,
-.yaml-library-button-model.active {
+.yaml-library-button-model.active,
+.yaml-library-button-constraint.active {
     background-color: #0066cc;
     color: white;
     border-color: #0052a3;
@@ -389,7 +392,8 @@
 }
 
 .yaml-library-port-content,
-.yaml-library-model-content {
+.yaml-library-model-content,
+.yaml-library-constraint-content {
     padding: 15px;
     background: #f5f5f5;
     border-radius: 4px;
@@ -398,19 +402,25 @@
 }
 
 .yaml-library-port-content h4,
-.yaml-library-model-content h4 {
+.yaml-library-model-content h4,
+.yaml-library-constraint-content h4,
+.yaml-library-port-content h5,
+.yaml-library-model-content h5,
+.yaml-library-constraint-content h5 {
     margin: 0 0 12px 0;
     color: #0066cc;
     font-size: 16px;
 }
 
 .yaml-library-port-content p,
-.yaml-library-model-content p {
+.yaml-library-model-content p,
+.yaml-library-constraint-content p {  
     margin: 8px 0;
 }
 
 .yaml-library-port-content pre,
-.yaml-library-model-content pre {
+.yaml-library-model-content pre,
+.yaml-library-constraint-content pre {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -420,7 +430,8 @@
 }
 
 .yaml-library-port-content code,
-.yaml-library-model-content code {
+.yaml-library-model-content code,
+.yaml-library-constraint-content code {
     background-color: #f5f5f5;
     padding: 2px 6px;
     border-radius: 3px;
@@ -429,13 +440,15 @@
 }
 
 .yaml-library-port-content ul,
-.yaml-library-model-content ul {
+.yaml-library-model-content ul,
+.yaml-library-constraint-content ul {
     margin: 8px 0;
     padding-left: 20px;
 }
 
 .yaml-library-port-content li,
-.yaml-library-model-content li {
+.yaml-library-model-content li,
+.yaml-library-constraint-content li {
     margin: 6px 0;
     line-height: 1.5;
 }
@@ -461,6 +474,107 @@
 .yaml-port-reference em {
     font-style: italic;
     opacity: 0.8;
+}
+
+/* Variable reference buttons in expressions */
+.yaml-variable-reference-btn {
+    padding: 8px 12px;
+    border: 1px solid #6c757d;
+    background-color: #f8f9fa;
+    color: #495057;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    vertical-align: baseline;
+    margin: 0 2px;
+}
+
+.yaml-variable-reference-btn:hover {
+    background-color: #e9ecef;
+    border-color: #495057;
+}
+
+.yaml-variable-reference-btn:active {
+    transform: scale(0.98);
+}
+
+/* Variable popup/modal */
+.yaml-variable-popup {
+    position: fixed;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    min-width: 280px;
+    max-width: 400px;
+}
+
+.yaml-variable-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f5f5f5;
+}
+
+.yaml-variable-popup-header h4 {
+    margin: 0;
+    color: #0066cc;
+    font-size: 14px;
+}
+
+.yaml-variable-popup-close {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.yaml-variable-popup-close:hover {
+    color: #333;
+}
+
+.yaml-variable-popup-content {
+    padding: 10px 12px;
+    font-size: 12px;
+}
+
+.yaml-variable-popup-content p {
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+/* Parameter and Variable Item Buttons */
+.yaml-item-button {
+    background: none;
+    border: none;
+    padding: 4px 10px;
+    margin: 2px 0;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #0066cc;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.yaml-item-button:hover {
+    background-color: #e8f1ff;
+    border: 1px solid #0066cc;
+    padding: 4px 9px;
+}
+
+.yaml-item-button:active {
+    transform: scale(0.98);
 }
 
 /* Dark mode for library interface */
@@ -523,26 +637,33 @@
     }
 
     .yaml-library-port-content,
-    .yaml-library-model-content {
+    .yaml-library-model-content,
+    .yaml-library-constraint-content {
         background: #1e1e1e;
         border-left-color: #66b3ff;
         color: #e0e0e0;
     }
 
     .yaml-library-port-content h4,
-    .yaml-library-model-content h4 {
+    .yaml-library-model-content h4,
+    .yaml-library-constraint-content h4,
+    .yaml-library-port-content h5,
+    .yaml-library-model-content h5,
+    .yaml-library-constraint-content h5 {
         color: #66b3ff;
     }
 
     .yaml-library-port-content pre,
-    .yaml-library-model-content pre {
+    .yaml-library-model-content pre,
+    .yaml-library-constraint-content pre {
         background-color: #1a1a1a;
         border-color: #404040;
         color: #e0e0e0;
     }
 
     .yaml-library-port-content code,
-    .yaml-library-model-content code {
+    .yaml-library-model-content code,
+    .yaml-library-constraint-content code {
         background-color: #1a1a1a;
         color: #e0e0e0;
     }
@@ -556,5 +677,54 @@
         background-color: #0066cc;
         color: white;
         box-shadow: 0 2px 6px rgba(0, 102, 204, 0.3);
+    }
+}
+
+/* Dark mode for variable popup */
+@media (prefers-color-scheme: dark) {
+    .yaml-variable-popup {
+        background: #2d2d2d;
+        border-color: #404040;
+    }
+
+    .yaml-variable-popup-header {
+        border-bottom-color: #404040;
+        background-color: #1a1a1a;
+    }
+
+    .yaml-variable-popup-header h4 {
+        color: #66b3ff;
+    }
+
+    .yaml-variable-popup-close {
+        color: #999;
+    }
+
+    .yaml-variable-popup-close:hover {
+        color: #ddd;
+    }
+
+    .yaml-variable-popup-content {
+        color: #e0e0e0;
+    }
+
+    .yaml-variable-reference-btn {
+        background-color: #2d2d2d;
+        border-color: #505050;
+        color: #b0b0b0;
+    }
+
+    .yaml-variable-reference-btn:hover {
+        background-color: #3a3a3a;
+        border-color: #b0b0b0;
+    }
+
+    .yaml-item-button {
+        color: #66b3ff;
+    }
+
+    .yaml-item-button:hover {
+        background-color: rgba(102, 179, 255, 0.2);
+        border-color: #66b3ff;
     }
 }

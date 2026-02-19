@@ -39,6 +39,244 @@
     }
 
     /**
+     * Escapes special characters in regex pattern
+     * @param {string} text - Text to escape
+     * @returns {string} Escaped text
+     */
+    function escapeRegex(text) {
+        return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    /**
+     * Shows a popup with variable details
+     * @param {Object} variable - Variable definition object
+     * @param {HTMLElement} triggerElement - The element that triggered the popup
+     */
+    function showVariablePopup(variable, triggerElement) {
+        // Remove any existing popup
+        const existingPopup = document.querySelector('.yaml-variable-popup');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        const popup = document.createElement('div');
+        popup.className = 'yaml-variable-popup';
+
+        // Popup header
+        const header = document.createElement('div');
+        header.className = 'yaml-variable-popup-header';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'yaml-variable-popup-close';
+        closeBtn.textContent = '✕';
+        closeBtn.addEventListener('click', () => popup.remove());
+        header.appendChild(closeBtn);
+
+        popup.appendChild(header);
+
+        // Popup content
+        const content = document.createElement('div');
+        content.className = 'yaml-variable-popup-content';
+
+        // Create YAML-style display
+        const yamlContent = document.createElement('pre');
+        yamlContent.style.margin = '0';
+        yamlContent.style.fontFamily = 'monospace';
+        yamlContent.style.fontSize = '12px';
+        yamlContent.style.lineHeight = '1.4';
+        
+        let yamlText = `id: ${escapeHtml(variable.id || 'Unknown Variable')}`;
+        
+        if (variable['variable-type']) {
+            yamlText += `\nvariable-type: ${escapeHtml(variable['variable-type'])}`;
+        }
+        
+        if (variable['lower-bound'] !== undefined) {
+            yamlText += `\nlower-bound: ${escapeHtml(String(variable['lower-bound']))}`;
+        }
+        
+        if (variable['upper-bound'] !== undefined) {
+            yamlText += `\nupper-bound: ${escapeHtml(String(variable['upper-bound']))}`;
+        }
+        
+        if (variable['time-dependent']) {
+            yamlText += `\ntime-dependent: true`;
+        }
+        
+        if (variable['scenario-dependent']) {
+            yamlText += `\nscenario-dependent: true`;
+        }
+        
+        yamlContent.textContent = yamlText;
+        content.appendChild(yamlContent);
+
+        popup.appendChild(content);
+
+        document.body.appendChild(popup);
+
+        // Position popup near the trigger element
+        const rect = triggerElement.getBoundingClientRect();
+        popup.style.top = (rect.bottom + 5) + 'px';
+        popup.style.left = rect.left + 'px';
+
+        // Close popup when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', function closeOnOutside(e) {
+                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
+                    popup.remove();
+                    document.removeEventListener('click', closeOnOutside);
+                }
+            });
+        }, 0);
+    }
+
+    /**
+     * Shows a popup with parameter details
+     * @param {Object} param - Parameter definition object
+     * @param {HTMLElement} triggerElement - The element that triggered the popup
+     */
+    function showParameterPopup(param, triggerElement) {
+        // Remove any existing popup
+        const existingPopup = document.querySelector('.yaml-variable-popup');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        const popup = document.createElement('div');
+        popup.className = 'yaml-variable-popup';
+
+        // Popup header
+        const header = document.createElement('div');
+        header.className = 'yaml-variable-popup-header';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'yaml-variable-popup-close';
+        closeBtn.textContent = '✕';
+        closeBtn.addEventListener('click', () => popup.remove());
+        header.appendChild(closeBtn);
+
+        popup.appendChild(header);
+
+        // Popup content
+        const content = document.createElement('div');
+        content.className = 'yaml-variable-popup-content';
+
+        // Create YAML-style display
+        const yamlContent = document.createElement('pre');
+        yamlContent.style.margin = '0';
+        yamlContent.style.fontFamily = 'monospace';
+        yamlContent.style.fontSize = '12px';
+        yamlContent.style.lineHeight = '1.4';
+        
+        let yamlText = `id: ${escapeHtml(param.id || 'Unknown Parameter')}`;
+        
+        if (param['time-dependent']) {
+            yamlText += `\ntime-dependent: true`;
+        }
+        
+        if (param['scenario-dependent']) {
+            yamlText += `\nscenario-dependent: true`;
+        }
+        
+        yamlContent.textContent = yamlText;
+        content.appendChild(yamlContent);
+
+        popup.appendChild(content);
+
+        document.body.appendChild(popup);
+
+        // Position popup near the trigger element
+        const rect = triggerElement.getBoundingClientRect();
+        popup.style.top = (rect.bottom + 5) + 'px';
+        popup.style.left = rect.left + 'px';
+
+        // Close popup when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', function closeOnOutside(e) {
+                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
+                    popup.remove();
+                    document.removeEventListener('click', closeOnOutside);
+                }
+            });
+        }, 0);
+    }
+
+    /**
+     * Shows a popup with constraint details
+     * @param {Object} constraint - Constraint definition object
+     * @param {HTMLElement} triggerElement - The element that triggered the popup
+     */
+    function showConstraintPopup(constraint, triggerElement) {
+        // Remove any existing popup
+        const existingPopup = document.querySelector('.yaml-variable-popup');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        const popup = document.createElement('div');
+        popup.className = 'yaml-variable-popup';
+
+        // Popup header
+        const header = document.createElement('div');
+        header.className = 'yaml-variable-popup-header';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'yaml-variable-popup-close';
+        closeBtn.textContent = '✕';
+        closeBtn.addEventListener('click', () => popup.remove());
+        header.appendChild(closeBtn);
+
+        popup.appendChild(header);
+
+        // Popup content
+        const content = document.createElement('div');
+        content.className = 'yaml-variable-popup-content';
+
+        // Create YAML-style display
+        const yamlContent = document.createElement('pre');
+        yamlContent.style.margin = '0';
+        yamlContent.style.fontFamily = 'monospace';
+        yamlContent.style.fontSize = '12px';
+        yamlContent.style.lineHeight = '1.4';
+        
+        let yamlText = `id: ${escapeHtml(constraint.id || 'Unknown Constraint')}`;
+        
+        if (constraint.expression) {
+            yamlText += `\nexpression: ${escapeHtml(constraint.expression)}`;
+        }
+        
+        if (constraint['time-dependent']) {
+            yamlText += `\ntime-dependent: true`;
+        }
+        
+        if (constraint['scenario-dependent']) {
+            yamlText += `\nscenario-dependent: true`;
+        }
+        
+        yamlContent.textContent = yamlText;
+        content.appendChild(yamlContent);
+
+        popup.appendChild(content);
+
+        document.body.appendChild(popup);
+
+        // Position popup near the trigger element
+        const rect = triggerElement.getBoundingClientRect();
+        popup.style.top = (rect.bottom + 5) + 'px';
+        popup.style.left = rect.left + 'px';
+
+        // Close popup when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', function closeOnOutside(e) {
+                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
+                    popup.remove();
+                    document.removeEventListener('click', closeOnOutside);
+                }
+            });
+        }, 0);
+    }
+
+    /**
      * Renders a hierarchical interface for a GEMS library
      * @param {Object} data - Library file data
      * @param {HTMLElement} container - Target container
@@ -299,13 +537,19 @@
                     const paramsList = document.createElement('ul');
                     modelDef.parameters.forEach(param => {
                         const paramName = param.id || 'Unknown';
-                        const timeDependent = param['time-dependent'] ? ' [time-dependent]' : '';
-                        const scenarioDependent = param['scenario-dependent'] ? ' [scenario-dependent]' : '';
                         
                         const paramLi = document.createElement('li');
-                        const paramCode = document.createElement('code');
-                        paramCode.textContent = escapeHtml(paramName + timeDependent + scenarioDependent);
-                        paramLi.appendChild(paramCode);
+                        
+                        // Create button for parameter name
+                        const paramBtn = document.createElement('button');
+                        paramBtn.className = 'yaml-item-button';
+                        paramBtn.textContent = escapeHtml(paramName);
+                        
+                        paramBtn.addEventListener('click', (e) => {
+                            showParameterPopup(param, e.currentTarget);
+                        });
+                        
+                        paramLi.appendChild(paramBtn);
                         paramsList.appendChild(paramLi);
                     });
                     paramsDiv.appendChild(paramsList);
@@ -323,19 +567,19 @@
                     const varsList = document.createElement('ul');
                     modelDef.variables.forEach(variable => {
                         const varName = variable.id || 'Unknown';
-                        const varType = variable['variable-type'] || '';
-                        
-                        let boundsText = '';
-                        if (variable['lower-bound'] !== undefined || variable['upper-bound'] !== undefined) {
-                            const lower = variable['lower-bound'] !== undefined ? variable['lower-bound'] : '...';
-                            const upper = variable['upper-bound'] !== undefined ? variable['upper-bound'] : '...';
-                            boundsText = ` [${lower}, ${upper}]`;
-                        }
                         
                         const varLi = document.createElement('li');
-                        const varCode = document.createElement('code');
-                        varCode.textContent = escapeHtml(varName + ': ' + varType + boundsText);
-                        varLi.appendChild(varCode);
+                        
+                        // Create button for variable name
+                        const varBtn = document.createElement('button');
+                        varBtn.className = 'yaml-item-button';
+                        varBtn.textContent = escapeHtml(varName);
+                        
+                        varBtn.addEventListener('click', (e) => {
+                            showVariablePopup(variable, e.currentTarget);
+                        });
+                        
+                        varLi.appendChild(varBtn);
                         varsList.appendChild(varLi);
                     });
                     varsDiv.appendChild(varsList);
@@ -376,7 +620,7 @@
                     constraintsDiv.style.marginTop = '15px';
                     
                     const constraintsTitle = document.createElement('strong');
-                    constraintsTitle.textContent = '⚖️ Constraints:';
+                    constraintsTitle.textContent = '⚖️ Binding Constraints:';
                     constraintsDiv.appendChild(constraintsTitle);
                     
                     const constraintsList = document.createElement('ul');
@@ -385,15 +629,67 @@
                         const constraintExpression = constraint.expression || '';
                         
                         const constraintLi = document.createElement('li');
-                        const constraintCode = document.createElement('code');
+                        constraintLi.style.marginBottom = '12px';
                         
-                        let constraintText = escapeHtml(constraintName);
+                        // Constraint name
+                        const nameSpan = document.createElement('span');
+                        nameSpan.style.fontWeight = 'bold';
+                        nameSpan.textContent = escapeHtml(constraintName);
+                        constraintLi.appendChild(nameSpan);
+                        
+                        // Expression with clickable variables
                         if (constraintExpression) {
-                            constraintText += ': ' + escapeHtml(constraintExpression);
+                            const exprSpan = document.createElement('div');
+                            exprSpan.style.display = 'block';
+                            exprSpan.style.marginTop = '6px';
+                            exprSpan.style.fontFamily = 'monospace';
+                            exprSpan.style.padding = '8px';
+                            exprSpan.style.backgroundColor = '#f5f5f5';
+                            exprSpan.style.borderRadius = '4px';
+                            exprSpan.style.wordBreak = 'break-word';
+                            
+                            // Parse expression and create clickable variable buttons
+                            const exprText = constraintExpression;
+                            const variableNames = Array.from(
+                                new Set(modelDef.variables ? modelDef.variables.map(v => v.id).filter(Boolean) : [])
+                            );
+                            
+                            if (variableNames.length > 0) {
+                                // Sort by length descending to match longer names first
+                                variableNames.sort((a, b) => b.length - a.length);
+                                
+                                // Create regex pattern for all variable names
+                                const pattern = new RegExp(`\\b(${variableNames.map(escapeRegex).join('|')})\\b`, 'g');
+                                const parts = exprText.split(pattern);
+                                
+                                parts.forEach((part, idx) => {
+                                    if (variableNames.includes(part)) {
+                                        const varBtn = document.createElement('button');
+                                        varBtn.className = 'yaml-variable-reference-btn';
+                                        varBtn.textContent = escapeHtml(part);
+                                        varBtn.dataset.varName = part;
+                                        
+                                        // Add click listener immediately with proper closure
+                                        varBtn.addEventListener('click', (e) => {
+                                            const varName = e.currentTarget.dataset.varName;
+                                            const variable = modelDef.variables && modelDef.variables.find(v => v.id === varName);
+                                            if (variable) {
+                                                showVariablePopup(variable, e.currentTarget);
+                                            }
+                                        });
+                                        
+                                        exprSpan.appendChild(varBtn);
+                                    } else {
+                                        exprSpan.appendChild(document.createTextNode(escapeHtml(part)));
+                                    }
+                                });
+                            } else {
+                                exprSpan.textContent = escapeHtml(exprText);
+                            }
+                            
+                            constraintLi.appendChild(exprSpan);
                         }
                         
-                        constraintCode.textContent = constraintText;
-                        constraintLi.appendChild(constraintCode);
                         constraintsList.appendChild(constraintLi);
                     });
                     constraintsDiv.appendChild(constraintsList);
@@ -414,15 +710,67 @@
                         const constraintExpression = constraint.expression || '';
                         
                         const constraintLi = document.createElement('li');
-                        const constraintCode = document.createElement('code');
+                        constraintLi.style.marginBottom = '12px';
                         
-                        let constraintText = escapeHtml(constraintName);
+                        // Constraint name
+                        const nameSpan = document.createElement('span');
+                        nameSpan.style.fontWeight = 'bold';
+                        nameSpan.textContent = escapeHtml(constraintName);
+                        constraintLi.appendChild(nameSpan);
+                        
+                        // Expression with clickable variables
                         if (constraintExpression) {
-                            constraintText += ': ' + escapeHtml(constraintExpression);
+                            const exprSpan = document.createElement('div');
+                            exprSpan.style.display = 'block';
+                            exprSpan.style.marginTop = '6px';
+                            exprSpan.style.fontFamily = 'monospace';
+                            exprSpan.style.padding = '8px';
+                            exprSpan.style.backgroundColor = '#f5f5f5';
+                            exprSpan.style.borderRadius = '4px';
+                            exprSpan.style.wordBreak = 'break-word';
+                            
+                            // Parse expression and create clickable variable buttons
+                            const exprText = constraintExpression;
+                            const variableNames = Array.from(
+                                new Set(modelDef.variables ? modelDef.variables.map(v => v.id).filter(Boolean) : [])
+                            );
+                            
+                            if (variableNames.length > 0) {
+                                // Sort by length descending to match longer names first
+                                variableNames.sort((a, b) => b.length - a.length);
+                                
+                                // Create regex pattern for all variable names
+                                const pattern = new RegExp(`\\b(${variableNames.map(escapeRegex).join('|')})\\b`, 'g');
+                                const parts = exprText.split(pattern);
+                                
+                                parts.forEach((part, idx) => {
+                                    if (variableNames.includes(part)) {
+                                        const varBtn = document.createElement('button');
+                                        varBtn.className = 'yaml-variable-reference-btn';
+                                        varBtn.textContent = escapeHtml(part);
+                                        varBtn.dataset.varName = part;
+                                        
+                                        // Add click listener immediately with proper closure
+                                        varBtn.addEventListener('click', (e) => {
+                                            const varName = e.currentTarget.dataset.varName;
+                                            const variable = modelDef.variables && modelDef.variables.find(v => v.id === varName);
+                                            if (variable) {
+                                                showVariablePopup(variable, e.currentTarget);
+                                            }
+                                        });
+                                        
+                                        exprSpan.appendChild(varBtn);
+                                    } else {
+                                        exprSpan.appendChild(document.createTextNode(escapeHtml(part)));
+                                    }
+                                });
+                            } else {
+                                exprSpan.textContent = escapeHtml(exprText);
+                            }
+                            
+                            constraintLi.appendChild(exprSpan);
                         }
                         
-                        constraintCode.textContent = constraintText;
-                        constraintLi.appendChild(constraintCode);
                         constraintsList.appendChild(constraintLi);
                     });
                     constraintsDiv.appendChild(constraintsList);
