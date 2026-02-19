@@ -21,6 +21,10 @@ The following table lists reference model libraries developed within projects th
 
 ## Library Viewer
 
+Explore how each library is written by navigating in the next interactive window. Click on its different elements for getting a good overview of its structure.
+
+*As the visualization is automatically updated with the newest libraries' version, the loading can last a few seconds*
+
 <div class="yaml-loader-container" id="yaml-loader-main" data-yaml-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-library-name="Basic Model Library">
   <div class="yaml-library-selector">
     <button class="yaml-library-nav-btn active" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-name="Basic Model Library">Basic Model Library</button>
