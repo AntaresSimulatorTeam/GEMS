@@ -15,19 +15,19 @@ catalog:
   taxonomy: my_taxonomy
 
   location:
-    taxonomy-group: balance
+    taxonomy-category: balance
 
   metrics-definition: 
 
   - id: OV.COST
     terms:
-      - taxonomy-group: balance
+      - taxonomy-category: balance
         output-id: imbalance_cost
         location-ports: null 
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: proportional_cost
         location-ports: balance_port
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: non_proportional_cost
         location-ports: balance_port
     terms-operator: sum
@@ -36,10 +36,10 @@ catalog:
 
   - id: OP.COST
     terms:
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: proportional_cost
         location-ports: balance_port
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: non_proportional_cost
         location-ports: balance_port
     terms-operator: sum
@@ -47,7 +47,7 @@ catalog:
 
   - id: MRG.PRICE
     terms:
-      - taxonomy-group: balance
+      - taxonomy-category: balance
         output-id: marginal_price
         location-ports: null
     terms-operator: avg
@@ -55,7 +55,7 @@ catalog:
 
   - id: CO2.EMIS
     terms:
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: co2_emmisions
         location-ports: balance_port
     terms-operator: sum
@@ -63,7 +63,7 @@ catalog:
 
   - id: LOAD
     terms:
-      - taxonomy-group: consumption
+      - taxonomy-category: consumption
         output-id: area_load
         location-ports: balance_port
     terms-operator: sum
@@ -71,7 +71,7 @@ catalog:
 
   - id: DTG.BY.TECHNOLOGY
     terms:
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: balance_port.flow
         location-ports: balance_port
     terms-operator: sum
@@ -81,10 +81,10 @@ catalog:
 
   - id: BALANCE
     terms:
-      - taxonomy-group: exchange
+      - taxonomy-category: exchange
         output-id: out_port.flow
         location-ports: out_port
-      - taxonomy-group: exchange
+      - taxonomy-category: exchange
         output-id: in_port.flow
         location-ports: in_port
     terms-operator: sum
@@ -92,7 +92,7 @@ catalog:
 
   - id: RES.GENERATION
     terms:
-      - taxonomy-group: renewable_production
+      - taxonomy-category: renewable_production
         output-id: balance_port.flow
         location-ports: balance_port
     breakdown:
@@ -102,7 +102,7 @@ catalog:
 
   - id: STS.INJECTION
     terms:
-      - taxonomy-group: storage
+      - taxonomy-category: storage
         output-id: p_injection # Is this feasible?
         location-ports: injection_port
     breakdown:
@@ -112,7 +112,7 @@ catalog:
 
   - id: STS.WITHDRAWAL
     terms:
-      - taxonomy-group: storage
+      - taxonomy-category: storage
         output-id: p_withdrawal
         location-ports: injection_port
     breakdown:
@@ -122,7 +122,7 @@ catalog:
 
   - id: STS.LEVEL
     terms:
-      - taxonomy-group: storage
+      - taxonomy-category: storage
         output-id: level
         location-ports: injection_port
     breakdown:
@@ -132,7 +132,7 @@ catalog:
 
   - id: STS.INJECTION
     terms:
-      - taxonomy-group: storage
+      - taxonomy-category: storage
         output-id: p_injection
         location-ports: injection_port
     breakdown:
@@ -142,7 +142,7 @@ catalog:
 
   - id: STS.WITHDRAWAL
     terms:
-      - taxonomy-group: storage
+      - taxonomy-category: storage
         output-id: p_withdrawal
         location-ports: injection_port
     breakdown:
@@ -152,7 +152,7 @@ catalog:
 
   - id: STS.LEVEL
     terms:
-      - taxonomy-group: storage
+      - taxonomy-category: storage
         output-id: level
         location-ports: injection_port
     breakdown:
@@ -162,7 +162,7 @@ catalog:
 
   - id: UNSP.ENRG
     terms:
-      - taxonomy-group: balance
+      - taxonomy-category: balance
         output-id: unsupplied_energy
         location-ports: null
     terms-operator: sum
@@ -170,7 +170,7 @@ catalog:
 
   - id: SPIL.ENRG
     terms:
-      - taxonomy-group: balance
+      - taxonomy-category: balance
         output-id: spillage
         location-ports: null
     terms-operator: sum
@@ -178,7 +178,7 @@ catalog:
 
   - id: NODU.BY.AREA # Not quite sure this is right approach ?
     terms:
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: nb_units_on
         location-ports: balance_port
     terms-operator: sum
@@ -186,7 +186,7 @@ catalog:
 
   - id: NP.COST.BY.AREA # Not quite sure this is right approach ?
     terms:
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: non_proportional_cost
         location-ports: balance_port
     terms-operator: sum
@@ -194,7 +194,7 @@ catalog:
 
   - id: AVL.DTG # Can i directly use parameters?
     terms:
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: p_max_cluster
         location-ports: balance_port
     terms-operator: sum
@@ -202,7 +202,7 @@ catalog:
 
   - id: DTG.MRG
     terms:
-      - taxonomy-group: dispatchable_production
+      - taxonomy-category: dispatchable_production
         output-id: distpachable_margin
         location-ports: balance_port
     terms-operator: sum
@@ -210,7 +210,7 @@ catalog:
 
   - id: LOLD
     terms:
-      - taxonomy-group: balance
+      - taxonomy-category: balance
         output-id: unsupplied_energy_duration
         location-ports: null
     terms-operator: sum
@@ -218,7 +218,7 @@ catalog:
 
   - id: LOLP
     terms:
-      - taxonomy-group: balance
+      - taxonomy-category: balance
         output-id: unsupplied_energy_probability
         location-ports: null
     terms-operator: sum
@@ -226,7 +226,7 @@ catalog:
 
   - id: NP.CAP
     terms:
-      - taxonomy-group: balance
+      - taxonomy-category: balance
         output-id: near_price_capacity
         location-ports: null
     terms-operator: sum
@@ -234,7 +234,7 @@ catalog:
 
   - id: ROW.BAL
     terms:
-      - taxonomy-group: fatal_production
+      - taxonomy-category: fatal_production
         output-id: row
         location-ports: null
     breakdown:
@@ -244,7 +244,7 @@ catalog:
 
   - id: MISC.GEN
     terms:
-      - taxonomy-group: fatal_production
+      - taxonomy-category: fatal_production
         output-id: generation
         location-ports: null
     breakdown:
@@ -256,7 +256,7 @@ catalog:
 
   - id: H.STOR
     terms:
-      - taxonomy-group: hydro_production
+      - taxonomy-category: hydro_production
         output-id: hydro_generation
         location-ports: null
     terms-operator: sum
@@ -264,7 +264,7 @@ catalog:
 
   - id: H.PUMP
     terms:
-      - taxonomy-group: hydro_production
+      - taxonomy-category: hydro_production
         output-id: hydro_pump
         location-ports: null
     terms-operator: sum
@@ -272,7 +272,7 @@ catalog:
 
   - id: H.OVFL
     terms:
-      - taxonomy-group: hydro_production
+      - taxonomy-category: hydro_production
         output-id: hydro_overflow
         location-ports: null
     terms-operator: sum
@@ -280,7 +280,7 @@ catalog:
 
   - id: H.VAL
     terms:
-      - taxonomy-group: hydro_production
+      - taxonomy-category: hydro_production
         output-id: hydro_value
         location-ports: null
     terms-operator: sum
@@ -288,7 +288,7 @@ catalog:
 
   - id: H.COST
     terms:
-      - taxonomy-group: hydro_production
+      - taxonomy-category: hydro_production
         output-id: hydro_cost
         location-ports: null
     terms-operator: sum
