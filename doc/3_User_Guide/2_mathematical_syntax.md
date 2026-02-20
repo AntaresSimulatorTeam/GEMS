@@ -271,7 +271,7 @@ expression: min(variable_1, parameter_1)
 
 ### Floor/Ceil Operator
 
-These unary operators `floor(X)` and `ceil(X)` are used within any expression, but with following restrictions.
+These unary operators `floor(X)` and `ceil(X)` are used within any expression, but with the following restrictions:
 
   When `X` is time-dependent (a parameter, variable, or port field with time dimension), the operators apply pointwise on the underlying time-series. 
 
@@ -279,9 +279,9 @@ These unary operators `floor(X)` and `ceil(X)` are used within any expression, b
 `floor` or `ceil` must not depend on decision variables
 
 ```yaml
-expression : floor(parameter_1 * 2)
+expression: floor(parameter_1 * 2)
 
-expression : ceil(parameter_1 / 2)
+expression: ceil(parameter_1 / 2)
 ```
 
 ---
