@@ -280,7 +280,70 @@
     }
 
     /**
-     * Renders a hierarchical interface for a GEMS library
+     * Shows a popup with port field definition details
+     * @param {Object} pfd - Port field definition object
+     * @param {HTMLElement} triggerElement - The element that triggered the popup
+     */
+    function showPortFieldDefPopup(pfd, triggerElement) {
+        // Remove any existing popup
+        const existingPopup = document.querySelector('.yaml-variable-popup');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        const popup = document.createElement('div');
+        popup.className = 'yaml-variable-popup';
+
+        // Popup header
+        const header = document.createElement('div');
+        header.className = 'yaml-variable-popup-header';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'yaml-variable-popup-close';
+        closeBtn.textContent = '✕';
+        closeBtn.addEventListener('click', () => popup.remove());
+        header.appendChild(closeBtn);
+
+        popup.appendChild(header);
+
+        // Popup content
+        const content = document.createElement('div');
+        content.className = 'yaml-variable-popup-content';
+
+        // Create YAML-style display
+        const yamlContent = document.createElement('pre');
+        yamlContent.style.margin = '0';
+        yamlContent.style.fontFamily = 'Arial';
+        yamlContent.style.fontSize = '13px';
+        yamlContent.style.lineHeight = '1.5';
+        
+        let yamlText = `${escapeHtml(pfd.port || 'Unknown')}.${escapeHtml(pfd.field || 'Unknown')} = ${escapeHtml(pfd.definition || 'Unknown')}`;
+        
+        yamlContent.textContent = yamlText;
+        content.appendChild(yamlContent);
+
+        popup.appendChild(content);
+
+        document.body.appendChild(popup);
+
+        // Position popup near the trigger element (fixed in document, not viewport)
+        popup.style.position = 'absolute';
+        const rect = triggerElement.getBoundingClientRect();
+        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+        popup.style.left = (rect.left + window.scrollX) + 'px';
+
+        // Close popup when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', function closeOnOutside(e) {
+                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
+                    popup.remove();
+                    document.removeEventListener('click', closeOnOutside);
+                }
+            });
+        }, 0);
+    }
+    /**
+     * Renders the GEMS library structure
      * @param {Object} data - Library file data
      * @param {HTMLElement} container - Target container
      */
@@ -516,13 +579,20 @@
                     const portFieldDefsList = document.createElement('ul');
                     modelDef['port-field-definitions'].forEach(pfd => {
                         const portName = pfd.port || 'Unknown';
-                        const fieldName = pfd.field || 'Unknown';
-                        const definition = pfd.definition || 'Unknown';
                         
                         const pfdLi = document.createElement('li');
-                        const pfdCode = document.createElement('code');
-                        pfdCode.textContent = escapeHtml(portName + ' . ' + fieldName + ' = ' + definition);
-                        pfdLi.appendChild(pfdCode);
+                        
+                        // Create button for port field definition
+                        const pfdBtn = document.createElement('button');
+                        pfdBtn.className = 'yaml-item-button';
+                        pfdBtn.textContent = escapeHtml(portName);
+                        pfdBtn.style.fontFamily = 'Arial';
+                        
+                        pfdBtn.addEventListener('click', (e) => {
+                            showPortFieldDefPopup(pfd, e.currentTarget);
+                        });
+                        
+                        pfdLi.appendChild(pfdBtn);
                         portFieldDefsList.appendChild(pfdLi);
                     });
                     portFieldDefsDiv.appendChild(portFieldDefsList);
