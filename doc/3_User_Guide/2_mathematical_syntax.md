@@ -269,7 +269,7 @@ expression: parameter_1 < max(parameter_2, 100)
 expression: min(variable_1, parameter_1)
 ```
 
-### Floor/Ceil Operator
+### Floor/Ceil Operators
 
 These unary operators `floor(X)` and `ceil(X)` are used within any expression, but with the following restrictions:
 
