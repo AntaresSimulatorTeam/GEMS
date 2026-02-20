@@ -510,6 +510,7 @@
     z-index: 10000;
     min-width: 280px;
     max-width: 400px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
 }
 
 .yaml-variable-popup-header {
@@ -543,38 +544,52 @@
 
 .yaml-variable-popup-content {
     padding: 10px 12px;
-    font-size: 12px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    line-height: 1.5;
+    color: #333;
 }
 
 .yaml-variable-popup-content p {
     margin: 6px 0;
-    line-height: 1.4;
+    line-height: 1.5;
+}
+
+.yaml-variable-popup-content pre {
+    background-color: #f9f9f9;
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #e8e8e8;
 }
 
 /* Parameter and Variable Item Buttons */
 .yaml-item-button {
-    background: none;
-    border: none;
-    padding: 4px 10px;
-    margin: 2px 0;
+    font-family: monospace;
+    padding: 4px 8px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    border: 1px solid #ccc;
     cursor: pointer;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    color: #0066cc;
-    border-radius: 3px;
     transition: all 0.2s ease;
-    text-decoration: none;
+    font-size: 14px;
+    color: #333333;
     display: inline-block;
 }
 
 .yaml-item-button:hover {
-    background-color: #e8f1ff;
-    border: 1px solid #0066cc;
-    padding: 4px 9px;
+    background-color: #e8e8e8;
+    border-color: #999;
 }
 
 .yaml-item-button:active {
     transform: scale(0.98);
+}
+
+/* Smaller variant for constraint variable references */
+.yaml-item-button.yaml-constraint-var {
+    padding: 2px 6px;
+    font-size: 0.9em;
+    margin-right: 2px;
 }
 
 /* Dark mode for library interface */
@@ -685,6 +700,7 @@
     .yaml-variable-popup {
         background: #2d2d2d;
         border-color: #404040;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     }
 
     .yaml-variable-popup-header {
@@ -706,6 +722,13 @@
 
     .yaml-variable-popup-content {
         color: #e0e0e0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    }
+
+    .yaml-variable-popup-content pre {
+        background-color: #2a2a2a;
+        border-color: #404040;
+        color: #e0e0e0;
     }
 
     .yaml-variable-reference-btn {
@@ -720,11 +743,24 @@
     }
 
     .yaml-item-button {
-        color: #66b3ff;
+        color: #e0e0e0;
+        background-color: #2a2a2a;
+        border-color: #444;
     }
 
     .yaml-item-button:hover {
-        background-color: rgba(102, 179, 255, 0.2);
-        border-color: #66b3ff;
+        background-color: #333;
+        border-color: #666;
+    }
+
+    .yaml-item-button.yaml-constraint-var {
+        color: #e0e0e0;
+        background-color: #2a2a2a;
+        border-color: #444;
+    }
+
+    .yaml-item-button.yaml-constraint-var:hover {
+        background-color: #333;
+        border-color: #666;
     }
 }
