@@ -5,13 +5,13 @@ catalog:
   taxonomy: my_taxonomy
 
   location:
-    taxonomy-category: exchange
+    taxonomy-category: link
 
   metrics-definition: 
 
   - id: FLOW LIN.
     terms:
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: flow
         location-ports: null 
     terms-operator: sum
@@ -19,7 +19,7 @@ catalog:
 
   - id: CONG.FEE.ABS
     terms:
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: congestion_fee_abs
         location-ports: null 
     terms-operator: sum
@@ -27,7 +27,7 @@ catalog:
 
   - id: CONG.FEE.ALG
     terms:
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: congestion_fee_alg
         location-ports: null 
     terms-operator: sum
@@ -35,7 +35,7 @@ catalog:
 
   - id: MRG.COST
     terms:
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: marginal_cost
         location-ports: null 
     terms-operator: sum
@@ -43,7 +43,7 @@ catalog:
 
   - id: CONG.PROB.DIR
     terms:
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: congestion_prob_dir
         location-ports: null 
     terms-operator: sum
@@ -51,7 +51,7 @@ catalog:
 
   - id: CONG.PROB.INDIR
     terms:
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: congestion_prob_indir
         location-ports: null 
     terms-operator: sum
@@ -59,7 +59,7 @@ catalog:
 
   - id: HURD.COST
     terms:
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: hurdle_cost
         location-ports: null 
     terms-operator: sum
