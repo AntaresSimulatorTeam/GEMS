@@ -81,9 +81,9 @@
         // Create YAML-style display
         const yamlContent = document.createElement('pre');
         yamlContent.style.margin = '0';
-        yamlContent.style.fontFamily = 'monospace';
-        yamlContent.style.fontSize = '12px';
-        yamlContent.style.lineHeight = '1.4';
+        yamlContent.style.fontFamily = 'Arial';
+        yamlContent.style.fontSize = '13px';
+        yamlContent.style.lineHeight = '1.5';
         
         let yamlText = `id: ${escapeHtml(variable.id || 'Unknown Variable')}`;
         
@@ -114,10 +114,11 @@
 
         document.body.appendChild(popup);
 
-        // Position popup near the trigger element
+        // Position popup near the trigger element (fixed in document, not viewport)
+        popup.style.position = 'absolute';
         const rect = triggerElement.getBoundingClientRect();
-        popup.style.top = (rect.bottom + 5) + 'px';
-        popup.style.left = rect.left + 'px';
+        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+        popup.style.left = (rect.left + window.scrollX) + 'px';
 
         // Close popup when clicking outside
         setTimeout(() => {
@@ -164,9 +165,9 @@
         // Create YAML-style display
         const yamlContent = document.createElement('pre');
         yamlContent.style.margin = '0';
-        yamlContent.style.fontFamily = 'monospace';
-        yamlContent.style.fontSize = '12px';
-        yamlContent.style.lineHeight = '1.4';
+        yamlContent.style.fontFamily = 'Arial';
+        yamlContent.style.fontSize = '13px';
+        yamlContent.style.lineHeight = '1.5';
         
         let yamlText = `id: ${escapeHtml(param.id || 'Unknown Parameter')}`;
         
@@ -185,10 +186,11 @@
 
         document.body.appendChild(popup);
 
-        // Position popup near the trigger element
+        // Position popup near the trigger element (fixed in document, not viewport)
+        popup.style.position = 'absolute';
         const rect = triggerElement.getBoundingClientRect();
-        popup.style.top = (rect.bottom + 5) + 'px';
-        popup.style.left = rect.left + 'px';
+        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+        popup.style.left = (rect.left + window.scrollX) + 'px';
 
         // Close popup when clicking outside
         setTimeout(() => {
@@ -235,7 +237,7 @@
         // Create YAML-style display
         const yamlContent = document.createElement('pre');
         yamlContent.style.margin = '0';
-        yamlContent.style.fontFamily = 'monospace';
+        yamlContent.style.fontFamily = 'Arial';
         yamlContent.style.fontSize = '12px';
         yamlContent.style.lineHeight = '1.4';
         
@@ -260,10 +262,11 @@
 
         document.body.appendChild(popup);
 
-        // Position popup near the trigger element
+        // Position popup near the trigger element (fixed in document, not viewport)
+        popup.style.position = 'absolute';
         const rect = triggerElement.getBoundingClientRect();
-        popup.style.top = (rect.bottom + 5) + 'px';
-        popup.style.left = rect.left + 'px';
+        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+        popup.style.left = (rect.left + window.scrollX) + 'px';
 
         // Close popup when clicking outside
         setTimeout(() => {
@@ -665,7 +668,7 @@
                                 parts.forEach((part, idx) => {
                                     if (variableNames.includes(part)) {
                                         const varBtn = document.createElement('button');
-                                        varBtn.className = 'yaml-variable-reference-btn';
+                                        varBtn.className = 'yaml-item-button yaml-constraint-var';
                                         varBtn.textContent = escapeHtml(part);
                                         varBtn.dataset.varName = part;
                                         
@@ -746,7 +749,7 @@
                                 parts.forEach((part, idx) => {
                                     if (variableNames.includes(part)) {
                                         const varBtn = document.createElement('button');
-                                        varBtn.className = 'yaml-variable-reference-btn';
+                                        varBtn.className = 'yaml-item-button yaml-constraint-var';
                                         varBtn.textContent = escapeHtml(part);
                                         varBtn.dataset.varName = part;
                                         
