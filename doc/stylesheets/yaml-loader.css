@@ -37,7 +37,7 @@
     color: #0066cc;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease;
     white-space: nowrap;
@@ -282,7 +282,7 @@
     border: 1px solid #0066cc;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -350,7 +350,7 @@
     color: #495057;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
     transition: all 0.2s ease;
 }
 
@@ -588,7 +588,7 @@
 /* Smaller variant for constraint variable references */
 .yaml-item-button.yaml-constraint-var {
     padding: 2px 6px;
-    font-size: 0.9em;
+    font-size: 14px;
     margin-right: 2px;
 }
 
