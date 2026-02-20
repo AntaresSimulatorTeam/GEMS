@@ -845,7 +845,7 @@
         
         // === EVENT LISTENERS ===
         
-        // Clic sur bouton library (reset everything)
+        // Click on library button (reset everything)
         libButton.addEventListener('click', () => {
             libContent.querySelectorAll('.yaml-library-port-content').forEach(el => el.style.display = 'none');
             libContent.querySelectorAll('.yaml-library-model-content').forEach(el => el.style.display = 'none');
