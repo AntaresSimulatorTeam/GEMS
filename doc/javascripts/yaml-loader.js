@@ -238,7 +238,7 @@
         const yamlContent = document.createElement('pre');
         yamlContent.style.margin = '0';
         yamlContent.style.fontFamily = 'Arial';
-        yamlContent.style.fontSize = '12px';
+        yamlContent.style.fontSize = '13px';
         yamlContent.style.lineHeight = '1.4';
         
         let yamlText = `id: ${escapeHtml(constraint.id || 'Unknown Constraint')}`;
@@ -586,7 +586,6 @@
                         const pfdBtn = document.createElement('button');
                         pfdBtn.className = 'yaml-item-button';
                         pfdBtn.textContent = escapeHtml(portName);
-                        pfdBtn.style.fontFamily = 'Arial';
                         
                         pfdBtn.addEventListener('click', (e) => {
                             showPortFieldDefPopup(pfd, e.currentTarget);
