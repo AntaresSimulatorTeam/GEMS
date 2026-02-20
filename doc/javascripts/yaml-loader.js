@@ -416,9 +416,7 @@
         if (lib['port-types'] && Array.isArray(lib['port-types']) && lib['port-types'].length > 0) {
             // Title
             const portTitle = document.createElement('h3');
-            portTitle.style.marginTop = '20px';
-            portTitle.style.borderBottom = '2px solid #0066cc';
-            portTitle.style.paddingBottom = '10px';
+            portTitle.className = 'yaml-section-title';
             portTitle.textContent = '🔌 Port Types';
             libContent.appendChild(portTitle);
             
@@ -490,10 +488,9 @@
         // === LEVEL 2: MODELS ===
         if (lib.models && Array.isArray(lib.models) && lib.models.length > 0) {
             // Title
+            // Title
             const modelTitle = document.createElement('h3');
-            modelTitle.style.marginTop = '20px';
-            modelTitle.style.borderBottom = '2px solid #0066cc';
-            modelTitle.style.paddingBottom = '10px';
+            modelTitle.className = 'yaml-section-title';
             modelTitle.textContent = '🔧 Models';
             libContent.appendChild(modelTitle);
             
@@ -712,13 +709,7 @@
                         // Expression with clickable variables
                         if (constraintExpression) {
                             const exprSpan = document.createElement('div');
-                            exprSpan.style.display = 'block';
-                            exprSpan.style.marginTop = '6px';
-                            exprSpan.style.fontFamily = 'Arial';
-                            exprSpan.style.padding = '8px';
-                            exprSpan.style.backgroundColor = '#f5f5f5';
-                            exprSpan.style.borderRadius = '4px';
-                            exprSpan.style.wordBreak = 'break-word';
+                            exprSpan.className = 'yaml-constraint-expression';
                             
                             // Parse expression and create clickable variable buttons
                             const exprText = constraintExpression;
@@ -786,20 +777,14 @@
                         
                         // Constraint name
                         const nameSpan = document.createElement('span');
-                        nameSpan.style.fontWeight = 'normal';
+                        nameSpan.style.fontWeight = 'bold';
                         nameSpan.textContent = escapeHtml(constraintName);
                         constraintLi.appendChild(nameSpan);
                         
                         // Expression with clickable variables
                         if (constraintExpression) {
                             const exprSpan = document.createElement('div');
-                            exprSpan.style.display = 'block';
-                            exprSpan.style.marginTop = '6px';
-                            exprSpan.style.fontFamily = 'Arial';
-                            exprSpan.style.padding = '8px';
-                            exprSpan.style.backgroundColor = '#f5f5f5';
-                            exprSpan.style.borderRadius = '4px';
-                            exprSpan.style.wordBreak = 'break-word';
+                            exprSpan.className = 'yaml-constraint-expression';
                             
                             // Parse expression and create clickable variable buttons
                             const exprText = constraintExpression;
