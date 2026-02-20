@@ -645,7 +645,7 @@
                             const exprSpan = document.createElement('div');
                             exprSpan.style.display = 'block';
                             exprSpan.style.marginTop = '6px';
-                            exprSpan.style.fontFamily = 'monospace';
+                            exprSpan.style.fontFamily = 'Arial';
                             exprSpan.style.padding = '8px';
                             exprSpan.style.backgroundColor = '#f5f5f5';
                             exprSpan.style.borderRadius = '4px';
@@ -726,7 +726,7 @@
                             const exprSpan = document.createElement('div');
                             exprSpan.style.display = 'block';
                             exprSpan.style.marginTop = '6px';
-                            exprSpan.style.fontFamily = 'monospace';
+                            exprSpan.style.fontFamily = 'Arial';
                             exprSpan.style.padding = '8px';
                             exprSpan.style.backgroundColor = '#f5f5f5';
                             exprSpan.style.borderRadius = '4px';
