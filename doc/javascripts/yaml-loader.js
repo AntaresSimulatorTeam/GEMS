@@ -717,7 +717,7 @@
                         
                         // Constraint name
                         const nameSpan = document.createElement('span');
-                        nameSpan.style.fontWeight = 'bold';
+                        nameSpan.style.fontWeight = 'normal';
                         nameSpan.textContent = escapeHtml(constraintName);
                         constraintLi.appendChild(nameSpan);
                         
