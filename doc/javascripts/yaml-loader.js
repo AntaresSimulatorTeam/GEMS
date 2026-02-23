@@ -730,7 +730,7 @@
                                         
                                         exprSpan.appendChild(btn);
                                     } else {
-                                        exprSpan.appendChild(document.createTextNode(escapeHtml(part)));
+                                        exprSpan.appendChild(document.createTextNode(part));
                                     }
                                 });
                             } else {
@@ -821,7 +821,7 @@
                                         
                                         exprSpan.appendChild(btn);
                                     } else {
-                                        exprSpan.appendChild(document.createTextNode(escapeHtml(part)));
+                                        exprSpan.appendChild(document.createTextNode(part));
                                     }
                                 });
                             } else {
@@ -912,7 +912,7 @@
                                         
                                         exprSpan.appendChild(btn);
                                     } else {
-                                        exprSpan.appendChild(document.createTextNode(escapeHtml(part)));
+                                        exprSpan.appendChild(document.createTextNode(part));
                                     }
                                 });
                             } else {
