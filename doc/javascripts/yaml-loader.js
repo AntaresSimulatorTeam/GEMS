@@ -3,6 +3,13 @@
  * 
  * Allows dynamic loading of YAML files from GitHub and their display
  * in documentation with automatic button generation per section.
+ * 
+ * Improvements (v2.0):
+ * - Consolidated 5 duplicate popup functions into a single generic createPopup() function
+ * - Added comprehensive ARIA attributes for accessibility (role, aria-label, aria-expanded, aria-modal)
+ * - Implemented event delegation for library buttons (port, model, port-reference) to reduce memory footprint
+ * - Added Escape key support for closing popups
+ * - Enhanced keyboard focus management for better accessibility
  */
 
 (function() {
@@ -127,6 +134,8 @@
                 const btn = document.createElement('button');
                 btn.className = 'yaml-item-button';
                 btn.textContent = portRef.fullMatch;
+                btn.setAttribute('type', 'button');
+                btn.setAttribute('aria-label', `Port reference: ${portRef.fullMatch}`);
                 
                 btn.addEventListener('click', (e) => {
                     const port = modelDef.ports && modelDef.ports.find(p => p.id === portRef.portName);
@@ -146,8 +155,12 @@
                     // We have an operator/function at the start
                     const span = document.createElement('span');
                     span.style.fontWeight = 'bold';
-                    // Replace 'sum' with the ∑ symbol
-                    span.textContent = operatorMatch[0] === 'sum' ? '∑' : operatorMatch[0];
+                    // Replace 'sum' with the ∑ symbol, or '∑_t' if no subscript is provided
+                    if (operatorMatch[0] === 'sum') {
+                        span.innerHTML = '∑<sub>t</sub>';
+                    } else {
+                        span.textContent = operatorMatch[0];
+                    }
                     container.appendChild(span);
                     i += operatorMatch[0].length;
                     operatorFunctionPattern.lastIndex = 0;
@@ -168,11 +181,13 @@
     }
 
     /**
-     * Shows a popup with variable details
-     * @param {Object} variable - Variable definition object
+     * Creates and displays a generic popup with content
+     * @param {Object} data - Data object to display
+     * @param {Function} contentBuilder - Function that builds the YAML text content (receives data object)
      * @param {HTMLElement} triggerElement - The element that triggered the popup
+     * @param {string} ariaLabel - ARIA label for accessibility
      */
-    function showVariablePopup(variable, triggerElement) {
+    function createPopup(data, contentBuilder, triggerElement, ariaLabel = 'Information popup') {
         // Remove any existing popup
         const existingPopup = document.querySelector('.yaml-variable-popup');
         if (existingPopup) {
@@ -181,6 +196,9 @@
 
         const popup = document.createElement('div');
         popup.className = 'yaml-variable-popup';
+        popup.setAttribute('role', 'dialog');
+        popup.setAttribute('aria-label', ariaLabel);
+        popup.setAttribute('aria-modal', 'true');
 
         // Popup header
         const header = document.createElement('div');
@@ -189,7 +207,14 @@
         const closeBtn = document.createElement('button');
         closeBtn.className = 'yaml-variable-popup-close';
         closeBtn.textContent = '✕';
+        closeBtn.setAttribute('aria-label', 'Close popup');
+        closeBtn.setAttribute('type', 'button');
         closeBtn.addEventListener('click', () => popup.remove());
+        closeBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                popup.remove();
+            }
+        });
         header.appendChild(closeBtn);
 
         popup.appendChild(header);
@@ -205,28 +230,8 @@
         yamlContent.style.fontSize = '13px';
         yamlContent.style.lineHeight = '1.5';
         
-        let yamlText = `id: ${escapeHtml(variable.id || 'Unknown Variable')}`;
-        
-        if (variable['variable-type']) {
-            yamlText += `\nvariable-type: ${escapeHtml(variable['variable-type'])}`;
-        }
-        
-        if (variable['lower-bound'] !== undefined) {
-            yamlText += `\nlower-bound: ${escapeHtml(String(variable['lower-bound']))}`;
-        }
-        
-        if (variable['upper-bound'] !== undefined) {
-            yamlText += `\nupper-bound: ${escapeHtml(String(variable['upper-bound']))}`;
-        }
-        
-        if (variable['time-dependent']) {
-            yamlText += `\ntime-dependent: true`;
-        }
-        
-        if (variable['scenario-dependent']) {
-            yamlText += `\nscenario-dependent: true`;
-        }
-        
+        // Build the YAML text using the content builder function
+        const yamlText = contentBuilder(data);
         yamlContent.textContent = yamlText;
         content.appendChild(yamlContent);
 
@@ -240,6 +245,9 @@
         popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
         popup.style.left = (rect.left + window.scrollX) + 'px';
 
+        // Focus close button for keyboard accessibility
+        closeBtn.focus();
+
         // Close popup when clicking outside
         setTimeout(() => {
             document.addEventListener('click', function closeOnOutside(e) {
@@ -249,6 +257,34 @@
                 }
             });
         }, 0);
+    }
+
+    /**
+     * Shows a popup with variable details
+     * @param {Object} variable - Variable definition object
+     * @param {HTMLElement} triggerElement - The element that triggered the popup
+     */
+    function showVariablePopup(variable, triggerElement) {
+        const contentBuilder = (data) => {
+            let yamlText = `id: ${escapeHtml(data.id || 'Unknown Variable')}`;
+            if (data['variable-type']) {
+                yamlText += `\nvariable-type: ${escapeHtml(data['variable-type'])}`;
+            }
+            if (data['lower-bound'] !== undefined) {
+                yamlText += `\nlower-bound: ${escapeHtml(String(data['lower-bound']))}`;
+            }
+            if (data['upper-bound'] !== undefined) {
+                yamlText += `\nupper-bound: ${escapeHtml(String(data['upper-bound']))}`;
+            }
+            if (data['time-dependent']) {
+                yamlText += `\ntime-dependent: true`;
+            }
+            if (data['scenario-dependent']) {
+                yamlText += `\nscenario-dependent: true`;
+            }
+            return yamlText;
+        };
+        createPopup(variable, contentBuilder, triggerElement, 'Variable details');
     }
 
     /**
@@ -257,70 +293,17 @@
      * @param {HTMLElement} triggerElement - The element that triggered the popup
      */
     function showParameterPopup(param, triggerElement) {
-        // Remove any existing popup
-        const existingPopup = document.querySelector('.yaml-variable-popup');
-        if (existingPopup) {
-            existingPopup.remove();
-        }
-
-        const popup = document.createElement('div');
-        popup.className = 'yaml-variable-popup';
-
-        // Popup header
-        const header = document.createElement('div');
-        header.className = 'yaml-variable-popup-header';
-
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'yaml-variable-popup-close';
-        closeBtn.textContent = '✕';
-        closeBtn.addEventListener('click', () => popup.remove());
-        header.appendChild(closeBtn);
-
-        popup.appendChild(header);
-
-        // Popup content
-        const content = document.createElement('div');
-        content.className = 'yaml-variable-popup-content';
-
-        // Create YAML-style display
-        const yamlContent = document.createElement('pre');
-        yamlContent.style.margin = '0';
-        yamlContent.style.fontFamily = 'Arial';
-        yamlContent.style.fontSize = '13px';
-        yamlContent.style.lineHeight = '1.5';
-        
-        let yamlText = `id: ${escapeHtml(param.id || 'Unknown Parameter')}`;
-        
-        if (param['time-dependent']) {
-            yamlText += `\ntime-dependent: true`;
-        }
-        
-        if (param['scenario-dependent']) {
-            yamlText += `\nscenario-dependent: true`;
-        }
-        
-        yamlContent.textContent = yamlText;
-        content.appendChild(yamlContent);
-
-        popup.appendChild(content);
-
-        document.body.appendChild(popup);
-
-        // Position popup near the trigger element (fixed in document, not viewport)
-        popup.style.position = 'absolute';
-        const rect = triggerElement.getBoundingClientRect();
-        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-        popup.style.left = (rect.left + window.scrollX) + 'px';
-
-        // Close popup when clicking outside
-        setTimeout(() => {
-            document.addEventListener('click', function closeOnOutside(e) {
-                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
-                    popup.remove();
-                    document.removeEventListener('click', closeOnOutside);
-                }
-            });
-        }, 0);
+        const contentBuilder = (data) => {
+            let yamlText = `id: ${escapeHtml(data.id || 'Unknown Parameter')}`;
+            if (data['time-dependent']) {
+                yamlText += `\ntime-dependent: true`;
+            }
+            if (data['scenario-dependent']) {
+                yamlText += `\nscenario-dependent: true`;
+            }
+            return yamlText;
+        };
+        createPopup(param, contentBuilder, triggerElement, 'Parameter details');
     }
 
     /**
@@ -329,74 +312,20 @@
      * @param {HTMLElement} triggerElement - The element that triggered the popup
      */
     function showConstraintPopup(constraint, triggerElement) {
-        // Remove any existing popup
-        const existingPopup = document.querySelector('.yaml-variable-popup');
-        if (existingPopup) {
-            existingPopup.remove();
-        }
-
-        const popup = document.createElement('div');
-        popup.className = 'yaml-variable-popup';
-
-        // Popup header
-        const header = document.createElement('div');
-        header.className = 'yaml-variable-popup-header';
-
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'yaml-variable-popup-close';
-        closeBtn.textContent = '✕';
-        closeBtn.addEventListener('click', () => popup.remove());
-        header.appendChild(closeBtn);
-
-        popup.appendChild(header);
-
-        // Popup content
-        const content = document.createElement('div');
-        content.className = 'yaml-variable-popup-content';
-
-        // Create YAML-style display
-        const yamlContent = document.createElement('pre');
-        yamlContent.style.margin = '0';
-        yamlContent.style.fontFamily = 'Arial';
-        yamlContent.style.fontSize = '13px';
-        yamlContent.style.lineHeight = '1.4';
-        
-        let yamlText = `id: ${escapeHtml(constraint.id || 'Unknown Constraint')}`;
-        
-        if (constraint.expression) {
-            yamlText += `\nexpression: ${escapeHtml(constraint.expression)}`;
-        }
-        
-        if (constraint['time-dependent']) {
-            yamlText += `\ntime-dependent: true`;
-        }
-        
-        if (constraint['scenario-dependent']) {
-            yamlText += `\nscenario-dependent: true`;
-        }
-        
-        yamlContent.textContent = yamlText;
-        content.appendChild(yamlContent);
-
-        popup.appendChild(content);
-
-        document.body.appendChild(popup);
-
-        // Position popup near the trigger element (fixed in document, not viewport)
-        popup.style.position = 'absolute';
-        const rect = triggerElement.getBoundingClientRect();
-        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-        popup.style.left = (rect.left + window.scrollX) + 'px';
-
-        // Close popup when clicking outside
-        setTimeout(() => {
-            document.addEventListener('click', function closeOnOutside(e) {
-                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
-                    popup.remove();
-                    document.removeEventListener('click', closeOnOutside);
-                }
-            });
-        }, 0);
+        const contentBuilder = (data) => {
+            let yamlText = `id: ${escapeHtml(data.id || 'Unknown Constraint')}`;
+            if (data.expression) {
+                yamlText += `\nexpression: ${escapeHtml(data.expression)}`;
+            }
+            if (data['time-dependent']) {
+                yamlText += `\ntime-dependent: true`;
+            }
+            if (data['scenario-dependent']) {
+                yamlText += `\nscenario-dependent: true`;
+            }
+            return yamlText;
+        };
+        createPopup(constraint, contentBuilder, triggerElement, 'Constraint details');
     }
 
     /**
@@ -405,62 +334,10 @@
      * @param {HTMLElement} triggerElement - The element that triggered the popup
      */
     function showPortFieldDefPopup(pfd, triggerElement) {
-        // Remove any existing popup
-        const existingPopup = document.querySelector('.yaml-variable-popup');
-        if (existingPopup) {
-            existingPopup.remove();
-        }
-
-        const popup = document.createElement('div');
-        popup.className = 'yaml-variable-popup';
-
-        // Popup header
-        const header = document.createElement('div');
-        header.className = 'yaml-variable-popup-header';
-
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'yaml-variable-popup-close';
-        closeBtn.textContent = '✕';
-        closeBtn.addEventListener('click', () => popup.remove());
-        header.appendChild(closeBtn);
-
-        popup.appendChild(header);
-
-        // Popup content
-        const content = document.createElement('div');
-        content.className = 'yaml-variable-popup-content';
-
-        // Create YAML-style display
-        const yamlContent = document.createElement('pre');
-        yamlContent.style.margin = '0';
-        yamlContent.style.fontFamily = 'Arial';
-        yamlContent.style.fontSize = '13px';
-        yamlContent.style.lineHeight = '1.5';
-        
-        let yamlText = `${escapeHtml(pfd.port || 'Unknown')}.${escapeHtml(pfd.field || 'Unknown')} = ${escapeHtml(pfd.definition || 'Unknown')}`;
-        
-        yamlContent.textContent = yamlText;
-        content.appendChild(yamlContent);
-
-        popup.appendChild(content);
-
-        document.body.appendChild(popup);
-
-        // Position popup near the trigger element (fixed in document, not viewport)
-        popup.style.position = 'absolute';
-        const rect = triggerElement.getBoundingClientRect();
-        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-        popup.style.left = (rect.left + window.scrollX) + 'px';
-
-        // Close popup when clicking outside
-        setTimeout(() => {
-            document.addEventListener('click', function closeOnOutside(e) {
-                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
-                    popup.remove();
-                    document.removeEventListener('click', closeOnOutside);
-                }
-            });
-        }, 0);
+        const contentBuilder = (data) => {
+            return `${escapeHtml(data.port || 'Unknown')}.${escapeHtml(data.field || 'Unknown')} = ${escapeHtml(data.definition || 'Unknown')}`;
+        };
+        createPopup(pfd, contentBuilder, triggerElement, 'Port field definition');
     }
 
     /**
@@ -469,66 +346,14 @@
      * @param {HTMLElement} triggerElement - The element that triggered the popup
      */
     function showPortPopup(port, triggerElement) {
-        // Remove any existing popup
-        const existingPopup = document.querySelector('.yaml-variable-popup');
-        if (existingPopup) {
-            existingPopup.remove();
-        }
-
-        const popup = document.createElement('div');
-        popup.className = 'yaml-variable-popup';
-
-        // Popup header
-        const header = document.createElement('div');
-        header.className = 'yaml-variable-popup-header';
-
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'yaml-variable-popup-close';
-        closeBtn.textContent = '✕';
-        closeBtn.addEventListener('click', () => popup.remove());
-        header.appendChild(closeBtn);
-
-        popup.appendChild(header);
-
-        // Popup content
-        const content = document.createElement('div');
-        content.className = 'yaml-variable-popup-content';
-
-        // Create YAML-style display
-        const yamlContent = document.createElement('pre');
-        yamlContent.style.margin = '0';
-        yamlContent.style.fontFamily = 'Arial';
-        yamlContent.style.fontSize = '13px';
-        yamlContent.style.lineHeight = '1.5';
-        
-        let yamlText = `id: ${escapeHtml(port.id || 'Unknown Port')}`;
-        
-        if (port.type) {
-            yamlText += `\ntype: ${escapeHtml(port.type)}`;
-        }
-        
-        yamlContent.textContent = yamlText;
-        content.appendChild(yamlContent);
-
-        popup.appendChild(content);
-
-        document.body.appendChild(popup);
-
-        // Position popup near the trigger element (fixed in document, not viewport)
-        popup.style.position = 'absolute';
-        const rect = triggerElement.getBoundingClientRect();
-        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-        popup.style.left = (rect.left + window.scrollX) + 'px';
-
-        // Close popup when clicking outside
-        setTimeout(() => {
-            document.addEventListener('click', function closeOnOutside(e) {
-                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
-                    popup.remove();
-                    document.removeEventListener('click', closeOnOutside);
-                }
-            });
-        }, 0);
+        const contentBuilder = (data) => {
+            let yamlText = `id: ${escapeHtml(data.id || 'Unknown Port')}`;
+            if (data.type) {
+                yamlText += `\ntype: ${escapeHtml(data.type)}`;
+            }
+            return yamlText;
+        };
+        createPopup(port, contentBuilder, triggerElement, 'Port details');
     }
 
     /**
@@ -564,6 +389,9 @@
         const libButton = document.createElement('button');
         libButton.className = 'yaml-library-button yaml-library-button-lib active';
         libButton.innerHTML = `📚 <strong>${escapeHtml(lib.id || 'Library')}</strong>`;
+        libButton.setAttribute('type', 'button');
+        libButton.setAttribute('aria-label', `Library: ${lib.id || 'Library'}`);
+        libButton.setAttribute('aria-expanded', 'true');
         libLevel1.appendChild(libButton);
         
         // GitHub link button next to library name
@@ -625,6 +453,9 @@
                 portBtn.className = 'yaml-library-button yaml-library-button-port';
                 portBtn.dataset.port = sanitizedPortName;
                 portBtn.textContent = escapeHtml(portName);
+                portBtn.setAttribute('type', 'button');
+                portBtn.setAttribute('aria-label', `Port type: ${portName}`);
+                portBtn.setAttribute('aria-expanded', 'false');
                 portButtonsWrapper.appendChild(portBtn);
             });
             
@@ -699,6 +530,9 @@
                 modelBtn.className = 'yaml-library-button yaml-library-button-model';
                 modelBtn.dataset.model = sanitizedModelName;
                 modelBtn.textContent = escapeHtml(modelName);
+                modelBtn.setAttribute('type', 'button');
+                modelBtn.setAttribute('aria-label', `Model: ${modelName}`);
+                modelBtn.setAttribute('aria-expanded', 'false');
                 modelButtonsWrapper.appendChild(modelBtn);
             });
             
@@ -772,6 +606,8 @@
                         const pfdBtn = document.createElement('button');
                         pfdBtn.className = 'yaml-item-button';
                         pfdBtn.textContent = escapeHtml(portName);
+                        pfdBtn.setAttribute('type', 'button');
+                        pfdBtn.setAttribute('aria-label', `Port field definition: ${portName}`);
                         
                         pfdBtn.addEventListener('click', (e) => {
                             showPortFieldDefPopup(pfd, e.currentTarget);
@@ -802,6 +638,8 @@
                         const paramBtn = document.createElement('button');
                         paramBtn.className = 'yaml-item-button';
                         paramBtn.textContent = escapeHtml(paramName);
+                        paramBtn.setAttribute('type', 'button');
+                        paramBtn.setAttribute('aria-label', `Parameter: ${paramName}`);
                         
                         paramBtn.addEventListener('click', (e) => {
                             showParameterPopup(param, e.currentTarget);
@@ -832,6 +670,8 @@
                         const varBtn = document.createElement('button');
                         varBtn.className = 'yaml-item-button';
                         varBtn.textContent = escapeHtml(varName);
+                        varBtn.setAttribute('type', 'button');
+                        varBtn.setAttribute('aria-label', `Variable: ${varName}`);
                         
                         varBtn.addEventListener('click', (e) => {
                             showVariablePopup(variable, e.currentTarget);
@@ -853,12 +693,14 @@
                     objectiveDiv.appendChild(objectiveTitle);
                     
                     const objectiveList = document.createElement('ul');
+                    objectiveList.setAttribute('role', 'list');
                     modelDef['objective-contributions'].forEach(obj => {
                         const objName = obj.id || 'Unknown';
                         const objExpression = obj.expression || '';
                         
                         const objLi = document.createElement('li');
                         objLi.style.marginBottom = '12px';
+                        objLi.setAttribute('role', 'listitem');
                         
                         // Objective name
                         const nameSpan = document.createElement('span');
@@ -954,12 +796,14 @@
                     constraintsDiv.appendChild(constraintsTitle);
                     
                     const constraintsList = document.createElement('ul');
+                    constraintsList.setAttribute('role', 'list');
                     modelDef['binding-constraints'].forEach(constraint => {
                         const constraintName = constraint.id || 'Unknown';
                         const constraintExpression = constraint.expression || '';
                         
                         const constraintLi = document.createElement('li');
                         constraintLi.style.marginBottom = '12px';
+                        constraintLi.setAttribute('role', 'listitem');
                         
                         // Constraint name
                         const nameSpan = document.createElement('span');
@@ -1055,12 +899,14 @@
                     constraintsDiv.appendChild(constraintsTitle);
                     
                     const constraintsList = document.createElement('ul');
+                    constraintsList.setAttribute('role', 'list');
                     modelDef.constraints.forEach(constraint => {
                         const constraintName = constraint.id || 'Unknown';
                         const constraintExpression = constraint.expression || '';
                         
                         const constraintLi = document.createElement('li');
                         constraintLi.style.marginBottom = '12px';
+                        constraintLi.setAttribute('role', 'listitem');
                         
                         // Constraint name
                         const nameSpan = document.createElement('span');
@@ -1165,104 +1011,128 @@
             libInfo.style.display = 'block';
             
             libButton.classList.add('active');
+            libButton.setAttribute('aria-expanded', 'true');
             libContent.querySelectorAll('.yaml-library-button-port, .yaml-library-button-model').forEach(btn => {
                 btn.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
             });
         });
         
-        libContent.querySelectorAll('.yaml-library-button-port').forEach(portBtn => {
-            portBtn.addEventListener('click', (e) => {
-                const portData = e.currentTarget.dataset.port;
+        // Event delegation for port buttons
+        libContent.addEventListener('click', (e) => {
+            const portBtn = e.target.closest('.yaml-library-button-port');
+            if (!portBtn) return;
+            
+            const portData = portBtn.dataset.port;
+            
+            // Toggle port content
+            const portContent = libContent.querySelector(`.yaml-library-port-content[data-port="${portData}"]`);
+            const isCurrentlyVisible = portContent && portContent.style.display === 'block';
+            
+            if (isCurrentlyVisible) {
+                // Hide the port if already visible
+                portContent.style.display = 'none';
+                portBtn.classList.remove('active');
+                portBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                // Hide all ports, then show the selected one
+                libContent.querySelectorAll('.yaml-library-port-content').forEach(el => el.style.display = 'none');
+                libContent.querySelectorAll('.yaml-library-button-port').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
                 
-                // Toggle port content
-                const portContent = libContent.querySelector(`.yaml-library-port-content[data-port="${portData}"]`);
-                const isCurrentlyVisible = portContent && portContent.style.display === 'block';
-                
-                if (isCurrentlyVisible) {
-                    // Hide the port if already visible
-                    portContent.style.display = 'none';
-                    e.currentTarget.classList.remove('active');
-                } else {
-                    // Hide all ports, then show the selected one
-                    libContent.querySelectorAll('.yaml-library-port-content').forEach(el => el.style.display = 'none');
-                    libContent.querySelectorAll('.yaml-library-button-port').forEach(btn => btn.classList.remove('active'));
-                    
-                    if (portContent) {
-                        portContent.style.display = 'block';
-                        e.currentTarget.classList.add('active');
-                    }
-                }
-                
-                // Hide library info when viewing specific content
-                if (portContent && portContent.style.display === 'block') {
-                    libInfo.style.display = 'none';
-                    libButton.classList.remove('active');
-                }
-            });
-        });
-        
-        libContent.querySelectorAll('.yaml-library-button-model').forEach(modelBtn => {
-            modelBtn.addEventListener('click', (e) => {
-                const modelData = e.currentTarget.dataset.model;
-                
-                // Toggle model content
-                const modelContent = libContent.querySelector(`.yaml-library-model-content[data-model="${modelData}"]`);
-                const isCurrentlyVisible = modelContent && modelContent.style.display === 'block';
-                
-                if (isCurrentlyVisible) {
-                    // Hide the model if already visible
-                    modelContent.style.display = 'none';
-                    e.currentTarget.classList.remove('active');
-                } else {
-                    // Hide all models, then show the selected one
-                    libContent.querySelectorAll('.yaml-library-model-content').forEach(el => el.style.display = 'none');
-                    libContent.querySelectorAll('.yaml-library-button-model').forEach(btn => btn.classList.remove('active'));
-                    
-                    if (modelContent) {
-                        modelContent.style.display = 'block';
-                        e.currentTarget.classList.add('active');
-                    }
-                }
-                
-                // Hide library info when viewing specific content
-                if (modelContent && modelContent.style.display === 'block') {
-                    libInfo.style.display = 'none';
-                    libButton.classList.remove('active');
-                }
-            });
-        });
-        
-        libContent.querySelectorAll('.yaml-port-reference').forEach(portRef => {
-            portRef.addEventListener('click', (e) => {
-                const portRefData = e.currentTarget.dataset.portRef;
-                const correspondingPortBtn = libContent.querySelector(`.yaml-library-button-port[data-port="${portRefData}"]`);
-                const portContent = libContent.querySelector(`.yaml-library-port-content[data-port="${portRefData}"]`);
-                
-                if (correspondingPortBtn && portContent) {
-                    // Force display without toggle - hide other ports only
-                    libContent.querySelectorAll('.yaml-library-port-content').forEach(el => {
-                        if (el.dataset.port !== portRefData) {
-                            el.style.display = 'none';
-                        }
-                    });
-                    libContent.querySelectorAll('.yaml-library-button-port').forEach(btn => {
-                        if (btn.dataset.port !== portRefData) {
-                            btn.classList.remove('active');
-                        }
-                    });
-                    
-                    // Always show the referenced port
+                if (portContent) {
                     portContent.style.display = 'block';
-                    correspondingPortBtn.classList.add('active');
-                    
-                    // Hide library info
-                    libInfo.style.display = 'none';
-                    libButton.classList.remove('active');
-                    
-                    // Scroll to button
-                    correspondingPortBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    portBtn.classList.add('active');
+                    portBtn.setAttribute('aria-expanded', 'true');
                 }
-            });
+            }
+            
+            // Hide library info when viewing specific content
+            if (portContent && portContent.style.display === 'block') {
+                libInfo.style.display = 'none';
+                libButton.classList.remove('active');
+                libButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Event delegation for model buttons
+        libContent.addEventListener('click', (e) => {
+            const modelBtn = e.target.closest('.yaml-library-button-model');
+            if (!modelBtn) return;
+            
+            const modelData = modelBtn.dataset.model;
+            
+            // Toggle model content
+            const modelContent = libContent.querySelector(`.yaml-library-model-content[data-model="${modelData}"]`);
+            const isCurrentlyVisible = modelContent && modelContent.style.display === 'block';
+            
+            if (isCurrentlyVisible) {
+                // Hide the model if already visible
+                modelContent.style.display = 'none';
+                modelBtn.classList.remove('active');
+                modelBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                // Hide all models, then show the selected one
+                libContent.querySelectorAll('.yaml-library-model-content').forEach(el => el.style.display = 'none');
+                libContent.querySelectorAll('.yaml-library-button-model').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+                
+                if (modelContent) {
+                    modelContent.style.display = 'block';
+                    modelBtn.classList.add('active');
+                    modelBtn.setAttribute('aria-expanded', 'true');
+                }
+            }
+            
+            // Hide library info when viewing specific content
+            if (modelContent && modelContent.style.display === 'block') {
+                libInfo.style.display = 'none';
+                libButton.classList.remove('active');
+                libButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Event delegation for port references
+        libContent.addEventListener('click', (e) => {
+            const portRef = e.target.closest('.yaml-port-reference');
+            if (!portRef) return;
+            
+            const portRefData = portRef.dataset.portRef;
+            const correspondingPortBtn = libContent.querySelector(`.yaml-library-button-port[data-port="${portRefData}"]`);
+            const portContent = libContent.querySelector(`.yaml-library-port-content[data-port="${portRefData}"]`);
+            
+            if (correspondingPortBtn && portContent) {
+                // Force display without toggle - hide other ports only
+                libContent.querySelectorAll('.yaml-library-port-content').forEach(el => {
+                    if (el.dataset.port !== portRefData) {
+                        el.style.display = 'none';
+                    }
+                });
+                libContent.querySelectorAll('.yaml-library-button-port').forEach(btn => {
+                    if (btn.dataset.port !== portRefData) {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-expanded', 'false');
+                    } else {
+                        btn.setAttribute('aria-expanded', 'true');
+                    }
+                });
+                
+                // Always show the referenced port
+                portContent.style.display = 'block';
+                correspondingPortBtn.classList.add('active');
+                
+                // Hide library info
+                libInfo.style.display = 'none';
+                libButton.classList.remove('active');
+                libButton.setAttribute('aria-expanded', 'false');
+                
+                // Scroll to button
+                correspondingPortBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
         });
     }
 
@@ -1449,6 +1319,10 @@
             button.id = buttonId;
             button.className = CONFIG.BUTTON_CLASS;
             button.textContent = section.title;
+            button.setAttribute('type', 'button');
+            button.setAttribute('aria-label', `Show section: ${section.title}`);
+            button.setAttribute('aria-selected', isFirstButton ? 'true' : 'false');
+            button.setAttribute('role', 'tab');
             if (isFirstButton) {
                 button.classList.add('active');
                 isFirstButton = false;
