@@ -13,7 +13,7 @@ The following table lists reference model libraries developed within projects th
 
 | Library Name         | Description                  | Link                                                      |
 |----------------------|------------------------------|-----------------------------------------------------------|
-| Basic Model Library  | Basic library for newcomers  | [basic-model-library.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) |
+| Basic Model Library  | Basic library for newcomers  | [basic-models-library.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) |
 | Andromede Models | Library of models from RTE's Andromede project         | [andromede_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/andromede_models.yml)  |
 |Antares Legacy Models|Library of models of the legacy [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/user-guide/03-getting_started/)|[antares_legacy_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml)|
 |PyPSA Models|Library of models available on [PyPSA](https://docs.pypsa.org/latest/home/installation/)|[pypsa_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/pypsa_models.yml)|
@@ -27,7 +27,7 @@ Explore how each library is written by navigating in the next interactive window
 
 <div class="yaml-loader-container" id="yaml-loader-main" data-yaml-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-library-name="Basic Model Library">
   <div class="yaml-library-selector">
-    <button class="yaml-library-nav-btn active" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-name="Basic Model Library">Basic Model Library</button>
+    <button class="yaml-library-nav-btn active" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-name="Basic Models Library">Basic Model Library</button>
     <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/andromede_models.yml" data-name="Andromede Models">Andromede Models</button>
     <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/antares_legacy_models.yml" data-name="Antares Legacy Models">Antares Legacy Models</button>
     <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/pypsa_models.yml" data-name="PyPSA Models">PyPSA Models</button>
