@@ -885,39 +885,49 @@
                                 // Sort by length descending to match longer names first
                                 allNames.sort((a, b) => b.length - a.length);
                                 
-                                // Create regex pattern for all variable and parameter names
-                                const pattern = new RegExp(`\\b(${allNames.map(escapeRegex).join('|')})\\b`, 'g');
+                                // Create regex pattern for all variable and parameter names with optional temporal index [t±n]
+                                // Use non-capturing group for alternation so temporal index applies to all variables
+                                const pattern = new RegExp(`\\b((?:${allNames.map(escapeRegex).join('|')})(?:\\[t[\\+\\-]?\\d+\\])?)`, 'g');
                                 const parts = exprText.split(pattern);
                                 
                                 parts.forEach((part, idx) => {
-                                    if (allNames.includes(part)) {
-                                        const isVariable = variableNames.includes(part);
-                                        const isParameter = parameterNames.includes(part);
-                                        
-                                        const btn = document.createElement('button');
-                                        btn.className = 'yaml-item-button';
-                                        btn.textContent = escapeHtml(part);
-                                        btn.dataset.name = part;
-                                        btn.dataset.type = isVariable ? 'variable' : 'parameter';
-                                        
-                                        // Add click listener
-                                        btn.addEventListener('click', (e) => {
-                                            const name = e.currentTarget.dataset.name;
-                                            const type = e.currentTarget.dataset.type;
-                                            if (type === 'variable') {
-                                                const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
-                                                if (variable) {
-                                                    showVariablePopup(variable, e.currentTarget);
+                                    if (!part) return; // Skip empty strings from split
+                                    
+                                    // Check if part matches the pattern: variable_name or variable_name[t±n]
+                                    const matchTemporalRef = /^([\w_]+)(?:\[t([+\-]?\d+)\])?$/.exec(part);
+                                    if (matchTemporalRef) {
+                                        const baseName = matchTemporalRef[1];
+                                        if (allNames.includes(baseName)) {
+                                            const isVariable = variableNames.includes(baseName);
+                                            const isParameter = parameterNames.includes(baseName);
+                                            
+                                            const btn = document.createElement('button');
+                                            btn.className = 'yaml-item-button';
+                                            btn.textContent = escapeHtml(part);
+                                            btn.dataset.name = baseName;
+                                            btn.dataset.type = isVariable ? 'variable' : 'parameter';
+                                            
+                                            // Add click listener
+                                            btn.addEventListener('click', (e) => {
+                                                const name = e.currentTarget.dataset.name;
+                                                const type = e.currentTarget.dataset.type;
+                                                if (type === 'variable') {
+                                                    const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
+                                                    if (variable) {
+                                                        showVariablePopup(variable, e.currentTarget);
+                                                    }
+                                                } else if (type === 'parameter') {
+                                                    const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
+                                                    if (parameter) {
+                                                        showParameterPopup(parameter, e.currentTarget);
+                                                    }
                                                 }
-                                            } else if (type === 'parameter') {
-                                                const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
-                                                if (parameter) {
-                                                    showParameterPopup(parameter, e.currentTarget);
-                                                }
-                                            }
-                                        });
-                                        
-                                        exprSpan.appendChild(btn);
+                                            });
+                                            
+                                            exprSpan.appendChild(btn);
+                                        } else {
+                                            appendParsedText(part, exprSpan, modelDef);
+                                        }
                                     } else {
                                         appendParsedText(part, exprSpan, modelDef);
                                     }
@@ -976,39 +986,49 @@
                                 // Sort by length descending to match longer names first
                                 allNames.sort((a, b) => b.length - a.length);
                                 
-                                // Create regex pattern for all variable and parameter names
-                                const pattern = new RegExp(`\\b(${allNames.map(escapeRegex).join('|')})\\b`, 'g');
+                                // Create regex pattern for all variable and parameter names with optional temporal index [t±n]
+                                // Use non-capturing group for alternation so temporal index applies to all variables
+                                const pattern = new RegExp(`\\b((?:${allNames.map(escapeRegex).join('|')})(?:\\[t[\\+\\-]?\\d+\\])?)`, 'g');
                                 const parts = exprText.split(pattern);
                                 
                                 parts.forEach((part, idx) => {
-                                    if (allNames.includes(part)) {
-                                        const isVariable = variableNames.includes(part);
-                                        const isParameter = parameterNames.includes(part);
-                                        
-                                        const btn = document.createElement('button');
-                                        btn.className = 'yaml-item-button';
-                                        btn.textContent = escapeHtml(part);
-                                        btn.dataset.name = part;
-                                        btn.dataset.type = isVariable ? 'variable' : 'parameter';
-                                        
-                                        // Add click listener
-                                        btn.addEventListener('click', (e) => {
-                                            const name = e.currentTarget.dataset.name;
-                                            const type = e.currentTarget.dataset.type;
-                                            if (type === 'variable') {
-                                                const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
-                                                if (variable) {
-                                                    showVariablePopup(variable, e.currentTarget);
+                                    if (!part) return; // Skip empty strings from split
+                                    
+                                    // Check if part matches the pattern: variable_name or variable_name[t±n]
+                                    const matchTemporalRef = /^([\w_]+)(?:\[t([+\-]?\d+)\])?$/.exec(part);
+                                    if (matchTemporalRef) {
+                                        const baseName = matchTemporalRef[1];
+                                        if (allNames.includes(baseName)) {
+                                            const isVariable = variableNames.includes(baseName);
+                                            const isParameter = parameterNames.includes(baseName);
+                                            
+                                            const btn = document.createElement('button');
+                                            btn.className = 'yaml-item-button';
+                                            btn.textContent = escapeHtml(part);
+                                            btn.dataset.name = baseName;
+                                            btn.dataset.type = isVariable ? 'variable' : 'parameter';
+                                            
+                                            // Add click listener
+                                            btn.addEventListener('click', (e) => {
+                                                const name = e.currentTarget.dataset.name;
+                                                const type = e.currentTarget.dataset.type;
+                                                if (type === 'variable') {
+                                                    const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
+                                                    if (variable) {
+                                                        showVariablePopup(variable, e.currentTarget);
+                                                    }
+                                                } else if (type === 'parameter') {
+                                                    const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
+                                                    if (parameter) {
+                                                        showParameterPopup(parameter, e.currentTarget);
+                                                    }
                                                 }
-                                            } else if (type === 'parameter') {
-                                                const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
-                                                if (parameter) {
-                                                    showParameterPopup(parameter, e.currentTarget);
-                                                }
-                                            }
-                                        });
-                                        
-                                        exprSpan.appendChild(btn);
+                                            });
+                                            
+                                            exprSpan.appendChild(btn);
+                                        } else {
+                                            appendParsedText(part, exprSpan, modelDef);
+                                        }
                                     } else {
                                         appendParsedText(part, exprSpan, modelDef);
                                     }
@@ -1067,39 +1087,49 @@
                                 // Sort by length descending to match longer names first
                                 allNames.sort((a, b) => b.length - a.length);
                                 
-                                // Create regex pattern for all variable and parameter names
-                                const pattern = new RegExp(`\\b(${allNames.map(escapeRegex).join('|')})\\b`, 'g');
+                                // Create regex pattern for all variable and parameter names with optional temporal index [t±n]
+                                // Use non-capturing group for alternation so temporal index applies to all variables
+                                const pattern = new RegExp(`\\b((?:${allNames.map(escapeRegex).join('|')})(?:\\[t[\\+\\-]?\\d+\\])?)`, 'g');
                                 const parts = exprText.split(pattern);
                                 
                                 parts.forEach((part, idx) => {
-                                    if (allNames.includes(part)) {
-                                        const isVariable = variableNames.includes(part);
-                                        const isParameter = parameterNames.includes(part);
-                                        
-                                        const btn = document.createElement('button');
-                                        btn.className = 'yaml-item-button';
-                                        btn.textContent = escapeHtml(part);
-                                        btn.dataset.name = part;
-                                        btn.dataset.type = isVariable ? 'variable' : 'parameter';
-                                        
-                                        // Add click listener
-                                        btn.addEventListener('click', (e) => {
-                                            const name = e.currentTarget.dataset.name;
-                                            const type = e.currentTarget.dataset.type;
-                                            if (type === 'variable') {
-                                                const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
-                                                if (variable) {
-                                                    showVariablePopup(variable, e.currentTarget);
+                                    if (!part) return; // Skip empty strings from split
+                                    
+                                    // Check if part matches the pattern: variable_name or variable_name[t±n]
+                                    const matchTemporalRef = /^([\w_]+)(?:\[t([+\-]?\d+)\])?$/.exec(part);
+                                    if (matchTemporalRef) {
+                                        const baseName = matchTemporalRef[1];
+                                        if (allNames.includes(baseName)) {
+                                            const isVariable = variableNames.includes(baseName);
+                                            const isParameter = parameterNames.includes(baseName);
+                                            
+                                            const btn = document.createElement('button');
+                                            btn.className = 'yaml-item-button';
+                                            btn.textContent = escapeHtml(part);
+                                            btn.dataset.name = baseName;
+                                            btn.dataset.type = isVariable ? 'variable' : 'parameter';
+                                            
+                                            // Add click listener
+                                            btn.addEventListener('click', (e) => {
+                                                const name = e.currentTarget.dataset.name;
+                                                const type = e.currentTarget.dataset.type;
+                                                if (type === 'variable') {
+                                                    const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
+                                                    if (variable) {
+                                                        showVariablePopup(variable, e.currentTarget);
+                                                    }
+                                                } else if (type === 'parameter') {
+                                                    const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
+                                                    if (parameter) {
+                                                        showParameterPopup(parameter, e.currentTarget);
+                                                    }
                                                 }
-                                            } else if (type === 'parameter') {
-                                                const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
-                                                if (parameter) {
-                                                    showParameterPopup(parameter, e.currentTarget);
-                                                }
-                                            }
-                                        });
-                                        
-                                        exprSpan.appendChild(btn);
+                                            });
+                                            
+                                            exprSpan.appendChild(btn);
+                                        } else {
+                                            appendParsedText(part, exprSpan, modelDef);
+                                        }
                                     } else {
                                         appendParsedText(part, exprSpan, modelDef);
                                     }
