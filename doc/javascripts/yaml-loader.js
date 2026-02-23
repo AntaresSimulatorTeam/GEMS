@@ -706,7 +706,7 @@
                                         const isParameter = parameterNames.includes(part);
                                         
                                         const btn = document.createElement('button');
-                                        btn.className = 'yaml-item-button yaml-expr-reference';
+                                        btn.className = 'yaml-item-button';
                                         btn.textContent = escapeHtml(part);
                                         btn.dataset.name = part;
                                         btn.dataset.type = isVariable ? 'variable' : 'parameter';
@@ -797,7 +797,7 @@
                                         const isParameter = parameterNames.includes(part);
                                         
                                         const btn = document.createElement('button');
-                                        btn.className = 'yaml-item-button yaml-expr-reference';
+                                        btn.className = 'yaml-item-button';
                                         btn.textContent = escapeHtml(part);
                                         btn.dataset.name = part;
                                         btn.dataset.type = isVariable ? 'variable' : 'parameter';
@@ -888,7 +888,7 @@
                                         const isParameter = parameterNames.includes(part);
                                         
                                         const btn = document.createElement('button');
-                                        btn.className = 'yaml-item-button yaml-expr-reference';
+                                        btn.className = 'yaml-item-button';
                                         btn.textContent = escapeHtml(part);
                                         btn.dataset.name = part;
                                         btn.dataset.type = isVariable ? 'variable' : 'parameter';
