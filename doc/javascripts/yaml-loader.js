@@ -669,15 +669,77 @@
                         const objExpression = obj.expression || '';
                         
                         const objLi = document.createElement('li');
-                        const objCode = document.createElement('code');
+                        objLi.style.marginBottom = '12px';
                         
-                        let objText = escapeHtml(objName);
+                        // Objective name
+                        const nameSpan = document.createElement('span');
+                        nameSpan.style.fontWeight = 'bold';
+                        nameSpan.textContent = escapeHtml(objName);
+                        objLi.appendChild(nameSpan);
+                        
+                        // Expression with clickable variables
                         if (objExpression) {
-                            objText += ': ' + escapeHtml(objExpression);
+                            const exprSpan = document.createElement('div');
+                            exprSpan.className = 'yaml-constraint-expression';
+                            
+                            // Parse expression and create clickable variable/parameter buttons
+                            const exprText = objExpression;
+                            const variableNames = Array.from(
+                                new Set(modelDef.variables ? modelDef.variables.map(v => v.id).filter(Boolean) : [])
+                            );
+                            const parameterNames = Array.from(
+                                new Set(modelDef.parameters ? modelDef.parameters.map(p => p.id).filter(Boolean) : [])
+                            );
+                            const allNames = [...variableNames, ...parameterNames];
+                            
+                            if (allNames.length > 0) {
+                                // Sort by length descending to match longer names first
+                                allNames.sort((a, b) => b.length - a.length);
+                                
+                                // Create regex pattern for all variable and parameter names
+                                const pattern = new RegExp(`\\b(${allNames.map(escapeRegex).join('|')})\\b`, 'g');
+                                const parts = exprText.split(pattern);
+                                
+                                parts.forEach((part, idx) => {
+                                    if (allNames.includes(part)) {
+                                        const isVariable = variableNames.includes(part);
+                                        const isParameter = parameterNames.includes(part);
+                                        
+                                        const btn = document.createElement('button');
+                                        btn.className = 'yaml-item-button yaml-expr-reference';
+                                        btn.textContent = escapeHtml(part);
+                                        btn.dataset.name = part;
+                                        btn.dataset.type = isVariable ? 'variable' : 'parameter';
+                                        
+                                        // Add click listener
+                                        btn.addEventListener('click', (e) => {
+                                            const name = e.currentTarget.dataset.name;
+                                            const type = e.currentTarget.dataset.type;
+                                            if (type === 'variable') {
+                                                const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
+                                                if (variable) {
+                                                    showVariablePopup(variable, e.currentTarget);
+                                                }
+                                            } else if (type === 'parameter') {
+                                                const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
+                                                if (parameter) {
+                                                    showParameterPopup(parameter, e.currentTarget);
+                                                }
+                                            }
+                                        });
+                                        
+                                        exprSpan.appendChild(btn);
+                                    } else {
+                                        exprSpan.appendChild(document.createTextNode(escapeHtml(part)));
+                                    }
+                                });
+                            } else {
+                                exprSpan.textContent = escapeHtml(exprText);
+                            }
+                            
+                            objLi.appendChild(exprSpan);
                         }
                         
-                        objCode.textContent = objText;
-                        objLi.appendChild(objCode);
                         objectiveList.appendChild(objLi);
                     });
                     objectiveDiv.appendChild(objectiveList);
@@ -711,37 +773,53 @@
                             const exprSpan = document.createElement('div');
                             exprSpan.className = 'yaml-constraint-expression';
                             
-                            // Parse expression and create clickable variable buttons
+                            // Parse expression and create clickable variable/parameter buttons
                             const exprText = constraintExpression;
                             const variableNames = Array.from(
                                 new Set(modelDef.variables ? modelDef.variables.map(v => v.id).filter(Boolean) : [])
                             );
+                            const parameterNames = Array.from(
+                                new Set(modelDef.parameters ? modelDef.parameters.map(p => p.id).filter(Boolean) : [])
+                            );
+                            const allNames = [...variableNames, ...parameterNames];
                             
-                            if (variableNames.length > 0) {
+                            if (allNames.length > 0) {
                                 // Sort by length descending to match longer names first
-                                variableNames.sort((a, b) => b.length - a.length);
+                                allNames.sort((a, b) => b.length - a.length);
                                 
-                                // Create regex pattern for all variable names
-                                const pattern = new RegExp(`\\b(${variableNames.map(escapeRegex).join('|')})\\b`, 'g');
+                                // Create regex pattern for all variable and parameter names
+                                const pattern = new RegExp(`\\b(${allNames.map(escapeRegex).join('|')})\\b`, 'g');
                                 const parts = exprText.split(pattern);
                                 
                                 parts.forEach((part, idx) => {
-                                    if (variableNames.includes(part)) {
-                                        const varBtn = document.createElement('button');
-                                        varBtn.className = 'yaml-item-button yaml-constraint-var';
-                                        varBtn.textContent = escapeHtml(part);
-                                        varBtn.dataset.varName = part;
+                                    if (allNames.includes(part)) {
+                                        const isVariable = variableNames.includes(part);
+                                        const isParameter = parameterNames.includes(part);
                                         
-                                        // Add click listener immediately with proper closure
-                                        varBtn.addEventListener('click', (e) => {
-                                            const varName = e.currentTarget.dataset.varName;
-                                            const variable = modelDef.variables && modelDef.variables.find(v => v.id === varName);
-                                            if (variable) {
-                                                showVariablePopup(variable, e.currentTarget);
+                                        const btn = document.createElement('button');
+                                        btn.className = 'yaml-item-button yaml-expr-reference';
+                                        btn.textContent = escapeHtml(part);
+                                        btn.dataset.name = part;
+                                        btn.dataset.type = isVariable ? 'variable' : 'parameter';
+                                        
+                                        // Add click listener
+                                        btn.addEventListener('click', (e) => {
+                                            const name = e.currentTarget.dataset.name;
+                                            const type = e.currentTarget.dataset.type;
+                                            if (type === 'variable') {
+                                                const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
+                                                if (variable) {
+                                                    showVariablePopup(variable, e.currentTarget);
+                                                }
+                                            } else if (type === 'parameter') {
+                                                const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
+                                                if (parameter) {
+                                                    showParameterPopup(parameter, e.currentTarget);
+                                                }
                                             }
                                         });
                                         
-                                        exprSpan.appendChild(varBtn);
+                                        exprSpan.appendChild(btn);
                                     } else {
                                         exprSpan.appendChild(document.createTextNode(escapeHtml(part)));
                                     }
@@ -786,37 +864,53 @@
                             const exprSpan = document.createElement('div');
                             exprSpan.className = 'yaml-constraint-expression';
                             
-                            // Parse expression and create clickable variable buttons
+                            // Parse expression and create clickable variable/parameter buttons
                             const exprText = constraintExpression;
                             const variableNames = Array.from(
                                 new Set(modelDef.variables ? modelDef.variables.map(v => v.id).filter(Boolean) : [])
                             );
+                            const parameterNames = Array.from(
+                                new Set(modelDef.parameters ? modelDef.parameters.map(p => p.id).filter(Boolean) : [])
+                            );
+                            const allNames = [...variableNames, ...parameterNames];
                             
-                            if (variableNames.length > 0) {
+                            if (allNames.length > 0) {
                                 // Sort by length descending to match longer names first
-                                variableNames.sort((a, b) => b.length - a.length);
+                                allNames.sort((a, b) => b.length - a.length);
                                 
-                                // Create regex pattern for all variable names
-                                const pattern = new RegExp(`\\b(${variableNames.map(escapeRegex).join('|')})\\b`, 'g');
+                                // Create regex pattern for all variable and parameter names
+                                const pattern = new RegExp(`\\b(${allNames.map(escapeRegex).join('|')})\\b`, 'g');
                                 const parts = exprText.split(pattern);
                                 
                                 parts.forEach((part, idx) => {
-                                    if (variableNames.includes(part)) {
-                                        const varBtn = document.createElement('button');
-                                        varBtn.className = 'yaml-item-button yaml-constraint-var';
-                                        varBtn.textContent = escapeHtml(part);
-                                        varBtn.dataset.varName = part;
+                                    if (allNames.includes(part)) {
+                                        const isVariable = variableNames.includes(part);
+                                        const isParameter = parameterNames.includes(part);
                                         
-                                        // Add click listener immediately with proper closure
-                                        varBtn.addEventListener('click', (e) => {
-                                            const varName = e.currentTarget.dataset.varName;
-                                            const variable = modelDef.variables && modelDef.variables.find(v => v.id === varName);
-                                            if (variable) {
-                                                showVariablePopup(variable, e.currentTarget);
+                                        const btn = document.createElement('button');
+                                        btn.className = 'yaml-item-button yaml-expr-reference';
+                                        btn.textContent = escapeHtml(part);
+                                        btn.dataset.name = part;
+                                        btn.dataset.type = isVariable ? 'variable' : 'parameter';
+                                        
+                                        // Add click listener
+                                        btn.addEventListener('click', (e) => {
+                                            const name = e.currentTarget.dataset.name;
+                                            const type = e.currentTarget.dataset.type;
+                                            if (type === 'variable') {
+                                                const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
+                                                if (variable) {
+                                                    showVariablePopup(variable, e.currentTarget);
+                                                }
+                                            } else if (type === 'parameter') {
+                                                const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
+                                                if (parameter) {
+                                                    showParameterPopup(parameter, e.currentTarget);
+                                                }
                                             }
                                         });
                                         
-                                        exprSpan.appendChild(varBtn);
+                                        exprSpan.appendChild(btn);
                                     } else {
                                         exprSpan.appendChild(document.createTextNode(escapeHtml(part)));
                                     }
