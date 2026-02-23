@@ -1109,5 +1109,6 @@
     border-color: #666;
 }
 
-[data-md-color-scheme="slate"] .yaml-constraint-expression {    color: #e0e0e0;
+[data-md-color-scheme="slate"] .yaml-constraint-expression {
+    color: #e0e0e0;
 }

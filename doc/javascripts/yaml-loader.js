@@ -48,6 +48,96 @@
     }
 
     /**
+     * Creates text and operator nodes with operators bolded and port references as clickable buttons
+     * @param {string} text - Text to parse
+     * @param {HTMLElement} container - Container to append nodes to
+     * @param {Object} modelDef - Model definition object containing ports
+     */
+    function appendParsedText(text, container, modelDef) {
+        // Get port names for matching port.field references
+        const portNames = modelDef && modelDef.ports ? 
+            modelDef.ports.map(p => p.id).filter(Boolean) : [];
+        
+        // Pattern pour détécter:
+        // 1. Références de port: portName.fieldName
+        // 2. Opérateurs mathématiques: <=, >=, ==, !=, =, <, >, +, -, *, /, (, ), [, ]
+        // 3. Noms de fonction: mot suivi de parenthèse
+        
+        // Premier passe: détécter port.field
+        const portFieldPattern = new RegExp(
+            `\\b(${portNames.map(escapeRegex).join('|')})\\.(\\w+)`,
+            'g'
+        );
+        
+        const operatorFunctionPattern = /(<=|>=|==|!=|[=<>+\-*/()\[\]]|[a-zA-Z_][a-zA-Z0-9_]*(?=\())/g;
+        
+        let lastIndex = 0;
+        let portMatch;
+        
+        // Créer une map de toutes les positions de port.field
+        const portMatches = [];
+        while ((portMatch = portFieldPattern.exec(text)) !== null) {
+            portMatches.push({
+                start: portMatch.index,
+                end: portFieldPattern.lastIndex,
+                portName: portMatch[1],
+                fieldName: portMatch[2],
+                fullMatch: portMatch[0]
+            });
+        }
+        
+        // Traiter le texte en tenant compte des port.field et des opérateurs
+        lastIndex = 0;
+        
+        for (let i = 0; i < text.length; ) {
+            // Vérifier si on est au début d'une référence port.field
+            const portRef = portMatches.find(pm => pm.start === i);
+            
+            if (portRef) {
+                // Créer un bouton pour la référence port.field
+                const btn = document.createElement('button');
+                btn.className = 'yaml-item-button';
+                btn.textContent = portRef.fullMatch;
+                
+                btn.addEventListener('click', (e) => {
+                    const port = modelDef.ports && modelDef.ports.find(p => p.id === portRef.portName);
+                    if (port) {
+                        showPortPopup(port, e.currentTarget);
+                    }
+                });
+                
+                container.appendChild(btn);
+                i = portRef.end;
+            } else {
+                // Chercher le prochain opérateur/fonction depuis la position i
+                const substring = text.substring(i);
+                const operatorMatch = operatorFunctionPattern.exec(substring);
+                
+                if (operatorMatch && operatorMatch.index === 0) {
+                    // On a un opérateur/fonction au début
+                    const span = document.createElement('span');
+                    span.style.fontWeight = 'bold';
+                    span.textContent = operatorMatch[0];
+                    container.appendChild(span);
+                    i += operatorMatch[0].length;
+                    operatorFunctionPattern.lastIndex = 0;
+                } else if (operatorMatch) {
+                    // Texte avant l'opérateur
+                    container.appendChild(document.createTextNode(substring.substring(0, operatorMatch.index)));
+                    i += operatorMatch.index;
+                    operatorFunctionPattern.lastIndex = 0;
+                } else {
+                    // Pas d'opérateur trouvé, ajouter le reste
+                    if (substring.length > 0) {
+                        container.appendChild(document.createTextNode(substring));
+                    }
+                    i = text.length;
+                }
+            }
+        }
+    }
+
+    /**
      * Shows a popup with variable details
      * @param {Object} variable - Variable definition object
      * @param {HTMLElement} triggerElement - The element that triggered the popup
@@ -342,6 +432,75 @@
             });
         }, 0);
     }
+
+    /**
+     * Shows a popup with port details
+     * @param {Object} port - Port definition object
+     * @param {HTMLElement} triggerElement - The element that triggered the popup
+     */
+    function showPortPopup(port, triggerElement) {
+        // Remove any existing popup
+        const existingPopup = document.querySelector('.yaml-variable-popup');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        const popup = document.createElement('div');
+        popup.className = 'yaml-variable-popup';
+
+        // Popup header
+        const header = document.createElement('div');
+        header.className = 'yaml-variable-popup-header';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'yaml-variable-popup-close';
+        closeBtn.textContent = '✕';
+        closeBtn.addEventListener('click', () => popup.remove());
+        header.appendChild(closeBtn);
+
+        popup.appendChild(header);
+
+        // Popup content
+        const content = document.createElement('div');
+        content.className = 'yaml-variable-popup-content';
+
+        // Create YAML-style display
+        const yamlContent = document.createElement('pre');
+        yamlContent.style.margin = '0';
+        yamlContent.style.fontFamily = 'Arial';
+        yamlContent.style.fontSize = '13px';
+        yamlContent.style.lineHeight = '1.5';
+        
+        let yamlText = `id: ${escapeHtml(port.id || 'Unknown Port')}`;
+        
+        if (port.type) {
+            yamlText += `\ntype: ${escapeHtml(port.type)}`;
+        }
+        
+        yamlContent.textContent = yamlText;
+        content.appendChild(yamlContent);
+
+        popup.appendChild(content);
+
+        document.body.appendChild(popup);
+
+        // Position popup near the trigger element (fixed in document, not viewport)
+        popup.style.position = 'absolute';
+        const rect = triggerElement.getBoundingClientRect();
+        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+        popup.style.left = (rect.left + window.scrollX) + 'px';
+
+        // Close popup when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', function closeOnOutside(e) {
+                if (!popup.contains(e.target) && e.target !== triggerElement && !triggerElement.contains(e.target)) {
+                    popup.remove();
+                    document.removeEventListener('click', closeOnOutside);
+                }
+            });
+        }, 0);
+    }
+
     /**
      * Renders the GEMS library structure
      * @param {Object} data - Library file data
@@ -730,7 +889,7 @@
                                         
                                         exprSpan.appendChild(btn);
                                     } else {
-                                        exprSpan.appendChild(document.createTextNode(part));
+                                        appendParsedText(part, exprSpan, modelDef);
                                     }
                                 });
                             } else {
@@ -821,7 +980,7 @@
                                         
                                         exprSpan.appendChild(btn);
                                     } else {
-                                        exprSpan.appendChild(document.createTextNode(part));
+                                        appendParsedText(part, exprSpan, modelDef);
                                     }
                                 });
                             } else {
@@ -912,7 +1071,7 @@
                                         
                                         exprSpan.appendChild(btn);
                                     } else {
-                                        exprSpan.appendChild(document.createTextNode(part));
+                                        appendParsedText(part, exprSpan, modelDef);
                                     }
                                 });
                             } else {
