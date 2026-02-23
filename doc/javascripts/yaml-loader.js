@@ -58,23 +58,27 @@
         const portNames = modelDef && modelDef.ports ? 
             modelDef.ports.map(p => p.id).filter(Boolean) : [];
         
-        // Pattern pour détécter:
-        // 1. Références de port: portName.fieldName
-        // 2. Opérateurs mathématiques: <=, >=, ==, !=, =, <, >, +, -, *, /, (, ), [, ]
-        // 3. Noms de fonction: mot suivi de parenthèse
+        // Pattern to detect:
+        // 1. Port references: portName.fieldName
+        // 2. sum_<subscript> patterns
+        // 3. Mathematical operators: <=, >=, ==, !=, =, <, >, +, -, *, /, (, ), [, ]
+        // 4. Function names: word followed by parenthesis
         
-        // Premier passe: détécter port.field
+        // First pass: detect port.field
         const portFieldPattern = new RegExp(
             `\\b(${portNames.map(escapeRegex).join('|')})\\.(\\w+)`,
             'g'
         );
+        
+        // Pattern to detect sum_<something>
+        const sumPattern = /\bsum_(\w+)/g;
         
         const operatorFunctionPattern = /(<=|>=|==|!=|[=<>+\-*/()\[\]]|[a-zA-Z_][a-zA-Z0-9_]*(?=\())/g;
         
         let lastIndex = 0;
         let portMatch;
         
-        // Créer une map de toutes les positions de port.field
+        // Create a map of all port.field positions
         const portMatches = [];
         while ((portMatch = portFieldPattern.exec(text)) !== null) {
             portMatches.push({
@@ -86,15 +90,40 @@
             });
         }
         
-        // Traiter le texte en tenant compte des port.field et des opérateurs
+        // Create a map of all sum_<subscript> positions
+        const sumMatches = [];
+        let sumMatch;
+        while ((sumMatch = sumPattern.exec(text)) !== null) {
+            sumMatches.push({
+                start: sumMatch.index,
+                end: sumPattern.lastIndex,
+                subscript: sumMatch[1],
+                fullMatch: sumMatch[0]
+            });
+        }
+        
+        // Process text considering port.field, sum_ and operators
         lastIndex = 0;
         
         for (let i = 0; i < text.length; ) {
-            // Vérifier si on est au début d'une référence port.field
+            // Check if we are at the start of a sum_ reference
+            const sumRef = sumMatches.find(sm => sm.start === i);
+            
+            if (sumRef) {
+                // Create the Σ symbol with subscript
+                const span = document.createElement('span');
+                span.style.fontWeight = 'bold';
+                span.innerHTML = '∑<sub>' + escapeHtml(sumRef.subscript) + '</sub>';
+                container.appendChild(span);
+                i = sumRef.end;
+                continue;
+            }
+            
+            // Check if we are at the start of a port.field reference
             const portRef = portMatches.find(pm => pm.start === i);
             
             if (portRef) {
-                // Créer un bouton pour la référence port.field
+                // Create a button for the port.field reference
                 const btn = document.createElement('button');
                 btn.className = 'yaml-item-button';
                 btn.textContent = portRef.fullMatch;
@@ -109,25 +138,26 @@
                 container.appendChild(btn);
                 i = portRef.end;
             } else {
-                // Chercher le prochain opérateur/fonction depuis la position i
+                // Search for the next operator/function from position i
                 const substring = text.substring(i);
                 const operatorMatch = operatorFunctionPattern.exec(substring);
                 
                 if (operatorMatch && operatorMatch.index === 0) {
-                    // On a un opérateur/fonction au début
+                    // We have an operator/function at the start
                     const span = document.createElement('span');
                     span.style.fontWeight = 'bold';
-                    span.textContent = operatorMatch[0];
+                    // Replace 'sum' with the ∑ symbol
+                    span.textContent = operatorMatch[0] === 'sum' ? '∑' : operatorMatch[0];
                     container.appendChild(span);
                     i += operatorMatch[0].length;
                     operatorFunctionPattern.lastIndex = 0;
                 } else if (operatorMatch) {
-                    // Texte avant l'opérateur
+                    // Text before the operator
                     container.appendChild(document.createTextNode(substring.substring(0, operatorMatch.index)));
                     i += operatorMatch.index;
                     operatorFunctionPattern.lastIndex = 0;
                 } else {
-                    // Pas d'opérateur trouvé, ajouter le reste
+                    // No operator found, add the rest
                     if (substring.length > 0) {
                         container.appendChild(document.createTextNode(substring));
                     }
