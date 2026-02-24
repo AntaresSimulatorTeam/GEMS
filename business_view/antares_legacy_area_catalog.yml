@@ -56,7 +56,7 @@ catalog:
   - id: CO2.EMIS
     terms:
       - taxonomy-category: dispatchable_production
-        output-id: co2_emmisions
+        output-id: co2_emissions
         location-ports: balance_port
     terms-operator: sum
     time-operator: sum
@@ -64,7 +64,7 @@ catalog:
   - id: LOAD
     terms:
       - taxonomy-category: consumption
-        output-id: area_load
+        output-id: withdrawal
         location-ports: balance_port
     terms-operator: sum
     time-operator: sum
