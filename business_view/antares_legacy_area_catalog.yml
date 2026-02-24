@@ -211,7 +211,7 @@ catalog:
   - id: LOLD
     terms:
       - taxonomy-category: balance
-        output-id: unsupplied_energy_duration
+        output-id: is_loss_of_load
         location-ports: null
     terms-operator: sum
     time-operator: sum
@@ -219,12 +219,12 @@ catalog:
   - id: LOLP
     terms:
       - taxonomy-category: balance
-        output-id: unsupplied_energy_probability
+        output-id: is_loss_of_load
         location-ports: null
     terms-operator: sum
-    time-operator: sum
+    time-operator: avg
 
-  - id: NP.CAP
+  - id: NP.CAP #TO DO : correct/confirm this one
     terms:
       - taxonomy-category: balance
         output-id: near_price_capacity
@@ -232,7 +232,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: ROW.BAL
+  - id: ROW.BAL #TO DO : correct/confirm this one
     terms:
       - taxonomy-category: fatal_production
         output-id: row
@@ -242,7 +242,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: MISC.GEN
+  - id: MISC.GEN #TO DO : correct/confirm this one
     terms:
       - taxonomy-category: fatal_production
         output-id: generation
@@ -254,7 +254,7 @@ catalog:
 
   - id: MAX.MRG # Calulation from hour to hour can differ for this metric max-mrg-utilis.cpp in Simulator 
 
-  - id: H.STOR
+  - id: H.STOR #TO DO : correct/confirm this one
     terms:
       - taxonomy-category: hydro_production
         output-id: hydro_generation
@@ -262,7 +262,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: H.PUMP
+  - id: H.PUMP #TO DO : correct/confirm this one
     terms:
       - taxonomy-category: hydro_production
         output-id: hydro_pump
@@ -270,7 +270,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: H.OVFL
+  - id: H.OVFL #TO DO : correct/confirm this one
     terms:
       - taxonomy-category: hydro_production
         output-id: hydro_overflow
@@ -278,7 +278,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: H.VAL
+  - id: H.VAL #TO DO : correct/confirm this one
     terms:
       - taxonomy-category: hydro_production
         output-id: hydro_value
@@ -286,7 +286,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: H.COST
+  - id: H.COST #TO DO : correct/confirm this one
     terms:
       - taxonomy-category: hydro_production
         output-id: hydro_cost
