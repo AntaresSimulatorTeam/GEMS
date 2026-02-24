@@ -92,7 +92,7 @@ catalog:
 
   - id: RES.GENERATION
     terms:
-      - taxonomy-category: renewable_production
+      - taxonomy-category: fatal_production
         output-id: balance_port.flow
         location-ports: balance_port
     breakdown:
