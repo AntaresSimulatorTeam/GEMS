@@ -1,0 +1,82 @@
+id: ihm_configuration_1
+
+taxonomy: my_taxonomy
+
+maps-interface:
+  visual graph node:
+    - taxonomy-category: balance
+    - instantiation: true
+  visual graph edge type 1:
+    - taxonomy-category: link
+    - instantiation: true
+  visual graph edge type 2:
+    - taxonomy-category: converter
+    - instantiation: true
+
+windows-interface:
+  node interface:
+    id: node interface
+    displayed-category:
+      - taxonomy-category: balance
+    locational-category:
+      - taxonomy-category: balance
+    locational-filter:
+      - taxonomy-group: balance
+
+  one-node connection models interface:
+    id: one-node connection models interface
+    displayed-category:
+      - taxonomy-category: production
+      - taxonomy-category: consumption
+      - taxonomy-category: storage
+    locational-category:
+      - taxonomy-group: balance
+    connections:
+      - taxonomy-group: connection 1
+    locational-filter:
+      - taxonomy-group: balance
+      connection-filter:
+        - connection: connection 1
+
+  edge type 1 interface:
+    id: edge type 1 interface
+    displayed-category:
+      - taxonomy-category: link
+    locational-category:
+      - taxonomy-group: balance
+      connections:
+        - connection: connection 2
+        - taxonomy-group: balance
+        - connection: connection 2_bis
+    locational-filter:
+      - taxonomy-group: balance
+      connection-filter:
+        - connection: connection 2
+        - connection: connection 2_bis
+
+  edge type 2 interface:
+    id: edge type 2 interface
+    displayed-category:
+      - taxonomy-category: converter
+    locational-category:
+      - taxonomy-group: balance
+      connections:
+        - connection: connection 2
+        - taxonomy-group: balance
+        - connection: connection 2_bis
+    locational-filter:
+      - taxonomy-group: balance
+      connection-filter:
+        - connection: connection 2
+        - connection: connection 2_bis
+
+  coupling interface:
+    id: coupling interface
+    displayed-category:
+      - taxonomy-category: Quota
+    locational-category:
+      - taxonomy-category: production
+      - taxonomy-category: consumption
+      - taxonomy-category: storage
+    connections:
+      - connection: connection 3
