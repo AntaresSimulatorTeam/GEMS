@@ -32,7 +32,6 @@ taxonomy:
         - id: carrier
 
     - id: production
-      
       parameters:
         - id: total_p_max
       ports:
@@ -85,6 +84,9 @@ taxonomy:
         - id: in_port
 
     - id: converter
+      ports:
+        - id: out_port
+        - id: in_port
 
     - id: coupling_models
 
