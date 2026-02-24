@@ -12,7 +12,7 @@
 
 taxonomy:
   id: my_taxonomy
-  description: "GEMS taxonomy configuration. This is an example to illustrate the data structure of a taxonomy configuration file. It is not meant to be used as is.
+  description: GEMS taxonomy configuration. This is an example to illustrate the data structure of a taxonomy configuration file. It is not meant to be used as is.
 
   categories:
 
