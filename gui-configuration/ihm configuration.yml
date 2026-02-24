@@ -3,16 +3,16 @@ id: ihm_configuration_1
 taxonomy: my_taxonomy
 
 maps-interface:
-  visual_graph_nodes: 
+  visual-graph-nodes: 
     - taxonomy-category: balance
-    - instantiation: true
-  visual_graph_edge_types:
+    - instantiation: true #TO DO : one option could be to refer to the windows-interface id
+  visual-graph-edge-types:
     - id: type_1
       taxonomy-category: link
-      instantiation: true
+      instantiation: true #TO DO : one option could be to refer to the windows-interface id
     - id: type_2
       taxonomy-category: converter
-      instantiation: true
+      instantiation: true #TO DO : one option could be to refer to the windows-interface id
 
 windows-interfaces:
   - id: node_window 
@@ -71,4 +71,4 @@ windows-interfaces:
       - taxonomy-category: production
       - taxonomy-category: consumption
       - taxonomy-category: storage
-        connection: connection_3
+        connection: connection_3 # the syntax differs from above
