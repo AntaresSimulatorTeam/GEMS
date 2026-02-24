@@ -1,77 +1,74 @@
-id : ihm_configuration_1
+id: ihm_configuration_1
 
-taxonomy : my_taxonomy
+taxonomy: my_taxonomy
 
 maps-interface:
-	visual_graph_nodes: 
-		- taxonomy-category : balance
-		- instantiation : true
-	visual_graph_edge_types:
-		- id: type_1
-		  taxonomy-category : link
-		  instantiation : true
-  		- id: type_2
-    	  taxonomy-category : converter
-		  instantiation : true
-
+  visual_graph_nodes: 
+    - taxonomy-category: balance
+    - instantiation: true
+  visual_graph_edge_types:
+    - id: type_1
+      taxonomy-category: link
+      instantiation: true
+    - id: type_2
+      taxonomy-category: converter
+      instantiation: true
 
 windows-interfaces:
-	- id: node_window 
-	  displayed-category :
-			- taxonomy-category : balance
-      locational-category :
-			- taxonomy-category : balance
-	 locational-filter : 
-		      	- taxonomy-group : balance
+  - id: node_window 
+    displayed-category:
+      - taxonomy-category: balance
+    locational-category:
+      - taxonomy-category: balance
+    locational-filter:
+      - taxonomy-group: balance
 
-    - id: one_node_content_window 
-	  displayed-category :
-	    	- taxonomy-category: production 
-	    	- taxonomy-category: consumption
-	    	- taxonomy-category: storage
-	  locational-category :
-			- taxonomy-category: balance
-  	  		  connection: connection_1
-	  locational-filter : 
-		    - taxonomy-category : balance
-	  	  	  connection-filter: 
-			  	- connection: connection_2
+  - id: one_node_content_window
+    displayed-category:
+      - taxonomy-category: production
+      - taxonomy-category: consumption
+      - taxonomy-category: storage
+    locational-category:
+      - taxonomy-category: balance
+        connection: connection_1
+    locational-filter:
+      - taxonomy-category: balance
+        connection-filter:
+          - connection: connection_2
 
-	- id: edge_window_link
-	  displayed-category :
-	    	- taxonomy-category : link 
-	  locational-category :
-      		- taxonomy-category : balance
-  	  		connection: connection_2
-			- taxonomy-category : balance
-  	  		connection: connection_2_bis
-	  locational-filter : 
-		      	- taxonomy-category : balance
-	  	  		  connection-filter :  # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
-					- connection : connection_2
-					- connection : connection_2_bis
+  - id: edge_window_link
+    displayed-category:
+      - taxonomy-category: link
+    locational-category:
+      - taxonomy-category: balance
+        connection: connection_2
+      - taxonomy-category: balance
+        connection: connection_2_bis
+    locational-filter:
+      - taxonomy-category: balance
+        connection-filter:  # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
+          - connection: connection_2
+          - connection: connection_2_bis
 
-	- id : edge_window_converter 
-	  displayed-category:
-	    	- taxonomy-category: converter 
-	  locational-category:
-      		- taxonomy-category: balance
-  	  		connection: connection_2
-			- taxonomy-category : balance
-  	  		connection: connection_2_bis
-	   locational-filter: 
-		      	- taxonomy-category: balance
-	  	  		  connection-filter :    # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
-					- connection : connection_2
-					- connection : connection_2_bis
+  - id: edge_window_converter
+    displayed-category:
+      - taxonomy-category: converter
+    locational-category:
+      - taxonomy-category: balance
+        connection: connection_2
+      - taxonomy-category: balance
+        connection: connection_2_bis
+    locational-filter:
+      - taxonomy-category: balance
+        connection-filter:    # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
+          - connection: connection_2
+          - connection: connection_2_bis
 
-	- id: coupling_objects_window  
-		displayed-category :
-	    	- taxonomy-category : coupling 
-  	  	locational-category :
-	  	    - taxonomy-category : production 
-	  	    - taxonomy-category : consumption
-	  	    - taxonomy-category : storage
-        	connection: connection_3
-
-
+  - id: coupling_objects_window
+    displayed-category:
+      - taxonomy-category: coupling
+    locational-category:
+      - taxonomy-category: production
+      - taxonomy-category: consumption
+      - taxonomy-category: storage
+        connection: connection_3
