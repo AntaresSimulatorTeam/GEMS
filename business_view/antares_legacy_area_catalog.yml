@@ -195,7 +195,7 @@ catalog:
   - id: AVL.DTG # Can i directly use parameters?
     terms:
       - taxonomy-category: dispatchable_production
-        output-id: p_max_cluster
+        output-id: total_p_max
         location-ports: balance_port
     terms-operator: sum
     time-operator: sum
@@ -203,7 +203,7 @@ catalog:
   - id: DTG.MRG
     terms:
       - taxonomy-category: dispatchable_production
-        output-id: distpachable_margin
+        output-id: up_margin
         location-ports: balance_port
     terms-operator: sum
     time-operator: sum
