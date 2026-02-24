@@ -81,10 +81,10 @@ catalog:
 
   - id: BALANCE
     terms:
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: out_port.flow
         location-ports: out_port
-      - taxonomy-category: exchange
+      - taxonomy-category: link
         output-id: in_port.flow
         location-ports: in_port
     terms-operator: sum
