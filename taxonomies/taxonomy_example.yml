@@ -17,21 +17,24 @@ taxonomy:
   categories:
 
     - id: balance
+      variables:
+        - id: unsupplied_energy
+        - id: spilled_energy
       ports:
         - id: balance_port
       constraints:
         - id: balance
       extra-outputs:
         - id: price
+        - id: imbalance_cost
+        - id: is_loss_of_load
       properties:
         - id: carrier
 
     - id: production
       
       parameters:
-        - id: p_min
-        - id: p_max
-        - id: generation_cost
+        - id: total_p_max
       ports:
         - id: balance_port
       properties:
@@ -45,6 +48,10 @@ taxonomy:
       parent-category: production
       variables: # just an example of how to use variables in a category
         - id: generation
+      extra-outputs:
+        - id: proportional_cost
+        - id: non_proportional_cost
+        - id: nb_units_on
 
     - id: fatal_production
       parent-category: production
@@ -52,6 +59,8 @@ taxonomy:
         - id: generation
 
     - id: consumption
+      extra-outputs:
+        - id: withdrawal
       ports:
         - id: balance_port
       properties:
@@ -71,6 +80,9 @@ taxonomy:
       
 
     - id: link
+      ports:
+        - id: out_port
+        - id: in_port
 
     - id: converter
 
