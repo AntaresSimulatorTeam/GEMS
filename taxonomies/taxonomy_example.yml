@@ -1,0 +1,81 @@
+# Copyright (c) 2024, RTE (https://www.rte-france.com)
+#
+# See AUTHORS.txt
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+# This file is part of the Antares project.
+
+taxonomy:
+  id: my_taxonomy
+  description: "GEMS taxonomy configuration. This is an example to illustrate the data structure of a taxonomy configuration file. It is not meant to be used as is.
+
+  categories:
+
+    - id: balance
+      ports:
+        - id: balance_port
+      constraints:
+        - id: balance
+      extra-outputs:
+        - id: price
+      properties:
+        - id: carrier
+
+    - id: production
+      
+      parameters:
+        - id: p_min
+        - id: p_max
+        - id: generation_cost
+      ports:
+        - id: balance_port
+      properties:
+        - id: carrier
+        - id: technology
+      extra-outputs:
+        - id: up_margin
+        - id: down_margin
+
+    - id: dispatchable_production
+      parent-category: production
+      variables: # just an example of how to use variables in a category
+        - id: generation
+
+    - id: fatal_production
+      parent-category: production
+      parameters:
+        - id: generation
+
+    - id: consumption
+      ports:
+        - id: balance_port
+      properties:
+        - id: carrier
+
+    - id: fatal_consumption
+      parent-category: consumption     
+
+    - id: flexible_consumption
+      parent-category: consumption
+      parameters:
+        - id: min_load
+        - id: max_load
+      
+
+    - id: storage
+      
+
+    - id: link
+
+    - id: converter
+
+    - id: coupling_models
+
+    - id: capacity_investment_decisions
+      ports:
+        - id: capacity_port
