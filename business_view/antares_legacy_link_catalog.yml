@@ -1,4 +1,7 @@
 catalog:
+
+  # TO DO : this catalog should be improved, correctness of the Metrics should be checked
+  # Remark for the case of CONG.FEE.ABS : We will probably need a new operator in the GEMS grammar: using ports exporting extra-outputs to other components.
   
   id: antares_link_output
 
