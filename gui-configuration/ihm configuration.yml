@@ -2,6 +2,11 @@ id: ihm_configuration_1
 
 taxonomy: my_taxonomy
 
+#TO DO : open questions 
+## Instantiation -> mention a window id ? Link with the "displayed category" ?
+## How do reflect the fact that one_node_content_window is not at the same level than node_window ?
+## Syntax for locational filter and locational category should be refined
+
 maps-interface:
   visual-graph-nodes: 
     - taxonomy-category: balance
