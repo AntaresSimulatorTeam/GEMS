@@ -6,6 +6,7 @@ taxonomy: my_taxonomy
 ## Instantiation -> mention a window id ? Link with the "displayed category" ?
 ## How do reflect the fact that one_node_content_window is not at the same level than node_window ?
 ## Syntax for locational filter and locational category should be refined
+## Is there really a need to define "connections", in another file?
 
 maps-interface:
   visual-graph-nodes: 
