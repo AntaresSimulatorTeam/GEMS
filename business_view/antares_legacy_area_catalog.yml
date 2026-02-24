@@ -48,7 +48,7 @@ catalog:
   - id: MRG.PRICE
     terms:
       - taxonomy-category: balance
-        output-id: marginal_price
+        output-id: price
         location-ports: null
     terms-operator: avg
     time-operator: avg
