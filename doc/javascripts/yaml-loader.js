@@ -1206,8 +1206,8 @@
             const cached = localStorage.getItem(cacheKey);
             if (cached) {
                 const data = JSON.parse(cached);
-                // Check if cache is still valid (24 hours)
-                if (Date.now() - data.timestamp < 24 * 60 * 60 * 1000) {
+                // Check if cache is still valid (10 seconds)
+                if (Date.now() - data.timestamp < 10 * 1000) {
                     return data.content;
                 } else {
                     localStorage.removeItem(cacheKey);
