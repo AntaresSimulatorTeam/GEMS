@@ -1049,12 +1049,6 @@
                 }
             }
             
-            // Hide library info when viewing specific content
-            if (portContent && portContent.style.display === 'block') {
-                libInfo.style.display = 'none';
-                libButton.classList.remove('active');
-                libButton.setAttribute('aria-expanded', 'false');
-            }
         });
         
         // Event delegation for model buttons
@@ -1088,12 +1082,6 @@
                 }
             }
             
-            // Hide library info when viewing specific content
-            if (modelContent && modelContent.style.display === 'block') {
-                libInfo.style.display = 'none';
-                libButton.classList.remove('active');
-                libButton.setAttribute('aria-expanded', 'false');
-            }
         });
         
         // Event delegation for port references
@@ -1124,11 +1112,6 @@
                 // Always show the referenced port
                 portContent.style.display = 'block';
                 correspondingPortBtn.classList.add('active');
-                
-                // Hide library info
-                libInfo.style.display = 'none';
-                libButton.classList.remove('active');
-                libButton.setAttribute('aria-expanded', 'false');
                 
                 // Scroll to button
                 correspondingPortBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
