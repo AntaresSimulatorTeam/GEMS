@@ -508,7 +508,6 @@
         // === LEVEL 2: MODELS ===
         if (lib.models && Array.isArray(lib.models) && lib.models.length > 0) {
             // Title
-            // Title
             const modelTitle = document.createElement('h3');
             modelTitle.className = 'yaml-section-title';
             modelTitle.textContent = '🔧 Models';
