@@ -1004,20 +1004,6 @@
         
         // === EVENT LISTENERS ===
         
-        // Click on library button (reset everything)
-        libButton.addEventListener('click', () => {
-            libContent.querySelectorAll('.yaml-library-port-content').forEach(el => el.style.display = 'none');
-            libContent.querySelectorAll('.yaml-library-model-content').forEach(el => el.style.display = 'none');
-            libInfo.style.display = 'block';
-            
-            libButton.classList.add('active');
-            libButton.setAttribute('aria-expanded', 'true');
-            libContent.querySelectorAll('.yaml-library-button-port, .yaml-library-button-model').forEach(btn => {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-expanded', 'false');
-            });
-        });
-        
         // Event delegation for port buttons
         libContent.addEventListener('click', (e) => {
             const portBtn = e.target.closest('.yaml-library-button-port');
