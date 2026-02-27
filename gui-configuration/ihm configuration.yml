@@ -11,7 +11,7 @@ taxonomy: my_taxonomy
 maps-interface:
   visual-graph-nodes: 
     - taxonomy-category: balance
-    - instantiation: true #TO DO : one option could be to refer to the windows-interface id
+      instantiation: true #TO DO : one option could be to refer to the windows-interface id
   visual-graph-edge-types:
     - id: type_1
       taxonomy-category: link
