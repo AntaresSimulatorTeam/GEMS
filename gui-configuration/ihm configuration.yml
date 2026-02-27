@@ -27,7 +27,7 @@ windows-interfaces:
     locational-category:
       - taxonomy-category: balance
     locational-filter:
-      - taxonomy-group: balance
+      - taxonomy-category: balance
 
   - id: one_node_content_window
     displayed-category:
