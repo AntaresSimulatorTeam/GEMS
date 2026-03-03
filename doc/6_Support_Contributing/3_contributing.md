@@ -95,24 +95,3 @@ GEMS welcomes any contribution in all forms.
 
 * For contributing on **Antares Simulator**, please follow [these instructions](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/CONTRIBUTING.md).
 
-
----
-**Navigation**
-
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-  <div style="text-align: left;">
-    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-      <a href="../2_contact" style="text-decoration:none; color: #000000">⬅️ Previous</a>
-    </button>
-  </div>
-  <div style="text-align: center;">
-    <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-      <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-    </button>
-  </div>
-  <div style="text-align: right;">
-  </div>
-</div>
-
----
-
