@@ -5,7 +5,6 @@
 # What is GEMS?
 
 **GEMS** is a high-level modelling language, close to mathematical syntax, and a data structure for describing energy systems. Compared to other algebraic modelling languages, **GEMS** is object- and graph-oriented, making it particularly well-suited to representing energy systems.
-<br>
 
 <div align="center">
     <a href="https://gems-energy.readthedocs.io/en/latest/">🌐 Visit Website</a>
