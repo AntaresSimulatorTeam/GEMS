@@ -15,6 +15,7 @@ theme:
     - navigation.tabs.sticky
     - navigation.indexes
     - content.action.copy
+    - navigation.footer
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
