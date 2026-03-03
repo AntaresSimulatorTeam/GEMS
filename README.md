@@ -7,6 +7,8 @@
 **GEMS** is a high-level modelling language, close to mathematical syntax, and a data structure for describing energy systems. Compared to other algebraic modelling languages, **GEMS** is object- and graph-oriented, making it particularly well-suited to representing energy systems.
 <br>
 
+<h2 align="center">🌐 <a href="https://gems-energy.readthedocs.io/en/latest/">Visit Website</a></h2>
+
 # Vision and Ambitions for GEMS
 
 The ambition behind the GEMS language is to **build and support a community of energy modellers and energy foresight practitioners** who can easily share models, assumptions, and studies.
@@ -43,5 +45,3 @@ The following **interpreters** can be used to run Gems modelling language :
 
 - [Antares Legacy Models to GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) : a Python package that enables the migration of Antares Legacy Models to GEMS.
 - [PyPSA to Gems Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](./3_User_Guide/3_GEMS_File_Structure/3_system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./1_Overview/1_Architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
-
-<h2 align="center">🌐 <a href="https://gems-energy.readthedocs.io/en/latest/">Visit Website</a></h2>
