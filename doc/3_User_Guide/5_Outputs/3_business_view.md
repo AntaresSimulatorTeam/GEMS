@@ -17,5 +17,3 @@ Output representation describes how simulation results are exposed and formatted
 
 **The output representation layer and its supported formats are still under active development.**
 
----
-
