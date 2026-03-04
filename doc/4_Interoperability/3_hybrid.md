@@ -6,7 +6,7 @@
 
 # Antares Simulator Hybrid studies
 
-This page explains how to configure and run a *[*hybrid study**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/08-hybrid-studies/) i.e. a study combining **GEMS components** and **Antares Simulator's Legacy Components**. In a hybrid study, the GEMS files are integrated into a Antares Simulator study’s directory structure, allowing Antares Simulator to incorporate GEMS components.
+This page explains how to configure and run a [**hybrid study**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/08-hybrid-studies/) i.e. a study combining **GEMS components** and **Antares Simulator's Legacy Components**. In a hybrid study, the GEMS files are integrated into a Antares Simulator study’s directory structure, allowing Antares Simulator to incorporate GEMS components.
 
 ## Definition
 
@@ -61,7 +61,7 @@ The `injection-field` explicitly designates which field of the port contributes 
 
 ### Definition of the area-connections (in the [system](../3_User_Guide/3_GEMS_File_Structure/3_system.md) file)
 
-The `area-connections` section of the system file is used to declare each connection between a GEMS component and a Antares Legacy Area.
+The `area-connections` section of the system file is used to declare each connection between a GEMS component and an Antares Legacy Area.
 
 For every component that should supply or interact with an Antares Area, an entry is added specifying the component, the port through which it connects, and the target area name. The port must support the area injection field type. For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`’s port named `balance_port`, the following configuration is used:
 

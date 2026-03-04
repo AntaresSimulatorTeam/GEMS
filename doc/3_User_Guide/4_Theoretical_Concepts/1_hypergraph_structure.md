@@ -4,7 +4,7 @@
     </a>
 </div>
 
-# The Hypergraph of a GEMS sysetm
+# The Hypergraph of a GEMS systEm
 ## 1 GEMS system = 1 hypergraph
 
 [GEMS](../../index.md) represents a system as a **[hypergraph](https://en.wikipedia.org/wiki/Hypergraph)**.  This is precisely the content of a [system](../3_GEMS_File_Structure/3_system.md) file.
