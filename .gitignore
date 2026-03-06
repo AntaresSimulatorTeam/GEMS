@@ -211,3 +211,4 @@ __marimo__/
 
 # GEMS specific ignores
 output/
+tutorial_venv/
