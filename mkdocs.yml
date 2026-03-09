@@ -111,4 +111,6 @@ nav:
   - Support & Contributing:
       - FAQ: 6_Support_Contributing/1_faq.md
       - Contact: 6_Support_Contributing/2_contact.md
-      - Contributing: 6_Support_Contributing/3_contributing.md
+      - For Developers:
+          - Contributing: 6_Support_Contributing/3_contributing.md
+          - PR Workflow: 6_Support_Contributing/4_pr_management.md
