@@ -36,8 +36,8 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 **Antares Modeler** is currently a command-line–only tool with no graphical interface yet. It is used for launching studies with full GEMS syntax.
 **Antares Solver** is designed for running Antares legacy study and hybrid studies comprising a mix of legacy and Gems models.
 
-<div style="height: 200px; overflow: hidden;">
-  <img src="../../assets/2_Modeler_bin.png" alt="ScreenShoot of bin folder" style="height: 100%; object-fit: contain;"/>
+<div style="overflow: hidden;">
+  <img src="../../assets/2_Modeler_bin.png" alt="ScreenShoot of bin folder" style="weigth: 100%; object-fit: contain;"/>
 </div>
 
 ### Launch the resolution of a GEMS study
