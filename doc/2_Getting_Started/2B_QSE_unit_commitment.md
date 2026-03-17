@@ -83,6 +83,13 @@ The *Unit Commitment* problem here involves determining the on/off scheme and di
 
 ## Running the GEMS study with Antares Modeler
 
+<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
+  <strong>⚠️ Warning</strong><br>
+  <b>GEMS studies can only be run with Antares Modeler and GemsPy</b>; they cannot be run with Antares Solver (Legacy).
+  <br>
+  However, in the <a href="../4_Interoperability/3_hybrid.md">Hybrid Study</a> section, a tutorial explains <b>how GEMS components can be integrated inside a Legacy study run by Antares Solver (Legacy)</b>.
+</div>
+
 Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
 
 <details>

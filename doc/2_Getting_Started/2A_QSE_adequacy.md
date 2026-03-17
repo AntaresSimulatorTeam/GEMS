@@ -125,6 +125,13 @@ The following diagram depicts the structural relationships between the [library 
 
 ## Running the GEMS study with Antares Modeler
 
+<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
+  <strong>⚠️ Warning</strong><br>
+  <b>GEMS studies can only be run with Antares Modeler and GemsPy</b>; they cannot be run with Antares Solver (Legacy).
+  <br>
+  However, in the <a href="../4_Interoperability/3_hybrid.md">Hybrid Study</a> section, a tutorial explains <b>how GEMS components can be integrated inside a Legacy study run by Antares Solver (Legacy)</b>.
+</div>
+
 1. Download [QSE_1_Adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy)
 2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_1_adequacy/input/model-libraries/`
 3. Get Antares Modeler installed through this [tutorial](./1A_modeler_installation.md)
