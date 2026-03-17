@@ -75,9 +75,15 @@ Let’s check if Modeler is working correctly.
 
   ![Modeler installation test logs](../assets/2_Modeler_logs.png)
 
+### Launch the resolution of an Hybrid study
+
 #### Antares Solver
 
-**Run Antares Solver:**
+- Use the Hybrid Study tutorial :
+
+  Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../4_Interoperability/3_hybrid.md) section
+
+- Run the following commands :
 ```bash
 # Windows
 rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
