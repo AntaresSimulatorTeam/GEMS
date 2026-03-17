@@ -56,6 +56,15 @@ extra_javascript:
 extra_css:
   - stylesheets/yaml-loader.css
 
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      enable_git_follow: true
+      type: timeago
+      timezone: Europe/Paris
+      fallback_to_build_date: true
+
 nav:
   - About GEMS:
     - Home: index.md
