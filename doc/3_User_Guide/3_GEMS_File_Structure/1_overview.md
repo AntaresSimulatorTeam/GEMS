@@ -18,16 +18,16 @@ The diagram below illustrates the typical organisation of a GEMS study:
 flowchart LR
     Study["📁 GEMS_Study/"]
     Input["📁 input/"]
-    ModelLib["📁 model-libraries/"]
-    DataSeries["📁 data-series/"]
+    ModelLib["📁 model-libraries/ 🔗"]
+    DataSeries["📁 data-series/ 🔗"]
     
-    System["📄 system.yml"]
-    Params["📄 parameters.yml"]
+    System["📄 system.yml 🔗"]
+    Params["📄 parameters.yml 🔗"]
     Lib1["📄 library_1.yml"]
     Lib2["📄 library_2.yml"]
     Data1["📊 data-series_1.csv"]
     Data2["📊 data-series_2.csv"]
-    Scenario["📄 modeler-scenariobuilder.dat"]
+    Scenario["📄 modeler-scenariobuilder.dat 🔗"]
     
     Study --> Input
     Study --> Params
