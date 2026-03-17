@@ -14,6 +14,8 @@ Understanding how these files fit together is essential for building, modifying,
 
 The diagram below illustrates the typical organisation of a GEMS study:
 
+*Click on the elements with the 🔗 emoji in order to be redirected to their dedicated documentation*
+
 ```mermaid
 flowchart LR
     Study["📁 GEMS_Study/"]
