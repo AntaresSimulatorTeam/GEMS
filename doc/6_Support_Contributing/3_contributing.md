@@ -15,7 +15,7 @@ GEMS welcomes any contribution in all forms.
 <ul>
 <li><strong>GEMS repositories containing code:</strong>
 <ul>
-<li><a href="https://github.com/AntaresSimulatorTeam/GemsPy">GemsPY</a></li>
+<li><a href="https://github.com/AntaresSimulatorTeam/GemsPy">GemsPy</a></li>
 <li><a href="https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter">PyPSA-to-GEMS-Converter</a></li>
 <li><a href="https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter">AntaresLegacyModels-to-GEMS-Converter</a></li>
 </ul>
