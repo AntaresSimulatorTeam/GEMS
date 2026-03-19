@@ -1,10 +1,7 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="text-align: left;">
-        <a href="../../../..">Main Section</a>
-    </div>
-    <div style="text-align: right;">
+<div style="display: flex; justify-content: flex-end;">
+    <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </div>
+    </a>
 </div>
 
 # Business Views
@@ -19,22 +16,4 @@
 Output representation describes how simulation results are exposed and formatted for end users. It operates downstream of **Business Views** and does not affect simulation or metric calculations. This layer is responsible only for structuring and presenting already computed Business Outputs.
 
 **The output representation layer and its supported formats are still under active development.**
-
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../2_optimization_problem_files" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview/" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
-</div>
-
----
 

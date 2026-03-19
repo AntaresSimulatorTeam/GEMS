@@ -1,10 +1,7 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <a href="../..">Main Section</a>
-  </div>
-  <div style="text-align: right;">
+<div style="display: flex; justify-content: flex-end;">
+  <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </div>
+  </a>
 </div>
 <div>
 <h1>Comparing Results Between GEMS Modeler and PyPSA</h1>
@@ -12,22 +9,3 @@
 <p>👉 <a href="https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter/blob/converter-docs/src/tests/local_benchmark/benchmark_analysis.ipynb">View benchmark analysis</a></p>
 </div>
 
----
-**Navigation**
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../5_step_by_step_guide/" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="Home/Main_Home/1_context_GEMS.md" style="text-decoration:none; color: #FFFFFF">Home</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../3_hybrid/" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
-</div>
-
----

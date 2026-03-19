@@ -1,10 +1,7 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <a href="../../../..">Main Section</a>
-  </div>
-  <div style="text-align: right;">
+<div style="display: flex; justify-content: flex-end;">
+  <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </div>
+  </a>
 </div>
 
 # Antares Simulator's GEMS interpreter
@@ -39,8 +36,8 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 **Antares Modeler** is currently a command-line–only tool with no graphical interface yet. It is used for launching studies with full GEMS syntax.
 **Antares Solver** is designed for running Antares legacy study and hybrid studies comprising a mix of legacy and Gems models.
 
-<div style="height: 200px; overflow: hidden;">
-  <img src="../../assets/2_Modeler_bin.png" alt="ScreenShoot of bin folder" style="height: 100%; object-fit: contain;"/>
+<div style="overflow: hidden;">
+  <img src="../../assets/2_Modeler_bin.png" alt="ScreenShoot of bin folder" style="weigth: 100%; object-fit: contain;"/>
 </div>
 
 ### Launch the resolution of a GEMS study
@@ -78,9 +75,15 @@ Let’s check if Modeler is working correctly.
 
   ![Modeler installation test logs](../assets/2_Modeler_logs.png)
 
+### Launch the resolution of an Hybrid study
+
 #### Antares Solver
 
-**Run Antares Solver:**
+- Use the Hybrid Study tutorial :
+
+  Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../4_Interoperability/3_hybrid.md) section
+
+- Run the following commands :
 ```bash
 # Windows
 rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
@@ -108,25 +111,3 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 | FAQ                      | [FAQ](../6_Support_Contributing/1_faq.md)                   |
 | GitHub Issues            | [Antares Simulator Issues](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues) |
 | Contact Support          | [Contact support](../6_Support_Contributing/2_contact.md)   |
-
----
-
-**Navigation**
-
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../1_Overview/5_References/3_Users" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1B_gemspy_installation" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
-</div>
-
----

@@ -1,10 +1,7 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <a href="../../../..">Main Section</a>
-  </div>
-  <div style="text-align: right;">
+<div style="display: flex; justify-content: flex-end;">
+  <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </div>
+  </a>
 </div>
 
 # Quick-start example 1: three-bus adequacy system
@@ -128,6 +125,13 @@ The following diagram depicts the structural relationships between the [library 
 
 ## Running the GEMS study with Antares Modeler
 
+<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
+  <strong>⚠️ Warning</strong><br>
+  <b>GEMS studies can only be run with Antares Modeler and GemsPy</b>; they cannot be run with Antares Solver (Legacy).
+  <br>
+  However, in the <a href="../4_Interoperability/3_hybrid.md">Hybrid Study</a> section, a tutorial explains <b>how GEMS components can be integrated inside a Legacy study run by Antares Solver (Legacy)</b>.
+</div>
+
 1. Download [QSE_1_Adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy)
 2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_1_adequacy/input/model-libraries/`
 3. Get Antares Modeler installed through this [tutorial](./1A_modeler_installation.md)
@@ -211,23 +215,3 @@ The following diagrams explains the structure of the system file for the Three-b
   <img src="../../assets/2_QSE_Adequacy_system.png" alt="diagram with all components" style="max-width:95%;">
 </p>
 </details>
-
----
-**Navigation**
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1B_gemspy_installation" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../2B_QSE_unit_commitment" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
-</div>
-
----
