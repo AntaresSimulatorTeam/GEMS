@@ -6,40 +6,36 @@ official **GEMS ecosystem repositories**.
 
 It applies to repositories related to:
 
--   GEMS Language
--   GemsPy
--   Antares2GEMS Converter
--   PyPSA2GEMS Converter
--   GEMS Documentation
--   GEMS Libraries and Taxonomies
+- [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy)
+- [Antares2GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter)
+- [PyPSA2GEMS Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter)
+- [GEMS Language, Documentation, Libraries and Taxonomies](https://github.com/AntaresSimulatorTeam/GEMS)
 
 The objective of this workflow is to ensure:
 
--   consistent repository management
--   predictable releases
--   controlled versioning
--   reliable CI/CD validation
--   clear traceability of changes
+- consistent repository management
+- predictable releases
+- controlled versioning
+- reliable CI/CD validation
+- clear traceability of changes
 
 ------------------------------------------------------------------------
 
 # 1. Development Starting Point
 
-All changes **MUST start from a tracked GitHub Issue**.
+All changes **MUST start from a tracked GitHub Issue** created in one of the official **GEMS** repositories listed in this document.
 
 The issue **MUST include**:
 
--   purpose of the change
--   affected repository or repositories
--   expected impact
--   compatibility impact
--   related process ID (if applicable)
+- purpose of the change
+- compatibility impact
+- related process ID (if applicable)
 
 Pull Requests **MUST NOT be opened without an associated issue**, except
 for:
 
--   trivial documentation fixes
--   emergency hotfixes
+- trivial documentation fixes
+- emergency hotfixes
 
 ------------------------------------------------------------------------
 
@@ -89,9 +85,9 @@ Examples:
 
 Branch names **SHOULD**:
 
--   be short
--   be descriptive
--   use hyphen separation
+- be short
+- be descriptive
+- use hyphen separation
 
 ------------------------------------------------------------------------
 
@@ -130,7 +126,7 @@ Each PR **MUST include the following sections**.
     Link the GitHub issue.
 
     ## Scope
-    List affected components, modules, or repositories.
+    List affected components or modules.
 
     ## Compatibility Impact
     State whether the change is breaking, backward-compatible, or internal only.
@@ -146,9 +142,9 @@ Each PR **MUST include the following sections**.
 
 Additional requirements:
 
--   If behavior changes, the **new behavior MUST be described
+- If behavior changes, the **new behavior MUST be described
     explicitly**
--   If behavior does not change, this **MUST also be stated**
+- If behavior does not change, this **MUST also be stated**
 
 ------------------------------------------------------------------------
 
@@ -156,8 +152,8 @@ Additional requirements:
 
 Every PR **MUST include labels describing**:
 
--   the **type of change**
--   the **release impact**
+- the **type of change**
+- the **release impact**
 
 ------------------------------------------------------------------------
 
@@ -192,11 +188,11 @@ Every PR **MUST include labels describing**:
 
 A Pull Request **MAY be merged only when all conditions are satisfied**:
 
--   CI pipeline passes
--   required labels are present
--   PR description is complete
--   at least one maintainer approves the PR
--   all review comments are resolved
+- CI pipeline passes
+- required labels are present
+- PR description is complete
+- at least one maintainer approves the PR
+- all review comments are resolved
 
 For breaking changes or release branches, **two approvals are
 recommended**.
@@ -211,8 +207,8 @@ The standard merge strategy is:
 
 This ensures:
 
--   clean commit history
--   one logical commit per PR
+- clean commit history
+- one logical commit per PR
 
 ------------------------------------------------------------------------
 
@@ -255,13 +251,11 @@ All repositories **MUST follow Semantic Versioning**:
 
     MAJOR.MINOR.PATCH
 
-## Common upgrade rules:
+## Common upgrade rules
 
 Major → breaking changes\
 Minor → backward compatible features\
 Patch → bug fixes or internal improvements
-
-
 
 ------------------------------------------------------------------------
 
@@ -271,11 +265,11 @@ Each repository **MUST maintain a changelog**.
 
 Recommended sections:
 
--   Added
--   Changed
--   Fixed
--   Removed
--   Deprecated
+- Added
+- Changed
+- Fixed
+- Removed
+- Deprecated
 
 Every release **MUST include a changelog entry before tagging**.
 
@@ -298,12 +292,12 @@ If a release contains a critical issue, a hotfix branch may be created:
 
 The hotfix process **MUST include**:
 
--   issue creation
--   targeted fix
--   CI validation
--   patch version increment
--   updated changelog
--   new tag and release
+- issue creation
+- targeted fix
+- CI validation
+- patch version increment
+- updated changelog
+- new tag and release
 
 ------------------------------------------------------------------------
 
@@ -311,9 +305,9 @@ The hotfix process **MUST include**:
 
 If a release is broken:
 
--   it may be reverted in `main`
--   a corrective patch release must be prepared
--   published packages may be yanked
+- it may be reverted in `main`
+- a corrective patch release must be prepared
+- published packages may be yanked
 
 Rollback actions **MUST be documented in release notes or changelog**.
 
@@ -325,13 +319,13 @@ All repositories **defines certain CI pipelines**.
 
 Typical checks include:
 
--   formatting
--   import sorting
--   type checking
--   unit tests
--   integration tests
--   end-to-end tests
--   documentation build
+- formatting
+- import sorting
+- type checking
+- unit tests
+- integration tests
+- end-to-end tests
+- documentation build
 
 PRs **cannot be merged if required checks fail**.
 
@@ -357,4 +351,5 @@ flowchart TD
     H --> I[Include in Release Branch]
     I --> J[Tag and Publish Release]
 ```
+
 ------------------------------------------------------------------------
