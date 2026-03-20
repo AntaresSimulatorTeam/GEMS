@@ -4,65 +4,68 @@
     <a href="folder1/home1.md">Main Section</a>
   </div>
   <div style="text-align: right;">
-    <img src="assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </div>
 </div>
 
+*This section coms from Overview.concepts file*
 
-# Title 1
+# Model definition (from system.yml)
 
+Model and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
 
-## Sub-Title 2
-Content or text here.
+# Components specification (from system.yml)
 
-**Code block example (YAML):**
-```yaml
-connections:
-  - component1: generator1
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-  - component1: generator2
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-  - component1: demand
-    port1: injection_port
-    component2: node1
-    port2: injection_port
-```
+Components and its configuration is defined in [Overview section](../1_Overview/Concepts/2_core%20concepts.md)
 
-**Code block example (Python):**
-```python
-print("Hello World")
-```
-**Note Example:**
+# Dataseries
+Currently, the framework supports defining **dataseries** using tab-seperated-values files. Values must be separated using tabs, and the character `.` represents the floating point.
 
-<div style="border:1px solid #ccc; padding:10px; background:#f9f9f9;">
-<strong>🖊️ Note :</strong> This is an important note
-</div>
+## Scenario / Time Dependency
+Inside the YAML files, **Parameters, Variables, and Constraints** can be dependent on the scenario and/or over time.
+- A **scenario dependency** means, for instance, that the *parameter* `fixed_cost` for starting up a plant can depend on the chosen scenario.
 
+    A simulation with 4 scenarios will get :
+    `54 67.5 23.652 253`
+- A **time dependent** *parameter* can be for instance `max_active_power_set_point` dependending on plant maintenancy. A time dependency needs a dataserie for getting data
 
-**Simple Equation example:**
+    A simulation with 4 timestamps will get :
+    ```
+    54 
+    67.5 
+    23.652 
+    253```
 
- $3 * parameter_1 * variable_a + variable_b + 56.4 <= variable_4 * 439$ 
+# Outputs
 
-**LATEC equation example:**
-$$
-3 \cdot \text{parameter\_1} \cdot \text{variable\_a} + \text{variable\_b} + 56.4 \leq \text{variable\_4} \cdot 439
-$$
+The outputs of GEMS contain the results of the modelisation, in a LP format (**Optimization Problem**) and for hybrid and pure modeler studies in CSV format (**simulation table**), there are also **extra-outputs**. Their structure is detailed inside UserGuide section.
 
+- **Optimization Problem**
+    The optimization model solved by Antares modeler is written in the human-readable LP format, under output/problem.lp. It is only meant to be used for debugging.
+
+- **Simulation Table**
+    Antares Simulator (hybrid and modeler modes) produces detailed optimization results for the modeler's components, in the "simulation table", in CSV format
+
+    - **Extra Outputs**
+        Extra-Outputs computed after optimization (using optimal variable values). These appear in the output files alongside variable and port values inside the simulation table.
+
+- **Business Views**
+    Output files with metrics specifically designed for users purposes. It made from the simulation table.
 ---
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
-    <a href="previous.md">Previous Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="previous.md" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+  </button>
   </div>
-    <div style="text-align: center;">
-    <a href="../../index.md">Back to Home</a>
-  </div>
+  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="Home/Main_Home/1_context_GEMS.md" style="text-decoration:none; color: #FFFFFF">Index</a>
+  </button>
   <div style="text-align: right;">
-    <a href="next.md">Next Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="next.md" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  </button>
   </div>
 </div>
 

@@ -1,10 +1,3 @@
----
-title: "Context of GEMS"
-author: "Guillaume MAISTRE - RTEi"
-date: "19/11/2025"
-logo: "../../assets/gemsV2.png"
----
-
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="text-align: left;">
     <a href="../../index.md">Main Section</a>
@@ -17,7 +10,8 @@ logo: "../../assets/gemsV2.png"
 
 # Context of GEMS
 
-The framewok GEMS (Generic Energy systems Modelling Scheme) was developed by the [**Antares Simulator Team**](https://antares-simulator.org/) in the context of the **ANDROMEDE project**. This is part of the R&D Roadmap of [**RTE**](https://www.rte-france.com/), French Transmission System Operator (TSO), aimed at advancing tools for **Long-Term Power System Adequacy** and **Investment planning** studies.
+The framework **GEMS** (Generic Energy Systems Modelling Scheme) was developed by the [Antares Simulator Team](https://antares-simulator.org/) at [RTE](https://www.rte-france.com/), the French Transmission System Operator (TSO). Its goal is to advance tools for **long-term power system adequacy** and **investment planning** studies.
+
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
   <div style="display: flex; justify-content: center; align-items: flex-end; gap: 40px;">
@@ -44,13 +38,17 @@ As energy systems become more complex and dynamic, GEMS was developed to address
 **Navigation**
 <div style="display: flex; justify-content: space-between;">
   <div style="text-align: left;">
-    <a href="1_outlook_of_GEMS_and_Interpreters_behavior.md">Previous Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+  <a href="./../../.." style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+  </button>
   </div>
-    <div style="text-align: center;">
-    <a href="../../index.md">Back to Home</a>
-  </div>
+  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+  <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+  </button>
   <div style="text-align: right;">
-    <a href="3_release_notes.md">Next Section</a>
+  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+  <a href="../2_release_notes" style="text-decoration:none; color: #000000">Next page ➡️</a>
+  </button>
   </div>
 </div>
 

@@ -1,10 +1,3 @@
----
-title: "GEMS Release Notes"
-author: "Guillaume MAISTRE - RTEi"
-date: "19/11/2025"
-logo: "../../assets/gemsV2.png"
----
-
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <div style="text-align: left;">
         <a href="../../index.md">Main Section</a>
@@ -32,14 +25,18 @@ logo: "../../assets/gemsV2.png"
 
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: left;">
-        <a href="2_context_GEMS.md">Previous Section</a>
+    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="../1_context_GEMS" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
+    </button>
     </div>
-    <div style="text-align: center;">
-        <a href="../../index.md">Back to Home</a>
+    <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Index</a>
+    </button>
+    <div style="text-align: right;">
+    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
+    <a href="../../1_Overview/Concepts/1_core concepts" style="text-decoration:none; color: #000000">Next page ➡️</a>
+    </button>
     </div>
-  <div style="text-align: right;">
-    <a href="../Overview/1_GEMS architecture.md">Next Section</a>
-  </div>
 </div>
 
 ---

@@ -1,0 +1,69 @@
+catalog:
+
+  # TO DO : this catalog should be improved, correctness of the Metrics should be checked
+  # Remark for the case of CONG.FEE.ABS : We will probably need a new operator in the GEMS grammar: using ports exporting extra-outputs to other components.
+  
+  id: antares_link_output
+
+  taxonomy: my_taxonomy
+
+  location:
+    taxonomy-category: link
+
+  metrics-definition: 
+
+  - id: FLOW LIN.
+    terms:
+      - taxonomy-category: link
+        output-id: flow
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: CONG.FEE.ABS
+    terms:
+      - taxonomy-category: link
+        output-id: congestion_fee_abs
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: CONG.FEE.ALG
+    terms:
+      - taxonomy-category: link
+        output-id: congestion_fee_alg
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: MRG.COST
+    terms:
+      - taxonomy-category: link
+        output-id: capacity_shadow_price
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: CONG.PROB.DIR
+    terms:
+      - taxonomy-category: link
+        output-id: is_congested_direct
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: CONG.PROB.INDIR
+    terms:
+      - taxonomy-category: link
+        output-id: is_congested_indirect
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
+
+  - id: HURD.COST
+    terms:
+      - taxonomy-category: link
+        output-id: proportional_cost
+        location-ports: null 
+    terms-operator: sum
+    time-operator: sum
