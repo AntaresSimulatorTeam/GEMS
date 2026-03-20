@@ -27,6 +27,7 @@ taxonomy:
         - id: price
         - id: imbalance_cost
         - id: is_loss_of_load
+        - id: near_loss_of_load
       properties:
         - id: carrier
 
@@ -39,8 +40,7 @@ taxonomy:
         - id: carrier
         - id: technology
       extra-outputs:
-        - id: up_margin
-        - id: down_margin
+        - id: profit
 
     - id: dispatchable_production
       parent-category: production
@@ -50,15 +50,26 @@ taxonomy:
         - id: proportional_cost
         - id: non_proportional_cost
         - id: nb_units_on
+        - id: co2_emissions
+        - id: p_max_cluster
+        - id: min_generation_level
+        - id: up_margin
+        - id: down_margin
+      properties:
+        - id: plant
 
     - id: fatal_production
       parent-category: production
       parameters:
         - id: generation
 
+    - id: hydro_production
+      # TODO: confirm whether hydro_production should inherit from production
+      
+
     - id: consumption
       extra-outputs:
-        - id: withdrawal
+        - id: effective_load
       ports:
         - id: balance_port
       properties:
@@ -75,12 +86,28 @@ taxonomy:
       
 
     - id: storage
-      # To be continued
+      ports:
+        - id: injection_port
+      extra-outputs:
+        - id: p_injection
+        - id: p_withdrawal
+        - id: level
+      properties:
+        - id: group
+
 
     - id: link
       ports:
         - id: out_port
         - id: in_port
+      extra-outputs:
+        - id: flow
+        - id: congestion_fee_abs
+        - id: congestion_fee_alg
+        - id: capacity_shadow_price
+        - id: is_congested_direct
+        - id: is_congested_indirect
+        - id: proportional_cost
 
     - id: converter
       ports:

@@ -107,7 +107,7 @@ catalog:
         output-id: p_injection 
         location-ports: injection_port
     breakdown:
-      - key: sts_group
+      - key: group
     terms-operator: sum
     time-operator: sum
 
@@ -117,7 +117,7 @@ catalog:
         output-id: p_withdrawal
         location-ports: injection_port
     breakdown:
-      - key: sts_group
+      - key: group
     terms-operator: sum
     time-operator: sum
 
@@ -127,7 +127,7 @@ catalog:
         output-id: level
         location-ports: injection_port
     breakdown:
-      - key: sts_group
+      - key: group
     terms-operator: avg
     time-operator: avg
 
@@ -137,7 +137,7 @@ catalog:
         output-id: p_injection
         location-ports: injection_port
     breakdown:
-      - key: sts_id
+      - key: group
     terms-operator: sum
     time-operator: sum
 
@@ -147,7 +147,7 @@ catalog:
         output-id: p_withdrawal
         location-ports: injection_port
     breakdown:
-      - key: sts_id
+      - key: group
     terms-operator: sum
     time-operator: sum
 
@@ -157,7 +157,7 @@ catalog:
         output-id: level
         location-ports: injection_port
     breakdown:
-      - key: sts_id
+      - key: group
     terms-operator: avg
     time-operator: avg
 
