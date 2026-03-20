@@ -1,0 +1,99 @@
+# Copyright (c) 2024, RTE (https://www.rte-france.com)
+#
+# See AUTHORS.txt
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+# This file is part of the Antares project.
+
+taxonomy:
+  id: antares_legacy_taxonomy
+  description: GEMS taxonomy configuration. 
+  categories:
+
+    - id: balance
+      variables:
+        - id: unsupplied_energy
+        - id: spilled_energy
+      ports:
+        - id: balance_port
+      constraints:
+        - id: balance
+      extra-outputs:
+        - id: price
+        - id: imbalance_cost
+        - id: is_loss_of_load
+      properties:
+        - id: carrier
+
+    - id: production
+      parameters:
+        - id: total_p_max
+      ports:
+        - id: balance_port
+      properties:
+        - id: carrier
+        - id: technology
+      extra-outputs:
+        - id: up_margin
+        - id: down_margin
+
+    - id: dispatchable_production
+      parent-category: production
+      variables: # just an example of how to use variables in a category
+        - id: generation
+      extra-outputs:
+        - id: proportional_cost
+        - id: non_proportional_cost
+        - id: nb_units_on
+
+    - id: fatal_production
+      parent-category: production
+      parameters:
+        - id: generation
+
+    - id: consumption
+      extra-outputs:
+        - id: withdrawal
+      ports:
+        - id: balance_port
+      properties:
+        - id: carrier
+
+    - id: fatal_consumption
+      parent-category: consumption     
+
+    - id: flexible_consumption
+      parent-category: consumption
+      parameters:
+        - id: min_load
+        - id: max_load
+      
+
+    - id: storage
+      # To be continued
+
+    - id: link
+      ports:
+        - id: out_port
+        - id: in_port
+
+    - id: converter
+      ports:
+        - id: out_port
+        - id: in_port
+
+
+    - id: rest_of_world
+      ports:
+        - id: balance_port
+
+    - id: coupling_models
+
+    - id: capacity_investment_decisions
+      ports:
+        - id: capacity_port
