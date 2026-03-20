@@ -11,29 +11,35 @@ catalog:
 
   metrics-definition: 
 
-  - id: DTG.BY.CLUSTER
+  - id: DTG.BY.PLANT
     terms:
       - taxonomy-category: dispatchable_production
         output-id: generation
         location-ports: null
     terms-operator: sum
     time-operator: sum
+    breakdown:
+      - key: plant
 
-  - id: MIN.DTG.BY.CLUSTER
+  - id: MIN.DTG.BY.PLANT
     terms:
       - taxonomy-category: dispatchable_production
-        output-id: p_min_cluster * unit_count * min_stable_power #incorrect -> to be changed
+        output-id: min_generation_level
         location-ports: null
     terms-operator: sum
     time-operator: sum
+    breakdown:
+      - key: plant
 
-  - id: PROFIT.BY.CLUSTER
+  - id: PROFIT.BY.PLANT
     terms:
       - taxonomy-category: dispatchable_production
-        output-id: profit # as for the congestion fees, we need to clarify first the GEMS grammar to get the price of the zone in the prod component.
+        output-id: profit 
         location-ports: null
     terms-operator: sum
     time-operator: sum
+    breakdown:
+      - key: plant
 
   - id: NODU.BY.PLANT # Not quite sure this is right approach ?
     terms:
@@ -42,11 +48,15 @@ catalog:
         location-ports: null
     terms-operator: sum
     time-operator: sum
+    breakdown:
+      - key: plant
 
-  - id: NP.COST.BY.CLUSTER # Not quite sure this is right approach ?
+  - id: NP.COST.BY.PLANT # Not quite sure this is right approach ?
     terms:
       - taxonomy-category: dispatchable_production
         output-id: non_proportional_cost
         location-ports: null
     terms-operator: sum
     time-operator: sum
+    breakdown:
+      - key: plant
