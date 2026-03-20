@@ -1,6 +1,4 @@
 catalog:
-
-  # TO DO : this catalog should be improved, correctness of the Metrics should be checked
   
   id: antares_thermal_cluster_output
 
@@ -41,7 +39,7 @@ catalog:
     breakdown:
       - key: plant
 
-  - id: NODU.BY.PLANT # Not quite sure this is right approach ?
+  - id: NODU.BY.PLANT 
     terms:
       - taxonomy-category: dispatchable_production
         output-id: nb_units_on
@@ -51,7 +49,7 @@ catalog:
     breakdown:
       - key: plant
 
-  - id: NP.COST.BY.PLANT # Not quite sure this is right approach ?
+  - id: NP.COST.BY.PLANT 
     terms:
       - taxonomy-category: dispatchable_production
         output-id: non_proportional_cost
