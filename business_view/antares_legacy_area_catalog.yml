@@ -30,6 +30,7 @@ catalog:
       - taxonomy-category: dispatchable_production
         output-id: non_proportional_cost
         location-ports: balance_port
+      #[TODO] : add hydro cost if possible
     terms-operator: sum
     time-operator: sum
 
@@ -64,7 +65,7 @@ catalog:
   - id: LOAD
     terms:
       - taxonomy-category: consumption
-        output-id: withdrawal
+        output-id: effective_load
         location-ports: balance_port
     terms-operator: sum
     time-operator: sum
@@ -103,7 +104,7 @@ catalog:
   - id: STS.INJECTION
     terms:
       - taxonomy-category: storage
-        output-id: p_injection # Is this feasible?
+        output-id: p_injection 
         location-ports: injection_port
     breakdown:
       - key: sts_group
@@ -176,7 +177,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: NODU.BY.AREA # Not quite sure this is right approach ?
+  - id: NODU.BY.AREA 
     terms:
       - taxonomy-category: dispatchable_production
         output-id: nb_units_on
@@ -184,7 +185,7 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: NP.COST.BY.AREA # Not quite sure this is right approach ?
+  - id: NP.COST.BY.AREA 
     terms:
       - taxonomy-category: dispatchable_production
         output-id: non_proportional_cost
@@ -195,7 +196,7 @@ catalog:
   - id: AVL.DTG # Can i directly use parameters?
     terms:
       - taxonomy-category: dispatchable_production
-        output-id: total_p_max
+        output-id: p_max_cluster
         location-ports: balance_port
     terms-operator: sum
     time-operator: sum
@@ -224,25 +225,23 @@ catalog:
     terms-operator: sum
     time-operator: avg
 
-  - id: NP.CAP #TO DO : correct/confirm this one
+  - id: NP.CAP 
     terms:
       - taxonomy-category: balance
-        output-id: near_price_capacity
+        output-id: near_loss_of_load
         location-ports: null
     terms-operator: sum
     time-operator: sum
 
-  - id: ROW.BAL #TO DO : correct/confirm this one
+  - id: ROW.BAL
     terms:
-      - taxonomy-category: fatal_production
-        output-id: row
+      - taxonomy-category: rest_of_world
+        output-id: balance_port.flow
         location-ports: null
-    breakdown:
-      - key: technology
     terms-operator: sum
     time-operator: sum
 
-  - id: MISC.GEN #TO DO : correct/confirm this one
+  - id: MISC.NDG 
     terms:
       - taxonomy-category: fatal_production
         output-id: generation
@@ -252,7 +251,16 @@ catalog:
     terms-operator: sum
     time-operator: sum
 
-  - id: MAX.MRG # Calulation from hour to hour can differ for this metric max-mrg-utilis.cpp in Simulator 
+
+######################################### [TODO] MAX.MRG REMAINS  #########################################
+
+
+#  - id: MAX.MRG # Calulation from hour to hour can differ for this metric max-mrg-utilis.cpp in Simulator 
+
+
+
+
+######################################### [TODO] HYDRO PART REMAINS  #########################################
 
   - id: H.STOR #TO DO : correct/confirm this one
     terms:
