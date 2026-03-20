@@ -39,7 +39,7 @@ catalog:
   - id: MRG.COST
     terms:
       - taxonomy-category: link
-        output-id: marginal_cost
+        output-id: capacity_shadow_price
         location-ports: null 
     terms-operator: sum
     time-operator: sum
@@ -47,7 +47,7 @@ catalog:
   - id: CONG.PROB.DIR
     terms:
       - taxonomy-category: link
-        output-id: congestion_prob_dir
+        output-id: is_congested_direct
         location-ports: null 
     terms-operator: sum
     time-operator: sum
@@ -55,7 +55,7 @@ catalog:
   - id: CONG.PROB.INDIR
     terms:
       - taxonomy-category: link
-        output-id: congestion_prob_indir
+        output-id: is_congested_indirect
         location-ports: null 
     terms-operator: sum
     time-operator: sum
@@ -63,7 +63,7 @@ catalog:
   - id: HURD.COST
     terms:
       - taxonomy-category: link
-        output-id: hurdle_cost
+        output-id: proportional_cost
         location-ports: null 
     terms-operator: sum
     time-operator: sum
