@@ -312,7 +312,7 @@ If a release contains a critical issue:
 - Create branch from `main` - `hotfix/vX.Y.Z`
 - Apply fix and open PR to main
 - Merge and tag new patch release `vX.Y.(Z+1)`
-- **Mandatory:** merge hotfix back into develop
+- **Mandatory:** merge `hotfix` back into `develop`
 
 ------------------------------------------------------------------------
 
