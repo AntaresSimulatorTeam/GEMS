@@ -41,15 +41,31 @@ for:
 
 # 2. Branch Management System
 
-The default branch of each repository is:
+The repositories listed above use the following core branches:
 
-    main
+- `main` → production / released state
+- `develop` → integration branch for next release
 
-Direct commits to `main` **are NOT allowed**.
-
+Direct commits to main and develop are NOT allowed.
 All changes **MUST be introduced through Pull Requests**.
 
 ------------------------------------------------------------------------
+
+## 2.1 Core Branch Roles
+
+### `main`
+
+- Contains only released versions
+- Each commit corresponds to a release
+- Every release commit MUST be tagged (vX.Y.Z)
+- Fully stable and production-ready at all times `develop`
+
+### `develop`
+
+- Contains all changes planned for the next release
+- Acts as the integration branch
+- Updated continuously via PRs
+- May be unstable between releases
 
 ## 2.1 Branch Types
 
@@ -93,7 +109,15 @@ Branch names **SHOULD**:
 
 # 3. Pull Request Creation Rules
 
-Every Pull Request **MUST be linked to a GitHub Issue**.
+- Create branch from `develop`
+
+- Implement change
+
+- Open PR targeting `develop` and link it to GitHub Issue
+
+- Apply labels and complete PR template
+
+- Pass CI and review
 
 ------------------------------------------------------------------------
 
@@ -201,30 +225,25 @@ recommended**.
 
 # 7. Merge Rules
 
-The standard merge strategy is:
-
-    Squash and Merge
-
-This ensures:
-
-- clean commit history
-- one logical commit per PR
+| Target Branch | Strategy       | Notes                            |
+| ------------- | -------------- | -------------------------------- |
+| `develop`     | Squash & Merge | All PRs                          |
+| `main`        | Merge commit   | Only from `hotfix` or `develop` |
 
 ------------------------------------------------------------------------
 
 # 8. Release Branch Rules
 
-Official releases **MUST be created from branches named**:
+No dedicated release branch is used.
 
-    release/vX.Y.Z
+The release process is:
 
-Example:
+- `develop` accumulates all changes (PR's) for the next version
+- When the release is ready merge `develop` into `main`
+- Tag the resulting commit on `main` - `vX.Y.Z`
+- Publish the release
 
-    release/v0.3.4
-
-Only stabilization changes are allowed on a release branch.
-
-No new features may be added once a release branch is created.
+After release development continues on `develop` branch.
 
 ------------------------------------------------------------------------
 
@@ -244,6 +263,8 @@ Examples:
     v2.1.7
 
 ------------------------------------------------------------------------
+
+Tags **MUST be created from** `main`.
 
 # 10. Versioning Rules
 
@@ -286,18 +307,12 @@ a dedicated changelog will be provided for each entity.
 
 # 13. Hotfix Rules
 
-If a release contains a critical issue, a hotfix branch may be created:
+If a release contains a critical issue:
 
-    hotfix/vX.Y.Z
-
-The hotfix process **MUST include**:
-
-- issue creation
-- targeted fix
-- CI validation
-- patch version increment
-- updated changelog
-- new tag and release
+- Create branch from `main` - `hotfix/vX.Y.Z`
+- Apply fix and open PR to main
+- Merge and tag new patch release `vX.Y.(Z+1)`
+- **Mandatory:** merge hotfix back into develop
 
 ------------------------------------------------------------------------
 
