@@ -31,4 +31,3 @@ Connections between components (such as generators and loads connected to buses)
 <h2 id="6-study-structure-generation">6. <strong>Study Structure Generation</strong></h2>
 <p>Finally, the converter generates the complete GEMS study structure.</p>
 </div>
-
