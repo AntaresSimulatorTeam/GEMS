@@ -36,4 +36,3 @@ study_directory/
                 └── ...
 ```
 </div>
-

@@ -23,4 +23,3 @@
   <li><a href="../5_step_by_step_guide/">Step-by-Step Guide: Manually Executing a Simulation in GEMS Modeler</a></li>
   <li><a href="../6_comparing_results/">Comparing Results Between GEMS Modeler and PyPSA</a></li>
 </ul>
-
