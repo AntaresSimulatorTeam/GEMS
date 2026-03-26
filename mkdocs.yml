@@ -93,7 +93,8 @@ nav:
           - Overview : 2_Getting_Started/2A_QSE_adequacy.md
           - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
         - Unit Commitment Example: 2_Getting_Started/2B_QSE_unit_commitment.md
-      - Tutorial notebooks: 2_Getting_Started/3_Tutorial_notebooks.md
+      - Tutorial notebooks:
+          - Unit Commitment Notebook: 2_Getting_Started/Tutorial_1_Unit_Commitment/1_Tutorial_Unit_Commitment.ipynb
   - User Guide:
       - Introduction: 3_User_Guide/1_introduction.md
       - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md
