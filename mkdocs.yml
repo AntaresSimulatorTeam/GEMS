@@ -55,6 +55,16 @@ extra_javascript:
 extra_css:
   - stylesheets/yaml-loader.css
 
+plugins:
+- mkdocs-jupyter:
+    execute: true
+    include: ["*.ipynb"]
+    allow_errors: false
+    include_source: true
+    remove_tag_config:
+      remove_input_tags:
+      - hide-cell
+
 nav:
   - About GEMS:
     - Home: index.md
