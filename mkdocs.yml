@@ -15,9 +15,10 @@ theme:
     - navigation.tabs.sticky
     - navigation.indexes
     - content.action.copy
+    - navigation.footer
   palette:
     - media: "(prefers-color-scheme: light)"
-      scheme: antares
+      scheme: default
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
@@ -47,6 +48,22 @@ extra_javascript:
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  # YAML Dynamic Loader - Dependencies
+  - https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js
+  # YAML Dynamic Loader - Custom script
+  - javascripts/yaml-loader.js
+
+extra_css:
+  - stylesheets/yaml-loader.css
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      enable_git_follow: true
+      type: timeago
+      timezone: Europe/Paris
+      fallback_to_build_date: true
 
 nav:
   - About GEMS:
@@ -57,9 +74,9 @@ nav:
     - Support: 0_Home/5_support.md
   - Overview:
       - Architecture: 1_Overview/1_Architecture.md
-      - Core Concepts: 3_User_Guide/3_glossary.md
-      - File Structure: 1_Overview/2_File_structure.md
-      - Difference with other languages & tools: 1_Overview/3_Difference_with_other_languages.md
+      - Core Concepts: 1_Overview/2_glossary.md
+      - File Structure: 1_Overview/3_File_structure.md
+      - Difference with other languages & tools: 1_Overview/4_Difference_with_other_languages.md
       - GEMS Interpreters:
           - GemsPy: 1_Overview/4_GEMS Interpreters/1_gemspy.md
           - Antares Simulator: 1_Overview/4_GEMS Interpreters/2_antares_simulator_modeler.md
@@ -95,7 +112,6 @@ nav:
         - Simulation Table: 3_User_Guide/5_Outputs/1_simulation_table.md
         - Optimization Problem files: 3_User_Guide/5_Outputs/2_optimization_problem_files.md
         - Business View: 3_User_Guide/5_Outputs/3_business_view.md
-      - Glossary: 3_User_Guide/3_glossary.md
   - Interoperability:
       - PyPSA to GEMS Converter: 
         - Overview: 4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview.md

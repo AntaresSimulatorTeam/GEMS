@@ -17,6 +17,7 @@ source documentation_env/bin/activate
 
 ```bash
 pip install mkdocs mkdocs-material
+pip install mkdocs-git-revision-date-localized-plugin
 ```
 
 ## 3. Run the site locally

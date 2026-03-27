@@ -1,13 +1,10 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="text-align: left;">
-        <a href="../../../..">Main Section</a>
-    </div>
-    <div style="text-align: right;">
+<div style="display: flex; justify-content: flex-end;">
+    <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </div>
+    </a>
 </div>
 
-# The Hypergraph of a GEMS sysetm
+# The Hypergraph of a GEMS systEm
 ## 1 GEMS system = 1 hypergraph
 
 [GEMS](../../index.md) represents a system as a **[hypergraph](https://en.wikipedia.org/wiki/Hypergraph)**.  This is precisely the content of a [system](../3_GEMS_File_Structure/3_system.md) file.
@@ -200,26 +197,6 @@ Where:
 
 ## Summary
 
-[GEMS](../../index.md) represents energy systems as [hypergraphs ](https://en.wikipedia.org/wiki/Hypergraph) where components exchange (linear) expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior. 
-
-**Navigation**
-
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-  <a href="../../3_GEMS_File_Structure/8_business_view_configuration" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-  <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-  <a href="../2_optimization_problem" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
-</div>
-
----
+[GEMS](../../index.md) represents energy systems as [hypergraphs ](https://en.wikipedia.org/wiki/Hypergraph) where components exchange (linear) expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior.
 
 
