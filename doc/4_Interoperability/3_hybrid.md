@@ -131,7 +131,7 @@ For every component that should supply or interact with an Antares Area, an entr
 ```yaml
 area-connections:
  - component: wind_farm
-  port: balance_port
+  port: balance_port # balance port type is refered in the library.yml as as injection-to-balance
   area: area1
 ```
 
