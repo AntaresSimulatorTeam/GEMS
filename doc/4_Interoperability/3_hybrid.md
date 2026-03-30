@@ -45,9 +45,34 @@ The following steps describe how to **link the GEMS part of the study to the Leg
 
 #### `injection-to-balance`
 
-In order to successfully inject a GEMS component’s port into an Antares Legacy Area, the port’s type must declare which field represents the power injection. This is configured in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
+In order to successfully inject a GEMS component’s port into an Antares Legacy Area, the port’s type must declare which field will contribute to optimization problem. This is configured in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
 
-Within the port type definition, an `area-connection` section specifies an `injection-to-balance`. The `injection-to-balance` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow`, it is defined in the library as follows:
+The `area-connection` section is optional in general, but becomes mandatory when the port type is intended to be used in a **hybrid study**. It can accept 3 types of fields `injection-to-balance`, `spillage-bound` and `unsupplied-energy-bound` :
+
+```yaml
+port-types:
+   - id: port-to-area
+     fields:
+        - id: field_to_balance
+        - id: to-area-bound
+        - id: from-area-bound
+     area-connection:
+        injection-to-balance: field_to_balance
+        spillage-bound: to-area-bound
+        unsupplied-energy-bound: from-area-bound
+```
+
+The nature of the contribution depends on the fields :
+
+- `injection-to-balance`: the linear expression is injected in the balance constraint of the area
+- `spillage-bound`: the linear expression is added to the sum of all variables or linear expressions already used to bound the spillage in the constraint called "fictitious load"
+- `unsupplied-energy-bound`: the linear expression is added to any linear expression already used to bound the unsupplied energy
+
+#### Single field case 
+
+It's not mandatory to connect one field for each `area-connection` entry, indeed it's possible to only define one of them.
+
+As the `injection-to-balance` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow_field`, it is defined in the library as follows:
 
 ```yaml
   port-types:
@@ -68,57 +93,6 @@ Within the port type definition, an `area-connection` section specifies an `inje
       port-field-definitions:
         - port: balance_port
           field: flow_field
-          definition: flat_production
-```
-
-The `area-connection` section is optional in general, but becomes mandatory when the port type is intended to be used in a **hybrid study**.
-
-However, hybrid studies settings can accept 2 others types of fields `spillage-bound` and `unsupplied-energy-bound`. They are documented in the next sub-section. 
-
-#### `spillage-bound` and `unsupplied-energy-bound`
-
-It's also possible to use 2 other fields for one port and then connect them to area's balance equation :
-
-```yaml
-port-types:
-   - id: port-to-area
-     fields:
-        - id: field_to_balance
-        - id: to-area-bound
-        - id: from-area-bound
-     area-connection:
-        injection-to-balance: field_to_balance
-        spillage-bound: to-area-bound
-        unsupplied-energy-bound: from-area-bound
-```
-The nature of the contribution depends on the fields :
-
-- `injection-to-balance`: the linear expression is injected in the balance constraint of the area
-- `spillage-bound`: the linear expression is added to the sum of all variables or linear expressions already used to bound the spillage in the constraint called "fictitious load"
-- `unsupplied-energy-bound`: the linear expression is added to any linear expression already used to bound the unsupplied energy
-
-It's not mandatory to connect one field for each `area-connection` entry, indeed it's possible to only define one of them :
-
-```yaml
-  port-types:
-    - id: port-to-area
-      fields:
-        - id: to-area-bound
-      area-connection:
-        injection-to-balance:
-        spillage-bound: to-area-bound
-        unsupplied-energy-bound:
-
-  models:
-    - id: my-production
-      parameters:
-        - id: flat_production 
-      ports:
-        - id: spillage_port
-          type: port-to-area
-      port-field-definitions:
-        - port: spillage_port
-          field: to-area-bound
           definition: flat_production
 ```
 
