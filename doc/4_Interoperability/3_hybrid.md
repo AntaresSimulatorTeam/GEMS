@@ -94,6 +94,24 @@ As the `injection-to-balance` designates which field of that port will be added 
           definition: flat_production
 ```
 
+### Use of negative entry
+
+The use of the sign ` - ` can be used for defining a load expression like in the example below
+
+```yaml
+  models:
+    - id: my-load
+      parameters:
+        - id: flat_load # Here is positive load
+      ports:
+        - id: port-to-area
+          type: field_to_balance
+      port-field-definitions:
+        - port: port-to-area
+          field: field_to_balance
+          definition: -flat_load
+```
+
 ### Definition of the area-connections (in the [system](../3_User_Guide/3_GEMS_File_Structure/3_system.md) file)
 
 The `area-connections` section of the system file is used to declare each connection between a GEMS component and an Antares Legacy Area.
