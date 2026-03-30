@@ -109,7 +109,7 @@ library:
       fields:
       - id: flow
       area-connection:
-      - injection-field: flow
+        injection-flow: flow
 
   models:
     - id: renewable
