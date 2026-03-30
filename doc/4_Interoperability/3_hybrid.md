@@ -43,8 +43,6 @@ The following steps describe how to **link the GEMS part of the study to the Leg
 
 ### Abstract definition of the area-connection field type (in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) file)
 
-#### `injection-to-balance`
-
 In order to successfully inject a GEMS component’s port into an Antares Legacy Area, the port’s type must declare which field will contribute to optimization problem. This is configured in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
 
 The `area-connection` section is optional in general, but becomes mandatory when the port type is intended to be used in a **hybrid study**. It can accept 3 types of fields `injection-to-balance`, `spillage-bound` and `unsupplied-energy-bound` :
