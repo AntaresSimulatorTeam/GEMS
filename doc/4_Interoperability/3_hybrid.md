@@ -43,7 +43,7 @@ The following steps describe how to **link the GEMS part of the study to the Leg
 
 ### Abstract definition of the area-connection field type (in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) file)
 
-In order to successfully inject a GEMS component’s port into an Antares Legacy Area, the port’s type must declare which field will contribute to optimization problem. This is configured in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
+In order to successfully inject a GEMS component’s port into an Antares Legacy Area, the port’s type must declare which field will contribute to the optimization problem. This is configured in the [library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
 
 The `area-connection` section is optional in general, but becomes mandatory when the port type is intended to be used in a **hybrid study**. It can accept 3 types of fields `injection-to-balance`, `spillage-bound` and `unsupplied-energy-bound` :
 
@@ -60,83 +60,114 @@ port-types:
         unsupplied-energy-bound: from-area-bound
 ```
 
-The nature of the contribution depends on the fields :
+The nature of the contribution depends on the fields:
 
-- `injection-to-balance`: the linear expression is injected in the balance constraint of the area
-- `spillage-bound`: the linear expression is added to the sum of all variables or linear expressions already used to bound the spillage in the constraint called "fictitious load"
-- `unsupplied-energy-bound`: the linear expression is added to any linear expression already used to bound the unsupplied energy
+- `injection-to-balance`: the linear expression is injected in the balance constraint of the area.
+- `spillage-bound`: the linear expression is added to the sum of all variables or linear expressions already used to bound the spillage in the constraint called "fictitious load".
+- `unsupplied-energy-bound`: the linear expression is added to any linear expression already used to bound the unsupplied energy.
 
-#### Single field case 
+These fields are independent: you don't have to define all 3 at the same time, you can define only one. However, all three keys must be present in the `area-connection` section even if some values are left empty.
 
-It's not mandatory to connect one field for each `area-connection` entry, indeed it's possible to only define one of them.
+#### Single field case
 
-As the `injection-to-balance` designates which field of that port will be added to the connected area’s balance equation. For example, for a port type that carries power `flow_field`, it is defined in the library as follows:
+It's not mandatory to connect one field for each `area-connection` entry, it's possible to define only one of them. For example, for a port type that carries power `flow_field` and only connects to the balance constraint, it is defined in the library as follows:
 
 ```yaml
-  port-types:
-    - id: flow_port
-      description: A port that transfers a power flow.
-      fields:
-        - id: flow_field
-      area-connection:
-        injection-to-balance: flow_field
+port-types:
+  - id: flow_port
+    description: A port that transfers a power flow.
+    fields:
+      - id: flow_field
+    area-connection:
+      injection-to-balance: flow_field
+      spillage-bound:
+      unsupplied-energy-bound:
 
-  models:
-    - id: my-production
-      parameters:
-        - id: flat_production 
-      ports:
-        - id: balance_port
-          type: flow_port
-      port-field-definitions:
-        - port: balance_port
-          field: flow_field
-          definition: flat_production
+models:
+  - id: my-production
+    parameters:
+      - id: flat_production
+    ports:
+      - id: balance_port
+        type: flow_port
+    port-field-definitions:
+      - port: balance_port
+        field: flow_field
+        definition: flat_production
 ```
 
-### Use of negative entry
+### Conventions on the sign of expressions
 
-The use of the sign ` - ` can be used for defining a load expression like in the example below
+When connecting a component to an area, you must respect conventions on the sign of the linear expression contributed by the port field.
+
+**Connecting to the balance constraint (`injection-to-balance`)**
+
+- If you need to involve a **production**, make the expression **positive** (no `-` prefix):
 
 ```yaml
-  models:
-    - id: my-load
-      parameters:
-        - id: flat_load # Here is positive load
-      ports:
-        - id: port-to-area
-          type: field_to_balance
-      port-field-definitions:
-        - port: port-to-area
-          field: field_to_balance
-          definition: -flat_load
+port-field-definitions:
+  - port: balance_port
+    field: flow_field
+    definition: flat_production   # positive production
+```
+
+- If you need to involve a **load**, make the expression **negative** (prefix with `-`):
+
+```yaml
+port-field-definitions:
+  - port: balance_port
+    field: flow_field
+    definition: -flat_load   # negative load
+```
+
+**Connecting to the spillage bound (`spillage-bound`)**
+
+This connection is intended to limit the spillage optimization variable. The convention is the same as for the balance constraint: make the **production positive**, with no `-` prefix:
+
+```yaml
+port-field-definitions:
+  - port: spillage_port
+    field: to-area-bound
+    definition: flat_production   # positive production
+```
+
+**Connecting to the unsupplied energy bound (`unsupplied-energy-bound`)**
+
+This connection is intended to limit the unsupplied energy optimization variable. Here, make the **load positive**, with no `-` prefix:
+
+```yaml
+port-field-definitions:
+  - port: unsup_energy_port
+    field: from-area-bound
+    definition: flat_load   # positive load
 ```
 
 ### Definition of the area-connections (in the [system](../3_User_Guide/3_GEMS_File_Structure/3_system.md) file)
 
 The `area-connections` section of the system file is used to declare each connection between a GEMS component and an Antares Legacy Area.
 
-For every component that should supply or interact with an Antares Area, an entry is added specifying the component, the port through which it connects, and the target area name. The port must support the area injection field type. For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`’s port named `balance_port`, the following configuration is used:
+For every component that should supply or interact with an Antares Area, an entry is added specifying the component, the port through which it connects, and the target area name. The port must belong to a port type that defines an `area-connection` section in the model library. For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`'s port named `balance_port`, the following configuration is used:
 
 ```yaml
 area-connections:
- - component: wind_farm
-  port: balance_port # balance port type is refered in the library.yml as as injection-to-balance
-  area: area1
+  - component: wind_farm
+    port: balance_port
+    area: area1
 ```
 
 Explanation of fields:
 
 - **component:** Refers to the `id` of the GEMS component to be connected. This `id` must match the one declared in the components section of the `system.yml` file. In this example, it refers to a component named `wind_farm`
-- **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding **port type** must include an `area-connection` section in the model library definition, and must specify at least `injection-to-balance`, `spillage-bound` or `unsupplied-energy` that will be used by the solver
-- **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area’s balance constraint during simulation. 
+- **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding **port type** must include an `area-connection` section in the model library definition, and must specify at least one of `injection-to-balance`, `spillage-bound` or `unsupplied-energy-bound`
+- **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area's balance constraint during simulation
 
 ## Outputs
 
-The study will generate two types of outputs files:
+The study will generate two types of output files:
 
-- [**Files similar to Legacy studies**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/03-outputs/) outputs corresponding the optimization results coming from the components created by the Legacy study
-- [**Simulation tables**](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/03-outputs/), specific to modeler's components optimization in the same output folder as the Legacy outputs. One simulation table for each optimization step (called simulation_table--optim-nb-X) will be generated.
+- [**Files similar to Legacy studies**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/03-outputs/): outputs corresponding to the optimization results coming from the components created by the Legacy study.
+- [**Simulation tables**](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/03-outputs/): specific to modeler's components optimization, in the same output folder as the Legacy outputs. One simulation table for each optimization step (called `simulation_table--optim-nb-X`) will be generated.
+
 
 ## How to run a hybrid study
 
@@ -164,26 +195,28 @@ library:
   id: example_library
 
   port-types:
-    - id: flow_port   # type of the port
-      description: A port that transfers a power flow.    # description of the port type
+    - id: flow_port
+      description: A port that transfers a power flow.
       fields:
-      - id: flow_field # type of the field
+        - id: flow_field
       area-connection:
-        injection-to-balance: flow_field # which field type is exchanged by injection-to-balance 
+        injection-to-balance: flow_field
+        spillage-bound:
+        unsupplied-energy-bound:
 
   models:
     - id: renewable
       parameters:
-      - id: generation
-        time-dependent: true
-        scenario-dependent: true
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
       ports:
-      - id: balance_port
-        type: flow_port
+        - id: balance_port
+          type: flow_port
       port-field-definitions:
-      - port: balance_port
-        field: flow_field
-        definition: generation
+        - port: balance_port
+          field: flow_field
+          definition: generation
 </code></pre>
 
 <p><strong>system.yml :</strong></p>
@@ -193,7 +226,6 @@ system:
   id: system
 
   components:
-
     - id: wind_farm
       model: example_library.renewable
       parameters:
@@ -220,11 +252,11 @@ In this specific case, wind generation during the first hour is 20MW and demand 
 
 When constructing hybrid studies, the following important constraints should be considered:
 
-**Time Series Length**:
+**Time Series Length:**
 
 The time series data used in GEMS modeler components (for example, the generation profile of a renewable) must align with the Antares simulation horizon and resolution. In practice, this means the number of time steps and the granularity of GEMS time-dependent inputs should match the solver’s expectations (e.g., 8760 hourly values for a yearly hourly simulation). The hybrid solver will not accept a modeler time series that doesn’t fit the configured simulation timeframe.
 
-**Integer/Binary Decision Variables**:
+**Integer/Binary Decision Variables:**
 
 If any GEMS component introduces integer or binary decision variables (for instance, a component that has an on/off state or unit commitment logic), Antares must be run in MILP mode. Antares Simulator’s solver has to be set to Mixed-Integer Linear Programming (the unit commitment MILP option) to handle discrete variables. In hybrid mode, the solver will incorporate those binary/integer variables into the optimization, but only if the MILP solver is enabled. If running with continuous (LP) mode while using components that require integer decisions, the simulation will not handle them correctly. Thus, the study’s optimization settings must be configured for MILP (unit commitment) when needed.
 **Scenario dependency of Variables**:
