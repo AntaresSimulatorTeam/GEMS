@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- Title -->
+    <mxCell id="title" value="Sign Conventions for Port-Field Definitions" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontFamily=Arial;bold=1;spacingTop=-2;" vertex="1" parent="1">
+      <mxGeometry x="80" y="20" width="600" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Header Row -->
+    <mxCell id="h1" value="Connection Type" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a6fa5;strokeColor=#162a5c;gradientColor=#2e4a88;fontColor=#ffffff;fontStyle=1;fontSize=12;fontFamily=Arial;bold=1;" vertex="1" parent="1">
+      <mxGeometry x="80" y="90" width="200" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="h2" value="Expression Type" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a6fa5;strokeColor=#162a5c;gradientColor=#2e4a88;fontColor=#ffffff;fontStyle=1;fontSize=12;fontFamily=Arial;bold=1;" vertex="1" parent="1">
+      <mxGeometry x="280" y="90" width="150" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="h3" value="Sign" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a6fa5;strokeColor=#162a5c;gradientColor=#2e4a88;fontColor=#ffffff;fontStyle=1;fontSize=12;fontFamily=Arial;bold=1;" vertex="1" parent="1">
+      <mxGeometry x="430" y="90" width="100" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="h4" value="Example Definition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a6fa5;strokeColor=#162a5c;gradientColor=#2e4a88;fontColor=#ffffff;fontStyle=1;fontSize=12;fontFamily=Arial;bold=1;" vertex="1" parent="1">
+      <mxGeometry x="530" y="90" width="150" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Row 1: injection-to-balance / production -->
+    <mxCell id="r1c1" value="injection-to-balance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#adb5bd;fontColor=#495057;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="80" y="140" width="200" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r1c2" value="Production" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="280" y="140" width="150" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r1c3" value="Positive (no - prefix)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="430" y="140" width="100" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r1c4" value="flat_production" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;italic=1;" vertex="1" parent="1">
+      <mxGeometry x="530" y="140" width="150" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Row 2: injection-to-balance / load -->
+    <mxCell id="r2c1" value="injection-to-balance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#adb5bd;fontColor=#495057;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="80" y="190" width="200" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r2c2" value="Load" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffeaa7;fontColor=#856404;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="280" y="190" width="150" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r2c3" value="Negative (- prefix)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffeaa7;fontColor=#856404;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="430" y="190" width="100" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r2c4" value="-flat_load" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffeaa7;fontColor=#856404;fontSize=11;fontFamily=Arial;italic=1;" vertex="1" parent="1">
+      <mxGeometry x="530" y="190" width="150" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Row 3: spillage-bound / production -->
+    <mxCell id="r3c1" value="spillage-bound" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#adb5bd;fontColor=#495057;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="80" y="240" width="200" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r3c2" value="Production" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="280" y="240" width="150" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r3c3" value="Positive (no - prefix)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="430" y="240" width="100" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r3c4" value="flat_production" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;italic=1;" vertex="1" parent="1">
+      <mxGeometry x="530" y="240" width="150" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Row 4: unsupplied-energy-bound / load -->
+    <mxCell id="r4c1" value="unsupplied-energy-bound" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#adb5bd;fontColor=#495057;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="80" y="290" width="200" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r4c2" value="Load" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="280" y="290" width="150" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r4c3" value="Positive (no - prefix)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="430" y="290" width="100" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="r4c4" value="flat_load" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;fontColor=#212529;fontSize=11;fontFamily=Arial;italic=1;" vertex="1" parent="1">
+      <mxGeometry x="530" y="290" width="150" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Legend -->
+    <mxCell id="leg_title" value="Legend" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontFamily=Arial;bold=1;" vertex="1" parent="1">
+      <mxGeometry x="80" y="370" width="100" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="leg1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c3e6cb;strokeColor=#5cb85c;" vertex="1" parent="1">
+      <mxGeometry x="80" y="400" width="30" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="leg1_txt" value="Positive expression (no - prefix)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="120" y="400" width="250" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="leg2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffeaa7;" vertex="1" parent="1">
+      <mxGeometry x="80" y="430" width="30" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="leg2_txt" value="Negative expression (- prefix required)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="120" y="430" width="250" height="20" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>

@@ -100,6 +100,8 @@ models:
 
 When connecting a component to an area, you must respect conventions on the sign of the linear expression contributed by the port field.
 
+![Table representing the different sign conventions](../assets/4_sign_conventions.png)
+
 <details>
 <summary>Sign conventions for the <code>injection-to-balance</code></summary>
 
