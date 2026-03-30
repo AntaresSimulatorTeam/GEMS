@@ -138,8 +138,15 @@ area-connections:
 Explanation of fields:
 
 - **component:** Refers to the `id` of the GEMS component to be connected. This `id` must match the one declared in the components section of the `system.yml` file. In this example, it refers to a component named `wind_farm`
-- **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding port type must include an `area-connection` section in the model library definition, and must specify at least `injection-to-balance`, `spillage-bound` or `unsupplied-energy` that will be used by the solver
-- **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area’s balance constraint during simulation.
+- **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding **port type** must include an `area-connection` section in the model library definition, and must specify at least `injection-to-balance`, `spillage-bound` or `unsupplied-energy` that will be used by the solver
+- **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area’s balance constraint during simulation. 
+
+## Outputs
+
+The study will generate two types of outputs files:
+
+- [**Files similar to Legacy studies**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/03-outputs/) outputs corresponding the optimization results coming from the components created by the Legacy study
+- [**Simulation tables**](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/03-outputs/), specific to modeler's components optimization in the same output folder as the Legacy outputs. One simulation table for each optimization step (called simulation_table--optim-nb-X) will be generated.
 
 ## How to run a hybrid study
 
