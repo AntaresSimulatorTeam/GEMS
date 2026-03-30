@@ -100,47 +100,53 @@ models:
 
 When connecting a component to an area, you must respect conventions on the sign of the linear expression contributed by the port field.
 
-**Connecting to the balance constraint (`injection-to-balance`)**
+<details>
+<summary>Sign conventions for the <code>injection-to-balance</code></summary>
 
-- If you need to involve a **production**, make the expression **positive** (no `-` prefix):
-
-```yaml
-port-field-definitions:
+<ul>
+  <li>If you need to involve a <strong>production</strong>, make the expression <strong>positive</strong> (no <code>-</code> prefix):
+<pre><code class="language-yaml">port-field-definitions:
   - port: balance_port
     field: flow_field
     definition: flat_production   # positive production
-```
-
-- If you need to involve a **load**, make the expression **negative** (prefix with `-`):
-
-```yaml
-port-field-definitions:
+</code></pre>
+  </li>
+  <li>If you need to involve a <strong>load</strong>, make the expression <strong>negative</strong> (prefix with <code>-</code>):
+<pre><code class="language-yaml">port-field-definitions:
   - port: balance_port
     field: flow_field
     definition: -flat_load   # negative load
-```
+</code></pre>
+  </li>
+</ul>
 
-**Connecting to the spillage bound (`spillage-bound`)**
+</details>
 
-This connection is intended to limit the spillage optimization variable. The convention is the same as for the balance constraint: make the **production positive**, with no `-` prefix:
+<details>
+<summary>Sign conventions for the <code>spillage-bound</code></summary>
 
-```yaml
-port-field-definitions:
+<p>This connection is intended to limit the spillage optimization variable. The convention is the same as for the balance constraint: make the <strong>production positive</strong>, with no <code>-</code> prefix:</p>
+
+<pre><code class="language-yaml">port-field-definitions:
   - port: spillage_port
     field: to-area-bound
     definition: flat_production   # positive production
-```
+</code></pre>
 
-**Connecting to the unsupplied energy bound (`unsupplied-energy-bound`)**
+</details>
 
-This connection is intended to limit the unsupplied energy optimization variable. Here, make the **load positive**, with no `-` prefix:
+<details>
+<summary>Sign conventions for the <code>unsupplied-energy-bound</code></summary>
 
-```yaml
-port-field-definitions:
+<p>This connection is intended to limit the unsupplied energy optimization variable. Here, make the <strong>load positive</strong>, with no <code>-</code> prefix:</p>
+
+<pre><code class="language-yaml">port-field-definitions:
   - port: unsup_energy_port
     field: from-area-bound
     definition: flat_load   # positive load
-```
+</code></pre>
+
+</details>
 
 ### Definition of the area-connections (in the [system](../3_User_Guide/3_GEMS_File_Structure/3_system.md) file)
 
