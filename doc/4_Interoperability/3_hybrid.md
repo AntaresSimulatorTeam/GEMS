@@ -1,15 +1,12 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <a href="../../../..">Main Section</a>
-  </div>
-  <div style="text-align: right;">
+<div style="display: flex; justify-content: flex-end;">
+  <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </div>
+  </a>
 </div>
 
 # Antares Simulator Hybrid studies
 
-This page explains how to configure and run a *[*hybrid study**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/08-hybrid-studies/) i.e. a study combining **GEMS components** and **Antares Simulator's Legacy Components**. In a hybrid study, the GEMS files are integrated into a Antares Simulator study’s directory structure, allowing Antares Simulator to incorporate GEMS components.
+This page explains how to configure and run a [**hybrid study**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/08-hybrid-studies/) i.e. a study combining **GEMS components** and **Antares Simulator's Legacy Components**. In a hybrid study, the GEMS files are integrated into a Antares Simulator study’s directory structure, allowing Antares Simulator to incorporate GEMS components.
 
 ## Definition
 
@@ -62,9 +59,9 @@ The `area-connection` section is optional in general, but becomes mandatory when
 
 The `injection-field` explicitly designates which field of the port contributes to the area balance equation in the legacy Antares Simulator study.
 
-### Definition of the area-onnections (in the [system](../3_User_Guide/3_GEMS_File_Structure/3_system.md) file)
+### Definition of the area-connections (in the [system](../3_User_Guide/3_GEMS_File_Structure/3_system.md) file)
 
-The `area-connections` section of the system file is used to declare each connection between a GEMS component and a Antares Legacy Area.
+The `area-connections` section of the system file is used to declare each connection between a GEMS component and an Antares Legacy Area.
 
 For every component that should supply or interact with an Antares Area, an entry is added specifying the component, the port through which it connects, and the target area name. The port must support the area injection field type. For example, to connect a component `wind_farm` to a legacy area `area1` through `wind_farm`’s port named `balance_port`, the following configuration is used:
 
@@ -172,20 +169,3 @@ The time series data used in GEMS modeler components (for example, the generatio
 If any GEMS component introduces integer or binary decision variables (for instance, a component that has an on/off state or unit commitment logic), Antares must be run in MILP mode. Antares Simulator’s solver has to be set to Mixed-Integer Linear Programming (the unit commitment MILP option) to handle discrete variables. In hybrid mode, the solver will incorporate those binary/integer variables into the optimization, but only if the MILP solver is enabled. If running with continuous (LP) mode while using components that require integer decisions, the simulation will not handle them correctly. Thus, the study’s optimization settings must be configured for MILP (unit commitment) when needed.
 **Scenario dependency of Variables**:
 In Antares Simulator Legacy mode, each MC scenario is optimized separately. Thus, hybrid studies cannot contain scenario-independent variables. If you try to use such a variable in hybrid mode, the solver will fail.
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1_PyPSA_to_GEMS_converter/6_comparing_results/" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../5_Examples/1_adequacy_example" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
-</div>
-
----

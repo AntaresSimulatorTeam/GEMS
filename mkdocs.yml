@@ -15,6 +15,7 @@ theme:
     - navigation.tabs.sticky
     - navigation.indexes
     - content.action.copy
+    - navigation.footer
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -56,14 +57,21 @@ extra_css:
   - stylesheets/yaml-loader.css
 
 plugins:
-- mkdocs-jupyter:
-    execute: true
-    include: ["*.ipynb"]
-    allow_errors: false
-    include_source: true
-    remove_tag_config:
-      remove_input_tags:
-      - hide-cell
+  - mkdocs-jupyter:
+      execute: true
+      include: ["*.ipynb"]
+      allow_errors: false
+      include_source: true
+      remove_tag_config:
+        remove_input_tags:
+        - hide-cell
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      enable_git_follow: true
+      type: timeago
+      timezone: Europe/Paris
+      fallback_to_build_date: true
 
 nav:
   - About GEMS:
@@ -74,9 +82,9 @@ nav:
     - Support: 0_Home/5_support.md
   - Overview:
       - Architecture: 1_Overview/1_Architecture.md
-      - Core Concepts: 3_User_Guide/3_glossary.md
-      - File Structure: 1_Overview/2_File_structure.md
-      - Difference with other languages & tools: 1_Overview/3_Difference_with_other_languages.md
+      - Core Concepts: 1_Overview/2_glossary.md
+      - File Structure: 1_Overview/3_File_structure.md
+      - Difference with other languages & tools: 1_Overview/4_Difference_with_other_languages.md
       - GEMS Interpreters:
           - GemsPy: 1_Overview/4_GEMS Interpreters/1_gemspy.md
           - Antares Simulator: 1_Overview/4_GEMS Interpreters/2_antares_simulator_modeler.md
@@ -114,7 +122,6 @@ nav:
         - Simulation Table: 3_User_Guide/5_Outputs/1_simulation_table.md
         - Optimization Problem files: 3_User_Guide/5_Outputs/2_optimization_problem_files.md
         - Business View: 3_User_Guide/5_Outputs/3_business_view.md
-      - Glossary: 3_User_Guide/3_glossary.md
   - Interoperability:
       - PyPSA to GEMS Converter: 
         - Overview: 4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview.md

@@ -1,10 +1,7 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <a href="../../../..">Main Section</a>
-  </div>
-  <div style="text-align: right;">
+<div style="display: flex; justify-content: flex-end;">
+  <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </div>
+  </a>
 </div>
 
 # File Overview : Model, System, Optimization, Business
@@ -68,25 +65,3 @@ The outputs of GEMS consist of three main categories of objects: **Optimization 
 - **Optimization Problem** represents the global mathematical formulation of the energy system simulation/optimization.
 - **Simulation Table** contains the raw results of the simulation or optimization, including the optimal values of decision variables and the values of expressions computed from them.
 - **Business Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../3_User_Guide/5_Outputs/3_business_view.md).
-
----
-
-**Navigation**
-
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../1_Architecture" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../3_Difference_with_other_languages" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
-</div>
-
----
