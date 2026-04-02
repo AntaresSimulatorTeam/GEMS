@@ -55,19 +55,27 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 12
+        - id: p_min_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
         - id: p_max_cluster
           time-dependent: false
           scenario-dependent: false
           value: 1000
-        - id: unit_count
+        - id: nb_units_max
           time-dependent: false
           scenario-dependent: false
           value: 10
-        - id: spinning
+        - id: nb_units_min
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: minimum_generation_modulation
+        - id: nb_units_max_variation_forward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_backward
           time-dependent: false
           scenario-dependent: false
           value: 0
@@ -108,15 +116,19 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 500
-        - id: unit_count
+        - id: nb_units_max
           time-dependent: false
           scenario-dependent: false
           value: 5
-        - id: spinning
+        - id: nb_units_min
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: minimum_generation_modulation
+        - id: nb_units_max_variation_forward
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nb_units_max_variation_backward
           time-dependent: false
           scenario-dependent: false
           value: 0
