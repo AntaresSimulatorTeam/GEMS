@@ -168,9 +168,9 @@ library:
         - id: nb_failing_lower_than_stopping
           expression: nb_failing <= nb_stopping
         - id: min_up_duration
-          expression: expec(sum(t-d_min_up + 1 .. t, nb_starting - nb_failing) <= nb_units_on)
+          expression: expec(sum(t-d_min_up + 1 .. t, nb_starting - nb_failing)) <= nb_units_on
         - id: min_down_duration
-          expression: expec(sum(t-d_min_down + 1 .. t, nb_stopping) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1])))
+          expression: expec(sum(t-d_min_down + 1 .. t, nb_stopping)) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1]))
       objective-contributions:
         - id: objective
           expression: expec(sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on))
