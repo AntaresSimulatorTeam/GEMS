@@ -54,27 +54,19 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 12
-        - id: p_min_cluster
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
         - id: p_max_cluster
           time-dependent: false
           scenario-dependent: false
           value: 100
-        - id: nb_units_max
+        - id: unit_count
           time-dependent: false
           scenario-dependent: false
           value: 10
-        - id: nb_units_min
+        - id: spinning
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: nb_units_max_variation_forward
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
-        - id: nb_units_max_variation_backward
+        - id: minimum_generation_modulation
           time-dependent: false
           scenario-dependent: false
           value: 0
