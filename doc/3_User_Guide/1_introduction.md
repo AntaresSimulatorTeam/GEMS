@@ -1,3 +1,9 @@
+---
+description: >-
+  Learn the GEMS language: syntax, file structure, optimisation configuration,
+  and output formats for energy system modelling.
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

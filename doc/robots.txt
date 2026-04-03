@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gems-ernergy.readthedocs.io/sitemap.xml

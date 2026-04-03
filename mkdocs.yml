@@ -1,5 +1,12 @@
 docs_dir: doc
 site_name: GEMS - Generic Energy system Modelling Scheme
+site_url: https://gems-ernergy.readthedocs.io/
+site_description: >-
+  GEMS is a high-level, object- and graph-oriented modelling language for
+  energy systems. Design, share, and solve energy optimisation studies
+  with Antares Simulator or GemsPy.
+site_author: AntaresSimulatorTeam
+copyright: Copyright &copy; 2026 AntaresSimulatorTeam
 repo_url: https://github.com/AntaresSimulatorTeam/GEMS
 edit_uri: edit/doc/doc/
 
@@ -58,6 +65,7 @@ extra_css:
 
 plugins:
   - search
+  - social
   - git-revision-date-localized:
       enable_creation_date: true
       enable_git_follow: true

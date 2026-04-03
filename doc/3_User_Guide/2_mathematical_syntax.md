@@ -1,3 +1,9 @@
+---
+description: >-
+  Reference guide for GEMS mathematical expression syntax: variables,
+  constraints, objectives, and sets.
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

@@ -1,3 +1,9 @@
+---
+description: >-
+  Convert PyPSA networks to GEMS format with the open-source
+  PyPSA-to-GEMS converter.
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

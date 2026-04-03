@@ -1,3 +1,9 @@
+---
+description: >-
+  Glossary of key GEMS concepts: hypergraph, component, port, library,
+  system, and more.
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

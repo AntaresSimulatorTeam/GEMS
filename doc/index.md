@@ -1,3 +1,10 @@
+---
+description: >-
+  GEMS is an open-source, object- and graph-oriented modelling language for
+  energy systems. Build, share, and solve optimisation studies with
+  Antares Simulator or GemsPy.
+---
+
 <div align="center">
     <img src="./assets/gemsV2.png" alt="GEMS Logo" width="800"/>
 </div>
