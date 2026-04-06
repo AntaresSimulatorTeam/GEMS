@@ -39,7 +39,7 @@ def get_paths() -> EnvironmentPaths:
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
 
-    antares_root = repo_root / "antares-9.3.2-Ubuntu-22.04"
+    antares_root = repo_root / "antares-10.0.0-Ubuntu-22.04"
     antares_solver_bin = antares_root / "bin" / "antares-solver"
     antares_modeler_bin = antares_root / "bin" / "antares-modeler"
 
