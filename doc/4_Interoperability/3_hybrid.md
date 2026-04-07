@@ -68,34 +68,6 @@ The nature of the contribution depends on the fields:
 
 These fields are independent: you don't have to define all 3 at the same time, you can define only one. However, all three keys must be present in the `area-connection` section even if some values are left empty.
 
-#### Single field case
-
-It's not mandatory to connect one field for each `area-connection` entry, it's possible to define only one of them. For example, for a port type that carries power `flow_field` and only connects to the balance constraint, it is defined in the library as follows:
-
-```yaml
-port-types:
-  - id: flow_port
-    description: A port that transfers a power flow.
-    fields:
-      - id: flow_field
-    area-connection:
-      injection-to-balance: flow_field
-      spillage-bound:
-      unsupplied-energy-bound:
-
-models:
-  - id: my-production
-    parameters:
-      - id: flat_production
-    ports:
-      - id: balance_port
-        type: flow_port
-    port-field-definitions:
-      - port: balance_port
-        field: flow_field
-        definition: flat_production
-```
-
 ### Conventions on the sign of expressions
 
 When connecting a component to an area, you must respect conventions on the sign of the linear expression contributed by the port field.
