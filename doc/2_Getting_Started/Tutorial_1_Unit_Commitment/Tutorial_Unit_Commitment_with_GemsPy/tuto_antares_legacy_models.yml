@@ -10,8 +10,8 @@
 #
 # This file is part of the Antares project.
 library:
-  id: antares_legacy_models
-  description: Antares historic model library
+  id: unit_commitment_tutorial_library
+  description: A library for pedagogical purpose, inspired by the AntaresLegacyModels library.
 
 
   port-types:
