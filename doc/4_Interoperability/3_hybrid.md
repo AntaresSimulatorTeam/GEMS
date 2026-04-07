@@ -62,9 +62,9 @@ port-types:
 
 The nature of the contribution depends on the fields:
 
-- `injection-to-balance`: the linear expression is injected in the balance constraint of the area.
-- `spillage-bound`: the linear expression is added to the sum of all variables or linear expressions already used to bound the spillage in the constraint called "fictitious load".
-- `unsupplied-energy-bound`: the linear expression is added to any linear expression already used to bound the unsupplied energy.
+- `injection-to-balance`: the linear expression is injected in the balance constraint of the Legacy Area.
+- `spillage-bound`: the linear expression is added to the sum of all variables or linear expressions already used to bound the spillage in the constraint called "fictitious load" in the Legacy Area.
+- `unsupplied-energy-bound`: the linear expression is added to any linear expression already used to bound the unsupplied energy in the Legacy Area.
 
 These fields are independent: you don't have to define all 3 at the same time, you can define only one. However, all three keys must be present in the `area-connection` section even if some values are left empty.
 
