@@ -12,9 +12,9 @@ This section is a glossary of the main concepts used by GEMS.
 
 ### Library 
 
-A file listing all the models representing general unspecified elements of a study. These models are used as "template" for creating their instances, called components.
+A YAML file defining two collections of abstract objects: [models](../3_User_Guide/3_GEMS_File_Structure/2_library.md#models) and [port types](../3_User_Guide/3_GEMS_File_Structure/2_library.md#port-types). Models describe the mathematical formulation for a category of grid element. Port types describe the kinds of connections models can have.
 
-([user guide](../3_User_Guide/3_GEMS_File_Structure/2_library.md))
+([link to user guide](../3_User_Guide/3_GEMS_File_Structure/2_library.md))
 ```yaml
 library:
 
@@ -40,17 +40,14 @@ library:
 
 ### System 
 
-A file listing all the "components", the instances of models defined by the system yaml file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components.
+A YAML file defining the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and specifies how components are connected to each other.
 
-([user guide](../3_User_Guide/3_GEMS_File_Structure/3_system.md))
+([ink to user guide](../3_User_Guide/3_GEMS_File_Structure/3_system.md))
 ```yaml
 system:
-
   id: my_system
   description: "An example system with one load and one node"
-
   model-libraries: my_library_1, my_library_2
-
   components:
     - id: load_1
       model: my_library_1.load
@@ -60,10 +57,8 @@ system:
           time-dependent: true
           scenario-dependent: false
           value: demand_profile
-
     - id: bus_1
       model: my_library_2.bus
-
   connections:
     - component1: bus_1
       component2: load_1
@@ -73,14 +68,14 @@ system:
 
 ### Dataseries
 
-A table containing all the data through time. It is used by time/scenario dependent components.
+A CSV file providing numerical input data for time-varying and/or scenario-varying parameters. The filename (without extension) serves as the dataseries `id`. Depending on whether the data is time-dependent, scenario-dependent, or both, the file contains one column, one row, or a matrix of values respectively.
 
-([user guide](../3_User_Guide/3_GEMS_File_Structure/4_data_series.md))
+([ink to user guide](../3_User_Guide/3_GEMS_File_Structure/4_data_series.md))
 ```text
-0,0
-3,5
-12,10
-13,15
+10.4
+23.1
+34
+45
 ```
 
 ## Concepts
