@@ -134,12 +134,12 @@ library:
         - id: spinning # in percentage, taken into account in p_max_cluster and p_max_unit (except when computing minimum generation)
       variables:
         - id: generation
-          lower-bound: expec(min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit)) # real expression before simplification : min(upper-bound(generation),minimum_generation_modulation * unit_count * p_max_unit) = min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100)))), minimum_generation_modulation * unit_count * p_max_unit)
-          upper-bound: expec(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit))) # real expression before simplification : max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))
+          lower-bound: min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit) # real expression before simplification : min(upper-bound(generation),minimum_generation_modulation * unit_count * p_max_unit) = min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100)))), minimum_generation_modulation * unit_count * p_max_unit)
+          upper-bound: max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)) # real expression before simplification : max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))
           variable-type: continuous
         - id: nb_units_on
-          lower-bound: expec(ceil(min(p_max_cluster/p_max_unit, minimum_generation_modulation * unit_count * p_max_unit/(p_max_unit*(1-spinning/100))))) # real expression before simplification : ceil(lower-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit)/(p_max_unit*(1-spinning/100)))
-          upper-bound: expec(ceil(p_max_cluster/p_max_unit)) # real expression before simplification : ceil(upper-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))/(p_max_unit*(1-spinning/100)))
+          lower-bound: ceil(min(p_max_cluster/p_max_unit, minimum_generation_modulation * unit_count * p_max_unit/(p_max_unit*(1-spinning/100)))) # real expression before simplification : ceil(lower-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit)/(p_max_unit*(1-spinning/100)))
+          upper-bound: ceil(p_max_cluster/p_max_unit) # real expression before simplification : ceil(upper-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))/(p_max_unit*(1-spinning/100)))
           variable-type: continuous #integer
         - id: nb_starting
           lower-bound: 0
@@ -149,7 +149,7 @@ library:
           variable-type: continuous #integer
         - id: nb_failing
           lower-bound: 0
-          upper-bound: expec(max(0, (ceil(p_max_cluster/p_max_unit))[t-1] - (ceil(p_max_cluster/p_max_unit))))
+          upper-bound: max(0, (ceil(p_max_cluster/p_max_unit))[t-1] - (ceil(p_max_cluster/p_max_unit)))
           variable-type: continuous #integer
       ports:
         - id: balance_port
@@ -168,9 +168,9 @@ library:
         - id: nb_failing_lower_than_stopping
           expression: nb_failing <= nb_stopping
         - id: min_up_duration
-          expression: expec(sum(t-d_min_up + 1 .. t, nb_starting - nb_failing)) <= nb_units_on
+          expression: sum(t-d_min_up + 1 .. t, nb_starting - nb_failing) <= nb_units_on
         - id: min_down_duration
-          expression: expec(sum(t-d_min_down + 1 .. t, nb_stopping)) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1]))
+          expression: sum(t-d_min_down + 1 .. t, nb_stopping) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1]))
       objective-contributions:
         - id: objective
           expression: expec(sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on))
