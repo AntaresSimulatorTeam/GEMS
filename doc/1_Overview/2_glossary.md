@@ -72,10 +72,10 @@ A CSV file providing numerical input data for time-varying and/or scenario-varyi
 
 [ink to user guide](../3_User_Guide/3_GEMS_File_Structure/4_data_series.md)
 ```text
-10.4
-23.1
-34
-45
+0,0
+3,5
+12,10
+14,15
 ```
 
 ## Concepts
