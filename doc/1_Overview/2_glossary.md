@@ -73,26 +73,6 @@ A table containing all the data through time. It is used by time/scenario depend
 0,5
 0,10
 0,15
-0,20
-0,15
-0,5
-0,0
-15,0
-30,0
-40,0
-45,0
-45,0
-40,0
-30,0
-15,0
-0,0
-0,5
-0,15
-0,25
-0,30
-0,35
-0,30
-0,20
 ```
 
 ## Concepts
