@@ -1,5 +1,7 @@
 docs_dir: doc
 site_name: GEMS - Generic Energy system Modelling Scheme
+site_url: https://gems-energy.readthedocs.io/en/latest/
+site_description: "GEMS (Generic Energy system Modelling Scheme) is a graph-based algebraic modelling language for defining and solving energy system optimisation problems."
 repo_url: https://github.com/AntaresSimulatorTeam/GEMS
 edit_uri: edit/doc/doc/
 
