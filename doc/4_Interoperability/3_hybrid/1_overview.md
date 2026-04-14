@@ -35,8 +35,8 @@ Antares-Simulator-Study/
 
 ## Table of Contents
 
-- [Hybrid Connections](../2_hybrid_connections/)
+- [Coupling GEMS Components with Legacy Areas](../2_hybrid_connections/)
+- [Run a Hybrid Study](../4_how_to_run/)
 - [Outputs](../3_outputs/)
-- [How to Run a Hybrid Study](../4_how_to_run/)
 - [Simple Example](../5_example/)
 - [Limitations](../6_limitations/)

@@ -123,9 +123,9 @@ nav:
       #- Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
       - Antares Hybrid Mode:
         - Overview: 4_Interoperability/3_hybrid/1_overview.md
-        - Hybrid Connections: 4_Interoperability/3_hybrid/2_hybrid_connections.md
+        - Coupling GEMS Components with Legacy Areas: 4_Interoperability/3_hybrid/2_hybrid_connections.md
+        - Run a Hybrid Study: 4_Interoperability/3_hybrid/4_how_to_run.md
         - Outputs: 4_Interoperability/3_hybrid/3_outputs.md
-        - How to Run a Hybrid Study: 4_Interoperability/3_hybrid/4_how_to_run.md
         - Simple Example: 4_Interoperability/3_hybrid/5_example.md
         - Limitations: 4_Interoperability/3_hybrid/6_limitations.md
   - Examples:
