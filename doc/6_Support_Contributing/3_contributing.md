@@ -1,3 +1,7 @@
+---
+description: How to contribute to GEMS — guidelines for code contributions, documentation improvements, and model library contributions to the GEMS open-source project.
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
