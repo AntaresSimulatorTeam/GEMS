@@ -74,7 +74,7 @@ When connecting a component to an area, you must respect conventions on the sign
 
 
 | Area Connecton Field | Sign Convention: Positive for... |
-|---|---|---|---|
+|---|---|
 | injection-to-balance | Production |
 | spillage-bound | Production |
 | unsupplied-energy-bound | Load |
