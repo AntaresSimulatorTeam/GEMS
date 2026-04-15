@@ -64,6 +64,9 @@ plugins:
   - macros:
       module_name: main
   - git-revision-date-localized:
+      exclude:
+        - documentation_env/*
+        - 2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/.pixi/*
       enable_creation_date: true
       enable_git_follow: true
       type: timeago
