@@ -179,7 +179,7 @@ def _bound_expression_cases() -> list[tuple[str, str, str, Any, frozenset[str]]]
             for var in model.get("variables") or []:
                 for bound in ("lower-bound", "upper-bound"):
                     val = var.get(bound)
-                    if val is not None and not isinstance(val, (int, float)):
+                    if val is not None and not isinstance(val, int | float):
                         label = f"variables[{var['id']}].{bound}"
                         cases.append((lib_name, model_id, label, val, params_only))
     return cases
