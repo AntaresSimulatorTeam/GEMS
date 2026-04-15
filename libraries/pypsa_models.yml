@@ -12,7 +12,8 @@
 
 # Library of models for the emulation of PyPSA
 # References for PyPSA
-# T. Brown, J. Hörsch, D. Schlachtberger, PyPSA: Python for Power System Analysis, 2018, Journal of Open Research Software, 6(1), arXiv:1707.09913, DOI:10.5334/jors.188
+# T. Brown, J. Hörsch, D. Schlachtberger, PyPSA: Python for Power System Analysis,
+# 2018, Journal of Open Research Software, 6(1), arXiv:1707.09913, DOI:10.5334/jors.188
 # https://pypsa.readthedocs.io/en/latest/
 
 library:
@@ -32,7 +33,7 @@ library:
 
   models:
     - id: bus
-    # Model for PyPSA bus: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# bus
+      # Model for PyPSA bus: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# bus
       parameters:
         - id: v_nom
           time-dependent: false
@@ -81,7 +82,7 @@ library:
         - id: sign # default value = -1
           time-dependent: false
           scenario-dependent: false
-        # - id: active # Parameter that is not instantiated: only active components are built by the data converter.
+      # - id: active # Parameter that is not instantiated: only active components are built by the data converter.
       ports:
         - id: p_balance_port
           type: flow
@@ -96,12 +97,13 @@ library:
           definition: sign * q_set
 
     - id: generator
-    # Model for PyPSA generator: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# generator
+      # Model for PyPSA generator: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# generator
       parameters:
         # - id: control # Parameter not instantiated for now
         # - id: type # This parameter is not used in the Gems model
         # - id: p_nom_mod # Parameter not instantiated for now
-        # - id: p_nom_extendable # Parameter that is not used in Gems model: p_nom_min and p_nom_max are used to possibly fix the value of p_nom
+        # - id: p_nom_extendable # Parameter that is not used in Gems model: p_nom_min and
+        #   p_nom_max are used to possibly fix the value of p_nom
         - id: p_nom_min
           time-dependent: false
           scenario-dependent: false
@@ -164,14 +166,14 @@ library:
           time-dependent: false
           scenario-dependent: false
         - id: p
-        # - id: q
+      # - id: q
       ports:
         - id: p_balance_port
           type: flow
         - id: emission_port
           type: emission
-        # - id: q_balance_port
-        #  type: flow
+      # - id: q_balance_port
+      #  type: flow
       port-field-definitions:
         - port: p_balance_port
           field: flow
@@ -179,9 +181,9 @@ library:
         - port: emission_port
           field: emission
           definition: p*emission_factor/efficiency
-        # - port: q_balance_port
-        #  field: flow
-        #  definition: q*sign
+      # - port: q_balance_port
+      #  field: flow
+      #  definition: q*sign
       constraints:
         - id: min_dispatch
           expression: p >=p_nom * p_min_pu
@@ -196,7 +198,7 @@ library:
           expression: sum(marginal_cost * p) + p_nom * capital_cost
 
     - id: link
-    # Model for PyPSA link: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# link
+      # Model for PyPSA link: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# link
       parameters:
         # - id: type # This parameter is not used in the Gems model
         # - id: carrier # This parameter is not used in the Gems model
@@ -207,7 +209,8 @@ library:
         # - id: build_year # Parameter not instantiated for now
         # - id: lifetime # Parameter not instantiated for now
         # - id: p_nom_mod # Parameter not instantiated for now
-        # - id: p_nom_extendable # Parameter that is not instantiated: p_nom_min and p_nom_max are used to possibly fix the value of p_nom
+        # - id: p_nom_extendable # Parameter that is not instantiated: p_nom_min and
+        #   p_nom_max are used to possibly fix the value of p_nom
         - id: p_nom_min
           time-dependent: false
           scenario-dependent: false
@@ -227,21 +230,21 @@ library:
         - id: marginal_cost
           time-dependent: true
           scenario-dependent: false
-        # - id: marginal_cost_quadratic # Parameter not instantiated for now
-        # - id: stand_by_cost # Parameter not instantiated for now
-        # - id: length # Parameter not instantiated for now
-        # - id: terrain_factor # Parameter not instantiated for now
-        # - id: committable # Parameter not instantiated for now
-        # - id: start_up_cost # Parameter not instantiated for now
-        # - id: shut_down_cost # Parameter not instantiated for now
-        # - id: min_up_time # Parameter not instantiated for now
-        # - id: min_down_time # Parameter not instantiated for now
-        # - id: up_time_before # Parameter not instantiated for now
-        # - id: down_time_before # Parameter not instantiated for now
-        # - id: ramp_limit_up # Parameter not instantiated for now
-        # - id: ramp_limit_down # Parameter not instantiated for now
-        # - id: ramp_limit_start_up # Parameter not instantiated for now
-        # - id: ramp_limit_shut_down # Parameter not instantiated for now
+      # - id: marginal_cost_quadratic # Parameter not instantiated for now
+      # - id: stand_by_cost # Parameter not instantiated for now
+      # - id: length # Parameter not instantiated for now
+      # - id: terrain_factor # Parameter not instantiated for now
+      # - id: committable # Parameter not instantiated for now
+      # - id: start_up_cost # Parameter not instantiated for now
+      # - id: shut_down_cost # Parameter not instantiated for now
+      # - id: min_up_time # Parameter not instantiated for now
+      # - id: min_down_time # Parameter not instantiated for now
+      # - id: up_time_before # Parameter not instantiated for now
+      # - id: down_time_before # Parameter not instantiated for now
+      # - id: ramp_limit_up # Parameter not instantiated for now
+      # - id: ramp_limit_down # Parameter not instantiated for now
+      # - id: ramp_limit_start_up # Parameter not instantiated for now
+      # - id: ramp_limit_shut_down # Parameter not instantiated for now
       variables:
         - id: p_nom
           time-dependent: false
@@ -249,10 +252,10 @@ library:
           lower-bound: p_nom_min
           upper-bound: p_nom_max
         - id: p0
-        # - id: p_nom_opt
-        # - id: status
-        # - id: start_up
-        # - id: shut_down
+      # - id: p_nom_opt
+      # - id: status
+      # - id: start_up
+      # - id: shut_down
       ports:
         - id: p0_port
           type: flow
@@ -260,8 +263,8 @@ library:
         #  type: flow
         - id: p1_port
           type: flow
-        # - id: q_1_port
-        #  type: flow
+      # - id: q_1_port
+      #  type: flow
       port-field-definitions:
         - port: p0_port
           field: flow
@@ -269,9 +272,9 @@ library:
         - port: p1_port
           field: flow
           definition: efficiency * p0
-        # - port: q_balance_port
-        #  field: flow
-        #  definition: q
+      # - port: q_balance_port
+      #  field: flow
+      #  definition: q
       constraints:
         - id: p0_upper
           expression: p0 <= p_max_pu * p_nom
@@ -283,12 +286,13 @@ library:
 
 
     - id: storage_unit
-     # Model for PyPSA storage unit: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# storage-unit
+      # Model for PyPSA storage unit: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# storage-unit
       parameters:
         # - id: control # Parameter not instantiated for now
         # - id: type # This parameter is not used in the Gems model
         # - id: p_nom_mod # Parameter not instantiated for now
-        # - id: p_nom_extendable # Parameter that is not instantiated: p_nom_min and p_nom_max are used to possibly fix the value of p_nom
+        # - id: p_nom_extendable # Parameter that is not instantiated: p_nom_min and
+        #   p_nom_max are used to possibly fix the value of p_nom
         - id: p_nom_min
           time-dependent: false
           scenario-dependent: false
@@ -343,7 +347,7 @@ library:
         - id: inflow
           time-dependent: true
           scenario-dependent: false
-      # # Additional parameters that are not stored in the PyPSA object, but in a Carrier object
+        # # Additional parameters that are not stored in the PyPSA object, but in a Carrier object
         - id: emission_factor
           time-dependent: false
           scenario-dependent: false
@@ -375,7 +379,8 @@ library:
           definition: p_dispatch - p_store
         - port: emission_port
           field: emission
-          definition: emission_factor * 0 # Since we assume here cyclity of StorageUnits. In the future, for non-cyclic Store: (e[-1] - e[T-1])*emission_factor
+          # Since we assume cyclity of StorageUnits; for non-cyclic Store: (e[-1] - e[T-1])*emission_factor
+          definition: emission_factor * 0
       constraints:
         - id: p_store_upper
           expression: p_store <= p_max_pu * p_nom
@@ -395,7 +400,8 @@ library:
         # - id: type # This parameter is not used in the Gems model
         # - id: carrier # This parameter is not used in the Gems model
         # - id: e_nom_mod # Parameter not instantiated for now
-        # - id: e_nom_extendable # Parameter that is not instantiated: e_nom_min and e_nom_max are used to possibly fix the value of e_nom
+        # - id: e_nom_extendable # Parameter that is not instantiated: e_nom_min and
+        #   e_nom_max are used to possibly fix the value of e_nom
         - id: e_nom_min
           time-dependent: false
           scenario-dependent: false
@@ -433,7 +439,7 @@ library:
         # - id: active # Parameter that is not instantiated: only active components are built by the data converter.
         # - id: build_year # Parameter not instantiated for now
         # - id: lifetime # Parameter not instantiated for now
-      # # Additional parameters that are not stored in the PyPSA object, but in a Carrier object
+        # # Additional parameters that are not stored in the PyPSA object, but in a Carrier object
         - id: emission_factor
           time-dependent: false
           scenario-dependent: false
@@ -456,7 +462,8 @@ library:
           definition: p
         - port: emission_port
           field: emission
-          definition: emission_factor * 0 # Since we assume here cyclity of stores. In the future, for non-cyclic Store: (e[-1] - e[T-1])*emission_factor
+          # Since we assume cyclity of stores; for non-cyclic Store: (e[-1] - e[T-1])*emission_factor
+          definition: emission_factor * 0
       constraints:
         - id: e_upper
           expression: e <= e_max_pu * e_nom
@@ -469,10 +476,12 @@ library:
           expression: sum(marginal_cost * p + marginal_cost_storage * e) + capital_cost * e_nom
 
 
-# ### Models for PyPSA global constraint: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# global-constraint ###
+    # ### Models for PyPSA global constraint:
+    # https://pypsa.readthedocs.io/en/latest/user-guide/components.html# global-constraint ###
 
     - id: global_constraint_co2_max
-      # Model for PyPSA global constraint: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# global-constraint
+      # Model for PyPSA global constraint:
+      # https://pypsa.readthedocs.io/en/latest/user-guide/components.html# global-constraint
       # Case CO2, <=
       parameters:
         # -type = Primary energy
@@ -489,7 +498,8 @@ library:
           expression: sum(sum_connections(emission_port.emission)) <= quota
 
     - id: global_constraint_co2_eq
-      # Model for PyPSA global constraint: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# global-constraint
+      # Model for PyPSA global constraint:
+      # https://pypsa.readthedocs.io/en/latest/user-guide/components.html# global-constraint
       # Case CO2, ==
       parameters:
         # -type = Primary energy
