@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 OBJECTIVE_ATOL = 1e-4
+OBJECTIVE_RTOL = 0.01
 
 
 @dataclass(frozen=True)
