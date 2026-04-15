@@ -1,0 +1,78 @@
+name: "LT-01 — Antares evolution impact on libraries and taxonomies"
+description: Track updates to GEMS model libraries or taxonomies triggered by a new Antares-Simulator/Modeler release
+title: "[LT-01] Antares v — library/taxonomy impact"
+labels: ["LT-01", "antares-update"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Process LT-01** — Triggered by a new Antares-Simulator/Modeler release that affects GEMS model libraries or taxonomies (model compatibility, parameter handling, optimization formulation).
+
+  - type: input
+    id: antares_new_version
+    attributes:
+      label: New Antares Version
+      placeholder: "e.g. 9.4.0"
+    validations:
+      required: true
+
+  - type: input
+    id: antares_previous_version
+    attributes:
+      label: Previous Tracked Version
+      placeholder: "e.g. 9.3.2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger Description
+      description: What changed in the new Antares release that may affect libraries or taxonomies? Reference the release notes or changelog.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: affected_libraries
+    attributes:
+      label: Potentially Affected Libraries
+      description: Check all libraries that need to be reviewed.
+      options:
+        - label: "`basic_models_library.yml`"
+        - label: "`antares_legacy_models.yml`"
+        - label: "`pypsa_models.yml`"
+        - label: "`andromede_models.yml`"
+
+  - type: textarea
+    id: model_impact
+    attributes:
+      label: Impact on Models
+      description: |
+        Which models or port types are affected?
+        Are there breaking changes (parameter renames, constraint changes) or result differences?
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation_strategy
+    attributes:
+      label: Validation Strategy
+      description: How will equivalence be validated? (E2E comparison against previous version, new reference values?)
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist
+      value: |
+        - [ ] Antares release notes reviewed for library-relevant changes
+        - [ ] Each affected library YAML checked for compatibility
+        - [ ] Library YAML files updated if needed
+        - [ ] YAML validation tests pass (`tests/validation_tests/`)
+        - [ ] E2E tests pass against new Antares binary
+        - [ ] Version file bumped for each affected library (`versions/<library>.txt`)
+        - [ ] Changelog entry added for each affected library (`libraries/CHANGELOG-<library>.md`)
+        - [ ] `versions/antares-simulator.txt` updated to new version
+        - [ ] `COMPATIBILITY.md` updated with new version mapping
+        - [ ] PR reviewed alongside documentation changes

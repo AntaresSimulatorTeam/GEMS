@@ -12,6 +12,10 @@ permissions:
 jobs:
   check-update:
     runs-on: ubuntu-latest
+    outputs:
+      update: ${{ steps.compare.outputs.update }}
+      latest_version: ${{ steps.latest.outputs.version }}
+      issue_number: ${{ steps.create_issue.outputs.issue_number }}
 
     steps:
       - name: Checkout repository
@@ -66,6 +70,7 @@ jobs:
           fi
 
       - name: Create GitHub Issue
+        id: create_issue
         if: steps.compare.outputs.update == 'true'
         uses: actions/github-script@v9
         with:
@@ -83,6 +88,7 @@ jobs:
             const duplicate = existing.data.find(i => i.title.includes(`Antares Simulator v${latest}`));
             if (duplicate) {
               console.log(`Issue already exists: #${duplicate.number} - skipping.`);
+              core.setOutput('issue_number', String(duplicate.number));
               return;
             }
 
@@ -137,4 +143,120 @@ jobs:
               body: body,
             });
 
+            core.setOutput('issue_number', String(result.data.number));
             console.log(`Issue created: #${result.data.number} - ${result.data.html_url}`);
+
+  validate:
+    name: YAML Validation (fast gate)
+    runs-on: ubuntu-22.04
+    needs: check-update
+    if: needs.check-update.outputs.update == 'true'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run YAML validation tests
+        run: python -m pytest tests/validation_tests -v
+
+  e2e-new-version:
+    name: E2E Tests against Antares v${{ needs.check-update.outputs.latest_version }}
+    runs-on: ubuntu-22.04
+    needs: [check-update, validate]
+    if: needs.check-update.outputs.update == 'true'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download new Antares release
+        run: |
+          VERSION="${{ needs.check-update.outputs.latest_version }}"
+          ARCHIVE="antares-${VERSION}-Ubuntu-22.04.tar.gz"
+          echo "Downloading Antares v${VERSION}..."
+          curl -L -f -o "${ARCHIVE}" \
+            "https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v${VERSION}/${ARCHIVE}"
+          echo "Download successful. File size: $(ls -lh "${ARCHIVE}" | awk '{print $5}')"
+
+      - name: Extract Antares binaries
+        run: |
+          VERSION="${{ needs.check-update.outputs.latest_version }}"
+          tar -xzf "antares-${VERSION}-Ubuntu-22.04.tar.gz"
+
+      - name: Point tests at new version
+        run: |
+          VERSION="${{ needs.check-update.outputs.latest_version }}"
+          sed -i "s/ANTARES_SIMULATOR_VERSION=.*/ANTARES_SIMULATOR_VERSION=${VERSION}/" versions/antares-simulator.txt
+
+      - name: Run end-to-end tests
+        id: run_tests
+        run: python -m pytest tests/e2e_tests -v
+        continue-on-error: true
+
+      - name: Upload test artifacts on failure
+        if: steps.run_tests.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-failures-antares-${{ needs.check-update.outputs.latest_version }}
+          path: |
+            tmp/
+            **/*.log
+          retention-days: 7
+
+      - name: Post results to issue
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const outcome = '${{ steps.run_tests.outcome }}';
+            const version = '${{ needs.check-update.outputs.latest_version }}';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const icon = outcome === 'success' ? '✅' : '❌';
+            const status = outcome === 'success' ? 'passed' : 'failed';
+
+            const body = [
+              `## E2E Test Results — Antares v${version}`,
+              '',
+              `${icon} E2E tests **${status}** against Antares v${version}.`,
+              '',
+              `[View full run](${runUrl})`,
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: Number('${{ needs.check-update.outputs.issue_number }}'),
+              body: body,
+            });
+
+      - name: Cleanup
+        if: always()
+        run: |
+          VERSION="${{ needs.check-update.outputs.latest_version }}"
+          rm -f "antares-${VERSION}-Ubuntu-22.04.tar.gz"
+          rm -rf "antares-${VERSION}-Ubuntu-22.04"
+
+      - name: Fail job if tests failed
+        if: steps.run_tests.outcome == 'failure'
+        run: exit 1

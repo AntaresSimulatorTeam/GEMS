@@ -1,13 +1,16 @@
 name: Antares Simulator Update Detected
 description: Automatically created when a new Antares Simulator release is detected
 title: "[ANTARES UPDATE] New release: v"
-labels: ["antares-update", "DOC-01", "LT-01"]
+labels: ["antares-update"]
 body:
   - type: markdown
     attributes:
       value: |
         This issue was automatically created by the `check-antares-update` workflow.
-        Review the new Antares release and determine whether GEMS libraries or documentation need to be updated.
+
+        **Next step:** review the release notes and open the relevant process issue(s):
+        - Impact on GEMS Language docs → open a **DOC-01** issue
+        - Impact on model libraries or taxonomies → open a **LT-01** issue
 
   - type: input
     id: antares_version
@@ -29,17 +32,14 @@ body:
     id: release_notes
     attributes:
       label: Release Notes Summary
-      description: Key changes in the new Antares release relevant to GEMS
+      description: Key changes in the new Antares release relevant to GEMS (auto-populated by workflow if available)
 
   - type: textarea
-    id: checklist
+    id: triage
     attributes:
-      label: Impact Checklist
+      label: Triage
       value: |
-        - [ ] Review Antares release notes for GEMS-relevant changes
-        - [ ] Update E2E tests if new Antares version required (DOC-01)
-        - [ ] Update `versions/antares-simulator.txt` to new version
-        - [ ] Check `antares_legacy_models.yml` for compatibility (LT-01)
-        - [ ] Update `COMPATIBILITY.md` with new version mapping
-        - [ ] Update documentation if modeler API changed (DOC-01)
-        - [ ] Run E2E tests against new binary
+        - [ ] Release notes reviewed
+        - [ ] DOC-01 issue opened (if GEMS Language docs are affected)
+        - [ ] LT-01 issue opened (if libraries or taxonomies are affected)
+        - [ ] No action needed (if release has no GEMS impact)

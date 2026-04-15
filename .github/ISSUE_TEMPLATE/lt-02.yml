@@ -1,0 +1,77 @@
+name: "LT-02 — Internal library or taxonomy development"
+description: Track bug fixes, model improvements, or modifications to an existing GEMS library or taxonomy
+title: "[LT-02] "
+labels: ["LT-02"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Process LT-02** — Triggered by internal initiative to fix a bug, improve, or modify an existing GEMS model library or taxonomy. Not driven by an external tool update.
+
+  - type: dropdown
+    id: affected_library
+    attributes:
+      label: Affected Library / Taxonomy
+      options:
+        - basic_models_library
+        - antares_legacy_models
+        - pypsa_models
+        - andromede_models
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Type of Change
+      description: Select the semantic version impact of this change.
+      options:
+        - "Minor — new model or metric added (major version bump)"
+        - "Minor — bug fix or model improvement (minor version bump)"
+        - "Patch — non-functional update (rename variable/parameter, internal refactor)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What change is being proposed and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact Analysis
+      description: |
+        Is this a breaking change? Does it affect optimization results (objective function values)?
+        Which studies in `resources/` reference the affected models?
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation_strategy
+    attributes:
+      label: Validation Strategy
+      description: |
+        How will correctness be validated?
+        If results change: describe the before/after E2E comparison strategy.
+        If non-functional: describe what structural checks are sufficient.
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist
+      value: |
+        - [ ] Library YAML updated (`libraries/<library>.yml`)
+        - [ ] All studies referencing the affected model verified (parameter counts, port refs)
+        - [ ] YAML validation tests pass (`tests/validation_tests/`)
+        - [ ] E2E tests pass (required if optimization results may change)
+        - [ ] Library version file bumped (`versions/<library>.txt`)
+        - [ ] Changelog entry added (`libraries/CHANGELOG-<library>.md`)
+        - [ ] Documentation updated if model behavior or interface changed
+        - [ ] PR reviewed alongside documentation changes

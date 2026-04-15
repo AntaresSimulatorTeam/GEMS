@@ -1,0 +1,58 @@
+name: "DOC-02 — Internal documentation improvement"
+description: Track website updates, content fixes, structural improvements, or clarifications to GEMS documentation
+title: "[DOC-02] "
+labels: ["DOC-02", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Process DOC-02** — Triggered by internal initiative to improve the GEMS documentation website (new content, fix inconsistencies, restructure sections, improve examples). Not driven by an external tool update.
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Type of Change
+      options:
+        - New content
+        - Fix inconsistency or error
+        - Restructure or reorganise sections
+        - Improve or add examples
+        - Language clarification (may require version bump)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What improvement is being proposed and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_sections
+    attributes:
+      label: Affected Documentation Sections
+      description: Which doc sections or pages are affected? (e.g. "doc/2_model_library/", "doc/0_quickstart/")
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact Analysis
+      description: |
+        Does this change affect the GEMS Language definition itself (requiring a version bump),
+        or is it purely editorial/structural?
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist
+      value: |
+        - [ ] Documentation pages updated
+        - [ ] `mkdocs build` passes without warnings
+        - [ ] Internal links verified
+        - [ ] If language clarification: `versions/gems-language.txt` patch version bumped
+        - [ ] If language clarification: `CHANGELOG-gems-language.md` entry added
+        - [ ] PR reviewed alongside documentation changes
