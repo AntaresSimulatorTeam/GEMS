@@ -10,73 +10,11 @@ This section is a glossary of the main concepts used by GEMS.
 
 ## Input Files
 
-### Library 
-
-A YAML file defining two collections of abstract objects: [models](../3_User_Guide/3_GEMS_File_Structure/2_library.md#models) and [port types](../3_User_Guide/3_GEMS_File_Structure/2_library.md#port-types). Models describe the mathematical formulation for a category of grid element. Port types describe the kinds of connections models can have.
-
-[link to user guide](../3_User_Guide/3_GEMS_File_Structure/2_library.md)
-```yaml
-library:
-
-  id: example_library
-  description: "Example model library"
-
-  port-types:
-    - id: flow_port
-      description: "Power flow port"
-      fields:
-        - id: flow
-
-  models:
-    - id: bus
-      description: "A simple balance node model"
-      ports:
-        - id: balance_port
-          type: flow_port
-      binding-constraints:
-        - id: balance
-          expression: sum_connections(flow_port.flow) = 0
-```
-
-### System 
-
-A YAML file defining the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and specifies how components are connected to each other.
-
-[link to user guide](../3_User_Guide/3_GEMS_File_Structure/3_system.md)
-```yaml
-system:
-  id: my_system
-  description: "An example system with one load and one node"
-  model-libraries: my_library_1, my_library_2
-  components:
-    - id: load_1
-      model: my_library_1.load
-      scenario-group: load_group
-      parameters:
-        - id: load
-          time-dependent: true
-          scenario-dependent: false
-          value: demand_profile
-    - id: bus_1
-      model: my_library_2.bus
-  connections:
-    - component1: bus_1
-      component2: load_1
-      port1: balance_port
-      port2: balance_port
-```
-
-### Dataseries
-
-A CSV file providing numerical input data for time-varying and/or scenario-varying parameters. The filename (without extension) serves as the dataseries `id`. Depending on whether the data is time-dependent, scenario-dependent, or both, the file contains one column, one row, or a matrix of values respectively.
-
-[link to user guide](../3_User_Guide/3_GEMS_File_Structure/4_data_series.md)
-```text
-0,0
-3,5
-12,10
-14,15
-```
+| Term    | Definition    |
+|---------|---------------|
+| [Library](../3_User_Guide/3_GEMS_File_Structure/2_library.md) | A file listing all the models representing general unspecified elements of a study. These models are used as "template" for creating their instances, called components|
+| [System](../3_User_Guide/3_GEMS_File_Structure/3_system.md)  | A file listing all the "components", the instances of models defined by the system yaml file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
+| [Dataseries](../3_User_Guide/3_GEMS_File_Structure/4_data_series.md) | A table containing all the data through time. It is used by time/scenario dependent components|
 
 ## Concepts
 
