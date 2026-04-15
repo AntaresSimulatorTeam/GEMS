@@ -1,4 +1,7 @@
 docs_dir: doc
+exclude_docs: |
+  documentation_env/
+  2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/.pixi/
 site_name: GEMS - Generic Energy system Modelling Scheme
 repo_url: https://github.com/AntaresSimulatorTeam/GEMS
 edit_uri: edit/doc/doc/
