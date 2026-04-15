@@ -24,23 +24,25 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Download Antares v10.0.0 release
+    - name: Download Antares release
       run: |
-        echo "Downloading Antares v10.0.0..."
-        curl -L -f -o antares-10.0.0-Ubuntu-22.04.tar.gz \
-          https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v10.0.0/antares-10.0.0-Ubuntu-22.04.tar.gz
+        source versions/antares-simulator.txt
+        echo "Downloading Antares v${ANTARES_SIMULATOR_VERSION}..."
+        curl -L -f -o antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz \
+          https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v${ANTARES_SIMULATOR_VERSION}/antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz
 
-        if [ ! -f "antares-10.0.0-Ubuntu-22.04.tar.gz" ]; then
+        if [ ! -f "antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz" ]; then
           echo "Error: Download failed"
           exit 1
         fi
 
-        echo "Download successful. File size: $(ls -lh antares-10.0.0-Ubuntu-22.04.tar.gz | awk '{print $5}')"
+        echo "Download successful. File size: $(ls -lh antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz | awk '{print $5}')"
 
     - name: Extract Antares binaries
       run: |
+        source versions/antares-simulator.txt
         echo "Extracting archive..."
-        tar -xzf antares-10.0.0-Ubuntu-22.04.tar.gz --strip-components=1 --one-top-level=antares-10.0.0-Ubuntu-22.04
+        tar -xzf antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz --strip-components=1 --one-top-level=antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04
 
     - name: Run end-to-end tests
       run: |
@@ -49,6 +51,7 @@ jobs:
     - name: Cleanup
       if: always()
       run: |
-        rm -f antares-10.0.0-Ubuntu-22.04.tar.gz
-        rm -rf antares-10.0.0-Ubuntu-22.04
+        source versions/antares-simulator.txt
+        rm -f antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz
+        rm -rf antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04
         echo "Cleanup completed"
