@@ -58,6 +58,8 @@ extra_css:
 
 plugins:
   - search
+  - macros:
+      module_name: main
   - git-revision-date-localized:
       enable_creation_date: true
       enable_git_follow: true

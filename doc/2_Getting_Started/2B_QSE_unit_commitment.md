@@ -13,7 +13,7 @@ This tutorial demonstrates a simple example of a **unit commitment** problem sta
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 
 <div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
-  <strong>⚠️ Warning — This study requires Antares Simulator version &gt; 10.0.0</strong><br>
+  <strong>⚠️ Warning — This study requires Antares Simulator version &gt; {{ antares_simulator_version }}</strong><br>
   You can find the latest version on the <a href="https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases">official releases page</a>.
 </div>
 
