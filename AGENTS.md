@@ -20,18 +20,29 @@ Repository: `AntaresSimulatorTeam/GEMS` — License: MPL 2.0
 ## Directory Layout
 
 ```
-.github/workflows/           # GitHub Actions CI workflows
+.github/
+  workflows/                  # GitHub Actions CI workflows
+  ISSUE_TEMPLATE/             # Issue templates (antares-update, process-change)
+  PULL_REQUEST_TEMPLATE.md    # PR template with process ID and checklist
 doc/                          # MkDocs documentation source (sections 0-6)
 libraries/                    # Shared YAML model libraries (4 files)
+  CHANGELOG-<library>.md      # Per-library changelogs
 resources/
   Documentation_Examples/     # Quick-start example studies
   e2e_studies/                # End-to-end test studies with reference data
 tests/
   e2e_tests/                  # pytest e2e tests (require Antares binary)
-versions/                     # Version tracking files
+  validation_tests/           # pytest YAML/schema validation tests (no binary required)
+  unit_tests/                 # pytest unit tests for Python utilities (no binary required)
+versions/                     # Version tracking files (antares-simulator, libraries, gems-language)
+CHANGELOG-gems-language.md    # GEMS Language changelog
+COMPATIBILITY.md              # GEMS Language ↔ Antares ↔ GemsPy version matrix
 mkdocs.yml                    # Documentation site config
+pyproject.toml                # Tool configuration (ruff, mypy) — not a package descriptor
 requirements.txt              # Python runtime dependencies
+requirements-dev.txt          # Developer dependencies (ruff, mypy, yamllint)
 requirements-doc.txt          # Documentation build dependencies
+.yamllint.yml                 # yamllint configuration
 ```
 
 ---
@@ -173,7 +184,9 @@ Docs hosted at: https://gems-energy.readthedocs.io/
 
 | Workflow | File | Trigger | What It Does |
 |----------|------|---------|--------------|
-| End-to-End Tests | `e2e-tests.yml` | PR, manual | Downloads Antares binary, runs pytest e2e tests |
+| YAML Validation | `yaml-validation.yml` | PR, manual | Runs `tests/validation_tests` — no binary required, fast gate |
+| End-to-End Tests | `e2e-tests.yml` | PR, manual | Runs YAML validation first, then downloads Antares binary and runs e2e tests; uploads artifacts on failure |
+| Lint and Format | `lint-and-format.yml` | PR, manual | ruff lint/format check, mypy strict type check, yamllint |
 | Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates issue if new version found |
 
 ---
@@ -195,7 +208,7 @@ Docs hosted at: https://gems-energy.readthedocs.io/
 - Type hints everywhere; `pathlib.Path` for file paths
 - `@dataclass(frozen=True)` for structured data
 - Logging via `logging.getLogger(__name__)` — no bare `print()`
-- Not a Python package (no setup.py / pyproject.toml)
+- Not a Python package — `pyproject.toml` exists only for tool configuration (`[tool.ruff]`, `[tool.mypy]`); do not add `[project]` or `[build-system]` sections
 
 ### YAML
 
@@ -217,7 +230,7 @@ Docs hosted at: https://gems-energy.readthedocs.io/
 
 5. **Do not commit** `venv/`, `documentation_env/`, `site/`, `tmp/`, or extracted Antares binary directories.
 
-6. **Version tracking.** The Antares Simulator version is tracked in `versions/antares-simulator.txt`. When updating the binary version, also update `tests/e2e_tests/env.py` and `.github/workflows/e2e-tests.yml`.
+6. **Version tracking.** The Antares Simulator version is tracked in `versions/antares-simulator.txt`. It is the single source of truth — `tests/e2e_tests/env.py` reads it dynamically and the workflow reads it via a shell step. Updating the file is sufficient; no other files need to be edited.
 
 7. **Floating-point comparisons.** Always use `pytest.approx()` for objective value assertions. Never use `==` for floating-point comparison.
 

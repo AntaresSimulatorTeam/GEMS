@@ -20,7 +20,7 @@ mkdocs serve
 
 ## Key Reminders
 
-- Antares binary version is tracked in `versions/antares-simulator.txt` and must match `tests/e2e_tests/env.py` and `.github/workflows/e2e-tests.yml`
+- Antares binary version is tracked in `versions/antares-simulator.txt` — single source of truth; `env.py` and the workflow read it dynamically, no other files need updating
 - `libraries/*.yml` are shared — edits affect all studies and tests
 - Test studies in `resources/` may have broken symlinks in `model-libraries/`; the test harness handles this via `copy_model_library()`
 - The Antares modeler fails silently (`check=False`); run it directly to see errors

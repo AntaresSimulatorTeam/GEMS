@@ -24,6 +24,14 @@ class EnvironmentPaths:
     antares_modeler_bin: Path
 
 
+def _read_antares_version(repo_root: Path) -> str:
+    version_file = repo_root / "versions" / "antares-simulator.txt"
+    for line in version_file.read_text(encoding="utf-8").splitlines():
+        if line.startswith("ANTARES_SIMULATOR_VERSION="):
+            return line.split("=", 1)[1].strip()
+    raise ValueError(f"ANTARES_SIMULATOR_VERSION not found in {version_file}")
+
+
 def get_paths() -> EnvironmentPaths:
     """
     Central place for:
@@ -39,7 +47,8 @@ def get_paths() -> EnvironmentPaths:
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
 
-    antares_root = repo_root / "antares-9.3.2-Ubuntu-22.04"
+    antares_version = _read_antares_version(repo_root)
+    antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
     antares_solver_bin = antares_root / "bin" / "antares-solver"
     antares_modeler_bin = antares_root / "bin" / "antares-modeler"
 
