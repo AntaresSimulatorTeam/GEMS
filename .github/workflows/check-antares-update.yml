@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Read current version
         id: current
@@ -67,7 +67,7 @@ jobs:
 
       - name: Create GitHub Issue
         if: steps.compare.outputs.update == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const latest = '${{ steps.latest.outputs.version }}';
