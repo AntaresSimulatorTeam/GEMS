@@ -20,7 +20,7 @@ This language **differs from traditional optimization languages** in several way
 <style>
 .yaml-diptych pre { white-space: pre-wrap; word-break: break-all; }
 </style>
-<div class="yaml-diptych" style="display: flex; gap: 1.5rem; align-items: flex-start; width: 125%; margin-left: -5%;">
+<div class="yaml-diptych" style="display: flex; gap: 1.5rem; align-items: flex-start; width: 125%">
 <div style="flex: 1; min-width: 0;">
 
 <h3> Library </h3>
