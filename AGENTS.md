@@ -6,7 +6,7 @@ This file provides guidance to AI coding agents (LLMs, copilots, code assistants
 
 ## Project Overview
 
-**GEMS** (Generic Energy system Modelling Scheme) is a high-level algebraic modeling language for energy system optimization and foresight studies. This repository contains:
+**GEMS** (Generic Energy system Modelling Scheme) is a high-level algebraic modeling language for energy system optimization and planning studies. This repository contains:
 
 - **YAML model libraries** — reusable energy component models (`libraries/*.yml`)
 - **Documentation site** — built with MkDocs + Material theme (`doc/`, `mkdocs.yml`)
@@ -38,75 +38,21 @@ requirements-doc.txt          # Documentation build dependencies
 
 ## GEMS Language Essentials
 
-### Model Libraries (`libraries/*.yml`)
+Full reference documentation lives in `doc/`. Read the relevant file before editing libraries or studies.
 
-Each library YAML file defines `port-types` and `models` under a top-level `library` key. Understanding this structure is critical before editing any library file.
+| Topic | Reference |
+|-------|-----------|
+| Library file structure (port-types, models, parameters, variables, constraints) | [`doc/3_User_Guide/3_GEMS_File_Structure/2_library.md`](doc/3_User_Guide/3_GEMS_File_Structure/2_library.md) |
+| Mathematical expression syntax (operators, time indexing, aggregation, linearity) | [`doc/3_User_Guide/2_mathematical_syntax.md`](doc/3_User_Guide/2_mathematical_syntax.md) |
+| Study folder layout (system.yml, data-series/, model-libraries/, parameters.yml) | [`doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md`](doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md) |
+| System file (components, connections, parameter assignment) | [`doc/3_User_Guide/3_GEMS_File_Structure/3_system.md`](doc/3_User_Guide/3_GEMS_File_Structure/3_system.md) |
 
-```yaml
-library:
-  id: <library_id>
-  description: <text>
+### Key rules for AI agents
 
-  port-types:
-    - id: <port_type_id>
-      fields:
-        - id: <field_id>
-
-  models:
-    - id: <model_id>
-      parameters:          # inputs to the model
-        - id: <param_id>
-          time-dependent: true|false     # optional, default false
-          scenario-dependent: true|false # optional, default false
-      variables:           # decision variables
-        - id: <var_id>
-          lower-bound: <expression>
-          upper-bound: <expression>
-          variable-type: continuous|integer|binary
-      ports:               # connection points
-        - id: <port_id>
-          type: <port_type_id>   # must reference a port-type in the same library
-      port-field-definitions:
-        - port: <port_id>
-          field: <field_id>
-          definition: <math_expression>
-      binding-constraints:
-        - id: <constraint_id>
-          expression: <math_expression>  # must contain exactly one =, <=, or >=
-      constraints:
-        - id: <constraint_id>
-          expression: <math_expression>
-      objective-contributions:
-        - id: <id>
-          expression: <math_expression>
-```
-
-### Mathematical Expression Syntax
-
-- Arithmetic operators: `+`, `-`, `*`, `/`
-- Comparison operators (one per constraint): `=`, `<=`, `>=`
-- Aggregation: `sum(expr)` sums over time, `sum_connections(port.field)` sums across connections
-- Time indexing: `var[t-1]`, `var[t+1]`, `var[0]`
-- Functions: `min()`, `max()`, `ceil()`
-- Linearity required: no `variable * variable` or `constant / variable`
-
-### Study Structure
-
-```
-Study/
-├── input/
-│   ├── system.yml              # components + connections
-│   ├── data-series/            # time-series CSV files (one value per line)
-│   └── model-libraries/        # library YAML files (or symlinks to libraries/)
-├── parameters.yml              # solver configuration
-└── scenario_builder.yml        # optional scenario definitions
-```
-
-**system.yml** defines:
-- `components` — each references a model as `library_id.model_id` and provides parameter values
-- `connections` — each links two components via their port IDs
-
-**Critical rule:** The number of parameters in a component's `system.yml` definition must exactly match the number of parameters in the referenced model. A mismatch will cause the Antares modeler to fail silently.
+- Library YAML files define `port-types` and `models` under a top-level `library` key. A `port.type` must reference a port-type defined in the same (or an included) library.
+- Constraint expressions must contain exactly one comparison operator (`=`, `<=`, `>=`) and must be linear — no `variable * variable` or `constant / variable`.
+- `sum_connections(port.field)` aggregates across connections; direct `port.field` references in constraints are forbidden (allowed only in `extra-outputs`).
+- The set of parameter IDs in a component's `system.yml` must exactly match the set declared in the referenced model — every parameter must be present with the correct ID and assigned a value. A mismatch causes the Antares modeler to fail silently with no error output.
 
 ---
 
@@ -173,8 +119,10 @@ Docs hosted at: https://gems-energy.readthedocs.io/
 
 | Workflow | File | Trigger | What It Does |
 |----------|------|---------|--------------|
-| End-to-End Tests | `e2e-tests.yml` | PR, manual | Downloads Antares binary, runs pytest e2e tests |
-| Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates issue if new version found |
+| YAML Validation | `yaml-validation.yml` | PR, manual | Runs `tests/validation_tests/` — no binary required, fast gate |
+| End-to-End Tests | `e2e-tests.yml` | PR, manual | Runs YAML validation, then downloads Antares binary and runs e2e tests |
+| Lint and Format | `lint-and-format.yml` | PR, manual | ruff lint/format, mypy strict type check, yamllint |
+| Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Detects new Antares release, creates triage issue, runs E2E tests against new version |
 
 ---
 
@@ -217,7 +165,7 @@ Docs hosted at: https://gems-energy.readthedocs.io/
 
 5. **Do not commit** `venv/`, `documentation_env/`, `site/`, `tmp/`, or extracted Antares binary directories.
 
-6. **Version tracking.** The Antares Simulator version is tracked in `versions/antares-simulator.txt`. When updating the binary version, also update `tests/e2e_tests/env.py` and `.github/workflows/e2e-tests.yml`.
+6. **Version tracking.** The Antares Simulator version is tracked in `versions/antares-simulator.txt` — single source of truth. Both `tests/e2e_tests/env.py` and the CI workflows read it dynamically. Updating the file is sufficient; no other files need changing.
 
 7. **Floating-point comparisons.** Always use `pytest.approx()` for objective value assertions. Never use `==` for floating-point comparison.
 
