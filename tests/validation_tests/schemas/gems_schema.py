@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -15,7 +15,7 @@ class PortType(BaseModel):
     model_config = ConfigDict(extra="allow", populate_by_name=True)
 
     id: str
-    description: Optional[str] = None
+    description: str | None = None
     fields: list[PortField] = Field(default_factory=list)
 
 
@@ -51,7 +51,7 @@ class Library(BaseModel):
     model_config = ConfigDict(extra="allow", populate_by_name=True)
 
     id: str
-    description: Optional[str] = None
+    description: str | None = None
     port_types: list[PortType] = Field(default_factory=list, alias="port-types")
     models: list[ModelDefinition] = Field(default_factory=list)
 

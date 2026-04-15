@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-import io
 import logging
 from pathlib import Path
 
-import pandas as pd
 import pytest
 
 from tests.e2e_tests.utils import get_gems_objective_function_value

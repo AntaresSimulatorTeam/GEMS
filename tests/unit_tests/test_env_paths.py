@@ -31,9 +31,7 @@ def test_read_antares_version_ignores_comments(tmp_path: Path) -> None:
 def test_read_antares_version_missing_key_raises(tmp_path: Path) -> None:
     versions_dir = tmp_path / "versions"
     versions_dir.mkdir()
-    (versions_dir / "antares-simulator.txt").write_text(
-        "SOME_OTHER_KEY=1.0\n", encoding="utf-8"
-    )
+    (versions_dir / "antares-simulator.txt").write_text("SOME_OTHER_KEY=1.0\n", encoding="utf-8")
     with pytest.raises(ValueError, match="ANTARES_SIMULATOR_VERSION not found"):
         _read_antares_version(tmp_path)
 

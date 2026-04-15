@@ -9,6 +9,7 @@ Validates:
   - Port-field definitions reference valid port and field IDs
   - sum_connections() calls reference valid port.field pairs
 """
+
 from __future__ import annotations
 
 import re
@@ -30,6 +31,7 @@ _KEYWORDS = frozenset({"sum", "sum_connections", "min", "max", "ceil", "floor", 
 # ---------------------------------------------------------------------------
 # Expression helpers
 # ---------------------------------------------------------------------------
+
 
 def _strip_sum_connections(expression: str) -> str:
     """Remove sum_connections(port.field) tokens before identifier extraction.
@@ -67,6 +69,7 @@ def _extract_sum_connections_refs(expression: Any) -> list[tuple[str, str]]:
 # ---------------------------------------------------------------------------
 # Library loading and model introspection
 # ---------------------------------------------------------------------------
+
 
 def _load_libraries() -> list[tuple[str, dict[str, Any]]]:
     """Return list of (filename, library_dict) for all library YAML files."""
@@ -107,7 +110,8 @@ def _port_type_of(model: dict[str, Any], port_id: str) -> str | None:
     """Return the port-type ID for a given port in a model."""
     for port in model.get("ports") or []:
         if port["id"] == port_id:
-            return port.get("type")
+            value = port.get("type")
+            return str(value) if value is not None else None
     return None
 
 
@@ -145,10 +149,14 @@ def _expression_cases() -> list[tuple[str, str, str, Any, frozenset[str]]]:
 
             for section in ("constraints", "binding-constraints"):
                 for c in model.get(section) or []:
-                    cases.append((lib_name, model_id, f"{section}[{c['id']}]", c["expression"], known))
+                    cases.append(
+                        (lib_name, model_id, f"{section}[{c['id']}]", c["expression"], known)
+                    )
 
             for oc in model.get("objective-contributions") or []:
-                cases.append((lib_name, model_id, f"objective[{oc['id']}]", oc["expression"], known))
+                cases.append(
+                    (lib_name, model_id, f"objective[{oc['id']}]", oc["expression"], known)
+                )
 
             for pfd in model.get("port-field-definitions") or []:
                 label = f"port-field-definitions[{pfd['port']}.{pfd['field']}]"
@@ -206,18 +214,22 @@ def _port_field_def_cases() -> list[tuple[str, str, str, str, frozenset[str], fr
             for pfd in model.get("port-field-definitions") or []:
                 pt_id = _port_type_of(model, pfd["port"])
                 valid_fields = _port_field_ids(library, pt_id) if pt_id else frozenset()
-                cases.append((
-                    lib_name,
-                    model["id"],
-                    pfd["port"],
-                    pfd["field"],
-                    model_port_ids,
-                    valid_fields,
-                ))
+                cases.append(
+                    (
+                        lib_name,
+                        model["id"],
+                        pfd["port"],
+                        pfd["field"],
+                        model_port_ids,
+                        valid_fields,
+                    )
+                )
     return cases
 
 
-def _sum_connections_cases() -> list[tuple[str, str, str, str, str, frozenset[str], frozenset[str]]]:
+def _sum_connections_cases() -> list[
+    tuple[str, str, str, str, str, frozenset[str], frozenset[str]]
+]:
     """(lib_name, model_id, constraint_id, port_id, field_id, model_port_ids, valid_field_ids)."""
     cases = []
     for lib_name, library in _LIBRARIES:
@@ -228,15 +240,17 @@ def _sum_connections_cases() -> list[tuple[str, str, str, str, str, frozenset[st
                     for port_id, field_id in _extract_sum_connections_refs(c["expression"]):
                         pt_id = _port_type_of(model, port_id)
                         valid_fields = _port_field_ids(library, pt_id) if pt_id else frozenset()
-                        cases.append((
-                            lib_name,
-                            model["id"],
-                            c["id"],
-                            port_id,
-                            field_id,
-                            model_port_ids,
-                            valid_fields,
-                        ))
+                        cases.append(
+                            (
+                                lib_name,
+                                model["id"],
+                                c["id"],
+                                port_id,
+                                field_id,
+                                model_port_ids,
+                                valid_fields,
+                            )
+                        )
     return cases
 
 
@@ -251,6 +265,7 @@ _SUM_CONNECTIONS_CASES = _sum_connections_cases()
 # ---------------------------------------------------------------------------
 # Tests
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.parametrize(
     "lib_name, model_id, constraint_id, expression",
@@ -380,10 +395,7 @@ def test_port_field_definition_references_valid_port_and_field(
 @pytest.mark.parametrize(
     "lib_name, model_id, constraint_id, port_id, field_id, model_port_ids, valid_fields",
     _SUM_CONNECTIONS_CASES,
-    ids=[
-        f"{c[0]}::{c[1]}::{c[2]}::sum_connections({c[3]}.{c[4]})"
-        for c in _SUM_CONNECTIONS_CASES
-    ],
+    ids=[f"{c[0]}::{c[1]}::{c[2]}::sum_connections({c[3]}.{c[4]})" for c in _SUM_CONNECTIONS_CASES],
 )
 def test_sum_connections_references_valid_port_and_field(
     lib_name: str,

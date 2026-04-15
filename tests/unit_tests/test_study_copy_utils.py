@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from unittest.mock import MagicMock
 
 import pytest
 
@@ -37,8 +36,8 @@ def test_copy_study_dir_missing_source_fails(tmp_path: Path) -> None:
     source_dir = tmp_path / "studies"
     source_dir.mkdir()
 
-    # copy_study_dir_to_tmp calls pytest.fail() which raises BaseException
-    with pytest.raises(BaseException):
+    # pytest.fail() raises Failed, a BaseException subclass — intentionally broad
+    with pytest.raises(BaseException):  # noqa: B017
         copy_study_dir_to_tmp(
             study_name="NonExistentStudy",
             source_dir=source_dir,
@@ -73,9 +72,8 @@ def test_copy_study_dir_overwrites_existing(tmp_path: Path) -> None:
 
 
 def test_copy_model_library_installs_file(tmp_path: Path) -> None:
-    from unittest.mock import patch
-    from tests.e2e_tests.utils import copy_model_library
     from tests.e2e_tests.env import EnvironmentPaths
+    from tests.e2e_tests.utils import copy_model_library
 
     repo_root = tmp_path / "repo"
     libraries_dir = repo_root / "libraries"

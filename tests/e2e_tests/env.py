@@ -7,7 +7,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-
 OBJECTIVE_ATOL = 1e-4
 
 

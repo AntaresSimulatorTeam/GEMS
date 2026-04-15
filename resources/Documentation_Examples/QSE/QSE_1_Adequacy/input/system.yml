@@ -26,7 +26,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 10000
-          
+
     - id: bus_3
       model: basic_models_library.bus
       parameters:
@@ -54,7 +54,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 40
-          
+
     - id: bus_load_3
       model: basic_models_library.load
       parameters:
@@ -62,8 +62,8 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 150
-          
-          
+
+
     - id: generator1
       model: basic_models_library.generator
       parameters:
@@ -135,7 +135,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 40
-    
+
     - id: link_23
       model: basic_models_library.link
       parameters:
@@ -147,7 +147,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 30
-    
+
     - id: link_31
       model: basic_models_library.link
       parameters:

@@ -26,7 +26,9 @@ def collect_yaml_files() -> list[Path]:
     return sorted(files)
 
 
-@pytest.mark.parametrize("yaml_file", collect_yaml_files(), ids=lambda p: str(p.relative_to(REPO_ROOT)))
+@pytest.mark.parametrize(
+    "yaml_file", collect_yaml_files(), ids=lambda p: str(p.relative_to(REPO_ROOT))
+)
 def test_yaml_syntax(yaml_file: Path) -> None:
     with yaml_file.open("r", encoding="utf-8") as f:
         yaml.safe_load(f)

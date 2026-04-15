@@ -26,3 +26,4 @@ ignore: |
   documentation_env/
   site/
   .github/ISSUE_TEMPLATE/
+  resources/**/model-libraries/

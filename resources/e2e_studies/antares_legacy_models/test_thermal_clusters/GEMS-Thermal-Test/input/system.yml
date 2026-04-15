@@ -13,7 +13,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 10000
-          
+
     - id: load_bus
       model: antares_legacy_models.load
 
@@ -151,4 +151,3 @@ system:
       component2: th2
       port1: balance_port
       port2: balance_port
-
