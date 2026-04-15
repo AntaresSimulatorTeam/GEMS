@@ -6,7 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Process DOC-02** — Triggered by internal initiative to improve the GEMS documentation website (new content, fix inconsistencies, restructure sections, improve examples). Not driven by an external tool update.
+        **Process DOC-02** — Triggered by internal initiative to improve the GEMS documentation website. Not driven by an external tool update.
+
+        > **Deviation from standard workflow — Step 8:** versioning may be limited to a patch bump. A dedicated release is not required for documentation-only changes.
 
   - type: dropdown
     id: change_type
@@ -17,7 +19,7 @@ body:
         - Fix inconsistency or error
         - Restructure or reorganise sections
         - Improve or add examples
-        - Language clarification (may require version bump)
+        - Language clarification (may require patch version bump)
     validations:
       required: true
 
@@ -33,26 +35,38 @@ body:
     id: affected_sections
     attributes:
       label: Affected Documentation Sections
-      description: Which doc sections or pages are affected? (e.g. "doc/2_model_library/", "doc/0_quickstart/")
+      description: Which doc pages or sections are affected? (e.g. `doc/2_model_library/`, `doc/0_quickstart/`)
     validations:
       required: true
 
   - type: textarea
-    id: impact
-    attributes:
-      label: Impact Analysis
-      description: |
-        Does this change affect the GEMS Language definition itself (requiring a version bump),
-        or is it purely editorial/structural?
-
-  - type: textarea
     id: checklist
     attributes:
-      label: Checklist
+      label: Process Checklist
       value: |
+        ### Step 3 — Impact Analysis
+        - [ ] Affected documentation sections identified
+        - [ ] Inconsistencies between documentation and existing implementation identified
+        - [ ] Assessed whether change affects the GEMS Language definition (or is purely editorial/structural)
+        - [ ] No undocumented behavior will be introduced
+
+        ### Step 4 — Implementation
         - [ ] Documentation pages updated
-        - [ ] `mkdocs build` passes without warnings
         - [ ] Internal links verified
-        - [ ] If language clarification: `versions/gems-language.txt` patch version bumped
-        - [ ] If language clarification: `CHANGELOG-gems-language.md` entry added
+        - [ ] No inconsistency introduced between documentation and implementation
+
+        ### Step 5 — Testing & Validation
+        - [ ] All documentation examples validated (no broken or incorrect examples)
+
+        ### Step 6 — CI Validation
+        - [ ] Documentation build passes (`mkdocs build`) without warnings
+
+        ### Step 7 — Review & Merge
         - [ ] PR reviewed alongside documentation changes
+
+        ### Step 8 — Versioning ⚠️ patch bump only (or none for purely editorial changes)
+        - [ ] If language clarification: `versions/gems-language.txt` patch version bumped
+        - [ ] If purely editorial/structural: no version bump required
+
+        ### Step 10 — Documentation & Changelog
+        - [ ] If language clarification: `CHANGELOG-gems-language.md` entry added

@@ -6,7 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Process LT-03** — Triggered when a new modeling domain or taxonomy needs to be added to the GEMS ecosystem. Requires a design phase, proof-of-concept study, and full E2E validation before merge.
+        **Process LT-03** — Triggered when a new modeling domain or taxonomy needs to be added to the GEMS ecosystem.
+
+        > **Deviation from standard workflow:** a **design phase** is mandatory before implementation (Step 4). The architecture of the library must be defined, use cases documented, and a proof-of-concept study plan established before any YAML is written. Full E2E validation is required before release.
 
   - type: input
     id: library_name
@@ -30,48 +32,77 @@ body:
     attributes:
       label: Design Overview
       description: |
-        Describe the intended structure:
+        Describe the intended architecture:
         - Port types and fields
         - Models (names, parameters, variables, constraints)
         - Connections to existing libraries (if any)
+        - Target Antares-Simulator/Modeler version
     validations:
       required: true
 
   - type: textarea
-    id: poc_study
+    id: use_cases
+    attributes:
+      label: Use Cases
+      description: Describe the modeling scenarios this library is intended to support.
+    validations:
+      required: true
+
+  - type: textarea
+    id: poc_plan
     attributes:
       label: Proof-of-Concept Study Plan
       description: |
         Describe the PoC study that will validate the library:
-        - Study location in `resources/e2e_studies/`
+        - Planned location in `resources/e2e_studies/`
         - What scenario it models
-        - Expected validation approach (compare to reference results or analytical solution)
+        - Validation approach (compare to reference, analytical solution, or existing tool)
     validations:
       required: true
 
   - type: textarea
-    id: compatibility
-    attributes:
-      label: Compatibility
-      description: |
-        Which Antares-Simulator/Modeler version is this library targeting?
-        Any dependencies on GemsPy or other ecosystem components?
-
-  - type: textarea
     id: checklist
     attributes:
-      label: Checklist
+      label: Process Checklist
       value: |
-        - [ ] Library design reviewed and approved
+        ### Design Phase ⚠️ mandatory before implementation
+        - [ ] Library architecture defined (port types, models, parameters, constraints)
+        - [ ] Use cases documented
+        - [ ] Proof-of-concept study plan defined and agreed
+        - [ ] Target Antares-Simulator/Modeler version confirmed
+        - [ ] Dependencies on existing libraries or ecosystem components assessed
+
+        ### Step 3 — Impact Analysis
+        - [ ] GEMS Language compatibility confirmed (no features required that are not yet supported)
+        - [ ] Compatibility with Antares Modeler version confirmed
+        - [ ] No conflicts with existing libraries or port-type namespaces
+
+        ### Step 4 — Implementation
         - [ ] Library YAML created (`libraries/<name>.yml`)
-        - [ ] Port types defined with all required fields
+        - [ ] All port types defined with required fields
         - [ ] All models defined (parameters, variables, constraints, port-field-definitions)
-        - [ ] Mathematical expressions validated (expression syntax tests pass)
+        - [ ] Mathematical expression syntax valid (expression syntax tests pass)
         - [ ] Proof-of-concept study created (`resources/e2e_studies/`)
-        - [ ] E2E validation passes for PoC study
+
+        ### Step 5 — Testing & Validation ⚠️ full E2E validation required before release
+        - [ ] Unit tests pass
+        - [ ] E2E validation passes for proof-of-concept study (objective value verified)
+        - [ ] Results compared to reference (analytical solution or existing tool output)
+
+        ### Step 6 — CI Validation
         - [ ] YAML validation tests pass (`tests/validation_tests/`)
+        - [ ] E2E tests pass in CI
+
+        ### Step 7 — Review & Merge
+        - [ ] PR reviewed alongside documentation
+
+        ### Step 8 — Versioning
         - [ ] Version file created (`versions/<name>.txt`, starting at `1.0.0`)
+
+        ### Step 9 — Release
+        - [ ] Release documents new library, supported Antares version, use cases, and known limitations
+
+        ### Step 10 — Documentation & Changelog
         - [ ] Changelog file created (`libraries/CHANGELOG-<name>.md`)
+        - [ ] Documentation added (models, parameters, usage examples)
         - [ ] `COMPATIBILITY.md` updated with new library entry
-        - [ ] Documentation added covering models, parameters, and usage examples
-        - [ ] PR reviewed alongside documentation changes

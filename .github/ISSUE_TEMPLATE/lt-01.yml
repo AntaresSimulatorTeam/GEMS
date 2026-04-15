@@ -6,7 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Process LT-01** — Triggered by a new Antares-Simulator/Modeler release that affects GEMS model libraries or taxonomies (model compatibility, parameter handling, optimization formulation).
+        **Process LT-01** — Triggered by a new Antares-Simulator/Modeler release that affects GEMS model libraries or taxonomies.
+
+        > **Deviation from standard workflow — Step 4:** enforce alignment with GEMS Language semantics. All model and taxonomy updates must remain consistent with the GEMS Language specification (see DOC-01 if the spec itself changes).
 
   - type: input
     id: antares_new_version
@@ -27,8 +29,8 @@ body:
   - type: textarea
     id: trigger
     attributes:
-      label: Trigger Description
-      description: What changed in the new Antares release that may affect libraries or taxonomies? Reference the release notes or changelog.
+      label: Trigger
+      description: What changed in the new Antares release that affects libraries or taxonomies? Link to release notes.
     validations:
       required: true
 
@@ -44,35 +46,51 @@ body:
         - label: "`andromede_models.yml`"
 
   - type: textarea
-    id: model_impact
-    attributes:
-      label: Impact on Models
-      description: |
-        Which models or port types are affected?
-        Are there breaking changes (parameter renames, constraint changes) or result differences?
-    validations:
-      required: true
-
-  - type: textarea
     id: validation_strategy
     attributes:
       label: Validation Strategy
-      description: How will equivalence be validated? (E2E comparison against previous version, new reference values?)
+      description: How will equivalence be validated? (comparison studies, reference values, E2E against new binary?)
     validations:
       required: true
 
   - type: textarea
     id: checklist
     attributes:
-      label: Checklist
+      label: Process Checklist
       value: |
+        ### Step 3 — Impact Analysis
         - [ ] Antares release notes reviewed for library-relevant changes
-        - [ ] Each affected library YAML checked for compatibility
-        - [ ] Library YAML files updated if needed
-        - [ ] YAML validation tests pass (`tests/validation_tests/`)
+        - [ ] Each affected library YAML checked for compatibility with new Antares version
+        - [ ] Breaking vs backward-compatible changes identified per library
+        - [ ] Modeling behavior impact assessed (changes in optimization formulation)
+        - [ ] Results impact assessed (objective function values expected to change?)
+        - [ ] Dependencies assessed (affected studies in `resources/`)
+
+        ### Step 4 — Implementation ⚠️ enforce alignment with GEMS Language semantics
+        - [ ] Models and taxonomies updated to reflect GEMS Language changes (aligned with DOC-01 if applicable)
+        - [ ] No semantic inconsistency introduced with GEMS Language definition
+        - [ ] Backward compatibility maintained unless explicitly intended as breaking
+        - [ ] All studies referencing updated models verified (parameter counts, port refs)
+
+        ### Step 5 — Testing & Validation
+        - [ ] Unit tests pass
+        - [ ] Comparison studies run: previous Antares version vs new version (objective values compared)
         - [ ] E2E tests pass against new Antares binary
-        - [ ] Version file bumped for each affected library (`versions/<library>.txt`)
-        - [ ] Changelog entry added for each affected library (`libraries/CHANGELOG-<library>.md`)
-        - [ ] `versions/antares-simulator.txt` updated to new version
-        - [ ] `COMPATIBILITY.md` updated with new version mapping
+
+        ### Step 6 — CI Validation
+        - [ ] YAML validation tests pass (`tests/validation_tests/`)
+        - [ ] E2E tests pass in CI
+
+        ### Step 7 — Review & Merge
         - [ ] PR reviewed alongside documentation changes
+
+        ### Step 8 — Versioning
+        - [ ] `versions/antares-simulator.txt` updated to new version
+        - [ ] Version file bumped for each affected library (`versions/<library>.txt`)
+
+        ### Step 9 — Release
+        - [ ] Release documents supported Antares version, compatibility, and behavior changes per library
+
+        ### Step 10 — Documentation & Changelog
+        - [ ] Changelog entry added for each affected library (`libraries/CHANGELOG-<library>.md`)
+        - [ ] `COMPATIBILITY.md` updated with new version mapping

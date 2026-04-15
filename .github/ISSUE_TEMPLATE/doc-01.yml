@@ -8,6 +8,8 @@ body:
       value: |
         **Process DOC-01** — Triggered by a new Antares-Simulator/Modeler release that affects the GEMS Language definition, modeler API, or documented behavior.
 
+        > **Deviation from standard workflow — Step 4:** documentation update must precede any implementation. Update the GEMS Language specification first, then update libraries or examples.
+
   - type: input
     id: antares_new_version
     attributes:
@@ -27,46 +29,80 @@ body:
   - type: textarea
     id: trigger
     attributes:
-      label: Trigger Description
-      description: What changed in the new Antares release that affects the GEMS Language? Reference the release notes or changelog.
+      label: Trigger
+      description: What changed in the new Antares release? Link to the release notes or changelog.
     validations:
       required: true
 
   - type: textarea
-    id: language_impact
+    id: impact
     attributes:
-      label: Impact on GEMS Language
+      label: Impact Analysis
       description: |
-        Describe the impact on GEMS Language syntax, semantics, or documented behavior.
-        Are there new features, deprecated constructs, or breaking changes?
+        Assess the impact across all four dimensions:
+        - **Compatibility** — breaking vs backward-compatible?
+        - **Modeling behavior** — syntax, semantics, or API changes?
+        - **Results** — does it affect objective function values of documentation examples?
+        - **Dependencies** — which interpreters are affected (GemsPy, Antares Modeler)?
     validations:
       required: true
 
   - type: textarea
-    id: examples_impact
+    id: interpreter_support
     attributes:
-      label: Impact on Documentation Examples
-      description: Are the Quick Start Examples (QSE_1_Adequacy, QSE_2_Unit_Commitment) or other documented studies affected?
+      label: Interpreter Support Status
+      description: |
+        For each changed feature, explicitly state whether it is supported by:
+        - Antares Modeler vX.Y.Z
+        - GemsPy vX.Y.Z
+        Mark features as: Supported / Not yet supported / Deprecated.
 
   - type: textarea
     id: validation_strategy
     attributes:
       label: Validation Strategy
-      description: How will correctness be validated? (E2E tests, manual review, comparison with previous results?)
+      description: How will correctness be validated? (E2E comparison, manual review, new reference values?)
     validations:
       required: true
 
   - type: textarea
     id: checklist
     attributes:
-      label: Checklist
+      label: Process Checklist
       value: |
+        ### Step 3 — Impact Analysis
         - [ ] Antares release notes reviewed for GEMS Language-relevant changes
-        - [ ] GEMS Language documentation updated for affected features
-        - [ ] Quick Start Examples updated and verified
-        - [ ] E2E tests pass against new Antares binary
+        - [ ] Compatibility impact assessed (breaking vs backward-compatible)
+        - [ ] Modeling behavior impact assessed (syntax, semantics, modeler API)
+        - [ ] Results impact assessed (documentation examples)
+        - [ ] Interpreter support status determined for each affected feature
+
+        ### Step 4 — Implementation ⚠️ docs update precedes implementation
+        - [ ] GEMS Language specification updated first (before library or example changes)
+        - [ ] New features documented and marked as supported/unsupported per interpreter
+        - [ ] Deprecated features clearly marked in documentation
+        - [ ] Examples provided for new or changed features
+        - [ ] Implementation (libraries, studies) updated to align with updated spec
+
+        ### Step 5 — Testing & Validation
+        - [ ] Quick Start Examples verified against new Antares binary
+        - [ ] E2E tests pass (compare objective values: previous vs new Antares version)
+
+        ### Step 6 — CI Validation
+        - [ ] YAML validation tests pass (`tests/validation_tests/`)
+        - [ ] Documentation build passes (`mkdocs build`)
+        - [ ] E2E tests pass in CI
+
+        ### Step 7 — Review & Merge
+        - [ ] PR reviewed alongside documentation changes
+
+        ### Step 8 — Versioning
         - [ ] `versions/antares-simulator.txt` updated to new version
-        - [ ] `versions/gems-language.txt` bumped (minor or patch as applicable)
+        - [ ] `versions/gems-language.txt` bumped (minor if new features, patch if clarification only)
+
+        ### Step 9 — Release
+        - [ ] Release documents supported Antares version, compatibility, and behavior changes
+
+        ### Step 10 — Documentation & Changelog
         - [ ] `CHANGELOG-gems-language.md` entry added
         - [ ] `COMPATIBILITY.md` updated with new version mapping
-        - [ ] PR reviewed alongside documentation changes

@@ -6,7 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Process LT-02** — Triggered by internal initiative to fix a bug, improve, or modify an existing GEMS model library or taxonomy. Not driven by an external tool update.
+        **Process LT-02** — Triggered by internal initiative to fix, improve, or modify an existing GEMS model library or taxonomy. Not driven by an external tool update.
+
+        > **Deviation from standard workflow — Step 5:** explicitly validate that optimization results do not change unintentionally. If results must change, provide comparison studies and document the reasoning.
 
   - type: dropdown
     id: affected_library
@@ -25,10 +27,10 @@ body:
     id: change_type
     attributes:
       label: Type of Change
-      description: Select the semantic version impact of this change.
+      description: Determines the semantic version impact.
       options:
-        - "Minor — new model or metric added (major version bump)"
-        - "Minor — bug fix or model improvement (minor version bump)"
+        - "Major — new model or metric added"
+        - "Minor — bug fix, model improvement, or modification"
         - "Patch — non-functional update (rename variable/parameter, internal refactor)"
     validations:
       required: true
@@ -42,12 +44,13 @@ body:
       required: true
 
   - type: textarea
-    id: impact
+    id: results_impact
     attributes:
-      label: Impact Analysis
+      label: Results Impact
       description: |
-        Is this a breaking change? Does it affect optimization results (objective function values)?
-        Which studies in `resources/` reference the affected models?
+        Are optimization results (objective function values) expected to change?
+        If yes: describe the before/after difference and why it is intended.
+        If no: this must be confirmed via E2E tests.
     validations:
       required: true
 
@@ -56,22 +59,45 @@ body:
     attributes:
       label: Validation Strategy
       description: |
-        How will correctness be validated?
-        If results change: describe the before/after E2E comparison strategy.
-        If non-functional: describe what structural checks are sufficient.
+        Describe the validation approach:
+        - If results change: provide comparison studies (before vs after)
+        - If results must not change: describe which E2E tests confirm equivalence
     validations:
       required: true
 
   - type: textarea
     id: checklist
     attributes:
-      label: Checklist
+      label: Process Checklist
       value: |
+        ### Step 3 — Impact Analysis
+        - [ ] Affected models identified within the library
+        - [ ] All studies in `resources/` referencing affected models identified (grep for model ID)
+        - [ ] Breaking vs backward-compatible change determined
+        - [ ] Results impact assessed and declared (change intended / no change intended)
+        - [ ] Dependencies assessed (other libraries or studies that rely on this model)
+
+        ### Step 4 — Implementation
         - [ ] Library YAML updated (`libraries/<library>.yml`)
-        - [ ] All studies referencing the affected model verified (parameter counts, port refs)
+        - [ ] All referencing studies verified (parameter counts match model definition, port refs valid)
+        - [ ] Backward compatibility maintained unless explicitly intended as breaking
+
+        ### Step 5 — Testing & Validation ⚠️ validate no unintended optimization changes
+        - [ ] Unit tests pass
+        - [ ] If results are expected to change: comparison studies provided with documented differences
+        - [ ] If results must not change: E2E tests confirm objective values are identical (within tolerance)
+        - [ ] E2E tests pass
+
+        ### Step 6 — CI Validation
         - [ ] YAML validation tests pass (`tests/validation_tests/`)
-        - [ ] E2E tests pass (required if optimization results may change)
-        - [ ] Library version file bumped (`versions/<library>.txt`)
+        - [ ] E2E tests pass in CI
+
+        ### Step 7 — Review & Merge
+        - [ ] PR reviewed alongside documentation changes
+
+        ### Step 8 — Versioning
+        - [ ] Library version file bumped (`versions/<library>.txt`) per semantic versioning rules
+
+        ### Step 10 — Documentation & Changelog
         - [ ] Changelog entry added (`libraries/CHANGELOG-<library>.md`)
         - [ ] Documentation updated if model behavior or interface changed
-        - [ ] PR reviewed alongside documentation changes
