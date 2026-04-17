@@ -1,4 +1,4 @@
 mkdocs
 mkdocs-material
 mkdocs-git-revision-date-localized-plugin
-cairosvg
+mkdocs-redirects
