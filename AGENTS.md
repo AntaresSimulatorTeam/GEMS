@@ -42,6 +42,7 @@ Full reference documentation lives in `doc/`. Read the relevant file before edit
 
 | Topic | Reference |
 |-------|-----------|
+| GEMS study file types and domains (model libraries, system, timeseries, solver, business views) | [`doc/1_Overview/3_File_structure.md`](doc/1_Overview/3_File_structure.md) |
 | Library file structure (port-types, models, parameters, variables, constraints) | [`doc/3_User_Guide/3_GEMS_File_Structure/2_library.md`](doc/3_User_Guide/3_GEMS_File_Structure/2_library.md) |
 | Mathematical expression syntax (operators, time indexing, aggregation, linearity) | [`doc/3_User_Guide/2_mathematical_syntax.md`](doc/3_User_Guide/2_mathematical_syntax.md) |
 | Study folder layout (system.yml, data-series/, model-libraries/, parameters.yml) | [`doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md`](doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md) |
@@ -52,7 +53,7 @@ Full reference documentation lives in `doc/`. Read the relevant file before edit
 - Library YAML files define `port-types` and `models` under a top-level `library` key. A `port.type` must reference a port-type defined in the same (or an included) library.
 - Constraint expressions must contain exactly one comparison operator (`=`, `<=`, `>=`) and must be linear — no `variable * variable` or `constant / variable`.
 - `sum_connections(port.field)` aggregates across connections; direct `port.field` references in constraints are forbidden (allowed only in `extra-outputs`).
-- The set of parameter IDs in a component's `system.yml` must exactly match the set declared in the referenced model — every parameter must be present with the correct ID and assigned a value. A mismatch causes the Antares modeler to fail silently with no error output.
+- The set of parameter IDs in a component's `system.yml` must exactly match the set declared in the referenced model — every parameter must be present with the correct ID and assigned a value. A mismatch causes the Antares modeler to fail.
 
 ---
 
@@ -111,7 +112,7 @@ mkdocs serve          # http://127.0.0.1:8000
 mkdocs build          # builds static site to site/
 ```
 
-Docs hosted at: https://gems-energy.readthedocs.io/
+Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 ---
 
