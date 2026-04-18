@@ -25,4 +25,4 @@ known-first-party = ["tests"]
 python_version = "3.11"
 strict = true
 files = ["tests/"]
-exclude = ["tests/e2e_tests/"]
+exclude = ["tests/e2e_tests/test_", "tests/e2e_tests/conftest\\.py"]

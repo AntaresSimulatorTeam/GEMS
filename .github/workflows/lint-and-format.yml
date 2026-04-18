@@ -51,7 +51,7 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Type check with mypy
-        run: mypy tests/e2e_tests/ tests/unit_tests/
+        run: mypy
 
   yaml-lint:
     name: YAML lint
