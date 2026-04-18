@@ -32,7 +32,6 @@ resources/
   e2e_studies/                # End-to-end test studies with reference data
 tests/
   e2e_tests/                  # pytest e2e tests (require Antares binary)
-  validation_tests/           # pytest YAML/schema validation tests (no binary required)
   unit_tests/                 # pytest unit tests for Python utilities (no binary required)
 versions/                     # Version tracking files (antares-simulator, libraries, gems-language)
 CHANGELOG-gems-language.md    # GEMS Language changelog
@@ -184,7 +183,6 @@ Docs hosted at: https://gems-energy.readthedocs.io/
 
 | Workflow | File | Trigger | What It Does |
 |----------|------|---------|--------------|
-| YAML Validation | `yaml-validation.yml` | PR, manual | Runs `tests/validation_tests` — no binary required, fast gate |
 | End-to-End Tests | `e2e-tests.yml` | PR, manual | Runs YAML validation first, then downloads Antares binary and runs e2e tests; uploads artifacts on failure |
 | Lint and Format | `lint-and-format.yml` | PR, manual | ruff lint/format check, mypy strict type check, yamllint |
 | Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates issue if new version found |
