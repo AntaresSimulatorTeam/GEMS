@@ -65,6 +65,14 @@ body:
     attributes:
       label: Process Checklist
       value: |
+        ### Step 1 — Issue Creation
+        - [x] Issue created and linked to process LT-03
+
+        ### Step 2 — Triage
+        - [ ] Process confirmed applicable
+        - [ ] Assigned to responsible contributor
+        - [ ] Priority and milestone set (if applicable)
+
         ### Design Phase ⚠️ mandatory before implementation
         - [ ] Library architecture defined (port types, models, parameters, constraints)
         - [ ] Use cases documented
@@ -90,7 +98,6 @@ body:
         - [ ] Results compared to reference (analytical solution or existing tool output)
 
         ### Step 6 — CI Validation
-        - [ ] YAML validation tests pass (`tests/validation_tests/`)
         - [ ] E2E tests pass in CI
 
         ### Step 7 — Review & Merge

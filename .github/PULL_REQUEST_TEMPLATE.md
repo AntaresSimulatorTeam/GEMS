@@ -16,7 +16,6 @@
 
 ## Checklist
 
-- [ ] YAML validation tests pass (`pytest tests/validation_tests`)
 - [ ] E2E tests pass (or confirmed not affected)
 - [ ] Library version file bumped if library changed (`versions/<library>.txt`)
 - [ ] Changelog entry added if library changed (`libraries/CHANGELOG-<library>.md`)

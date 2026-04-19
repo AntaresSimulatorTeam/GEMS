@@ -58,6 +58,14 @@ body:
     attributes:
       label: Process Checklist
       value: |
+        ### Step 1 — Issue Creation
+        - [x] Issue created and linked to process LT-01
+
+        ### Step 2 — Triage
+        - [ ] Process confirmed applicable
+        - [ ] Assigned to responsible contributor
+        - [ ] Priority and milestone set (if applicable)
+
         ### Step 3 — Impact Analysis
         - [ ] Antares release notes reviewed for library-relevant changes
         - [ ] Each affected library YAML checked for compatibility with new Antares version
@@ -78,7 +86,6 @@ body:
         - [ ] E2E tests pass against new Antares binary
 
         ### Step 6 — CI Validation
-        - [ ] YAML validation tests pass (`tests/validation_tests/`)
         - [ ] E2E tests pass in CI
 
         ### Step 7 — Review & Merge

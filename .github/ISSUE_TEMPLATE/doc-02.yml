@@ -44,6 +44,14 @@ body:
     attributes:
       label: Process Checklist
       value: |
+        ### Step 1 — Issue Creation
+        - [x] Issue created and linked to process DOC-02
+
+        ### Step 2 — Triage
+        - [ ] Process confirmed applicable
+        - [ ] Assigned to responsible contributor
+        - [ ] Priority and milestone set (if applicable)
+
         ### Step 3 — Impact Analysis
         - [ ] Affected documentation sections identified
         - [ ] Inconsistencies between documentation and existing implementation identified
