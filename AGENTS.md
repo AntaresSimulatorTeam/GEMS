@@ -55,7 +55,7 @@ Full reference documentation lives in `doc/`. Read the relevant file before edit
 | GEMS study file types and domains (model libraries, system, timeseries, solver, business views) | [`doc/1_Overview/3_File_structure.md`](doc/1_Overview/3_File_structure.md) |
 | Library file structure (port-types, models, parameters, variables, constraints) | [`doc/3_User_Guide/3_GEMS_File_Structure/2_library.md`](doc/3_User_Guide/3_GEMS_File_Structure/2_library.md) |
 | Mathematical expression syntax (operators, time indexing, aggregation, linearity) | [`doc/3_User_Guide/2_mathematical_syntax.md`](doc/3_User_Guide/2_mathematical_syntax.md) |
-| Study folder layout (system.yml, data-series/, model-libraries/, parameters.yml) | [`doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md`](doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md) |
+| Study folder layout (system.yml, data-series/, model-libraries/, optim-config.yml, parameters.yml) | [`doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md`](doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md) |
 | System file (components, connections, parameter assignment) | [`doc/3_User_Guide/3_GEMS_File_Structure/3_system.md`](doc/3_User_Guide/3_GEMS_File_Structure/3_system.md) |
 
 ### Key rules for AI agents
