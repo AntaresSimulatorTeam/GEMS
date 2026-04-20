@@ -16,7 +16,7 @@ This language **differs from traditional optimization languages** in several way
 
 <br>
 
-# YAML Configuration, an architecture breakthrough
+# Defining Models and Systems as YAML Configurations
 <style>
 .yaml-diptych pre { white-space: pre-wrap; word-break: break-all; }
 </style>
