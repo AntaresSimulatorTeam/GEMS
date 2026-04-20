@@ -49,8 +49,6 @@ def get_paths() -> EnvironmentPaths:
 
     antares_version = _read_antares_version(repo_root)
     antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
-    antares_version = _read_antares_version(repo_root)
-    antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
     antares_solver_bin = antares_root / "bin" / "antares-solver"
     antares_modeler_bin = antares_root / "bin" / "antares-modeler"
 
