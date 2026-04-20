@@ -29,7 +29,7 @@ A YAML file defining abstract objects called <a href="../3_User_Guide/3_GEMS_Fil
 
 <br>
 <br>
-<a href="../3_User_Guide/3_GEMS_File_Structure/2_library.md"><b>Link to user guide</b></a>
+For more details, see the <a href="../3_User_Guide/3_GEMS_File_Structure/2_library.md"><b>Library</b></a> page of the user guide.
 
 ```yaml
 library:
