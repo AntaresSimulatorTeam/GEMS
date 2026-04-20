@@ -88,7 +88,7 @@ library:
 A YAML file describing the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and defines the connections between components.
 
 <br>
-<a href="../3_User_Guide/3_GEMS_File_Structure/3_system.md"><b>Link to user guide</b></a>
+For more details, see the <a href="../3_User_Guide/3_GEMS_File_Structure/3_system.md"><b>System</b></a> page of the user guide.
 
 ```yaml
 system:
