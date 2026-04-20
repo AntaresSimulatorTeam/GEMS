@@ -83,7 +83,7 @@ pip install -r requirements.txt
 python -m pytest tests/e2e_tests -v
 
 # Run a single test
-python -m pytest tests/e2e_tests -v -k "test_doc_qse_examples[QSE_1_Adequacy"
+python -m pytest tests/e2e_tests -v -k "QSE_1_Adequacy"
 
 # Run one test file
 python -m pytest tests/e2e_tests/test_doc_qse_examples.py -v
