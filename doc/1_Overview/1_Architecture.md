@@ -1,3 +1,7 @@
+---
+description: Learn how GEMS architecture differs from classical OOME architectures by externalising model definitions into YAML files, enabling solver-agnostic and reusable energy system models.
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

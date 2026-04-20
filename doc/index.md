@@ -1,3 +1,7 @@
+---
+description: GEMS is a high-level, object- and graph-oriented algebraic modelling language for describing and solving energy system optimisation problems. Discover key features, vision, and documentation resources.
+---
+
 <div align="center">
     <img src="./assets/gemsV2.png" alt="GEMS Logo" width="800"/>
 </div>
