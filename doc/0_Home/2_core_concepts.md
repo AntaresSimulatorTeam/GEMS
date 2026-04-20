@@ -25,7 +25,7 @@ This language **differs from traditional optimization languages** in several way
 
 <h3> Library </h3>
 
-A YAML file defining abstract objects; <a href="../3_User_Guide/3_GEMS_File_Structure/2_library.md#models">models</a>. Models describe the mathematical formulation for a category of energy system element.
+A YAML file defining abstract objects called <a href="../3_User_Guide/3_GEMS_File_Structure/2_library.md#models">models</a>, which describe the mathematical formulation of a category of energy system element.
 
 <br>
 <br>
