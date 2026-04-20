@@ -123,7 +123,7 @@ system:
         - id: generation_cost
           value: 35
         - id: co2_emission_factor
-          value: 0
+          value: 10
 ```
 
 </div>
