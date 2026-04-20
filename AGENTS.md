@@ -6,7 +6,7 @@ This file provides guidance to AI coding agents (LLMs, copilots, code assistants
 
 ## Project Overview
 
-**GEMS** (Generic Energy system Modelling Scheme) is a high-level algebraic modeling language for energy system optimization and foresight studies. This repository contains:
+**GEMS** (Generic Energy system Modelling Scheme) is a high-level algebraic modeling language for energy system optimization and planning studies. This repository contains:
 
 - **YAML model libraries** — reusable energy component models (`libraries/*.yml`)
 - **Documentation site** — built with MkDocs + Material theme (`doc/`, `mkdocs.yml`)
@@ -48,75 +48,22 @@ requirements-doc.txt          # Documentation build dependencies
 
 ## GEMS Language Essentials
 
-### Model Libraries (`libraries/*.yml`)
+Full reference documentation lives in `doc/`. Read the relevant file before editing libraries or studies.
 
-Each library YAML file defines `port-types` and `models` under a top-level `library` key. Understanding this structure is critical before editing any library file.
+| Topic | Reference |
+|-------|-----------|
+| GEMS study file types and domains (model libraries, system, timeseries, solver, business views) | [`doc/1_Overview/3_File_structure.md`](doc/1_Overview/3_File_structure.md) |
+| Library file structure (port-types, models, parameters, variables, constraints) | [`doc/3_User_Guide/3_GEMS_File_Structure/2_library.md`](doc/3_User_Guide/3_GEMS_File_Structure/2_library.md) |
+| Mathematical expression syntax (operators, time indexing, aggregation, linearity) | [`doc/3_User_Guide/2_mathematical_syntax.md`](doc/3_User_Guide/2_mathematical_syntax.md) |
+| Study folder layout (system.yml, data-series/, model-libraries/, parameters.yml) | [`doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md`](doc/3_User_Guide/3_GEMS_File_Structure/1_overview.md) |
+| System file (components, connections, parameter assignment) | [`doc/3_User_Guide/3_GEMS_File_Structure/3_system.md`](doc/3_User_Guide/3_GEMS_File_Structure/3_system.md) |
 
-```yaml
-library:
-  id: <library_id>
-  description: <text>
+### Key rules for AI agents
 
-  port-types:
-    - id: <port_type_id>
-      fields:
-        - id: <field_id>
-
-  models:
-    - id: <model_id>
-      parameters:          # inputs to the model
-        - id: <param_id>
-          time-dependent: true|false     # optional, default false
-          scenario-dependent: true|false # optional, default false
-      variables:           # decision variables
-        - id: <var_id>
-          lower-bound: <expression>
-          upper-bound: <expression>
-          variable-type: continuous|integer|binary
-      ports:               # connection points
-        - id: <port_id>
-          type: <port_type_id>   # must reference a port-type in the same library
-      port-field-definitions:
-        - port: <port_id>
-          field: <field_id>
-          definition: <math_expression>
-      binding-constraints:
-        - id: <constraint_id>
-          expression: <math_expression>  # must contain exactly one =, <=, or >=
-      constraints:
-        - id: <constraint_id>
-          expression: <math_expression>
-      objective-contributions:
-        - id: <id>
-          expression: <math_expression>
-```
-
-### Mathematical Expression Syntax
-
-- Arithmetic operators: `+`, `-`, `*`, `/`
-- Comparison operators (one per constraint): `=`, `<=`, `>=`
-- Aggregation: `sum(expr)` sums over time, `sum_connections(port.field)` sums across connections
-- Time indexing: `var[t-1]`, `var[t+1]`, `var[0]`
-- Functions: `min()`, `max()`, `ceil()`
-- Linearity required: no `variable * variable` or `constant / variable`
-
-### Study Structure
-
-```
-Study/
-├── input/
-│   ├── system.yml              # components + connections
-│   ├── data-series/            # time-series CSV files (one value per line)
-│   └── model-libraries/        # library YAML files (or symlinks to libraries/)
-├── parameters.yml              # solver configuration
-└── scenario_builder.yml        # optional scenario definitions
-```
-
-**system.yml** defines:
-- `components` — each references a model as `library_id.model_id` and provides parameter values
-- `connections` — each links two components via their port IDs
-
-**Critical rule:** The set of parameter IDs in a component's `system.yml` definition must exactly match the set declared in the referenced model. A mismatch causes the Antares modeler to fail — the test harness captures stderr via `capture_output=True, check=False`, so the failure appears as a `FileNotFoundError` on the output path.
+- Library YAML files define `port-types` and `models` under a top-level `library` key. A `port.type` must reference a port-type defined in the same (or an included) library.
+- Constraint expressions must contain exactly one comparison operator (`=`, `<=`, `>=`) and must be linear — no `variable * variable` or `constant / variable`.
+- `sum_connections(port.field)` aggregates across connections; direct `port.field` references in constraints are forbidden (allowed only in `extra-outputs`).
+- The set of parameter IDs in a component's `system.yml` must exactly match the set declared in the referenced model — every parameter must be present with the correct ID and assigned a value. A mismatch causes the Antares modeler to fail.
 
 ---
 
@@ -175,7 +122,7 @@ mkdocs serve          # http://127.0.0.1:8000
 mkdocs build          # builds static site to site/
 ```
 
-Docs hosted at: https://gems-energy.readthedocs.io/
+Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 ---
 
