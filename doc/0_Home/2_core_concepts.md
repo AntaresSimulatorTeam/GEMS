@@ -85,7 +85,7 @@ library:
 
 <h3> System </h3>
 
-This YAML file defining the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and specifies how components are connected to each other.
+A YAML file describing the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and defines the connections between components.
 
 <br>
 <a href="../3_User_Guide/3_GEMS_File_Structure/3_system.md"><b>Link to user guide</b></a>
