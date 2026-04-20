@@ -23,5 +23,5 @@ mkdocs serve
 - Antares binary version is tracked in `versions/antares-simulator.txt` — single source of truth; `env.py` and the workflow read it dynamically, no other files need updating
 - `libraries/*.yml` are shared — edits affect all studies and tests
 - Test studies in `resources/` may have broken symlinks in `model-libraries/`; the test harness handles this via `copy_model_library()`
-- The Antares modeler fails silently (`check=False`); run it directly to see errors
+- The Antares modeler stderr is captured by the test harness (`capture_output=True, check=False`); failure appears as `FileNotFoundError` on the output path — run the modeler directly to inspect stderr
 - Git workflow: feature branches from `develop`, PRs back to `develop`

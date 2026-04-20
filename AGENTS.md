@@ -22,7 +22,7 @@ Repository: `AntaresSimulatorTeam/GEMS` — License: MPL 2.0
 ```
 .github/
   workflows/                  # GitHub Actions CI workflows
-  ISSUE_TEMPLATE/             # Issue templates (antares-update, process-change)
+  ISSUE_TEMPLATE/             # Issue templates (antares-update, doc-01, doc-02, lt-01, lt-02, lt-03)
   PULL_REQUEST_TEMPLATE.md    # PR template with process ID and checklist
 doc/                          # MkDocs documentation source (sections 0-6)
 libraries/                    # Shared YAML model libraries (4 files)
@@ -116,7 +116,7 @@ Study/
 - `components` — each references a model as `library_id.model_id` and provides parameter values
 - `connections` — each links two components via their port IDs
 
-**Critical rule:** The number of parameters in a component's `system.yml` definition must exactly match the number of parameters in the referenced model. A mismatch will cause the Antares modeler to fail silently.
+**Critical rule:** The set of parameter IDs in a component's `system.yml` definition must exactly match the set declared in the referenced model. A mismatch causes the Antares modeler to fail — the test harness captures stderr via `capture_output=True, check=False`, so the failure appears as a `FileNotFoundError` on the output path.
 
 ---
 
@@ -183,9 +183,9 @@ Docs hosted at: https://gems-energy.readthedocs.io/
 
 | Workflow | File | Trigger | What It Does |
 |----------|------|---------|--------------|
-| End-to-End Tests | `e2e-tests.yml` | PR, manual | Runs YAML validation first, then downloads Antares binary and runs e2e tests; uploads artifacts on failure |
+| End-to-End Tests | `e2e-tests.yml` | PR, manual | Downloads Antares binary (version from `versions/antares-simulator.txt`), runs e2e tests; uploads artifacts on failure |
 | Lint and Format | `lint-and-format.yml` | PR, manual | ruff lint/format check, mypy strict type check, yamllint |
-| Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates issue if new version found |
+| Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates triage issue if new version found, runs E2E tests against new version and posts results as issue comment |
 
 ---
 
@@ -224,7 +224,7 @@ Docs hosted at: https://gems-energy.readthedocs.io/
 
 3. **Test studies use symlinks.** Files in `resources/**/model-libraries/` may be symlinks to `libraries/`. Some symlinks point to absolute paths from other machines and are broken. The test infrastructure handles this via `copy_model_library()` which replaces dangling symlinks with real files.
 
-4. **The Antares modeler fails silently.** `subprocess.run` in `utils.py` uses `check=False` and `capture_output=True`. If the modeler fails, no output directory is created and the test fails with `FileNotFoundError` on the output path. To debug, run the modeler directly and check stderr.
+4. **The Antares modeler failure is captured, not silent.** `subprocess.run` in `utils.py` uses `check=False` and `capture_output=True` — stderr is captured and suppressed by the test harness. If the modeler fails, no output directory is created and the test fails with `FileNotFoundError` on the output path. To debug, run the modeler directly and inspect stderr.
 
 5. **Do not commit** `venv/`, `documentation_env/`, `site/`, `tmp/`, or extracted Antares binary directories.
 
