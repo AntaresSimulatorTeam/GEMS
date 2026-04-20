@@ -2,7 +2,7 @@ name: End-to-End Tests
 
 on:
   pull_request:
-    branches: ['**']
+    branches: ["**"]
   workflow_dispatch:
 
 jobs:
@@ -17,8 +17,8 @@ jobs:
       - name: Set up Python 3.11
         uses: actions/setup-python@v6
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
 
       - name: Install dependencies
         run: |

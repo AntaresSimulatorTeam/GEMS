@@ -13,14 +13,15 @@ library:
   id: antares_legacy_models
   description: Antares historic model library
 
-
   port-types:
     - id: flow
       description: A port that transfers power flow.
       fields:
         - id: flow
       area-connection:
-        - injection-field: flow
+        injection-to-balance: flow
+        spillage-bound: flow
+        unsupplied-energy-bound:
 
   models:
     - id: area
@@ -65,12 +66,13 @@ library:
         - id: capacity_indirect
           time-dependent: true
           scenario-dependent: true
-        - id: flow_direct_hurdle_cost
+        - id: hurdle_cost_direct
           time-dependent: true
-          scenario-dependent: true
-        - id: flow_indirect_hurdle_cost
+          scenario-dependent: false
+        - id: hurdle_cost_indirect
           time-dependent: true
-          scenario-dependent: true
+          scenario-dependent: false
+
       variables:
         - id: flow_direct
           lower-bound: 0
@@ -81,8 +83,6 @@ library:
           upper-bound: capacity_indirect
           variable-type: continuous
         - id: flow
-          lower-bound: -capacity_indirect
-          upper-bound: capacity_direct
           variable-type: continuous
       ports:
         - id: out_port
@@ -96,12 +96,12 @@ library:
         - port: in_port
           field: flow
           definition: -flow
+      objective-contributions:
+        - id: objective
+          expression: sum(hurdle_cost_direct * flow_direct + hurdle_cost_indirect * flow_indirect)
       constraints:
         - id: flow_direct_indirect
           expression: flow = flow_direct - flow_indirect
-      objective-contributions:
-        - id: objective
-          expression: sum(flow_direct * flow_direct_hurdle_cost + flow_indirect * flow_indirect_hurdle_cost)
 
     - id: renewable
       parameters:
@@ -120,52 +120,40 @@ library:
 
     - id: thermal
       parameters:
-        - id: p_min_cluster
+        - id: minimum_generation_modulation # Timeseries used to define the minimum generation of the cluster by minimum_generation_modulation * unit_count * p_max_unit, this cannot exceed the maximum generation power p_max_cluster (after being increased by p_min_unit).
           scenario-dependent: true
           time-dependent: true
-        - id: p_max_cluster # timeseries that takes outages into account
+        - id: p_max_cluster # Timeseries that takes outages into account. Used to define the number of available units, which is ceil(p_max_cluster / p_max_unit).
           scenario-dependent: true
           time-dependent: true
-        - id: p_min_unit
+        - id: p_min_unit # Minimum generation per on unit. Used to increase p_max_cluster so that it is at least equal to p_min_unit times the number of available units, which is ceil(p_max_cluster / p_max_unit). This number of available units does not change when p_max_cluster is increased because ceil((p_min_unit*ceil(p_max_cluster / p_max_unit))/ (p_max_unit*(1-spinning/100)))=ceil(p_max_cluster / p_max_unit) under the assumption that p_min_unit <= p_max_unit*(1-spinning/100).
         - id: p_max_unit
         - id: generation_cost
         - id: startup_cost
         - id: fixed_cost
         - id: d_min_up
         - id: d_min_down
-        - id: nb_units_min # Equals to ceil(p_min_cluster/p_max_unit), to be done in preprocessing
-          scenario-dependent: true
-          time-dependent: true
-        - id: nb_units_max # Equals to ceil(p_max_cluster/p_max_unit), to be done in preprocessing
-          scenario-dependent: true
-          time-dependent: true
-        - id: nb_units_max_variation_forward
-          scenario-dependent: true
-          time-dependent: true
-        - id: nb_units_max_variation_backward
-          scenario-dependent: true
-          time-dependent: true
+        - id: unit_count
+        - id: spinning # in percentage, taken into account in p_max_cluster and p_max_unit (except when computing minimum generation)
       variables:
         - id: generation
-          lower-bound: p_min_cluster
-          upper-bound: p_max_cluster
+          lower-bound: min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit) # real expression before simplification : min(upper-bound(generation),minimum_generation_modulation * unit_count * p_max_unit) = min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100)))), minimum_generation_modulation * unit_count * p_max_unit)
+          upper-bound: max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)) # real expression before simplification : max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))
           variable-type: continuous
         - id: nb_units_on
-          lower-bound: nb_units_min
-          upper-bound: nb_units_max
-          variable-type: integer
+          lower-bound: ceil(min(p_max_cluster/p_max_unit, minimum_generation_modulation * unit_count * p_max_unit/(p_max_unit*(1-spinning/100)))) # real expression before simplification : ceil(lower-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit)/(p_max_unit*(1-spinning/100)))
+          upper-bound: ceil(p_max_cluster/p_max_unit) # real expression before simplification : ceil(upper-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))/(p_max_unit*(1-spinning/100)))
+          variable-type: continuous #integer
         - id: nb_starting
           lower-bound: 0
-          upper-bound: nb_units_max
-          variable-type: integer
+          variable-type: continuous #integer
         - id: nb_stopping
           lower-bound: 0
-          upper-bound: nb_units_max
-          variable-type: integer
+          variable-type: continuous #integer
         - id: nb_failing
           lower-bound: 0
-          upper-bound: nb_units_max
-          variable-type: integer
+          upper-bound: max(0, (ceil(p_max_cluster/p_max_unit))[t-1] - (ceil(p_max_cluster/p_max_unit)))
+          variable-type: continuous #integer
       ports:
         - id: balance_port
           type: flow
@@ -175,19 +163,17 @@ library:
           definition: generation
       constraints:
         - id: max_generation
-          expression: generation <= nb_units_on * p_max_unit
+          expression: generation <= nb_units_on * p_max_unit*(1-spinning/100)
         - id: min_generation
           expression: generation >= nb_units_on * p_min_unit
         - id: on_units_dynamics
           expression: nb_units_on = nb_units_on[t-1] + nb_starting - nb_stopping
         - id: nb_failing_lower_than_stopping
           expression: nb_failing <= nb_stopping
-        - id: nb_failing_lower_than_max_variation
-          expression: nb_failing <= nb_units_max_variation_forward
         - id: min_up_duration
           expression: sum(t-d_min_up + 1 .. t, nb_starting - nb_failing) <= nb_units_on
         - id: min_down_duration
-          expression: sum(t-d_min_down + 1 .. t, nb_stopping) <= nb_units_max[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, nb_units_max_variation_backward)
+          expression: sum(t-d_min_down + 1 .. t, nb_stopping) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1]))
       objective-contributions:
         - id: objective
           expression: sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on)
@@ -227,6 +213,15 @@ library:
         - id: initial_level
           time-dependent: false
           scenario-dependent: true
+        - id: cost_injection
+          time-dependent: true
+          scenario-dependent: true
+        - id: cost_withdrawal
+          time-dependent: true
+          scenario-dependent: true
+        - id: cost_level
+          time-dependent: true
+          scenario-dependent: true
       variables:
         - id: p_injection
           lower-bound: 0
@@ -250,5 +245,8 @@ library:
       constraints:
         - id: initial_level_constraint
           expression: level[0] = initial_level * reservoir_capacity
-        - id: level_dynamic_constraint
+        - id: level_equation
           expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal + inflows
+      objective-contributions:
+        - id: objective
+          expression: sum(cost_injection * p_injection + cost_withdrawal * p_withdrawal + cost_level * level)

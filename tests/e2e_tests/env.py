@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 OBJECTIVE_ATOL = 1e-4
+OBJECTIVE_RTOL = 0.01
 
 
 @dataclass(frozen=True)
@@ -46,6 +47,8 @@ def get_paths() -> EnvironmentPaths:
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
 
+    antares_version = _read_antares_version(repo_root)
+    antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
     antares_version = _read_antares_version(repo_root)
     antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
     antares_solver_bin = antares_root / "bin" / "antares-solver"
