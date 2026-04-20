@@ -160,7 +160,7 @@ Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 1. **Never edit `libraries/*.yml` without understanding downstream impact.** These files are shared across all studies and tests. A parameter rename or addition breaks every study that references the affected model.
 
-2. **After editing a library, check all studies.** Grep for the model ID across `resources/**/system.yml` to find affected studies. Verify parameter counts match.
+2. **After editing a library, check all studies.** Grep for the model ID across `resources/**/system.yml` to find affected studies. Verify parameter ids match.
 
 3. **Test studies use symlinks.** Files in `resources/**/model-libraries/` may be symlinks to `libraries/`. Some symlinks point to absolute paths from other machines and are broken. The test infrastructure handles this via `copy_model_library()` which replaces dangling symlinks with real files.
 
