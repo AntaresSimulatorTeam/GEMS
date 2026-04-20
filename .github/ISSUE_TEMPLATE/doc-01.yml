@@ -1,6 +1,6 @@
 name: "DOC-01 — Antares evolution impact on GEMS Language"
 description: Track GEMS Language documentation updates triggered by a new Antares-Simulator/Modeler release
-title: "[DOC-01] Antares v — GEMS Language impact"
+title: "[DOC-01] Antares update — GEMS Language impact"
 labels: ["DOC-01", "antares-update"]
 body:
   - type: markdown
