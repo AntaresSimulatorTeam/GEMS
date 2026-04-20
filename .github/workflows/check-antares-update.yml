@@ -148,64 +148,25 @@ jobs:
 
   e2e-new-version:
     name: E2E Tests against Antares v${{ needs.check-update.outputs.latest_version }}
-    runs-on: ubuntu-22.04
     needs: check-update
     if: needs.check-update.outputs.update == 'true'
+    uses: ./.github/workflows/run-e2e-tests.yml
+    with:
+      antares_version: ${{ needs.check-update.outputs.latest_version }}
+      artifact_name: e2e-failures-antares-${{ needs.check-update.outputs.latest_version }}
+
+  post-results:
+    name: Post E2E results to issue
+    runs-on: ubuntu-22.04
+    needs: [check-update, e2e-new-version]
+    if: always() && needs.check-update.outputs.update == 'true'
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Download new Antares release
-        run: |
-          VERSION="${{ needs.check-update.outputs.latest_version }}"
-          ARCHIVE="antares-${VERSION}-Ubuntu-22.04.tar.gz"
-          echo "Downloading Antares v${VERSION}..."
-          curl -L -f -o "${ARCHIVE}" \
-            "https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v${VERSION}/${ARCHIVE}"
-          echo "Download successful. File size: $(ls -lh "${ARCHIVE}" | awk '{print $5}')"
-
-      - name: Extract Antares binaries
-        run: |
-          VERSION="${{ needs.check-update.outputs.latest_version }}"
-          tar -xzf "antares-${VERSION}-Ubuntu-22.04.tar.gz"
-
-      - name: Point tests at new version
-        run: |
-          VERSION="${{ needs.check-update.outputs.latest_version }}"
-          sed -i "s/ANTARES_SIMULATOR_VERSION=.*/ANTARES_SIMULATOR_VERSION=${VERSION}/" versions/antares-simulator.txt
-
-      - name: Run end-to-end tests
-        id: run_tests
-        run: python -m pytest tests/e2e_tests -v
-        continue-on-error: true
-
-      - name: Upload test artifacts on failure
-        if: steps.run_tests.outcome == 'failure'
-        uses: actions/upload-artifact@v4
-        with:
-          name: e2e-failures-antares-${{ needs.check-update.outputs.latest_version }}
-          path: |
-            tmp/
-            **/*.log
-          retention-days: 7
-
       - name: Post results to issue
         uses: actions/github-script@v9
         with:
           script: |
-            const outcome = '${{ steps.run_tests.outcome }}';
+            const outcome = '${{ needs.e2e-new-version.outputs.test_outcome }}';
             const version = '${{ needs.check-update.outputs.latest_version }}';
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const icon = outcome === 'success' ? '✅' : '❌';
@@ -225,14 +186,3 @@ jobs:
               issue_number: Number('${{ needs.check-update.outputs.issue_number }}'),
               body: body,
             });
-
-      - name: Cleanup
-        if: always()
-        run: |
-          VERSION="${{ needs.check-update.outputs.latest_version }}"
-          rm -f "antares-${VERSION}-Ubuntu-22.04.tar.gz"
-          rm -rf "antares-${VERSION}-Ubuntu-22.04"
-
-      - name: Fail job if tests failed
-        if: steps.run_tests.outcome == 'failure'
-        run: exit 1

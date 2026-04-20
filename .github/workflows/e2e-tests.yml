@@ -2,72 +2,30 @@ name: End-to-End Tests
 
 on:
   pull_request:
-    branches: ["**"]
+    branches: ['**']
   workflow_dispatch:
 
 jobs:
-  e2e:
-    name: E2E Tests
+  read-version:
+    name: Read Antares version
     runs-on: ubuntu-22.04
+    outputs:
+      antares_version: ${{ steps.read.outputs.version }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-          cache: "pip"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
       - name: Read Antares version
-        id: antares_version
+        id: read
         run: |
           VERSION=$(grep -oP '(?<=ANTARES_SIMULATOR_VERSION=).*' versions/antares-simulator.txt)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Download Antares release
-        run: |
-          VERSION="${{ steps.antares_version.outputs.version }}"
-          ARCHIVE="antares-${VERSION}-Ubuntu-22.04.tar.gz"
-          echo "Downloading Antares v${VERSION}..."
-          curl -L -f -o "${ARCHIVE}" \
-            "https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v${VERSION}/${ARCHIVE}"
-
-          if [ ! -f "${ARCHIVE}" ]; then
-            echo "Error: Download failed"
-            exit 1
-          fi
-
-          echo "Download successful. File size: $(ls -lh "${ARCHIVE}" | awk '{print $5}')"
-
-      - name: Extract Antares binaries
-        run: |
-          VERSION="${{ steps.antares_version.outputs.version }}"
-          tar -xzf "antares-${VERSION}-Ubuntu-22.04.tar.gz"
-
-      - name: Run end-to-end tests
-        run: python -m pytest tests/e2e_tests -v
-
-      - name: Upload test artifacts on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: e2e-test-failures
-          path: |
-            tmp/
-            **/*.log
-          retention-days: 7
-
-      - name: Cleanup
-        if: always()
-        run: |
-          VERSION="${{ steps.antares_version.outputs.version }}"
-          rm -f "antares-${VERSION}-Ubuntu-22.04.tar.gz"
-          rm -rf "antares-${VERSION}-Ubuntu-22.04"
-          echo "Cleanup completed"
+  e2e:
+    name: E2E Tests
+    needs: read-version
+    uses: ./.github/workflows/run-e2e-tests.yml
+    with:
+      antares_version: ${{ needs.read-version.outputs.antares_version }}
+      artifact_name: e2e-test-failures
