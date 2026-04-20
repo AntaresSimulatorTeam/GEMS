@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 OBJECTIVE_ATOL = 1e-4
+OBJECTIVE_RTOL = 0.01
 
 
 @dataclass(frozen=True)
@@ -22,6 +23,15 @@ class EnvironmentPaths:
     antares_root: Path
     antares_solver_bin: Path
     antares_modeler_bin: Path
+
+
+def _read_antares_version(repo_root: Path) -> str:
+    versions_file = repo_root / "versions" / "antares-simulator.txt"
+    for line in versions_file.read_text().splitlines():
+        key, _, value = line.partition("=")
+        if key.strip() == "ANTARES_SIMULATOR_VERSION":
+            return value.strip()
+    raise ValueError(f"ANTARES_SIMULATOR_VERSION not found in {versions_file}")
 
 
 def get_paths() -> EnvironmentPaths:
@@ -39,7 +49,8 @@ def get_paths() -> EnvironmentPaths:
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
 
-    antares_root = repo_root / "antares-9.3.2-Ubuntu-22.04"
+    antares_version = _read_antares_version(repo_root)
+    antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
     antares_solver_bin = antares_root / "bin" / "antares-solver"
     antares_modeler_bin = antares_root / "bin" / "antares-modeler"
 
