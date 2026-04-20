@@ -1,6 +1,6 @@
 name: "LT-01 — Antares evolution impact on libraries and taxonomies"
 description: Track updates to GEMS model libraries or taxonomies triggered by a new Antares-Simulator/Modeler release
-title: "[LT-01] Antares v — library/taxonomy impact"
+title: "[LT-01] Antares update — library/taxonomy impact"
 labels: ["LT-01", "antares-update"]
 body:
   - type: markdown
