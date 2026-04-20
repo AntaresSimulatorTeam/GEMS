@@ -1,6 +1,6 @@
 name: Antares Simulator Update Detected
 description: Automatically created when a new Antares Simulator release is detected
-title: "[ANTARES UPDATE] New release: v"
+title: "[ANTARES UPDATE] New release"
 labels: ["antares-update"]
 body:
   - type: markdown
