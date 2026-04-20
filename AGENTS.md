@@ -89,21 +89,6 @@ python -m pytest tests/e2e_tests -v -k "QSE_1_Adequacy"
 python -m pytest tests/e2e_tests/test_doc_qse_examples.py -v
 ```
 
-### Test Architecture
-
-| File | Purpose |
-|------|---------|
-| `conftest.py` | Session-scoped fixtures: `paths`, `tmp_root`, `clean_tmp` |
-| `env.py` | `EnvironmentPaths` dataclass with all repo/binary paths; `OBJECTIVE_ATOL = 1e-4` |
-| `utils.py` | Helpers: copy studies, run binaries, extract objective values from output |
-| `test_doc_qse_examples.py` | Parametrized: runs modeler on Quick Start Examples, asserts objective |
-| `test_antares_legacy_models_equivalence.py` | Parametrized: compares GEMS modeler vs Antares solver objectives |
-
-### How Objective Comparison Works
-
-- `test_doc_qse_examples` compares against hardcoded expected values with `abs=OBJECTIVE_ATOL`
-- `test_antares_legacy_models_equivalence` compares GEMS vs Antares at runtime with `rel=0.01` (1% relative tolerance, accounting for LP relaxation vs MIP differences in the thermal model)
-
 ---
 
 ## Building Documentation
@@ -124,7 +109,6 @@ Docs hosted at: <https://gems-energy.readthedocs.io/>
 | Workflow | File | Trigger | What It Does |
 |----------|------|---------|--------------|
 | End-to-End Tests | `e2e-tests.yml` | PR, manual | Downloads Antares binary (version from `versions/antares-simulator.txt`), runs e2e tests; uploads artifacts on failure |
-| Lint and Format | `lint-and-format.yml` | PR, manual | ruff lint/format check, mypy strict type check, yamllint |
 | Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates triage issue if new version found, runs E2E tests against new version and posts results as issue comment |
 
 ---
@@ -188,4 +172,4 @@ This repository is part of the GEMS Ecosystem governed by a formal process frame
 | LT-02 | Internal library development | Modify existing models, verify no unintended changes |
 | LT-03 | New library or taxonomy | Design phase, proof-of-concept study, full E2E validation |
 
-Every change should follow: Issue creation → Impact analysis → Implementation → Testing → Review → Versioning → Documentation update.
+Every change should reference the relevant issue template for the applicable process.
