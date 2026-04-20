@@ -34,16 +34,16 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
+  - type: textarea
     id: affected_libraries
     attributes:
       label: Potentially Affected Libraries
-      description: Check all libraries that need to be reviewed.
-      options:
-        - label: "`basic_models_library.yml`"
-        - label: "`antares_legacy_models.yml`"
-        - label: "`pypsa_models.yml`"
-        - label: "`andromede_models.yml`"
+      description: List all libraries from `libraries/` that need to be reviewed (one per line).
+      placeholder: |
+        - antares_legacy_models.yml
+        - basic_models_library.yml
+    validations:
+      required: true
 
   - type: textarea
     id: validation_strategy
