@@ -20,6 +20,119 @@ This language **differs from traditional optimization languages** in several way
 
 <br>
 
+# Defining Models and Systems as YAML Configurations
+<style>
+.yaml-diptych pre { white-space: pre-wrap; word-break: break-all; }
+</style>
+<div class="yaml-diptych" style="display: flex; gap: 1.5rem; align-items: flex-start; width: 125%">
+<div style="flex: 1; min-width: 0;">
+
+<h3> Library </h3>
+
+A YAML file defining abstract objects called <a href="../3_User_Guide/3_GEMS_File_Structure/2_library.md#models">models</a>, which describe the mathematical formulation of a category of energy system element.
+
+<br>
+<br>
+For more details, see the <a href="../3_User_Guide/3_GEMS_File_Structure/2_library.md"><b>Library</b></a> page of the user guide.
+
+```yaml
+library:
+
+  id: example_library
+  description: "Example model library"
+
+  models:
+    - id: bus
+      description: "A simple balance node model"
+      ports:
+        - id: balance_port
+          type: flow_port
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(flow_port.flow) = 0
+
+    - id: generator
+      parameters:
+        - id: p_min
+        - id: p_max
+        - id: generation_cost
+        - id: co2_emission_factor
+      variables:
+        - id: generation
+          lower-bound: p_min
+          upper-bound: p_max
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+        - id: energy_port
+          type: energy
+        - id: emission_port
+          type: emission
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+        - port: energy_port
+          field: cumulative_energy
+          definition: sum(generation)
+        - port: emission_port
+          field: co2
+          definition: sum(generation * co2_emission_factor)
+      objective-contributions:
+        - id: objective
+          expression: sum(generation_cost * generation)
+```
+
+</div>
+<div style="flex: 1; min-width: 0;">
+
+<h3> System </h3>
+
+A YAML file describing the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and defines the connections between components.
+
+<br>
+For more details, see the <a href="../3_User_Guide/3_GEMS_File_Structure/3_system.md"><b>System</b></a> page of the user guide.
+
+```yaml
+system:
+  id: my_system
+  description: "An example system with one load, one node, one thermal generator"
+  model-libraries: example_library
+  components:
+
+    - id: load_1
+      model: example_library.load
+      scenario-group: load_group
+      parameters:
+        - id: load
+          time-dependent: true
+          value: demand_profile
+
+    - id: bus_1
+      model: example_library.bus
+      parameters:
+        - id: spillage_cost
+          value: 1000
+        - id: unsupplied_energy_cost
+          value: 10000
+
+    - id: generator_1
+      model: example_library.generator
+      parameters:
+        - id: p_min
+          value: 70
+        - id: p_max
+          value: 100
+        - id: generation_cost
+          value: 35
+        - id: co2_emission_factor
+          value: 10
+```
+
+</div>
+</div>
+
 # Key Design Principles and Capabilities
 
 ## Separating Model Definition from Solver Execution
