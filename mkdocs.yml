@@ -121,7 +121,13 @@ nav:
         - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: 4_Interoperability/1_PyPSA_to_GEMS_converter/5_step_by_step_guide.md
         - Comparing Results Between GEMS Modeler and PyPSA: 4_Interoperability/1_PyPSA_to_GEMS_converter/6_comparing_results.md
       #- Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
-      - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
+      - Antares Hybrid Mode:
+        - Overview: 4_Interoperability/3_hybrid/1_overview.md
+        - Coupling GEMS Components with Legacy Areas: 4_Interoperability/3_hybrid/2_hybrid_connections.md
+        - Run a Hybrid Study: 4_Interoperability/3_hybrid/4_how_to_run.md
+        - Outputs: 4_Interoperability/3_hybrid/3_outputs.md
+        - Simple Example: 4_Interoperability/3_hybrid/5_example.md
+        - Limitations: 4_Interoperability/3_hybrid/6_limitations.md
   - Examples:
       - Adequacy Example: 5_Examples/1_adequacy_example.md
   - Support & Contributing:
