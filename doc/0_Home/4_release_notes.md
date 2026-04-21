@@ -12,7 +12,7 @@
 
 * Upgrade SEO ([PR38](https://github.com/AntaresSimulatorTeam/GEMS/pull/97))
 * Add the raw YAML files in the Overview section ([PR36](https://github.com/AntaresSimulatorTeam/GEMS/pull/93))
-* Add Github Action for verifying automately the antares-simulator newest version released ([PR36](https://github.com/AntaresSimulatorTeam/GEMS/pull/85))
+* Add Github Action for verifying automatically the antares-simulator newest version released ([PR36-bis](https://github.com/AntaresSimulatorTeam/GEMS/pull/85))
 * Use the newest version of Antares-Legacy-Models Library for Quick Start Example 2 ([PR35](https://github.com/AntaresSimulatorTeam/GEMS/pull/86))
 * Update the documentation area-connection part in Hybrid Studies ([PR34](https://github.com/AntaresSimulatorTeam/GEMS/pull/84))
 
