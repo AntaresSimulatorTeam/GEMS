@@ -6,9 +6,7 @@
 
 # Release Notes
 
-## Version 0.3.0
-
-**Release Date:** *22/04/2026*
+## v0.3.0 | *22-04-2026*
 
 ### Added
 * Add the raw YAML files in the Overview section ([PR36](https://github.com/AntaresSimulatorTeam/GEMS/pull/93))
@@ -19,9 +17,7 @@
 * Use the newest version of Antares-Legacy-Models Library for Quick Start Example 2 ([PR35](https://github.com/AntaresSimulatorTeam/GEMS/pull/86))
 * Update the documentation area-connection part in Hybrid Studies ([PR34](https://github.com/AntaresSimulatorTeam/GEMS/pull/84))
 
-## Version 0.2.0
-
-**Release Date:** *26/03/2026*
+## v0.2.0 | *26-03-2026*
 
 ### Added
 * Document floor, ceil, max, min operators ([PR30](https://github.com/AntaresSimulatorTeam/GEMS/pull/62))
@@ -32,9 +28,7 @@
 * Clarify the distinction between Antares Modeler and Antares Solver ([PR32](https://github.com/AntaresSimulatorTeam/GEMS/pull/66))
 
 
-## Version 0.1.0
-
-**Release Date:** *22/01/2026*
+## v0.1.0 | *22-01-2026*
 
 ### Added
 * Initialization of the documentation
