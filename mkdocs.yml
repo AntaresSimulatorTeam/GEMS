@@ -70,7 +70,7 @@ plugins:
   - git-revision-date-localized:
       exclude:
         - documentation_env/*
-        - 2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/.pixi/*
+        - 2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/*
       enable_creation_date: true
       enable_git_follow: true
       type: timeago
