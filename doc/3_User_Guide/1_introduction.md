@@ -31,8 +31,6 @@ From a documentation perspective, the User Guide is organized into **four comple
 
 This separation is fundamental to understanding how [GEMS](../index.md) systems are written, interpreted, validated, and analysed.
 
----
-
 ## Mathematical Syntax
 
 The **GEMS Framework Mathematical Syntax** represents set of rules for creating mathematical expressions which will be used in building an optimization problem.
@@ -51,8 +49,6 @@ Mathematical syntax is **solver-agnostic** and intentionally restricted to ensur
 Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where parameters and variables come from or how components are wired together as a system.
 
 See: [**Mathematical Syntax and Rules**](./2_mathematical_syntax.md)
-
----
 
 ## File Structure
 
