@@ -76,5 +76,9 @@ body:
         - [ ] If language clarification: `versions/gems-language.txt` patch version bumped
         - [ ] If purely editorial/structural: no version bump required
 
+        ### Step 9 — Release
+        - [ ] If version bumped: release published with changelog entry
+        - [ ] If no version bump: no release required
+
         ### Step 10 — Documentation & Changelog
         - [ ] If language clarification: `CHANGELOG-gems-language.md` entry added
