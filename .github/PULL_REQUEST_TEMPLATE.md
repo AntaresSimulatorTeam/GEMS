@@ -3,7 +3,7 @@
 <!-- Which governance process does this PR fall under? -->
 <!-- DOC-01 | DOC-02 | LT-01 | LT-02 | LT-03 | N/A -->
 
-**Process:** 
+**Process:**
 
 ## Description
 
@@ -22,4 +22,3 @@
 - [ ] GEMS Language changelog updated if language-level change (`CHANGELOG-gems-language.md`)
 - [ ] Compatibility matrix updated if applicable (`COMPATIBILITY.md`)
 - [ ] Documentation updated or confirmed up to date
-- [ ] No direct commits to `develop` or `main` (feature branch → PR → develop)
