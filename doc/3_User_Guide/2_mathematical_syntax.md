@@ -104,7 +104,7 @@ If a variable is time-dependent (or scenario-dependent), it can only be used in 
 
 ## Ports
 
-Ports are the mechanism by which models exchange **linear** and **non-linear** expressions. A port has one or more fields with each field carrying an expression. **Mathematical Expression Syntax**  allows users to reference port fields in expressions using the notation `port_id.field_id`. This is essentially a way to use expressions coming from other connected models.
+Ports are the mechanism by which models exchange mathematical expressions. A port has one or more fields with each field carrying an expression. **Mathematical Expression Syntax**  allows users to reference port fields in expressions using the notation `port_id.field_id`. This is essentially a way to use expressions coming from other connected models.
 
 When using a port field in an expression, the same dependency rules apply: if the expression of a port varies by time or scenario (which is deduced from how it’s defined – typically depending on time-dependent variables or parameters), then it can only be used in time-dependent or scenario-dependent constraints respectively.
 
