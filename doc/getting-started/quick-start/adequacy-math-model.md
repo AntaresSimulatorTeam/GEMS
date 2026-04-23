@@ -118,7 +118,7 @@ $$
 
 This section shows how mathematical model is implemented for every power system element that figures in optimization problem. File in which models are defined is called *library file*, in this case [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library.
 
-![YAML Block description with mathematical equations](../../../assets/2_QSE_Adequacy_maths.png)
+![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
 
 # Summary
 

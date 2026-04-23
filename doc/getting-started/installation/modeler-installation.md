@@ -77,7 +77,7 @@ Let’s check if Modeler is working correctly.
 
   Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
 
-  ![Modeler installation test logs](../../../assets/2_Modeler_logs.png)
+  ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
 
 ### Launch the resolution of an Hybrid study
 
@@ -85,7 +85,7 @@ Let’s check if Modeler is working correctly.
 
 - Use the Hybrid Study tutorial :
 
-  Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../../interoperability/hybrid/) section
+  Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../../interoperability/hybrid/overview.md) section
 
 - Run the following commands :
 ```bash

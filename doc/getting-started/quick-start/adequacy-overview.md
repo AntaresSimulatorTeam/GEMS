@@ -155,7 +155,7 @@ The simulation outputs contain the optimised value of optimisation problem varia
 
 The power flows between buses can be visualized as follows:
 
-![outputs diagram](../../../assets/2_QSE_1_out_scheme.png)
+![outputs diagram](../../assets/2_QSE_1_out_scheme.png)
 
 <details class="more-details">
   <summary><strong>Outputs in details </strong></summary>
@@ -206,7 +206,7 @@ The complete mathematical formulation corresponding to this example — includin
 The description of an energy system is the combination of a model library and a graph of components (instanciation of models) described in the system file.
 For example, for the component bus_1, here is an extract of the [system file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml) :
 
-![diagram with only one bus](../../../assets/2_QSE_Adequacy_system_only_one.png)
+![diagram with only one bus](../../assets/2_QSE_Adequacy_system_only_one.png)
 
 <details>
 <summary>Full system file description for the Three-bus system - Simple Adequacy Example</summary>
