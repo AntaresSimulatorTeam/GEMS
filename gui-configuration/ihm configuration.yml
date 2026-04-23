@@ -1,0 +1,80 @@
+id: ihm_configuration_1
+
+taxonomy: my_taxonomy
+
+#TO DO : open questions 
+## Instantiation -> mention a window id ? Link with the "displayed category" ?
+## How do reflect the fact that one_node_content_window is not at the same level than node_window ?
+## Syntax for locational filter and locational category should be refined
+## Is there really a need to define "connections", in another file?
+
+maps-interface:
+  visual-graph-nodes: 
+    - taxonomy-category: balance
+      instantiation: true #TO DO : one option could be to refer to the windows-interface id
+  visual-graph-edge-types:
+    - id: type_1
+      taxonomy-category: link
+      instantiation: true #TO DO : one option could be to refer to the windows-interface id
+    - id: type_2
+      taxonomy-category: converter
+      instantiation: true #TO DO : one option could be to refer to the windows-interface id
+
+windows-interfaces:
+  - id: node_window 
+    displayed-category:
+      - taxonomy-category: balance
+    locational-category:
+      - taxonomy-category: balance
+    locational-filter:
+      - taxonomy-category: balance
+
+  - id: one_node_content_window
+    displayed-category:
+      - taxonomy-category: production
+      - taxonomy-category: consumption
+      - taxonomy-category: storage
+    locational-category:
+      - taxonomy-category: balance
+        connection: connection_1
+    locational-filter:
+      - taxonomy-category: balance
+        connection-filter:
+          - connection: connection_2
+
+  - id: edge_window_link
+    displayed-category:
+      - taxonomy-category: link
+    locational-category:
+      - taxonomy-category: balance
+        connection: connection_2
+      - taxonomy-category: balance
+        connection: connection_2_bis
+    locational-filter:
+      - taxonomy-category: balance
+        connection-filter:  # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
+          - connection: connection_2
+          - connection: connection_2_bis
+
+  - id: edge_window_converter
+    displayed-category:
+      - taxonomy-category: converter
+    locational-category:
+      - taxonomy-category: balance
+        connection: connection_2
+      - taxonomy-category: balance
+        connection: connection_2_bis
+    locational-filter:
+      - taxonomy-category: balance
+        connection-filter:    # pour chaque noeud, on vérifie si un lien est connecté par connection2 ou connection 2_bis
+          - connection: connection_2
+          - connection: connection_2_bis
+
+  - id: coupling_objects_window
+    displayed-category:
+      - taxonomy-category: coupling
+    locational-category:
+      - taxonomy-category: production
+      - taxonomy-category: consumption
+      - taxonomy-category: storage
+        connection: connection_3 # the syntax differs from above

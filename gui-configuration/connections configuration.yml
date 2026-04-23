@@ -1,0 +1,65 @@
+
+id : my_connections
+
+taxonomy : my_taxonomy
+
+connections : 
+
+ - id : connection 1
+      category 1:
+        taxonomy-category : 
+          - id : balance  
+        ports :
+          - id : balance_port
+      category 2  :
+         taxonomy-category : 
+            - id : production
+            - id : consumption  
+            - id : storage           
+         ports :
+            - id : balance_port
+
+ - id : connection 2
+      category 1 :
+         taxonomy-category : 
+            - id : balance  
+         ports :
+            - id : balance_port
+      category 2 :
+         taxonomy-category : 
+            - id : link
+            - id : converter  
+         ports :
+            - id : in_port
+
+   - id : connection 2_bis
+      category 1 :
+         taxonomy-category : 
+            - id : balance  
+         ports :
+            - id : balance_port
+      category 2 :
+         taxonomy-category : 
+            - id : link
+            - id : converter  
+         ports :
+            - id : out_port
+
+ - id : connection 4
+      category 1 :
+         taxonomy-category : 
+            - id : quota  
+         ports :
+            - id : emissions
+      category 2 :
+         taxonomy-category : 
+            - id : production
+            - id : consumption  
+            - id : storage           
+         ports :
+            - id : emissions
+
+
+
+
+

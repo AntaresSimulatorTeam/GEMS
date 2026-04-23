@@ -22,16 +22,17 @@ library:
   models:
 
     - id: flexible_load
+      taxonomy-category: consumption
       parameters:
-        - id: min_load
-          time-dependent: true
-          scenario-dependent: true 
-        - id: max_load
-          time-dependent: true
-          scenario-dependent: true
-        - id: marginal_flexibility_cost
-          time-dependent: false
-          scenario-dependent: false
+      - id: min_load
+        time-dependent: true
+        scenario-dependent: true 
+      - id: max_load
+        time-dependent: true
+        scenario-dependent: true
+      - id: marginal_flexibility_cost
+        time-dependent: false
+        scenario-dependent: false
       variables:
         - id: load
           lower-bound: min_load
@@ -47,9 +48,14 @@ library:
         - port: balance_port
           field: flow
           definition: -load
+      properties: 
+        - id : carrier
+        - id : technology
+
 
 
     - id: electrolyser
+      taxonomy-category: converter
       parameters:
       - id: efficiency
         scenario-dependent: false
