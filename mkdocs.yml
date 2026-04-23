@@ -1,5 +1,12 @@
 docs_dir: doc
+exclude_docs: |
+  documentation_env/
+  2_Getting_Started/Tutorial_2_PyPSA_eur/*
 site_name: GEMS - Generic Energy system Modelling Scheme
+site_url: https://gems-energy.readthedocs.io/en/latest/
+site_description: "GEMS (Generic Energy system Modelling Scheme) is a graph-based algebraic modelling language for defining and solving energy system optimisation problems."
+site_author: "Antares Simulator Team - RTE"
+copyright: "Copyright &copy; 2026 RTE"
 repo_url: https://github.com/AntaresSimulatorTeam/GEMS
 edit_uri: edit/doc/doc/
 
@@ -58,7 +65,12 @@ extra_css:
 
 plugins:
   - search
+  - macros:
+      module_name: main
   - git-revision-date-localized:
+      exclude:
+        - documentation_env/*
+        - 2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/*
       enable_creation_date: true
       enable_git_follow: true
       type: timeago
@@ -120,8 +132,13 @@ nav:
         - Current Limitations of the Converter: 4_Interoperability/1_PyPSA_to_GEMS_converter/4_current_limitations.md
         - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: 4_Interoperability/1_PyPSA_to_GEMS_converter/5_step_by_step_guide.md
         - Comparing Results Between GEMS Modeler and PyPSA: 4_Interoperability/1_PyPSA_to_GEMS_converter/6_comparing_results.md
-      #- Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
-      - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
+      - Antares Hybrid Mode:
+        - Overview: 4_Interoperability/3_hybrid/1_overview.md
+        - Coupling GEMS Components with Legacy Areas: 4_Interoperability/3_hybrid/2_hybrid_connections.md
+        - Run a Hybrid Study: 4_Interoperability/3_hybrid/4_how_to_run.md
+        - Outputs: 4_Interoperability/3_hybrid/3_outputs.md
+        - Simple Example: 4_Interoperability/3_hybrid/5_example.md
+        - Limitations: 4_Interoperability/3_hybrid/6_limitations.md
   - Examples:
       - Adequacy Example: 5_Examples/1_adequacy_example.md
   - Support & Contributing:
