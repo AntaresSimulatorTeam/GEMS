@@ -1,7 +1,7 @@
 docs_dir: doc
 exclude_docs: |
   documentation_env/
-  2_Getting_Started/Tutorial_2_PyPSA_eur/
+  2_Getting_Started/Tutorial_2_PyPSA_eur/*
 site_name: GEMS - Generic Energy system Modelling Scheme
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy system Modelling Scheme) is a graph-based algebraic modelling language for defining and solving energy system optimisation problems."
@@ -70,7 +70,7 @@ plugins:
   - git-revision-date-localized:
       exclude:
         - documentation_env/*
-        - 2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/.pixi/*
+        - 2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/*
       enable_creation_date: true
       enable_git_follow: true
       type: timeago
@@ -132,7 +132,6 @@ nav:
         - Current Limitations of the Converter: interoperability/pypsa-to-gems-converter/current-limitations.md
         - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: interoperability/pypsa-to-gems-converter/step-by-step-guide.md
         - Comparing Results Between GEMS Modeler and PyPSA: interoperability/pypsa-to-gems-converter/comparing-results.md
-      #- Antares Legacy Format: interoperability/antares-legacy.md
       - Antares Hybrid Mode:
         - Overview: interoperability/hybrid/overview.md
         - Coupling GEMS Components with Legacy Areas: interoperability/hybrid/hybrid-connections.md

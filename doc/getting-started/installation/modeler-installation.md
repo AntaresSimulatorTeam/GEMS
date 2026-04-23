@@ -85,7 +85,7 @@ Let’s check if Modeler is working correctly.
 
 - Use the Hybrid Study tutorial :
 
-  Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../../interoperability/hybrid/overview.md) section
+  Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../4_Interoperability/3_hybrid.md) section
 
 - Run the following commands :
 ```bash
