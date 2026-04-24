@@ -208,14 +208,14 @@ All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`).
 
 ### GEMS
 
-| Component | Version file |
+| Component | Key in `dependencies.json` |
 |---|---|
-| GEMS Language | `versions/gems-language.txt` |
-| basic\_models\_library | `versions/basic_models_library.txt` |
-| antares\_legacy\_models | `versions/antares_legacy_models.txt` |
-| pypsa\_models | `versions/pypsa_models.txt` |
-| andromede\_models | `versions/andromede_models.txt` |
-| Antares-Simulator | `versions/antares-simulator.txt` |
+| GEMS Language | `gems_language_version` |
+| basic\_models\_library | `basic_models_library_version` |
+| antares\_legacy\_models | `antares_legacy_models_version` |
+| pypsa\_models | `pypsa_models_version` |
+| andromede\_models | `andromede_models_version` |
+| Antares-Simulator | `antares_simulator_version` |
 
 ---
 
