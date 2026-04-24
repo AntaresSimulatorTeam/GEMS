@@ -18,7 +18,7 @@
 
 library:
   id: pypsa_models
-  description: PyPSA model library
+  description: PyPSA model library (v1.0.0)
   # https://pypsa.readthedocs.io/en/latest/user-guide/components.html#
 
   port-types:

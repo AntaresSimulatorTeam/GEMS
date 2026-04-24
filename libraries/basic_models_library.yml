@@ -1,6 +1,6 @@
 library:
   id: basic_models_library
-  description: Ready for use basic models to build simple optimal dispatch problems
+  description: Ready for use basic models to build simple optimal dispatch problems (v1.0.0)
 
 
   port-types:
