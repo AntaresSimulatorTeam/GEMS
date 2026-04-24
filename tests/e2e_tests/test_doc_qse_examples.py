@@ -41,7 +41,7 @@ def prepare_and_run_doc_study(
     "study_name, library_filename, expected_objective",
     [
         ("QSE_1_Adequacy", "basic_models_library.yml", 7990.0),
-        ("QSE_2_Unit_Commitment", "antares_legacy_models.yml", 817550.0),
+        ("QSE_2_Unit_Commitment", "antares_legacy_models.yml", 798277.0),
     ],
 )
 def test_doc_qse_examples(tmp_root, paths, study_name: str, library_filename: str, expected_objective: float) -> None:

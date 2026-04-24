@@ -1,10 +1,11 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <a href="../../../..">Main Section</a>
-  </div>
-  <div style="text-align: right;">
+---
+description: Reference for GEMS mathematical expression syntax — operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
+---
+
+<div style="display: flex; justify-content: flex-end;">
+  <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </div>
+  </a>
 </div>
 
 # GEMS Mathematical Expression Syntax
@@ -103,11 +104,11 @@ If a variable is time-dependent (or scenario-dependent), it can only be used in 
 
 ## Ports
 
-Ports are the mechanism by which models exchange linear expressions. A port has one or more fields with each field carrying a linear expression. **Mathematical Expression Syntax**  allows users to reference port fields in expressions using the notation `port_id.field_id`. This is essentially a way to use linear expressions coming from other connected models.
+Ports are the mechanism by which models exchange mathematical expressions. A port has one or more fields with each field carrying an expression. **Mathematical Expression Syntax**  allows users to reference port fields in expressions using the notation `port_id.field_id`. This is essentially a way to use expressions coming from other connected models.
 
-When using a port field in an expression, the same dependency rules apply: if linear expressions of a port varies by time or scenario (which is deduced from how it’s defined – typically depending on time-dependent variables or parameters), then it can only be used in time-dependent or scenario-dependent constraints respectively.
+When using a port field in an expression, the same dependency rules apply: if the expression of a port varies by time or scenario (which is deduced from how it’s defined – typically depending on time-dependent variables or parameters), then it can only be used in time-dependent or scenario-dependent constraints respectively.
 
-If a port’s linear expressions need to be used in a time-independent manner (for example, when calculating a sum over the full time horizon), an aggregator must be applied to remove the time index. See the section on the [**Time Summation Operator**](#time-summation-full-horizon-sumx) for details. A practical implementation is provided in [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) where the `emmision_port` is used to support pollutant-related constraints.
+If a port’s expressions need to be used in a time-independent manner (for example, when calculating a sum over the full time horizon), an aggregator must be applied to remove the time index. See the section on the [**Time Summation Operator**](#time-summation-full-horizon-sumx) for details. A practical implementation is provided in [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) where the `emission_port` is used to support pollutant-related constraints.
 
 ### Port Operator
 
@@ -269,24 +270,20 @@ expression: parameter_1 < max(parameter_2, 100)
 expression: min(variable_1, parameter_1)
 ```
 
----
-**Navigation**
+### Floor/Ceil Operators
 
-<div style="display: flex; justify-content: space-between;">
-    <div style="text-align: left;">
-    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-        <a href="../1_introduction" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-    </button>
-    </div>
-    <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-        <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-    </button>
-    <div style="text-align: right;">
-    <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-        <a href="../3_GEMS_File_Structure/1_overview" style="text-decoration:none; color: #000000">Next page ➡️</a>
-    </button>
-    </div>
-</div>
+These unary operators `floor(X)` and `ceil(X)` are used within any expression, but with the following restrictions:
 
----
+  When `X` is time-dependent (a parameter, variable, or port field with time dimension), the operators apply pointwise on the underlying time-series. 
+
+  In the context of a linear problem construction (any context but **extra-output**), the argument of
+`floor` or `ceil` must not depend on decision variables
+
+```yaml
+expression: floor(parameter_1 * 2)
+
+expression: ceil(parameter_1 / 2)
+```
+
+
 

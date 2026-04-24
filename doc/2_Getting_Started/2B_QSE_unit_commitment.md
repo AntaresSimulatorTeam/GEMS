@@ -1,10 +1,7 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="text-align: left;">
-    <a href="../../../..">Main Section</a>
-  </div>
-  <div style="text-align: right;">
+<div style="display: flex; justify-content: flex-end;">
+  <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </div>
+  </a>
 </div>
 
 # QSE 2: Unit Commitment - Simple Example
@@ -14,6 +11,11 @@
 This tutorial demonstrates a simple example of a **unit commitment** problem stated with GEMS. Unit commitment involves determining the optimal number of dispatchable generating units at each time period in order to meet residual demand at the lowest possible cost. This example is intended to illustrate modelling concepts and should not be interpreted as representing a realistic system.
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
+
+<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
+  <strong>⚠️ Warning — This study requires Antares Simulator version &gt; {{ antares_simulator_version }}</strong><br>
+  You can find the latest version on the <a href="https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases">official releases page</a>.
+</div>
 
 ### Files Structure
 
@@ -85,6 +87,13 @@ The *Unit Commitment* problem here involves determining the on/off scheme and di
 </details>
 
 ## Running the GEMS study with Antares Modeler
+
+<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
+  <strong>⚠️ Warning</strong><br>
+  <b>GEMS studies can only be run with Antares Modeler and GemsPy</b>; they cannot be run with Antares Solver (Legacy).
+  <br>
+  However, in the <a href="../4_Interoperability/3_hybrid.md">Hybrid Study</a> section, a tutorial explains <b>how GEMS components can be integrated inside a Legacy study run by Antares Solver (Legacy)</b>.
+</div>
 
 Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
 
@@ -304,24 +313,3 @@ system:
 ```
 
 </details>
-
----
-
-**Navigation**
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../2A_QSE_adequacy_math_model" style="text-decoration:none; color: #000000">⬅️ Previous page</a>
-  </button>
-  </div>
-  <button type="button" style="background-color:#AAAAFF; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../../.." style="text-decoration:none; color: #FFFFFF">Home</a>
-  </button>
-  <div style="text-align: right;">
-  <button type="button" style="background-color:#CCCCCC; border:none; padding:8px 16px; border-radius:4px; cursor:pointer">
-    <a href="../../3_User_Guide/1_introduction" style="text-decoration:none; color: #000000">Next page ➡️</a>
-  </button>
-  </div>
-</div>
-
----

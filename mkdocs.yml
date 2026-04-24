@@ -1,5 +1,12 @@
 docs_dir: doc
+exclude_docs: |
+  documentation_env/
+  2_Getting_Started/Tutorial_2_PyPSA_eur/*
 site_name: GEMS - Generic Energy system Modelling Scheme
+site_url: https://gems-energy.readthedocs.io/en/latest/
+site_description: "GEMS (Generic Energy system Modelling Scheme) is a graph-based algebraic modelling language for defining and solving energy system optimisation problems."
+site_author: "Antares Simulator Team - RTE"
+copyright: "Copyright &copy; 2026 RTE"
 repo_url: https://github.com/AntaresSimulatorTeam/GEMS
 edit_uri: edit/doc/doc/
 
@@ -15,9 +22,10 @@ theme:
     - navigation.tabs.sticky
     - navigation.indexes
     - content.action.copy
+    - navigation.footer
   palette:
     - media: "(prefers-color-scheme: light)"
-      scheme: antares
+      scheme: default
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
@@ -47,6 +55,27 @@ extra_javascript:
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  # YAML Dynamic Loader - Dependencies
+  - https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js
+  # YAML Dynamic Loader - Custom script
+  - javascripts/yaml-loader.js
+
+extra_css:
+  - stylesheets/yaml-loader.css
+
+plugins:
+  - search
+  - macros:
+      module_name: main
+  - git-revision-date-localized:
+      exclude:
+        - documentation_env/*
+        - 2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/*
+      enable_creation_date: true
+      enable_git_follow: true
+      type: timeago
+      timezone: Europe/Paris
+      fallback_to_build_date: true
 
 nav:
   - About GEMS:
@@ -57,9 +86,9 @@ nav:
     - Support: 0_Home/5_support.md
   - Overview:
       - Architecture: 1_Overview/1_Architecture.md
-      - Core Concepts: 3_User_Guide/3_glossary.md
-      - File Structure: 1_Overview/2_File_structure.md
-      - Difference with other languages & tools: 1_Overview/3_Difference_with_other_languages.md
+      - Core Concepts: 1_Overview/2_glossary.md
+      - File Structure: 1_Overview/3_File_structure.md
+      - Difference with other languages & tools: 1_Overview/4_Difference_with_other_languages.md
       - GEMS Interpreters:
           - GemsPy: 1_Overview/4_GEMS Interpreters/1_gemspy.md
           - Antares Simulator: 1_Overview/4_GEMS Interpreters/2_antares_simulator_modeler.md
@@ -95,7 +124,6 @@ nav:
         - Simulation Table: 3_User_Guide/5_Outputs/1_simulation_table.md
         - Optimization Problem files: 3_User_Guide/5_Outputs/2_optimization_problem_files.md
         - Business View: 3_User_Guide/5_Outputs/3_business_view.md
-      - Glossary: 3_User_Guide/3_glossary.md
   - Interoperability:
       - PyPSA to GEMS Converter: 
         - Overview: 4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview.md
@@ -104,8 +132,13 @@ nav:
         - Current Limitations of the Converter: 4_Interoperability/1_PyPSA_to_GEMS_converter/4_current_limitations.md
         - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: 4_Interoperability/1_PyPSA_to_GEMS_converter/5_step_by_step_guide.md
         - Comparing Results Between GEMS Modeler and PyPSA: 4_Interoperability/1_PyPSA_to_GEMS_converter/6_comparing_results.md
-      #- Antares Legacy Format: 4_Interoperability/2_antares_legacy.md
-      - Antares Hybrid Mode: 4_Interoperability/3_hybrid.md
+      - Antares Hybrid Mode:
+        - Overview: 4_Interoperability/3_hybrid/1_overview.md
+        - Coupling GEMS Components with Legacy Areas: 4_Interoperability/3_hybrid/2_hybrid_connections.md
+        - Run a Hybrid Study: 4_Interoperability/3_hybrid/4_how_to_run.md
+        - Outputs: 4_Interoperability/3_hybrid/3_outputs.md
+        - Simple Example: 4_Interoperability/3_hybrid/5_example.md
+        - Limitations: 4_Interoperability/3_hybrid/6_limitations.md
   - Examples:
       - Adequacy Example: 5_Examples/1_adequacy_example.md
   - Support & Contributing:
