@@ -8,8 +8,8 @@ This table maps GEMS Language versions to the interpreter and library versions t
 
 ## Versioning Policy
 
-- **GEMS Language** — version in `versions/gems-language.txt`. Bumped when the language specification changes (new keywords, syntax changes, removed features).
-- **Antares-Simulator** — tracked version in `versions/antares-simulator.txt`. The version against which E2E tests are run.
+- **GEMS Language** — `gems_language_version` in `dependencies.json`. Bumped when the language specification changes (new keywords, syntax changes, removed features).
+- **Antares-Simulator** — `antares_simulator_version` in `dependencies.json`. The version against which E2E tests are run.
 - **antares-modeler (GemsPy)** — the Antares GEMS interpreter version. Updated when interpreter-specific behavior changes.
 
 ## Compatibility Rules
@@ -21,9 +21,9 @@ This table maps GEMS Language versions to the interpreter and library versions t
 
 ## Library Versions
 
-| Library | Current Version | Version File |
-|---------|----------------|--------------|
-| `basic_models_library` | 1.0.0 | `versions/basic_models_library.txt` |
-| `antares_legacy_models` | 1.0.0 | `versions/antares_legacy_models.txt` |
-| `pypsa_models` | 1.0.0 | `versions/pypsa_models.txt` |
-| `andromede_models` | 1.0.0 | `versions/andromede_models.txt` |
+| Library | Current Version | Key in `dependencies.json` |
+|---------|----------------|----------------------------|
+| `basic_models_library` | 1.0.0 | `basic_models_library_version` |
+| `antares_legacy_models` | 1.0.0 | `antares_legacy_models_version` |
+| `pypsa_models` | 1.0.0 | `pypsa_models_version` |
+| `andromede_models` | 1.0.0 | `andromede_models_version` |

@@ -73,7 +73,7 @@ body:
         - [ ] PR reviewed alongside documentation changes
 
         ### Step 8 — Versioning ⚠️ patch bump only (or none for purely editorial changes)
-        - [ ] If language clarification: `versions/gems-language.txt` patch version bumped
+        - [ ] If language clarification: `dependencies.json` `gems_language_version` patch version bumped
         - [ ] If purely editorial/structural: no version bump required
 
         ### Step 9 — Release

@@ -33,7 +33,7 @@ resources/
 tests/
   e2e_tests/                  # pytest e2e tests (require Antares binary)
   unit_tests/                 # pytest unit tests for Python utilities (no binary required)
-versions/                     # Version tracking files (antares-simulator, libraries, gems-language)
+dependencies.json             # Version tracking (antares-simulator, libraries, gems-language)
 CHANGELOG-gems-language.md    # GEMS Language changelog
 COMPATIBILITY.md              # GEMS Language ↔ Antares ↔ GemsPy version matrix
 mkdocs.yml                    # Documentation site config
@@ -64,7 +64,7 @@ Full reference documentation lives in `doc/`. Read the relevant file before edit
 
 ### Prerequisites
 
-Tests require the **Antares Simulator binary**. The version is tracked in `versions/antares-simulator.txt`. CI downloads it automatically. For local runs, extract the binary at the repo root:
+Tests require the **Antares Simulator binary**. The version is tracked in `dependencies.json` (`antares_simulator_version`). CI downloads it automatically. For local runs, extract the binary at the repo root:
 
 ```
 antares-<version>-Ubuntu-22.04/bin/antares-solver
@@ -108,7 +108,7 @@ Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 | Workflow | File | Trigger | What It Does |
 |----------|------|---------|--------------|
-| End-to-End Tests | `e2e-tests.yml` | PR, manual | Downloads Antares binary (version from `versions/antares-simulator.txt`), runs e2e tests; uploads artifacts on failure |
+| End-to-End Tests | `e2e-tests.yml` | PR, manual | Downloads Antares binary (version from `dependencies.json`), runs e2e tests; uploads artifacts on failure |
 | Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates triage issue if new version found, runs E2E tests against new version and posts results as issue comment |
 
 ---
@@ -152,7 +152,7 @@ Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 5. **Do not commit** `venv/`, `documentation_env/`, `site/`, `tmp/`, or extracted Antares binary directories.
 
-6. **Version tracking.** The Antares Simulator version is tracked in `versions/antares-simulator.txt`. It is the single source of truth — `tests/e2e_tests/env.py` reads it dynamically and the workflow reads it via a shell step. Updating the file is sufficient; no other files need to be edited.
+6. **Version tracking.** All versions are tracked in `dependencies.json` at the repo root. It is the single source of truth — `tests/e2e_tests/env.py` reads `antares_simulator_version` dynamically and the workflows read it via `jq`. Updating `dependencies.json` is sufficient; no other files need to be edited.
 
 7. **Floating-point comparisons.** Always use `pytest.approx()` for objective value assertions. Never use `==` for floating-point comparison.
 

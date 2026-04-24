@@ -19,7 +19,7 @@ jobs:
       - name: Read Antares version
         id: read
         run: |
-          VERSION=$(grep -oP '(?<=ANTARES_SIMULATOR_VERSION=).*' versions/antares-simulator.txt)
+          VERSION=$(jq -r '.antares_simulator_version' dependencies.json)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
   e2e:

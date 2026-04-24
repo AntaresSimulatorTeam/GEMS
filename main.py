@@ -2,13 +2,13 @@
 #
 # This file is part of the Antares project.
 
+import json
 from pathlib import Path
 
 
 def define_env(env):
-    """MkDocs macros hook — exposes variables from the versions/ directory."""
-    versions_file = Path(__file__).parent / "versions" / "antares-simulator.txt"
-    for line in versions_file.read_text().splitlines():
-        key, _, value = line.partition("=")
-        if key.strip():
-            env.variables[key.strip().lower()] = value.strip()
+    """MkDocs macros hook — exposes version variables from dependencies.json."""
+    deps_file = Path(__file__).parent / "dependencies.json"
+    data = json.loads(deps_file.read_text(encoding="utf-8"))
+    for key, value in data.items():
+        env.variables[key] = value

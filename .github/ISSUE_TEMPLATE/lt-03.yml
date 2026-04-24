@@ -104,7 +104,7 @@ body:
         - [ ] PR reviewed alongside documentation
 
         ### Step 8 — Versioning
-        - [ ] Version file created (`versions/<name>.txt`, starting at `1.0.0`)
+        - [ ] Version key added to `dependencies.json` (starting at `1.0.0`)
 
         ### Step 9 — Release
         - [ ] Release documents new library, supported Antares version, use cases, and known limitations

@@ -104,8 +104,8 @@ body:
         - [ ] PR reviewed alongside documentation changes
 
         ### Step 8 — Versioning
-        - [ ] `versions/antares-simulator.txt` updated to new version
-        - [ ] `versions/gems-language.txt` bumped (minor if new features, patch if clarification only)
+        - [ ] `dependencies.json` `antares_simulator_version` updated to new version
+        - [ ] `dependencies.json` `gems_language_version` bumped (minor if new features, patch if clarification only)
 
         ### Step 9 — Release
         - [ ] Release documents supported Antares version, compatibility, and behavior changes

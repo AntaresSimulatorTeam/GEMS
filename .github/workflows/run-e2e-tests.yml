@@ -41,7 +41,7 @@ jobs:
 
       - name: Override Antares version
         run: |
-          sed -i "s/ANTARES_SIMULATOR_VERSION=.*/ANTARES_SIMULATOR_VERSION=${{ inputs.antares_version }}/" versions/antares-simulator.txt
+          jq '.antares_simulator_version = "${{ inputs.antares_version }}"' dependencies.json > tmp.json && mv tmp.json dependencies.json
 
       - name: Download Antares release
         run: |

@@ -24,7 +24,7 @@ jobs:
       - name: Read current version
         id: current
         run: |
-          VERSION=$(grep 'ANTARES_SIMULATOR_VERSION' versions/antares-simulator.txt | cut -d'=' -f2 | tr -d '[:space:]')
+          VERSION=$(jq -r '.antares_simulator_version' dependencies.json)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Current version: $VERSION"
 
@@ -157,7 +157,7 @@ jobs:
               '- [ ] Add migration notes',
               '',
               '### Decision',
-              `- [ ] Approve version - update \`versions/antares-simulator.txt\` to \`${latest}\``,
+              `- [ ] Approve version - update \`dependencies.json\` \`antares_simulator_version\` to \`${latest}\``,
               '- [ ] Reject version - close this issue with explanation',
               '',
               '---',

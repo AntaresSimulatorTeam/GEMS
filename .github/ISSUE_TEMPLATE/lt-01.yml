@@ -92,8 +92,8 @@ body:
         - [ ] PR reviewed alongside documentation changes
 
         ### Step 8 — Versioning
-        - [ ] `versions/antares-simulator.txt` updated to new version
-        - [ ] Version file bumped for each affected library (`versions/<library>.txt`)
+        - [ ] `dependencies.json` `antares_simulator_version` updated to new version
+        - [ ] Version bumped for each affected library (`dependencies.json`)
 
         ### Step 9 — Release
         - [ ] Release documents supported Antares version, compatibility, and behavior changes per library

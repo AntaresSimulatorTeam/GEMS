@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -25,11 +26,11 @@ class EnvironmentPaths:
 
 
 def _read_antares_version(repo_root: Path) -> str:
-    version_file = repo_root / "versions" / "antares-simulator.txt"
-    for line in version_file.read_text(encoding="utf-8").splitlines():
-        if line.startswith("ANTARES_SIMULATOR_VERSION="):
-            return line.split("=", 1)[1].strip()
-    raise ValueError(f"ANTARES_SIMULATOR_VERSION not found in {version_file}")
+    deps_file = repo_root / "dependencies.json"
+    data = json.loads(deps_file.read_text(encoding="utf-8"))
+    if "antares_simulator_version" not in data:
+        raise ValueError(f"antares_simulator_version not found in {deps_file}")
+    return data["antares_simulator_version"]
 
 
 def get_paths() -> EnvironmentPaths:
