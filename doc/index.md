@@ -51,7 +51,7 @@ The following **interpreters** can be used to run Gems modelling language :
 **Converters** are available to translate existing studies into the GEMS modelling language:
 
 - [Antares Legacy Models to GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) : a Python package that enables the migration of Antares Legacy Models to GEMS.
-- [PyPSA to Gems Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](./3_User_Guide/3_GEMS_File_Structure/3_system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./1_Overview/1_Architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
+- [PyPSA to Gems Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](./user-guide/file-structure/system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./overview/architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
 
 <br>
 
@@ -67,9 +67,9 @@ The following **interpreters** can be used to run Gems modelling language :
 
     How to **install** GEMS interpreters and create 2 **simples studies** (*Adequacy problem* and *Unit Commitment*).
 
-    [:octicons-arrow-right-24: Installation](2_Getting_Started/1A_modeler_installation.md)
+    [:octicons-arrow-right-24: Installation](getting-started/installation/modeler-installation.md)
 
-    [:octicons-arrow-right-24: Quick Start Examples](2_Getting_Started/2A_QSE_adequacy.md)
+    [:octicons-arrow-right-24: Quick Start Examples](getting-started/quick-start/adequacy-overview.md)
 
 -   :material-view-list:{ .lg .middle } **Overview**
 
@@ -77,9 +77,9 @@ The following **interpreters** can be used to run Gems modelling language :
 
     **Understand** about GEMS framework and its interpreters.
 
-    [:octicons-arrow-right-24: Architecture](1_Overview/1_Architecture.md)
+    [:octicons-arrow-right-24: Architecture](overview/architecture.md)
 
-    [:octicons-arrow-right-24: Interpreters](./1_Overview/4_GEMS%20Interpreters/1_gemspy.md)
+    [:octicons-arrow-right-24: Interpreters](./overview/gems-interpreters/gemspy.md)
 
 -   :material-new-box:{ .lg .middle } **Release Notes**
 
@@ -87,7 +87,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Check out the latest features, bug fixes and improvements in the release notes.
 
-    [:octicons-arrow-right-24: What's new](0_Home/4_release_notes.md)
+    [:octicons-arrow-right-24: What's new](home/release-notes.md)
 
 </div>
 
@@ -101,7 +101,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Detailed presentation of GEMS **syntax**, **file structure**, and how to configure **optimization studies**.
 
-    [:octicons-arrow-right-24: User Guide](3_User_Guide/1_introduction.md)
+    [:octicons-arrow-right-24: User Guide](user-guide/introduction.md)
 
 -   :material-notebook-multiple:{ .lg .middle } **Examples**
 
@@ -109,7 +109,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Examples can be found here from the **first steps with GEMS** to handling **hybrid studies**.
 
-    [:octicons-arrow-right-24: Examples](./5_Examples/1_adequacy_example.md)
+    [:octicons-arrow-right-24: Examples](./examples/adequacy-example.md)
 
 -   :material-swap-horizontal:{ .lg .middle } **Interoperability**
 
@@ -117,7 +117,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     How to export **PyPSA** and **Antares Legacy** study cases in GEMS format and run them with GEMS interpreters.
 
-    [:octicons-arrow-right-24: Interoperability](4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview.md)
+    [:octicons-arrow-right-24: Interoperability](interoperability/pypsa-to-gems-converter/overview.md)
 
 -   :fontawesome-solid-users:{ .lg .middle } **Support and Contributing**
 
@@ -125,9 +125,9 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Find here **Support** for using GEMS. How to **Contribute** to GEMS.
 
-    [:octicons-arrow-right-24: Support](./0_Home/5_support.md)
+    [:octicons-arrow-right-24: Support](./home/support.md)
 
-    [:octicons-arrow-right-24: Contributing](6_Support_Contributing/3_contributing.md)
+    [:octicons-arrow-right-24: Contributing](support/contributing.md)
 
 </div>
 

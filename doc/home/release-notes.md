@@ -1,10 +1,3 @@
----
-description: GEMS release notes — changelog of new features, improvements, and bug fixes across all versions of the Generic Energy system Modelling Scheme documentation and language.
-tags:
-  - Energy Modelling
-  - Open Source
----
-
 <div style="display: flex; justify-content: flex-end;">
     <a href="../../../..">
         <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
