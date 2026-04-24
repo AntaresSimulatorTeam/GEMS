@@ -2,9 +2,9 @@
 
 This table maps GEMS Language versions to the interpreter and library versions they are compatible with.
 
-| GEMS Language | Antares-Simulator | antares-modeler (GemsPy) | Notes |
+| GEMS Language | Antares-Simulator | GemsPy | Notes |
 |---------------|-------------------|--------------------------|-------|
-| 1.0.0         | 9.3.2             | —                        | Initial release |
+| 1.0.0         | 10.0.0             | —                        | Initial release |
 
 ## Versioning Policy
 
