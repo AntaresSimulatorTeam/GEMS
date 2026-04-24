@@ -627,25 +627,30 @@
                     paramsTitle.textContent = '📊 Parameters:';
                     paramsDiv.appendChild(paramsTitle);
                     
-                    const paramsList = document.createElement('ul');
-                    modelDef.parameters.forEach(param => {
+                    const paramsList = document.createElement('div');
+                    paramsList.style.display = 'flex';
+                    paramsList.style.flexWrap = 'wrap';
+                    paramsList.style.gap = '0';
+                    modelDef.parameters.forEach((param, index) => {
                         const paramName = param.id || 'Unknown';
-                        
-                        const paramLi = document.createElement('li');
-                        
-                        // Create button for parameter name
+
                         const paramBtn = document.createElement('button');
                         paramBtn.className = 'yaml-item-button';
                         paramBtn.textContent = escapeHtml(paramName);
                         paramBtn.setAttribute('type', 'button');
                         paramBtn.setAttribute('aria-label', `Parameter: ${paramName}`);
-                        
+
                         paramBtn.addEventListener('click', (e) => {
                             showParameterPopup(param, e.currentTarget);
                         });
-                        
-                        paramLi.appendChild(paramBtn);
-                        paramsList.appendChild(paramLi);
+
+                        paramsList.appendChild(paramBtn);
+
+                        if (index < modelDef.parameters.length - 1) {
+                            const sep = document.createElement('span');
+                            sep.textContent = '  ';
+                            paramsList.appendChild(sep);
+                        }
                     });
                     paramsDiv.appendChild(paramsList);
                     modelContentDiv.appendChild(paramsDiv);
@@ -659,25 +664,30 @@
                     varsTitle.textContent = '🔢 Variables:';
                     varsDiv.appendChild(varsTitle);
                     
-                    const varsList = document.createElement('ul');
-                    modelDef.variables.forEach(variable => {
+                    const varsList = document.createElement('div');
+                    varsList.style.display = 'flex';
+                    varsList.style.flexWrap = 'wrap';
+                    varsList.style.gap = '0';
+                    modelDef.variables.forEach((variable, index) => {
                         const varName = variable.id || 'Unknown';
-                        
-                        const varLi = document.createElement('li');
-                        
-                        // Create button for variable name
+
                         const varBtn = document.createElement('button');
                         varBtn.className = 'yaml-item-button';
                         varBtn.textContent = escapeHtml(varName);
                         varBtn.setAttribute('type', 'button');
                         varBtn.setAttribute('aria-label', `Variable: ${varName}`);
-                        
+
                         varBtn.addEventListener('click', (e) => {
                             showVariablePopup(variable, e.currentTarget);
                         });
-                        
-                        varLi.appendChild(varBtn);
-                        varsList.appendChild(varLi);
+
+                        varsList.appendChild(varBtn);
+
+                        if (index < modelDef.variables.length - 1) {
+                            const sep = document.createElement('span');
+                            sep.textContent = '  ';
+                            varsList.appendChild(sep);
+                        }
                     });
                     varsDiv.appendChild(varsList);
                     modelContentDiv.appendChild(varsDiv);
@@ -1174,8 +1184,8 @@
             const cached = localStorage.getItem(cacheKey);
             if (cached) {
                 const data = JSON.parse(cached);
-                // Check if cache is still valid (10 seconds)
-                if (Date.now() - data.timestamp < 10 * 1000) {
+                // Check if cache is still valid (1 hour)
+                if (Date.now() - data.timestamp < 60 * 60 * 1000) {
                     return data.content;
                 } else {
                     localStorage.removeItem(cacheKey);
