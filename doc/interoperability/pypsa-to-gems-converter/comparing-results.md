@@ -1,3 +1,10 @@
+---
+description: Comparing optimisation results between GEMS Modeler and PyPSA — methodology and statistics for validating the accuracy of the PyPSA-to-GEMS conversion.
+tags:
+  - Interoperability
+  - PyPSA
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

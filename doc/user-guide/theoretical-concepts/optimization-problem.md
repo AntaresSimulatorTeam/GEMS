@@ -1,3 +1,11 @@
+---
+description: How GEMS constructs the optimisation problem from a hypergraph — variables, constraints, and objective function assembly for LP, MIP, and MILP energy system formulations.
+tags:
+  - Optimisation
+  - Mathematical Syntax
+  - Graph-based Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
     <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

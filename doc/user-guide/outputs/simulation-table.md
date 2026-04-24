@@ -1,3 +1,9 @@
+---
+description: Reference for the GEMS simulation table output — the tabular structure used to report optimisation results across time steps, scenarios, and energy system components.
+tags:
+  - Energy Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
     <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

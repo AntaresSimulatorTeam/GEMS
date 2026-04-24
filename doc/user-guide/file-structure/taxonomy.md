@@ -1,3 +1,10 @@
+---
+description: Reference for the GEMS taxonomy file — how to classify and label energy system components for structured reporting and business view configuration.
+tags:
+  - Algebraic Modelling Language
+  - Energy Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
     <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

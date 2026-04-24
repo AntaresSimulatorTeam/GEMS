@@ -1,3 +1,9 @@
+---
+description: Reference for GEMS business view outputs — how to configure and interpret aggregated post-processing views of energy system simulation results.
+tags:
+  - Energy Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
     <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

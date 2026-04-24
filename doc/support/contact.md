@@ -1,3 +1,9 @@
+---
+description: GEMS support and contact — how to reach the GEMS development team for questions, bug reports, and feature requests via GitHub issues.
+tags:
+  - Open Source
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

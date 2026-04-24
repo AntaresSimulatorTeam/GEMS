@@ -1,3 +1,10 @@
+---
+description: Classification of GEMS models by taxonomy — a structured categorisation of energy system models by type, energy carrier, and optimisation behaviour.
+tags:
+  - Algebraic Modelling Language
+  - Energy Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

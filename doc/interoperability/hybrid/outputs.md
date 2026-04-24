@@ -1,3 +1,10 @@
+---
+description: Outputs of an Antares Simulator hybrid study — result files and tables produced when running a simulation combining GEMS components and Antares Legacy areas.
+tags:
+  - Interoperability
+  - Hybrid Studies
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

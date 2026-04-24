@@ -1,3 +1,10 @@
+---
+description: Reference for the GEMS system file — how to instantiate library components, configure connections, and assemble the full energy system topology for an optimisation study.
+tags:
+  - Algebraic Modelling Language
+  - Energy Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

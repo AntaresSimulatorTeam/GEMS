@@ -1,3 +1,10 @@
+---
+description: Current limitations of the PyPSA-to-GEMS Converter — known restrictions in component support and conversion scope for the current release.
+tags:
+  - Interoperability
+  - PyPSA
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

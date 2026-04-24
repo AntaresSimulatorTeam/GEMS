@@ -1,3 +1,11 @@
+---
+description: How to couple GEMS components with Antares Legacy areas — defining connections between GEMS models and legacy network components in a hybrid Antares Simulator study.
+tags:
+  - Interoperability
+  - Hybrid Studies
+  - Antares Simulator
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

@@ -1,3 +1,11 @@
+---
+description: How to run an Antares Simulator hybrid study — step-by-step guide for launching a simulation that combines GEMS components and Antares Legacy areas.
+tags:
+  - Interoperability
+  - Hybrid Studies
+  - Antares Simulator
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

@@ -1,3 +1,10 @@
+---
+description: How the PyPSA-to-GEMS Converter works — the step-by-step transformation of a PyPSA Network object into a GEMS study folder with library and system files.
+tags:
+  - Interoperability
+  - PyPSA
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

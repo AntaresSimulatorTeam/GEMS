@@ -1,3 +1,11 @@
+---
+description: Reference libraries of GEMS models — the official GEMS model libraries providing reusable component definitions for common energy system elements such as generators, storage, and loads.
+tags:
+  - Algebraic Modelling Language
+  - Energy Modelling
+  - Open Source
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

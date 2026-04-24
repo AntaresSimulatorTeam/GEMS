@@ -1,3 +1,11 @@
+---
+description: Theoretical background on the GEMS hypergraph structure — how energy system components, ports, and connections form a hypergraph for mathematical optimisation problem construction.
+tags:
+  - Graph-based Modelling
+  - Mathematical Syntax
+  - Optimisation
+---
+
 <div style="display: flex; justify-content: flex-end;">
     <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

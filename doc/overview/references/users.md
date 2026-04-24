@@ -1,3 +1,10 @@
+---
+description: Users of GEMS — organisations and projects using the Generic Energy system Modelling Scheme for energy planning, operational studies, and multi-energy system research.
+tags:
+  - Energy Modelling
+  - Open Source
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

@@ -1,3 +1,10 @@
+---
+description: Reference for GEMS simulation and optimisation parameter files — how to configure solver settings, time resolution, and objective options for a GEMS energy system study.
+tags:
+  - Optimisation
+  - Energy Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
