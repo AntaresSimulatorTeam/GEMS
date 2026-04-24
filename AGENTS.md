@@ -19,7 +19,7 @@ Repository: `AntaresSimulatorTeam/GEMS` — License: MPL 2.0
 
 ## Directory Layout
 
-```
+```text
 .github/
   workflows/                  # GitHub Actions CI workflows
   ISSUE_TEMPLATE/             # Issue templates (antares-update, doc-01, doc-02, lt-01, lt-02, lt-03)
@@ -66,7 +66,7 @@ Full reference documentation lives in `doc/`. Read the relevant file before edit
 
 Tests require the **Antares Simulator binary**. The version is tracked in `dependencies.json` (`antares_simulator_version`). CI downloads it automatically. For local runs, extract the binary at the repo root:
 
-```
+```text
 antares-<version>-Ubuntu-22.04/bin/antares-solver
 antares-<version>-Ubuntu-22.04/bin/antares-modeler
 ```
@@ -108,6 +108,7 @@ Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 | Workflow | File | Trigger | What It Does |
 |----------|------|---------|--------------|
+| Lint, Format and Tests | `lint-format-and-tests.yml` | PR, manual | Runs ruff (lint + format), mypy, yamllint, and unit tests (`tests/unit_tests/`) — no Antares binary required |
 | End-to-End Tests | `e2e-tests.yml` | PR, manual | Downloads Antares binary (version from `dependencies.json`), runs e2e tests; uploads artifacts on failure |
 | Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates triage issue if new version found, runs E2E tests against new version and posts results as issue comment |
 
