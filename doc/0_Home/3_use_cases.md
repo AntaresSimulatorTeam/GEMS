@@ -1,5 +1,10 @@
 ---
 description: Discover the main use cases of GEMS — adequacy assessment, economic dispatch, energy system planning, multi-energy modelling, and hybrid integration with Antares Simulator.
+tags:
+  - Energy Modelling
+  - Optimisation
+  - Adequacy
+  - Interoperability
 ---
 
 <div style="display: flex; justify-content: flex-end;">

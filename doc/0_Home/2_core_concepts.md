@@ -1,5 +1,10 @@
 ---
 description: Explore GEMS key design principles — graph-based algebraic modelling, solver-independent syntax, YAML-based configuration, and support for LP, MIP, and MILP energy optimisation problems.
+tags:
+  - Energy Modelling
+  - Graph-based Modelling
+  - Algebraic Modelling Language
+  - Optimisation
 ---
 
 <div style="display: flex; justify-content: flex-end;">

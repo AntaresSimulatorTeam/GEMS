@@ -1,5 +1,9 @@
 ---
 description: Reference for GEMS mathematical expression syntax — operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
+tags:
+  - Mathematical Syntax
+  - Algebraic Modelling Language
+  - Optimisation
 ---
 
 <div style="display: flex; justify-content: flex-end;">

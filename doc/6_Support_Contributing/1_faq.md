@@ -1,3 +1,10 @@
+---
+description: Frequently asked questions about GEMS — GUI availability, hybrid studies, unit commitment modelling, and other common questions about the energy system modelling language.
+tags:
+  - Energy Modelling
+  - Open Source
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

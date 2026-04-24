@@ -1,3 +1,11 @@
+---
+description: Mathematical formulation of the GEMS three-bus adequacy optimisation problem — variables, constraints, and objective function derived from the basic-models library.
+tags:
+  - Adequacy
+  - Optimisation
+  - Mathematical Syntax
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

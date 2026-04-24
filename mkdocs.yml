@@ -63,8 +63,15 @@ extra_javascript:
 extra_css:
   - stylesheets/yaml-loader.css
 
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AntaresSimulatorTeam/GEMS
+      name: GEMS on GitHub
+
 plugins:
   - search
+  - tags
   - macros:
       module_name: main
   - git-revision-date-localized:

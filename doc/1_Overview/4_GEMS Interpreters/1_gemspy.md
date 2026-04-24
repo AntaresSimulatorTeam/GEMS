@@ -1,3 +1,11 @@
+---
+description: Overview of GemsPy — the standalone Python package for interpreting GEMS models, with API reference for programmatically building and running energy system optimisation studies.
+tags:
+  - GemsPy
+  - Optimisation
+  - Open Source
+---
+
 <div style="display: flex; justify-content: flex-end;">
     <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

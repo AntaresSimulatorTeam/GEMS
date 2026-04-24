@@ -1,3 +1,11 @@
+---
+description: Antares Simulator's GEMS interpreter — a graph-based LP/MIP/MILP problem builder integrated into Antares Simulator for extending legacy optimisation studies with GEMS components.
+tags:
+  - Antares Simulator
+  - Optimisation
+  - Graph-based Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
     <a href="../../../..">
         <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

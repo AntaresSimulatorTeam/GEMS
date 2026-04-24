@@ -1,5 +1,8 @@
 ---
 description: How to contribute to GEMS — guidelines for code contributions, documentation improvements, and model library contributions to the GEMS open-source project.
+tags:
+  - Open Source
+  - Energy Modelling
 ---
 
 <div style="display: flex; justify-content: flex-end;">

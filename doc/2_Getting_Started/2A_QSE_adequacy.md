@@ -1,3 +1,11 @@
+---
+description: Quick-start tutorial for GEMS adequacy modelling — build and solve a three-bus meshed network adequacy problem, balancing production and consumption with GEMS and Antares Simulator.
+tags:
+  - Getting Started
+  - Adequacy
+  - Energy Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

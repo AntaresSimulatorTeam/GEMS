@@ -1,3 +1,11 @@
+---
+description: Installation guide for GemsPy — the standalone Python interpreter for GEMS that lets you create, manipulate, and simulate energy system optimisation models programmatically.
+tags:
+  - Getting Started
+  - Installation
+  - GemsPy
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

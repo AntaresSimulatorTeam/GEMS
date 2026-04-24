@@ -1,3 +1,11 @@
+---
+description: How GEMS compares to Modelica, GAMS, and other algebraic modelling languages — GEMS's graph-oriented, object-based approach for energy system optimisation versus traditional tools.
+tags:
+  - Algebraic Modelling Language
+  - Optimisation
+  - Graph-based Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

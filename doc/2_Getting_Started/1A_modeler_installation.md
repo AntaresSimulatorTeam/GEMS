@@ -1,5 +1,9 @@
 ---
 description: Step-by-step installation guide for Antares Simulator's GEMS interpreter (Antares Modeler) — download, extract, and configure the GEMS interpreter within Antares Simulator.
+tags:
+  - Getting Started
+  - Installation
+  - Antares Simulator
 ---
 
 <div style="display: flex; justify-content: flex-end;">

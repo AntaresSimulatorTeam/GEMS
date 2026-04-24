@@ -1,3 +1,9 @@
+---
+description: GEMS support contacts — links to the FAQ, contribution guide, and issue trackers for GEMS and Antares Simulator.
+tags:
+  - Open Source
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

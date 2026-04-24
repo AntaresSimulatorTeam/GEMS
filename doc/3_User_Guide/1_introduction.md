@@ -1,5 +1,9 @@
 ---
 description: Introduction to the GEMS framework — how to describe energy systems declaratively using structured YAML files, mathematical expressions, and graph-based component connections.
+tags:
+  - Energy Modelling
+  - Graph-based Modelling
+  - Algebraic Modelling Language
 ---
 
 <div style="display: flex; justify-content: flex-end;">

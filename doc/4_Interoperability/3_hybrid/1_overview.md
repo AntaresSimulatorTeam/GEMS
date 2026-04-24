@@ -1,3 +1,11 @@
+---
+description: How to configure and run Antares Simulator hybrid studies — combining GEMS components with Antares Legacy areas in a single simulation for multi-model energy system studies.
+tags:
+  - Interoperability
+  - Hybrid Studies
+  - Antares Simulator
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../..">
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>

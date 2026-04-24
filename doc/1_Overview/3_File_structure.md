@@ -1,3 +1,10 @@
+---
+description: Overview of the GEMS file structure — the four bounded domains (Model, System, Optimization, Business) and the role of each file type in a GEMS study case.
+tags:
+  - Algebraic Modelling Language
+  - Energy Modelling
+---
+
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
     <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
