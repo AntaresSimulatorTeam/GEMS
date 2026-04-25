@@ -30,7 +30,7 @@ def _read_antares_version(repo_root: Path) -> str:
     data = json.loads(deps_file.read_text(encoding="utf-8"))
     if "antares_simulator_version" not in data:
         raise ValueError(f"antares_simulator_version not found in {deps_file}")
-    return data["antares_simulator_version"]
+    return str(data["antares_simulator_version"])
 
 
 def get_paths() -> EnvironmentPaths:
