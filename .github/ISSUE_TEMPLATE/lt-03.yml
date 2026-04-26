@@ -106,10 +106,10 @@ body:
         ### Step 8 — Versioning
         - [ ] Version key added to `dependencies.json` (starting at `1.0.0`)
 
-        ### Step 9 — Release
-        - [ ] Release documents new library, supported Antares version, use cases, and known limitations
-
-        ### Step 10 — Documentation & Changelog
+        ### Step 9 — Documentation & Changelog
         - [ ] Changelog file created (`libraries/CHANGELOG-<name>.md`)
         - [ ] Documentation added (models, parameters, usage examples)
         - [ ] `COMPATIBILITY.md` updated with new library entry
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines

@@ -107,9 +107,9 @@ body:
         - [ ] `dependencies.json` `antares_simulator_version` updated to new version
         - [ ] `dependencies.json` `gems_language_version` bumped (minor if new features, patch if clarification only)
 
-        ### Step 9 — Release
-        - [ ] Release documents supported Antares version, compatibility, and behavior changes
-
-        ### Step 10 — Documentation & Changelog
+        ### Step 9 — Documentation & Changelog
         - [ ] `CHANGELOG-gems-language.md` entry added
         - [ ] `COMPATIBILITY.md` updated with new version mapping
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines

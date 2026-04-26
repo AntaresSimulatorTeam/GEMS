@@ -105,9 +105,9 @@ body:
         ### Step 8 — Versioning
         - [ ] Library version bumped (`dependencies.json`) per semantic versioning rules
 
-        ### Step 9 — Release
-        - [ ] Release documents library changes and compatibility
-
-        ### Step 10 — Documentation & Changelog
+        ### Step 9 — Documentation & Changelog
         - [ ] Changelog entry added (`libraries/CHANGELOG-<library>.md`)
         - [ ] Documentation updated if model behavior or interface changed
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines

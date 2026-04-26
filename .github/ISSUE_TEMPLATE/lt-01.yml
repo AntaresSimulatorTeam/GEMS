@@ -95,9 +95,9 @@ body:
         - [ ] `dependencies.json` `antares_simulator_version` updated to new version
         - [ ] Version bumped for each affected library (`dependencies.json`)
 
-        ### Step 9 — Release
-        - [ ] Release documents supported Antares version, compatibility, and behavior changes per library
-
-        ### Step 10 — Documentation & Changelog
+        ### Step 9 — Documentation & Changelog
         - [ ] Changelog entry added for each affected library (`libraries/CHANGELOG-<library>.md`)
         - [ ] `COMPATIBILITY.md` updated with new version mapping
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines

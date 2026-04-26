@@ -76,9 +76,8 @@ body:
         - [ ] If language clarification: `dependencies.json` `gems_language_version` patch version bumped
         - [ ] If purely editorial/structural: no version bump required
 
-        ### Step 9 — Release
-        - [ ] If version bumped: release published with changelog entry
-        - [ ] If no version bump: no release required
-
-        ### Step 10 — Documentation & Changelog
+        ### Step 9 — Documentation & Changelog
         - [ ] If language clarification: `CHANGELOG-gems-language.md` entry added
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines
