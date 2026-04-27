@@ -1,0 +1,10 @@
+pypsa-eur/.pixi
+pypsa-eur/.git
+pypsa-eur/data
+pypsa-eur/results
+pypsa-eur/logs
+pypsa-eur/cutouts
+pypsa-eur/resources
+pypsa-eur/doc
+PyPSA-to-GEMS-Converter/.git
+docker-pypsa-gemsv2

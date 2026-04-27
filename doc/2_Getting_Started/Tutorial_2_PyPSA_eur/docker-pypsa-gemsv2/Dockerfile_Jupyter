@@ -1,0 +1,11 @@
+FROM quay.io/jupyter/scipy-notebook:2025-12-31
+
+# Disable the PyPI extension manager (avoids slow network calls on startup)
+RUN jupyter labextension disable @jupyterlab/extensionmanager-extension
+
+COPY hello_world.ipynb /home/jovyan/work/hello_world.ipynb
+COPY RTE_logo.svg.png /home/jovyan/work/RTE_logo.svg.png
+
+EXPOSE 1111
+
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=1111", "--no-browser", "--NotebookApp.token="]

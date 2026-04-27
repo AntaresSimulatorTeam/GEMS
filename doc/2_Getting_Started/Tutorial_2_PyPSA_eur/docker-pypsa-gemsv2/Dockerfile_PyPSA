@@ -1,0 +1,41 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.pixi/bin:$PATH"
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    tar \
+    ca-certificates \
+    git \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY PyPSA-to-GEMS-Converter/requirements.txt /tmp/requirements.txt
+RUN sed -i 's/pypsa==1.0.0/pypsa==1.0.0rc1/' /tmp/requirements.txt && \
+    pip3 install --no-cache-dir \
+    jupyter \
+    matplotlib \
+    netcdf4 \
+    xarray \
+    -r /tmp/requirements.txt
+
+# Install pixi
+RUN curl -fsSL https://pixi.sh/install.sh | bash
+
+# Download and extract Antares Simulator, symlink antares-modeler onto PATH
+RUN curl -fsSL https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v10.1.0/antares-10.1.0-Ubuntu-22.04.tar.gz \
+    | tar -xz -C /opt/ \
+    && ln -s /opt/antares-10.1.0-Ubuntu-22.04/bin/antares-modeler /usr/local/bin/antares-modeler
+
+WORKDIR /workspace
+
+# Build context is Tutorial_2_PyPSA_eur/
+COPY pypsa-eur/ /workspace/pypsa-eur/
+COPY PyPSA-to-GEMS-Converter/ /workspace/PyPSA-to-GEMS-Converter/
+COPY 2_Tutorial_PyPSA_eur.ipynb /workspace/2_Tutorial_PyPSA_eur.ipynb
+
+EXPOSE 8889
+
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8889", "--no-browser", "--IdentityProvider.token=", "--LabApp.extension_manager=readonly", "--allow-root"]

@@ -212,3 +212,6 @@ __marimo__/
 # GEMS specific ignores
 output/
 *env/
+*tmp/
+*pypsa-eur/
+PyPSA-to-GEMS-Converter/
