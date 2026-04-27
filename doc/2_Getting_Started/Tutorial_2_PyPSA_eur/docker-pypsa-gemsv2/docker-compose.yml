@@ -1,0 +1,24 @@
+services:
+  notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile_Jupyter
+    image: my-notebook
+    container_name: my-notebook
+    ports:
+      - "1111:1111"
+    environment:
+      - JUPYTER_TOKEN=
+
+  pypsa:
+    build:
+      context: ..
+      dockerfile: docker-pypsa-gemsv2/Dockerfile_PyPSA
+    image: my-pypsa
+    container_name: my-pypsa
+    ports:
+      - "8889:8889"
+    volumes:
+      - ../pypsa-eur/resources:/workspace/pypsa-eur/resources:ro
+
+volumes: {}
