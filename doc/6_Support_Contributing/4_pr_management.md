@@ -150,7 +150,7 @@ Affected modules. Breaking changes or backward-compatible?
 | Target | Strategy | Who |
 |---|---|---|
 | `develop` | Squash & Merge | All feature/bugfix/chore/versioning PRs |
-| `main` | Merge commit | From `develop` (release) or `hotfix/` |
+| `main` | Squash & Merge | From `develop` (release) or `hotfix/` |
 
 ---
 
@@ -277,6 +277,26 @@ Each monitoring workflow:
 
 Duplicate issues for the same version are suppressed automatically.
 
+### Library SHA256 Checksums
+
+Each repository automatically maintains SHA256 checksum files alongside its library YAMLs. The checksum file is placed next to the library file and named `<library>.yml.sha256`.
+
+| Workflow | Repo | Trigger | Scope |
+|---|---|---|---|
+| `update-library-checksums` | GEMS | Push to `main` touching `libraries/*.yml` (excludes `pypsa_models.yml` and `antares_legacy_models.yml`) | `libraries/` |
+| `update-library-checksums` | PyPSA Converter | Push to `main` touching `resources/pypsa_models/*.yml` | `resources/pypsa_models/` |
+| `update-library-checksums` | AntaresLegacy Converter | Push to `main` touching `src/antares_gems_converter/libs/**/*.yml` | `src/antares_gems_converter/libs/` |
+
+**How it works:**
+
+- If no `.sha256` file exists → generated automatically.
+- If the hash matches the stored one → no action.
+- If the hash differs → `.sha256` file updated and committed back to `main` with `[skip ci]`.
+
+The `pypsa_models.yml` and `antares_legacy_models.yml` libraries in GEMS are excluded because their checksums are managed by the respective converter repositories.
+
+---
+
 ### Cross-Repository Notifications
 
 When a model library is updated in a converter, an issue is automatically created in the **GEMS** repository to prompt synchronisation of the shared library YAML.
@@ -312,9 +332,9 @@ develop  ──── squash PRs ────► last PR bumps versions
                                       │
                                       ▼
                           open PR: develop → main
-                          (merge commit — do not squash)
+                          (squash & merge)
                                       │
-                             merge commit into main
+                             squash-merge into main
                                       │
                                       ▼
                           create release/vX.Y.Z from main HEAD
@@ -357,7 +377,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 3. Open a PR from `develop` targeting `main`
    - Title: `[PR] Release v1.2.0`
    - Labels: `release:minor` / `release:major` / `release:patch`
-   - Merge strategy: **merge commit** — do not squash (see Section 10)
+   - Merge strategy: **Squash & Merge**
 
 4. After the PR is merged to `main` — create the release branch, tag it, and push
 
@@ -399,7 +419,7 @@ Same flow as the PyPSA converter. The example below releases converter version `
    - PR title: `[PR] Release v1.2.0 — version bump`
    - Squash & merge to `develop`
 
-3. Open PR `develop` → `main`, merge commit, publish GitHub release (same as PyPSA converter steps 3–5).
+3. Open PR `develop` → `main`, squash & merge, publish GitHub release (same as PyPSA converter steps 3–5).
 
 4. Cross-repo notification (automatic) — if `library.version` in `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` was bumped, the `notify-gems-antares-legacy-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ.
 
@@ -441,7 +461,7 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 3. Open a PR from `develop` targeting `main`
    - Title: `[PR] Release v1.2.0`
    - Labels: `release:minor` / `release:major` / `release:patch`
-   - Merge strategy: **merge commit** — do not squash (see Section 10)
+   - Merge strategy: **Squash & Merge**
 
 4. After the PR is merged to `main` — create the release branch, tag it, and push
 
@@ -465,38 +485,13 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 
 ### Release tags (all repositories)
 
-- After the PR from `develop` is merged to `main`, a `release/vX.Y.Z` branch is created from `main` HEAD and the tag `vX.Y.Z` is placed on that branch
+- After the PR from `develop` is squash-merged into `main`, a `release/vX.Y.Z` branch is created from `main` HEAD and the tag `vX.Y.Z` is placed on that branch
 - Format: `vX.Y.Z` (e.g. `v1.2.0`, `v0.3.4`)
 - Every release PR merged to `main` must result in a tag on the corresponding `release/vX.Y.Z` branch
-- The `develop` → `main` PR **must** use a **merge commit** — squash is not allowed
-
-#### Why merge commit and not squash
-
-The merge strategy determines whether the full history of individual squash commits from `develop` is preserved on `main`.
-
-With a **merge commit**, git creates a new merge commit on `main` with two parents: the previous `main` HEAD and the HEAD of `develop`. All squash commits from `develop` remain reachable from `main`:
-
-```text
-develop:  ... ── A ── B ── C (version bump)
-                              \
-main:     ... ── X ──────────── M
-                                 \
-                        release/v1.2.0 ◄── tag v1.2.0
-```
-
-With a **squash merge**, all commits from `develop` are flattened into one commit on `main`. The individual per-feature squash commits are no longer reachable:
-
-```text
-develop:  ... ── A ── B ── C (version bump)
-
-main:     ... ── X ── S  (S flattens A+B+C — history lost)
-```
-
-This is why squash merge is not allowed for release PRs.
 
 #### Release branch as snapshot
 
-After the merge to `main`, a `release/vX.Y.Z` branch is created from `main` HEAD. The tag `vX.Y.Z` is then placed on the current HEAD (the same commit as `main` HEAD — git tags point to commits, not branches) and pushed atomically with the branch. By convention the release tag lives alongside its `release/vX.Y.Z` branch; `main` carries only library tags. This branch is a permanent read-only snapshot of `main` at the time of release, retained for audit and security purposes. No further commits are made to it.
+After the squash-merge to `main`, a `release/vX.Y.Z` branch is created from `main` HEAD. The tag `vX.Y.Z` is placed on that commit and pushed atomically with the branch. This branch is a permanent read-only snapshot of `main` at the time of release, retained for audit and security purposes. No further commits are made to it.
 
 ### Library version tags
 
@@ -514,7 +509,7 @@ For critical issues discovered after a release:
 2. Apply the fix and commit
 3. Push the hotfix branch: `git push origin hotfix/vX.Y.Z`
 4. Open a PR from `hotfix/vX.Y.Z` targeting `main` (two approvals recommended)
-5. Merge via **merge commit** — do not squash (same reason as release PRs, see Section 10)
+5. Merge via **Squash & Merge**
 6. After the PR is merged to `main` — create the release branch, tag it, and push
 
    ```bash
