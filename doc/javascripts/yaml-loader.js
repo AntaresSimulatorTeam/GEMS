@@ -357,6 +357,20 @@
     }
 
     /**
+     * Reduces font size of .yaml-constraint-expression elements until they fit in 2 lines
+     * @param {HTMLElement} container - Container to search within
+     */
+    function fitExpressionsInTwoLines(container) {
+        container.querySelectorAll('.yaml-constraint-expression').forEach(el => {
+            el.style.whiteSpace = 'pre-wrap';
+            el.style.lineHeight = '1.4';
+
+            const nbLignes = el.textContent.length / 46;
+            el.style.minHeight = `calc(1.4em * ${nbLignes} + 4px)`;
+        });
+    }
+
+    /**
      * Renders the GEMS library structure
      * @param {Object} data - Library file data
      * @param {HTMLElement} container - Target container
@@ -717,77 +731,11 @@
                         nameSpan.textContent = escapeHtml(objName);
                         objLi.appendChild(nameSpan);
                         
-                        // Expression with clickable variables
                         if (objExpression) {
-                            const exprSpan = document.createElement('div');
-                            exprSpan.className = 'yaml-constraint-expression';
-                            
-                            // Parse expression and create clickable variable/parameter buttons
-                            const exprText = objExpression;
-                            const variableNames = Array.from(
-                                new Set(modelDef.variables ? modelDef.variables.map(v => v.id).filter(Boolean) : [])
-                            );
-                            const parameterNames = Array.from(
-                                new Set(modelDef.parameters ? modelDef.parameters.map(p => p.id).filter(Boolean) : [])
-                            );
-                            const allNames = [...variableNames, ...parameterNames];
-                            
-                            if (allNames.length > 0) {
-                                // Sort by length descending to match longer names first
-                                allNames.sort((a, b) => b.length - a.length);
-                                
-                                // Create regex pattern for all variable and parameter names with optional temporal index [t±n]
-                                // Use non-capturing group for alternation so temporal index applies to all variables
-                                const pattern = new RegExp(`\\b((?:${allNames.map(escapeRegex).join('|')})(?:\\[t[\\+\\-]?\\d+\\])?)`, 'g');
-                                const parts = exprText.split(pattern);
-                                
-                                parts.forEach((part, idx) => {
-                                    if (!part) return; // Skip empty strings from split
-                                    
-                                    // Check if part matches the pattern: variable_name or variable_name[t±n]
-                                    const matchTemporalRef = /^([\w_]+)(?:\[t([+\-]?\d+)\])?$/.exec(part);
-                                    if (matchTemporalRef) {
-                                        const baseName = matchTemporalRef[1];
-                                        if (allNames.includes(baseName)) {
-                                            const isVariable = variableNames.includes(baseName);
-                                            const isParameter = parameterNames.includes(baseName);
-                                            
-                                            const btn = document.createElement('button');
-                                            btn.className = 'yaml-item-button';
-                                            btn.textContent = escapeHtml(part);
-                                            btn.dataset.name = baseName;
-                                            btn.dataset.type = isVariable ? 'variable' : 'parameter';
-                                            
-                                            // Add click listener
-                                            btn.addEventListener('click', (e) => {
-                                                const name = e.currentTarget.dataset.name;
-                                                const type = e.currentTarget.dataset.type;
-                                                if (type === 'variable') {
-                                                    const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
-                                                    if (variable) {
-                                                        showVariablePopup(variable, e.currentTarget);
-                                                    }
-                                                } else if (type === 'parameter') {
-                                                    const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
-                                                    if (parameter) {
-                                                        showParameterPopup(parameter, e.currentTarget);
-                                                    }
-                                                }
-                                            });
-                                            
-                                            exprSpan.appendChild(btn);
-                                        } else {
-                                            appendParsedText(part, exprSpan, modelDef);
-                                        }
-                                    } else {
-                                        appendParsedText(part, exprSpan, modelDef);
-                                    }
-                                });
-                            } else {
-                                exprSpan.textContent = escapeHtml(exprText);
-                            }
-                            
-                            objLi.appendChild(exprSpan);
+                            const exprPre = document.createElement('pre');
+                            exprPre.className = 'yaml-constraint-expression';
+                            exprPre.textContent = `expression: ${objExpression}`;
+                            objLi.appendChild(exprPre);
                         }
                         
                         objectiveList.appendChild(objLi);
@@ -820,85 +768,19 @@
                         nameSpan.textContent = escapeHtml(constraintName);
                         constraintLi.appendChild(nameSpan);
                         
-                        // Expression with clickable variables
                         if (constraintExpression) {
-                            const exprSpan = document.createElement('div');
-                            exprSpan.className = 'yaml-constraint-expression';
-                            
-                            // Parse expression and create clickable variable/parameter buttons
-                            const exprText = constraintExpression;
-                            const variableNames = Array.from(
-                                new Set(modelDef.variables ? modelDef.variables.map(v => v.id).filter(Boolean) : [])
-                            );
-                            const parameterNames = Array.from(
-                                new Set(modelDef.parameters ? modelDef.parameters.map(p => p.id).filter(Boolean) : [])
-                            );
-                            const allNames = [...variableNames, ...parameterNames];
-                            
-                            if (allNames.length > 0) {
-                                // Sort by length descending to match longer names first
-                                allNames.sort((a, b) => b.length - a.length);
-                                
-                                // Create regex pattern for all variable and parameter names with optional temporal index [t±n]
-                                // Use non-capturing group for alternation so temporal index applies to all variables
-                                const pattern = new RegExp(`\\b((?:${allNames.map(escapeRegex).join('|')})(?:\\[t[\\+\\-]?\\d+\\])?)`, 'g');
-                                const parts = exprText.split(pattern);
-                                
-                                parts.forEach((part, idx) => {
-                                    if (!part) return; // Skip empty strings from split
-                                    
-                                    // Check if part matches the pattern: variable_name or variable_name[t±n]
-                                    const matchTemporalRef = /^([\w_]+)(?:\[t([+\-]?\d+)\])?$/.exec(part);
-                                    if (matchTemporalRef) {
-                                        const baseName = matchTemporalRef[1];
-                                        if (allNames.includes(baseName)) {
-                                            const isVariable = variableNames.includes(baseName);
-                                            const isParameter = parameterNames.includes(baseName);
-                                            
-                                            const btn = document.createElement('button');
-                                            btn.className = 'yaml-item-button';
-                                            btn.textContent = escapeHtml(part);
-                                            btn.dataset.name = baseName;
-                                            btn.dataset.type = isVariable ? 'variable' : 'parameter';
-                                            
-                                            // Add click listener
-                                            btn.addEventListener('click', (e) => {
-                                                const name = e.currentTarget.dataset.name;
-                                                const type = e.currentTarget.dataset.type;
-                                                if (type === 'variable') {
-                                                    const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
-                                                    if (variable) {
-                                                        showVariablePopup(variable, e.currentTarget);
-                                                    }
-                                                } else if (type === 'parameter') {
-                                                    const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
-                                                    if (parameter) {
-                                                        showParameterPopup(parameter, e.currentTarget);
-                                                    }
-                                                }
-                                            });
-                                            
-                                            exprSpan.appendChild(btn);
-                                        } else {
-                                            appendParsedText(part, exprSpan, modelDef);
-                                        }
-                                    } else {
-                                        appendParsedText(part, exprSpan, modelDef);
-                                    }
-                                });
-                            } else {
-                                exprSpan.textContent = escapeHtml(exprText);
-                            }
-                            
-                            constraintLi.appendChild(exprSpan);
+                            const exprPre = document.createElement('pre');
+                            exprPre.className = 'yaml-constraint-expression';
+                            exprPre.textContent = `expression: ${constraintExpression}`;
+                            constraintLi.appendChild(exprPre);
                         }
-                        
+
                         constraintsList.appendChild(constraintLi);
                     });
                     constraintsDiv.appendChild(constraintsList);
                     modelContentDiv.appendChild(constraintsDiv);
                 }
-                
+
                 if (modelDef.constraints && Array.isArray(modelDef.constraints) && modelDef.constraints.length > 0) {
                     const constraintsDiv = document.createElement('div');
                     constraintsDiv.style.marginTop = '15px';
@@ -923,77 +805,11 @@
                         nameSpan.textContent = escapeHtml(constraintName);
                         constraintLi.appendChild(nameSpan);
                         
-                        // Expression with clickable variables
                         if (constraintExpression) {
-                            const exprSpan = document.createElement('div');
-                            exprSpan.className = 'yaml-constraint-expression';
-                            
-                            // Parse expression and create clickable variable/parameter buttons
-                            const exprText = constraintExpression;
-                            const variableNames = Array.from(
-                                new Set(modelDef.variables ? modelDef.variables.map(v => v.id).filter(Boolean) : [])
-                            );
-                            const parameterNames = Array.from(
-                                new Set(modelDef.parameters ? modelDef.parameters.map(p => p.id).filter(Boolean) : [])
-                            );
-                            const allNames = [...variableNames, ...parameterNames];
-                            
-                            if (allNames.length > 0) {
-                                // Sort by length descending to match longer names first
-                                allNames.sort((a, b) => b.length - a.length);
-                                
-                                // Create regex pattern for all variable and parameter names with optional temporal index [t±n]
-                                // Use non-capturing group for alternation so temporal index applies to all variables
-                                const pattern = new RegExp(`\\b((?:${allNames.map(escapeRegex).join('|')})(?:\\[t[\\+\\-]?\\d+\\])?)`, 'g');
-                                const parts = exprText.split(pattern);
-                                
-                                parts.forEach((part, idx) => {
-                                    if (!part) return; // Skip empty strings from split
-                                    
-                                    // Check if part matches the pattern: variable_name or variable_name[t±n]
-                                    const matchTemporalRef = /^([\w_]+)(?:\[t([+\-]?\d+)\])?$/.exec(part);
-                                    if (matchTemporalRef) {
-                                        const baseName = matchTemporalRef[1];
-                                        if (allNames.includes(baseName)) {
-                                            const isVariable = variableNames.includes(baseName);
-                                            const isParameter = parameterNames.includes(baseName);
-                                            
-                                            const btn = document.createElement('button');
-                                            btn.className = 'yaml-item-button';
-                                            btn.textContent = escapeHtml(part);
-                                            btn.dataset.name = baseName;
-                                            btn.dataset.type = isVariable ? 'variable' : 'parameter';
-                                            
-                                            // Add click listener
-                                            btn.addEventListener('click', (e) => {
-                                                const name = e.currentTarget.dataset.name;
-                                                const type = e.currentTarget.dataset.type;
-                                                if (type === 'variable') {
-                                                    const variable = modelDef.variables && modelDef.variables.find(v => v.id === name);
-                                                    if (variable) {
-                                                        showVariablePopup(variable, e.currentTarget);
-                                                    }
-                                                } else if (type === 'parameter') {
-                                                    const parameter = modelDef.parameters && modelDef.parameters.find(p => p.id === name);
-                                                    if (parameter) {
-                                                        showParameterPopup(parameter, e.currentTarget);
-                                                    }
-                                                }
-                                            });
-                                            
-                                            exprSpan.appendChild(btn);
-                                        } else {
-                                            appendParsedText(part, exprSpan, modelDef);
-                                        }
-                                    } else {
-                                        appendParsedText(part, exprSpan, modelDef);
-                                    }
-                                });
-                            } else {
-                                exprSpan.textContent = escapeHtml(exprText);
-                            }
-                            
-                            constraintLi.appendChild(exprSpan);
+                            const exprPre = document.createElement('pre');
+                            exprPre.className = 'yaml-constraint-expression';
+                            exprPre.textContent = `expression: ${constraintExpression}`;
+                            constraintLi.appendChild(exprPre);
                         }
                         
                         constraintsList.appendChild(constraintLi);
@@ -1010,7 +826,9 @@
         wrapper.appendChild(libLevel1);
         wrapper.appendChild(libContent);
         container.appendChild(wrapper);
-        
+
+        requestAnimationFrame(() => fitExpressionsInTwoLines(container));
+
         // === EVENT LISTENERS ===
         
         // Event delegation for port buttons

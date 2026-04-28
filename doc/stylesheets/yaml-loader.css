@@ -683,11 +683,12 @@
     transform: scale(0.98);
 }
 
-/* Constraint expression container - kept for backward compatibility */
+/* Constraint expression container */
 .yaml-constraint-expression {
     display: block;
     margin-top: 6px;
-    word-break: break-word;
+    padding: 2px 0;
+    line-height: 1.4;
 }
 
 /* Dark mode for library interface */
