@@ -110,6 +110,7 @@ body:
         - [ ] Changelog file created (`libraries/CHANGELOG-<name>.md`)
         - [ ] Documentation added (models, parameters, usage examples)
         - [ ] `COMPATIBILITY.md` updated with new library entry
+        - [ ] `AGENTS.md` reviewed for impact and updated if needed
 
         ### Step 10 — Release
         - [ ] If a release is needed: follow the release process in the Developer Guidelines

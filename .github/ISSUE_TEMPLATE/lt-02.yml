@@ -108,6 +108,7 @@ body:
         ### Step 9 — Documentation & Changelog
         - [ ] Changelog entry added (`libraries/CHANGELOG-<library>.md`)
         - [ ] Documentation updated if model behavior or interface changed
+        - [ ] `AGENTS.md` reviewed for impact and updated if needed
 
         ### Step 10 — Release
         - [ ] If a release is needed: follow the release process in the Developer Guidelines

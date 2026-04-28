@@ -109,6 +109,7 @@ body:
         ### Step 9 — Documentation & Changelog
         - [ ] Release notes entry added (`doc/0_Home/4_release_notes.md`)
         - [ ] `COMPATIBILITY.md` updated with new version mapping
+        - [ ] `AGENTS.md` reviewed for impact and updated if needed
 
         ### Step 10 — Release
         - [ ] If a release is needed: follow the release process in the Developer Guidelines

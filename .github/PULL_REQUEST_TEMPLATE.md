@@ -22,3 +22,4 @@
 - [ ] Release notes entry added if language-level change (`doc/0_Home/4_release_notes.md`)
 - [ ] Compatibility matrix updated if applicable (`COMPATIBILITY.md`)
 - [ ] Documentation updated or confirmed up to date
+- [ ] `AGENTS.md` reviewed for impact and updated if needed

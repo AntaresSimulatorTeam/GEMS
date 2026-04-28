@@ -98,6 +98,7 @@ body:
         ### Step 9 — Documentation & Changelog
         - [ ] Changelog entry added for each affected library (`libraries/CHANGELOG-<library>.md`)
         - [ ] `COMPATIBILITY.md` updated with new version mapping
+        - [ ] `AGENTS.md` reviewed for impact and updated if needed
 
         ### Step 10 — Release
         - [ ] If a release is needed: follow the release process in the Developer Guidelines
