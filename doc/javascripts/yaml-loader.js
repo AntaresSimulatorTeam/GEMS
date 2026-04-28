@@ -641,11 +641,9 @@
                     paramsTitle.textContent = '📊 Parameters:';
                     paramsDiv.appendChild(paramsTitle);
                     
-                    const paramsList = document.createElement('div');
-                    paramsList.style.display = 'flex';
-                    paramsList.style.flexWrap = 'wrap';
-                    paramsList.style.gap = '0';
-                    modelDef.parameters.forEach((param, index) => {
+                    const paramsList = document.createElement('ul');
+                    paramsList.setAttribute('role', 'list');
+                    modelDef.parameters.forEach(param => {
                         const paramName = param.id || 'Unknown';
 
                         const paramBtn = document.createElement('button');
@@ -658,13 +656,10 @@
                             showParameterPopup(param, e.currentTarget);
                         });
 
-                        paramsList.appendChild(paramBtn);
-
-                        if (index < modelDef.parameters.length - 1) {
-                            const sep = document.createElement('span');
-                            sep.textContent = '  ';
-                            paramsList.appendChild(sep);
-                        }
+                        const paramLi = document.createElement('li');
+                        paramLi.setAttribute('role', 'listitem');
+                        paramLi.appendChild(paramBtn);
+                        paramsList.appendChild(paramLi);
                     });
                     paramsDiv.appendChild(paramsList);
                     modelContentDiv.appendChild(paramsDiv);
@@ -678,11 +673,9 @@
                     varsTitle.textContent = '🔢 Variables:';
                     varsDiv.appendChild(varsTitle);
                     
-                    const varsList = document.createElement('div');
-                    varsList.style.display = 'flex';
-                    varsList.style.flexWrap = 'wrap';
-                    varsList.style.gap = '0';
-                    modelDef.variables.forEach((variable, index) => {
+                    const varsList = document.createElement('ul');
+                    varsList.setAttribute('role', 'list');
+                    modelDef.variables.forEach(variable => {
                         const varName = variable.id || 'Unknown';
 
                         const varBtn = document.createElement('button');
@@ -695,13 +688,10 @@
                             showVariablePopup(variable, e.currentTarget);
                         });
 
-                        varsList.appendChild(varBtn);
-
-                        if (index < modelDef.variables.length - 1) {
-                            const sep = document.createElement('span');
-                            sep.textContent = '  ';
-                            varsList.appendChild(sep);
-                        }
+                        const varLi = document.createElement('li');
+                        varLi.setAttribute('role', 'listitem');
+                        varLi.appendChild(varBtn);
+                        varsList.appendChild(varLi);
                     });
                     varsDiv.appendChild(varsList);
                     modelContentDiv.appendChild(varsDiv);
