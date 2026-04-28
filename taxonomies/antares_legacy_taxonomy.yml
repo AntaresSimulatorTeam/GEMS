@@ -1,0 +1,126 @@
+# Copyright (c) 2024, RTE (https://www.rte-france.com)
+#
+# See AUTHORS.txt
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+# This file is part of the Antares project.
+
+taxonomy:
+  id: antares_legacy_taxonomy
+  description: GEMS taxonomy configuration. 
+  categories:
+
+    - id: balance
+      variables:
+        - id: unsupplied_energy
+        - id: spilled_energy
+      ports:
+        - id: balance_port
+      constraints:
+        - id: balance
+      extra-outputs:
+        - id: price
+        - id: imbalance_cost
+        - id: is_loss_of_load
+        - id: near_loss_of_load
+      properties:
+        - id: carrier
+
+    - id: production
+      parameters:
+        - id: total_p_max
+      ports:
+        - id: balance_port
+      properties:
+        - id: carrier
+        - id: technology
+      extra-outputs:
+        - id: profit
+
+    - id: dispatchable_production
+      parent-category: production
+      variables: # just an example of how to use variables in a category
+        - id: generation
+      extra-outputs:
+        - id: proportional_cost
+        - id: non_proportional_cost
+        - id: nb_units_on
+        - id: co2_emissions
+        - id: p_max_cluster
+        - id: min_generation_level
+        - id: up_margin
+        - id: down_margin
+      properties:
+        - id: plant
+
+    - id: fatal_production
+      parent-category: production
+      parameters:
+        - id: generation
+
+    - id: hydro_production
+      # TODO: confirm whether hydro_production should inherit from production
+      
+
+    - id: consumption
+      extra-outputs:
+        - id: effective_load
+      ports:
+        - id: balance_port
+      properties:
+        - id: carrier
+
+    - id: fatal_consumption
+      parent-category: consumption     
+
+    - id: flexible_consumption
+      parent-category: consumption
+      parameters:
+        - id: min_load
+        - id: max_load
+      
+
+    - id: storage
+      ports:
+        - id: injection_port
+      extra-outputs:
+        - id: p_injection
+        - id: p_withdrawal
+        - id: level
+      properties:
+        - id: group
+
+
+    - id: link
+      ports:
+        - id: out_port
+        - id: in_port
+      extra-outputs:
+        - id: flow
+        - id: congestion_fee_abs
+        - id: congestion_fee_alg
+        - id: capacity_shadow_price
+        - id: is_congested_direct
+        - id: is_congested_indirect
+        - id: proportional_cost
+
+    - id: converter
+      ports:
+        - id: out_port
+        - id: in_port
+
+
+    - id: rest_of_world
+      ports:
+        - id: balance_port
+
+    - id: coupling_models
+
+    - id: capacity_investment_decisions
+      ports:
+        - id: capacity_port

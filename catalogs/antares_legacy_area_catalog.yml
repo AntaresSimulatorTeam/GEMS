@@ -1,0 +1,303 @@
+# Such a file for "Business Metrics" definitions should be modified only by expert user in a text editor. No API/GUI is needed.
+# In "secure mode", a user can only refer to "Business Metrics Definition files" that are registered as "safe" in a reference repo.
+# In "free mode", a user can refer to "Business Metrics Definitions files" that are freely modified
+
+############################    Columns of a Business View   #######################################
+
+# metric_id | metric_location | breakdown_property | view_date | scenario_id | metric_value |
+
+####################################################################################################
+
+catalog:
+  
+  id: antares_area_output
+
+  taxonomy: my_taxonomy
+
+  location:
+    taxonomy-category: balance
+
+  metrics-definition: 
+
+  - id: OV.COST
+    terms:
+      - taxonomy-category: balance
+        output-id: imbalance_cost
+        location-ports: null 
+      - taxonomy-category: dispatchable_production
+        output-id: proportional_cost
+        location-ports: balance_port
+      - taxonomy-category: dispatchable_production
+        output-id: non_proportional_cost
+        location-ports: balance_port
+      #[TODO] : add hydro cost if possible
+    terms-operator: sum
+    time-operator: sum
+
+
+  - id: OP.COST
+    terms:
+      - taxonomy-category: dispatchable_production
+        output-id: proportional_cost
+        location-ports: balance_port
+      - taxonomy-category: dispatchable_production
+        output-id: non_proportional_cost
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
+  - id: MRG.PRICE
+    terms:
+      - taxonomy-category: balance
+        output-id: price
+        location-ports: null
+    terms-operator: avg
+    time-operator: avg
+
+  - id: CO2.EMIS
+    terms:
+      - taxonomy-category: dispatchable_production
+        output-id: co2_emissions
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
+  - id: LOAD
+    terms:
+      - taxonomy-category: consumption
+        output-id: effective_load
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
+  - id: DTG.BY.TECHNOLOGY
+    terms:
+      - taxonomy-category: dispatchable_production
+        output-id: balance_port.flow
+        location-ports: balance_port
+    terms-operator: sum
+    breakdown:
+      - key: technology
+    time-operator: sum
+
+  - id: BALANCE
+    terms:
+      - taxonomy-category: link
+        output-id: out_port.flow
+        location-ports: out_port
+      - taxonomy-category: link
+        output-id: in_port.flow
+        location-ports: in_port
+    terms-operator: sum
+    time-operator: sum
+
+  - id: RES.GENERATION
+    terms:
+      - taxonomy-category: fatal_production
+        output-id: balance_port.flow
+        location-ports: balance_port
+    breakdown:
+      - key: technology
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.INJECTION
+    terms:
+      - taxonomy-category: storage
+        output-id: p_injection 
+        location-ports: injection_port
+    breakdown:
+      - key: group
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.WITHDRAWAL
+    terms:
+      - taxonomy-category: storage
+        output-id: p_withdrawal
+        location-ports: injection_port
+    breakdown:
+      - key: group
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.LEVEL
+    terms:
+      - taxonomy-category: storage
+        output-id: level
+        location-ports: injection_port
+    breakdown:
+      - key: group
+    terms-operator: avg
+    time-operator: avg
+
+  - id: STS.INJECTION
+    terms:
+      - taxonomy-category: storage
+        output-id: p_injection
+        location-ports: injection_port
+    breakdown:
+      - key: group
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.WITHDRAWAL
+    terms:
+      - taxonomy-category: storage
+        output-id: p_withdrawal
+        location-ports: injection_port
+    breakdown:
+      - key: group
+    terms-operator: sum
+    time-operator: sum
+
+  - id: STS.LEVEL
+    terms:
+      - taxonomy-category: storage
+        output-id: level
+        location-ports: injection_port
+    breakdown:
+      - key: group
+    terms-operator: avg
+    time-operator: avg
+
+  - id: UNSP.ENRG
+    terms:
+      - taxonomy-category: balance
+        output-id: unsupplied_energy
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: SPIL.ENRG
+    terms:
+      - taxonomy-category: balance
+        output-id: spilled_energy
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: NODU.BY.AREA 
+    terms:
+      - taxonomy-category: dispatchable_production
+        output-id: nb_units_on
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
+  - id: NP.COST.BY.AREA 
+    terms:
+      - taxonomy-category: dispatchable_production
+        output-id: non_proportional_cost
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
+  - id: AVL.DTG # Can i directly use parameters?
+    terms:
+      - taxonomy-category: dispatchable_production
+        output-id: p_max_cluster
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
+  - id: DTG.MRG
+    terms:
+      - taxonomy-category: dispatchable_production
+        output-id: up_margin
+        location-ports: balance_port
+    terms-operator: sum
+    time-operator: sum
+
+  - id: LOLD
+    terms:
+      - taxonomy-category: balance
+        output-id: is_loss_of_load
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: LOLP
+    terms:
+      - taxonomy-category: balance
+        output-id: is_loss_of_load
+        location-ports: null
+    terms-operator: sum
+    time-operator: avg
+
+  - id: NP.CAP 
+    terms:
+      - taxonomy-category: balance
+        output-id: near_loss_of_load
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: ROW.BAL
+    terms:
+      - taxonomy-category: rest_of_world
+        output-id: balance_port.flow
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: MISC.NDG 
+    terms:
+      - taxonomy-category: fatal_production
+        output-id: generation
+        location-ports: null
+    breakdown:
+      - key: technology
+    terms-operator: sum
+    time-operator: sum
+
+
+######################################### [TODO] MAX.MRG REMAINS  #########################################
+
+
+#  - id: MAX.MRG # Calulation from hour to hour can differ for this metric max-mrg-utilis.cpp in Simulator 
+
+
+
+
+######################################### [TODO] HYDRO PART REMAINS  #########################################
+
+  - id: H.STOR #TO DO : correct/confirm this one
+    terms:
+      - taxonomy-category: hydro_production
+        output-id: hydro_generation
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: H.PUMP #TO DO : correct/confirm this one
+    terms:
+      - taxonomy-category: hydro_production
+        output-id: hydro_pump
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: H.OVFL #TO DO : correct/confirm this one
+    terms:
+      - taxonomy-category: hydro_production
+        output-id: hydro_overflow
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: H.VAL #TO DO : correct/confirm this one
+    terms:
+      - taxonomy-category: hydro_production
+        output-id: hydro_value
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
+
+  - id: H.COST #TO DO : correct/confirm this one
+    terms:
+      - taxonomy-category: hydro_production
+        output-id: hydro_cost
+        location-ports: null
+    terms-operator: sum
+    time-operator: sum
