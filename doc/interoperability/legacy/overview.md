@@ -7,10 +7,16 @@ description: Overview of the Legacy-to-GEMS Converter — an open-source Python 
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </a>
 </div>
-<div>
-<h1>About</h1>
 
-The Legacy to GEMS converter is an opensource python package. It aims to convert studies made in the Antares Legacy format into GEMS format; it transforms an Antares legacy study folder into a GEMS folder. 
+# About
 
+The [Legacy-to-GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) is an open-source Python package that transforms an Antares Legacy study folder into a GEMS study folder. A tutorial explainign how to use this converter is present through the [README](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/blob/main/README.md) file inside this repo.
 
-This converter is using the [antares_legacy_models library](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/blob/main/src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml) containing the components representing the Legacy elements.
+It relies on the [`antares_legacy_models` library](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/blob/main/src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml), which defines the Antares Legacy elements to convert, such as :
+
+- **area**, representing the *legacy* node
+- **load**, representing the *legacy* load element
+- **link**, representing the *legacy* link element
+- **renewable**, representing the *legacy* renewable cluster
+- **thermal**, representing the *legacy* thermal cluster
+- **short-term-storage**, representing the *legacy* short-term-storage cluster
