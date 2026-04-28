@@ -139,6 +139,8 @@ nav:
         - Outputs: interoperability/hybrid/outputs.md
         - Simple Example: interoperability/hybrid/example.md
         - Limitations: interoperability/hybrid/limitations.md
+      - Legacy to GEMS Converter:
+        - Overview: interoperability/legacy/overview.md
   - Examples:
       - Adequacy Example: examples/adequacy-example.md
   - Support & Contributing:
