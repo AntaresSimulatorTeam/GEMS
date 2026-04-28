@@ -672,6 +672,7 @@
     font-size: 14px;
     color: #333333;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .yaml-item-button:hover {

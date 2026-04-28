@@ -229,6 +229,9 @@
         yamlContent.style.fontFamily = 'Arial';
         yamlContent.style.fontSize = '13px';
         yamlContent.style.lineHeight = '1.5';
+        yamlContent.style.whiteSpace = 'pre-wrap';
+        yamlContent.style.wordBreak = 'normal';
+        yamlContent.style.overflowWrap = 'break-word';
         
         // Build the YAML text using the content builder function
         const yamlText = contentBuilder(data);
@@ -363,6 +366,8 @@
     function fitExpressionsInTwoLines(container) {
         container.querySelectorAll('.yaml-constraint-expression').forEach(el => {
             el.style.whiteSpace = 'pre-wrap';
+            el.style.wordBreak = 'normal';
+            el.style.overflowWrap = 'break-word';
             el.style.lineHeight = '1.4';
 
             const nbLignes = el.textContent.length / 46;
@@ -621,6 +626,7 @@
                         pfdBtn.textContent = escapeHtml(portName);
                         pfdBtn.setAttribute('type', 'button');
                         pfdBtn.setAttribute('aria-label', `Port field definition: ${portName}`);
+                        pfdBtn.style.width = `calc(${portName.length}ch + 18px)`;
                         
                         pfdBtn.addEventListener('click', (e) => {
                             showPortFieldDefPopup(pfd, e.currentTarget);
@@ -651,6 +657,7 @@
                         paramBtn.textContent = escapeHtml(paramName);
                         paramBtn.setAttribute('type', 'button');
                         paramBtn.setAttribute('aria-label', `Parameter: ${paramName}`);
+                        paramBtn.style.width = `calc(${paramName.length}ch + 18px)`;
 
                         paramBtn.addEventListener('click', (e) => {
                             showParameterPopup(param, e.currentTarget);
@@ -683,6 +690,7 @@
                         varBtn.textContent = escapeHtml(varName);
                         varBtn.setAttribute('type', 'button');
                         varBtn.setAttribute('aria-label', `Variable: ${varName}`);
+                        varBtn.style.width = `calc(${varName.length}ch + 18px)`;
 
                         varBtn.addEventListener('click', (e) => {
                             showVariablePopup(variable, e.currentTarget);
