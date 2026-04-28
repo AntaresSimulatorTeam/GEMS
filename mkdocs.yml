@@ -79,11 +79,11 @@ plugins:
 
 nav:
   - About GEMS:
-    - Home: index.md
-    - Key Principles: 0_Home/2_core_concepts.md
-    - Use Cases: 0_Home/3_use_cases.md
-    - Release Notes: 0_Home/4_release_notes.md
-    - Support: 0_Home/5_support.md
+      - Home: index.md
+      - Key Principles: 0_Home/2_core_concepts.md
+      - Use Cases: 0_Home/3_use_cases.md
+      - Release Notes: 0_Home/4_release_notes.md
+      - Support: 0_Home/5_support.md
   - Overview:
       - Architecture: 1_Overview/1_Architecture.md
       - Core Concepts: 1_Overview/2_glossary.md
@@ -98,50 +98,52 @@ nav:
           - Users of GEMS: 1_Overview/5_References/3_Users.md
   - Getting Started:
       - Installation:
-        - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
-        - GemsPy: 2_Getting_Started/1B_gemspy_installation.md
+          - Antares Simulator's GEMS Interpreter: 2_Getting_Started/1A_modeler_installation.md
+          - GemsPy: 2_Getting_Started/1B_gemspy_installation.md
       - Quick Start Examples:
-        - Three-bus system - Simple Adequacy Example: 
-          - Overview : 2_Getting_Started/2A_QSE_adequacy.md
-          - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
-        - Unit Commitment Example: 2_Getting_Started/2B_QSE_unit_commitment.md
+          - Three-bus system - Simple Adequacy Example:
+              - Overview: 2_Getting_Started/2A_QSE_adequacy.md
+              - Mathematical Formulation: 2_Getting_Started/2A_QSE_adequacy_math_model.md
+          - Unit Commitment Example: 2_Getting_Started/2B_QSE_unit_commitment.md
   - User Guide:
       - Introduction: 3_User_Guide/1_introduction.md
       - Mathematical Syntax: 3_User_Guide/2_mathematical_syntax.md
       - File Structure:
-        - Overview: 3_User_Guide/3_GEMS_File_Structure/1_overview.md
-        - Library File: 3_User_Guide/3_GEMS_File_Structure/2_library.md
-        - System File: 3_User_Guide/3_GEMS_File_Structure/3_system.md
-        - Dataseries File: 3_User_Guide/3_GEMS_File_Structure/4_data_series.md
-        - Scenario Builder File: 3_User_Guide/3_GEMS_File_Structure/5_scenario_builder.md
-        - Solver parameters and optimization configuration files: 3_User_Guide/3_GEMS_File_Structure/6_solver_optimization.md
-        - Taxonomy File: 3_User_Guide/3_GEMS_File_Structure/7_taxonomy.md
-        - Business Views configuration files: 3_User_Guide/3_GEMS_File_Structure/8_business_view_configuration.md
+          - Overview: 3_User_Guide/3_GEMS_File_Structure/1_overview.md
+          - Library File: 3_User_Guide/3_GEMS_File_Structure/2_library.md
+          - System File: 3_User_Guide/3_GEMS_File_Structure/3_system.md
+          - Dataseries File: 3_User_Guide/3_GEMS_File_Structure/4_data_series.md
+          - Scenario Builder File: 3_User_Guide/3_GEMS_File_Structure/5_scenario_builder.md
+          - Solver parameters and optimization configuration files: 3_User_Guide/3_GEMS_File_Structure/6_solver_optimization.md
+          - Taxonomy File: 3_User_Guide/3_GEMS_File_Structure/7_taxonomy.md
+          - Business Views configuration files: 3_User_Guide/3_GEMS_File_Structure/8_business_view_configuration.md
       - Theoretical Concepts:
-        - Hypergraph Structure: 3_User_Guide/4_Theoretical_Concepts/1_hypergraph_structure.md
-        - Optimization Problem: 3_User_Guide/4_Theoretical_Concepts/2_optimization_problem.md
+          - Hypergraph Structure: 3_User_Guide/4_Theoretical_Concepts/1_hypergraph_structure.md
+          - Optimization Problem: 3_User_Guide/4_Theoretical_Concepts/2_optimization_problem.md
       - Outputs:
-        - Simulation Table: 3_User_Guide/5_Outputs/1_simulation_table.md
-        - Optimization Problem files: 3_User_Guide/5_Outputs/2_optimization_problem_files.md
-        - Business View: 3_User_Guide/5_Outputs/3_business_view.md
+          - Simulation Table: 3_User_Guide/5_Outputs/1_simulation_table.md
+          - Optimization Problem files: 3_User_Guide/5_Outputs/2_optimization_problem_files.md
+          - Business View: 3_User_Guide/5_Outputs/3_business_view.md
   - Interoperability:
-      - PyPSA to GEMS Converter: 
-        - Overview: 4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview.md
-        - How the Converter Works: 4_Interoperability/1_PyPSA_to_GEMS_converter/2_how_the_converter_works.md
-        - Input and Output of the Converter: 4_Interoperability/1_PyPSA_to_GEMS_converter/3_input_and_output.md
-        - Current Limitations of the Converter: 4_Interoperability/1_PyPSA_to_GEMS_converter/4_current_limitations.md
-        - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: 4_Interoperability/1_PyPSA_to_GEMS_converter/5_step_by_step_guide.md
-        - Comparing Results Between GEMS Modeler and PyPSA: 4_Interoperability/1_PyPSA_to_GEMS_converter/6_comparing_results.md
+      - PyPSA to GEMS Converter:
+          - Overview: 4_Interoperability/1_PyPSA_to_GEMS_converter/1_overview.md
+          - How the Converter Works: 4_Interoperability/1_PyPSA_to_GEMS_converter/2_how_the_converter_works.md
+          - Input and Output of the Converter: 4_Interoperability/1_PyPSA_to_GEMS_converter/3_input_and_output.md
+          - Current Limitations of the Converter: 4_Interoperability/1_PyPSA_to_GEMS_converter/4_current_limitations.md
+          - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: 4_Interoperability/1_PyPSA_to_GEMS_converter/5_step_by_step_guide.md
+          - Comparing Results Between GEMS Modeler and PyPSA: 4_Interoperability/1_PyPSA_to_GEMS_converter/6_comparing_results.md
       - Antares Hybrid Mode:
-        - Overview: 4_Interoperability/3_hybrid/1_overview.md
-        - Coupling GEMS Components with Legacy Areas: 4_Interoperability/3_hybrid/2_hybrid_connections.md
-        - Run a Hybrid Study: 4_Interoperability/3_hybrid/4_how_to_run.md
-        - Outputs: 4_Interoperability/3_hybrid/3_outputs.md
-        - Simple Example: 4_Interoperability/3_hybrid/5_example.md
-        - Limitations: 4_Interoperability/3_hybrid/6_limitations.md
+          - Overview: 4_Interoperability/3_hybrid/1_overview.md
+          - Coupling GEMS Components with Legacy Areas: 4_Interoperability/3_hybrid/2_hybrid_connections.md
+          - Run a Hybrid Study: 4_Interoperability/3_hybrid/4_how_to_run.md
+          - Outputs: 4_Interoperability/3_hybrid/3_outputs.md
+          - Simple Example: 4_Interoperability/3_hybrid/5_example.md
+          - Limitations: 4_Interoperability/3_hybrid/6_limitations.md
   - Examples:
       - Adequacy Example: 5_Examples/1_adequacy_example.md
   - Support & Contributing:
       - FAQ: 6_Support_Contributing/1_faq.md
       - Contact: 6_Support_Contributing/2_contact.md
-      - Contributing: 6_Support_Contributing/3_contributing.md
+      - For Developers:
+          - Contributing: 6_Support_Contributing/3_contributing.md
+          - PR Workflow: 6_Support_Contributing/4_dev_guidelines.md

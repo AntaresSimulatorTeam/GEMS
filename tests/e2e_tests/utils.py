@@ -15,7 +15,6 @@ import pytest
 
 from .env import EnvironmentPaths
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -100,7 +99,9 @@ def unzip_antares_study(zip_folder: Path, antares_zip_name: str) -> Path:
     return study_dir
 
 
-def copy_model_library(paths: EnvironmentPaths, gems_study_path: Path, library_filename: str) -> None:
+def copy_model_library(
+    paths: EnvironmentPaths, gems_study_path: Path, library_filename: str
+) -> None:
     """
     Install a model library into <study>/input/model-libraries.
     If a symlink (even dangling) already exists at that path, it is removed first.
@@ -138,8 +139,7 @@ def get_gems_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
 
     output_dir = study_dir / "output"
     result_files = [
-        f for f in output_dir.iterdir()
-        if f.is_file() and f.name.startswith("simulation_table")
+        f for f in output_dir.iterdir() if f.is_file() and f.name.startswith("simulation_table")
     ]
 
     if not result_files:

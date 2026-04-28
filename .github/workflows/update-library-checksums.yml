@@ -1,0 +1,67 @@
+name: Update Library SHA256 Checksums
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'libraries/*.yml'
+      - '!libraries/pypsa_models.yml'
+      - '!libraries/antares_legacy_models.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-checksums:
+    name: Check and update library SHA256 checksums
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Check and update SHA256 checksums
+        id: checksums
+        run: |
+          changed=false
+
+          # Libraries managed by converter repos — excluded from this workflow
+          excluded="pypsa_models.yml antares_legacy_models.yml"
+
+          cd libraries
+          for yml_file in *.yml; do
+            if echo "$excluded" | grep -qw "$yml_file"; then
+              echo "$yml_file: skipped (managed by converter repo)"
+              continue
+            fi
+            sha_file="${yml_file}.sha256"
+            current_hash=$(sha256sum "$yml_file")
+
+            if [ ! -f "$sha_file" ]; then
+              echo "$yml_file: no checksum file found — generating"
+              echo "$current_hash" > "$sha_file"
+              changed=true
+            else
+              stored_hash=$(cat "$sha_file")
+              if [ "$current_hash" = "$stored_hash" ]; then
+                echo "$yml_file: checksum unchanged"
+              else
+                echo "$yml_file: checksum changed — updating"
+                echo "$current_hash" > "$sha_file"
+                changed=true
+              fi
+            fi
+          done
+
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+
+      - name: Commit updated checksums
+        if: steps.checksums.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add libraries/*.sha256
+          git commit -m "chore: update library SHA256 checksums [skip ci]"
+          git push

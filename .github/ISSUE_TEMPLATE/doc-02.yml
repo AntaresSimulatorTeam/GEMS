@@ -1,0 +1,83 @@
+name: "DOC-02 — Internal documentation improvement"
+description: Track website updates, content fixes, structural improvements, or clarifications to GEMS documentation
+title: "[DOC-02] "
+labels: ["DOC-02", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Process DOC-02** — Triggered by internal initiative to improve the GEMS documentation website. Not driven by an external tool update.
+
+        > **Deviation from standard workflow — Step 8:** versioning may be limited to a patch bump. A dedicated release is not required for documentation-only changes.
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Type of Change
+      options:
+        - New content
+        - Fix inconsistency or error
+        - Restructure or reorganise sections
+        - Improve or add examples
+        - Language clarification (may require patch version bump)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What improvement is being proposed and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_sections
+    attributes:
+      label: Affected Documentation Sections
+      description: Which doc pages or sections are affected? (e.g. `doc/2_model_library/`, `doc/0_quickstart/`)
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Process Checklist
+      value: |
+        ### Step 1 — Issue Creation
+        - [x] Issue created and linked to process DOC-02
+
+        ### Step 2 — Triage
+        - [ ] Process confirmed applicable
+        - [ ] Assigned to responsible contributor
+        - [ ] Priority and milestone set (if applicable)
+
+        ### Step 3 — Impact Analysis
+        - [ ] Affected documentation sections identified
+        - [ ] Inconsistencies between documentation and existing implementation identified
+        - [ ] Assessed whether change affects the GEMS Language definition (or is purely editorial/structural)
+        - [ ] No undocumented behavior will be introduced
+
+        ### Step 4 — Implementation
+        - [ ] Documentation pages updated
+        - [ ] Internal links verified
+        - [ ] No inconsistency introduced between documentation and implementation
+
+        ### Step 5 — Testing & Validation
+        - [ ] All documentation examples validated (no broken or incorrect examples)
+
+        ### Step 6 — CI Validation
+        - [ ] Documentation build passes (`mkdocs build`) without warnings
+
+        ### Step 7 — Review & Merge
+        - [ ] PR reviewed alongside documentation changes
+
+        ### Step 8 — Versioning ⚠️ patch bump only (or none for purely editorial changes)
+        - [ ] If purely editorial/structural: no version bump required; if language clarification: a documentation patch release is expected
+
+        ### Step 9 — Documentation & Changelog
+        - [ ] If language clarification: release notes entry added (`doc/0_Home/4_release_notes.md`)
+        - [ ] `AGENTS.md` reviewed for impact and updated if needed
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines

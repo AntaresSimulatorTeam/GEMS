@@ -44,7 +44,9 @@ def prepare_and_run_doc_study(
         ("QSE_2_Unit_Commitment", "antares_legacy_models.yml", 798277.0),
     ],
 )
-def test_doc_qse_examples(tmp_root, paths, study_name: str, library_filename: str, expected_objective: float) -> None:
+def test_doc_qse_examples(
+    tmp_root, paths, study_name: str, library_filename: str, expected_objective: float
+) -> None:
     gems_objective = prepare_and_run_doc_study(
         paths=paths,
         tmp_root=tmp_root,

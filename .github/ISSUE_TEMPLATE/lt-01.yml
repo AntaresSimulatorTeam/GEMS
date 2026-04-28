@@ -1,0 +1,104 @@
+name: "LT-01 — Antares evolution impact on libraries and taxonomies"
+description: Track updates to GEMS model libraries or taxonomies triggered by a new Antares-Simulator/Modeler release
+title: "[LT-01] Antares update — library/taxonomy impact"
+labels: ["LT-01", "antares-update"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Process LT-01** — Triggered by a new Antares-Simulator/Modeler release that affects GEMS model libraries or taxonomies.
+
+        > **Deviation from standard workflow — Step 4:** enforce alignment with GEMS Language semantics. All model and taxonomy updates must remain consistent with the GEMS Language specification (see DOC-01 if the spec itself changes).
+
+  - type: input
+    id: antares_new_version
+    attributes:
+      label: New Antares Version
+      placeholder: "e.g. 9.4.0"
+    validations:
+      required: true
+
+  - type: input
+    id: antares_previous_version
+    attributes:
+      label: Previous Tracked Version
+      placeholder: "e.g. 9.3.2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger
+      description: What changed in the new Antares release that affects libraries or taxonomies? Link to release notes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_libraries
+    attributes:
+      label: Potentially Affected Libraries
+      description: List all libraries from `libraries/` that need to be reviewed (one per line).
+      placeholder: |
+        - antares_legacy_models.yml
+        - basic_models_library.yml
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation_strategy
+    attributes:
+      label: Validation Strategy
+      description: How will equivalence be validated? (comparison studies, reference values, E2E against new binary?)
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Process Checklist
+      value: |
+        ### Step 1 — Issue Creation
+        - [x] Issue created and linked to process LT-01
+
+        ### Step 2 — Triage
+        - [ ] Process confirmed applicable
+        - [ ] Assigned to responsible contributor
+        - [ ] Priority and milestone set (if applicable)
+
+        ### Step 3 — Impact Analysis
+        - [ ] Antares release notes reviewed for library-relevant changes
+        - [ ] Each affected library YAML checked for compatibility with new Antares version
+        - [ ] Breaking vs backward-compatible changes identified per library
+        - [ ] Modeling behavior impact assessed (changes in optimization formulation)
+        - [ ] Results impact assessed (objective function values expected to change?)
+        - [ ] Dependencies assessed (affected studies in `resources/`)
+
+        ### Step 4 — Implementation ⚠️ enforce alignment with GEMS Language semantics
+        - [ ] Models and taxonomies updated to reflect GEMS Language changes (aligned with DOC-01 if applicable)
+        - [ ] No semantic inconsistency introduced with GEMS Language definition
+        - [ ] Backward compatibility maintained unless explicitly intended as breaking
+        - [ ] All studies referencing updated models verified (parameter counts, port refs)
+
+        ### Step 5 — Testing & Validation
+        - [ ] Unit tests pass
+        - [ ] Comparison studies run: previous Antares version vs new version (objective values compared)
+        - [ ] E2E tests pass against new Antares binary
+
+        ### Step 6 — CI Validation
+        - [ ] E2E tests pass in CI
+
+        ### Step 7 — Review & Merge
+        - [ ] PR reviewed alongside documentation changes
+
+        ### Step 8 — Versioning
+        - [ ] `dependencies.json` `antares_simulator_version` updated to new version
+        - [ ] `version` field bumped in each affected library YAML (`libraries/<library>.yml`)
+
+        ### Step 9 — Documentation & Changelog
+        - [ ] Changelog entry added for each affected library (`libraries/CHANGELOG-<library>.md`)
+        - [ ] `COMPATIBILITY.md` updated with new version mapping
+        - [ ] `AGENTS.md` reviewed for impact and updated if needed
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines

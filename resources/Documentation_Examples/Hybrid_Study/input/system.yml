@@ -5,7 +5,7 @@ system:
 
     - id: wind_farm
       model: basic_models_library.renewable
-      
+
       parameters:
         - id: generation
           time-dependent: true
