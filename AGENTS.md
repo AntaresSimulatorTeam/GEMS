@@ -25,7 +25,7 @@ Repository: `AntaresSimulatorTeam/GEMS` — License: MPL 2.0
   ISSUE_TEMPLATE/             # Issue templates (antares-update, doc-01, doc-02, lt-01, lt-02, lt-03)
   PULL_REQUEST_TEMPLATE.md    # PR template with process ID and checklist
 doc/                          # MkDocs documentation source (sections 0-6)
-libraries/                    # Shared YAML model libraries (4 files)
+libraries/                    # Shared YAML model libraries (4 files); each carries a `library.version` field
   CHANGELOG-<library>.md      # Per-library changelogs
 resources/
   Documentation_Examples/     # Quick-start example studies
@@ -33,9 +33,8 @@ resources/
 tests/
   e2e_tests/                  # pytest e2e tests (require Antares binary)
   unit_tests/                 # pytest unit tests for Python utilities (no binary required)
-dependencies.json             # Version tracking (antares-simulator, libraries, gems-language)
-CHANGELOG-gems-language.md    # GEMS Language changelog
-COMPATIBILITY.md              # GEMS Language ↔ Antares ↔ GemsPy version matrix
+dependencies.json             # Version tracking (antares-simulator only)
+COMPATIBILITY.md              # Documentation/Language ↔ Antares ↔ GemsPy version matrix
 mkdocs.yml                    # Documentation site config
 pyproject.toml                # Tool configuration (ruff, mypy) — not a package descriptor
 requirements.txt              # Python runtime dependencies
@@ -153,7 +152,9 @@ Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 5. **Do not commit** `venv/`, `documentation_env/`, `site/`, `tmp/`, or extracted Antares binary directories.
 
-6. **Version tracking.** All versions are tracked in `dependencies.json` at the repo root. It is the single source of truth — `tests/e2e_tests/env.py` reads `antares_simulator_version` dynamically and the workflows read it via `jq`. Updating `dependencies.json` is sufficient; no other files need to be edited.
+6. **Version tracking.** Versions are tracked in two places:
+   - **`dependencies.json`** — `antares_simulator_version` only. Read dynamically by `tests/e2e_tests/env.py` and CI workflows via `jq`. Update this file when adopting a new Antares release.
+   - **`libraries/<library>.yml`** — each library carries a `library.version` field. Bump this field (and add a changelog entry in `libraries/CHANGELOG-<library>.md`) whenever the library changes. The documentation release version (`doc/0_Home/4_release_notes.md`) serves as the GEMS Language version — no separate language version field exists.
 
 7. **Floating-point comparisons.** Always use `pytest.approx()` for objective value assertions. Never use `==` for floating-point comparison.
 
