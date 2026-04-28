@@ -192,32 +192,30 @@ All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`).
 | Component | Bump rule | Version file |
 |---|---|---|
 | Converter (`pyproject.toml`) | Major: Antares major bump / Minor: bug fix, new feature, PyPSA update / Patch: dependency update or library-only change | `pyproject.toml` |
-| PyPSA Models Library | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `dependencies.json` → `pypsa_models_library_version` |
+| PyPSA Models Library | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `resources/pypsa_models/pypsa_models.yml` |
 | PyPSA | Pinned version | `requirements.txt` |
 | Antares-Simulator | Pinned version used by CI | `dependencies.json` → `antares_version` |
-
-> **Note:** The PyPSA converter uses the key `antares_version` while the AntaresLegacy converter uses `antares_simulator_version`. These are intentionally different keys in each repo's `dependencies.json`.
 
 ### AntaresLegacyModels-to-GEMS-Converter
 
 | Component | Bump rule | Version file |
 |---|---|---|
 | Converter (`pyproject.toml`) | Major: Antares major bump / Minor: bug fix, new feature, antares-craft or GemsPy update / Patch: dependency update or library-only change | `pyproject.toml` |
-| Antares Legacy Models Library | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `dependencies.json` → `antares_legacy_models_library_version` |
+| Antares Legacy Models Library | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` |
 | Antares-Simulator | Pinned version used by CI | `dependencies.json` → `antares_simulator_version` |
 | antares-craft | Pinned version | `requirements.txt` |
 | GemsPy | Pinned version | `requirements.txt` |
 
 ### GEMS
 
-| Component | Bump rule | Key in `dependencies.json` |
+| Component | Bump rule | Version field |
 |---|---|---|
-| GEMS Language | Major: breaking syntax change / Minor: new construct or keyword / Patch: clarification or doc fix | `gems_language_version` |
-| basic\_models\_library | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `basic_models_library_version` |
-| antares\_legacy\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `antares_legacy_models_version` |
-| pypsa\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `pypsa_models_version` |
-| andromede\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `andromede_models_version` |
-| Antares-Simulator | Pinned version used by CI and E2E tests | `antares_simulator_version` |
+| GEMS Language / Documentation | Versioned together with the documentation. Major: breaking syntax change / Minor: new construct or keyword / Patch: clarification or doc fix | Release notes at `doc/0_Home/4_release_notes.md` |
+| basic\_models\_library | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `libraries/basic_models_library.yml` |
+| antares\_legacy\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `libraries/antares_legacy_models.yml` |
+| pypsa\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `libraries/pypsa_models.yml` |
+| andromede\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `libraries/andromede_models.yml` |
+| Antares-Simulator | Pinned version used by CI and E2E tests | `dependencies.json` → `antares_simulator_version` |
 
 ---
 
@@ -231,7 +229,7 @@ Every repository and every independently versioned model library maintains a ded
 |---|---|
 | PyPSA-to-GEMS-Converter | `CHANGELOG.md` at repo root |
 | AntaresLegacyModels-to-GEMS-Converter | `CHANGELOG.md` at repo root |
-| GEMS | `CHANGELOG-gems-language.md` at repo root (GEMS Language changes only) |
+| GEMS | Release notes at `doc/0_Home/4_release_notes.md` (serves as the GEMS Language changelog) |
 
 ### Library Changelogs
 
@@ -285,21 +283,19 @@ When a model library is updated in a converter, an issue is automatically create
 
 | Workflow | From | To | Trigger |
 |---|---|---|---|
-| `notify-gems-pypsa-models-update` | PyPSA Converter | GEMS | Push to `main` where `pypsa_models_library_version` in `dependencies.json` changed vs last `pypsa_models-v*` library tag |
-| `notify-gems-antares-legacy-models-update` | AntaresLegacy Converter | GEMS | Push to `main` where `antares_legacy_models_library_version` in `dependencies.json` changed vs last `antares_legacy_models-v*` library tag |
-
-Each library has its own dedicated tag namespace (`pypsa_models-v*`, `antares_legacy_models-v*`), separate from the converter release tags (`vX.Y.Z`).
+| `notify-gems-pypsa-models-update` | PyPSA Converter | GEMS | Push to `main` that modifies `resources/pypsa_models/pypsa_models.yml` |
+| `notify-gems-antares-legacy-models-update` | AntaresLegacy Converter | GEMS | Push to `main` that modifies `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` |
 
 **How the workflow runs (step by step):**
 
-1. Triggered on push to `main` when `dependencies.json` changes.
-2. Reads the current library version from `dependencies.json` at HEAD.
-3. Finds the most recent library tag (e.g. the latest `pypsa_models-v*` tag). On the very first run, no tag exists yet — the previous version is treated as empty.
-4. Compares current vs previous version.
-5. If unchanged → workflow exits with no action.
-6. If changed → pushes a new library tag (e.g. `pypsa_models-v1.1.0`) onto the HEAD commit of `main`, then opens an issue in the GEMS repository.
+1. Triggered on push to `main` when the library YAML file changes.
+2. Reads the current `library.version` from the converter's library YAML.
+3. Fetches the `library.version` currently in the GEMS repository via the GitHub API (`GEMS_REPO_PAT`).
+4. Compares the two versions.
+5. If equal → GEMS is already up to date; workflow exits with no action.
+6. If different → opens an issue in the GEMS repository prompting synchronisation.
 
-This means a converter release without a library change never triggers a notification. Duplicate issues for the same version are suppressed.
+This means the notification reflects the true synchronisation state between the converter and GEMS — it fires whenever the converter's library is ahead of GEMS, regardless of git history. Duplicate issues for the same version are suppressed.
 
 Both workflows require the `GEMS_REPO_PAT` secret (a Personal Access Token with `repo` scope on the GEMS repository).
 
@@ -340,7 +336,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 | File | What to change |
 |---|---|
 | `pyproject.toml` | Bump `version` to `1.2.0` |
-| `dependencies.json` | Bump `pypsa_models_library_version` to `1.1.0` (only if library changed) |
+| `resources/pypsa_models/pypsa_models.yml` | Bump `library.version` to `1.1.0` (only if library changed) |
 | `CHANGELOG.md` | Add converter release entry |
 | `resources/pypsa_models/CHANGELOG-pypsa_models_library.md` | Add library release entry (only if library changed) |
 
@@ -354,7 +350,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
    ```
 
 2. Open a version bump PR to `develop`
-   - Update `pyproject.toml`, `dependencies.json`, `CHANGELOG.md`, and `resources/pypsa_models/CHANGELOG-pypsa_models_library.md`
+   - Update `pyproject.toml`, `resources/pypsa_models/pypsa_models.yml`, `CHANGELOG.md`, and `resources/pypsa_models/CHANGELOG-pypsa_models_library.md`
    - PR title: `[PR] Release v1.2.0 — version bump`
    - Squash & merge to `develop`
 
@@ -377,7 +373,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 
 5. Go to GitHub → Releases → Draft a new release → select tag `v1.2.0` → paste the changelog entry → publish.
 
-6. Cross-repo notification (automatic) — if `pypsa_models_library_version` was bumped, the `notify-gems-pypsa-models-update` workflow fires automatically on the `main` merge. It pushes `pypsa_models-v1.1.0` and opens an issue in GEMS. No manual action needed.
+6. Cross-repo notification (automatic) — if `library.version` in `resources/pypsa_models/pypsa_models.yml` was bumped, the `notify-gems-pypsa-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ. No manual action needed.
 
 ---
 
@@ -390,7 +386,7 @@ Same flow as the PyPSA converter. The example below releases converter version `
 | File | What to change |
 |---|---|
 | `pyproject.toml` | Bump `version` to `1.2.0` |
-| `dependencies.json` | Bump `antares_legacy_models_library_version` to `1.1.0` (only if library changed) |
+| `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` | Bump `library.version` to `1.1.0` (only if library changed) |
 | `CHANGELOG.md` | Add converter release entry |
 | `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md` | Add library release entry (only if library changed) |
 
@@ -399,13 +395,13 @@ Same flow as the PyPSA converter. The example below releases converter version `
 1. Make sure `develop` is up to date (same as PyPSA converter step 1).
 
 2. Open a version bump PR to `develop`
-   - Update `pyproject.toml`, `dependencies.json`, `CHANGELOG.md`, and `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md`
+   - Update `pyproject.toml`, `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml`, `CHANGELOG.md`, and `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md`
    - PR title: `[PR] Release v1.2.0 — version bump`
    - Squash & merge to `develop`
 
 3. Open PR `develop` → `main`, merge commit, publish GitHub release (same as PyPSA converter steps 3–5).
 
-4. Cross-repo notification (automatic) — if `antares_legacy_models_library_version` was bumped, the `notify-gems-antares-legacy-models-update` workflow fires automatically on the `main` merge. It pushes `antares_legacy_models-v1.1.0` and opens an issue in GEMS.
+4. Cross-repo notification (automatic) — if `library.version` in `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` was bumped, the `notify-gems-antares-legacy-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ.
 
 ---
 
@@ -423,11 +419,10 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 
 | File | What to change |
 |---|---|
-| `dependencies.json` | Bump the relevant version key(s) (e.g. `pypsa_models_version`, `gems_language_version`) |
-| `libraries/<library_name>.yml` | Apply library changes |
+| `libraries/<library_name>.yml` | Apply library changes and bump `library.version` |
 | `libraries/CHANGELOG-<library_name>.md` | Add library changelog entry |
-| `CHANGELOG-gems-language.md` | Add entry if GEMS Language spec changed |
-| `COMPATIBILITY.md` | Update if `antares_simulator_version` changed |
+| `doc/0_Home/4_release_notes.md` | Add release notes entry if GEMS Language spec changed |
+| `COMPATIBILITY.md` | Update documentation version and/or Antares version mapping if changed |
 
 #### GEMS — Steps
 
@@ -506,8 +501,8 @@ After the merge to `main`, a `release/vX.Y.Z` branch is created from `main` HEAD
 ### Library version tags
 
 - Format: `<library_name>-vX.Y.Z` (e.g. `pypsa_models-v1.1.0`, `antares_legacy_models-v1.2.0`)
-- Created automatically by the cross-repo notification workflow on the HEAD commit of `main` when a library version change is detected
-- Independent of the converter release tag — a library tag is only created when `pypsa_models_library_version` or `antares_legacy_models_library_version` in `dependencies.json` actually changes
+- **Not created automatically** — the cross-repo notification workflows no longer push library tags. The `library.version` field inside each library YAML is the authoritative version record.
+- May be created manually for audit or release traceability purposes if needed.
 
 ---
 
