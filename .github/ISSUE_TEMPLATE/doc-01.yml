@@ -105,10 +105,9 @@ body:
 
         ### Step 8 — Versioning
         - [ ] `dependencies.json` `antares_simulator_version` updated to new version
-        - [ ] `dependencies.json` `gems_language_version` bumped (minor if new features, patch if clarification only)
 
         ### Step 9 — Documentation & Changelog
-        - [ ] `CHANGELOG-gems-language.md` entry added
+        - [ ] Release notes entry added (`doc/0_Home/4_release_notes.md`)
         - [ ] `COMPATIBILITY.md` updated with new version mapping
 
         ### Step 10 — Release

@@ -17,8 +17,8 @@
 ## Checklist
 
 - [ ] E2E tests pass (or confirmed not affected)
-- [ ] Library version bumped if library changed (`dependencies.json`)
+- [ ] Library version bumped if library changed (`library.version` in `libraries/<library>.yml`)
 - [ ] Changelog entry added if library changed (`libraries/CHANGELOG-<library>.md`)
-- [ ] GEMS Language changelog updated if language-level change (`CHANGELOG-gems-language.md`)
+- [ ] Release notes entry added if language-level change (`doc/0_Home/4_release_notes.md`)
 - [ ] Compatibility matrix updated if applicable (`COMPATIBILITY.md`)
 - [ ] Documentation updated or confirmed up to date

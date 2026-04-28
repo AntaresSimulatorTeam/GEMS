@@ -73,11 +73,10 @@ body:
         - [ ] PR reviewed alongside documentation changes
 
         ### Step 8 — Versioning ⚠️ patch bump only (or none for purely editorial changes)
-        - [ ] If language clarification: `dependencies.json` `gems_language_version` patch version bumped
-        - [ ] If purely editorial/structural: no version bump required
+        - [ ] If purely editorial/structural: no version bump required; if language clarification: a documentation patch release is expected
 
         ### Step 9 — Documentation & Changelog
-        - [ ] If language clarification: `CHANGELOG-gems-language.md` entry added
+        - [ ] If language clarification: release notes entry added (`doc/0_Home/4_release_notes.md`)
 
         ### Step 10 — Release
         - [ ] If a release is needed: follow the release process in the Developer Guidelines

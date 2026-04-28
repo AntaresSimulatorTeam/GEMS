@@ -1,14 +1,14 @@
 # GEMS Compatibility Matrix
 
-This table maps GEMS Language versions to the interpreter and library versions they are compatible with.
+This table maps documentation/language versions to the interpreter and library versions they are compatible with.
 
-| GEMS Language | Antares-Simulator | GemsPy | Notes |
-|---------------|-------------------|--------------------------|-------|
-| 1.0.0         | 10.0.0             | —                        | Initial release |
+| Documentation | Antares-Simulator | GemsPy | Notes |
+|---------------|-------------------|--------|-------|
+| v0.3.0        | 10.0.0            | —      | Initial release |
 
 ## Versioning Policy
 
-- **GEMS Language** — `gems_language_version` in `dependencies.json`. Bumped when the language specification changes (new keywords, syntax changes, removed features).
+- **GEMS Language / Documentation** — versioned together. The documentation release version (tracked in `doc/0_Home/4_release_notes.md`) is the canonical language version. Bumped whenever the language specification or documentation changes; a future distinction between language and documentation versions may be introduced.
 - **Antares-Simulator** — `antares_simulator_version` in `dependencies.json`. The version against which E2E tests are run.
 - **antares-modeler (GemsPy)** — the Antares GEMS interpreter version. Updated when interpreter-specific behavior changes.
 
