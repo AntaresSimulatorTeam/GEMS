@@ -103,7 +103,7 @@ body:
         - [ ] PR reviewed alongside documentation changes
 
         ### Step 8 — Versioning
-        - [ ] Library version bumped (`dependencies.json`) per semantic versioning rules
+        - [ ] `version` field bumped in `libraries/<library>.yml` per semantic versioning rules
 
         ### Step 9 — Documentation & Changelog
         - [ ] Changelog entry added (`libraries/CHANGELOG-<library>.md`)

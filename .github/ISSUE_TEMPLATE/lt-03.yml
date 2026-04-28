@@ -104,7 +104,7 @@ body:
         - [ ] PR reviewed alongside documentation
 
         ### Step 8 — Versioning
-        - [ ] Version key added to `dependencies.json` (starting at `1.0.0`)
+        - [ ] `version` field added to the library YAML (`libraries/<name>.yml`, starting at `1.0.0`)
 
         ### Step 9 — Documentation & Changelog
         - [ ] Changelog file created (`libraries/CHANGELOG-<name>.md`)

@@ -21,9 +21,9 @@ This table maps GEMS Language versions to the interpreter and library versions t
 
 ## Library Versions
 
-| Library | Current Version | Key in `dependencies.json` |
-|---------|----------------|----------------------------|
-| `basic_models_library` | 1.0.0 | `basic_models_library_version` |
-| `antares_legacy_models` | 1.0.0 | `antares_legacy_models_version` |
-| `pypsa_models` | 1.0.0 | `pypsa_models_version` |
-| `andromede_models` | 1.0.0 | `andromede_models_version` |
+| Library | Current Version | Version Field |
+|---------|----------------|---------------|
+| `basic_models_library` | 1.0.0 | `library.version` in `libraries/basic_models_library.yml` |
+| `antares_legacy_models` | 1.0.0 | `library.version` in `libraries/antares_legacy_models.yml` |
+| `pypsa_models` | 1.0.0 | `library.version` in `libraries/pypsa_models.yml` |
+| `andromede_models` | 1.0.0 | `library.version` in `libraries/andromede_models.yml` |

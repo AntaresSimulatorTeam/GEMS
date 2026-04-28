@@ -11,7 +11,8 @@
 # This file is part of the Antares project.
 library:
   id: antares_legacy_models
-  description: Antares historic model library (v1.0.0)
+  description: Antares historic model library
+  version: "1.0.0"
 
   port-types:
     - id: flow

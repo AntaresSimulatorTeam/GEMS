@@ -12,7 +12,8 @@
 
 library:
   id: andromede-v1-models
-  description: Andromede Project model library (v1.0.0)
+  description: Andromede Project model library
+  version: "1.0.0"
 
   port-types:
     - id: flow

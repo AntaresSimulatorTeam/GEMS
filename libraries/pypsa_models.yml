@@ -18,7 +18,8 @@
 
 library:
   id: pypsa_models
-  description: PyPSA model library (v1.0.0)
+  description: PyPSA model library
+  version: "1.0.0"
   # https://pypsa.readthedocs.io/en/latest/user-guide/components.html#
 
   port-types:
@@ -78,7 +79,7 @@ library:
           scenario-dependent: false # Since PyPSA v0.x does not manage simultaneous scenarios at this point
         - id: q_set
           time-dependent: true
-          scenario-dependent: false  # Since PyPSA v0.x does not manage simultaneous scenarios at this point
+          scenario-dependent: false # Since PyPSA v0.x does not manage simultaneous scenarios at this point
         - id: sign # default value = -1
           time-dependent: false
           scenario-dependent: false
@@ -284,7 +285,6 @@ library:
         - id: objective
           expression: sum(marginal_cost * p0) + capital_cost * p_nom
 
-
     - id: storage_unit
       # Model for PyPSA storage unit: https://pypsa.readthedocs.io/en/latest/user-guide/components.html# storage-unit
       parameters:
@@ -474,7 +474,6 @@ library:
       objective-contributions:
         - id: objective
           expression: sum(marginal_cost * p + marginal_cost_storage * e) + capital_cost * e_nom
-
 
     # ### Models for PyPSA global constraint:
     # https://pypsa.readthedocs.io/en/latest/user-guide/components.html# global-constraint ###
