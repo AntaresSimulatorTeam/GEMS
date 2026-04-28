@@ -1,6 +1,6 @@
 catalog:
   
-  id: antares_thermal_cluster_output
+  id: antares_thermal_cluster_metrics
 
   taxonomy: my_taxonomy
 
