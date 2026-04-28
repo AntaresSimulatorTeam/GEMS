@@ -10,7 +10,7 @@
 
 catalog:
   
-  id: antares_area_output
+  id: antares_area_metrics
 
   taxonomy: my_taxonomy
 
