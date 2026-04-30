@@ -10,7 +10,7 @@ description: Overview of the AntaresLegacyModels-to-GEMS Converter — an open-s
 
 # About
 
-The [Legacy-to-GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) is an open-source Python package that transforms an Antares Legacy study folder into a GEMS study folder.
+The [AntaresLegacyModels-to-GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) is an open-source Python package that transforms an Antares Legacy study folder into a GEMS study folder.
 
 A tutorial explaining how to use the converter is available in the [README](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/blob/main/README.md) of the repository.
 
