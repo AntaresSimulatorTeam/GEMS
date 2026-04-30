@@ -106,21 +106,15 @@ Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 ## CI/CD Workflows
 
-| Workflow | File | Trigger | What It Does |
-|----------|------|---------|--------------|
-| Lint, Format and Tests | `lint-format-and-tests.yml` | PR, manual | Runs ruff (lint + format), mypy, yamllint, and unit tests (`tests/unit_tests/`) — no Antares binary required |
-| End-to-End Tests | `e2e-tests.yml` | PR, manual | Downloads Antares binary (version from `dependencies.json`), runs e2e tests; uploads artifacts on failure |
-| Check Antares Update | `check-antares-update.yml` | Daily 06:00 UTC, manual | Fetches latest Antares release, creates triage issue if new version found, runs E2E tests against new version and posts results as issue comment |
+Three workflows: `lint-format-and-tests.yml` (PR gate — ruff, mypy, yamllint, unit tests), `e2e-tests.yml` (PR gate — downloads Antares binary, runs e2e tests), `check-antares-update.yml` (daily — detects new Antares releases, opens triage issue, runs E2E tests against new version).
+
+For the full CI/CD and cross-repo notification details see [`doc/6_Support_Contributing/4_dev_guidelines.md`](doc/6_Support_Contributing/4_dev_guidelines.md).
 
 ---
 
 ## Git & Branching Model
 
-- **`main`** — stable releases
-- **`develop`** — active development integration
-- Feature branches from `develop`, PRs back to `develop`
-- No direct pushes to `main` or `develop`
-- CI runs on every PR
+Feature branches from `develop`, PRs back to `develop`, squash & merge. No direct pushes to `main` or `develop`. For the full branching model, PR rules, and release process see [`doc/6_Support_Contributing/4_dev_guidelines.md`](doc/6_Support_Contributing/4_dev_guidelines.md).
 
 ---
 
@@ -165,14 +159,4 @@ Docs hosted at: <https://gems-energy.readthedocs.io/>
 
 ## Governance Context
 
-This repository is part of the GEMS Ecosystem governed by a formal process framework. Key process IDs relevant to this repo:
-
-| Process | Trigger | Scope |
-|---------|---------|-------|
-| DOC-01 | Antares Simulator/Modeler evolution | Update GEMS Language docs, validate examples |
-| DOC-02 | Internal documentation improvement | Website updates, fix inconsistencies |
-| LT-01 | GEMS Language / Antares evolution | Update libraries and taxonomies |
-| LT-02 | Internal library development | Modify existing models, verify no unintended changes |
-| LT-03 | New library or taxonomy | Design phase, proof-of-concept study, full E2E validation |
-
-Every change should reference the relevant issue template for the applicable process.
+Every change must start from a tracked GitHub Issue using the applicable process template (DOC-01, DOC-02, LT-01, LT-02, LT-03). For the full process reference and PR checklist see [`doc/6_Support_Contributing/4_dev_guidelines.md`](doc/6_Support_Contributing/4_dev_guidelines.md).
