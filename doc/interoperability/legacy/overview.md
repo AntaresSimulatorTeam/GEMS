@@ -1,5 +1,5 @@
 ---
-description: Overview of the Legacy-to-GEMS Converter — an open-source Python package that transforms Antares Legacy studies into GEMS study folders, supporting linear OPF and stochastic optimisation.
+description: Overview of the AntaresLegacyModels-to-GEMS Converter — an open-source Python package that transforms Antares Legacy studies into GEMS study folders, supporting linear OPF and stochastic optimisation.
 ---
 
 <div style="display: flex; justify-content: flex-end;">
