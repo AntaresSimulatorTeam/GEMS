@@ -10,7 +10,7 @@ This document defines the **standard development, branching, versioning, CI/CD, 
 |---|---|
 | [GEMS](https://github.com/AntaresSimulatorTeam/GEMS) | Language specification, model libraries, documentation |
 | [AntaresLegacyModels-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) | Converts Antares legacy studies to GEMS format |
-| [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) | Converts PyPSA networks to GEMS studies |
+| [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) | Converts PyPSA networks to GEMS format |
 
 ---
 
@@ -24,7 +24,7 @@ The issue must describe:
 - compatibility impact
 - applicable process ID (see Section 3)
 
-PRs without an associated issue are only allowed for trivial documentation fixes or emergency hotfixes.
+PR's without an associated issue are only allowed for trivial documentation fixes or emergency hotfixes.
 
 ---
 
@@ -34,7 +34,7 @@ PRs without an associated issue are only allowed for trivial documentation fixes
 
 | Branch | Role |
 |---|---|
-| `main` | Production state. Every commit is a tagged release. |
+| `main` | Stable releases. Updated only via PRs from develop or hotfix/; each merged PR is a release. |
 | `develop` | Integration branch for the next release. Updated via PRs only. |
 
 Direct commits to `main` or `develop` are **not allowed**.
@@ -62,7 +62,7 @@ bugfix/fix-thermal-parameter-mapping
 chore/update-antares-craft-dependency
 ```
 
-All branches are created from `develop`, except hotfixes which branch from `main`.
+All branches are created from `develop`, except `hotfix` and `release` branches, which branch from `main`.
 
 ---
 
@@ -79,8 +79,6 @@ Each repository defines named governance processes. When opening an issue, selec
 | **LT-01** | New Antares-Simulator release affecting model libraries or taxonomies | `lt-01.yml` |
 | **LT-02** | Internal library or taxonomy bug fix or improvement | `lt-02.yml` |
 | **LT-03** | New model library or taxonomy | `lt-03.yml` |
-
-Incoming cross-repo notifications from the converters are handled under **LT-02**.
 
 ### PyPSA-to-GEMS-Converter
 
@@ -149,8 +147,8 @@ Affected modules. Breaking changes or backward-compatible?
 
 | Target | Strategy | Who |
 |---|---|---|
-| `develop` | Squash & Merge | All feature/bugfix/chore/versioning PRs |
-| `main` | Squash & Merge | From `develop` (release) or `hotfix/` |
+| `develop` | Squash & Merge | All `feature`, `bugfix`, `chore` PRs |
+| `main` | Squash & Merge | PRs from `develop` or `hotfix` |
 
 ---
 
@@ -293,7 +291,7 @@ Each repository automatically maintains SHA256 checksum files alongside its libr
 - If the hash matches the stored one → no action.
 - If the hash differs → `.sha256` file updated and committed back to `main` with `[skip ci]`.
 
-The `pypsa_models.yml` and `antares_legacy_models.yml` libraries in GEMS are excluded because their checksums are managed by the respective converter repositories.
+The `pypsa_models.yml` and `antares_legacy_models.yml` libraries in GEMS repository are excluded from `update-library-checksums` workflow because their checksums are managed by the respective converter repositories.
 
 ---
 
