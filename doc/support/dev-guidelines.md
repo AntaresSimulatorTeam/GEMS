@@ -183,7 +183,7 @@ Exactly one release label must be assigned.
 
 ## 6. Versioning
 
-All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`).
+All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`). The `library.version` field inside each library YAML is the authoritative version record for model libraries.
 
 ### PyPSA-to-GEMS-Converter
 
@@ -490,12 +490,6 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 #### Release branch as snapshot
 
 After the squash-merge to `main`, a `release/vX.Y.Z` branch is created from `main` HEAD. The tag `vX.Y.Z` is placed on that commit and pushed atomically with the branch. This branch is a permanent read-only snapshot of `main` at the time of release, retained for audit and security purposes. No further commits are made to it.
-
-### Library version tags
-
-- Format: `<library_name>-vX.Y.Z` (e.g. `pypsa_models-v1.1.0`, `antares_legacy_models-v1.2.0`)
-- **Not created automatically** — the cross-repo notification workflows no longer push library tags. The `library.version` field inside each library YAML is the authoritative version record.
-- May be created manually for audit or release traceability purposes if needed.
 
 ---
 
