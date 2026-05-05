@@ -4,7 +4,8 @@ This table maps documentation/language versions to the interpreter and library v
 
 | Documentation | Antares-Simulator | GemsPy | Notes |
 |---------------|-------------------|--------|-------|
-| v0.3.0        | 10.0.1            | —      | Initial release |
+| v0.3.0        | 10.0.1            | —      |  |
+| v0.3.1        | 10.0.1            | —      |  |
 
 ## Versioning Policy
 
