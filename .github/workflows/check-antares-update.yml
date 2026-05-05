@@ -1,0 +1,219 @@
+name: Check Antares Simulator Update
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  check-update:
+    runs-on: ubuntu-latest
+    outputs:
+      update: ${{ steps.compare.outputs.update }}
+      latest_version: ${{ steps.latest.outputs.version }}
+      issue_number: ${{ steps.create_issue.outputs.issue_number }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Read current version
+        id: current
+        run: |
+          VERSION=$(jq -r '.antares_simulator_version' dependencies.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Current version: $VERSION"
+
+      - name: Fetch latest stable Antares release
+        id: latest
+        run: |
+          TAGS=$(curl -sf \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/AntaresSimulatorTeam/Antares_Simulator/tags?per_page=50")
+
+          if [ -z "$TAGS" ]; then
+            echo "ERROR: Could not fetch tags from GitHub API"
+            exit 1
+          fi
+
+          LATEST=$(echo "$TAGS" \
+            | jq -r '.[].name' \
+            | grep -v -i -E 'rc|alpha|beta|continuous|nightly' \
+            | sed 's/^v//' \
+            | sort -V \
+            | tail -1)
+
+          if [ -z "$LATEST" ]; then
+            echo "ERROR: Could not parse latest stable version"
+            exit 1
+          fi
+
+          echo "version=$LATEST" >> "$GITHUB_OUTPUT"
+          echo "Latest stable version: $LATEST"
+
+      - name: Compare versions
+        id: compare
+        run: |
+          CURRENT="${{ steps.current.outputs.version }}"
+          LATEST="${{ steps.latest.outputs.version }}"
+          echo "Current: $CURRENT  |  Latest: $LATEST"
+          if [ "$CURRENT" = "$LATEST" ]; then
+            echo "update=false" >> "$GITHUB_OUTPUT"
+            echo "Already up to date."
+          else
+            echo "update=true" >> "$GITHUB_OUTPUT"
+            echo "New version detected: $LATEST"
+          fi
+
+      - name: Create GitHub Issue
+        id: create_issue
+        if: steps.compare.outputs.update == 'true'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const latest = '${{ steps.latest.outputs.version }}';
+            const current = '${{ steps.current.outputs.version }}';
+            const title = `Antares Simulator v${latest} detected - validation required`;
+
+            let releaseNotes = '_Could not fetch release notes._';
+            try {
+              const release = await github.rest.repos.getReleaseByTag({
+                owner: 'AntaresSimulatorTeam',
+                repo: 'Antares_Simulator',
+                tag: `v${latest}`,
+              });
+              releaseNotes = release.data.body || '_No release notes provided._';
+            } catch (e) {
+              console.log(`Could not fetch release notes: ${e.message}`);
+            }
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+            });
+
+            const duplicate = existing.data.find(i => i.title.includes(`Antares Simulator v${latest}`));
+            if (duplicate) {
+              console.log(`Issue already exists: #${duplicate.number} - skipping.`);
+              core.setOutput('issue_number', String(duplicate.number));
+              return;
+            }
+
+            const body = [
+              '## New Version Detected',
+              '',
+              'A new version of Antares Simulator has been detected.',
+              '',
+              '| | |',
+              '|---|---|',
+              `| **Previous version** | \`${current}\` |`,
+              `| **New version** | \`${latest}\` |`,
+              `| **Release page** | https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/tag/v${latest} |`,
+              '',
+              'This issue tracks validation and integration into GEMS.',
+              '',
+              '---',
+              '',
+              '## Release Notes',
+              '',
+              releaseNotes,
+              '',
+              '---',
+              '',
+              '## Triage',
+              '',
+              '> Review the release notes and open the relevant process issue(s):',
+              '> - Impact on GEMS Language docs → open a **DOC-01** issue',
+              '> - Impact on model libraries or taxonomies → open a **LT-01** issue',
+              '',
+              '- [ ] Release notes reviewed',
+              '- [ ] DOC-01 issue opened (if GEMS Language docs are affected)',
+              '- [ ] LT-01 issue opened (if libraries or taxonomies are affected)',
+              '- [ ] No action needed (if release has no GEMS impact)',
+              '',
+              '---',
+              '',
+              '## Tasks',
+              '',
+              '### Validation',
+              '- [ ] Run E2E tests on library models',
+              '- [ ] Run E2E tests on taxonomy',
+              '- [ ] Run edge case scenarios',
+              '- [ ] Compare results with previous version',
+              '',
+              '### Compatibility',
+              '- [ ] Check GEMS Language syntax impact',
+              '- [ ] Verify Modeler compatibility',
+              '- [ ] Identify breaking changes',
+              '',
+              '### Documentation',
+              '- [ ] Update GEMS Language documentation if needed',
+              '- [ ] Document behavioral changes',
+              '- [ ] Add migration notes',
+              '',
+              '### Decision',
+              `- [ ] Approve version - update \`dependencies.json\` \`antares_simulator_version\` to \`${latest}\``,
+              '- [ ] Reject version - close this issue with explanation',
+              '',
+              '---',
+              '',
+              '## Notes',
+              '',
+              '_Add findings and observations here._',
+            ].join('\n');
+
+            const result = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+            });
+
+            core.setOutput('issue_number', String(result.data.number));
+            console.log(`Issue created: #${result.data.number} - ${result.data.html_url}`);
+
+  e2e-new-version:
+    name: E2E Tests against Antares v${{ needs.check-update.outputs.latest_version }}
+    needs: check-update
+    if: needs.check-update.outputs.update == 'true'
+    uses: ./.github/workflows/run-e2e-tests.yml
+    with:
+      antares_version: ${{ needs.check-update.outputs.latest_version }}
+      artifact_name: e2e-failures-antares-${{ needs.check-update.outputs.latest_version }}
+
+  post-results:
+    name: Post E2E results to issue
+    runs-on: ubuntu-22.04
+    needs: [check-update, e2e-new-version]
+    if: always() && needs.check-update.outputs.update == 'true'
+
+    steps:
+      - name: Post results to issue
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const outcome = '${{ needs.e2e-new-version.outputs.test_outcome }}';
+            const version = '${{ needs.check-update.outputs.latest_version }}';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const icon = outcome === 'success' ? '✅' : '❌';
+            const status = outcome === 'success' ? 'passed' : 'failed';
+
+            const body = [
+              `## E2E Test Results — Antares v${version}`,
+              '',
+              `${icon} E2E tests **${status}** against Antares v${version}.`,
+              '',
+              `[View full run](${runUrl})`,
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: Number('${{ needs.check-update.outputs.issue_number }}'),
+              body: body,
+            });

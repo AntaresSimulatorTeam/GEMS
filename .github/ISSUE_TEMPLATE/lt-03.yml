@@ -1,0 +1,116 @@
+name: "LT-03 — New library or taxonomy"
+description: Track the design, implementation, and validation of a new GEMS model library or taxonomy
+title: "[LT-03] New library: "
+labels: ["LT-03"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Process LT-03** — Triggered when a new modeling domain or taxonomy needs to be added to the GEMS ecosystem.
+
+        > **Deviation from standard workflow:** a **design phase** is mandatory before implementation (Step 4). The architecture of the library must be defined, use cases documented, and a proof-of-concept study plan established before any YAML is written. Full E2E validation is required before release.
+
+  - type: input
+    id: library_name
+    attributes:
+      label: Library / Taxonomy Name
+      description: Proposed identifier (lowercase with underscores), e.g. `battery_models`
+      placeholder: "e.g. battery_models"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What modeling domain or use case does this library address? Why is it needed?
+    validations:
+      required: true
+
+  - type: textarea
+    id: design_overview
+    attributes:
+      label: Design Overview
+      description: |
+        Describe the intended architecture:
+        - Port types and fields
+        - Models (names, parameters, variables, constraints)
+        - Connections to existing libraries (if any)
+        - Target Antares-Simulator/Modeler version
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Use Cases
+      description: Describe the modeling scenarios this library is intended to support.
+    validations:
+      required: true
+
+  - type: textarea
+    id: poc_plan
+    attributes:
+      label: Proof-of-Concept Study Plan
+      description: |
+        Describe the PoC study that will validate the library:
+        - Planned location in `resources/e2e_studies/`
+        - What scenario it models
+        - Validation approach (compare to reference, analytical solution, or existing tool)
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Process Checklist
+      value: |
+        ### Step 1 — Issue Creation
+        - [x] Issue created and linked to process LT-03
+
+        ### Step 2 — Triage
+        - [ ] Process confirmed applicable
+        - [ ] Assigned to responsible contributor
+        - [ ] Priority and milestone set (if applicable)
+
+        ### Design Phase ⚠️ mandatory before implementation
+        - [ ] Library architecture defined (port types, models, parameters, constraints)
+        - [ ] Use cases documented
+        - [ ] Proof-of-concept study plan defined and agreed
+        - [ ] Target Antares-Simulator/Modeler version confirmed
+        - [ ] Dependencies on existing libraries or ecosystem components assessed
+
+        ### Step 3 — Impact Analysis
+        - [ ] GEMS Language compatibility confirmed (no features required that are not yet supported)
+        - [ ] Compatibility with Antares Modeler version confirmed
+        - [ ] No conflicts with existing libraries or port-type namespaces
+
+        ### Step 4 — Implementation
+        - [ ] Library YAML created (`libraries/<name>.yml`)
+        - [ ] All port types defined with required fields
+        - [ ] All models defined (parameters, variables, constraints, port-field-definitions)
+        - [ ] Mathematical expression syntax valid (expression syntax tests pass)
+        - [ ] Proof-of-concept study created (`resources/e2e_studies/`)
+
+        ### Step 5 — Testing & Validation ⚠️ full E2E validation required before release
+        - [ ] Unit tests pass
+        - [ ] E2E validation passes for proof-of-concept study (objective value verified)
+        - [ ] Results compared to reference (analytical solution or existing tool output)
+
+        ### Step 6 — CI Validation
+        - [ ] E2E tests pass in CI
+
+        ### Step 7 — Review & Merge
+        - [ ] PR reviewed alongside documentation
+
+        ### Step 8 — Versioning
+        - [ ] `version` field added to the library YAML (`libraries/<name>.yml`, starting at `1.0.0`)
+
+        ### Step 9 — Documentation & Changelog
+        - [ ] Changelog file created (`libraries/CHANGELOG-<name>.md`)
+        - [ ] Documentation added (models, parameters, usage examples)
+        - [ ] `COMPATIBILITY.md` updated with new library entry
+        - [ ] `AGENTS.md` reviewed for impact and updated if needed
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines
