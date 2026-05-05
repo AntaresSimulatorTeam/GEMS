@@ -13,7 +13,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 10000
-          
+
     - id: load_bus
       model: antares_legacy_models.load
 

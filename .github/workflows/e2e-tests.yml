@@ -6,52 +6,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  read-version:
+    name: Read Antares version
     runs-on: ubuntu-22.04
+    outputs:
+      antares_version: ${{ steps.read.outputs.version }}
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-        cache: 'pip'
+      - name: Read Antares version
+        id: read
+        run: |
+          VERSION=$(jq -r '.antares_simulator_version' dependencies.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Download Antares release
-      run: |
-        source versions/antares-simulator.txt
-        echo "Downloading Antares v${ANTARES_SIMULATOR_VERSION}..."
-        curl -L -f -o antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz \
-          https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v${ANTARES_SIMULATOR_VERSION}/antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz
-
-        if [ ! -f "antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz" ]; then
-          echo "Error: Download failed"
-          exit 1
-        fi
-
-        echo "Download successful. File size: $(ls -lh antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz | awk '{print $5}')"
-
-    - name: Extract Antares binaries
-      run: |
-        source versions/antares-simulator.txt
-        echo "Extracting archive..."
-        tar -xzf antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz --strip-components=1 --one-top-level=antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04
-
-    - name: Run end-to-end tests
-      run: |
-        python -m pytest tests/e2e_tests -v
-
-    - name: Cleanup
-      if: always()
-      run: |
-        source versions/antares-simulator.txt
-        rm -f antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04.tar.gz
-        rm -rf antares-${ANTARES_SIMULATOR_VERSION}-Ubuntu-22.04
-        echo "Cleanup completed"
+  e2e:
+    name: E2E Tests
+    needs: read-version
+    uses: ./.github/workflows/run-e2e-tests.yml
+    with:
+      antares_version: ${{ needs.read-version.outputs.antares_version }}
+      artifact_name: e2e-test-failures

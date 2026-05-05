@@ -12,7 +12,7 @@
 library:
   id: antares_legacy_models
   description: Antares historic model library
-
+  version: "1.0.0"
 
   port-types:
     - id: flow
@@ -58,8 +58,6 @@ library:
         - port: balance_port
           field: flow
           definition: -load
-
-
 
     - id: link
       parameters:
@@ -123,10 +121,10 @@ library:
 
     - id: thermal
       parameters:
-        - id: minimum_generation_modulation # Timeseries used to define the minimum generation of the cluster by minimum_generation_modulation * unit_count * p_max_unit, this cannot exceed the maximum generation power p_max_cluster (after being increased by p_min_unit). 
+        - id: minimum_generation_modulation # Timeseries used to define the minimum generation of the cluster by minimum_generation_modulation * unit_count * p_max_unit, this cannot exceed the maximum generation power p_max_cluster (after being increased by p_min_unit).
           scenario-dependent: true
           time-dependent: true
-        - id: p_max_cluster # Timeseries that takes outages into account. Used to define the number of available units, which is ceil(p_max_cluster / p_max_unit). 
+        - id: p_max_cluster # Timeseries that takes outages into account. Used to define the number of available units, which is ceil(p_max_cluster / p_max_unit).
           scenario-dependent: true
           time-dependent: true
         - id: p_min_unit # Minimum generation per on unit. Used to increase p_max_cluster so that it is at least equal to p_min_unit times the number of available units, which is ceil(p_max_cluster / p_max_unit). This number of available units does not change when p_max_cluster is increased because ceil((p_min_unit*ceil(p_max_cluster / p_max_unit))/ (p_max_unit*(1-spinning/100)))=ceil(p_max_cluster / p_max_unit) under the assumption that p_min_unit <= p_max_unit*(1-spinning/100).

@@ -1,0 +1,115 @@
+name: "DOC-01 — Antares evolution impact on GEMS Language"
+description: Track GEMS Language documentation updates triggered by a new Antares-Simulator/Modeler release
+title: "[DOC-01] Antares update — GEMS Language impact"
+labels: ["DOC-01", "antares-update"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Process DOC-01** — Triggered by a new Antares-Simulator/Modeler release that affects the GEMS Language definition, modeler API, or documented behavior.
+
+        > **Deviation from standard workflow — Step 4:** documentation update must precede any implementation. Update the GEMS Language specification first, then update libraries or examples.
+
+  - type: input
+    id: antares_new_version
+    attributes:
+      label: New Antares Version
+      placeholder: "e.g. 9.4.0"
+    validations:
+      required: true
+
+  - type: input
+    id: antares_previous_version
+    attributes:
+      label: Previous Tracked Version
+      placeholder: "e.g. 9.3.2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger
+      description: What changed in the new Antares release? Link to the release notes or changelog.
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact Analysis
+      description: |
+        Assess the impact across all four dimensions:
+        - **Compatibility** — breaking vs backward-compatible?
+        - **Modeling behavior** — syntax, semantics, or API changes?
+        - **Results** — does it affect objective function values of documentation examples?
+        - **Dependencies** — which interpreters are affected (GemsPy, Antares Modeler)?
+    validations:
+      required: true
+
+  - type: textarea
+    id: interpreter_support
+    attributes:
+      label: Interpreter Support Status
+      description: |
+        For each changed feature, explicitly state whether it is supported by:
+        - Antares Modeler vX.Y.Z
+        - GemsPy vX.Y.Z
+        Mark features as: Supported / Not yet supported / Deprecated.
+
+  - type: textarea
+    id: validation_strategy
+    attributes:
+      label: Validation Strategy
+      description: How will correctness be validated? (E2E comparison, manual review, new reference values?)
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Process Checklist
+      value: |
+        ### Step 1 — Issue Creation
+        - [x] Issue created and linked to process DOC-01
+
+        ### Step 2 — Triage
+        - [ ] Process confirmed applicable
+        - [ ] Assigned to responsible contributor
+        - [ ] Priority and milestone set (if applicable)
+
+        ### Step 3 — Impact Analysis
+        - [ ] Antares release notes reviewed for GEMS Language-relevant changes
+        - [ ] Compatibility impact assessed (breaking vs backward-compatible)
+        - [ ] Modeling behavior impact assessed (syntax, semantics, modeler API)
+        - [ ] Results impact assessed (documentation examples)
+        - [ ] Interpreter support status determined for each affected feature
+
+        ### Step 4 — Implementation ⚠️ docs update precedes implementation
+        - [ ] GEMS Language specification updated first (before library or example changes)
+        - [ ] New features documented and marked as supported/unsupported per interpreter
+        - [ ] Deprecated features clearly marked in documentation
+        - [ ] Examples provided for new or changed features
+        - [ ] Implementation (libraries, studies) updated to align with updated spec
+
+        ### Step 5 — Testing & Validation
+        - [ ] Quick Start Examples verified against new Antares binary
+        - [ ] E2E tests pass (compare objective values: previous vs new Antares version)
+
+        ### Step 6 — CI Validation
+        - [ ] Documentation build passes (`mkdocs build`)
+        - [ ] E2E tests pass in CI
+
+        ### Step 7 — Review & Merge
+        - [ ] PR reviewed alongside documentation changes
+
+        ### Step 8 — Versioning
+        - [ ] `dependencies.json` `antares_simulator_version` updated to new version
+
+        ### Step 9 — Documentation & Changelog
+        - [ ] Release notes entry added (`doc/0_Home/4_release_notes.md`)
+        - [ ] `COMPATIBILITY.md` updated with new version mapping
+        - [ ] `AGENTS.md` reviewed for impact and updated if needed
+
+        ### Step 10 — Release
+        - [ ] If a release is needed: follow the release process in the Developer Guidelines

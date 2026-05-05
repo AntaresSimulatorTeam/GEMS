@@ -22,7 +22,9 @@ logger = logging.getLogger(__name__)
         ("Antares-Simulator-STS-Test.zip", "GEMS-STS-Test", "sts_studies_path"),
     ],
 )
-def test_study_equivalence(tmp_root, paths, antares_zip: str, gems_study: str, source_dir_attr: str) -> None:
+def test_study_equivalence(
+    tmp_root, paths, antares_zip: str, gems_study: str, source_dir_attr: str
+) -> None:
     source_dir = getattr(paths, source_dir_attr)
 
     # Copy Antares zip + GEMS study into tmp

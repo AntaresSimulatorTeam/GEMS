@@ -1,0 +1,90 @@
+name: Run E2E Tests (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      antares_version:
+        description: 'Antares Simulator version to test against'
+        required: true
+        type: string
+      artifact_name:
+        description: 'Name for the uploaded artifact on failure'
+        required: false
+        type: string
+        default: 'e2e-test-failures'
+    outputs:
+      test_outcome:
+        description: 'Outcome of the E2E test run (success or failure)'
+        value: ${{ jobs.e2e.outputs.test_outcome }}
+
+jobs:
+  e2e:
+    name: E2E Tests (Antares v${{ inputs.antares_version }})
+    runs-on: ubuntu-22.04
+    outputs:
+      test_outcome: ${{ steps.run_tests.outcome }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Override Antares version
+        run: |
+          jq '.antares_simulator_version = "${{ inputs.antares_version }}"' dependencies.json > tmp.json && mv tmp.json dependencies.json
+
+      - name: Download Antares release
+        run: |
+          VERSION="${{ inputs.antares_version }}"
+          ARCHIVE="antares-${VERSION}-Ubuntu-22.04.tar.gz"
+          echo "Downloading Antares v${VERSION}..."
+          curl -L -f -o "${ARCHIVE}" \
+            "https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases/download/v${VERSION}/${ARCHIVE}"
+
+          if [ ! -f "${ARCHIVE}" ]; then
+            echo "Error: Download failed"
+            exit 1
+          fi
+
+          echo "Download successful. File size: $(ls -lh "${ARCHIVE}" | awk '{print $5}')"
+
+      - name: Extract Antares binaries
+        run: |
+          VERSION="${{ inputs.antares_version }}"
+          tar -xzf "antares-${VERSION}-Ubuntu-22.04.tar.gz"
+
+      - name: Run end-to-end tests
+        id: run_tests
+        run: python -m pytest tests/e2e_tests -v
+        continue-on-error: true
+
+      - name: Upload test artifacts on failure
+        if: steps.run_tests.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact_name }}
+          path: |
+            tmp/
+            **/*.log
+          retention-days: 7
+
+      - name: Cleanup
+        if: always()
+        run: |
+          VERSION="${{ inputs.antares_version }}"
+          rm -f "antares-${VERSION}-Ubuntu-22.04.tar.gz"
+          rm -rf "antares-${VERSION}-Ubuntu-22.04"
+
+      - name: Fail job if tests failed
+        if: steps.run_tests.outcome == 'failure'
+        run: exit 1
