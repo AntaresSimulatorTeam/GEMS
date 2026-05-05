@@ -23,9 +23,6 @@ library:
         injection-to-balance: flow
         spillage-bound: flow
         unsupplied-energy-bound:
-        injection-to-balance: flow
-        spillage-bound: flow
-        unsupplied-energy-bound:
 
   models:
     - id: area
@@ -62,8 +59,6 @@ library:
           field: flow
           definition: -load
 
-
-
     - id: link
       parameters:
         - id: capacity_direct
@@ -78,7 +73,6 @@ library:
         - id: hurdle_cost_indirect
           time-dependent: true
           scenario-dependent: false
-
       variables:
         - id: flow_direct
           lower-bound: 0
@@ -133,7 +127,6 @@ library:
           scenario-dependent: true
           time-dependent: true
         - id: p_min_unit # Minimum generation per on unit. Used to increase p_max_cluster so that it is at least equal to p_min_unit times the number of available units, which is ceil(p_max_cluster / p_max_unit). This number of available units does not change when p_max_cluster is increased because ceil((p_min_unit*ceil(p_max_cluster / p_max_unit))/ (p_max_unit*(1-spinning/100)))=ceil(p_max_cluster / p_max_unit) under the assumption that p_min_unit <= p_max_unit*(1-spinning/100).
-        - id: p_min_unit # Minimum generation per on unit. Used to increase p_max_cluster so that it is at least equal to p_min_unit times the number of available units, which is ceil(p_max_cluster / p_max_unit). This number of available units does not change when p_max_cluster is increased because ceil((p_min_unit*ceil(p_max_cluster / p_max_unit))/ (p_max_unit*(1-spinning/100)))=ceil(p_max_cluster / p_max_unit) under the assumption that p_min_unit <= p_max_unit*(1-spinning/100).
         - id: p_max_unit
         - id: generation_cost
         - id: startup_cost
@@ -142,12 +135,8 @@ library:
         - id: d_min_down
         - id: unit_count
         - id: spinning # in percentage, taken into account in p_max_cluster and p_max_unit (except when computing minimum generation)
-        - id: unit_count
-        - id: spinning # in percentage, taken into account in p_max_cluster and p_max_unit (except when computing minimum generation)
       variables:
         - id: generation
-          lower-bound: min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit) # real expression before simplification : min(upper-bound(generation),minimum_generation_modulation * unit_count * p_max_unit) = min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100)))), minimum_generation_modulation * unit_count * p_max_unit)
-          upper-bound: max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)) # real expression before simplification : max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))
           lower-bound: min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit) # real expression before simplification : min(upper-bound(generation),minimum_generation_modulation * unit_count * p_max_unit) = min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100)))), minimum_generation_modulation * unit_count * p_max_unit)
           upper-bound: max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)) # real expression before simplification : max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))
           variable-type: continuous
@@ -155,21 +144,14 @@ library:
           lower-bound: ceil(min(p_max_cluster/p_max_unit, minimum_generation_modulation * unit_count * p_max_unit/(p_max_unit*(1-spinning/100)))) # real expression before simplification : ceil(lower-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit)/(p_max_unit*(1-spinning/100)))
           upper-bound: ceil(p_max_cluster/p_max_unit) # real expression before simplification : ceil(upper-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))/(p_max_unit*(1-spinning/100)))
           variable-type: continuous #integer
-          lower-bound: ceil(min(p_max_cluster/p_max_unit, minimum_generation_modulation * unit_count * p_max_unit/(p_max_unit*(1-spinning/100)))) # real expression before simplification : ceil(lower-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit)/(p_max_unit*(1-spinning/100)))
-          upper-bound: ceil(p_max_cluster/p_max_unit) # real expression before simplification : ceil(upper-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))/(p_max_unit*(1-spinning/100)))
-          variable-type: continuous #integer
         - id: nb_starting
           lower-bound: 0
-          variable-type: continuous #integer
           variable-type: continuous #integer
         - id: nb_stopping
           lower-bound: 0
           variable-type: continuous #integer
-          variable-type: continuous #integer
         - id: nb_failing
           lower-bound: 0
-          upper-bound: max(0, (ceil(p_max_cluster/p_max_unit))[t-1] - (ceil(p_max_cluster/p_max_unit)))
-          variable-type: continuous #integer
           upper-bound: max(0, (ceil(p_max_cluster/p_max_unit))[t-1] - (ceil(p_max_cluster/p_max_unit)))
           variable-type: continuous #integer
       ports:
@@ -182,7 +164,6 @@ library:
       constraints:
         - id: max_generation
           expression: generation <= nb_units_on * p_max_unit*(1-spinning/100)
-          expression: generation <= nb_units_on * p_max_unit*(1-spinning/100)
         - id: min_generation
           expression: generation >= nb_units_on * p_min_unit
         - id: on_units_dynamics
@@ -192,7 +173,6 @@ library:
         - id: min_up_duration
           expression: sum(t-d_min_up + 1 .. t, nb_starting - nb_failing) <= nb_units_on
         - id: min_down_duration
-          expression: sum(t-d_min_down + 1 .. t, nb_stopping) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1]))
           expression: sum(t-d_min_down + 1 .. t, nb_stopping) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1]))
       objective-contributions:
         - id: objective
@@ -242,15 +222,6 @@ library:
         - id: cost_level
           time-dependent: true
           scenario-dependent: true
-        - id: cost_injection
-          time-dependent: true
-          scenario-dependent: true
-        - id: cost_withdrawal
-          time-dependent: true
-          scenario-dependent: true
-        - id: cost_level
-          time-dependent: true
-          scenario-dependent: true
       variables:
         - id: p_injection
           lower-bound: 0
@@ -274,7 +245,6 @@ library:
       constraints:
         - id: initial_level_constraint
           expression: level[0] = initial_level * reservoir_capacity
-        - id: level_equation
         - id: level_equation
           expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal + inflows
       objective-contributions:
