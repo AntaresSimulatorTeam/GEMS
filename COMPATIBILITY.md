@@ -4,7 +4,7 @@ This table maps documentation/language versions to the interpreter and library v
 
 | Documentation | Antares-Simulator | GemsPy | Notes |
 |---------------|-------------------|--------|-------|
-| v0.3.0        | 10.0.0            | —      | Initial release |
+| v0.3.0        | 10.0.1            | —      | Initial release |
 
 ## Versioning Policy
 
@@ -21,9 +21,9 @@ This table maps documentation/language versions to the interpreter and library v
 
 ## Library Versions
 
-| Library | Current Version | Version Field |
-|---------|----------------|---------------|
-| `basic_models_library` | 1.0.0 | `library.version` in `libraries/basic_models_library.yml` |
-| `antares_legacy_models` | 1.0.0 | `library.version` in `libraries/antares_legacy_models.yml` |
-| `pypsa_models` | 1.0.0 | `library.version` in `libraries/pypsa_models.yml` |
-| `andromede_models` | 1.0.0 | `library.version` in `libraries/andromede_models.yml` |
+| Library | Current Version |
+|---------|----------------|
+| `basic_models_library` | 1.0.0 |
+| `antares_legacy_models` | 1.0.0 |
+| `pypsa_models` | 1.0.0 |
+| `andromede_models` | 1.0.0 |
