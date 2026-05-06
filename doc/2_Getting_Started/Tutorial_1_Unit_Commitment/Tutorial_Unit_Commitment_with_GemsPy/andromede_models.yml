@@ -10,8 +10,8 @@
 #
 # This file is part of the Antares project.
 library:
-  id: unit_commitment_tutorial_library
-  description: A library for pedagogical purpose, inspired by the AntaresLegacyModels library.
+  id: antares_legacy_models
+  description: Antares historic model library
 
 
   port-types:
@@ -40,7 +40,7 @@ library:
           expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
       objective-contributions:
         - id: objective
-          expression: expec(sum(spillage_cost * spillage + ens_cost * unsupplied_energy))
+          expression: sum(spillage_cost * spillage + ens_cost * unsupplied_energy)
 
     - id: load
       parameters:
@@ -54,6 +54,8 @@ library:
         - port: balance_port
           field: flow
           definition: -load
+
+
 
     - id: link
       parameters:
@@ -95,7 +97,7 @@ library:
           definition: -flow
       objective-contributions:
         - id: objective
-          expression: expec(sum(hurdle_cost_direct * flow_direct + hurdle_cost_indirect * flow_indirect))
+          expression: sum(hurdle_cost_direct * flow_direct + hurdle_cost_indirect * flow_indirect)
       constraints:
         - id: flow_direct_indirect
           expression: flow = flow_direct - flow_indirect
@@ -173,7 +175,7 @@ library:
           expression: sum(t-d_min_down + 1 .. t, nb_stopping) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1]))
       objective-contributions:
         - id: objective
-          expression: expec(sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on))
+          expression: sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on)
 
     - id: short-term-storage
       parameters:
@@ -246,4 +248,4 @@ library:
           expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal + inflows
       objective-contributions:
         - id: objective
-          expression: expec(sum(cost_injection * p_injection + cost_withdrawal * p_withdrawal + cost_level * level))
+          expression: sum(cost_injection * p_injection + cost_withdrawal * p_withdrawal + cost_level * level)
