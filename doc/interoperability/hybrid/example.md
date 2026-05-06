@@ -8,7 +8,7 @@
 
 This section represents a simple example of a hybrid study that demonstrates how to integrate GEMS models into Antares Simulator. The example can be found in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples) and covers a one-week time horizon.
 
-![Hybrid Study Scheme](../../../assets/4_hybrid_study_scheme.png)
+![Hybrid Study Scheme](../../assets/4_hybrid_study_scheme.png)
 
 <details>
 <summary>Hybrid Study Example Details</summary>
