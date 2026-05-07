@@ -1,7 +1,7 @@
 library:
   id: basic_models_library
   description: Ready for use basic models to build simple optimal dispatch problems
-
+  version: "1.0.0"
 
   port-types:
     - id: flow
@@ -187,11 +187,10 @@ library:
         - id: Level equation
           expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal
 
-
     - id: emission_constraint
       description: Model for enforcing system-wide limits on pollutant emissions.
       parameters:
-        - id: emission_limit  # Tons of CO2
+        - id: emission_limit # Tons of CO2
           time-dependant: false
           scenario-dependent: false
       ports:

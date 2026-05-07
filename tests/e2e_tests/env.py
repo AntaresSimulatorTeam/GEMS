@@ -4,11 +4,12 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
 
-
 OBJECTIVE_ATOL = 1e-4
+OBJECTIVE_RTOL = 0.01
 
 
 @dataclass(frozen=True)
@@ -22,6 +23,14 @@ class EnvironmentPaths:
     antares_root: Path
     antares_solver_bin: Path
     antares_modeler_bin: Path
+
+
+def _read_antares_version(repo_root: Path) -> str:
+    deps_file = repo_root / "dependencies.json"
+    data = json.loads(deps_file.read_text(encoding="utf-8"))
+    if "antares_simulator_version" not in data:
+        raise ValueError(f"antares_simulator_version not found in {deps_file}")
+    return str(data["antares_simulator_version"])
 
 
 def get_paths() -> EnvironmentPaths:
@@ -39,7 +48,8 @@ def get_paths() -> EnvironmentPaths:
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
 
-    antares_root = repo_root / "antares-9.3.2-Ubuntu-22.04"
+    antares_version = _read_antares_version(repo_root)
+    antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
     antares_solver_bin = antares_root / "bin" / "antares-solver"
     antares_modeler_bin = antares_root / "bin" / "antares-modeler"
 

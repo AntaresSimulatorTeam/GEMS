@@ -215,3 +215,4 @@ output/
 *tmp/
 *pypsa-eur/
 PyPSA-to-GEMS-Converter/
+*2_Getting_Started/*
