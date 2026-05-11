@@ -2,9 +2,9 @@ docs_dir: doc
 exclude_docs: |
   documentation_env/
   2_Getting_Started/Tutorial_2_PyPSA_eur/*
-site_name: GEMS - Generic Energy system Modelling Scheme
+site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
-site_description: "GEMS (Generic Energy system Modelling Scheme) is a
+site_description: "GEMS (Generic Energy system Modelling Schema) is a
   graph-based algebraic modelling language for defining and solving energy
   system optimisation problems."
 site_author: "Antares Simulator Team - RTE"

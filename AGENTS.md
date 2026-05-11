@@ -6,7 +6,7 @@ This file provides guidance to AI coding agents (LLMs, copilots, code assistants
 
 ## Project Overview
 
-**GEMS** (Generic Energy system Modelling Scheme) is a high-level algebraic modeling language for energy system optimization and planning studies. This repository contains:
+**GEMS** (Generic Energy system Modelling Schema) is a high-level algebraic modeling language for energy system optimization and planning studies. This repository contains:
 
 - **YAML model libraries** — reusable energy component models (`libraries/*.yml`)
 - **Documentation site** — built with MkDocs + Material theme (`doc/`, `mkdocs.yml`)
