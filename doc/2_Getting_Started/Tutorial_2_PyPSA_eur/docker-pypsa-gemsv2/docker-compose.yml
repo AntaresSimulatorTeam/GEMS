@@ -1,15 +1,4 @@
 services:
-  notebook:
-    build:
-      context: .
-      dockerfile: Dockerfile_Jupyter
-    image: my-notebook
-    container_name: my-notebook
-    ports:
-      - "1111:1111"
-    environment:
-      - JUPYTER_TOKEN=
-
   pypsa:
     build:
       context: ..
