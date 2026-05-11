@@ -41,6 +41,8 @@ Example content of `basic_models_library.yml.sha256`:
 
 ## How to compute the hash locally
 
+> `sha256sum` or `Get-FileHash` are already installed in Linux/macOS and Windows. So, no installation is needed for these commands 
+
 **Linux / macOS**
 
 ```bash
@@ -83,14 +85,9 @@ Result: Match (file is identical)
 
 ## Workflow summary
 
-```
 1. Download library file from GitHub
-         ↓
 2. Locate the .sha256 file on GitHub
-         ↓
 3. Compute the hash locally (sha256sum / Get-FileHash / certutil)
-         ↓
 4. Compare the two values
-         ↓
-   Match → OK    |    Differ → re-download or report an issue
-```
+  - *Match* → OK
+  - *Differ* → re-download or report an issue
