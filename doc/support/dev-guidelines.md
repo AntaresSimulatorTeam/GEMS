@@ -410,6 +410,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 | File | What to change |
 |---|---|
 | `pyproject.toml` | Bump `version` to `1.2.0` |
+| `COMPATIBILITY.md` | Update PyPSA and Antares-Simulator version mappings if changed |
 | `resources/pypsa_models/pypsa_models.yml` | Bump `library.version` to `1.1.0` (only if library changed) |
 | `resources/pypsa_models/CHANGELOG-pypsa_models_library.md` | Add library release entry (only if library changed) |
 
@@ -454,6 +455,7 @@ Same flow as the PyPSA converter. The example below releases converter version `
 | File | What to change |
 |---|---|
 | `pyproject.toml` | Bump `version` to `1.2.0` |
+| `COMPATIBILITY.md` | Update Antares-Simulator, antares-craft, and GemsPy version mappings if changed |
 | `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` | Bump `library.version` to `1.1.0` (only if library changed) |
 | `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md` | Add library release entry (only if library changed) |
 
