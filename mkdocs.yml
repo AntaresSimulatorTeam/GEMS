@@ -67,6 +67,14 @@ extra_css:
   - stylesheets/yaml-loader.css
 
 plugins:
+  - mkdocs-jupyter:
+      execute: true
+      include: ["*.ipynb"]
+      allow_errors: false
+      include_source: true
+      remove_tag_config:
+        remove_input_tags:
+        - hide-cell
   - search
   - macros:
       module_name: main
@@ -108,6 +116,8 @@ nav:
               - Overview: getting-started/quick-start/adequacy-overview.md
               - Mathematical Formulation: getting-started/quick-start/adequacy-math-model.md
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
+      - Tutorial Notebooks:
+        - Unit Commitment with GemsPy: getting-started/Tutorial_1_Unit_Commitment/1_Tutorial_Unit_Commitment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - Mathematical Syntax: user-guide/mathematical-syntax.md

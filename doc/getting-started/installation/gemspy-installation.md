@@ -12,18 +12,15 @@
 
 This package requires:
 
-- **Python 3.11** (recommended for optimal compatibility and performance) or Python 3.8+
-- Git (for cloning the [GemsPy repository](https://github.com/AntaresSimulatorTeam/GemsPy))
-- pip package manager (for installing required Python libraries)
+- **Python 3.10+**
 
 ## GemsPy installation
 
-Currently, [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) must be installed by cloning the repository manually:
+You can [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) by using `pip` installation :
 
 ```bash
-# Clone the repository
-git clone https://github.com/AntaresSimulatorTeam/GemsPy.git
-cd GemsPy
+# Install GemsPy package
+pip install gemspy
 ```
 
 ## Virtual Environment Setup
@@ -36,15 +33,7 @@ It is recommended to create a **virtual environment** before installing [GemsPy]
 |-----------------------------|----------------------------------------------|--------------------------------------------|
 | Create virtual environment  | `python -m venv gemspy-env`                  | `python3 -m venv gemspy-env`               |
 | Activate environment        | `gemspy-env\Scripts\activate`               | `source gemspy-env/bin/activate`           |
-| Clone GemsPy repository     | `git clone https://github.com/AntaresSimulatorTeam/GemsPy.git` | `git clone https://github.com/AntaresSimulatorTeam/GemsPy.git` |
-| Enter GemsPy directory      | `cd GemsPy`                                  | `cd GemsPy`                                |
-| Install requirements        | `pip install -r requirements.txt`            | `pip install -r requirements.txt`          |
-
-List of **main dependencies** installed via **`requirements.txt`**:
-
-- numpy
-- pandas
-- scipy
+| Clone GemsPy repository     | `pip install gemspy`          | `pip install gemspy`          |
 
 ### Working with Virtual Environments
 
@@ -81,44 +70,6 @@ List of **main dependencies** installed via **`requirements.txt`**:
     - Delete the `gemspy-env` folder directly.
 
     **Note:** Ensure you have saved any important work before deleting the environment.
-
-## Troubleshooting
-
-If you encounter issues during installation:
-
-- Ensure Python 3.11 or 3.8+ is installed.
-- If `pip install -r requirements.txt` fails, try installing dependencies manually.
-
-### Python 3.11 Installation (Linux/Ubuntu)
-
-If you need to install Python 3.11 and set up the environment:
-
-```bash
-# 1. Install Python 3.11
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install python3.11 python3.11-venv
-
-# 2. Remove old virtual environment (if any)
-rm -rf gemspy-env
-
-# 3. Create a new virtual environment with Python 3.11
-python3.11 -m venv gemspy-env
-
-# 4. Activate the virtual environment
-source gemspy-env/bin/activate
-# Verify the Python version
-python --version  # Should display "Python 3.11.x"
-
-# 5. Upgrade pip
-pip install --upgrade pip
-
-# 6. Install dependencies
-pip install -r requirements.txt
-
-# 7. Verify installation
-python -c "import scipy; print(scipy.__version__)"
-```
 
 ## Additional Resources
 
