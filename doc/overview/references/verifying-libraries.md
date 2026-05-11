@@ -71,13 +71,15 @@ certutil -hashfile basic_models_library.yml SHA256
 | Hashes **match** | The file is identical to the official release |
 | Hashes **differ** | The file has been modified, corrupted, or is not the official version |
 
-## Example verification
+<details>
+<summary>Example verification</summary>
 
 We can compare the two basic-models-library SHA
 Official: 4809d22d8...
 Local: 4809d22d8...
 
 Result: Match (file is identical)
+</details>
 
 ## Workflow summary
 
