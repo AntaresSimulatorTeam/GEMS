@@ -127,7 +127,7 @@ The following diagram depicts the structural relationships between the [library 
 
 <div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
   <strong>⚠️ Warning</strong><br>
-  <b>It's recommended to run this GEMS study with Antares Modeler and GemsPy</b>
+  <b>It's recommended to run this GEMS study with Antares Modeler or GemsPy</b>
 </div>
 
 1. Download [QSE_1_Adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy)

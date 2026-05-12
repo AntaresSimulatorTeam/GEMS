@@ -90,7 +90,7 @@ The *Unit Commitment* problem here involves determining the on/off schema and di
 
 <div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
   <strong>⚠️ Warning</strong><br>
-  <b>It's recommended to run this GEMS study with Antares Modeler and GemsPy</b>
+  <b>It's recommended to run this GEMS study with Antares Modeler or GemsPy</b>
 </div>
 
 Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
