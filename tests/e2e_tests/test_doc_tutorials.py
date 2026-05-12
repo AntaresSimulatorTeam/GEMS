@@ -1,6 +1,7 @@
 import json
 import logging
 import re
+import shutil
 from pathlib import Path
 
 import pytest
@@ -68,20 +69,30 @@ def get_notebook_objective(notebook_path: Path, simulation_index: int) -> float:
     return objectives[simulation_index]
 
 
+def install_tutorial_library(paths: EnvironmentPaths, gems_study_path: Path) -> None:
+    """Copy andromede_models.yml from the tutorial folder into the study's model-libraries."""
+    source = paths.tutorial_library_dir / "andromede_models.yml"
+    target_folder = gems_study_path / "input" / "model-libraries"
+    target_folder.mkdir(parents=True, exist_ok=True)
+    target = target_folder / "andromede_models.yml"
+    if target.is_symlink() or target.exists():
+        target.unlink()
+    shutil.copy(source, target)
+
+
 @pytest.mark.parametrize(
-    "study_name, library_filename, notebook_simulation_index",
+    "study_name, notebook_simulation_index",
     [
         # second simulation run — after adding wind_farm and solar_farm
-        ("Tutorial_1_Step2_With_Renewables", "andromede_models.yml", 1),
+        ("Tutorial_1_Step2_With_Renewables", 1),
         # third simulation run — thermal_gen replaced by 10-unit thermal_gen_UC
-        ("Tutorial_1_Step3_Unit_Commitment", "andromede_models.yml", 2),
+        ("Tutorial_1_Step3_Unit_Commitment", 2),
     ],
 )
 def test_doc_tutorial_1_unit_commitment(
     tmp_root,
     paths,
     study_name: str,
-    library_filename: str,
     notebook_simulation_index: int,
 ) -> None:
     notebook_objective = get_notebook_objective(
@@ -95,7 +106,7 @@ def test_doc_tutorial_1_unit_commitment(
         tmp_root=tmp_root,
         preserve_symlinks=True,
     )
-    copy_model_library(paths, gems_path, library_filename, source_dir=paths.tutorial_library_dir)
+    install_tutorial_library(paths, gems_path)
     modeler_objective = get_gems_study_objective(paths, gems_path)
     logger.info("[%s] modeler objective: %s", study_name, modeler_objective)
 
