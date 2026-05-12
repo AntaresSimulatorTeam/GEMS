@@ -1,0 +1,206 @@
+## pour les lignes HVAC en RE, je ne peux pas mettre dans la fonction objectif les coûts asscociés
+## au flux liés à l'utilisation de la HVDC. Je dois donc faire un port qui envoie le hurdle cost des lignes HVAC
+## aux lignes HVDC
+
+
+
+
+
+system:
+  id: system
+  components:
+
+
+
+    - id: bus1
+      model: antares_reserves_models.bus
+
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+
+    - id: bus_reserve_1
+      model: antares_reserves_models.bus_reserve
+
+      parameters:
+        - id: spillage_reserve_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_reserve_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+        - id: mean_activation
+          time-dependent: false
+          scenario-dependent: false
+          value: 2
+
+
+    - id: bus_reserve_2
+      model: antares_reserves_models.bus_reserve
+
+      parameters:
+        - id: spillage_reserve_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+        - id: unsupplied_reserve_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 100000
+        - id: mean_activation
+          time-dependent: false
+          scenario-dependent: false
+          value: 2
+
+
+    - id: reserve_demand_1
+      model: antares_reserves_models.reserve_demand
+
+      parameters:
+        - id: reserve_demand
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+
+
+    - id: reserve_demand_2
+      model: antares_reserves_models.reserve_demand
+
+      parameters:
+        - id: reserve_demand
+          time-dependent: false
+          scenario-dependent: false
+          value: 200
+
+
+    - id: load_bus
+      model: antares_legacy_models.load
+
+      parameters:
+        - id: load
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+
+    - id: short-term-storage_1
+      model: antares_reserves_models.short-term-storage
+
+      parameters:
+        - id: reservoir_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: injection_nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: withdrawal_nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: efficiency_injection
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: efficiency_withdrawal
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: lower_rule_curve
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: upper_rule_curve
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: p_max_injection_modulation
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: p_max_withdrawal_modulation
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: inflows
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: initial_level
+          time-dependent: false
+          scenario-dependent: false
+          value: 0.5
+        - id: reserve_1_participation_max_injection
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: reserve_1_participation_max_withdrawal
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: reserve_2_participation_max_injection
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: reserve_2_participation_max_withdrawal
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
+        - id: reserve_1_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: reserve_2_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
+   
+
+  connections:
+
+    - component1: bus1
+      component2: load_bus
+      port1: balance_port
+      port2: balance_port
+
+
+    - component1: reserve_demand_1
+      component2: bus_reserve_1
+      port1: balance_port_reserve
+      port2: balance_port_reserve
+  
+    - component1: reserve_demand_2
+      component2: bus_reserve_2
+      port1: balance_port_reserve
+      port2: balance_port_reserve
+
+
+    - component1: bus_reserve_1
+      component2: short-term-storage_1
+      port1: balance_port_reserve
+      port2: balance_port_reserve_1
+
+    - component1: bus_reserve_2
+      component2: short-term-storage_1
+      port1: balance_port_reserve
+      port2: balance_port_reserve_2
+
+
+    - component1: bus_reserve_1
+      component2: short-term-storage_1
+      port1: mean_activation_port
+      port2: mean_activation_reserve_1_port
+
+    - component1: bus_reserve_2
+      component2: short-term-storage_1
+      port1: mean_activation_port
+      port2: mean_activation_reserve_2_port

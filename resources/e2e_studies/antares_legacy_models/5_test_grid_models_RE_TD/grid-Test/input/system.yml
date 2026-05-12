@@ -1,0 +1,335 @@
+## pour les lignes HVAC en RE, je ne peux pas mettre dans la fonction objectif les coûts asscociés
+## au flux liés à l'utilisation de la HVDC. Je dois donc faire un port qui envoie le hurdle cost des lignes HVAC
+## aux lignes HVDC
+
+
+
+
+
+system:
+  id: system
+  components:
+
+
+
+    - id: bus1
+      model: antares_grid_models.bus_RE
+
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+
+    - id: bus2
+      model: antares_grid_models.bus_RE
+
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+
+
+    - id: bus3
+      model: antares_grid_models.bus_RE
+
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10000
+
+
+    - id: HVAC_1
+      model: antares_grid_models.HVAC_RE
+
+      parameters:
+        - id: capacity_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: capacity_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: hurdle_cost_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: hurdle_cost_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: loop_flow_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: loop_flow_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: impedance
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+
+
+    - id: HVAC_2
+      model: antares_grid_models.HVAC_RE
+
+      parameters:
+        - id: capacity_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: capacity_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: hurdle_cost_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: hurdle_cost_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: loop_flow_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: loop_flow_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: impedance
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+
+
+  
+    - id: HVAC_3
+      model: antares_grid_models.HVAC_RE
+
+      parameters:
+        - id: capacity_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: capacity_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: hurdle_cost_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: hurdle_cost_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: loop_flow_direct
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: loop_flow_indirect
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: impedance
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+
+
+
+  
+    - id: TD_1
+      model: antares_grid_models.TD_RE
+
+      parameters:
+        - id: tap_up_max #positive ou nulle
+          scenario-dependent: false
+          time-dependent: false
+          value: 5
+        - id: tap_down_max # negative ou nulle
+          scenario-dependent: false
+          time-dependent: false
+          value: 5
+        - id: influence_AC  # comment imposer qu'il soit positif ?
+          scenario-dependent: false
+          time-dependent: false
+          value: 1
+        - id: hurdle_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
+
+    - id: load_bus
+      model: antares_legacy_models.load
+
+      parameters:
+        - id: load
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+
+    - id: th1
+      model: antares_legacy_models.thermal
+
+      parameters:
+        - id: p_min_cluster
+          scenario-dependent: false
+          time-dependent: false
+          value: 0
+        - id: p_max_cluster
+          scenario-dependent: false
+          time-dependent: false
+          value: 200
+        - id: p_min_unit
+          scenario-dependent: false
+          time-dependent: false
+          value: 0
+        - id: p_max_unit
+          scenario-dependent: false
+          time-dependent: false
+          value: 100
+        - id: generation_cost
+          scenario-dependent: false
+          time-dependent: false
+          value: 10
+        - id: startup_cost
+          scenario-dependent: false
+          time-dependent: false
+          value: 0
+        - id: fixed_cost
+          scenario-dependent: false
+          time-dependent: false
+          value: 0
+        - id: d_min_up
+          scenario-dependent: false
+          time-dependent: false
+          value: 0
+        - id: d_min_down
+          scenario-dependent: false
+          time-dependent: false
+          value: 0
+        - id: nb_units_min # Equals to ceil(p_min_cluster/p_max_unit), to be done in preprocessing
+          scenario-dependent: false
+          time-dependent: false
+          value: 0
+        - id: nb_units_max # Equals to ceil(p_max_cluster/p_max_unit), to be done in preprocessing
+          scenario-dependent: false
+          time-dependent: false
+          value: 2
+        - id: nb_units_max_variation_forward
+          scenario-dependent: false
+          time-dependent: false
+          value: 2
+        - id: nb_units_max_variation_backward
+          scenario-dependent: false
+          time-dependent: false
+          value : 2
+
+
+  connections:
+
+    - component1: bus1
+      component2: load_bus
+      port1: balance_port
+      port2: balance_port
+
+    - component1: bus3
+      component2: th1
+      port1: balance_port
+      port2: balance_port
+
+
+
+    - component1: bus1
+      component2: HVAC_1
+      port1: balance_port
+      port2: in_port
+
+    - component1: HVAC_1
+      component2: bus2
+      port1: out_port
+      port2: balance_port
+
+    - component1: bus2
+      component2: HVAC_2
+      port1: balance_port
+      port2: in_port
+
+    - component1: HVAC_2
+      component2: bus3
+      port1: out_port
+      port2: balance_port
+
+    - component1: bus1
+      component2: HVAC_3
+      port1: balance_port
+      port2: in_port
+
+    - component1: HVAC_3
+      component2: bus3
+      port1: out_port
+      port2: balance_port
+
+
+      
+    - component1: bus1
+      component2: HVAC_1
+      port1: phase_port
+      port2: downstream_phase_port
+
+    - component1: HVAC_1
+      component2: bus2
+      port1: upstream_phase_port
+      port2: phase_port
+
+    - component1: bus2
+      component2: HVAC_2
+      port1: phase_port
+      port2: downstream_phase_port
+
+    - component1: HVAC_2
+      component2: bus3
+      port1: upstream_phase_port
+      port2: phase_port
+
+    - component1: bus1
+      component2: HVAC_3
+      port1: phase_port
+      port2: downstream_phase_port
+
+    - component1: HVAC_3
+      component2: bus3
+      port1: upstream_phase_port
+      port2: phase_port
+
+    - component1: HVAC_3
+      component2: TD_1
+      port1: influence_TD_port_direct
+      port2: influence_port_AC_up
+
+    - component1: HVAC_3
+      component2: TD_1
+      port1: influence_TD_port_indirect
+      port2: influence_port_AC_down
+

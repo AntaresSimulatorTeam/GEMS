@@ -1,0 +1,559 @@
+
+
+
+
+library:
+  id: antares_grid_models
+  description: Andromede Project V1 grid model library
+
+  port-types:
+    - id: flow
+      fields:
+        - id: flow
+      area-connection:
+        - injection-field: flow
+
+
+
+
+
+  ##########################################################
+  #################### NTC model ###########################
+  ##########################################################
+  models:
+
+    - id: HVDC_NTC
+      parameters:
+      - id: capacity_direct
+        scenario-dependent: false
+        time-dependent: true
+      - id: capacity_indirect
+        scenario-dependent: false
+        time-dependent: true
+      - id: hurdle_cost_direct
+        time-dependent: true
+        scenario-dependent: false
+      - id: hurdle_cost_indirect
+        time-dependent: true
+        scenario-dependent: false
+      variables:
+      - id: flow_direct
+        lower-bound: 0
+        upper-bound: capacity_direct
+        variable-type: continuous
+      - id: flow_indirect
+        lower-bound: 0
+        upper-bound: capacity_indirect
+        variable-type: continuous
+      ports:
+      - id: out_port
+        type: flow
+      - id: in_port
+        type: flow
+      port-field-definitions:
+        - port: out_port
+          field: flow
+          definition: flow_direct - flow_indirect
+        - port: in_port
+          field: flow
+          definition: flow_indirect - flow_direct
+      objective-contributions:
+        - id: objective
+          expression: sum(hurdle_cost_direct * flow_direct + hurdle_cost_indirect * flow_indirect)
+
+
+
+
+    - id: bus_NTC
+      parameters:
+        - id: spillage_cost
+          scenario-dependent: false
+          time-dependent: true
+        - id: unsupplied_energy_cost
+          scenario-dependent: false
+          time-dependent: true
+      variables:
+        - id: spillage
+          lower-bound: 0
+          variable-type: continuous
+        - id: unsupplied_energy
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+      objective-contributions:
+        - id: objective
+          expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+
+
+          
+    - id: HVAC_NTC
+      parameters:
+      - id: capacity_direct
+        scenario-dependent: false
+        time-dependent: true
+      - id: capacity_indirect
+        scenario-dependent: false
+        time-dependent: true
+      - id: hurdle_cost_direct
+        time-dependent: true
+        scenario-dependent: false
+      - id: hurdle_cost_indirect
+        time-dependent: true
+        scenario-dependent: false
+      - id: loop_flow_direct
+        time-dependent: true
+        scenario-dependent: false
+      - id: loop_flow_indirect
+        time-dependent: true
+        scenario-dependent: false
+      variables:
+      - id: flow_direct
+        lower-bound: 0
+        variable-type: continuous
+      - id: flow_indirect
+        lower-bound: 0
+        variable-type: continuous
+      - id: overall_flow
+        variable-type: continuous
+      ports:
+      - id: out_port
+        type: flow
+      - id: in_port
+        type: flow
+      port-field-definitions:
+        - port: out_port
+          field: flow
+          definition: overall_flow
+        - port: in_port
+          field: flow
+          definition: -overall_flow
+      objective-contributions:
+        - id: objective
+          expression: sum(hurdle_cost_direct * (flow_direct + loop_flow_direct) + hurdle_cost_indirect * (flow_indirect + loop_flow_indirect))
+      constraints:
+        - id: flow_direct_bound_up
+          expression: flow_direct + loop_flow_direct <= capacity_direct
+        - id: flow_direct_bound_down
+          expression: 0 <= flow_direct + loop_flow_direct 
+        - id: flow_indirect_bound_up
+          expression: flow_indirect + loop_flow_indirect <= capacity_indirect
+        - id: flow_indirect_bound_down
+          expression: 0 <= flow_indirect + loop_flow_indirect 
+        - id: overall_flow_definition
+          expression: overall_flow = flow_direct - flow_indirect + loop_flow_direct -loop_flow_indirect 
+
+
+
+  ##########################################################
+  #################### RE model ###########################
+  ##########################################################
+
+
+
+  
+    - id: HVDC_RE
+      parameters:
+      - id: capacity_direct
+        scenario-dependent: false
+        time-dependent: false
+      - id: capacity_indirect
+        scenario-dependent: false
+        time-dependent: false
+      - id: influence_AC  
+        scenario-dependent: false
+        time-dependent: false
+      - id: hurdle_cost_direct
+        time-dependent: false
+        scenario-dependent: false
+      - id: hurdle_cost_indirect
+        time-dependent: false
+        scenario-dependent: false
+      variables:
+      - id: flow_direct
+        lower-bound: 0
+        upper-bound: capacity_direct
+        variable-type: continuous
+      - id: flow_indirect
+        lower-bound: 0
+        upper-bound: capacity_indirect
+        variable-type: continuous
+      - id: flow_influence_AC_direct
+        variable-type: continuous
+      - id: flow_influence_AC_indirect
+        variable-type: continuous
+      - id: overall_flow
+        variable-type: continuous
+      ports:
+      - id: out_port
+        type: flow
+      - id: in_port
+        type: flow
+      - id: influence_port_AC_direct
+        type: flow
+      - id: influence_port_AC_indirect
+        type: flow
+      - id: hurdle_cost_AC_direct
+        type: flow
+      - id: hurdle_cost_AC_indirect
+        type: flow
+      port-field-definitions:
+        - port: out_port
+          field: flow
+          definition: overall_flow
+        - port: in_port
+          field: flow
+          definition: -overall_flow
+        - port: influence_port_AC_direct
+          field: flow
+          definition: flow_direct * influence_AC
+        - port: influence_port_AC_indirect
+          field: flow
+          definition: flow_indirect * influence_AC
+      # objective-contributions:
+      #   - id: objective
+      #     expression: sum(hurdle_cost_direct * flow_direct + hurdle_cost_indirect * flow_indirect + flow_direct * influence_AC * hurdle_cost_AC_direct.flow + flow_indirect * influence_AC * hurdle_cost_AC_indirect.flow )
+      constraints:
+        - id: overall_flow_definition
+          expression: overall_flow = flow_direct - flow_indirect
+
+
+
+
+    - id: bus_RE
+      parameters:
+        - id: spillage_cost
+          scenario-dependent: false
+          time-dependent: true
+        - id: unsupplied_energy_cost
+          scenario-dependent: false
+          time-dependent: true
+        - id: phase
+          scenario-dependent: false
+          time-dependent: true
+      variables:
+        - id: spillage
+          lower-bound: 0
+          variable-type: continuous
+        - id: unsupplied_energy
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+        - id: phase_port
+          type: flow
+      port-field-definitions:
+        - port: phase_port
+          field: flow
+          definition: phase
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+      objective-contributions:
+        - id: objective
+          expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+
+
+
+    - id: HVAC_RE
+      parameters:
+      - id: capacity_direct
+        scenario-dependent: false
+        time-dependent: true
+      - id: capacity_indirect
+        scenario-dependent: false
+        time-dependent: true
+      - id: hurdle_cost_direct
+        scenario-dependent: false
+        time-dependent: true
+      - id: hurdle_cost_indirect
+        scenario-dependent: false
+        time-dependent: true
+      - id: loop_flow_direct
+        scenario-dependent: false
+        time-dependent: true
+      - id: loop_flow_indirect
+        scenario-dependent: false
+        time-dependent: true
+      - id: impedance
+        scenario-dependent: false
+        time-dependent: true
+      variables:
+      - id: flow_direct
+        lower-bound: 0
+        variable-type: continuous
+      - id: flow_indirect
+        lower-bound: 0
+        variable-type: continuous
+      - id: overall_flow
+        variable-type: continuous
+      - id: flow_phase
+        variable-type: continuous
+      ports:
+      - id: out_port
+        type: flow
+      - id: in_port
+        type: flow
+      - id: influence_HVDC_port_direct
+        type: flow
+      - id: influence_HVDC_port_indirect
+        type: flow
+      - id: influence_TD_port_direct
+        type: flow
+      - id: influence_TD_port_indirect
+        type: flow
+      - id: upstream_phase_port
+        type: flow
+      - id: downstream_phase_port
+        type: flow
+      - id: hurdle_cost_direct_port
+        type: flow
+      - id: hurdle_cost_indirect_port
+        type: flow
+      port-field-definitions:
+        - port: out_port
+          field: flow
+          definition: overall_flow
+        - port: in_port
+          field: flow
+          definition: -overall_flow
+        - port: hurdle_cost_direct_port
+          field: flow
+          definition: hurdle_cost_direct
+        - port: hurdle_cost_indirect_port
+          field: flow
+          definition: hurdle_cost_indirect
+      objective-contributions:
+        - id: objective
+          expression: sum(hurdle_cost_direct * (flow_direct + loop_flow_direct) + hurdle_cost_indirect * (flow_indirect +  loop_flow_indirect))
+          #expression: sum(hurdle_cost_direct * (flow_direct + sum_connections(influence_HVDC_port_direct.flow) + sum_connections(influence_TD_port_direct.flow) + loop_flow_direct) + hurdle_cost_indirect * (flow_indirect + sum_connections(influence_HVDC_port_indirect.flow) + sum_connections(influence_TD_port_indirect.flow) + loop_flow_indirect))
+      binding-constraints:
+        - id: flow_direct_bound_down
+          expression: 0 <= flow_direct + sum_connections(influence_HVDC_port_direct.flow) + sum_connections(influence_TD_port_direct.flow) + loop_flow_direct 
+        - id: flow_direct_bound_up
+          expression: flow_direct + sum_connections(influence_HVDC_port_direct.flow) + sum_connections(influence_TD_port_direct.flow) + loop_flow_direct <= capacity_direct
+        - id: flow_indirect_bound_down
+          expression: 0 <= flow_indirect + sum_connections(influence_HVDC_port_indirect.flow) + sum_connections(influence_TD_port_indirect.flow) + loop_flow_indirect 
+        - id: flow_indirect_bound_up
+          expression: flow_indirect + sum_connections(influence_HVDC_port_indirect.flow) + sum_connections(influence_TD_port_indirect.flow) + loop_flow_indirect <= capacity_indirect
+        - id: flow_under_phase_influence
+          expression: flow_phase = (sum_connections(upstream_phase_port.flow) - sum_connections(downstream_phase_port.flow)) / impedance
+        - id: flow_direct_indirect
+          expression: flow_phase = flow_direct - flow_indirect
+        - id: overall_flow_definition
+          expression: overall_flow = flow_phase + loop_flow_direct -loop_flow_indirect + sum_connections(influence_HVDC_port_direct.flow) - sum_connections(influence_HVDC_port_indirect.flow) + sum_connections(influence_TD_port_direct.flow) - sum_connections(influence_TD_port_indirect.flow)
+
+
+          
+    - id: TD_RE
+      parameters:
+      - id: tap_up_max #positive ou nulle
+        scenario-dependent: false
+        time-dependent: true
+      - id: tap_down_max # negative ou nulle
+        scenario-dependent: false
+        time-dependent: true
+      - id: influence_AC  # comment imposer qu'il soit positif ?
+        scenario-dependent: false
+        time-dependent: false
+      - id: hurdle_cost
+        time-dependent: true
+        scenario-dependent: false
+      variables:
+      - id: tap_up
+        lower-bound: 0
+        upper-bound: tap_up_max
+        variable-type: continuous
+      - id: tap_down
+        lower-bound: 0
+        upper-bound: tap_down_max
+        variable-type: continuous
+      - id: flow_influence_AC_up
+        variable-type: continuous
+      - id: flow_influence_AC_down
+        variable-type: continuous
+      ports:
+      - id: influence_port_AC_up
+        type: flow
+      - id: influence_port_AC_down
+        type: flow
+      port-field-definitions:
+      - port: influence_port_AC_up
+        field: flow
+        definition: flow_influence_AC_up
+      - port: influence_port_AC_down
+        field: flow
+        definition: -flow_influence_AC_down
+      objective-contributions:
+        - id: objective
+          expression: sum(hurdle_cost * tap_up + hurdle_cost * tap_down)
+      constraints:
+        - id: flow_influence_AC_up_definition
+          expression: flow_influence_AC_up = tap_up * influence_AC
+        - id: flow_influence_AC_down_definition
+          expression: flow_influence_AC_down = tap_down * influence_AC
+
+
+  ##########################################################
+  #################### FB model ###########################
+  ##########################################################
+
+  
+    - id: HVDC_FB
+      parameters:
+      - id: capacity_direct
+        scenario-dependent: false
+        time-dependent: true
+      - id: capacity_indirect
+        scenario-dependent: false
+        time-dependent: true
+      - id: hurdle_cost_direct
+        time-dependent: true
+        scenario-dependent: false
+      - id: hurdle_cost_indirect
+        time-dependent: true
+        scenario-dependent: false
+      variables:
+      - id: flow_direct
+        lower-bound: 0
+        upper-bound: capacity_direct
+        variable-type: continuous
+      - id: flow_indirect
+        lower-bound: 0
+        upper-bound: capacity_indirect
+        variable-type: continuous
+      - id: overall_flow
+        time-dependent: true
+        scenario-dependent: false
+      ports:
+      - id: out_port
+        type: flow
+      - id: in_port
+        type: flow
+      port-field-definitions:
+        - port: out_port
+          field: flow
+          definition: overall_flow
+        - port: in_port
+          field: flow
+          definition: -overall_flow
+      objective-contributions:
+        - id: objective
+          expression: sum(hurdle_cost_direct * flow_direct + hurdle_cost_indirect * flow_indirect)
+      constraints:
+        - id: overall_flow_definition
+          expression: overall_flow = flow_direct - flow_indirect
+
+    - id: bus_FB
+      parameters:
+        - id: spillage_cost
+          scenario-dependent: false
+          time-dependent: true
+        - id: unsupplied_energy_cost
+          scenario-dependent: false
+          time-dependent: true
+      variables:
+        - id: spillage
+          lower-bound: 0
+          variable-type: continuous
+        - id: unsupplied_energy
+          lower-bound: 0
+          variable-type: continuous
+        - id: net_position
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+        - id: net_position_port
+          type: flow
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+      objective-contributions:
+        - id: objective
+          expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+
+
+
+          
+    - id: CNEC_FB
+      parameters:
+      - id: capacity_max
+        scenario-dependent: false
+        time-dependent: true
+      - id: PTDF_area1
+        scenario-dependent: false
+        time-dependent: true
+      - id: PTDF_area2
+        scenario-dependent: false
+        time-dependent: true
+      - id: PTDF_HVDC1
+        scenario-dependent: false
+        time-dependent: true
+      - id: PTDF_TD1
+        scenario-dependent: false
+        time-dependent: true
+      - id: loop_flow
+        time-dependent: true
+        scenario-dependent: false
+      variables:
+      - id: flow
+        variable-type: continuous
+      ports:
+      - id: net_position_area1
+        type: flow
+      - id: net_position_area2
+        type: flow
+      - id: flow_HVDC1
+        type: flow
+      - id: tap_TD1
+        type: flow
+      binding-constraints:
+        - id: capacity_constraint
+          expression: loop_flow + sum_connections(net_position_area1.flow) * PTDF_area1 + sum_connections(net_position_area2.flow) * PTDF_area2 + sum_connections(flow_HVDC1.flow) * PTDF_HVDC1 + sum_connections(tap_TD1.flow) * PTDF_TD1 <= capacity_max
+
+
+          
+    - id: TD_FB
+      parameters:
+      - id: tap_up_max #positive ou nulle
+        scenario-dependent: false
+        time-dependent: true
+      - id: tap_down_max # negative ou nulle
+        scenario-dependent: false
+        time-dependent: true
+      - id: hurdle_cost
+        time-dependent: true
+        scenario-dependent: false
+      variables:
+      - id: tap_up
+        lower-bound: 0
+        upper-bound: tap_up_max
+        variable-type: continuous
+      - id: tap_down
+        lower-bound: 0
+        upper-bound: tap_down_max
+        variable-type: continuous
+      - id: tap
+        variable-type: continuous
+      ports:
+      - id: tap_port
+        type: flow
+      port-field-definitions:
+      - port: tap_port
+        field: flow
+        definition: tap
+      objective-contributions:
+        - id: objective
+          expression: sum(hurdle_cost * tap_up + hurdle_cost * tap_down)
+      constraints:
+        - id: tap_port_definition
+          expression: tap = tap_up - tap_down
+
+
+          

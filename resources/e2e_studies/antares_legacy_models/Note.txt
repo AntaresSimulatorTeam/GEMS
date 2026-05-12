@@ -1,0 +1,140 @@
+
+Liste des tests :
+
+1_test_grid_models_ini -> Test système legacy
+2_test_grid_models_NTC -> Test système NTC
+3_test_grid_models_RE_maille -> Test système RE
+4_test_grid_models_RE_HVDC -> Test système RE avec HVDC
+5_test_grid_models_RE_TD -> Test système RE avec TD
+6_test_grid_models_FB -> Test système FB
+7_test_grid_models_FB_HVDC_TD -> Test système FB avec HVDC et TD
+8_test_reserve_thermique -> Test réserve avec thermique on et off
+9_test_reserve_thermique_stock -> Test réserve avec stock 
+10_test_reserve_futur -> Test réserve district et lien
+
+Améliorations :
+
+--Enjeux 1--
+En réseau équivalent, je souhaite définir une HVDC (ou TD) dont le transit induit des flux dans les lignes N HVAC autour. 
+Problème 1 :
+	- De nombreux paramètres / ports sont définis. Est-ce qu'on pourrait imaginer une liste de la forme :	
+				- Paramètre :
+      				- id: influence_AC  
+        				scenario-dependent: false
+        				time-dependent: false
+					type : liste
+					-> La liste est de la forme clé/valeurs : [ [ligne AC 1, value 1 ], [ligne AC 2, value 2 ]
+
+				- Port :
+      				- id: influence_port_AC_direct
+        				type: flow list
+
+				- Port-field-definition :
+        				- port: influence_port_AC_indirect
+					filed : flow list
+					defintion flow_direct * influence_AC  
+Problème 2 :
+	- De manière similaire pour les CNECs, je voudrais :	
+				- Paramètre :
+					- id: capacity_max
+       				 scenario-dependent: false
+        				 time-dependent: true
+      				- id: PTDF_area
+       				 scenario-dependent: false
+       				 time-dependent: true
+					 type :list
+					-> La liste est de la forme clé/valeurs : [ [Area 1, value 1 ], [Area 2, value 2 ]
+				- Port :
+      				- id: NP_area
+      				  type: flow
+					-> La liste est de la forme clé/valeurs : [ [Area 1, value 1 ], [Area 2, value 2 ]
+    				- binding-constraints:
+        				- id: capacity_constraint
+          				expression: loop_flow + sum [ multiply (NP_area, PTDF_area) ]
+				
+
+--Enjeux 2--
+En réseau équivalent, je souhaite récupérer les influences des HVDC sur les HVAC et les pénaliser aux coûts des hurdles cost de la ligne AC
+Problème 1 :
+Je veux écrire : 
+      objective-contributions:
+        - id: objective
+         expression: sum(hurdle_cost_direct * (flow_direct + sum_connections(influence_HVDC_port_direct.flow) + sum_connections(influence_TD_port_direct.flow) + loop_flow_direct) + hurdle_cost_indirect * (flow_indirect + sum_connections(influence_HVDC_port_indirect.flow) + sum_connections(influence_TD_port_indirect.flow) + loop_flow_indirect))
+
+Or il est interdit de mettre des sum_connections() dans la fonction objectif. Je pourrais mettre le coûts dans les lignes HVDC mais il faut que j'importe les hurdle cost et je devrai également faire un sum.connections()
+
+
+--Enjeux 3--
+Je veux imposer qu'un paramètre soit positif ( par exemple la prise max d'un TD) sinon message d'erreur. Est-ce qu'on pourrait imaginer :
+				- Paramètre :
+      				- id: prise_max  
+        				scenario-dependent: false
+        				time-dependent: false
+       				lower-bound: 0
+
+
+--Enjeux 4--
+Pouvoir mettre deux contraintes en une dans les contraintes (par exemple 1 < B < 8 ) sinon on double les contraintes pour rien
+
+--Enjeux 5--
+Mettre des sous parties dans les paramètres et variables pour les organiser. Cette information pourrait ensuite remontée lors des IHMs
+
+--Enjeux 6--
+Je veux pouvoir définir un paramètre sous forme de liste
+				Paramètre :
+      			- id: reserve_down_participation_on_max
+         			  scenario-dependent: true
+          			  time-dependent: true
+				  type : liste
+				  -> La liste est de la forme clé/valeurs : [ [Reserve 1, value 1 ], [Reserve 2, value 2 ] ]
+      			- id: reserve_down_participation_off_max
+         			  scenario-dependent: true
+          			  time-dependent: true
+				  type : liste
+				  -> La liste est de la forme clé/valeurs : [ [Reserve 1, value 1 ], [Reserve 2, value 2 ] ]
+
+				Variable :
+        			- id: reserve_down_participation_on
+        			  lower-bound: 0
+         			  variable-type: continuous
+				  type : list
+ 				  -> La liste est de la forme clé/valeurs :[ [Reserve 1, value 1 ], [Reserve 2, value 2 ] ]
+
+        			- id: reserve_down_participation_off
+        			  lower-bound: 0
+         			  variable-type: continuous
+				  type : list
+ 				  -> La liste est de la forme clé/valeurs :[ [Reserve 1, value 1 ], [Reserve 2, value 2 ] ]
+
+    				- port-field-definitions:
+        			  - port: balance_port_reserve
+        			    field: flow
+         			    definition: reserve_1_participation_off, reserve_1_participation_on
+
+     				- constraints:
+        			- id: reserve_participation_max_on
+         			 expression: reserve_participation_on <= nb_units_on * reserve_participation_on_max
+        			- id: reserve_participation_max_off
+        			  expression: reserve_participation_off <= (nb_units_max - nb_units_on) * reserve_participation_off_max
+
+       			- id: reserve_constraints_on_down_tot
+      		       expression: nb_units_on *p_min_unit  + reserve_down_participation_on.sum() <= generation
+       			- id: reserve_constraints_on_down_2
+         			 expression: p_min_cluster  + reserve_down_participation_on.sum()  <= generation
+
+       			- id: reserve_constraints_off_tot
+      		       expression: reserve_up_particpationon.sum() <= generetione
+
+
+      			objective-contributions:
+        			- id: objective
+          			expression: sum(... + sum(multiply(reserve_down_participation_on,  reserve_down_on_cost) + ...)
+
+
+
+
+
+-> Pour la participation des réserves OFF en thermique, je veux faire la contrainte sur la somme des P_off sur toutes les réserves Hausse et je peux pas
+-> Il serait pratique dans les équations de contraintes de pouvoir sommer sur toutes les réserves de type "up" ou "down". Ca demande de définir le type à un endroit
+
+
