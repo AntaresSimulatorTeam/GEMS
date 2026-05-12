@@ -29,9 +29,7 @@ libraries/
   ...
 ```
 
-Always use the hash corresponding to the exact version you downloaded. You can find
-the `.sha256` files in the
-[`libraries/` directory on GitHub](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/libraries).
+Always use the hash corresponding to the exact version you downloaded. You can find the `.sha256` files in the `libraries/` [directory on GitHub](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/libraries).
 
 Example content of `basic_models_library.yml.sha256`:
 
@@ -63,31 +61,29 @@ certutil -hashfile basic_models_library.yml SHA256
 
 ## How to verify the library
 
-1. Download the library file from GitHub (e.g. `basic_models_library.yml`)
-2. Open the corresponding `.sha256` file on GitHub to get the official hash
-3. Compute the hash of your downloaded file using one of the commands above
-4. Compare the two hash values
+Online
 
-| Result | Meaning |
-|--------|---------|
-| Hashes **match** | The file is identical to the official release |
-| Hashes **differ** | The file has been modified, corrupted, or is not the official version |
+1. Download the library file from Github (e.g. ...) as well as the corresponding .sha256 file.
+
+Offline
+
+2. Create your test case offline, manipulating the library and building a system.
+3. Consistency check before running the simulation:
+
+    - Compute the hash of your downloaded file using one of the commands above
+    - Compare the two hash values :
+
+      | Result | Meaning |
+      |--------|---------|
+      | Hashes **match** | The file is identical to the official release |
+      | Hashes **differ** | The file has been modified, corrupted, or is not the official version |
 
 <details>
 <summary>Example verification</summary>
 
-We can compare the two basic-models-library SHA
-Official: 4809d22d8...
-Local: 4809d22d8...
-
+We can compare the two basic-models-library SHA <br>
+Official: 4809d22d8... <br>
+Local: 4809d22d8... <br>
 Result: Match (file is identical)
 </details>
 
-## Workflow summary
-
-1. Download library file from GitHub
-2. Locate the .sha256 file on GitHub
-3. Compute the hash locally (sha256sum / Get-FileHash / certutil)
-4. Compare the two values
-  - *Match* → OK
-  - *Differ* → re-download or report an issue
