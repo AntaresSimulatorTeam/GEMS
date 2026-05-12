@@ -19,6 +19,9 @@ class EnvironmentPaths:
     thermal_cluster_studies_path: Path
     sts_studies_path: Path
     doc_examples_path: Path
+    tutorial_doc_examples_path: Path
+    tutorial_notebook_path: Path
+    tutorial_library_dir: Path
 
     antares_root: Path
     antares_solver_bin: Path
@@ -47,6 +50,23 @@ def get_paths() -> EnvironmentPaths:
     sts_studies_path = studies_folder / "test_sts"
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
+    tutorial_doc_examples_path = (
+        repo_root / "resources" / "Documentation_Examples" / "Tutorial_1_Unit_Commitment"
+    )
+    tutorial_notebook_path = (
+        repo_root
+        / "doc"
+        / "getting-started"
+        / "Tutorial_1_Unit_Commitment"
+        / "1_Tutorial_Unit_Commitment.ipynb"
+    )
+    tutorial_library_dir = (
+        repo_root
+        / "doc"
+        / "getting-started"
+        / "Tutorial_1_Unit_Commitment"
+        / "Tutorial_Unit_Commitment_with_GemsPy"
+    )
 
     antares_version = _read_antares_version(repo_root)
     antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
@@ -59,6 +79,9 @@ def get_paths() -> EnvironmentPaths:
         thermal_cluster_studies_path=thermal_cluster_studies_path,
         sts_studies_path=sts_studies_path,
         doc_examples_path=doc_examples_path,
+        tutorial_doc_examples_path=tutorial_doc_examples_path,
+        tutorial_notebook_path=tutorial_notebook_path,
+        tutorial_library_dir=tutorial_library_dir,
         antares_root=antares_root,
         antares_solver_bin=antares_solver_bin,
         antares_modeler_bin=antares_modeler_bin,
