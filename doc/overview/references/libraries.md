@@ -16,6 +16,9 @@ The following table lists reference model libraries developed within projects th
 |PyPSA Models|Library of models available on [PyPSA](https://docs.pypsa.org/latest/home/installation/)|[pypsa_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/pypsa_models.yml)|
 
 
+To verify that a downloaded library file matches the official release, see
+[Verifying GEMS Libraries](verifying-libraries.md).
+
 ## Library Viewer
 
 Explore how each library is written by navigating in the next interactive window. Click on its different elements for getting a good overview of its structure.
