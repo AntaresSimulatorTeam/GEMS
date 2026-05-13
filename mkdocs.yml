@@ -105,6 +105,7 @@ nav:
           - Antares Simulator: overview/gems-interpreters/antares-simulator.md
       - References:
           - Libraries of models: overview/references/libraries.md
+          - Verifying GEMS Libraries: overview/references/verifying-libraries.md
           - Classification of models: overview/references/classification.md
           - Users of GEMS: overview/references/users.md
   - Getting Started:
