@@ -11,6 +11,7 @@ This document defines the **standard development, branching, versioning, CI/CD, 
 | [GEMS](https://github.com/AntaresSimulatorTeam/GEMS) | Language specification, model libraries, documentation |
 | [AntaresLegacyModels-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) | Converts Antares legacy studies to GEMS format |
 | [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) | Converts PyPSA networks to GEMS format |
+| [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) | Python interpreter for the GEMS Language |
 
 ---
 
@@ -32,12 +33,20 @@ PR's without an associated issue are only allowed for trivial documentation fixe
 
 ### Core Branches
 
+The branching model differs between repositories because merging to `main` in the GEMS repository triggers a documentation website rebuild.
+
+#### GEMS
+
 | Branch | Role |
 |---|---|
-| `main` | Stable releases. Updated only via PRs from develop or hotfix/; each merged PR is a release. |
-| `develop` | Integration branch for the next release. Updated via PRs only. |
+| `main` | Published branch. Every merge triggers a ReadTheDocs rebuild. Updated only via PRs from `release/` or `hotfix/`. Direct commits are not allowed. |
+| `develop` | Integration branch for ongoing work. All `feature`, `bugfix`, `chore` PRs target `develop`. Not protected — direct commits are allowed to resolve conflicts with `main`. |
 
-Direct commits to `main` or `develop` are **not allowed**.
+#### Converter Repositories and GemsPy
+
+| Branch | Role |
+|---|---|
+| `main` | Single integration and release branch. All development PRs and release PRs target `main`. Direct commits are not allowed. |
 
 ### Working Branch Types
 
@@ -49,7 +58,7 @@ Direct commits to `main` or `develop` are **not allowed**.
 | `perf/...` | Performance improvements |
 | `docs/...` | Documentation changes |
 | `chore/...` | Maintenance, dependency updates |
-| `release/vX.Y.Z` | Release preparation |
+| `release/vX.Y.Z` | Release preparation — version bumps and changelog updates |
 | `hotfix/vX.Y.Z` | Urgent post-release corrections |
 
 ### Naming Convention
@@ -62,7 +71,9 @@ bugfix/fix-thermal-parameter-mapping
 chore/update-antares-craft-dependency
 ```
 
-All branches are created from `develop`, except `hotfix` and `release` branches, which branch from `main`.
+In GEMS, all `feature`, `bugfix`, `chore`, `docs`, and `refactor` branches are created from `develop`. `release` and `hotfix` branches are created from `develop` and `main` respectively.
+
+In converter repositories and GemsPy, all branches are created from `main`.
 
 ---
 
@@ -70,7 +81,7 @@ All branches are created from `develop`, except `hotfix` and `release` branches,
 
 Each repository defines named governance processes. When opening an issue, select the applicable process template.
 
-### GEMS
+### GEMS Process IDs
 
 | Process | Trigger | Template |
 |---|---|---|
@@ -97,6 +108,13 @@ Each repository defines named governance processes. When opening an issue, selec
 | **A2G-03** | New antares-craft release | `a2g-03.yml` |
 | **A2G-04** | New GemsPy release | `a2g-04.yml` |
 
+### GemsPy
+
+| Process | Trigger | Template |
+|---|---|---|
+| **GP-01** | New GEMS Language version requiring interpreter updates | `gp-01.yml` |
+| **GP-02** | Internal bug fix, feature, or code improvement | `gp-02.yml` |
+
 Each template includes a step-by-step process checklist, versioning steps, and validation requirements.
 
 ---
@@ -105,9 +123,20 @@ Each template includes a step-by-step process checklist, versioning steps, and v
 
 ### Workflow
 
+**GEMS:**
+
 1. Create a branch from `develop`
 2. Implement the change
 3. Open a PR targeting `develop`, linked to the issue
+4. Apply labels (see Section 5)
+5. Pass CI and code review
+6. Squash and merge
+
+**Converter repositories and GemsPy:**
+
+1. Create a branch from `main`
+2. Implement the change
+3. Open a PR targeting `main`, linked to the issue
 4. Apply labels (see Section 5)
 5. Pass CI and code review
 6. Squash and merge
@@ -139,16 +168,14 @@ Affected modules. Breaking changes or backward-compatible?
 ## Checklist
 - [ ] Tests pass
 - [ ] pyproject.toml version bumped if converter logic changed
-- [ ] Changelog entry added if library changed
-- [ ] COMPATIBILITY.md updated if supported versions changed
 ```
 
 ### Merge Strategy
 
 | Target | Strategy | Who |
 |---|---|---|
-| `develop` | Squash & Merge | All `feature`, `bugfix`, `chore` PRs |
-| `main` | Squash & Merge | PRs from `develop` or `hotfix` |
+| `develop` (GEMS only) | Squash & Merge | All `feature`, `bugfix`, `chore`, `docs`, `refactor` PRs |
+| `main` | Squash & Merge | `release` and `hotfix` PRs (GEMS); all PRs (converters and GemsPy) |
 
 ---
 
@@ -185,7 +212,7 @@ Exactly one release label must be assigned.
 
 All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`). The `library.version` field inside each library YAML is the authoritative version record for model libraries.
 
-### PyPSA-to-GEMS-Converter
+### PyPSA-to-GEMS-Converter Versioning
 
 | Component | Bump rule | Version file |
 |---|---|---|
@@ -194,7 +221,7 @@ All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`). The `libr
 | PyPSA | Pinned version | `requirements.txt` |
 | Antares-Simulator | Pinned version used by CI | `dependencies.json` → `antares_version` |
 
-### AntaresLegacyModels-to-GEMS-Converter
+### AntaresLegacyModels-to-GEMS-Converter Versioning
 
 | Component | Bump rule | Version file |
 |---|---|---|
@@ -204,56 +231,37 @@ All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`). The `libr
 | antares-craft | Pinned version | `requirements.txt` |
 | GemsPy | Pinned version | `requirements.txt` |
 
-### GEMS
+### GEMS Versioning
 
 | Component | Bump rule | Version field |
 |---|---|---|
 | GEMS Language / Documentation | Versioned together with the documentation. Major: breaking syntax change / Minor: new construct or keyword / Patch: clarification or doc fix | Release notes at `doc/0_Home/4_release_notes.md` |
-| basic\_models\_library | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `libraries/basic_models_library.yml` |
-| antares\_legacy\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `libraries/antares_legacy_models.yml` |
-| pypsa\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `libraries/pypsa_models.yml` |
-| andromede\_models | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` in `libraries/andromede_models.yml` |
+| Model libraries (`libraries/*.yml`) | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `library.version` inside each `libraries/<library_name>.yml` |
 | Antares-Simulator | Pinned version used by CI and E2E tests | `dependencies.json` → `antares_simulator_version` |
 
----
+### GemsPy Versioning
 
-## 7. Changelogs
-
-Every repository and every independently versioned model library maintains a dedicated changelog.
-
-### Repository Changelogs
-
-| Repository | Changelog location |
-|---|---|
-| PyPSA-to-GEMS-Converter | `CHANGELOG.md` at repo root |
-| AntaresLegacyModels-to-GEMS-Converter | `CHANGELOG.md` at repo root |
-| GEMS | Release notes at `doc/0_Home/4_release_notes.md` (serves as the GEMS Language changelog) |
-
-### Library Changelogs
-
-| Library | Changelog location |
-|---|---|
-| PyPSA Models Library | `resources/pypsa_models/CHANGELOG-pypsa_models_library.md` |
-| Antares Legacy Models Library | `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md` |
-| GEMS libraries | `libraries/CHANGELOG-<library_name>.md` |
-
-A changelog entry **must be added before tagging a release**. Recommended sections: `Added`, `Changed`, `Fixed`, `Removed`, `Deprecated`.
+| Component | Bump rule | Version file |
+|---|---|---|
+| GemsPy (`pyproject.toml`) | Major: breaking GEMS Language change or backward-incompatible API change / Minor: new feature or GP-01 impact / Patch: bug fix or internal improvement | `pyproject.toml` |
 
 ---
 
-## 8. CI/CD Automation
+## 7. CI/CD Automation
 
 ### Per-Repository Pipelines
 
-| Check | GEMS | PyPSA Converter | AntaresLegacy Converter |
-|---|---|---|---|
-| Linting | `ruff` | `ruff` | `black` |
-| Type checking | `mypy` | `mypy` | `mypy` |
-| YAML linting | `yamllint` | — | — |
-| Unit tests | `pytest tests/unit_tests/` | `pytest tests/unit_tests/` | `pytest` (with coverage) |
-| E2E tests | `pytest tests/e2e_tests/` | `pytest tests/e2e/` | `pytest tests/antares_historic/` |
+| Check | GEMS | PyPSA Converter | AntaresLegacy Converter | GemsPy |
+|---|---|---|---|---|
+| Linting | `ruff` | `ruff` | `black` | `black` + `isort` |
+| Type checking | `mypy` | `mypy` | `mypy` | `mypy` |
+| YAML linting | `yamllint` | — | — | — |
+| Unit tests | `pytest tests/unit_tests/` | `pytest tests/unit_tests/` | `pytest` (with coverage) | `pytest` (with coverage) |
+| E2E tests | `pytest tests/e2e_tests/` | `pytest tests/e2e/` | `pytest tests/antares_historic/` | `pytest tests/e2e/` |
 
 PRs cannot be merged if any required CI check fails.
+
+GemsPy additionally has a `publish.yml` workflow that triggers automatically when a GitHub release is published — it builds the package and pushes it to PyPI. No manual action is needed after tagging.
 
 ### Automated Dependency Monitoring
 
@@ -261,7 +269,7 @@ Each repository monitors its upstream dependencies on a schedule and opens an is
 
 | Workflow | Repo | Schedule | Monitors |
 |---|---|---|---|
-| `check-antares-update` | All three | Daily 06:00 UTC | Antares-Simulator GitHub releases |
+| `check-antares-update` | GEMS, PyPSA Converter, AntaresLegacy Converter | Daily 06:00 UTC | Antares-Simulator GitHub releases |
 | `check-pypsa-update` | PyPSA Converter | Monday 06:00 UTC | PyPSA on PyPI |
 | `check-antares-craft-update` | AntaresLegacy Converter | Monday 06:00 UTC | antares-craft on PyPI |
 | `check-gemspy-update` | AntaresLegacy Converter | Monday 06:00 UTC | GemsPy on PyPI |
@@ -281,15 +289,18 @@ Each repository automatically maintains SHA256 checksum files alongside its libr
 
 | Workflow | Repo | Trigger | Scope |
 |---|---|---|---|
-| `update-library-checksums` | GEMS | Push to `main` touching `libraries/*.yml` (excludes `pypsa_models.yml` and `antares_legacy_models.yml`) | `libraries/` |
-| `update-library-checksums` | PyPSA Converter | Push to `main` touching `resources/pypsa_models/*.yml` | `resources/pypsa_models/` |
-| `update-library-checksums` | AntaresLegacy Converter | Push to `main` touching `src/antares_gems_converter/libs/**/*.yml` | `src/antares_gems_converter/libs/` |
+| `update-library-checksums` | GEMS | Push to `release/**` or `hotfix/**` touching `libraries/*.yml` | `libraries/` (excludes `pypsa_models.yml` and `antares_legacy_models.yml`) |
+| `update-library-checksums` | PyPSA Converter | Push to `release/**` or `hotfix/**` touching `resources/pypsa_models/*.yml` | `resources/pypsa_models/` |
+| `update-library-checksums` | AntaresLegacy Converter | Push to `release/**` or `hotfix/**` touching `src/antares_gems_converter/libs/**/*.yml` | `src/antares_gems_converter/libs/` |
 
 **How it works:**
 
-- If no `.sha256` file exists → generated automatically.
+- Runs on every push to a `release/**` or `hotfix/**` branch that touches a library YAML.
+- If no `.sha256` file exists → generated and committed back to the branch automatically.
 - If the hash matches the stored one → no action.
-- If the hash differs → `.sha256` file updated and committed back to `main` with `[skip ci]`.
+- If the hash differs → `.sha256` file updated and committed back to the branch automatically.
+
+> ⚠️ **WARNING: THE CHECKSUM WORKFLOW FIRES WHENEVER YOU PUSH TO A `release/**` OR `hotfix/**` BRANCH AND THE PUSH CONTAINS LIBRARY YAML CHANGES — WHETHER YOU EDITED THE LIBRARY DIRECTLY ON THAT BRANCH OR THE LIBRARY WAS ALREADY MODIFIED IN THE COMMITS CARRIED OVER FROM `develop` OR `main` WHEN THE BRANCH WAS CREATED. IN BOTH CASES THE WORKFLOW WILL AUTOMATICALLY COMMIT AN UPDATED CHECKSUM BACK TO YOUR BRANCH. YOU MUST RUN `git pull` BEFORE MAKING ANY FURTHER LOCAL CHANGES OR PUSHES, OTHERWISE YOUR NEXT PUSH WILL BE REJECTED DUE TO DIVERGED HISTORY.**
 
 The `pypsa_models.yml` and `antares_legacy_models.yml` libraries in GEMS repository are excluded from `update-library-checksums` workflow because their checksums are managed by the respective converter repositories.
 
@@ -319,33 +330,78 @@ Both workflows require the `GEMS_REPO_PAT` secret (a Personal Access Token with 
 
 ---
 
-## 9. Release Process
+## 8. Release Process
 
 The release flow is the same for all repositories:
 
+**GEMS:**
+
 ```text
-develop  ──── squash PRs ────► last PR bumps versions
+develop  ──── squash PRs (feature, bugfix, chore…) ────► ready to release
                                       │
-                             squash-merge to develop
+                          create release/vX.Y.Z from develop
                                       │
-                                      ▼
-                          open PR: develop → main
+                          bump versions + update changelogs
+                          (checksum auto-commits if library changed)
+                                      │
+                          open PR: release/vX.Y.Z → main
                           (squash & merge)
                                       │
                              squash-merge into main
                                       │
                                       ▼
-                          create release/vX.Y.Z from main HEAD
-                          tag vX.Y.Z on release branch
-                          push tag + branch atomically
+                          manually create tag vX.Y.Z + GitHub release
+                          via GitHub UI
                                       │
                                       ▼
-                          publish GitHub release
+                          merge main back into develop
+```
+
+**Converter repositories:**
+
+```text
+main  ──── squash PRs (feature, bugfix, chore…) ────► ready to release
+                                      │
+                          create release/vX.Y.Z from main
+                                      │
+                          bump versions + update library changelog (if library changed)
+                          (checksum auto-commits if library changed)
+                                      │
+                          open PR: release/vX.Y.Z → main
+                          (squash & merge)
+                                      │
+                             squash-merge into main
+                                      │
+                                      ▼
+                          manually create tag vX.Y.Z + GitHub release
+                          via GitHub UI
+```
+
+**GemsPy:**
+
+```text
+main  ──── squash PRs (feature, bugfix, chore…) ────► ready to release
+                                      │
+                          create release/vX.Y.Z from main
+                                      │
+                                bump version
+                                      │
+                          open PR: release/vX.Y.Z → main
+                          (squash & merge)
+                                      │
+                             squash-merge into main
+                                      │
+                                      ▼
+                          manually create tag vX.Y.Z + GitHub release
+                          via GitHub UI
+                                      │
+                                      ▼
+                          publish to PyPI triggered automatically
 ```
 
 ---
 
-### 9.1 PyPSA-to-GEMS-Converter Release
+### 8.1 PyPSA-to-GEMS-Converter Release
 
 The example below releases converter version `1.2.0` with a library bump to `1.1.0`.
 
@@ -354,48 +410,43 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 | File | What to change |
 |---|---|
 | `pyproject.toml` | Bump `version` to `1.2.0` |
+| `COMPATIBILITY.md` | Update PyPSA and Antares-Simulator version mappings if changed |
 | `resources/pypsa_models/pypsa_models.yml` | Bump `library.version` to `1.1.0` (only if library changed) |
-| `CHANGELOG.md` | Add converter release entry |
 | `resources/pypsa_models/CHANGELOG-pypsa_models_library.md` | Add library release entry (only if library changed) |
 
 #### PyPSA Converter — Steps
 
-1. Make sure `develop` is up to date
-
-   ```bash
-   git checkout develop
-   git pull origin develop
-   ```
-
-2. Open a version bump PR to `develop`
-   - Update `pyproject.toml`, `resources/pypsa_models/pypsa_models.yml`, `CHANGELOG.md`, and `resources/pypsa_models/CHANGELOG-pypsa_models_library.md`
-   - PR title: `[PR] Release v1.2.0 — version bump`
-   - Squash & merge to `develop`
-
-3. Open a PR from `develop` targeting `main`
-   - Title: `[PR] Release v1.2.0`
-   - Labels: `release:minor` / `release:major` / `release:patch`
-   - Merge strategy: **Squash & Merge**
-
-4. After the PR is merged to `main` — create the release branch, tag it, and push
+1. Make sure `main` is up to date
 
    ```bash
    git checkout main
    git pull origin main
-   git checkout -b release/v1.2.0
-   git tag v1.2.0
-   git push --atomic origin release/v1.2.0 v1.2.0
    ```
 
-   > The `release/vX.Y.Z` branch is a permanent snapshot of `main` at the time of release, kept for audit and security purposes. The tag is placed on this branch — no further commits are made to it.
+2. Create the release branch and bump versions
 
-5. Go to GitHub → Releases → Draft a new release → select tag `v1.2.0` → paste the changelog entry → publish.
+   ```bash
+   git checkout -b release/v1.2.0
+   ```
 
-6. Cross-repo notification (automatic) — if `library.version` in `resources/pypsa_models/pypsa_models.yml` was bumped, the `notify-gems-pypsa-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ. No manual action needed.
+   Update `pyproject.toml`, `resources/pypsa_models/pypsa_models.yml`, and `CHANGELOG-pypsa_models_library.md` (if library changed), then push:
+
+   ```bash
+   git push origin release/v1.2.0
+   ```
+
+3. Open a PR from `release/v1.2.0` targeting `main`
+   - Title: `[PR] Release v1.2.0`
+   - Labels: `release:minor` / `release:major` / `release:patch`
+   - Merge strategy: **Squash & Merge**
+
+4. Go to GitHub → Releases → Draft a new release → create tag `v1.2.0` on `main` → paste the changelog entry → publish.
+
+5. Cross-repo notification (automatic) — if `library.version` in `resources/pypsa_models/pypsa_models.yml` was bumped, the `notify-gems-pypsa-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ. No manual action needed.
 
 ---
 
-### 9.2 AntaresLegacyModels-to-GEMS-Converter Release
+### 8.2 AntaresLegacyModels-to-GEMS-Converter Release
 
 Same flow as the PyPSA converter. The example below releases converter version `1.2.0` with a library bump to `1.1.0`.
 
@@ -404,32 +455,23 @@ Same flow as the PyPSA converter. The example below releases converter version `
 | File | What to change |
 |---|---|
 | `pyproject.toml` | Bump `version` to `1.2.0` |
+| `COMPATIBILITY.md` | Update Antares-Simulator, antares-craft, and GemsPy version mappings if changed |
 | `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` | Bump `library.version` to `1.1.0` (only if library changed) |
-| `CHANGELOG.md` | Add converter release entry |
 | `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md` | Add library release entry (only if library changed) |
 
 #### AntaresLegacy Converter — Steps
 
-1. Make sure `develop` is up to date (same as PyPSA converter step 1).
+Same flow as the PyPSA converter (steps 1–5). Replace the file paths with:
 
-2. Open a version bump PR to `develop`
-   - Update `pyproject.toml`, `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml`, `CHANGELOG.md`, and `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md`
-   - PR title: `[PR] Release v1.2.0 — version bump`
-   - Squash & merge to `develop`
+- `pyproject.toml`
+- `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` (if library changed)
+- `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md` (if library changed)
 
-3. Open PR `develop` → `main`, squash & merge, publish GitHub release (same as PyPSA converter steps 3–5).
-
-4. Cross-repo notification (automatic) — if `library.version` in `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` was bumped, the `notify-gems-antares-legacy-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ.
+Cross-repo notification (automatic) — if `library.version` in `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` was bumped, the `notify-gems-antares-legacy-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ.
 
 ---
 
-### 9.3 GEMS Release
-
-A GEMS release is typically triggered by:
-
-- An incoming notification issue from a converter (library updated — process **LT-02**)
-- A new Antares-Simulator release affecting libraries (process **LT-01**)
-- A new internal library or taxonomy (process **LT-03**)
+### 8.3 GEMS Release
 
 The example below releases GEMS version `1.2.0` after syncing an updated PyPSA models library.
 
@@ -438,6 +480,7 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 | File | What to change |
 |---|---|
 | `libraries/<library_name>.yml` | Apply library changes and bump `library.version` |
+| `libraries/<library_name>.yml.sha256` | Updated automatically by `update-library-checksums` workflow (GEMS-owned libraries only — `pypsa_models.yml` and `antares_legacy_models.yml` must be updated manually) |
 | `libraries/CHANGELOG-<library_name>.md` | Add library changelog entry |
 | `doc/0_Home/4_release_notes.md` | Add release notes entry if GEMS Language spec changed |
 | `COMPATIBILITY.md` | Update documentation version and/or Antares version mapping if changed |
@@ -451,74 +494,110 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
    git pull origin develop
    ```
 
-2. Open a version bump PR to `develop`
-   - Update `dependencies.json`, library YAML files, and changelog files
-   - PR title: `[PR] Release v1.2.0 — version bump`
-   - Squash & merge to `develop`
+2. Create the release branch and bump versions
 
-3. Open a PR from `develop` targeting `main`
+   ```bash
+   git checkout -b release/v1.2.0
+   ```
+
+   Update `dependencies.json`, library YAML files, and changelog files, then push:
+
+   ```bash
+   git push origin release/v1.2.0
+   ```
+
+3. Open a PR from `release/v1.2.0` targeting `main`
    - Title: `[PR] Release v1.2.0`
    - Labels: `release:minor` / `release:major` / `release:patch`
    - Merge strategy: **Squash & Merge**
 
-4. After the PR is merged to `main` — create the release branch, tag it, and push
+4. Go to GitHub → Releases → Draft a new release → create tag `v1.2.0` on `main` → paste the changelog entry → publish.
+
+5. Merge `main` back into `develop` to keep it in sync:
 
    ```bash
-   git checkout main
-   git pull origin main
-   git checkout -b release/v1.2.0
-   git tag v1.2.0
-   git push --atomic origin release/v1.2.0 v1.2.0
+   git checkout develop
+   git merge main
+   git push origin develop
    ```
-
-   > The `release/vX.Y.Z` branch is a permanent snapshot of `main` at the time of release, kept for audit and security purposes. The tag is placed on this branch — no further commits are made to it.
-
-5. Go to GitHub → Releases → Draft a new release → select tag `v1.2.0` → paste the changelog entry → publish.
 
 6. Close the notification issue that triggered this release (e.g. `[PYPSA MODELS] New library version: v1.1.0`).
 
 ---
 
-## 10. Tagging Rules
+### 8.4 GemsPy Release
 
-### Release tags (all repositories)
+#### GemsPy — Files to update
 
-- After the PR from `develop` is squash-merged into `main`, a `release/vX.Y.Z` branch is created from `main` HEAD and the tag `vX.Y.Z` is placed on that branch
-- Format: `vX.Y.Z` (e.g. `v1.2.0`, `v0.3.4`)
-- Every release PR merged to `main` must result in a tag on the corresponding `release/vX.Y.Z` branch
+| File | What to change |
+|---|---|
+| `pyproject.toml` | Bump `version` |
 
-#### Release branch as snapshot
+#### GemsPy — Steps
 
-After the squash-merge to `main`, a `release/vX.Y.Z` branch is created from `main` HEAD. The tag `vX.Y.Z` is placed on that commit and pushed atomically with the branch. This branch is a permanent read-only snapshot of `main` at the time of release, retained for audit and security purposes. No further commits are made to it.
-
----
-
-## 11. Hotfix Rules
-
-For critical issues discovered after a release:
-
-1. Branch from `main`: `hotfix/vX.Y.Z`
-2. Apply the fix and commit
-3. Push the hotfix branch: `git push origin hotfix/vX.Y.Z`
-4. Open a PR from `hotfix/vX.Y.Z` targeting `main` (two approvals recommended)
-5. Merge via **Squash & Merge**
-6. After the PR is merged to `main` — create the release branch, tag it, and push
+1. Make sure `main` is up to date
 
    ```bash
    git checkout main
    git pull origin main
-   git checkout -b release/vX.Y.Z
-   git tag vX.Y.Z
-   git push --atomic origin release/vX.Y.Z vX.Y.Z
    ```
 
-7. Publish the GitHub release for the new tag
-8. **Mandatory**: open a PR from `main` targeting `develop` and merge it — direct pushes to `develop` are not allowed
+2. Create the release branch and bump the version
+
+   ```bash
+   git checkout -b release/v1.2.0
+   ```
+
+   Update `pyproject.toml`, then push:
+
+   ```bash
+   git push origin release/v1.2.0
+   ```
+
+3. Open a PR from `release/v1.2.0` targeting `main`
+   - Title: `[PR] Release v1.2.0`
+   - Labels: `release:minor` / `release:major` / `release:patch`
+   - Merge strategy: **Squash & Merge**
+
+4. Go to GitHub → Releases → Draft a new release → create tag `v1.2.0` on `main` → fill in release notes → publish.
+
+5. PyPI publish (automatic) — the `publish.yml` workflow triggers on the GitHub release published event and pushes the package to PyPI automatically. No manual action needed.
 
 ---
 
-## 12. Required GitHub Secrets
+## 9. Tagging Rules
+
+### Release tags (all repositories)
+
+- Tags are created manually via the GitHub UI when drafting a new release, targeting `main` HEAD after the release PR is merged
+- Format: `vX.Y.Z` (e.g. `v1.2.0`, `v0.3.4`)
+- Every release PR merged to `main` must result in a tag and a published GitHub release
+
+---
+
+## 10. Hotfix Rules
+
+For critical issues discovered after a release:
+
+1. Branch from `main`: `hotfix/vX.Y.Z`
+2. Apply the fix, bump the version in the relevant files, and commit
+3. Push the hotfix branch: `git push origin hotfix/vX.Y.Z`
+4. Open a PR from `hotfix/vX.Y.Z` targeting `main`
+5. Merge via **Squash & Merge**
+6. Go to GitHub → Releases → Draft a new release → create tag `vX.Y.Z` on `main` → paste the changelog entry → publish.
+7. **GEMS only** — merge `main` back into `develop`:
+
+   ```bash
+   git checkout develop
+   git merge main
+   git push origin develop
+   ```
+
+---
+
+## 11. Required GitHub Secrets
 
 | Secret | Required by | Purpose |
 |---|---|---|
 | `GEMS_REPO_PAT` | PyPSA Converter, AntaresLegacy Converter | Create issues in the GEMS repository from cross-repo notification workflows |
+| `PYPI_TOKEN` | GemsPy | Publish package to PyPI via `publish.yml` |

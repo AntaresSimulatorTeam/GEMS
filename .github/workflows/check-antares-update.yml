@@ -2,7 +2,7 @@ name: Check Antares Simulator Update
 
 on:
   schedule:
-    - cron: "0 6 * * *"
+    - cron: "0 6 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -13,9 +13,9 @@ jobs:
   check-update:
     runs-on: ubuntu-latest
     outputs:
-      update: ${{ steps.compare.outputs.update }}
       latest_version: ${{ steps.latest.outputs.version }}
       issue_number: ${{ steps.create_issue.outputs.issue_number }}
+      new_issue: ${{ steps.create_issue.outputs.new_issue }}
 
     steps:
       - name: Checkout repository
@@ -101,6 +101,7 @@ jobs:
             if (duplicate) {
               console.log(`Issue already exists: #${duplicate.number} - skipping.`);
               core.setOutput('issue_number', String(duplicate.number));
+              core.setOutput('new_issue', 'false');
               return;
             }
 
@@ -175,12 +176,13 @@ jobs:
             });
 
             core.setOutput('issue_number', String(result.data.number));
+            core.setOutput('new_issue', 'true');
             console.log(`Issue created: #${result.data.number} - ${result.data.html_url}`);
 
   e2e-new-version:
     name: E2E Tests against Antares v${{ needs.check-update.outputs.latest_version }}
     needs: check-update
-    if: needs.check-update.outputs.update == 'true'
+    if: needs.check-update.outputs.new_issue == 'true'
     uses: ./.github/workflows/run-e2e-tests.yml
     with:
       antares_version: ${{ needs.check-update.outputs.latest_version }}
@@ -190,7 +192,7 @@ jobs:
     name: Post E2E results to issue
     runs-on: ubuntu-22.04
     needs: [check-update, e2e-new-version]
-    if: always() && needs.check-update.outputs.update == 'true'
+    if: always() && needs.check-update.outputs.new_issue == 'true'
 
     steps:
       - name: Post results to issue
