@@ -30,7 +30,7 @@ def prepare_and_run_doc_study(
         study_name=study_name,
         source_dir=paths.doc_examples_path,
         tmp_root=tmp_root,
-        preserve_symlinks=True, 
+        preserve_symlinks=True,
     )
 
     copy_model_library(paths, gems_path, library_filename)
