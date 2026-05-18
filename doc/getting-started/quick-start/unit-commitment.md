@@ -90,9 +90,9 @@ The *Unit Commitment* problem here involves determining the on/off schema and di
 
 <div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
   <strong>⚠️ Warning</strong><br>
-  <b>GEMS studies can only be run with Antares Modeler and GemsPy</b>; they cannot be run with Antares Solver (Legacy).
-  <br>
-  However, in the <a href="../../interoperability/hybrid/">Hybrid Study</a> section, a tutorial explains <b>how GEMS components can be integrated inside a Legacy study run by Antares Solver (Legacy)</b>.
+  <b>It's recommended to run this GEMS study with Antares Modeler or GemsPy</b>Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver. 
+  
+ For more information about the hybrid mode of Antares Solver, see the <a href="../../interoperability/hybrid/">Hybrid Study</a> section.
 </div>
 
 Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
