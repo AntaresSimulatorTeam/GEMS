@@ -70,11 +70,11 @@ def get_notebook_objective(notebook_path: Path, simulation_index: int) -> float:
 
 
 def install_tutorial_library(paths: EnvironmentPaths, gems_study_path: Path) -> None:
-    """Copy andromede_models.yml from the tutorial folder into the study's model-libraries."""
-    source = paths.tutorial_library_dir / "andromede_models.yml"
+    """Copy antares_legacy_models.yml from the shared library into the study's model-libraries."""
+    source = paths.repo_root / "libraries" / "antares_legacy_models.yml"
     target_folder = gems_study_path / "input" / "model-libraries"
     target_folder.mkdir(parents=True, exist_ok=True)
-    target = target_folder / "andromede_models.yml"
+    target = target_folder / "antares_legacy_models.yml"
     if target.is_symlink() or target.exists():
         target.unlink()
     shutil.copy(source, target)
