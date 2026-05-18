@@ -2,7 +2,7 @@ system:
   id: my_system
   components:
     - id: my_area
-      model: antares_legacy_models.area
+      model: tuto_antares_legacy_models.area
       parameters:
         - id: spillage_cost
           time-dependent: false
@@ -14,15 +14,63 @@ system:
           value: 10000
 
     - id: load
-      model: antares_legacy_models.load
+      model: tuto_antares_legacy_models.load
       parameters:
         - id: load
           time-dependent: true
           scenario-dependent: true
           value: load
 
+    - id: thermal_gen
+      model: tuto_antares_legacy_models.thermal
+      parameters:
+        - id: p_min_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: p_max_unit
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: p_max_cluster
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+        - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: startup_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: fixed_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: d_min_up
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: d_min_down
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: unit_count
+          time-dependent: false
+          scenario-dependent: false
+          value: 1
+        - id: spinning
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: minimum_generation_modulation
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+
     - id: wind_farm
-      model: antares_legacy_models.renewable
+      model: tuto_antares_legacy_models.renewable
       parameters:
         - id: nominal_capacity
           time-dependent: false
@@ -38,7 +86,7 @@ system:
           value: wind
 
     - id: solar_farm
-      model: antares_legacy_models.renewable
+      model: tuto_antares_legacy_models.renewable
       parameters:
         - id: nominal_capacity
           time-dependent: false
@@ -53,57 +101,13 @@ system:
           scenario-dependent: true
           value: solar
 
-    - id: thermal_gen_UC
-      model: antares_legacy_models.thermal
-      parameters:
-        - id: p_min_unit
-          time-dependent: false
-          scenario-dependent: false
-          value: 1
-        - id: p_max_unit
-          time-dependent: false
-          scenario-dependent: false
-          value: 10
-        - id: p_max_cluster
-          time-dependent: false
-          scenario-dependent: false
-          value: 100
-        - id: generation_cost
-          time-dependent: false
-          scenario-dependent: false
-          value: 50
-        - id: startup_cost
-          time-dependent: false
-          scenario-dependent: false
-          value: 20
-        - id: fixed_cost
-          time-dependent: false
-          scenario-dependent: false
-          value: 10
-        - id: d_min_up
-          time-dependent: false
-          scenario-dependent: false
-          value: 1
-        - id: d_min_down
-          time-dependent: false
-          scenario-dependent: false
-          value: 1
-        - id: unit_count
-          time-dependent: false
-          scenario-dependent: false
-          value: 10
-        - id: spinning
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
-        - id: minimum_generation_modulation
-          time-dependent: false
-          scenario-dependent: false
-          value: 0
-
   connections:
     - component1: my_area
       component2: load
+      port1: balance_port
+      port2: balance_port
+    - component1: my_area
+      component2: thermal_gen
       port1: balance_port
       port2: balance_port
     - component1: my_area
@@ -112,9 +116,5 @@ system:
       port2: balance_port
     - component1: my_area
       component2: solar_farm
-      port1: balance_port
-      port2: balance_port
-    - component1: my_area
-      component2: thermal_gen_UC
       port1: balance_port
       port2: balance_port

@@ -10,7 +10,7 @@
 #
 # This file is part of the Antares project.
 library:
-  id: antares_legacy_models
+  id: tuto_antares_legacy_models
   description: Antares historic model library
 
 
