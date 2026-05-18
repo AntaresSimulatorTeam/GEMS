@@ -71,7 +71,14 @@ def get_notebook_objective(notebook_path: Path, simulation_index: int) -> float:
 
 def install_tutorial_library(paths: EnvironmentPaths, gems_study_path: Path) -> None:
     """Copy tuto_antares_legacy_models.yml from the shared library into the study's model-libraries."""
-    source = paths.repo_root / "doc" / "getting-started" / "Tutorial_1_Unit_Commitment" / "Tutorial_Unit_Commitment_with_GemsPy" / "tuto_antares_legacy_models.yml"
+    source = (
+        paths.repo_root
+        / "doc"
+        / "getting-started"
+        / "Tutorial_1_Unit_Commitment"
+        / "Tutorial_Unit_Commitment_with_GemsPy"
+        / "tuto_antares_legacy_models.yml"
+    )
 
     target_folder = gems_study_path / "input" / "model-libraries"
     target_folder.mkdir(parents=True, exist_ok=True)
@@ -99,7 +106,12 @@ def test_doc_tutorial_1_unit_commitment(
     notebook_objective = get_notebook_objective(
         paths.tutorial_notebook_path, notebook_simulation_index
     )
-    logger.info("[%s] notebook objective (simulation #%d): %s", study_name, notebook_simulation_index, notebook_objective)
+    logger.info(
+        "[%s] notebook objective (simulation #%d): %s",
+        study_name,
+        notebook_simulation_index,
+        notebook_objective,
+    )
 
     gems_path = copy_study_dir_to_tmp(
         study_name=study_name,

@@ -53,7 +53,11 @@ def get_paths() -> EnvironmentPaths:
 
     # Paths for tutorial notebooks e2e tests
     tutorial_doc_examples_path = (
-        repo_root / "resources" / "e2e_studies" / "tuto_antares_legacy_models" / "Tutorial_1_Unit_Commitment"
+        repo_root
+        / "resources"
+        / "e2e_studies"
+        / "tuto_antares_legacy_models"
+        / "Tutorial_1_Unit_Commitment"
     )
     tutorial_notebook_path = (
         repo_root
