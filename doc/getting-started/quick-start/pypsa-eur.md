@@ -15,6 +15,8 @@ The configuration of the VS Code Remote SSH linked to remote server running Jupy
 
 ## Part 1 — Clone the GEMS repository
 
+These steps are run **on the remote server** (connect via SSH first).
+
 The GEMS repository contains the Docker configuration and the Jupyter notebook needed for the conversion step.
 
 ```bash
@@ -24,11 +26,11 @@ cd GEMS
 
 ## Part 2 — Set up and run PyPSA-Eur
 
-These steps are run **on the remote server** (connect via SSH first).
+These steps are run **on the remote server**.
 
-Thi part focuses on the downloading of PyPSA Eur for a small zone inside the server.
+This part focuses on setting up a simple PyPSA-Eur study (France only, 3 days) on the server.
 
-### 1.1 Install Pixi
+### 2.1 Install Pixi
 
 [Pixi](https://pixi.sh) is the package manager used by PyPSA-Eur.
 
@@ -37,14 +39,14 @@ curl -fsSL https://pixi.sh/install.sh | bash
 source ~/.bashrc  # or restart the terminal
 ```
 
-### 1.2 Clone PyPSA-Eur
+### 2.2 Clone PyPSA-Eur
 
 ```bash
 git clone https://github.com/PyPSA/pypsa-eur.git
 cd pypsa-eur
 ```
 
-### 1.3 Install the environment
+### 2.3 Install the environment
 
 ```bash
 pixi install
@@ -52,18 +54,19 @@ pixi install
 
 This reads `pixi.toml` and installs all dependencies into `.pixi/envs/default/`. The first run takes a few minutes.
 
-### 1.4 Configure the study
+### 2.4 Configure the study
 
-This part is important because it will determine the amount of data download from PyPSA Eur opendata. In this example, in order to create a small study easy to convert, the study only contains the FR node and data for 3 days.
+This part is important because it determines the amount of data downloaded from PyPSA-Eur open data. In this example, to create a small study easy to convert, the study only contains the FR node and data for 3 days.
 
-Edit `config/config.yaml` to set the target countries, number of clusters, planning horizon, and other study parameters.
-
+First, copy the default config:
 
 ```bash
 cp config/config.default.yaml config/config.yaml
 ```
 
-??? info "Example config file"
+Then edit `config/config.yaml` to set the target countries, number of clusters, planning horizon, and other study parameters.
+
+??? info "Example config file with oly FR node"
 
     ```yaml
     # PyPSA-Eur: simple one-year electricity study (runs on a normal PC)
@@ -110,7 +113,7 @@ cp config/config.default.yaml config/config.yaml
       energy_threshold: 0.1
     ```
 
-### 1.5 Run the workflow
+### 2.5 Run the workflow
 
 ```bash
 pixi run snakemake -c all all -j 4
@@ -122,16 +125,18 @@ To resume after an interrupted run:
 pixi run snakemake -c all all -j 4 --rerun-incomplete
 ```
 
-
 ## Part 3 — Clone the PyPSA-to-GEMS Converter
 
-We clone the converter which will transform the solved PyPSA-Eur network into a GEMS-compatible study through the jupyter notebook. You can get more details on this conversion in this [tutorial](interoperability/pypsa-to-gems-converter/step-by-step-guide/)
+These steps are run **on the remote server**.
+
+We clone the converter which will transform the solved PyPSA-Eur network into a GEMS-compatible study through the Jupyter notebook. You can get more details on this conversion in this [tutorial](../../interoperability/pypsa-to-gems-converter/step-by-step-guide.md).
 
 ```bash
 # Clone inside the Tutorial_2_PyPSA_eur/ directory so Docker can pick it up
 cd doc/2_Getting_Started/Tutorial_2_PyPSA_eur
 git clone https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter
 ```
+
 ## Part 4 — Build docker image and Open the Jupyter notebook via Remote SSH
 
 We have all what is needed by the docker image :
