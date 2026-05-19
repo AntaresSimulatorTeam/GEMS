@@ -6,6 +6,25 @@
 
 # Release Notes
 
+## v0.3.2 | *13-05-2026*
+
+### Added
+
+* GemsPy Unit Commitment Jupyter Notebook Tutorial ([PR33](https://github.com/AntaresSimulatorTeam/GEMS/pull/67))
+
+* Add documentation about the Antares-Legacy to GEMS converter ([PR45](https://github.com/AntaresSimulatorTeam/GEMS/pull/115))
+
+* Add documentation about how to verify SHA GEMS official libraries ([PR48](https://github.com/AntaresSimulatorTeam/GEMS/pull/125))
+
+
+### Changed
+
+* Rename all "scheme" mentions by "schema" ([PR46](https://github.com/AntaresSimulatorTeam/GEMS/pull/123))
+
+* Workflow Fix and Developer Guide Update ([PR47](https://github.com/AntaresSimulatorTeam/GEMS/pull/124))
+
+* Change warning message inside the Quick Start section ([PR50](https://github.com/AntaresSimulatorTeam/GEMS/pull/128))
+
 ## v0.3.1 | *05-05-2026*
 
 ### Added

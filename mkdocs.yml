@@ -2,9 +2,9 @@ docs_dir: doc
 exclude_docs: |
   documentation_env/
   2_Getting_Started/Tutorial_2_PyPSA_eur/*
-site_name: GEMS - Generic Energy system Modelling Scheme
+site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
-site_description: "GEMS (Generic Energy system Modelling Scheme) is a
+site_description: "GEMS (Generic Energy system Modelling Schema) is a
   graph-based algebraic modelling language for defining and solving energy
   system optimisation problems."
 site_author: "Antares Simulator Team - RTE"
@@ -67,6 +67,14 @@ extra_css:
   - stylesheets/yaml-loader.css
 
 plugins:
+  - mkdocs-jupyter:
+      execute: true
+      include: ["*.ipynb"]
+      allow_errors: false
+      include_source: true
+      remove_tag_config:
+        remove_input_tags:
+        - hide-cell
   - search
   - macros:
       module_name: main
@@ -97,6 +105,7 @@ nav:
           - Antares Simulator: overview/gems-interpreters/antares-simulator.md
       - References:
           - Libraries of models: overview/references/libraries.md
+          - Verifying GEMS Libraries: overview/references/verifying-libraries.md
           - Classification of models: overview/references/classification.md
           - Users of GEMS: overview/references/users.md
   - Getting Started:
@@ -109,6 +118,8 @@ nav:
               - Mathematical Formulation: getting-started/quick-start/adequacy-math-model.md
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
           - PyPSA Eur Conversion Example: getting-started/quick-start/pypsa-eur.md
+      - Tutorial Notebooks:
+        - Unit Commitment with GemsPy: getting-started/Tutorial_1_Unit_Commitment/1_Tutorial_Unit_Commitment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - Mathematical Syntax: user-guide/mathematical-syntax.md

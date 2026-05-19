@@ -3,16 +3,14 @@ name: Update Library SHA256 Checksums
 on:
   push:
     branches:
-      - main
+      - 'release/**'
+      - 'hotfix/**'
     paths:
       - 'libraries/*.yml'
-      - '!libraries/pypsa_models.yml'
-      - '!libraries/antares_legacy_models.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   update-checksums:
@@ -47,7 +45,7 @@ jobs:
             else
               stored_hash=$(cat "$sha_file")
               if [ "$current_hash" = "$stored_hash" ]; then
-                echo "$yml_file: checksum unchanged"
+                echo "$yml_file: OK"
               else
                 echo "$yml_file: checksum changed — updating"
                 echo "$current_hash" > "$sha_file"
@@ -58,13 +56,11 @@ jobs:
 
           echo "changed=$changed" >> "$GITHUB_OUTPUT"
 
-      - name: Open PR with updated checksums
+      - name: Commit updated checksums
         if: steps.checksums.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "chore: update library SHA256 checksums [skip ci]"
-          branch: chore/update-library-checksums
-          delete-branch: true
-          title: "chore: update library SHA256 checksums"
-          body: "Automated checksum update triggered by a library YAML change on `main`."
-          labels: "type:dependency,release:none"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add libraries/*.sha256
+          git commit -m "chore: update library SHA256 checksums [skip ci]"
+          git push
