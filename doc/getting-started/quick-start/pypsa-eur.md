@@ -6,20 +6,27 @@
 
 # How to run a PyPSA-Eur study on a server with GEMS
 
-This tutorial walks through the full workflow for running a PyPSA-Eur sector-coupled network study and converting its outputs into a GEMS study that can be solved with Antares Modeler — all inside a Docker container accessible via a remote Jupyter notebook.
-
-## Prerequisites
+## Requirements
 
 - A remote Linux server with Docker and Docker Compose installed
 - [VS Code](https://code.visualstudio.com/) with the [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension installed locally
 
-For a full guide on configuring VS Code Remote SSH with Jupyter, see the [VS Code Remote SSH + Jupyter tutorial](https://www.w3tutorials.net/blog/vscode-how-to-run-a-jupyter-notebook-in-a-docker-container-over-a-remote-server/).
+The configuration of the VS Code Remote SSH linked to remote server running Jupyter docker image is detailed in this tutorial [VS Code Remote SSH + Jupyter tutorial](https://www.w3tutorials.net/blog/vscode-how-to-run-a-jupyter-notebook-in-a-docker-container-over-a-remote-server/).
 
----
+## Part 1 — Clone the GEMS repository
 
-## Part 1 — Set up and run PyPSA-Eur
+The GEMS repository contains the Docker configuration and the Jupyter notebook needed for the conversion step.
+
+```bash
+git clone https://github.com/AntaresSimulatorTeam/GEMS.git
+cd GEMS
+```
+
+## Part 2 — Set up and run PyPSA-Eur
 
 These steps are run **on the remote server** (connect via SSH first).
+
+Thi part focuses on the downloading of PyPSA Eur for a small zone inside the server.
 
 ### 1.1 Install Pixi
 
@@ -47,11 +54,61 @@ This reads `pixi.toml` and installs all dependencies into `.pixi/envs/default/`.
 
 ### 1.4 Configure the study
 
+This part is important because it will determine the amount of data download from PyPSA Eur opendata. In this example, in order to create a small study easy to convert, the study only contains the FR node and data for 3 days.
+
+Edit `config/config.yaml` to set the target countries, number of clusters, planning horizon, and other study parameters.
+
+
 ```bash
 cp config/config.default.yaml config/config.yaml
 ```
 
-Edit `config/config.yaml` to set the target countries, number of clusters, planning horizon, and other study parameters.
+??? info "Example config file"
+
+    ```yaml
+    # PyPSA-Eur: simple one-year electricity study (runs on a normal PC)
+    #
+    # Use with:  snakemake -call solve_elec_networks --configfile config/config.regional.yaml -j 2
+    # Resume after crash:  add  --rerun-incomplete
+    benchmark:
+      enabled: false
+
+    countries:
+      - FR
+
+    scenario:
+      clusters: [1]
+      opts: [""]
+      sector_opts: [""]
+      planning_horizons: [2050]
+
+    snapshots:
+      start: "2013-01-01"
+      end: "2013-01-03"
+      inclusive: left
+
+    solving:
+      solver:
+        name: highs
+        options: "highs-default"
+      mem_mb: 10000
+
+    atlite:
+      nprocesses: 2
+
+    sector:
+      hydrogen_underground_storage_locations:
+        - onshore
+      regional_co2_sequestration_potential:
+        enable: false
+      district_heating:
+        supply_temperature_approximation:
+          rolling_window_ambient_temperature: 48
+
+    plotting:
+      costs_threshold: 0.001
+      energy_threshold: 0.1
+    ```
 
 ### 1.5 Run the workflow
 
@@ -65,100 +122,35 @@ To resume after an interrupted run:
 pixi run snakemake -c all all -j 4 --rerun-incomplete
 ```
 
----
-
-## Part 2 — Clone the GEMS repository
-
-The GEMS repository contains the Docker configuration and the pre-built Jupyter notebook needed for the conversion step.
-
-```bash
-git clone https://github.com/AntaresSimulatorTeam/GEMS.git
-cd GEMS
-```
-
----
 
 ## Part 3 — Clone the PyPSA-to-GEMS Converter
 
-The converter transforms the solved PyPSA-Eur network into a GEMS-compatible study.
+We clone the converter which will transform the solved PyPSA-Eur network into a GEMS-compatible study through the jupyter notebook. You can get more details on this conversion in this [tutorial](interoperability/pypsa-to-gems-converter/step-by-step-guide/)
 
 ```bash
 # Clone inside the Tutorial_2_PyPSA_eur/ directory so Docker can pick it up
 cd doc/2_Getting_Started/Tutorial_2_PyPSA_eur
 git clone https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter
 ```
+## Part 4 — Build docker image and Open the Jupyter notebook via Remote SSH
 
----
+We have all what is needed by the docker image :
+- PyPSA Eur data
+- GEMS repo with the jupyer notebook and docker configuration
+- PyPSA to GEMS converter repo
 
-## Part 4 — Build and run the Docker image
-
-The Docker image bundles the converter, Antares Modeler, and Jupyter in a single container.
-
-### 4.1 Place the PyPSA-Eur output resources
-
-The container expects the PyPSA-Eur `resources/` directory to be available at:
-
-```text
-doc/2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/resources/
-```
-
-Copy or symlink your PyPSA-Eur run directory there:
-
-```bash
-# From GEMS/doc/2_Getting_Started/Tutorial_2_PyPSA_eur/
-ln -s /path/to/your/pypsa-eur pypsa-eur
-```
-
-### 4.2 Start the container
-
-```bash
-cd docker-pypsa-gemsv2
-docker compose up --build
-```
-
-Docker Compose will:
-
-1. Build the image from `docker-pypsa-gemsv2/Dockerfile_PyPSA` using `Tutorial_2_PyPSA_eur/` as the build context.
-2. Start the container, exposing Jupyter on port **8889**.
-3. Mount `pypsa-eur/resources/` as read-only inside the container so the notebook can read your results.
-
-The relevant `docker-compose.yml` (`doc/2_Getting_Started/Tutorial_2_PyPSA_eur/docker-pypsa-gemsv2/docker-compose.yml`):
-
-```yaml
-services:
-  pypsa:
-    build:
-      context: ..
-      dockerfile: docker-pypsa-gemsv2/Dockerfile_PyPSA
-      network: host
-    image: my-pypsa
-    container_name: my-pypsa
-    ports:
-      - "8889:8889"
-    volumes:
-      - ../pypsa-eur/resources:/workspace/pypsa-eur/resources:ro
-```
-
----
-
-## Part 5 — Open the Jupyter notebook via Remote SSH
+We can create now the docker image inside the server :
 
 1. In VS Code, open the **Command Palette** (`Ctrl+Shift+P`) and select **Remote-SSH: Connect to Host**.
-2. Forward port **8889** from the remote server to your local machine (VS Code does this automatically when connected).
+2. Access to ```/home/ubuntu/GEMS/doc/2_Getting_Started/Tutorial_2_PyPSA_eur/``` 
+3. Start the container by the command
+
+    ```bash
+    cd docker-pypsa-gemsv2
+    docker compose up --build
+    ```
+
+    Docker Compose will build the image from `docker-pypsa-gemsv2/Dockerfile_PyPSA` using `Tutorial_2_PyPSA_eur/` as the build context and start the container. The Jupyter notebook will be exposed on port **8889**.
+
 3. Open your browser at `http://localhost:8889`.
 4. Open `2_Tutorial_PyPSA_eur.ipynb` and run the cells in order to:
-   - Load the solved PyPSA-Eur network.
-   - Convert it to a GEMS study.
-   - Run Antares Modeler.
-   - Analyse the results.
-
-<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
-  <strong>⚠️ Note</strong><br>
-  The notebook connects to Antares Modeler via the <code>antares-modeler</code> binary that is pre-installed inside the container (Antares Simulator v10.1.0). No local installation is required.
-</div>
-
----
-
-## Converter and interoperability reference
-
-For a detailed explanation of how the PyPSA-to-GEMS Converter works, its inputs, outputs, and current limitations, see the [PyPSA to GEMS Converter](../../interoperability/pypsa-to-gems-converter/overview.md) section.
