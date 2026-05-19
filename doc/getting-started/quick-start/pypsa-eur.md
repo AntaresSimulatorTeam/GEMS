@@ -118,11 +118,11 @@ docker compose up --build
 
 Docker Compose will:
 
-1. Build the image from [`docker-pypsa-gemsv2/Dockerfile_PyPSA`](../../../../doc/2_Getting_Started/Tutorial_2_PyPSA_eur/docker-pypsa-gemsv2/Dockerfile_PyPSA) using `Tutorial_2_PyPSA_eur/` as the build context.
+1. Build the image from `docker-pypsa-gemsv2/Dockerfile_PyPSA` using `Tutorial_2_PyPSA_eur/` as the build context.
 2. Start the container, exposing Jupyter on port **8889**.
 3. Mount `pypsa-eur/resources/` as read-only inside the container so the notebook can read your results.
 
-The relevant [`docker-compose.yml`](../../../../doc/2_Getting_Started/Tutorial_2_PyPSA_eur/docker-pypsa-gemsv2/docker-compose.yml):
+The relevant `docker-compose.yml` (`doc/2_Getting_Started/Tutorial_2_PyPSA_eur/docker-pypsa-gemsv2/docker-compose.yml`):
 
 ```yaml
 services:
