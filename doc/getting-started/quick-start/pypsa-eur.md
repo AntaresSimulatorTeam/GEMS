@@ -115,6 +115,11 @@ Then edit `config/config.yaml` to set the target countries, number of clusters, 
 
 ### 2.5 Run the workflow
 
+Now, we can download data from PyPSA Eur.
+
+!!!+ warning
+  This download can last for 10 minutes for only one node 
+
 ```bash
 pixi run snakemake -c all all -j 4
 ```
@@ -133,7 +138,7 @@ We clone the converter which will transform the solved PyPSA-Eur network into a 
 
 ```bash
 # Clone inside the Tutorial_2_PyPSA_eur/ directory so Docker can pick it up
-cd doc/2_Getting_Started/Tutorial_2_PyPSA_eur
+cd doc/getting-started/Tutorial_2_PyPSA_eur
 git clone https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter
 ```
 
@@ -147,7 +152,7 @@ We have all what is needed by the docker image :
 We can create now the docker image inside the server :
 
 1. In VS Code, open the **Command Palette** (`Ctrl+Shift+P`) and select **Remote-SSH: Connect to Host**.
-2. Access to ```/home/ubuntu/GEMS/doc/2_Getting_Started/Tutorial_2_PyPSA_eur/``` 
+2. Access to ```/home/ubuntu/GEMS/doc/getting-started/Tutorial_2_PyPSA_eur/``` 
 3. Start the container by the command
 
     ```bash
