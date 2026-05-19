@@ -117,8 +117,9 @@ Then edit `config/config.yaml` to set the target countries, number of clusters, 
 
 Now, we can download data from PyPSA Eur.
 
-!!!+ warning
-  This download can last for 10 minutes for only one node 
+!!! warning
+
+    This download can last for 10 minutes for only one node.
 
 ```bash
 pixi run snakemake -c all all -j 4
