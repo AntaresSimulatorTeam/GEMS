@@ -56,7 +56,7 @@ def get_paths() -> EnvironmentPaths:
         repo_root
         / "resources"
         / "e2e_studies"
-        / "tuto_antares_legacy_models"
+        / "gemspy_tutorial_library"
         / "Tutorial_1_Unit_Commitment"
     )
     tutorial_notebook_path = (

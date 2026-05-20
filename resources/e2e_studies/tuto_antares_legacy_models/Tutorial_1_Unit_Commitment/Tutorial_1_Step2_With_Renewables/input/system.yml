@@ -2,7 +2,7 @@ system:
   id: my_system
   components:
     - id: my_area
-      model: tuto_antares_legacy_models.area
+      model: gemspy_tutorial_library.area
       parameters:
         - id: spillage_cost
           time-dependent: false
@@ -14,7 +14,7 @@ system:
           value: 10000
 
     - id: load
-      model: tuto_antares_legacy_models.load
+      model: gemspy_tutorial_library.load
       parameters:
         - id: load
           time-dependent: true
@@ -22,7 +22,7 @@ system:
           value: load
 
     - id: thermal_gen
-      model: tuto_antares_legacy_models.thermal
+      model: gemspy_tutorial_library.thermal
       parameters:
         - id: p_min_unit
           time-dependent: false
@@ -70,7 +70,7 @@ system:
           value: 0
 
     - id: wind_farm
-      model: tuto_antares_legacy_models.renewable
+      model: gemspy_tutorial_library.renewable
       parameters:
         - id: nominal_capacity
           time-dependent: false
@@ -86,7 +86,7 @@ system:
           value: wind
 
     - id: solar_farm
-      model: tuto_antares_legacy_models.renewable
+      model: gemspy_tutorial_library.renewable
       parameters:
         - id: nominal_capacity
           time-dependent: false
