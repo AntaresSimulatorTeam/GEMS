@@ -2,10 +2,10 @@ services:
   pypsa:
     build:
       context: ..
-      dockerfile: docker-pypsa-gemsv2/Dockerfile_PyPSA
+      dockerfile: docker-tuto-pypsa-gems/Dockerfile_PyPSA
       network: host
-    image: my-pypsa
-    container_name: my-pypsa
+    image: my-pypsa-tuto
+    container_name: my-pypsa-tuto
     ports:
       - "8889:8889"
     volumes:

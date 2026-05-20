@@ -6,4 +6,4 @@ pypsa-eur/logs
 pypsa-eur/cutouts
 pypsa-eur/doc
 PyPSA-to-GEMS-Converter/.git
-docker-pypsa-gemsv2
+docker-tuto-pypsa-gems
