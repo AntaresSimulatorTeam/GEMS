@@ -117,7 +117,7 @@ def test_doc_tutorial_1_unit_commitment(
         study_name=study_name,
         source_dir=paths.tutorial_doc_examples_path,
         tmp_root=tmp_root,
-        preserve_symlinks=True,
+        preserve_symlinks=False,
     )
     install_tutorial_library(paths, gems_path)
     modeler_objective = get_gems_study_objective(paths, gems_path)
