@@ -6,6 +6,14 @@
 
 # How to run a PyPSA-Eur study on a server with GEMS
 
+This tutorial is a workflow to run a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) simple study on a remote Linux server using GEMS:
+
+1. **Configure a simple PyPSA-Eur study** with a minimal settings (one area only, 3 days), download the data.
+2. **Convert to GEMS format** using the [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) inside a Docker-hosted Jupyter notebook.
+3. **Run the simulation** with [Antares Modeler](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) from within the same notebook.
+
+The Jupyter environment runs inside Docker on the remote server and is accessed locally via VS Code Remote SSH.
+
 ## Requirements
 
 - A remote Linux server with Docker and Docker Compose installed
