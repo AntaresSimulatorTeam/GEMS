@@ -17,7 +17,7 @@ The configuration of the VS Code Remote SSH linked to remote server running Jupy
 
 These steps are run **on the remote server** (connect via SSH first).
 
-The GEMS repository contains the Docker configuration and the Jupyter notebook needed for the conversion step.
+The GEMS repository contains the Docker configuration and the Jupyter notebook needed for the conversion step and run the GEMS simulation of the converted study.
 
 ```bash
 git clone https://github.com/AntaresSimulatorTeam/GEMS.git
@@ -157,11 +157,11 @@ We can create now the docker image inside the server :
 3. Start the container by the command
 
     ```bash
-    cd docker-pypsa-gemsv2
+    cd docker-tuto-pypsa-gems
     docker compose up --build
     ```
 
-    Docker Compose will build the image from `docker-pypsa-gemsv2/Dockerfile_PyPSA` using `Tutorial_2_PyPSA_eur/` as the build context and start the container. The Jupyter notebook will be exposed on port **8889**.
+    Docker Compose will build the image from `docker-tuto-pypsa-gems/Dockerfile_PyPSA` using `Tutorial_2_PyPSA_eur/` as the build context and start the container. The Jupyter notebook will be exposed on port **8889**.
 
 3. Open your browser at `http://localhost:8889`.
 4. Open `2_Tutorial_PyPSA_eur.ipynb` and run the cells in order to:
