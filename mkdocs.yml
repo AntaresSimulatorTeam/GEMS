@@ -121,6 +121,7 @@ nav:
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
       - Tutorial Notebooks:
         - Unit Commitment with GemsPy: getting-started/Tutorial_1_Unit_Commitment/1_Tutorial_Unit_Commitment.ipynb
+        - Investment Opitmization with GemsPy: getting-started/Tutorial_3_Investment/3_Tutorial_Investment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - Mathematical Syntax: user-guide/mathematical-syntax.md
