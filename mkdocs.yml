@@ -2,6 +2,7 @@ docs_dir: doc
 exclude_docs: |
   documentation_env/
   2_Getting_Started/Tutorial_2_PyPSA_eur/*
+  getting-started/Tutorial_2_PyPSA_eur/PyPSA-to-GEMS-Converter/*
 site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy system Modelling Schema) is a
