@@ -9,3 +9,5 @@
 ## Overview and problem description
 
 This tutorial focuses on investment with GemsPy.
+
+ TODO: introduce the jupyter notebook before PR 
