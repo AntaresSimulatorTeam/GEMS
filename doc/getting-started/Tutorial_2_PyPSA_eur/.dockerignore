@@ -5,5 +5,4 @@ pypsa-eur/results
 pypsa-eur/logs
 pypsa-eur/cutouts
 pypsa-eur/doc
-PyPSA-to-GEMS-Converter/.git
 docker-tuto-pypsa-gems
