@@ -9,7 +9,7 @@
 This tutorial is a workflow to run a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) simple study on a remote Linux server using GEMS:
 
 1. **Configure a simple PyPSA-Eur study** with a minimal settings (one area only, 3 days), download the data.
-2. **Convert to GEMS format** using the [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) inside a Docker-hosted Jupyter notebook.
+2. **Convert to GEMS format** using the Python package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) inside a Docker-hosted Jupyter notebook.
 3. **Run the simulation** with [Antares Modeler](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) from within the same notebook.
 
 The Jupyter environment runs inside Docker on the remote server and is accessed locally via VS Code Remote SSH.
@@ -139,19 +139,8 @@ To resume after an interrupted run:
 pixi run snakemake -c all all -j 4 --rerun-incomplete
 ```
 
-## Part 3 — Clone the PyPSA-to-GEMS Converter
 
-These steps are run **on the remote server**.
-
-We clone the converter which will transform the solved PyPSA-Eur network into a GEMS-compatible study through the Jupyter notebook. You can get more details on this conversion in this [tutorial](../../interoperability/pypsa-to-gems-converter/step-by-step-guide.md).
-
-```bash
-# Clone inside the Tutorial_2_PyPSA_eur/ directory so Docker can pick it up
-cd doc/getting-started/Tutorial_2_PyPSA_eur
-git clone https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter
-```
-
-## Part 4 — Build docker image and Open the Jupyter notebook via Remote SSH
+## Part 3 — Build docker image and Open the Jupyter notebook via Remote SSH
 
 We have all what is needed by the docker image :
 - PyPSA Eur data
