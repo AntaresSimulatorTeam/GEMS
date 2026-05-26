@@ -122,7 +122,6 @@ nav:
           - PyPSA Eur Conversion Example: getting-started/quick-start/pypsa-eur.md
       - Tutorial Notebooks:
         - Unit Commitment with GemsPy: getting-started/Tutorial_1_Unit_Commitment/1_Tutorial_Unit_Commitment.ipynb
-        - Use PyPSA-eur dataset: getting-started/Tutorial_2_PyPSA_eur/2_Tutorial_PyPSA_eur.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - Mathematical Syntax: user-guide/mathematical-syntax.md
