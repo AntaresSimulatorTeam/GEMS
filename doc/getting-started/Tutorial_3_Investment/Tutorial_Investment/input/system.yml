@@ -58,7 +58,8 @@ system:
         - id: investment_cost
           time-dependent: false
           scenario-dependent: false
-          value: 50              # €/MW
+          value: 250             # €/MW - the parameter investment_cost is a daily value (if the time horizon for the problems is one day) derivated from annual payments
+                                 # using €250/MW.day corresponds to €91,250/MW.year
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
