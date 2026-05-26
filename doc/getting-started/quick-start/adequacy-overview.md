@@ -4,7 +4,7 @@
   </a>
 </div>
 
-# Quick-start example 1: three-bus adequacy system
+# Quick-start example one: three-bus adequacy system
 
 ## Overview and problem description
 

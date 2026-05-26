@@ -4,7 +4,7 @@
   </a>
 </div>
 
-# QSE 2: Unit Commitment - Simple Example
+# Quick-start example two: Unit Commitment - Simple Example
 
 ## Overview
 
