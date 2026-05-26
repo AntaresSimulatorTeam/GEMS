@@ -10,7 +10,7 @@
 #
 # This file is part of the Antares project.
 library:
-  id: investment_tutorial_library
+  id: investment_library
   description: "Library for the investment tutorial jupyter notebook"
 
 
