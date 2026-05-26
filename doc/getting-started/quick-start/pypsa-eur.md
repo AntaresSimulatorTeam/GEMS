@@ -145,7 +145,6 @@ pixi run snakemake -c all all -j 4 --rerun-incomplete
 We have all what is needed by the docker image :
 - PyPSA Eur data
 - GEMS repo with the jupyer notebook and docker configuration
-- PyPSA to GEMS converter repo
 
 We can create now the docker image inside the server :
 
