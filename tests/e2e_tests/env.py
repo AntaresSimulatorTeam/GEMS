@@ -59,15 +59,15 @@ def get_paths() -> EnvironmentPaths:
         repo_root
         / "doc"
         / "getting-started"
-        / "Tutorial_1_Unit_Commitment"
-        / "1_Tutorial_Unit_Commitment.ipynb"
+        / "tutorial-one-unit-commitment"
+        / "tutorial-unit-commitment.ipynb"
     )
     tutorial_library_dir = (
         repo_root
         / "doc"
         / "getting-started"
-        / "Tutorial_1_Unit_Commitment"
-        / "Tutorial_Unit_Commitment_with_GemsPy"
+        / "tutorial-one-unit-commitment"
+        / "unit-commitment-with-gemspy"
     )
 
     antares_version = _read_antares_version(repo_root)
