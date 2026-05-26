@@ -92,9 +92,9 @@ def install_tutorial_library(paths: EnvironmentPaths, gems_study_path: Path) -> 
     "study_name, notebook_simulation_index",
     [
         # second simulation run — after adding wind_farm and solar_farm
-        ("Tutorial_1_Step2_With_Renewables", 1),
+        ("step-two-with-renewables", 1),
         # third simulation run — thermal_gen replaced by 10-unit thermal_gen_UC
-        ("Tutorial_1_Step3_Unit_Commitment", 2),
+        ("step-three-unit-commitment", 2),
     ],
 )
 def test_doc_tutorial_1_unit_commitment(
