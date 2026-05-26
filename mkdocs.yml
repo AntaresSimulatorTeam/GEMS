@@ -1,7 +1,6 @@
 docs_dir: doc
 exclude_docs: |
   documentation_env/
-  getting-started/Tutorial_2_PyPSA_eur/pypsa-eur/
   getting-started/Tutorial_2_PyPSA_eur/docker-tuto-pypsa-gems/
 site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
