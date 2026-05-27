@@ -34,7 +34,7 @@ system:
         - id: p_max
           time-dependent: false
           scenario-dependent: false
-          value: 200             # MW — intentionally undersized
+          value: 100             # MW — intentionally undersized
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
