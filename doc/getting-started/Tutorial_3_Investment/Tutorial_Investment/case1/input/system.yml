@@ -10,11 +10,11 @@ system:
         - id: spillage_cost
           time-dependent: false
           scenario-dependent: false
-          value: 1               # €/MWh — low penalty for excess generation
+          value: 1               # €/MWh - low penalty for excess generation
         - id: unsupplied_energy_cost
           time-dependent: false
           scenario-dependent: false
-          value: 10000           # €/MWh — high penalty to drive investment
+          value: 10000           # €/MWh - high penalty to drive investment
 
     - id: load
       model: investment_library.load
@@ -22,7 +22,7 @@ system:
         - id: load
           time-dependent: true
           scenario-dependent: true
-          value: load_demand
+          value: load_demand     # references data-series/load_demand.csv
 
     - id: thermal_existing
       model: investment_library.generator
@@ -34,7 +34,7 @@ system:
         - id: p_max
           time-dependent: false
           scenario-dependent: false
-          value: 100             # MW — intentionally undersized
+          value: 100             # MW - intentionally undersized
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
@@ -58,11 +58,12 @@ system:
         - id: investment_cost
           time-dependent: false
           scenario-dependent: false
-          value: 250             # €/MW/day
+          value: 250             # €/MW - the parameter investment_cost is a daily value (if the time horizon for the problems is one day) derivated from annual payments
+                                 # using €250/MW.day corresponds to €91,250/MW.year
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
-          value: 50              # €/MWh
+          value: 50              # €/MWh - more expensive than existing thermal
 
   connections:
     - component1: node

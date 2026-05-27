@@ -10,11 +10,11 @@ system:
         - id: spillage_cost
           time-dependent: false
           scenario-dependent: false
-          value: 1               # €/MWh — low penalty for excess generation
+          value: 1               # €/MWh - low penalty for excess generation
         - id: unsupplied_energy_cost
           time-dependent: false
           scenario-dependent: false
-          value: 10000           # €/MWh — high penalty to drive investment
+          value: 10000           # €/MWh - high penalty to drive investment
 
     - id: load
       model: investment_library.load
@@ -34,7 +34,7 @@ system:
         - id: p_max
           time-dependent: false
           scenario-dependent: false
-          value: 100             # MW — intentionally undersized
+          value: 100             # MW - intentionally undersized
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
@@ -63,7 +63,7 @@ system:
         - id: generation_cost
           time-dependent: false
           scenario-dependent: false
-          value: 50              # €/MWh — more expensive than existing thermal
+          value: 50              # €/MWh - more expensive than existing thermal
 
     - id: battery
       model: investment_library.storage
