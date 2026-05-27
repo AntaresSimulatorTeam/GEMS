@@ -115,11 +115,11 @@ library:
     - id: generator
       parameters:
         - id: p_min
-          scenario-dependent: true
-          time-dependent: true
+          scenario-dependent: false
+          time-dependent: false
         - id: p_max
-          scenario-dependent: true
-          time-dependent: true
+          scenario-dependent: false
+          time-dependent: false
         - id: generation_cost
           scenario-dependent: false
           time-dependent: false
