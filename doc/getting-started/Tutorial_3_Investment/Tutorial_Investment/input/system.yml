@@ -65,6 +65,34 @@ system:
           scenario-dependent: false
           value: 50              # €/MWh — more expensive than existing thermal
 
+    - id: battery
+      model: investment_library.storage
+      parameters:
+        - id: reservoir_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 250 # 250 MWh
+        - id: injection_nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 40
+        - id: withdrawal_nominal_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: efficiency_injection
+          time-dependent: false
+          scenario-dependent: false
+          value: 0.92
+        - id: efficiency_withdrawal
+          time-dependent: false
+          scenario-dependent: false
+          value: 0.92
+        - id: initial_level
+          time-dependent: false
+          scenario-dependent: true
+          value: battery_init_level
+
   connections:
     - component1: node
       component2: load
@@ -82,3 +110,7 @@ system:
       component2: candidate_thermal
       port1: balance_port
       port2: balance_port
+    - component1: node
+      component2: battery
+      port1: balance_port
+      port2: injection_port
