@@ -82,7 +82,7 @@ system:
           value: 0.92
         - id: efficiency_withdrawal
           time-dependent: false
-          scenario-depenpent: false
+          scenario-dependent: false
           value: 0.92
         - id: initial_level
           time-dependent: false
