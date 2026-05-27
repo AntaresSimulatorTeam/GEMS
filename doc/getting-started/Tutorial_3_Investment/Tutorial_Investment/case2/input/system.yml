@@ -71,7 +71,7 @@ system:
         - id: investment_cost
           time-dependent: false
           scenario-dependent: false
-          value: 100             # €/MW/day (per MW of injection capacity)
+          value: 100             # €/MW.day (per MW of injection capacity)
         - id: duration
           time-dependent: false
           scenario-dependent: false
