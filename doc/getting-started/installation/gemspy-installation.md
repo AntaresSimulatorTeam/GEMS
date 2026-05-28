@@ -32,8 +32,8 @@ It is recommended to create a **virtual environment** before installing [GemsPy]
 | Step                        | Windows Command                              | macOS/Linux Command                        |
 |-----------------------------|----------------------------------------------|--------------------------------------------|
 | Create virtual environment  | `python -m venv gemspy-env`                  | `python3 -m venv gemspy-env`               |
-| Activate environment        | `gemspy-env\Scripts\activate`               | `source gemspy-env/bin/activate`           |
-| Clone GemsPy repository     | `pip install gemspy`          | `pip install gemspy`          |
+| Activate environment        | `gemspy-env\Scripts\activate`                | `source gemspy-env/bin/activate`           |
+| Install GemsPy package      | `pip install gemspy`                         | `pip install gemspy`          |
 
 ### Working with Virtual Environments
 
