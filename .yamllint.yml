@@ -12,6 +12,8 @@ rules:
     check-keys: false
   comments:
     min-spaces-from-content: 1
+    require-starting-space: false
+  comments-indentation: disable
   trailing-spaces:
     level: warning
   new-line-at-end-of-file:
