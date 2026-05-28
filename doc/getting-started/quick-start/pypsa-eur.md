@@ -6,7 +6,7 @@
 
 # How to run a PyPSA-Eur study on a server with GEMS
 
-This tutorial is a workflow to run a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) simple study on a remote Linux server using GEMS:
+This tutorial is a workflow to run a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) simple study on a remote Linux server using GEMS. [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) is an open-source energy system model covering the European power grid coded in PyPSA format whose native format is not compatible with Antares Modeler. The package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) converts PyPSA format studies into GEMS readable studies.
 
 1. **Configure a simple PyPSA-Eur study** with a minimal settings (one area only, 3 days), download the data.
 2. **Convert to GEMS format** using the Python package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) inside a Docker-hosted Jupyter notebook.
