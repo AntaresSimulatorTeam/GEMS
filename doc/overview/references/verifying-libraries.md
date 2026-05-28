@@ -80,7 +80,8 @@ Offline
 
 ???+ info "Example verification"
 
-    We can compare the two basic-models-library SHA <br>
-    Official: 4809d22d8... <br>
-    Local: 4809d22d8... <br>
+    We can compare the two basic-models-library SHA
+    Official: 4809d22d8...
+    Local: 4809d22d8...
     Result: Match (file is identical)
+

@@ -12,13 +12,13 @@ This section represents a simple example of a hybrid study that demonstrates how
 
 ???+ info "Hybrid Study Example Details"
 
-    <p>This consists of an area from Solver framework with a constant demand of 60 MW throughout one week and a wind farm component made from the <em>renewable</em> <strong>model</strong> from the <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml"><strong>basic-models-library</strong></a>.</p>
+    This consists of an area from Solver framework with a constant demand of 60 MW throughout one week and a wind farm component made from the *renewable* **model** from the [**basic-models-library**](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml).
 
-    <p>Concerning the connection between the area and the renewable component, it's configured by these yaml files:</p>
+    Concerning the connection between the area and the renewable component, it's configured by these yaml files:
 
-    <p><strong>library.yml :</strong></p>
+    **library.yml :**
 
-    <pre><code class="language-yaml">
+    ```yaml
     library:
       id: example_library
 
@@ -45,11 +45,11 @@ This section represents a simple example of a hybrid study that demonstrates how
             - port: balance_port
               field: flow_field
               definition: generation
-    </code></pre>
+    ```
 
-    <p><strong>system.yml :</strong></p>
+    **system.yml :**
 
-    <pre><code class="language-yaml">
+    ```yaml
     system:
       id: system
 
@@ -66,7 +66,8 @@ This section represents a simple example of a hybrid study that demonstrates how
         - component: wind_farm
           port: balance_port
           area: Area
-    </code></pre>
+    ```
+
 Since the wind farm does not produce enough energy to fully cover the demand, the results include **Energy Not Served (ENS)**.
 
 This example is intended solely to demonstrate how the **GEMS component**, when connected to an **Antares Simulator area**, emits a linear expression that is incorporated into the area's balance constraint.
