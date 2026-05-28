@@ -12,6 +12,8 @@ rules:
     check-keys: false
   comments:
     min-spaces-from-content: 1
+  trailing-spaces:
+    level: warning
   new-line-at-end-of-file:
     level: warning
   braces:
