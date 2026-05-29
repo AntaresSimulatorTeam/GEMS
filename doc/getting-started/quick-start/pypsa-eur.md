@@ -149,7 +149,7 @@ We have all what is needed by the docker image :
 We can create now the docker image inside the server :
 
 1. In VS Code, open the **Command Palette** (`Ctrl+Shift+P`) and select **Remote-SSH: Connect to Host**.
-2. Access to ```/home/ubuntu/GEMS/doc/getting-started/Tutorial_2_PyPSA_eur/``` 
+2. Access to ```/home/ubuntu/GEMS/doc/getting-started/tutorial-pypsa-eur/``` 
 3. Start the container by the command
 
     ```bash
@@ -157,7 +157,7 @@ We can create now the docker image inside the server :
     docker compose up --build
     ```
 
-    Docker Compose will build the image from `docker-tuto-pypsa-gems/Dockerfile_PyPSA` using `Tutorial_2_PyPSA_eur/` as the build context and start the container. The Jupyter notebook will be exposed on port **8889**.
+    Docker Compose will build the image from `docker-tuto-pypsa-gems/Dockerfile_PyPSA` using `tutorial-pypsa-eur/` as the build context and start the container. The Jupyter notebook will be exposed on port **8889**.
 
 3. Open your browser at `http://localhost:8889`.
 4. Open `2_Tutorial_PyPSA_eur.ipynb` and run the cells in order to:
