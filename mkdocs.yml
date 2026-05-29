@@ -1,7 +1,7 @@
 docs_dir: doc
 exclude_docs: |
   documentation_env/
-  getting-started/tutorial-pypsa-eur/*
+  getting-started/tutorial-two-pypsa-eur/*
 site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy system Modelling Schema) is a
@@ -83,7 +83,7 @@ plugins:
   - git-revision-date-localized:
       exclude:
         - documentation_env/*
-        - getting-started/tutorial-pypsa-eur/pypsa-eur/*
+        - getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
       enable_creation_date: true
       enable_git_follow: true
       type: timeago
@@ -121,7 +121,7 @@ nav:
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
           - PyPSA Eur Conversion Example: getting-started/quick-start/pypsa-eur.md
       - Tutorial Notebooks:
-        - Unit Commitment with GemsPy: getting-started/tutorial-unit-commitment/1_Tutorial_Unit_Commitment.ipynb
+        - Unit Commitment with GemsPy: getting-started/tutorial-unit-commitment/tutorial_unit_commitment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - Mathematical Syntax: user-guide/mathematical-syntax.md
