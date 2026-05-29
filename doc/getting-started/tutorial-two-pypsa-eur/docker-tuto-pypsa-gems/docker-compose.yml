@@ -1,0 +1,14 @@
+services:
+  pypsa:
+    build:
+      context: ..
+      dockerfile: docker-tuto-pypsa-gems/Dockerfile_PyPSA
+      network: host
+    image: my-pypsa-tuto
+    container_name: my-pypsa-tuto
+    ports:
+      - "8889:8889"
+    volumes:
+      - ../pypsa-eur/resources:/workspace/pypsa-eur/resources:ro
+
+volumes: {}
