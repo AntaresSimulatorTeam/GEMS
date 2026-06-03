@@ -37,46 +37,56 @@ In this example, the system file defines a system with two model libraries, `my_
 
 The system `my_system` instantiates two components: `load_1`, which is an instance of the `load` model defined in `my_library_1`, and `bus_1`, which is an instance of the `bus` model defined in `my_library_2`. The `load_1` component assigns a time-dependent parameter `load`, whose value is provided by the data series identified as `demand_profile`.
 
-The `connections` section specifies how components are linked. In this case, the `balance_port` port of `load_1` is connected to the `balance_port` port of `bus_1`, indicating that the load is connected to the node
+The `connections` section specifies how components are linked. In this case, the `balance_port` port of `load_1` is connected to the `balance_port` port of `bus_1`, indicating that the load is connected to the node.
+
+The top-level fields of a system file are:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | A unique identifier for the system. Must follow the [naming rules](library.md#rules-for-id-naming).|
+| `description` | String | *(Optional)* A human-readable description of the system.|
+| `model-libraries` | String | *(Optional)* Comma-separated list of library IDs whose models are used in this system (e.g. `my_library_1, my_library_2`). Must match the `id` fields of the library files available to the simulation.|
+| `components` | List | The list of component instantiations in the system.|
+| `connections` | List | The list of port connections between components.|
 
 ## Components
 
 The system file describes the energy system to be simulated. Each component defined in the system represents a concrete instantiation of a model from one of the referenced libraries. For every component, the following fields are specified:
 
-| Element | Description |
-|------|--------------------------|
-|`id`| Unique identifier for the component within this system.|
-| `model` | Specifies which model this component instantiates The format is `library_id.model_id`.|
-|`scenario-group`|The `id` of the scenario group this component belongs to. |
-|`parameters`|Collection of values assigned to the model’s parameters. All parameters defined by the model must be assigned a value.|
+| Element | Type | Description |
+|------|------|--------------------------|
+|`id`| String | Unique identifier for the component within this system. Must follow the [naming rules](library.md#rules-for-id-naming).|
+| `model` | String | Specifies which model this component instantiates. The format is `library_id.model_id`.|
+|`scenario-group`| String | *(Optional)* The `id` of the scenario group this component belongs to. Used to map Monte Carlo scenarios to data series columns via the [scenario builder](scenario-builder.md).|
+|`parameters`| List | *(Optional)* Collection of values assigned to the model’s parameters. All parameters defined by the model must be assigned a value.|
 
 ### Parameters
 
 For each parameter definition, the following fields must be provided:
 
-| Element | Description |
-|------|--------------------------|
-| `id`| The `id` of the parameter, as defined by the model.|
-| `time-dependent` | `true` or `false`, indicates whether the parameter depends on time or is constant across the whole simulation horizon. If the model parameter is not time-dependent, this can't be set to true.|
-|`scenario-dependent`|`true` or `false`, indicates whether the parameter changes depending on the simulated scenario, or is the same for all scenarios. If the model parameter is not scenario-dependent, this can't be set to true. |
-|`value`|Value assigned to the parameter.|
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id`| String | The `id` of the parameter, as defined by the model.|
+| `time-dependent` | Boolean | `true` or `false`. Indicates whether the parameter varies over time. Cannot be set to `true` if the corresponding model parameter is not declared time-dependent.|
+|`scenario-dependent`| Boolean | `true` or `false`. Indicates whether the parameter changes across scenarios. Cannot be set to `true` if the corresponding model parameter is not declared scenario-dependent.|
+|`value`| Number or String | Value assigned to the parameter (see below).|
 
 For each parameter, the `value` field should be defined as follows:
 
-- If `time-dependent : false` and `scenario-dependent : true`, the numerical value of the parameter (`float` or `integer`)
+- If `time-dependent: false` and `scenario-dependent: false`, the numerical value of the parameter (`float` or `integer`).
 
-- Else, the `id` of a `time-dependent` data series
+- Otherwise (when at least one of `time-dependent` or `scenario-dependent` is `true`), the `id` of a data series stored in the `data-series` directory. See [data series](./data-series.md) for file format details.
 
 ## Connections
 
 A list of connections between component ports. Each connection entry defines a link between two components’ ports, allowing them to interact.
 
-|Element | Description |
-|------|--------------------------|
-| `component1`| The `id` of the first component being connected.|
-| `component2` | The `id` of the second component being connected.|
-|`port1`| The port `id` on `component1`. |
-|`port2`|The port `id` on `component2`.|
+|Element | Type | Description |
+|------|------|--------------------------|
+| `component1`| String | The `id` of the first component being connected.|
+| `component2` | String | The `id` of the second component being connected.|
+|`port1`| String | The port `id` on `component1`.|
+|`port2`| String | The port `id` on `component2`.|
 
 The two ports being connected must be of the same port type.
 
