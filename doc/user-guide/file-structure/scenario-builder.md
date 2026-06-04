@@ -26,6 +26,12 @@ Each line in the `modeler-scenariobuilder.dat` file defines a single mapping usi
 scenario_group_id, scenario = time_series_index
 ```
 
+| Token | Type | Description |
+|-------|------|-------------|
+| `scenario_group_id` | String | Matches the `scenario-group` `id` assigned to a component in the [system file](system.md#components). |
+| `scenario` | Integer (≥ 0) | 0-based index of the Monte Carlo scenario. |
+| `time_series_index` | Integer (≥ 1) | 1-based column index in the data series file to use for this scenario. |
+
 ## Example
 
 ```text
