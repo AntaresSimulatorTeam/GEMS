@@ -78,12 +78,10 @@ Offline
       | Hashes **match** | The file is identical to the official release |
       | Hashes **differ** | The file has been modified, corrupted, or is not the official version |
 
-<details>
-<summary>Example verification</summary>
+???+ info "Example verification"
 
-We can compare the two basic-models-library SHA <br>
-Official: 4809d22d8... <br>
-Local: 4809d22d8... <br>
-Result: Match (file is identical)
-</details>
+    We can compare the two basic-models-library SHA
+    Official: 4809d22d8...
+    Local: 4809d22d8...
+    Result: Match (file is identical)
 
