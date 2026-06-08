@@ -177,6 +177,46 @@ Affected modules. Breaking changes or backward-compatible?
 | `develop` (GEMS only) | Squash & Merge | All `feature`, `bugfix`, `chore`, `docs`, `refactor` PRs |
 | `main` | Squash & Merge | `release` and `hotfix` PRs (GEMS); all PRs (converters and GemsPy) |
 
+### Squash Commit Message
+
+When merging with **Squash & Merge**, GitHub pre-fills the commit message with every individual commit title from the branch. **Always replace this with a manually written message before confirming the merge.** 
+Auto-generated concatenations like `fix comments, fix comments` or `fix(ruff): fix linting` add noise and make the git log unreadable.
+
+Use one of the two formats below depending on the size of the PR:
+
+**Option A — Flat bullet list** (suitable for most PRs):
+
+```text
+feat(scope): short description of what the PR delivers
+
+- One line per logical change, scoped but not over-granular
+- Skip pure fixup commits — if it wouldn't go in a changelog, leave it out
+
+Co-authored-by: Name <email>
+```
+
+**Option B — Structured sections** (suitable for larger PRs with many concerns):
+
+```text
+feat(scope): short description of what the PR delivers
+
+## Summary
+High-level description of what this PR achieves.
+
+## Key Changes
+- Notable implementation changes
+
+## Testing
+- What was tested or added
+
+## Fixes & Cleanup
+- Minor fixes, dependency updates, removed files
+
+Co-authored-by: Name <email>
+```
+
+The first line follows the [Conventional Commits](https://www.conventionalcommits.org/) format: `<type>(<scope>): <description>`. Common types are `feat`, `fix`, `docs`, `refactor`, `chore`, `perf`, `test`.
+
 ---
 
 ## 5. Labels
