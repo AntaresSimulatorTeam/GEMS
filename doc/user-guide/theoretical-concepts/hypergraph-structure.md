@@ -4,7 +4,7 @@
     </a>
 </div>
 
-# The Hypergraph of a GEMS systEm
+# The Hypergraph of a GEMS System
 ## 1 GEMS system = 1 hypergraph
 
 [GEMS](../../index.md) represents a system as a **[hypergraph](https://en.wikipedia.org/wiki/Hypergraph)**.  This is precisely the content of a [system](../file-structure/system.md) file.
@@ -38,100 +38,94 @@ The emitter/receiver role is therefore a **model-level property**, inferred from
 
 In this example, model defines the `port` but does not define any `port-field-definitions`. The component therefore acts as a **receiver**, aggregating all expressions emitted to `balance_port` and using them to construct **balance** constraint.
 
-<details>
-  <summary><strong>Receiver Model</strong></summary>
+??? note "Receiver Model"
 
-  <pre><code>
-  - id: bus
+    ```yaml
+    - id: bus
     parameters:
-      - id: spillage_cost
-      - id: unsupplied_energy_cost
+    - id: spillage_cost
+    - id: unsupplied_energy_cost
     variables:
-      - id: spillage
-        lower-bound: 0
-        variable-type: continuous
-      - id: unsupplied_energy
-        lower-bound: 0
-        variable-type: continuous
+    - id: spillage
+      lower-bound: 0
+      variable-type: continuous
+    - id: unsupplied_energy
+      lower-bound: 0
+      variable-type: continuous
     ports:
-      - id: balance_port
-        type: flow
+    - id: balance_port
+      type: flow
     binding-constraints:
-      - id: balance
-        expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+    - id: balance
+      expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
     objective-contributions:
-      - id: objective
-        expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
-</code></pre>
-
-</details>
+    - id: objective
+      expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+    ```
 
 #### Example of emitter models
 
 In this example, the model defines a `port-field-definition` for `balance_port`. For load model, the expression `-load` is emitted through the port and contributes to connected **receiver** components.
 
-<details>
-  <summary><strong>Emitter Model</strong></summary>
+??? note "Emitter Model"
 
-  <pre><code>
-  - id: load
-    parameters:
+    ```yaml
+    - id: load
+      parameters:
       - id: load
-        time-dependent: true
-        scenario-dependent: true
-    ports:
+          time-dependent: true
+          scenario-dependent: true
+      ports:
       - id: balance_port
-        type: flow
-    port-field-definitions:
+          type: flow
+      port-field-definitions:
       - port: balance_port
-        field: flow
-        definition: -load
+          field: flow
+          definition: -load
 
-  - id: renewable
-    parameters:
+    - id: renewable
+      parameters:
       - id: generation
-        time-dependent: true
-        scenario-dependent: true
-    ports:
+          time-dependent: true
+          scenario-dependent: true
+      ports:
       - id: balance_port
-        type: flow
-    port-field-definitions:
+          type: flow
+      port-field-definitions:
       - port: balance_port
-        field: flow
-        definition: generation
+          field: flow
+          definition: generation
 
-  - id: generator
-    parameters:
+    - id: generator
+      parameters:
       - id: p_min
-        scenario-dependent: true
-        time-dependent: true
+          scenario-dependent: true
+          time-dependent: true
       - id: p_max
-        scenario-dependent: true
-        time-dependent: true
+          scenario-dependent: true
+          time-dependent: true
       - id: generation_cost
-        scenario-dependent: false
-        time-dependent: false
+          scenario-dependent: false
+          time-dependent: false
       - id: co2_emission_factor
-        scenario-dependent: false
-        time-dependent: false
-    variables:
+          scenario-dependent: false
+          time-dependent: false
+      variables:
       - id: generation
-        lower-bound: p_min
-        upper-bound: p_max
-        variable-type: continuous
-    ports:
+          lower-bound: p_min
+          upper-bound: p_max
+          variable-type: continuous
+      ports:
       - id: balance_port
-        type: flow
-    port-field-definitions:
+          type: flow
+      port-field-definitions:
       - port: balance_port
-        field: flow
-        definition: generation
-    objective-contributions:
+          field: flow
+          definition: generation
+      objective-contributions:
       - id: objective
-        expression: sum(generation_cost * generation)
-</code></pre>
-
-</details>
+          expression: sum(generation_cost * generation)
+    ``` 
 
 ## Example: Kirchhoff’s First Law Constraint
 
@@ -180,7 +174,7 @@ connections:
 
 ### Mathematical Equation
 
-Based on connections [GEMS](../../index.md) will create following constraint:
+Based on connections [GEMS](../../index.md) will create the following constraint:
 
 $$
 \forall b \in B, \sum_{g \in G_b} P_g - D_b + R_b  = S_b - U_b
@@ -197,6 +191,6 @@ Where:
 
 ## Summary
 
-[GEMS](../../index.md) represents energy systems as [hypergraphs ](https://en.wikipedia.org/wiki/Hypergraph) where components exchange (linear) expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior.
+[GEMS](../../index.md) represents energy systems as [hypergraphs](https://en.wikipedia.org/wiki/Hypergraph) where components exchange (linear) expressions through ports. Components act as emitters or receivers based on their model definitions, emitters provide expressions, while receivers aggregate them to define system behavior.
 
 

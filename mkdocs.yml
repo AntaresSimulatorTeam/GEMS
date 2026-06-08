@@ -1,4 +1,5 @@
 docs_dir: doc
+repo_name: GEMS
 exclude_docs: |
   documentation_env/
   2_Getting_Started/Tutorial_2_PyPSA_eur/*
@@ -38,11 +39,15 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
   - attr_list
   - md_in_html
   - pymdownx.arithmatex:
       generic: true
   - footnotes
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -67,7 +72,7 @@ extra_css:
 
 plugins:
   - mkdocs-jupyter:
-      execute: true
+      execute: false
       include: ["*.ipynb"]
       allow_errors: false
       include_source: true
@@ -135,7 +140,7 @@ nav:
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md
-          - Optimization Problem files: user-guide/outputs/optimization-problem-files.md
+          - Optimization Problem Files: user-guide/outputs/optimization-problem-files.md
           - Business View: user-guide/outputs/business-view.md
   - Interoperability:
       - PyPSA to GEMS Converter:
@@ -158,4 +163,4 @@ nav:
       - FAQ: support/faq.md
       - Contact: support/contact.md
       - Contributing: support/contributing.md
-      - Developer Guideline: support/dev-guidelines.md
+      - Developer Guidelines: support/dev-guidelines.md

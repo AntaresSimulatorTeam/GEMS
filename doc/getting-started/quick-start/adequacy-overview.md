@@ -27,52 +27,43 @@ The following diagram represents the simulated [system](https://github.com/Antar
   <img src="../../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
 </p>
 
-<details>
-<summary>Problem description in detail</summary>
+??? note "Problem description in detail"
 
-Time Horizon:
-<ul>
-  <li> This example considers a single one-hour time step. </li>
-</ul>
+    Time Horizon:
 
-Network Components:
-<ul>
-  <li>3 Buses (Regions 1, 2, 3 forming a triangle)</li>
-  <li>3 Links (connecting each pair of regions)</li>
-  <li>3 Generators (different capacities and costs)</li>
-  <li>3 Loads (fixed demands)</li>
-</ul>
+    - This example considers a single one-hour time step.
 
-In this example, the power flows on the links are constrained only by thermal capacities.
+    Network Components:
 
-Generation:
-<ul>
-  <li><code>Generator 1</code> (Bus 1): 70-100 MW capacity, 35 €/MWh cost</li>
-  <li><code>Generator 2</code> (Bus 2): 50-90 MW capacity, 25 €/MWh cost</li>
-  <li><code>Generator 3</code> (Bus 3): 50-200 MW capacity, 42 €/MWh cost</li>
-</ul>
+    - 3 Buses (Regions 1, 2, 3 forming a triangle)
+    - 3 Links (connecting each pair of regions)
+    - 3 Generators (different capacities and costs)
+    - 3 Loads (fixed demands)
 
-Demand:
-<ul>
-  <li>Bus 1: 50 MW</li>
-  <li>Bus 2: 40 MW</li>
-  <li>Bus 3: 150 MW</li>
-  <li>Total Load: 240 MW</li>
-</ul>
+    In this example, the power flows on the links are constrained only by thermal capacities.
 
-Transmission Capacities:
-<ul>
-  <li>Link 1-2: 40 MW (bidirectional)</li>
-  <li>Link 2-3: 30 MW (bidirectional)</li>
-  <li>Link 3-1: 50 MW (bidirectional)</li>
-</ul>
+    Generation:
+    - `Generator 1` (Bus 1): 70-100 MW capacity, 35 €/MWh cost
+    - `Generator 2` (Bus 2): 50-90 MW capacity, 25 €/MWh cost
+    - `Generator 3` (Bus 3): 50-200 MW capacity, 42 €/MWh cost
 
-Economic Parameters:
-<ul>
-  <li>Spillage cost: 1000 €/MWh (penalty for wasted energy)</li>
-  <li>Unsupplied energy cost: 10000 €/MWh (high penalty for unmet demand)</li>
-</ul>
-</details>
+    Demand:
+
+    - Bus 1: 50 MW
+    - Bus 2: 40 MW
+    - Bus 3: 150 MW
+    - Total Load: 240 MW
+
+    Transmission Capacities:
+    
+    - Link 1-2: 40 MW (bidirectional)
+    - Link 2-3: 30 MW (bidirectional)
+    - Link 3-1: 50 MW (bidirectional)
+
+    Economic Parameters:
+
+    - Spillage cost: 1000 €/MWh (penalty for wasted energy)
+    - Unsupplied energy cost: 10000 €/MWh (high penalty for unmet demand)
 
 ## The GEMS study
 

@@ -3,55 +3,48 @@
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </a>
 </div>
-<div>
-<h1>Current Limitations of the Converter</h1>
-<p>We explicit here the <strong>current</strong> limitation of the PyPSA-to-GEMS converter, that are related to the current state of development of the converter. We foresee no limitations in terms of the expressiveness of the GEMS modelling language.</p>
 
-<h2>Unsupported PyPSA Components</h2>
-<ul>
-  <li>Lines (not implemented)</li>
-  <li>Transformers (not implemented)</li>
-</ul>
+# Current Limitations of the Converter
 
-<h2>Component Restrictions</h2>
+We explicit here the **current** limitation of the PyPSA-to-GEMS converter, that are related to the current state of development of the converter. We foresee no limitations in terms of the expressiveness of the GEMS modelling language.
 
-<h3>Generators</h3>
-<ul>
-  <li><strong><code>active = 1</code></strong> — All generators are included in the optimization.</li>
-  <li><strong><code>marginal_cost_quadratic = 0</code></strong> — Only linear generation costs are supported.</li>
-  <li><strong><code>committable = False</code></strong> — Unit commitment (on/off decisions) is not supported.</li>
-</ul>
+## Unsupported PyPSA Components
 
-<h3>Loads</h3>
-<ul>
-  <li><strong><code>active = 1</code></strong> — All loads are fixed and always active.</li>
-</ul>
+- Lines (not implemented)
+- Transformers (not implemented)
 
-<h3>Links</h3>
-<ul>
-  <li><strong><code>active = 1</code></strong> — All links are always active.</li>
-</ul>
+## Component Restrictions
 
-<h3>Storage Units</h3>
-<ul>
-  <li><strong><code>active = 1</code></strong> — All storage units are included in the optimization.</li>
-  <li><strong><code>sign = 1</code></strong> — Storage operates with positive dispatch direction.</li>
-  <li><strong><code>cyclic_state_of_charge = 1</code></strong> — End state of charge must equal the initial state.</li>
-  <li><strong><code>marginal_cost_quadratic = 0</code></strong> — Only linear storage costs are supported.</li>
-</ul>
+### Generators
 
-<h3>Stores</h3>
-<ul>
-  <li><strong><code>active = 1</code></strong> — All stores are included in the optimization.</li>
-  <li><strong><code>sign = 1</code></strong> — Store energy flows are positive.</li>
-  <li><strong><code>e_cyclic = 1</code></strong> — End energy level must equal the initial level.</li>
-  <li><strong><code>marginal_cost_quadratic = 0</code></strong> — Only linear storage costs are supported.</li>
-</ul>
+- **`active = 1`** — All generators are included in the optimization.
+- **`marginal_cost_quadratic = 0`** — Only linear generation costs are supported.
+- **`committable = False`** — Unit commitment (on/off decisions) is not supported.
 
-<h3>Global Constraints</h3>
-<ul>
-  <li><strong><code>type = primary_energy</code></strong> — Only primary energy constraints are supported.</li>
-  <li><strong><code>carrier.co2_emissions</code></strong> — CO₂ accounting must be defined at the carrier level.</li>
-  <li><strong>Supported senses:</strong> <code>&lt;=</code>, <code>==</code></li>
-</ul>
-</div>
+### Loads
+
+- **`active = 1`** — All loads are fixed and always active.
+
+### Links
+
+- **`active = 1`** — All links are always active.
+
+### Storage Units
+
+- **`active = 1`** — All storage units are included in the optimization.
+- **`sign = 1`** — Storage operates with positive dispatch direction.
+- **`cyclic_state_of_charge = 1`** — End state of charge must equal the initial state.
+- **`marginal_cost_quadratic = 0`** — Only linear storage costs are supported.
+
+### Stores
+
+- **`active = 1`** — All stores are included in the optimization.
+- **`sign = 1`** — Store energy flows are positive.
+- **`e_cyclic = 1`** — End energy level must equal the initial level.
+- **`marginal_cost_quadratic = 0`** — Only linear storage costs are supported.
+
+### Global Constraints
+
+- **`type = primary_energy`** — Only primary energy constraints are supported.
+- **`carrier.co2_emissions`** — CO₂ accounting must be defined at the carrier level.
+- **Supported senses:** `<=`, `==`

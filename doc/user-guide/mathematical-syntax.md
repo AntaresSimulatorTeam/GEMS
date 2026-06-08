@@ -165,7 +165,7 @@ This allows shifting the time index forward or backward by *N* steps. For exampl
 This is commonly used for cyclic constraints such as storage dynamics.
 
 ```yaml
-expression: levels[t+1] = levels + injection - withdrwal
+expression: levels[t+1] = levels + injection - withdrawal
 ```
 
 Now, it can be concluded that terms `levels[T+1]` and `levels[0]` are reffering to the same variable.
