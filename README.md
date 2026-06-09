@@ -1,11 +1,17 @@
 <div align="center">
-    <img src="./doc/assets/gemsV2.png" alt="GEMS Logo" width="800"/>
-</div>
+
+<img src="./doc/assets/gemsV2.png" alt="GEMS Logo" width="800"/>
 
 [![Version](https://img.shields.io/github/v/release/AntaresSimulatorTeam/GEMS?label=version)](https://github.com/AntaresSimulatorTeam/GEMS/releases/latest)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 [![Validation Tests](https://github.com/AntaresSimulatorTeam/GEMS/actions/workflows/e2e-tests.yml/badge.svg)](https://github.com/AntaresSimulatorTeam/GEMS/actions/workflows/e2e-tests.yml)
 [![Documentation Status](https://readthedocs.org/projects/gems-energy/badge/?version=latest)](https://gems-energy.readthedocs.io/en/latest/)
+
+[📖 Documentation](https://gems-energy.readthedocs.io/en/latest/) •
+[🚀 Getting Started](https://gems-energy.readthedocs.io/en/latest/getting-started/) •
+[💬 Issues](https://github.com/AntaresSimulatorTeam/GEMS/issues)
+
+</div>
 
 # What is GEMS?
 
