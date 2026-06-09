@@ -9,7 +9,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 1000
-        - id: ens_cost
+        - id: unsupplied_energy_cost
           time-dependent: false
           scenario-dependent: false
           value: 10000
@@ -27,19 +27,19 @@ system:
       model: antares_legacy_models.thermal
 
       parameters:
-        - id: minimum_generation_modulation
+        - id: cluster_min_gen_modulation
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: p_max_cluster
+        - id: cluster_max_generation
           time-dependent: false
           scenario-dependent: false
           value: 1000
-        - id: p_min_unit
+        - id: min_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 50
-        - id: p_max_unit
+        - id: max_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 100
@@ -55,15 +55,15 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 100
-        - id: d_min_up
+        - id: min_up_duration
           time-dependent: false
           scenario-dependent: false
           value: 12
-        - id: d_min_down
+        - id: min_down_duration
           time-dependent: false
           scenario-dependent: false
           value: 12
-        - id: unit_count
+        - id: num_units
           time-dependent: false
           scenario-dependent: false
           value: 10
@@ -76,19 +76,19 @@ system:
       model: antares_legacy_models.thermal
 
       parameters:
-        - id: minimum_generation_modulation
+        - id: cluster_min_gen_modulation
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: p_max_cluster
+        - id: cluster_max_generation
           time-dependent: false
           scenario-dependent: false
           value: 500
-        - id: p_min_unit
+        - id: min_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 50
-        - id: p_max_unit
+        - id: max_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 100
@@ -104,15 +104,15 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 500
-        - id: d_min_up
+        - id: min_up_duration
           time-dependent: false
           scenario-dependent: false
           value: 5
-        - id: d_min_down
+        - id: min_down_duration
           time-dependent: false
           scenario-dependent: false
           value: 5
-        - id: unit_count
+        - id: num_units
           time-dependent: false
           scenario-dependent: false
           value: 5
