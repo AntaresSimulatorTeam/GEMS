@@ -1,4 +1,4 @@
-# This test runs the documentation the first tutorial notebook "Unit Commitment" 
+# This test runs the documentation the first tutorial notebook "Unit Commitment"
 # It checks that the objective values match those in the pre-executed notebook.
 
 import json
