@@ -70,6 +70,58 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 0
+        - id: co2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nh3_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: so2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nox_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm2_5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm10_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nmvoc_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op1_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op3_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op4_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
 
     - id: solar_farm
       model: antares_legacy_models.renewable
