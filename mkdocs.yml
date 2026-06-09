@@ -72,7 +72,7 @@ extra_css:
 
 plugins:
   - mkdocs-jupyter:
-      execute: false
+      execute: true
       include: ["*.ipynb"]
       allow_errors: false
       include_source: true
