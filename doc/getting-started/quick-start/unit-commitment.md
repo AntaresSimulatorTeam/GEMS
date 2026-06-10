@@ -4,7 +4,7 @@
   </a>
 </div>
 
-# QSE 2: Unit Commitment - Simple Example
+# Quick-start example 2: Unit Commitment - Simple Example
 
 ## Overview
 
@@ -151,7 +151,7 @@ The description of an energy system is the combination of a model library and a 
               time-dependent: false
               scenario-dependent: false
               value: 1000
-            - id: ens_cost
+            - id: unsupplied_energy_cost
               time-dependent: false
               scenario-dependent: false
               value: 10000
@@ -165,14 +165,14 @@ The description of an energy system is the combination of a model library and a 
               scenario-dependent: true
               value: load
 
-        - id: gas_plant
+        - id: thermal_plant
           model: antares_legacy_models.thermal
           parameters:
-            - id: p_min_unit
+            - id: min_power_per_unit
               time-dependent: false
               scenario-dependent: false
               value: 3
-            - id: p_max_unit
+            - id: max_power_per_unit
               time-dependent: false
               scenario-dependent: false
               value: 10
@@ -188,35 +188,27 @@ The description of an energy system is the combination of a model library and a 
               time-dependent: false
               scenario-dependent: false
               value: 100
-            - id: d_min_up
+            - id: min_up_duration
               time-dependent: false
               scenario-dependent: false
               value: 12
-            - id: d_min_down
+            - id: min_down_duration
               time-dependent: false
               scenario-dependent: false
               value: 12
-            - id: p_min_cluster
-              time-dependent: false
-              scenario-dependent: false
-              value: 0
-            - id: p_max_cluster
+            - id: cluster_max_generation
               time-dependent: false
               scenario-dependent: false
               value: 100
-            - id: nb_units_max
+            - id: num_units
               time-dependent: false
               scenario-dependent: false
               value: 10
-            - id: nb_units_min
+            - id: spinning
               time-dependent: false
               scenario-dependent: false
               value: 0
-            - id: nb_units_max_variation_forward
-              time-dependent: false
-              scenario-dependent: false
-              value: 0
-            - id: nb_units_max_variation_backward
+            - id: cluster_min_gen_modulation
               time-dependent: false
               scenario-dependent: false
               value: 0
@@ -228,11 +220,11 @@ The description of an energy system is the combination of a model library and a 
               time-dependent: false
               scenario-dependent: false
               value: 50
-            - id: unit_count
+            - id: num_units
               time-dependent: false
               scenario-dependent: false
               value: 1
-            - id: generation
+            - id: available_power
               time-dependent: true
               scenario-dependent: true
               value: solar
@@ -244,11 +236,11 @@ The description of an energy system is the combination of a model library and a 
               time-dependent: false
               scenario-dependent: false
               value: 35
-            - id: unit_count
+            - id: num_units
               time-dependent: false
               scenario-dependent: false
               value: 1
-            - id: generation
+            - id: available_power
               time-dependent: true
               scenario-dependent: true
               value: wind
@@ -260,7 +252,7 @@ The description of an energy system is the combination of a model library and a 
           port1: balance_port
           port2: balance_port
         - component1: bus1
-          component2: gas_plant
+          component2: thermal_plant
           port1: balance_port
           port2: balance_port
         - component1: bus1

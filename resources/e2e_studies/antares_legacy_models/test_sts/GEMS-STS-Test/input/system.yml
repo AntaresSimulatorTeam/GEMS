@@ -9,7 +9,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 1000
-        - id: ens_cost
+        - id: unsupplied_energy_cost
           time-dependent: false
           scenario-dependent: false
           value: 10000
@@ -27,19 +27,19 @@ system:
       model: antares_legacy_models.thermal
 
       parameters:
-        - id: minimum_generation_modulation
+        - id: cluster_min_gen_modulation
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: p_max_cluster
+        - id: cluster_max_generation
           time-dependent: false
           scenario-dependent: false
           value: 1000
-        - id: p_min_unit
+        - id: min_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 50
-        - id: p_max_unit
+        - id: max_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 100
@@ -55,19 +55,71 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 100
-        - id: d_min_up
+        - id: min_up_duration
           time-dependent: false
           scenario-dependent: false
           value: 12
-        - id: d_min_down
+        - id: min_down_duration
           time-dependent: false
           scenario-dependent: false
           value: 12
-        - id: unit_count
+        - id: num_units
           time-dependent: false
           scenario-dependent: false
           value: 10
         - id: spinning
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: co2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nh3_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: so2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nox_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm2_5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm10_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nmvoc_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op1_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op3_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op4_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op5_emissions_rate
           time-dependent: false
           scenario-dependent: false
           value: 0
@@ -76,19 +128,19 @@ system:
       model: antares_legacy_models.thermal
 
       parameters:
-        - id: minimum_generation_modulation
+        - id: cluster_min_gen_modulation
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: p_max_cluster
+        - id: cluster_max_generation
           time-dependent: false
           scenario-dependent: false
           value: 500
-        - id: p_min_unit
+        - id: min_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 50
-        - id: p_max_unit
+        - id: max_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 100
@@ -104,15 +156,15 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 500
-        - id: d_min_up
+        - id: min_up_duration
           time-dependent: false
           scenario-dependent: false
           value: 5
-        - id: d_min_down
+        - id: min_down_duration
           time-dependent: false
           scenario-dependent: false
           value: 5
-        - id: unit_count
+        - id: num_units
           time-dependent: false
           scenario-dependent: false
           value: 5
@@ -120,28 +172,80 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 0
+        - id: co2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nh3_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: so2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nox_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm2_5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm10_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nmvoc_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op1_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op3_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op4_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
 
     - id: my-sts
-      model: antares_legacy_models.short-term-storage
+      model: antares_legacy_models.short_term_storage
 
       parameters:
         - id: reservoir_capacity
           time-dependent: false
           scenario-dependent: false
           value: 500
-        - id: injection_nominal_capacity
+        - id: nominal_injection_capacity
           time-dependent: false
           scenario-dependent: false
           value: 100
-        - id: withdrawal_nominal_capacity
+        - id: nominal_withdrawal_capacity
           time-dependent: false
           scenario-dependent: false
           value: 100
-        - id: efficiency_injection
+        - id: injection_efficiency
           time-dependent: false
           scenario-dependent: false
           value: 1
-        - id: efficiency_withdrawal
+        - id: withdrawal_efficiency
           time-dependent: false
           scenario-dependent: false
           value: 1
@@ -153,11 +257,11 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 1
-        - id: p_max_injection_modulation
+        - id: max_injection_modulation
           time-dependent: false
           scenario-dependent: false
           value: 1
-        - id: p_max_withdrawal_modulation
+        - id: max_withdrawal_modulation
           time-dependent: false
           scenario-dependent: false
           value: 1
@@ -169,15 +273,15 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 0.5
-        - id: cost_injection
+        - id: injection_cost
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: cost_withdrawal
+        - id: withdrawal_cost
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: cost_level
+        - id: level_cost
           time-dependent: false
           scenario-dependent: false
           value: 0
@@ -199,4 +303,4 @@ system:
     - component1: bus1
       component2: my-sts
       port1: balance_port
-      port2: injection_port
+      port2: balance_port
