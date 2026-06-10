@@ -158,7 +158,7 @@ def get_pypsa_objective(network_path: Path) -> float:
       - n.objective_constant : fixed capital costs of non-extendable generators
     GEMS includes both, so both must be counted on the PyPSA side.
     """
-    import pypsa
+    import pypsa  # type: ignore[import-not-found]
 
     n = pypsa.Network(str(network_path))
     assert (n.snapshot_weightings.objective == 1.0).all(), (
