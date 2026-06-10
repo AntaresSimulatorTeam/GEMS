@@ -9,14 +9,12 @@
 
 <br/>
 
-[📖 Documentation](https://gems-energy.readthedocs.io/en/latest/) •
 [🚀 Getting Started](https://gems-energy.readthedocs.io/en/latest/getting-started/installation/modeler-installation/) •
 [🔎 Overview](https://gems-energy.readthedocs.io/en/latest/overview/architecture/) •
 [📚 UserGuide](https://gems-energy.readthedocs.io/en/latest/user-guide/introduction/) •
 [↔️ Interoperability](https://gems-energy.readthedocs.io/en/latest/interoperability/pypsa-to-gems-converter/overview/) •
 [💡 Examples](https://gems-energy.readthedocs.io/en/latest/examples/adequacy-example/) •
-[🤝 Support & Contributing](https://gems-energy.readthedocs.io/en/latest/examples/support/faq/) •
-[💬 Issues](https://github.com/AntaresSimulatorTeam/GEMS/issues)
+[🤝 Support & Contributing](https://gems-energy.readthedocs.io/en/latest/examples/support/faq/)
 
 </div>
 
