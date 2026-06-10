@@ -38,6 +38,8 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
   - attr_list
   - md_in_html
   - pymdownx.arithmatex:
@@ -120,7 +122,7 @@ nav:
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
           - PyPSA Eur Conversion Example: getting-started/quick-start/pypsa-eur.md
       - Tutorial Notebooks:
-        - Unit Commitment with GemsPy: getting-started/tutorial-unit-commitment/tutorial_unit_commitment.ipynb
+        - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - Mathematical Syntax: user-guide/mathematical-syntax.md
@@ -134,7 +136,6 @@ nav:
           - Taxonomy File: user-guide/file-structure/taxonomy.md
           - Business Views configuration files: user-guide/file-structure/business-view-configuration.md
       - Theoretical Concepts:
-          - Hypergraph Structure: user-guide/theoretical-concepts/hypergraph-structure.md
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md

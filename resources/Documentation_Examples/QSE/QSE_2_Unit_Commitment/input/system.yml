@@ -9,7 +9,7 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 1000
-        - id: ens_cost
+        - id: unsupplied_energy_cost
           time-dependent: false
           scenario-dependent: false
           value: 10000
@@ -26,11 +26,11 @@ system:
     - id: thermal_plant
       model: antares_legacy_models.thermal
       parameters:
-        - id: p_min_unit
+        - id: min_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 3
-        - id: p_max_unit
+        - id: max_power_per_unit
           time-dependent: false
           scenario-dependent: false
           value: 10
@@ -46,19 +46,19 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 100
-        - id: d_min_up
+        - id: min_up_duration
           time-dependent: false
           scenario-dependent: false
           value: 12
-        - id: d_min_down
+        - id: min_down_duration
           time-dependent: false
           scenario-dependent: false
           value: 12
-        - id: p_max_cluster
+        - id: cluster_max_generation
           time-dependent: false
           scenario-dependent: false
           value: 100
-        - id: unit_count
+        - id: num_units
           time-dependent: false
           scenario-dependent: false
           value: 10
@@ -66,7 +66,59 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 0
-        - id: minimum_generation_modulation
+        - id: cluster_min_gen_modulation
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: co2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nh3_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: so2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nox_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm2_5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm5_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: pm10_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: nmvoc_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op1_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op2_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op3_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op4_emissions_rate
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: op5_emissions_rate
           time-dependent: false
           scenario-dependent: false
           value: 0
@@ -78,11 +130,11 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 50
-        - id: unit_count
+        - id: num_units
           time-dependent: false
           scenario-dependent: false
           value: 1
-        - id: generation
+        - id: available_power
           time-dependent: true
           scenario-dependent: true
           value: solar
@@ -94,11 +146,11 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 35
-        - id: unit_count
+        - id: num_units
           time-dependent: false
           scenario-dependent: false
           value: 1
-        - id: generation
+        - id: available_power
           time-dependent: true
           scenario-dependent: true
           value: wind

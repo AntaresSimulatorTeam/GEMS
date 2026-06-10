@@ -275,7 +275,6 @@ binding-constraints:
     expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
 ```
 
-A detailed, step-by-step illustration of how binding constraints are constructed from ports and port-field definitions is provided in [Hypergraph Structure](../theoretical-concepts/hypergraph-structure.md) section.
 
 #### Objective Contribution
 
