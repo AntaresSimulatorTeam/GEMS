@@ -166,7 +166,7 @@ def get_pypsa_objective(network_path: Path) -> float:
     )
     logger.info("Optimizing the PyPSA study (network=%s)", n.name)
     n.optimize(solver_name="highs", include_objective_constant=True)
-    obj = n.objective + n.objective_constant
+    obj = float(n.objective + n.objective_constant)
     logger.info("PyPSA study optimized; objective=%s", obj)
     return obj
 
