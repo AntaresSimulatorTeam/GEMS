@@ -150,6 +150,24 @@ def get_gems_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
     return get_gems_objective_function_value(result_files[-1])
 
 
+def get_pypsa_objective(network_path: Path) -> float:
+    """Solve the PyPSA LP with HiGHS and return the total objective.
+
+    total_objective = n.objective + n.objective_constant
+      - n.objective          : LP variable costs (extendable generators)
+      - n.objective_constant : fixed capital costs of non-extendable generators
+    GEMS includes both, so both must be counted on the PyPSA side.
+    """
+    n = pypsa.Network(str(network_path))
+    assert (n.snapshot_weightings.objective == 1.0).all(), (
+        "Unexpected snapshot weights — objective would not be the raw 48-h cost"
+    )
+    logger.info("Optimizing the PyPSA study (network=%s)", n.name)
+    n.optimize(solver_name="highs", include_objective_constant=True)
+    obj = n.objective + n.objective_constant
+    logger.info("PyPSA study optimized; objective=%s", obj)
+    return obj
+
 def get_antares_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
     """Run Antares solver and return the objective value from annualSystemCost.txt."""
     logger.info("Running Antares Simulator with study directory: %s", study_dir)
