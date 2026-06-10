@@ -8,7 +8,7 @@ import logging
 
 import pytest
 
-from tests.e2e_tests.env import OBJECTIVE_ATOL
+from .env import OBJECTIVE_ATOL
 from .utils import get_notebook_objective, get_pypsa_objective
 
 logger = logging.getLogger(__name__)
