@@ -11,7 +11,9 @@ import zipfile
 from pathlib import Path
 
 import pandas as pd
+import pypsa
 import pytest
+from pypsa import Network
 
 from .env import EnvironmentPaths
 
