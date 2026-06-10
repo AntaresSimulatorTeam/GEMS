@@ -4,7 +4,9 @@
 
 from __future__ import annotations
 
+import json
 import logging
+import re
 import shutil
 import subprocess
 import zipfile
@@ -13,7 +15,6 @@ from pathlib import Path
 import pandas as pd
 import pypsa
 import pytest
-from pypsa import Network
 
 from .env import EnvironmentPaths
 
@@ -172,9 +173,7 @@ def get_pypsa_objective(network_path: Path) -> float:
 def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> float:
     """Extract the Nth GEMS objective value from a pre-executed notebook's cell outputs.
 
-    Scans code-cell outputs for lines matching
-    'Objective value (total system cost): <number> €'
-    and returns the value at simulation_index (0-based).
+    Scans code-cell outputs for lines matching 'Objective value (total system cost): <number> €' and returns the value at simulation_index (0-based).
     """
     with notebook_path.open(encoding="utf-8") as f:
         nb = json.load(f)
