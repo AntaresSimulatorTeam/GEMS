@@ -74,7 +74,6 @@ The **Theoretical Concepts** section explains the core ideas behind how [GEMS](.
 
 It introduces:
 
-- The **hypergraph representation** of a system (components + ports + connections)
 - The distinction between **models** (templates) and **components** (instances)
 - How constraints and objectives are assembled into a global optimization problem
 - How time and scenarios unfold into a larger deterministic or stochastic formulation
@@ -82,7 +81,7 @@ It introduces:
 
 This section is conceptual: it explains *why* the file structure and syntax are designed the way they are.
 
-See: [**Theoretical Concepts**](./theoretical-concepts/hypergraph-structure.md)
+See: [**Theoretical Concepts**](./theoretical-concepts/optimization-problem.md)
 
 ## Outputs
 

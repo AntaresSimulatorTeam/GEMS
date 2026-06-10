@@ -133,7 +133,6 @@ nav:
           - Taxonomy File: user-guide/file-structure/taxonomy.md
           - Business Views configuration files: user-guide/file-structure/business-view-configuration.md
       - Theoretical Concepts:
-          - Hypergraph Structure: user-guide/theoretical-concepts/hypergraph-structure.md
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md
