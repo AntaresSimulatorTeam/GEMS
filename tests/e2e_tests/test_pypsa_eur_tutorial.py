@@ -3,10 +3,14 @@
 # This file is part of the Antares project.
 
 from __future__ import annotations
+
 import logging
+
 import pytest
+
 from tests.e2e_tests.env import OBJECTIVE_ATOL
 from .utils import get_notebook_objective, get_pypsa_objective
+
 logger = logging.getLogger(__name__)
 
 NETWORK_FILE = "pypsa-eur/resources/networks/base_s_1_elec.nc"
@@ -37,7 +41,7 @@ def test_pypsa_eur_objective_matches_gems(
     pypsa_obj = get_pypsa_objective(network_path)
     logger.info("PyPSA objective: %.6f €", pypsa_obj)
 
-    # GEMS objective from jupyter notebook output 
+    # GEMS objective from jupyter notebook output
     gems_obj = get_notebook_objective(notebook_path)
     logger.info("GEMS  objective: %.6f €", gems_obj)
 

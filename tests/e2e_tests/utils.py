@@ -13,7 +13,6 @@ import zipfile
 from pathlib import Path
 
 import pandas as pd
-import pypsa
 import pytest
 
 from .env import EnvironmentPaths
@@ -159,6 +158,8 @@ def get_pypsa_objective(network_path: Path) -> float:
       - n.objective_constant : fixed capital costs of non-extendable generators
     GEMS includes both, so both must be counted on the PyPSA side.
     """
+    import pypsa
+
     n = pypsa.Network(str(network_path))
     assert (n.snapshot_weightings.objective == 1.0).all(), (
         "Unexpected snapshot weights — objective would not be the raw 48-h cost"
