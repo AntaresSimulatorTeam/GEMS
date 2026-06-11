@@ -1,8 +1,7 @@
 docs_dir: doc
 exclude_docs: |
   documentation_env/
-  2_Getting_Started/Tutorial_2_PyPSA_eur/*
-  getting-started/Tutorial_2_PyPSA_eur/PyPSA-to-GEMS-Converter/*
+  getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
 site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy system Modelling Schema) is a
@@ -39,6 +38,8 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
   - attr_list
   - md_in_html
   - admonition
@@ -83,7 +84,7 @@ plugins:
   - git-revision-date-localized:
       exclude:
         - documentation_env/*
-        - 2_Getting_Started/Tutorial_2_PyPSA_eur/pypsa-eur/*
+        - getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
       enable_creation_date: true
       enable_git_follow: true
       type: timeago
@@ -120,8 +121,8 @@ nav:
               - Mathematical Formulation: getting-started/quick-start/adequacy-math-model.md
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
       - Tutorial Notebooks:
-        - Unit Commitment with GemsPy: getting-started/Tutorial_1_Unit_Commitment/1_Tutorial_Unit_Commitment.ipynb
-        - Investment Opitmization with GemsPy: getting-started/Tutorial_3_Investment/3_Tutorial_Investment.ipynb
+        - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
+        - Investment Optimization with GemsPy: getting-started/tutorial-investment/tutorial-investment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - Mathematical Syntax: user-guide/mathematical-syntax.md
@@ -135,7 +136,6 @@ nav:
           - Taxonomy File: user-guide/file-structure/taxonomy.md
           - Business Views configuration files: user-guide/file-structure/business-view-configuration.md
       - Theoretical Concepts:
-          - Hypergraph Structure: user-guide/theoretical-concepts/hypergraph-structure.md
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md

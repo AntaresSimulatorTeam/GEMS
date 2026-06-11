@@ -1,5 +1,21 @@
 <div align="center">
-    <img src="./doc/assets/gemsV2.png" alt="GEMS Logo" width="800"/>
+
+<img src="./doc/assets/gemsV2.png" alt="GEMS Logo" width="800"/>
+
+<a href="https://github.com/AntaresSimulatorTeam/GEMS/releases/latest"><img src="https://img.shields.io/github/v/release/AntaresSimulatorTeam/GEMS?label=version" alt="Version"/></a>
+<a href="https://opensource.org/licenses/MPL-2.0"><img src="https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg" alt="License: MPL 2.0"/></a>
+<a href="https://github.com/AntaresSimulatorTeam/GEMS/actions/workflows/e2e-tests.yml"><img src="https://github.com/AntaresSimulatorTeam/GEMS/actions/workflows/e2e-tests.yml/badge.svg" alt="Validation Tests"/></a>
+<a href="https://gems-energy.readthedocs.io/en/latest/"><img src="https://readthedocs.org/projects/gems-energy/badge/?version=latest" alt="Documentation Status"/></a>
+
+<br/>
+
+[🚀 Getting Started](https://gems-energy.readthedocs.io/en/latest/getting-started/installation/modeler-installation/) •
+[🔎 Overview](https://gems-energy.readthedocs.io/en/latest/overview/architecture/) •
+[📚 UserGuide](https://gems-energy.readthedocs.io/en/latest/user-guide/introduction/) •
+[↔️ Interoperability](https://gems-energy.readthedocs.io/en/latest/interoperability/pypsa-to-gems-converter/overview/) •
+[💡 Examples](https://gems-energy.readthedocs.io/en/latest/examples/adequacy-example/) •
+[🤝 Support & Contributing](https://gems-energy.readthedocs.io/en/latest/examples/support/faq/)
+
 </div>
 
 # What is GEMS?
