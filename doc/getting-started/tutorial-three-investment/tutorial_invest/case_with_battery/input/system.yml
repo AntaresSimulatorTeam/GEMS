@@ -65,7 +65,7 @@ system:
           scenario-dependent: false
           value: 50              # €/MWh - more expensive than existing thermal
 
-    - id: candidate_battery
+    - id: storage_investment_candidate
       model: investment_library.candidate_storage
       parameters:
         - id: investment_cost
@@ -107,6 +107,6 @@ system:
       port1: balance_port
       port2: balance_port
     - component1: node
-      component2: candidate_battery
+      component2: storage_investment_candidate
       port1: balance_port
       port2: injection_port
