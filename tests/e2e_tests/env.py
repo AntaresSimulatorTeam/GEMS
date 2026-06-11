@@ -19,6 +19,9 @@ class EnvironmentPaths:
     thermal_cluster_studies_path: Path
     sts_studies_path: Path
     doc_examples_path: Path
+    tutorial_doc_examples_path: Path
+    tutorial_notebook_path: Path
+    tutorial_library_dir: Path
 
     antares_root: Path
     antares_solver_bin: Path
@@ -48,6 +51,25 @@ def get_paths() -> EnvironmentPaths:
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
 
+    # Paths for tutorial notebooks e2e tests
+    tutorial_doc_examples_path = (
+        repo_root / "resources" / "e2e_studies" / "tutorial-one-unit-commitment"
+    )
+    tutorial_notebook_path = (
+        repo_root
+        / "doc"
+        / "getting-started"
+        / "tutorial-one-unit-commitment"
+        / "tutorial-unit-commitment.ipynb"
+    )
+    tutorial_library_dir = (
+        repo_root
+        / "doc"
+        / "getting-started"
+        / "tutorial-one-unit-commitment"
+        / "unit-commitment-with-gemspy"
+    )
+
     antares_version = _read_antares_version(repo_root)
     antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
     antares_solver_bin = antares_root / "bin" / "antares-solver"
@@ -59,6 +81,9 @@ def get_paths() -> EnvironmentPaths:
         thermal_cluster_studies_path=thermal_cluster_studies_path,
         sts_studies_path=sts_studies_path,
         doc_examples_path=doc_examples_path,
+        tutorial_doc_examples_path=tutorial_doc_examples_path,
+        tutorial_notebook_path=tutorial_notebook_path,
+        tutorial_library_dir=tutorial_library_dir,
         antares_root=antares_root,
         antares_solver_bin=antares_solver_bin,
         antares_modeler_bin=antares_modeler_bin,

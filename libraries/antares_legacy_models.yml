@@ -12,13 +12,15 @@
 library:
   id: antares_legacy_models
   description: Antares historic model library
-  version: "1.0.0"
+  version: "2.0.0"
+  taxonomy: antares_legacy_taxonomy
 
   port-types:
     - id: flow
       description: A port that transfers power flow.
       fields:
         - id: flow
+        - id: price
       area-connection:
         injection-to-balance: flow
         spillage-bound: flow
@@ -26,11 +28,12 @@ library:
 
   models:
     - id: area
+      taxonomy-category: balance
       parameters:
         - id: spillage_cost
-        - id: ens_cost
+        - id: unsupplied_energy_cost
       variables:
-        - id: spillage
+        - id: spilled_energy
           lower-bound: 0
           variable-type: continuous
         - id: unsupplied_energy
@@ -41,12 +44,28 @@ library:
           type: flow
       binding-constraints:
         - id: balance
-          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+          expression: sum_connections(balance_port.flow) = spilled_energy - unsupplied_energy
+      port-field-definitions:
+        - port: balance_port
+          field: price
+          definition: dual(balance)
       objective-contributions:
         - id: objective
-          expression: sum(spillage_cost * spillage + ens_cost * unsupplied_energy)
+          expression: sum(spillage_cost * spilled_energy + unsupplied_energy_cost * unsupplied_energy)
+      extra-outputs:
+        - id: price
+          expression: dual(balance)
+        - id: imbalance_cost
+          expression: spillage_cost * spilled_energy + unsupplied_energy_cost * unsupplied_energy
+        - id: is_loss_of_load
+          expression: unsupplied_energy >= 0.5
+        - id: is_near_loss_of_load
+          expression: dual(balance) >= unsupplied_energy_cost - 5
+      properties:
+        - id: carrier
 
     - id: load
+      taxonomy-category: fatal_consumption
       parameters:
         - id: load
           time-dependent: true
@@ -58,29 +77,38 @@ library:
         - port: balance_port
           field: flow
           definition: -load
+      extra-outputs:
+        - id: actual_load
+          expression: load
+      properties:
+        - id: carrier
 
     - id: link
+      taxonomy-category: link
       parameters:
-        - id: capacity_direct
+        - id: direct_capacity
           time-dependent: true
           scenario-dependent: true
-        - id: capacity_indirect
+        - id: indirect_capacity
           time-dependent: true
           scenario-dependent: true
-        - id: hurdle_cost_direct
+        - id: direct_hurdle_cost
           time-dependent: true
           scenario-dependent: false
-        - id: hurdle_cost_indirect
+        - id: indirect_hurdle_cost
+          time-dependent: true
+          scenario-dependent: false
+        - id: loop_flow
           time-dependent: true
           scenario-dependent: false
       variables:
-        - id: flow_direct
+        - id: direct_flow
           lower-bound: 0
-          upper-bound: capacity_direct
+          upper-bound: direct_capacity - loop_flow
           variable-type: continuous
-        - id: flow_indirect
+        - id: indirect_flow
           lower-bound: 0
-          upper-bound: capacity_indirect
+          upper-bound: indirect_capacity + loop_flow
           variable-type: continuous
         - id: flow
           variable-type: continuous
@@ -98,16 +126,36 @@ library:
           definition: -flow
       objective-contributions:
         - id: objective
-          expression: sum(hurdle_cost_direct * flow_direct + hurdle_cost_indirect * flow_indirect)
+          expression: sum(direct_hurdle_cost * direct_flow + indirect_hurdle_cost * indirect_flow)
       constraints:
-        - id: flow_direct_indirect
-          expression: flow = flow_direct - flow_indirect
+        - id: flow_decomposition
+          expression: flow = direct_flow + loop_flow - indirect_flow
+      extra-outputs:
+        - id: minus_flow
+          expression: -flow
+        - id: abs_congestion_fee
+          expression: max(flow,-flow) * max(sum_connections(out_port.price)-sum_connections(in_port.price),sum_connections(in_port.price)-sum_connections(out_port.price))
+        - id: alg_congestion_fee
+          expression: flow * (sum_connections(out_port.price)-sum_connections(in_port.price))
+        - id: capacity_shadow_price
+          expression: max(dual(flow_decomposition),-dual(flow_decomposition))
+        - id: is_directly_congested
+          expression: (direct_flow >= direct_capacity - loop_flow)
+        - id: is_indirectly_congested
+          expression: (indirect_flow >= indirect_capacity + loop_flow)
+        - id: prop_cost
+          expression: direct_hurdle_cost * direct_flow + indirect_hurdle_cost * indirect_flow
+        - id: abs_flow
+          expression: max(flow,-flow)
+        - id: actual_loop_flow
+          expression: loop_flow
 
     - id: renewable
+      taxonomy-category: renewable_fatal_generation
       parameters:
         - id: nominal_capacity
-        - id: unit_count
-        - id: generation
+        - id: num_units
+        - id: available_power
           time-dependent: true
           scenario-dependent: true
       ports:
@@ -116,43 +164,87 @@ library:
       port-field-definitions:
         - port: balance_port
           field: flow
-          definition: generation
+          definition: available_power
+      extra-outputs:
+        - id: minus_generation
+          expression: -available_power
+        - id: generation_power
+          expression: available_power
+      properties:
+        - id: carrier
+        - id: technology
+    
+    - id: miscellaneous_generation
+      taxonomy-category: miscellaneous_fatal_generation
+      parameters:
+        - id: available_power
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: available_power
+      extra-outputs:
+        - id: minus_generation
+          expression: -available_power
+        - id: generation_power
+          expression: available_power
+      properties:
+        - id: carrier
+        - id: technology
 
     - id: thermal
+      taxonomy-category: dispatchable_generation
       parameters:
-        - id: minimum_generation_modulation # Timeseries used to define the minimum generation of the cluster by minimum_generation_modulation * unit_count * p_max_unit, this cannot exceed the maximum generation power p_max_cluster (after being increased by p_min_unit).
+        - id: cluster_min_gen_modulation # Timeseries used to define the minimum generation of the cluster by cluster_min_gen_modulation * num_units * max_power_per_unit, this cannot exceed the maximum generation power cluster_max_generation (after being increased by min_power_per_unit). 
           scenario-dependent: true
           time-dependent: true
-        - id: p_max_cluster # Timeseries that takes outages into account. Used to define the number of available units, which is ceil(p_max_cluster / p_max_unit).
+        - id: cluster_max_generation # Timeseries that takes outages into account. Used to define the number of available units, which is ceil(cluster_max_generation / max_power_per_unit). 
           scenario-dependent: true
           time-dependent: true
-        - id: p_min_unit # Minimum generation per on unit. Used to increase p_max_cluster so that it is at least equal to p_min_unit times the number of available units, which is ceil(p_max_cluster / p_max_unit). This number of available units does not change when p_max_cluster is increased because ceil((p_min_unit*ceil(p_max_cluster / p_max_unit))/ (p_max_unit*(1-spinning/100)))=ceil(p_max_cluster / p_max_unit) under the assumption that p_min_unit <= p_max_unit*(1-spinning/100).
-        - id: p_max_unit
+        - id: min_power_per_unit # Minimum generation per on unit. Used to increase cluster_max_generation so that it is at least equal to min_power_per_unit times the number of available units, which is ceil(cluster_max_generation / max_power_per_unit). This number of available units does not change when cluster_max_generation is increased because ceil((min_power_per_unit*ceil(cluster_max_generation / max_power_per_unit))/ (max_power_per_unit*(1-spinning/100)))=ceil(cluster_max_generation / max_power_per_unit) under the assumption that min_power_per_unit <= max_power_per_unit*(1-spinning/100).
+        - id: max_power_per_unit
         - id: generation_cost
         - id: startup_cost
         - id: fixed_cost
-        - id: d_min_up
-        - id: d_min_down
-        - id: unit_count
-        - id: spinning # in percentage, taken into account in p_max_cluster and p_max_unit (except when computing minimum generation)
+        - id: min_up_duration
+        - id: min_down_duration
+        - id: num_units
+        - id: spinning # in percentage, taken into account in cluster_max_generation and max_power_per_unit (except when computing minimum generation)
+        - id: co2_emissions_rate
+        - id: nh3_emissions_rate
+        - id: so2_emissions_rate
+        - id: nox_emissions_rate
+        - id: pm2_5_emissions_rate
+        - id: pm5_emissions_rate
+        - id: pm10_emissions_rate
+        - id: nmvoc_emissions_rate
+        - id: op1_emissions_rate
+        - id: op2_emissions_rate
+        - id: op3_emissions_rate
+        - id: op4_emissions_rate
+        - id: op5_emissions_rate
       variables:
-        - id: generation
-          lower-bound: min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit) # real expression before simplification : min(upper-bound(generation),minimum_generation_modulation * unit_count * p_max_unit) = min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100)))), minimum_generation_modulation * unit_count * p_max_unit)
-          upper-bound: max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)) # real expression before simplification : max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))
+        - id: generation_power
+          lower-bound: min(max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation / max_power_per_unit)), cluster_min_gen_modulation * num_units * max_power_per_unit) # real expression before simplification : min(upper-bound(generation_power),cluster_min_gen_modulation * num_units * max_power_per_unit) = min(max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation*(1-spinning/100) / (max_power_per_unit*(1-spinning/100)))), cluster_min_gen_modulation * num_units * max_power_per_unit)
+          upper-bound: max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation / max_power_per_unit)) # real expression before simplification : max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation*(1-spinning/100) / (max_power_per_unit*(1-spinning/100))))
           variable-type: continuous
-        - id: nb_units_on
-          lower-bound: ceil(min(p_max_cluster/p_max_unit, minimum_generation_modulation * unit_count * p_max_unit/(p_max_unit*(1-spinning/100)))) # real expression before simplification : ceil(lower-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(min(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster / p_max_unit)), minimum_generation_modulation * unit_count * p_max_unit)/(p_max_unit*(1-spinning/100)))
-          upper-bound: ceil(p_max_cluster/p_max_unit) # real expression before simplification : ceil(upper-bound(generation)/(p_max_unit*(1-spinning/100))) = ceil(max(p_max_cluster*(1-spinning/100), p_min_unit * ceil(p_max_cluster*(1-spinning/100) / (p_max_unit*(1-spinning/100))))/(p_max_unit*(1-spinning/100)))
+        - id: num_units_on
+          lower-bound: ceil(min(cluster_max_generation/max_power_per_unit, cluster_min_gen_modulation * num_units * max_power_per_unit/(max_power_per_unit*(1-spinning/100)))) # real expression before simplification : ceil(lower-bound(generation_power)/(max_power_per_unit*(1-spinning/100))) = ceil(min(max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation / max_power_per_unit)), cluster_min_gen_modulation * num_units * max_power_per_unit)/(max_power_per_unit*(1-spinning/100)))
+          upper-bound: ceil(cluster_max_generation/max_power_per_unit) # real expression before simplification : ceil(upper-bound(generation_power)/(max_power_per_unit*(1-spinning/100))) = ceil(max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation*(1-spinning/100) / (max_power_per_unit*(1-spinning/100))))/(max_power_per_unit*(1-spinning/100)))
           variable-type: continuous #integer
-        - id: nb_starting
+        - id: num_units_starting
           lower-bound: 0
           variable-type: continuous #integer
-        - id: nb_stopping
+        - id: num_units_stopping
           lower-bound: 0
           variable-type: continuous #integer
-        - id: nb_failing
+        - id: num_units_failing
           lower-bound: 0
-          upper-bound: max(0, (ceil(p_max_cluster/p_max_unit))[t-1] - (ceil(p_max_cluster/p_max_unit)))
+          upper-bound: max(0, (ceil(cluster_max_generation/max_power_per_unit))[t-1] - (ceil(cluster_max_generation/max_power_per_unit)))
           variable-type: continuous #integer
       ports:
         - id: balance_port
@@ -160,39 +252,87 @@ library:
       port-field-definitions:
         - port: balance_port
           field: flow
-          definition: generation
+          definition: generation_power
       constraints:
         - id: max_generation
-          expression: generation <= nb_units_on * p_max_unit*(1-spinning/100)
+          expression: generation_power <= num_units_on * max_power_per_unit*(1-spinning/100)
         - id: min_generation
-          expression: generation >= nb_units_on * p_min_unit
+          expression: generation_power >= num_units_on * min_power_per_unit
         - id: on_units_dynamics
-          expression: nb_units_on = nb_units_on[t-1] + nb_starting - nb_stopping
-        - id: nb_failing_lower_than_stopping
-          expression: nb_failing <= nb_stopping
-        - id: min_up_duration
-          expression: sum(t-d_min_up + 1 .. t, nb_starting - nb_failing) <= nb_units_on
-        - id: min_down_duration
-          expression: sum(t-d_min_down + 1 .. t, nb_stopping) <= ((ceil(p_max_cluster/p_max_unit)))[t-d_min_down] - nb_units_on + sum(t-d_min_down + 1 .. t, max(0, ceil(p_max_cluster/p_max_unit) - (ceil(p_max_cluster/p_max_unit))[t-1]))
+          expression: num_units_on = num_units_on[t-1] + num_units_starting - num_units_stopping
+        - id: num_units_failing_lower_than_stopping
+          expression: num_units_failing <= num_units_stopping
+        - id: min_up_duration_cst
+          expression: sum(t-min_up_duration + 1 .. t, num_units_starting - num_units_failing) <= num_units_on
+        - id: min_down_duration_cst
+          expression: sum(t-min_down_duration + 1 .. t, num_units_stopping) <= ((ceil(cluster_max_generation/max_power_per_unit)))[t-min_down_duration] - num_units_on + sum(t-min_down_duration + 1 .. t, max(0, ceil(cluster_max_generation/max_power_per_unit) - (ceil(cluster_max_generation/max_power_per_unit))[t-1]))
       objective-contributions:
         - id: objective
-          expression: sum(generation_cost * generation + startup_cost * nb_starting + fixed_cost * nb_units_on)
+          expression: sum(generation_cost * generation_power + startup_cost * num_units_starting + fixed_cost * num_units_on)
+      properties:
+        - id: plant
+        - id: carrier
+        - id: technology
+      extra-outputs:
+        - id: actual_num_units_on
+          expression: ceil(num_units_on)
+        - id: prop_cost
+          expression: generation_cost * generation_power
+        - id: non_prop_cost
+          expression: startup_cost * max(0,ceil(num_units_on)-(ceil(num_units_on))[t-1])+ fixed_cost * ceil(num_units_on)
+        - id: cluster_availability
+          expression: max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation / max_power_per_unit))
+        - id: min_gen_power
+          expression: min(generation_power, cluster_min_gen_modulation * num_units * max_power_per_unit)
+        - id: up_margin
+          expression: max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation / max_power_per_unit)) - generation_power
+        - id: down_margin
+          expression: generation_power - min(max(cluster_max_generation*(1-spinning/100), min_power_per_unit * ceil(cluster_max_generation / max_power_per_unit)), cluster_min_gen_modulation * num_units * max_power_per_unit)
+        - id: co2_emissions
+          expression: generation_power * co2_emissions_rate
+        - id: nh3_emissions
+          expression: generation_power * nh3_emissions_rate
+        - id: so2_emissions
+          expression: generation_power * so2_emissions_rate
+        - id: nox_emissions
+          expression: generation_power * nox_emissions_rate
+        - id: pm2_5_emissions
+          expression: generation_power * pm2_5_emissions_rate
+        - id: pm5_emissions
+          expression: generation_power * pm5_emissions_rate
+        - id: pm10_emissions
+          expression: generation_power * pm10_emissions_rate
+        - id: nmvoc_emissions
+          expression: generation_power * nmvoc_emissions_rate
+        - id: op1_emissions
+          expression: generation_power * op1_emissions_rate
+        - id: op2_emissions
+          expression: generation_power * op2_emissions_rate
+        - id: op3_emissions
+          expression: generation_power * op3_emissions_rate
+        - id: op4_emissions
+          expression: generation_power * op4_emissions_rate
+        - id: op5_emissions
+          expression: generation_power * op5_emissions_rate
+        - id: profit
+          expression: (sum_connections(balance_port.price) - generation_cost)* max(generation_power - cluster_min_gen_modulation * num_units * max_power_per_unit, 0)
 
-    - id: short-term-storage
+    - id: short_term_storage
+      taxonomy-category: short_term_storage
       parameters:
         - id: reservoir_capacity
           time-dependent: false
           scenario-dependent: false
-        - id: injection_nominal_capacity
+        - id: nominal_injection_capacity
           time-dependent: false
           scenario-dependent: false
-        - id: withdrawal_nominal_capacity
+        - id: nominal_withdrawal_capacity
           time-dependent: false
           scenario-dependent: false
-        - id: efficiency_injection
+        - id: injection_efficiency
           time-dependent: false
           scenario-dependent: false
-        - id: efficiency_withdrawal
+        - id: withdrawal_efficiency
           time-dependent: false
           scenario-dependent: false
         - id: lower_rule_curve
@@ -201,10 +341,10 @@ library:
         - id: upper_rule_curve
           time-dependent: true
           scenario-dependent: true
-        - id: p_max_injection_modulation
+        - id: max_injection_modulation
           time-dependent: true
           scenario-dependent: true
-        - id: p_max_withdrawal_modulation
+        - id: max_withdrawal_modulation
           time-dependent: true
           scenario-dependent: true
         - id: inflows
@@ -213,40 +353,118 @@ library:
         - id: initial_level
           time-dependent: false
           scenario-dependent: true
-        - id: cost_injection
+        - id: injection_cost
           time-dependent: true
           scenario-dependent: true
-        - id: cost_withdrawal
+        - id: withdrawal_cost
           time-dependent: true
           scenario-dependent: true
-        - id: cost_level
+        - id: level_cost
           time-dependent: true
           scenario-dependent: true
       variables:
-        - id: p_injection
+        - id: injection_power
           lower-bound: 0
-          upper-bound: p_max_injection_modulation * injection_nominal_capacity
+          upper-bound: max_injection_modulation * nominal_injection_capacity
           variable-type: continuous
-        - id: p_withdrawal
+        - id: withdrawal_power
           lower-bound: 0
-          upper-bound: p_max_withdrawal_modulation * withdrawal_nominal_capacity
+          upper-bound: max_withdrawal_modulation * nominal_withdrawal_capacity
           variable-type: continuous
         - id: level
           lower-bound: lower_rule_curve * reservoir_capacity
           upper-bound: upper_rule_curve * reservoir_capacity
           variable-type: continuous
       ports:
-        - id: injection_port
+        - id: balance_port
           type: flow
       port-field-definitions:
-        - port: injection_port
+        - port: balance_port
           field: flow
-          definition: p_withdrawal - p_injection
+          definition: withdrawal_power - injection_power
       constraints:
         - id: initial_level_constraint
-          expression: level[0] = initial_level * reservoir_capacity
+          expression: level[167] = initial_level * reservoir_capacity # 167 = last timestep of the week (168h - 1); enforces end-of-week level target
         - id: level_equation
-          expression: level[t+1] = level + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal + inflows
+          expression: level = level[t-1] + injection_efficiency * injection_power - withdrawal_efficiency * withdrawal_power + inflows
       objective-contributions:
         - id: objective
-          expression: sum(cost_injection * p_injection + cost_withdrawal * p_withdrawal + cost_level * level)
+          expression: sum(injection_cost * injection_power + withdrawal_cost * withdrawal_power + level_cost * level)
+      extra-outputs:
+        - id: profit
+          expression: floor((withdrawal_power - injection_power) * sum_connections(balance_port.price)+0.5)
+      properties:
+        - id: group
+    
+    - id: long_term_storage
+      taxonomy-category: long_term_storage
+      parameters:
+        - id: reservoir_capacity
+          time-dependent: false
+          scenario-dependent: false
+        - id: nominal_pumping_capacity
+          time-dependent: true
+          scenario-dependent: true
+        - id: nominal_generation_capacity
+          time-dependent: true
+          scenario-dependent: true
+        - id: minimum_generation
+          time-dependent: true
+          scenario-dependent: true
+        - id: pumping_efficiency
+          time-dependent: false
+          scenario-dependent: false
+        - id: lower_rule_curve
+          time-dependent: true
+          scenario-dependent: true
+        - id: upper_rule_curve
+          time-dependent: true
+          scenario-dependent: true
+        - id: inflows
+          time-dependent: true
+          scenario-dependent: true
+        - id: initial_and_final_level
+          time-dependent: true
+          scenario-dependent: true
+        - id: overflow_cost
+          time-dependent: true
+          scenario-dependent: true
+      variables:
+        - id: injection_power
+          lower-bound: 0
+          upper-bound: nominal_pumping_capacity
+          variable-type: continuous
+        - id: withdrawal_power
+          lower-bound: minimum_generation
+          upper-bound: nominal_generation_capacity
+          variable-type: continuous
+        - id: overflow
+          lower-bound: 0
+          upper-bound: inflows
+          variable-type: continuous
+        - id: level
+          lower-bound: 0
+          upper-bound: reservoir_capacity
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: withdrawal_power - injection_power
+      constraints:
+        - id: level_equation
+          expression: level = level[t-1] + pumping_efficiency * injection_power + inflows - withdrawal_power - overflow
+        - id: initial_level_equation
+          expression: level[0] = initial_and_final_level[0] * reservoir_capacity + pumping_efficiency * injection_power[0] + inflows[0] - withdrawal_power[0] - overflow[0]
+        - id: final_level_equation
+          expression: initial_and_final_level[167] * reservoir_capacity = level[167] # 167 = last timestep of the week (168h - 1)
+      objective-contributions:
+        - id: objective
+          expression: sum(overflow_cost * overflow)
+      extra-outputs:
+        - id: level_percentage
+          expression: level/reservoir_capacity*100
+        - id: actual_inflows
+          expression: floor(inflows+0.5)

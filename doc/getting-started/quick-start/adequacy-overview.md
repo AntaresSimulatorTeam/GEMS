@@ -96,23 +96,12 @@ The following diagram depicts the structural relationships between the [library 
   <img src="../../../assets/2_QSE_1_system_complete.png" alt="complete diagram with ports" style="max-width:95%;">
 </p>
 
-<details>
-  <summary><strong>Library and System relations in details </strong></summary>
-  <p>
-    The previous diagram represents the <code>system.yml</code> file, where users can instantiate components (such as buses, links, generators, etc.) and connect them via ports to form the optimization graph. It also illustrates the relationship between the library file and the system file for this adequacy example.
-  </p>
-  <ul>
-    <li>
-      Instantiation of components <code>bus_1</code>, <code>bus_load_1</code>, <code>generator_1</code>, and <code>link_12</code> is shown, as well as the connections between <code>bus_1</code> and <code>bus_load_1</code>, and between <code>bus_1</code> and <code>link_12</code>.
-    </li>
-    <li>
-      The complete system file can be found 
-      <a href="https://github.com/AntaresSimulatorTeam/GEMS/blob/15b4821113a09a417b73d00b3bc24f819ef44c99/doc/5_Examples/QSE/QSE_1_Adequacy/input/system.yml" target="_blank">
-        in this repository
-      </a>.
-    </li>
-  </ul>
-</details>
+???+ info "Library and System relations in details"
+
+    The previous diagram represents the `system.yml` file, where users can instantiate components (such as buses, links, generators, etc.) and connect them via ports to form the optimization graph. It also illustrates the relationship between the library file and the system file for this adequacy example.
+
+    - Instantiation of components `bus_1`, `bus_load_1`, `generator_1`, and `link_12` is shown, as well as the connections between `bus_1` and `bus_load_1`, and between `bus_1` and `link_12`.
+    - The complete system file can be found [in this repository](https://github.com/AntaresSimulatorTeam/GEMS/blob/15b4821113a09a417b73d00b3bc24f819ef44c99/doc/5_Examples/QSE/QSE_1_Adequacy/input/system.yml).
 
 ## Running the GEMS study with Antares Modeler
 
@@ -148,41 +137,23 @@ The power flows between buses can be visualized as follows:
 
 ![outputs diagram](../../assets/2_QSE_1_out_scheme.png)
 
-<details class="more-details">
-  <summary><strong>Outputs in details </strong></summary>
+???+ info "Outputs in details"
 
-By utilising the extra output feature, the marginal price is obtained as the dual value of the power balance constraint at each bus:
+    By utilising the extra output feature, the marginal price is obtained as the dual value of the power balance constraint at each bus:
 
-<ul>
-  <li>
-    <code>bus_1</code>: 35 €/MWh, based on the generation cost of <code>generator_1</code>.
-  </li>
-  <li>
-    <code>bus_2</code>: 35 €/MWh, since <code>generator_2</code> is operating at its maximum capacity. The next increment of 1 MWh is therefore produced by <code>generator_1</code>.
-  </li>
-  <li>
-    <code>bus_3</code>: 42 €/MWh, based on the generation cost of <code>generator_3</code>.
-  </li>
-</ul>
+    - `bus_1`: 35 €/MWh, based on the generation cost of `generator_1`.
+    - `bus_2`: 35 €/MWh, since `generator_2` is operating at its maximum capacity. The next increment of 1 MWh is therefore produced by `generator_1`.
+    - `bus_3`: 42 €/MWh, based on the generation cost of `generator_3`.
 
-The following graphs show the merit order of the generators and link flows:
+    The following graphs show the merit order of the generators and link flows:
 
-<div style="display: flex; justify-content: center; gap: 32px; align-items: flex-start;">
-  <figure style="width:45%; margin:0;">
-    <img src="../../../assets/2_QSE_1_out_Generator.png" alt="Outputs Generators" style="width:100%;"/>
-    <figcaption style="text-align:center; margin-top:8px;">
-      This graph shows the power output of each generator in the system, illustrating how the optimiser allocates generation based on cost and capacity constraints.
-    </figcaption>
-  </figure>
-  <figure style="width:45%; margin:0;">
-    <img src="../../../assets/2_QSE_1_out_Links.png" alt="Outputs Flows" style="width:100%;"/>
-    <figcaption style="text-align:center; margin-top:8px;">
-      Above the blue abscissa axis, the flow represents import; below, it represents export.
-    </figcaption>
-  </figure>
-</div>
+    ![Outputs Generators](../../../assets/2_QSE_1_out_Generator.png)
 
-</details>
+    *This graph shows the power output of each generator in the system, illustrating how the optimiser allocates generation based on cost and capacity constraints.*
+
+    ![Outputs Flows](../../../assets/2_QSE_1_out_Links.png)
+
+    *Above the blue abscissa axis, the flow represents import; below, it represents export.*
 
 ## Further in-depth explanations
 
@@ -199,10 +170,9 @@ For example, for the component bus_1, here is an extract of the [system file](ht
 
 ![diagram with only one bus](../../assets/2_QSE_Adequacy_system_only_one.png)
 
-<details>
-<summary>Full system file description for the Three-bus system - Simple Adequacy Example</summary>
-The following diagrams explains the structure of the system file for the Three-bus system - Simple Adequacy Example :
-<p>
-  <img src="../../../assets/2_QSE_Adequacy_system.png" alt="diagram with all components" style="max-width:95%;">
-</p>
-</details>
+???+ info "Full system file description for the Three-bus system - Simple Adequacy Example"
+
+    The following diagrams explains the structure of the system file for the Three-bus system - Simple Adequacy Example :
+
+    ![diagram with all components](../../../assets/2_QSE_Adequacy_system.png)
+

@@ -4,3 +4,5 @@ mkdocs-git-revision-date-localized-plugin
 mkdocs-jupyter
 mkdocs-redirects
 mkdocs-macros-plugin
+gemspy==0.1.0
+matplotlib==3.10.9
