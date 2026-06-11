@@ -147,11 +147,11 @@ The power flows between buses can be visualized as follows:
 
     The following graphs show the merit order of the generators and link flows:
 
-    ![Outputs Generators](../../../assets/2_QSE_1_out_Generator.png)
+    ![Outputs Generators](../../assets/2_QSE_1_out_Generator.png)
 
     *This graph shows the power output of each generator in the system, illustrating how the optimiser allocates generation based on cost and capacity constraints.*
 
-    ![Outputs Flows](../../../assets/2_QSE_1_out_Links.png)
+    ![Outputs Flows](../../assets/2_QSE_1_out_Links.png)
 
     *Above the blue abscissa axis, the flow represents import; below, it represents export.*
 
@@ -174,5 +174,5 @@ For example, for the component bus_1, here is an extract of the [system file](ht
 
     The following diagrams explains the structure of the system file for the Three-bus system - Simple Adequacy Example :
 
-    ![diagram with all components](../../../assets/2_QSE_Adequacy_system.png)
+    ![diagram with all components](../../assets/2_QSE_Adequacy_system.png)
 
