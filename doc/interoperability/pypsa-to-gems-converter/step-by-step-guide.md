@@ -29,7 +29,6 @@ network = Network("simple_network.nc")  # Absolute path to the PyPSA file
 # Convert PyPSA network to GEMS
 converter = PyPSAStudyConverter(
     pypsa_network=network,
-    logger=logger,
     study_dir=study_dir,
     series_file_format=".tsv",  # Supported formats: .tsv, .csv, tsv, csv
 ).to_gems_study()

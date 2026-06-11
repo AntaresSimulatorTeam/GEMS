@@ -8,7 +8,9 @@
 
 Data series provide the numerical input data for time-varying and scenario-varying parameters and they are stored in `csv` files.
 
-The filename (without extension) serves as the `id` of the data series. For instance, a file named `demand_profile.csv` defines a data series with the `id` `demand_profile`. This `id` is what users would use in the system file’s to instantiate parameter values.
+The filename (without extension) serves as the `id` of the data series. For instance, a file named `demand_profile.csv` defines a data series with the `id` `demand_profile`. This `id` is what users would use in the system file to instantiate parameter values.
+
+All cell values are **floating-point numbers**. Values are whitespace-separated (spaces or tabs); no header row should be present.
 
 ## Time-dependent series
 
@@ -31,7 +33,7 @@ Represent a value that varies by scenario, but is constant in time. The file sho
 10 22 55 42
 ```
 
-This would indicate the parameter’s value in scenario 1 is 10, scenario 2 is 60, 22.
+This would indicate the parameter’s value in scenario 1 is 10, scenario 2 is 22, and scenario 3 is 55.
 
 ## Time-and-scenario-dependent series
 

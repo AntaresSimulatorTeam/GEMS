@@ -147,7 +147,7 @@ system:
   </p>
 </div>
 
-## Model Energy Systems as Connected Objects (Hypergraphs)
+## Model Energy Systems as Connected Objects
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_graph_oriented.png"
