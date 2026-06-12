@@ -18,14 +18,13 @@ REF_P_THERMAL_NO_BATTERY = 375.0  # MW
 REF_P_THERMAL_WITH_BATTERY = 375.0  # MW
 REF_P_BATTERY_WITH_BATTERY = 90.33  # MW
 
+
 def get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0) -> float:
     """Return the Nth p_installed value for a given candidate from a pre-executed notebook."""
     with notebook_path.open(encoding="utf-8") as f:
         nb = json.load(f)
 
-    pattern = re.compile(
-        rf"candidate {re.escape(candidate)} - p_installed\s*=\s*([\d.e+\-]+)\s*MW"
-    )
+    pattern = re.compile(rf"candidate {re.escape(candidate)} - p_installed\s*=\s*([\d.e+\-]+)\s*MW")
     values = []
     for cell in nb["cells"]:
         if cell["cell_type"] != "code":

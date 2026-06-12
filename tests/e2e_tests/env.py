@@ -81,11 +81,7 @@ def get_paths() -> EnvironmentPaths:
         / "tutorial-invest.ipynb"
     )
     tutorial_investment_doc_path = (
-        repo_root
-        / "doc"
-        / "getting-started"
-        / "tutorial-three-investment"
-        / "tutorial_invest"
+        repo_root / "doc" / "getting-started" / "tutorial-three-investment" / "tutorial_invest"
     )
 
     antares_version = _read_antares_version(repo_root)

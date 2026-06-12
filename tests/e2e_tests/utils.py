@@ -47,7 +47,6 @@ def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> fl
     return objectives[simulation_index]
 
 
-
 def get_gems_objective_function_value(file_name: Path) -> float:
     """Read an objective function value from a CSV/TSV file produced by GEMS."""
     match file_name.suffix:

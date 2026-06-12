@@ -42,7 +42,6 @@ def prepare_and_run_doc_study(
     return obj
 
 
-
 def install_tutorial_library(paths: EnvironmentPaths, gems_study_path: Path) -> None:
     """Copy gemspy_tutorial_library.yml from the shared library into the study's model-libraries."""
     source = (
