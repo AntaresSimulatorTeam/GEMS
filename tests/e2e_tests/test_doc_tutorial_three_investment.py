@@ -6,7 +6,7 @@ import re
 
 import pytest
 
-from .env import OBJECTIVE_ATOL, OBJECTIVE_ATOL
+from .env import OBJECTIVE_ATOL
 from .utils import get_notebook_objective
 
 # Reference values
