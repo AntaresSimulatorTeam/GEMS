@@ -19,6 +19,7 @@ from .env import EnvironmentPaths
 
 logger = logging.getLogger(__name__)
 
+
 # Common function to extract values from notebooks
 def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> float:
     """Extract the Nth GEMS objective value from a pre-executed notebook's cell outputs.
