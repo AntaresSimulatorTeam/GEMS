@@ -212,4 +212,3 @@ __marimo__/
 # GEMS specific ignores
 output/
 *env/
-*2_Getting_Started/*
