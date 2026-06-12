@@ -27,7 +27,7 @@ The following link provides access to the most recent stable version of the [Ant
     - **Linux**: `tar -xzf rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
 
 <div style="height: 500px; overflow: hidden;">
-  <img src="../../../assets/2_Modeler_download.png" alt="Download Page" style="height: 100%; object-fit: contain;"/>
+  <img src="../../../assets/2_modeler_download.png" alt="Download Page" style="height: 100%; object-fit: contain;"/>
 </div>
 
 ### Locate the Executables
