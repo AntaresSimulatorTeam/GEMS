@@ -9,7 +9,7 @@ import pytest
 from .env import OBJECTIVE_ATOL, OBJECTIVE_RTOL
 from .utils import get_notebook_objective
 
-# Reference values 
+# Reference values
 
 REF_OBJECTIVE_NO_BATTERY = 5.1798466667e05  # €
 REF_OBJECTIVE_WITH_BATTERY = 4.9312414493e05  # €
