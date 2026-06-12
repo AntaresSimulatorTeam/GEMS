@@ -19,17 +19,17 @@ from .env import EnvironmentPaths
 
 logger = logging.getLogger(__name__)
 
-
+# Common function to extract values from notebooks
 def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> float:
     """Extract the Nth GEMS objective value from a pre-executed notebook's cell outputs.
 
     Scans code-cell outputs for lines matching 'Objective value (total system cost): <number> €' and returns the value at simulation_index (0-based).
     """
     with notebook_path.open(encoding="utf-8") as f:
-        nb = json.load(f)
+        notebook = json.load(f)
 
     objectives = []
-    for cell in nb["cells"]:
+    for cell in notebook["cells"]:
         if cell["cell_type"] != "code":
             continue
         for output in cell.get("outputs", []):
