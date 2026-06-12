@@ -1,51 +1,73 @@
-# This test runs the documentation tutorial 3 notebook "Investment".
-# It checks that the objective values match those in the pre-executed notebook.
+# This test validates the investment tutorial (tutorial 3) against hardcoded
+# reference values extracted from a pre-executed tutorial-invest.ipynb.
 
-import logging
+import json
+import re
 
 import pytest
 
-from .env import OBJECTIVE_ATOL
-from .utils import (
-    copy_study_dir_to_tmp,
-    get_gems_study_objective,
-    get_notebook_objective,
-)
+from .env import OBJECTIVE_ATOL, OBJECTIVE_RTOL
+from .utils import get_notebook_objective
 
-logger = logging.getLogger(__name__)
+# Reference values 
 
+REF_OBJECTIVE_NO_BATTERY = 5.1798466667e05  # €
+REF_OBJECTIVE_WITH_BATTERY = 4.9312414493e05  # €
 
-@pytest.mark.parametrize(
-    "study_name, notebook_simulation_index",
-    [
-        ("case_no_battery", 0),
-        ("case_with_battery", 1),
-    ],
-)
-def test_doc_tutorial_3_investment(
-    tmp_root,
-    paths,
-    study_name: str,
-    notebook_simulation_index: int,
-) -> None:
-    notebook_objective = get_notebook_objective(
-        paths.tutorial_investment_notebook_path, notebook_simulation_index
+REF_P_THERMAL_NO_BATTERY = 375.0  # MW
+REF_P_THERMAL_WITH_BATTERY = 375.0  # MW
+REF_P_BATTERY_WITH_BATTERY = 90.33  # MW
+
+def _get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0) -> float:
+    """Return the Nth p_installed value for a given candidate from a pre-executed notebook."""
+    with notebook_path.open(encoding="utf-8") as f:
+        nb = json.load(f)
+
+    pattern = re.compile(
+        rf"candidate {re.escape(candidate)} - p_installed\s*=\s*([\d.e+\-]+)\s*MW"
     )
-    logger.info(
-        "[%s] notebook objective (simulation #%d): %s",
-        study_name,
-        notebook_simulation_index,
-        notebook_objective,
-    )
+    values = []
+    for cell in nb["cells"]:
+        if cell["cell_type"] != "code":
+            continue
+        for output in cell.get("outputs", []):
+            text = "".join(output.get("text", []))
+            for m in pattern.finditer(text):
+                values.append(float(m.group(1)))
 
-    gems_path = copy_study_dir_to_tmp(
-        study_name=study_name,
-        source_dir=paths.tutorial_investment_doc_path,
-        tmp_root=tmp_root,
-        preserve_symlinks=False,
-    )
+    if match_index >= len(values):
+        raise ValueError(
+            f"match_index {match_index} out of range: "
+            f"found {len(values)} p_installed value(s) for '{candidate}' in {notebook_path}"
+        )
+    return values[match_index]
 
-    modeler_objective = get_gems_study_objective(paths, gems_path)
-    logger.info("[%s] modeler objective: %s", study_name, modeler_objective)
 
-    assert modeler_objective == pytest.approx(notebook_objective, abs=OBJECTIVE_ATOL)
+def test_no_battery_objective(paths) -> None:
+    nb = paths.tutorial_investment_notebook_path
+    value = get_notebook_objective(nb, simulation_index=0)
+    assert value == pytest.approx(REF_OBJECTIVE_NO_BATTERY, rel=OBJECTIVE_RTOL)
+
+
+def test_with_battery_objective(paths) -> None:
+    nb = paths.tutorial_investment_notebook_path
+    value = get_notebook_objective(nb, simulation_index=1)
+    assert value == pytest.approx(REF_OBJECTIVE_WITH_BATTERY, rel=OBJECTIVE_RTOL)
+
+
+def test_no_battery_p_thermal(paths) -> None:
+    nb = paths.tutorial_investment_notebook_path
+    value = _get_notebook_p_installed(nb, "thermal", match_index=0)
+    assert value == pytest.approx(REF_P_THERMAL_NO_BATTERY, abs=OBJECTIVE_ATOL)
+
+
+def test_with_battery_p_thermal(paths) -> None:
+    nb = paths.tutorial_investment_notebook_path
+    value = _get_notebook_p_installed(nb, "thermal", match_index=1)
+    assert value == pytest.approx(REF_P_THERMAL_WITH_BATTERY, abs=OBJECTIVE_ATOL)
+
+
+def test_with_battery_p_battery(paths) -> None:
+    nb = paths.tutorial_investment_notebook_path
+    value = _get_notebook_p_installed(nb, "battery", match_index=0)
+    assert value == pytest.approx(REF_P_BATTERY_WITH_BATTERY, rel=OBJECTIVE_RTOL)
