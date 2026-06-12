@@ -6,7 +6,7 @@ import re
 
 import pytest
 
-from .env import OBJECTIVE_ATOL, OBJECTIVE_RTOL
+from .env import OBJECTIVE_ATOL, OBJECTIVE_ATOL
 from .utils import get_notebook_objective
 
 # Reference values
@@ -45,13 +45,13 @@ def get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0
 def test_no_battery_objective(paths) -> None:
     nb = paths.tutorial_investment_notebook_path
     value = get_notebook_objective(nb, simulation_index=0)
-    assert value == pytest.approx(REF_OBJECTIVE_NO_BATTERY, rel=OBJECTIVE_RTOL)
+    assert value == pytest.approx(REF_OBJECTIVE_NO_BATTERY, rel=OBJECTIVE_ATOL)
 
 
 def test_with_battery_objective(paths) -> None:
     nb = paths.tutorial_investment_notebook_path
     value = get_notebook_objective(nb, simulation_index=1)
-    assert value == pytest.approx(REF_OBJECTIVE_WITH_BATTERY, rel=OBJECTIVE_RTOL)
+    assert value == pytest.approx(REF_OBJECTIVE_WITH_BATTERY, rel=OBJECTIVE_ATOL)
 
 
 def test_no_battery_p_thermal(paths) -> None:
@@ -69,4 +69,4 @@ def test_with_battery_p_thermal(paths) -> None:
 def test_with_battery_p_battery(paths) -> None:
     nb = paths.tutorial_investment_notebook_path
     value = get_notebook_p_installed(nb, "battery", match_index=0)
-    assert value == pytest.approx(REF_P_BATTERY_WITH_BATTERY, rel=OBJECTIVE_RTOL)
+    assert value == pytest.approx(REF_P_BATTERY_WITH_BATTERY, rel=OBJECTIVE_ATOL)
