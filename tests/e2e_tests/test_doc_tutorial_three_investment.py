@@ -18,7 +18,7 @@ REF_P_THERMAL_NO_BATTERY = 375.0  # MW
 REF_P_THERMAL_WITH_BATTERY = 375.0  # MW
 REF_P_BATTERY_WITH_BATTERY = 90.33  # MW
 
-def _get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0) -> float:
+def get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0) -> float:
     """Return the Nth p_installed value for a given candidate from a pre-executed notebook."""
     with notebook_path.open(encoding="utf-8") as f:
         nb = json.load(f)
@@ -57,17 +57,17 @@ def test_with_battery_objective(paths) -> None:
 
 def test_no_battery_p_thermal(paths) -> None:
     nb = paths.tutorial_investment_notebook_path
-    value = _get_notebook_p_installed(nb, "thermal", match_index=0)
+    value = get_notebook_p_installed(nb, "thermal", match_index=0)
     assert value == pytest.approx(REF_P_THERMAL_NO_BATTERY, abs=OBJECTIVE_ATOL)
 
 
 def test_with_battery_p_thermal(paths) -> None:
     nb = paths.tutorial_investment_notebook_path
-    value = _get_notebook_p_installed(nb, "thermal", match_index=1)
+    value = get_notebook_p_installed(nb, "thermal", match_index=1)
     assert value == pytest.approx(REF_P_THERMAL_WITH_BATTERY, abs=OBJECTIVE_ATOL)
 
 
 def test_with_battery_p_battery(paths) -> None:
     nb = paths.tutorial_investment_notebook_path
-    value = _get_notebook_p_installed(nb, "battery", match_index=0)
+    value = get_notebook_p_installed(nb, "battery", match_index=0)
     assert value == pytest.approx(REF_P_BATTERY_WITH_BATTERY, rel=OBJECTIVE_RTOL)
