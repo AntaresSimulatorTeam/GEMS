@@ -7,7 +7,7 @@ dependencies = []
 [dependency-groups]
 test = [
     "gemspy==0.1.0",
-    "matplotlib==3.10.9",
+    "matplotlib>=3.10.9",
     "pandas>=2.2.3",
     "pytest>=7.0.1",
     "pytest-xdist>=3.8.0",
@@ -22,7 +22,7 @@ dev = [
 ]
 doc = [
     "gemspy==0.1.0",
-    "matplotlib==3.10.9",
+    "matplotlib>=3.10.9",
     "mkdocs",
     "mkdocs-git-revision-date-localized-plugin",
     "mkdocs-jupyter",

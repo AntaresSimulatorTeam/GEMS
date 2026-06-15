@@ -30,7 +30,7 @@ The site will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 uv run mkdocs build
 ```
 
-Output is written to `site/` — do not commit this directory.
+Output is written to `site/`.
 
 ## Quick run
 

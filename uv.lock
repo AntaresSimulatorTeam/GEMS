@@ -710,7 +710,7 @@ test = [
 [package.metadata.requires-dev]
 dev = [
     { name = "gemspy", specifier = "==0.1.0" },
-    { name = "matplotlib", specifier = "==3.10.9" },
+    { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pandas-stubs" },
@@ -722,7 +722,7 @@ dev = [
 ]
 doc = [
     { name = "gemspy", specifier = "==0.1.0" },
-    { name = "matplotlib", specifier = "==3.10.9" },
+    { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mkdocs" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
     { name = "mkdocs-jupyter" },
@@ -732,7 +732,7 @@ doc = [
 ]
 test = [
     { name = "gemspy", specifier = "==0.1.0" },
-    { name = "matplotlib", specifier = "==3.10.9" },
+    { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pytest", specifier = ">=7.0.1" },
     { name = "pytest-xdist", specifier = ">=3.8.0" },
