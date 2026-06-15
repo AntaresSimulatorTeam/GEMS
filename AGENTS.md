@@ -90,11 +90,7 @@ uv run python -m pytest tests/e2e_tests/test_doc_qse_examples.py -v
 
 ## Building Documentation
 
-```bash
-uv sync --only-group doc
-uv run mkdocs serve          # http://127.0.0.1:8000
-uv run mkdocs build          # builds static site to site/
-```
+See [`LOCAL_SITE_README.md`](LOCAL_SITE_README.md) for instructions on building and running the documentation locally.
 
 Docs hosted at: <https://gems-energy.readthedocs.io/>
 
