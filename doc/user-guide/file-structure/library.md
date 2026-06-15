@@ -317,3 +317,12 @@ model: thermal
         - id: company
 ```
 
+### Taxonomy
+
+(Optional) A string that assigns the model to a category within a classification taxonomy. 
+
+```yaml
+  models:
+    - id: generator
+      taxonomy-category: production
+```
