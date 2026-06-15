@@ -4,11 +4,7 @@ Instructions for building and running the documentation website locally.
 
 ## Prerequisites
 
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/) if you don't have it:
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+This project uses [uv](https://docs.astral.sh/uv/getting-started/installation/) for dependency management.
 
 ## Install dependencies
 
