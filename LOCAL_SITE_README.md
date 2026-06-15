@@ -32,6 +32,11 @@ uv run mkdocs build
 
 Output is written to `site/`.
 
+## References
+
+- [MkDocs Documentation](https://www.mkdocs.org/)
+- [MkDocs Material Theme](https://squidfunk.github.io/mkdocs-material/)
+
 ## Quick run
 
 ```bash
