@@ -306,3 +306,14 @@ Each entry under `extra-outputs` must contain:
 
 Unlike in constraints, [direct port field usage](../mathematical-syntax.md#direct-port-field-usage) **is allowed** in `extra-outputs`.
 
+### Properties 
+
+(Optional) These `properties` add extra-information for users linked to models not used by the solver.
+
+```yaml
+model: thermal
+   properties:
+        - id: carrier
+        - id: company
+```
+

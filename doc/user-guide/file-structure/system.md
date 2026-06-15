@@ -94,3 +94,18 @@ Port `connections` determine how linear expressions are exchanged between compon
 
 If a model additionally defines **port-field-definitions**, it acts as an **emitter** for that port. In this case, the model exposes linear expressions through the port, allowing connected receiver component to consume them. A common example is a generator model, which emits it's `generation` variable to connected bus component.
 
+## Properties 
+
+(Optional) These `properties` add extra-information for users linked to components not used by the solver.
+
+```yaml
+system:
+  components:
+    - id: nuclear_1
+      model: basic.generator
+      properties:
+        - id: technology
+          value: nuclear
+        - id: company
+          value: frenchpower
+```
