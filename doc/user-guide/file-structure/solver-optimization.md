@@ -58,6 +58,7 @@ This file currently controls:
 |------------------|------|
 | `scip` | Supported |
 | `xpress` | Supported |
+| `gurobi` | Supported |
 | `pdlp` | Supported |
 | Others | Not supported |
 
