@@ -37,10 +37,8 @@ tests/
 dependencies.json             # Version tracking (antares-simulator only)
 COMPATIBILITY.md              # Documentation/Language ↔ Antares ↔ GemsPy version matrix
 mkdocs.yml                    # Documentation site config
-pyproject.toml                # Tool configuration (ruff, mypy) — not a package descriptor
-requirements.txt              # Python runtime dependencies
-requirements-dev.txt          # Developer dependencies (ruff, mypy, yamllint)
-requirements-doc.txt          # Documentation build dependencies
+pyproject.toml                # Project descriptor: dependency groups (test, dev, doc) + tool config (ruff, mypy)
+uv.lock                       # Locked dependency manifest (all groups)
 .yamllint.yml                 # yamllint configuration
 ```
 
@@ -76,17 +74,16 @@ The expected path is resolved in `tests/e2e_tests/env.py`.
 ### Commands
 
 ```bash
-python3 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
+uv sync --only-group test
 
 # Run all e2e tests
-python -m pytest tests/e2e_tests -v
+uv run python -m pytest tests/e2e_tests -v
 
 # Run a single test
-python -m pytest tests/e2e_tests -v -k "QSE_1_Adequacy"
+uv run python -m pytest tests/e2e_tests -v -k "QSE_1_Adequacy"
 
 # Run one test file
-python -m pytest tests/e2e_tests/test_doc_qse_examples.py -v
+uv run python -m pytest tests/e2e_tests/test_doc_qse_examples.py -v
 ```
 
 ---
@@ -94,10 +91,9 @@ python -m pytest tests/e2e_tests/test_doc_qse_examples.py -v
 ## Building Documentation
 
 ```bash
-python3 -m venv documentation_env && source documentation_env/bin/activate
-pip install -r requirements-doc.txt
-mkdocs serve          # http://127.0.0.1:8000
-mkdocs build          # builds static site to site/
+uv sync --only-group doc
+uv run mkdocs serve          # http://127.0.0.1:8000
+uv run mkdocs build          # builds static site to site/
 ```
 
 Docs hosted at: <https://gems-energy.readthedocs.io/>

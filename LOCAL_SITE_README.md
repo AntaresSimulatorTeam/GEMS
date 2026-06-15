@@ -1,45 +1,40 @@
-This README contains instructions for creating and running the documentation website locally using **mkdocs.yml**.  
-It is a **temporary document**, as is the mkdocs YAML file.
+# Local Documentation Site
 
-## 0. Create a virtual environment
+Instructions for building and running the documentation website locally.
+
+## Prerequisites
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) if you don't have it:
 
 ```bash
-python3 -m venv documentation_env
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-## 1. Activate your virtual environment
+## Install dependencies
 
 ```bash
-source documentation_env/bin/activate
+uv sync --only-group doc
 ```
 
-## 2. Install required libraries
+## Run the site locally
 
 ```bash
-pip install mkdocs mkdocs-material
-pip install mkdocs-git-revision-date-localized-plugin
-```
-
-## 3. Run the site locally
-
-Open your terminal in the directory containing `mkdocs.yml`, then run:
-
-```bash
-mkdocs serve
+uv run mkdocs serve
 ```
 
 The site will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-## References
+## Build the static site
 
-- [MkDocs Documentation](https://www.mkdocs.org/)
-- [MkDocs Material Theme](https://squidfunk.github.io/mkdocs-material/)
+```bash
+uv run mkdocs build
+```
+
+Output is written to `site/` — do not commit this directory.
 
 ## Quick run
 
 ```bash
-python3 -m venv documentation_env
-source documentation_env/bin/activate
-pip install mkdocs mkdocs-material
-mkdocs serve
+uv sync --only-group doc
+uv run mkdocs serve
 ```
