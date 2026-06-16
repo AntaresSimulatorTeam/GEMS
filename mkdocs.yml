@@ -1,7 +1,7 @@
 docs_dir: doc
 exclude_docs: |
   documentation_env/
-  getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
+  getting-started/tutorial-two-pypsa-eur/*
 site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy system Modelling Schema) is a
@@ -40,11 +40,15 @@ theme:
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - admonition
+  - pymdownx.details
   - attr_list
   - md_in_html
   - pymdownx.arithmatex:
       generic: true
   - footnotes
+  - admonition
+  - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -118,7 +122,9 @@ nav:
               - Overview: getting-started/quick-start/adequacy-overview.md
               - Mathematical Formulation: getting-started/quick-start/adequacy-math-model.md
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
+          - PyPSA-Eur in GEMS format: getting-started/quick-start/pypsa-eur.md
       - Tutorial Notebooks:
+        - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
         - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
