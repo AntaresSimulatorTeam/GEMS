@@ -4,7 +4,9 @@
 
 from __future__ import annotations
 
+import json
 import logging
+import re
 import shutil
 import subprocess
 import zipfile
@@ -146,6 +148,54 @@ def get_gems_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
         raise FileNotFoundError(f"Result file not found in {output_dir}")
 
     return get_gems_objective_function_value(result_files[-1])
+
+
+def get_pypsa_objective(network_path: Path) -> float:
+    """Solve the PyPSA LP with HiGHS and return the total objective.
+
+    total_objective = n.objective + n.objective_constant
+      - n.objective          : LP variable costs (extendable generators)
+      - n.objective_constant : fixed capital costs of non-extendable generators
+    GEMS includes both, so both must be counted on the PyPSA side.
+    """
+    import pypsa  # type: ignore[import-not-found]
+
+    n = pypsa.Network(str(network_path))
+    assert (n.snapshot_weightings.objective == 1.0).all(), (
+        "Unexpected snapshot weights — objective would not be the raw 48-h cost"
+    )
+    logger.info("Optimizing the PyPSA study (network=%s)", n.name)
+    n.optimize(solver_name="highs", include_objective_constant=True)
+    obj = float(n.objective + n.objective_constant)
+    logger.info("PyPSA study optimized; objective=%s", obj)
+    return obj
+
+
+def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> float:
+    """Extract the Nth GEMS objective value from a pre-executed notebook's cell outputs.
+
+    Scans code-cell outputs for lines matching 'Objective value (total system cost): <number> €' and returns the value at simulation_index (0-based).
+    """
+    with notebook_path.open(encoding="utf-8") as f:
+        nb = json.load(f)
+
+    objectives = []
+    for cell in nb["cells"]:
+        if cell["cell_type"] != "code":
+            continue
+        for output in cell.get("outputs", []):
+            text = "".join(output.get("text", []))
+            match = re.search(r"Objective value[^:]*:\s*([\d,]+(?:\.\d+)?)", text)
+            if match:
+                objectives.append(float(match.group(1).replace(",", "")))
+
+    if simulation_index >= len(objectives):
+        raise ValueError(
+            f"simulation_index {simulation_index} out of range: "
+            f"found {len(objectives)} objective(s) in {notebook_path}"
+        )
+
+    return objectives[simulation_index]
 
 
 def get_antares_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
