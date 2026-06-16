@@ -1,6 +1,6 @@
 <div style="display: flex; justify-content: flex-end;">
   <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
+    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </a>
 </div>
 
@@ -50,13 +50,13 @@ The *Unit Commitment* problem here involves determining the on/off schema and di
         - All parameters (min/max power, costs, min up/down, number of units) are set in `system.yml`
     - **Solar plant**
         - Generation profile from `solar.csv` timeseries :
-        - ![solar profile](../../../assets/2_QSE2_UC_ts_solar.png)
+        - ![solar profile](../../assets/2_QSE2_UC_ts_solar.png)
     - **Wind plant**
         - Generation profile from `wind.csv` timeseries :
-        - ![wind profile](../../../assets/2_QSE2_UC_ts_wind.png)
+        - ![wind profile](../../assets/2_QSE2_UC_ts_wind.png)
     - **Load**
         - Variable demand (35–125 MW) from `load.csv` timeseries :
-        - ![load profile](../../../assets/2_QSE2_UC_ts_load.png)
+        - ![load profile](../../assets/2_QSE2_UC_ts_load.png)
 
     - **Time Horizon:** 1 week, hourly resolution (168 hours)
     - The diagram above shows the connections between these components.
