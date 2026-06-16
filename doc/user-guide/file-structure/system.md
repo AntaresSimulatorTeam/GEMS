@@ -79,7 +79,7 @@ For each parameter, the `value` field should be defined as follows:
 
 ### Properties 
 
-(Optional) These `properties` add extra-information for users linked to components not used by the solver.
+(Optional) These `properties` add extra-information for downstream tasks (Views building, visualisation). If a key is declared in the model, this key and its value should be declared in the related component. Other (key,value) pairs are allowed in the component. 
 
 ```yaml
 system:
