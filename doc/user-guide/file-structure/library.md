@@ -308,7 +308,7 @@ Unlike in constraints, [direct port field usage](../mathematical-syntax.md#direc
 
 #### Properties 
 
-(Optional) These `properties` add extra-information for users linked to models not used by the solver.
+(Optional) If `properties` keys are declared in the model, the declaration of  such keys and their values are mandatory for the components that instantiate the model.
 
 ```yaml
 model: thermal
