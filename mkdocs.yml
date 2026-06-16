@@ -121,6 +121,7 @@ nav:
               - Overview: getting-started/quick-start/adequacy-overview.md
               - Mathematical Formulation: getting-started/quick-start/adequacy-math-model.md
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
+          - PyPSA-Eur in GEMS format: getting-started/quick-start/pypsa-eur.md
       - Tutorial Notebooks:
         - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
   - User Guide:

@@ -6,6 +6,27 @@
 
 # Release Notes
 
+## v0.3.3 | *10-06-2026*
+
+### Added
+
+* Add e2e Test for jupyter notebook tutorial on unit commitment ([PR49](https://github.com/AntaresSimulatorTeam/GEMS/pull/132))
+
+* Write Guidelines for Squash and Merge Commits ([PR54](https://github.com/AntaresSimulatorTeam/GEMS/pull/140))
+
+### Changed
+
+* Update PyPSA-to-GEMS converter guide and Fix some syntax issues ([PR53](https://github.com/AntaresSimulatorTeam/GEMS/pull/139))
+
+* Align dependency pinning policy across all repos ([PR52](https://github.com/AntaresSimulatorTeam/GEMS/pull/138))
+
+* Update pypsa-models library to v2.0.1 ([PR55](https://github.com/AntaresSimulatorTeam/GEMS/pull/142))
+
+* Update antares-legacy library to v2.0.0 ([PR57](https://github.com/AntaresSimulatorTeam/GEMS/pull/155))
+
+* Refactor README file by adding badges, rewrite hypergraph and modeler installation pages ([PR56](https://github.com/AntaresSimulatorTeam/GEMS/pull/153))
+
+
 ## v0.3.2 | *13-05-2026*
 
 ### Added
