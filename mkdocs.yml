@@ -74,6 +74,7 @@ plugins:
   - mkdocs-jupyter:
       execute: true
       include: ["*.ipynb"]
+      exclude: ["getting-started/tutorial-two-pypsa-eur/tutorial_pypsa_eur.ipynb"]
       allow_errors: false
       include_source: true
       remove_tag_config:
