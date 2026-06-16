@@ -329,7 +329,7 @@ All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`). The `vers
 
 PRs cannot be merged if any required CI check fails.
 
-GemsPy and PyPSA Converter additionally have a `publish.yml` workflow that triggers automatically when a GitHub release is published — it builds the package and pushes it to PyPI. No manual action is needed after tagging.
+GemsPy, PyPSA Converter, and AntaresLegacy Converter additionally have a `publish.yml` workflow that triggers automatically when a GitHub release is published — it builds the package and pushes it to PyPI. No manual action is needed after tagging.
 
 ### Automated Dependency Monitoring
 
@@ -683,6 +683,6 @@ For critical issues discovered after a release:
 | `GEMS_REPO_PAT` | PyPSA Converter, AntaresLegacy Converter | Create issues in the GEMS repository from cross-repo notification workflows |
 | `ANTARES_LEGACY_CONVERTER_PAT` | GemsPy | Create triage issues in AntaresLegacy Converter from `notify-gemspy-release.yml` |
 | `GEMS_VIEWS_BUILDER_PAT` | GemsPy | Create triage issues in GEMS-ViewsBuilder from `notify-gemspy-release.yml` |
-| `PYPI_TOKEN` | GemsPy, PyPSA Converter | Publish package to PyPI via `publish.yml` |
+| `PYPI_TOKEN` | GemsPy, PyPSA Converter, AntaresLegacy Converter | Publish package to PyPI via `publish.yml` |
 
 > ⚠️ **Personal Access Tokens expire and must be renewed periodically.** All PAT-based secrets (`GEMS_REPO_PAT`, `ANTARES_LEGACY_CONVERTER_PAT`, `GEMS_VIEWS_BUILDER_PAT`) should be reviewed and rotated before their expiry date. Next scheduled review: **October 2026**.
