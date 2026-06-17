@@ -1,9 +1,6 @@
 # This test validates the investment tutorial (tutorial 3) against hardcoded
 # reference values extracted from a pre-executed tutorial-invest.ipynotebook.
 
-import json
-import re
-
 import pytest
 
 from .env import OBJECTIVE_ATOL
