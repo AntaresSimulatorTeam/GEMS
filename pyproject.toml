@@ -1,3 +1,36 @@
+[project]
+name = "gems"
+version = "0.3.3"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+test = [
+    "gemspy==0.1.0",
+    "matplotlib>=3.10.9",
+    "pandas>=2.2.3",
+    "pytest>=7.0.1",
+    "pytest-xdist>=3.8.0",
+]
+dev = [
+    { include-group = "test" },
+    "mypy>=1.15.0",
+    "pandas-stubs",
+    "ruff>=0.9.10",
+    "types-PyYAML",
+    "yamllint>=1.35.1",
+]
+doc = [
+    "gemspy==0.1.0",
+    "matplotlib>=3.10.9",
+    "mkdocs",
+    "mkdocs-git-revision-date-localized-plugin",
+    "mkdocs-jupyter",
+    "mkdocs-macros-plugin",
+    "mkdocs-material",
+    "mkdocs-redirects",
+]
+
 [tool.ruff]
 target-version = "py311"
 line-length = 100
