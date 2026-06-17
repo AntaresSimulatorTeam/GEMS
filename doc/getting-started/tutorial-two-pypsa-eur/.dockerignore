@@ -1,0 +1,8 @@
+pypsa-eur/.pixi
+pypsa-eur/.git
+pypsa-eur/data
+pypsa-eur/results
+pypsa-eur/logs
+pypsa-eur/cutouts
+pypsa-eur/doc
+docker-tuto-pypsa-gems

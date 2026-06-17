@@ -90,6 +90,7 @@ def test_copy_model_library_installs_file(tmp_path: Path) -> None:
         thermal_cluster_studies_path=repo_root / "resources",
         sts_studies_path=repo_root / "resources",
         doc_examples_path=repo_root / "resources",
+        pypsa_eur_tutorial_path=repo_root / "resources",
         tutorial_doc_examples_path=repo_root / "resources",
         tutorial_notebook_path=repo_root / "resources" / "notebook.ipynb",
         tutorial_library_dir=repo_root / "resources",
