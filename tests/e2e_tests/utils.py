@@ -47,6 +47,27 @@ def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> fl
 
     return objectives[simulation_index]
 
+def get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0) -> float:
+    """Return the Nth p_installed value for a given candidate from a pre-executed notebook."""
+    with notebook_path.open(encoding="utf-8") as f:
+        notebook = json.load(f)
+
+    pattern = re.compile(rf"candidate {re.escape(candidate)} - p_installed\s*=\s*([\d.e+\-]+)\s*MW")
+    values = []
+    for cell in notebook["cells"]:
+        if cell["cell_type"] != "code":
+            continue
+        for output in cell.get("outputs", []):
+            text = "".join(output.get("text", []))
+            for m in pattern.finditer(text):
+                values.append(float(m.group(1)))
+
+    if match_index >= len(values):
+        raise ValueError(
+            f"match_index {match_index} out of range: "
+            f"found {len(values)} p_installed value(s) for '{candidate}' in {notebook_path}"
+        )
+    return values[match_index]
 
 def get_gems_objective_function_value(file_name: Path) -> float:
     """Read an objective function value from a CSV/TSV file produced by GEMS."""

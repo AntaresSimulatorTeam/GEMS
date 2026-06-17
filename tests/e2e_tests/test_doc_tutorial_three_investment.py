@@ -7,7 +7,7 @@ import re
 import pytest
 
 from .env import OBJECTIVE_ATOL
-from .utils import get_notebook_objective
+from .utils import get_notebook_objective, get_notebook_p_installed
 
 # Reference values
 
@@ -18,28 +18,6 @@ REF_P_THERMAL_NO_BATTERY = 375.0  # MW
 REF_P_THERMAL_WITH_BATTERY = 375.0  # MW
 REF_P_BATTERY_WITH_BATTERY = 90.33  # MW
 
-
-def get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0) -> float:
-    """Return the Nth p_installed value for a given candidate from a pre-executed notebook."""
-    with notebook_path.open(encoding="utf-8") as f:
-        notebook = json.load(f)
-
-    pattern = re.compile(rf"candidate {re.escape(candidate)} - p_installed\s*=\s*([\d.e+\-]+)\s*MW")
-    values = []
-    for cell in notebook["cells"]:
-        if cell["cell_type"] != "code":
-            continue
-        for output in cell.get("outputs", []):
-            text = "".join(output.get("text", []))
-            for m in pattern.finditer(text):
-                values.append(float(m.group(1)))
-
-    if match_index >= len(values):
-        raise ValueError(
-            f"match_index {match_index} out of range: "
-            f"found {len(values)} p_installed value(s) for '{candidate}' in {notebook_path}"
-        )
-    return values[match_index]
 
 
 def test_no_battery_objective(paths) -> None:
