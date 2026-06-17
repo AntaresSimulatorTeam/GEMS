@@ -47,6 +47,7 @@ def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> fl
 
     return objectives[simulation_index]
 
+
 def get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0) -> float:
     """Return the Nth p_installed value for a given candidate from a pre-executed notebook."""
     with notebook_path.open(encoding="utf-8") as f:
@@ -68,6 +69,7 @@ def get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0
             f"found {len(values)} p_installed value(s) for '{candidate}' in {notebook_path}"
         )
     return values[match_index]
+
 
 def get_gems_objective_function_value(file_name: Path) -> float:
     """Read an objective function value from a CSV/TSV file produced by GEMS."""
@@ -218,6 +220,7 @@ def get_pypsa_objective(network_path: Path) -> float:
     obj = float(n.objective + n.objective_constant)
     logger.info("PyPSA study optimized; objective=%s", obj)
     return obj
+
 
 def get_antares_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
     """Run Antares solver and return the objective value from annualSystemCost.txt."""

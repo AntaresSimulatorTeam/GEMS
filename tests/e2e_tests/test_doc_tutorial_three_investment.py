@@ -16,7 +16,6 @@ REF_P_THERMAL_WITH_BATTERY = 375.0  # MW
 REF_P_BATTERY_WITH_BATTERY = 90.33  # MW
 
 
-
 def test_no_battery_objective(paths) -> None:
     notebook = paths.tutorial_investment_notebook_path
     value = get_notebook_objective(notebook, simulation_index=0)
