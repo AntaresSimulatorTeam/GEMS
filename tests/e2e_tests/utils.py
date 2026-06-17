@@ -48,7 +48,7 @@ def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> fl
     return objectives[simulation_index]
 
 
-def get_notebook_p_installed(notebook_path, candidate: str, match_index: int = 0) -> float:
+def get_notebook_p_installed(notebook_path: Path, candidate: str, match_index: int = 0) -> float:
     """Return the Nth p_installed value for a given candidate from a pre-executed notebook."""
     with notebook_path.open(encoding="utf-8") as f:
         notebook = json.load(f)
