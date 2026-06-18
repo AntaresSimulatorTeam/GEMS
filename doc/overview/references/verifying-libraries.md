@@ -15,6 +15,7 @@ Users may accidentaly modify a library file or download a corrupted version. Ver
 ## What is a SHA-256 hash?
 
 A SHA-256 hash is a unique fingerprint of a file. 
+
 - Any change — even a single character — produces a completely different hash. 
 - Identical files always produce the same hash.
 

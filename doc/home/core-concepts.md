@@ -8,7 +8,9 @@ description: Explore GEMS key design principles — graph-based algebraic modell
   </a>
 </div>
 
-# An Optimisation Language Tailored for Energy System Modelling
+# Core concepts
+
+## An Optimisation Language Tailored for Energy System Modelling
 
 **GEMS** is a graph-based [algebraic modelling language](https://en.wikipedia.org/wiki/Algebraic_modeling_language) for building, managing, and solving optimization problems that describe energy systems.
 
@@ -20,7 +22,7 @@ This language **differs from traditional optimization languages** in several way
 
 <br>
 
-# Defining Models and Systems as YAML Configurations
+## Defining Models and Systems as YAML Configurations
 <style>
 .yaml-diptych pre { white-space: pre-wrap; word-break: break-all; }
 </style>
@@ -133,9 +135,9 @@ system:
 </div>
 </div>
 
-# Key Design Principles and Capabilities
+## Key Design Principles and Capabilities
 
-## Separating Model Definition from Solver Execution
+### Separating Model Definition from Solver Execution
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_solver_modeler.png"
@@ -147,7 +149,7 @@ system:
   </p>
 </div>
 
-## Model Energy Systems as Connected Objects
+### Model Energy Systems as Connected Objects (Graphs)
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_graph_oriented.png"
@@ -167,7 +169,7 @@ system:
   </p>
 </div>
 
-## Integrated Time and Uncertainty Dimensions
+### Integrated Time and Uncertainty Dimensions
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_time_scenario.png" width="40" alt="Time Scenario icon"/>
@@ -178,7 +180,7 @@ system:
   </p>
 </div>
 
-## Supported Optimisation Problem Classes
+### Supported Optimisation Problem Classes
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_optimisation_problems.png" width="40" alt="Optimisation icon"/>
@@ -203,7 +205,7 @@ system:
   </div>
 </div>
 
-## YAML-Based, User-Friendly Model Definition
+### YAML-Based, User-Friendly Model Definition
 
 <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
   <img src="../../assets/Core_concept_yaml_file.png" width="40" alt="YAML file icon"/>

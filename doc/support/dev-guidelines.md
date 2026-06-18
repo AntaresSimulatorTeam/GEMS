@@ -1,4 +1,4 @@
-# GEMS Ecosystem — Developer Guidelines
+# Developer Guidelines
 
 This document defines the **standard development, branching, versioning, CI/CD, and release workflow** across all official GEMS ecosystem repositories.
 
