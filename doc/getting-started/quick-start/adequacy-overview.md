@@ -11,14 +11,14 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 **Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
 
 <p align="center">
-  <img src="../../assets/2_adequacy_scheme.png" alt="Adequacy Scheme" style="width:75%">
+  <img src="../../../assets/2_adequacy_scheme.png" alt="Adequacy Scheme" style="width:75%">
 </p>
 
 ### Problem description
 
 The following diagram represents the simulated [system](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
 <p align="center">
-  <img src="../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
+  <img src="../../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
 </p>
 
 ??? note "Problem description in detail"
@@ -87,7 +87,7 @@ Simulation options can be configured in the `parameters.yml` file. For more deta
 The following diagram depicts the structural relationships between the [library file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) and the [system file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
 
 <p>
-  <img src="../../assets/2_QSE_1_system_complete.png" alt="complete diagram with ports" style="max-width:95%;">
+  <img src="../../../assets/2_QSE_1_system_complete.png" alt="Complete diagram with ports" style="max-width:95%;">
 </p>
 
 ???+ info "Library and System relations in details"
@@ -99,12 +99,10 @@ The following diagram depicts the structural relationships between the [library 
 
 ## Running the GEMS study with Antares Modeler
 
-<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
-  <strong>⚠️ Warning</strong><br>
-  <b>It's recommended to run this GEMS study with Antares Modeler or GemsPy</b>Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver. 
-  
- For more information about the hybrid mode of Antares Solver, see the <a href="../../interoperability/hybrid/">Hybrid Study</a> section.
-</div>
+!!! warning
+    It's recommended to run this GEMS study with Antares Modeler or GemsPy. Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver.
+
+    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/) section.
 
 1. Download [QSE_1_Adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy)
 2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_1_adequacy/input/model-libraries/`
