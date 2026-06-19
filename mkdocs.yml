@@ -160,12 +160,8 @@ nav:
   - Examples:
       - Adequacy Example: examples/adequacy-example.md
       - Tutorial Notebooks:
+          - Overview: examples/notebooks-presentation.md
           - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
-      - Reference Libraries:
-          - Libraries of models: overview/references/libraries.md
-          - Verifying GEMS Libraries: overview/references/verifying-libraries.md
-          - Classification of models: overview/references/classification.md
-          - Users of GEMS: overview/references/users.md
   - Support & Contributing:
       - FAQ: support/faq.md
       - Contact: support/contact.md
