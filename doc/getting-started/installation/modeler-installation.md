@@ -19,16 +19,24 @@ The following link provides access to the most recent stable version of the [Ant
 ### Download and Extract
 
 1. Go to the [**Antares Simulator releases page**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases)
-2. Download the appropriate archive for your platform:
-    - **Windows**: `rte-antares-<simulator-version>-installer-64bits.zip`
-    - **Linux**: `rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
-3. Extract the archive to your desired location:
-    - **Windows**: Right-click and select "Extraction"
-    - **Linux**: `tar -xzf rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
 
-<div style="height: 500px; overflow: hidden;">
-  <img src="../../../assets/2_Modeler_download.png" alt="Download Page" style="height: 100%; object-fit: contain;"/>
-</div>
+2. Download the appropriate archive for your platform:
+
+    === "Windows"
+        `rte-antares-<simulator-version>-installer-64bits.zip`
+
+    === "Linux"
+        `rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>.tar.gz`
+
+3. Extract the archive to your desired location:
+
+    === "Windows"
+        Right-click the archive and select "Extract All"
+
+    === "Linux"
+        ```bash
+        tar -xzf rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>.tar.gz
+        ```
 
 ### Locate the Executables
 
@@ -48,8 +56,11 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 
 **Opening a terminal:**
 
-- **Windows**: Press `Win + R`, type `cmd` or `powershell`, and press Enter
-- **Linux**: Press `Ctrl + Alt + T` or search for "Terminal" in your applications menu
+=== "Windows"
+    Press `Win + R`, type `cmd` or `powershell`, and press Enter
+
+=== "Linux"
+    Press `Ctrl + Alt + T` or search for "Terminal" in your applications menu
 
 #### Antares Modeler
 
@@ -63,13 +74,15 @@ Let’s check if Modeler is working correctly.
 
 - **Run simulation:**
 
-```bash
-# On Windows:
-.\bin\antares-modeler.exe .\<absolute path to QSE_1_Adequacy study folder>
+    === "Windows"
+        ```bash
+        .\bin\antares-modeler.exe .\<absolute path to QSE_1_Adequacy study folder>
+        ```
 
-# On Linux:
-./bin/antares-modeler ./<absolute path to QSE_1_Adequacy study folder>
-```
+    === "Linux"
+        ```bash
+        ./bin/antares-modeler ./<absolute path to QSE_1_Adequacy study folder>
+        ```
 
 - **Check for success:**
 
@@ -87,14 +100,17 @@ Let’s check if Modeler is working correctly.
 
   Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../../interoperability/hybrid/overview.md) section
 
-- Run the following commands :
-```bash
-# Windows
-rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
+- Run the following commands:
 
-# Linux
-./rte-antares-x.x.x-installer-64bits/bin/antares-solver  <path-to-study>
-```
+    === "Windows"
+        ```bash
+        rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
+        ```
+
+    === "Linux"
+        ```bash
+        ./rte-antares-x.x.x-installer-64bits/bin/antares-solver <path-to-study>
+        ```
 
 Replace `<path-to-study>` with the path to your Antares study directory.
 
