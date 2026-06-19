@@ -34,7 +34,7 @@ GEMS welcomes any contribution in all forms.
 
         GEMS repository containing documentation:
 
-        - [GESM](https://github.com/AntaresSimulatorTeam/GEMS)
+        - [GEMS](https://github.com/AntaresSimulatorTeam/GEMS)
 
         Steps to contribute:
 
