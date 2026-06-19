@@ -1,5 +1,5 @@
 ---
-description: Reference for GEMS mathematical expression syntax — operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
+description: Reference for GEMS expression syntax — operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
 ---
 
 <div style="display: flex; justify-content: flex-end;">
@@ -8,11 +8,11 @@ description: Reference for GEMS mathematical expression syntax — operators, va
   </a>
 </div>
 
-# GEMS Mathematical Expression Syntax
+# GEMS Syntax
 
-[GEMS](../index.md) includes a **Mathematical Expression Syntax** that allows users to write equations for optimization problems in a clear, math-like syntax within specific configuration files. **Mathematical Expression Syntax** is independent of any programming code – model equations are specified as human-readable text, which [GEMS](../index.md) interprets to build the mathematical optimization problem.
+[GEMS](../index.md) includes an **Expression Syntax** that allows users to write equations for optimization problems in a clear, math-like syntax within specific configuration files. This syntax is independent of any programming code – model equations are specified as human-readable text, which [GEMS](../index.md) interprets to build the mathematical optimization problem.
 
-This section provides a description of the supported operators, linearity condition, the usage of parameters, variables, and ports in mathematical expressions, and the mechanisms for time and scenario indexing and aggregation.
+This section provides a description of the supported operators, linearity condition, the usage of parameters, variables, and ports in expressions, and the mechanisms for time and scenario indexing and aggregation.
 
 ## Basic Operators
 
