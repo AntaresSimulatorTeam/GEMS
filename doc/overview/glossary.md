@@ -17,7 +17,7 @@ This section is a glossary of the main concepts used by GEMS.
 | Term    | Definition    |
 |---------|---------------|
 | [Library](../user-guide/file-structure/library.md) | A file listing all the models representing general unspecified elements of a study. These models are used as "template" for creating their instances, called components|
-| [System](../user-guide/file-structure/system.md)  | A file listing all the "components", the instances of models defined by the system yaml file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
+| [System](../user-guide/file-structure/system.md)  | A file listing all the "components", the instances of models defined by the **library** yaml file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
 | [Dataseries](../user-guide/file-structure/data-series.md) | A table containing all the data through time. It is used by time/scenario dependent components|
 
 ## Concepts
