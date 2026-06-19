@@ -174,6 +174,12 @@ Now, it can be concluded that terms `levels[t+1]` and `levels[0]` are referring 
 
 Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. If *X* is defined for each time step from *0* to *T-1*, then `sum(X)` produces a single scalar equal to $\sum_{t=0}^{T-1} X_t$.
 
+!!! note "Difference `sum` from `sum_connections`"
+    - `sum(X)` : aggregate a time-dependent quantity **across time steps** (temporal summation).
+    - `sum_connections(port.field)` : aggregates a port field **across connected components** (structural summation). See [Port Operator](#port-operator).
+
+    For the full specification of these operators, see the [Antares Modeler Expressions reference](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/09-expressions/#time-operators).
+
 ### **Time summation (range)** `sum(S .. E, X)`
 
 Sums the operand X from time *S* to time *E*.
