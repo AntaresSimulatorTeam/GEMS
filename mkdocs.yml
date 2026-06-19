@@ -108,7 +108,7 @@ nav:
       - GEMS Interpreters:
           - GemsPy: overview/gems-interpreters/gemspy.md
           - Antares Simulator: overview/gems-interpreters/antares-simulator.md
-      - References:
+      - Classification of libraries of models:
           - Libraries of models: overview/references/libraries.md
           - Verifying GEMS Libraries: overview/references/verifying-libraries.md
           - Classification of models: overview/references/classification.md
