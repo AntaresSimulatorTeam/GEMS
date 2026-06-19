@@ -34,7 +34,7 @@ This section is a glossary of the main concepts used by GEMS.
 | Concept              | Definition        |
 |----------------------|-------------------|
 | [Variable](../user-guide/file-structure/library.md#variables)             | An abstract mathematical variable of a model, whose value is optimized by the solver. The optimization problem is to find the best set of variables based on the variable's configuration, shared across all model instances. |
-| [Parameter](../user-guide/file-structure/library.md#parameters)            | An input data declared in the model, with a value specific to each component (set in the system.yml file). The optimization problem seeks the best set of variables according to these parameters.               |
+| [Parameter](../user-guide/file-structure/library.md#parameters)            | An input data declared in the model, with a value specific to each component (set in the system.yml file). It can be a scalar value, a time-series, or a scenario-series. The optimization problem seeks the best set of variables according to these parameters.               |
 | [Objective function](../user-guide/file-structure/library.md#objective-contribution)   | The mathematical expression optimized by the solver. Variables are selected to achieve its global minimum based on the input parameters. |
 | [Constraint](../user-guide/file-structure/library.md#constraints)| A mathematical relationship or condition that restricts the values of variables |
 | [Binding Constraint](../user-guide/file-structure/library.md#binding-constraints) | A constraint that links variables or ports across different models or components |
