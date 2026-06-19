@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-    <a href="../../../..">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </a>
-</div>
-
 # GemsPy Presentation
 
 [GemsPy](https://gemspy.readthedocs.io/en/latest/) is a stand-alone Python package to interpret the language GEMS. At this point, this Python package it still a prototype.
