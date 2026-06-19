@@ -51,6 +51,7 @@ This section is a glossary of the main concepts used by GEMS.
 
 | Concept            | Definition            |
 |--------------------|-----------------------|
+| Scenario | Condition of the system environment (e.g., weather patterns, demand levels) over the simulation horizon. Multiple scenarios can be evaluated in a single study to capture variability or uncertainty. |
 | [Time dependent](../user-guide/mathematical-syntax.md#time-operators-and-indexing)     |  A parameter or variable depending on time. In this case, the parameter is instantiated as a dataseries. |
 | [Scenario dependent](../user-guide/mathematical-syntax.md#scenario-operator) | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as a dataseries. |
 
