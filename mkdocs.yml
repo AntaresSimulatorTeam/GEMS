@@ -130,7 +130,7 @@ nav:
         - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
-      - Mathematical Syntax: user-guide/mathematical-syntax.md
+      - GEMS Syntax: user-guide/mathematical-syntax.md
       - File Structure:
           - Overview: user-guide/file-structure/overview.md
           - Library File: user-guide/file-structure/library.md
