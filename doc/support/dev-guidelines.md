@@ -340,7 +340,8 @@ Each repository automatically maintains SHA256 checksum files alongside its libr
 - If the hash matches the stored one → no action.
 - If the hash differs → `.sha256` file updated and committed back to the branch automatically.
 
-> ⚠️ **WARNING: THE CHECKSUM WORKFLOW FIRES WHENEVER YOU PUSH TO A `release/**` OR `hotfix/**` BRANCH AND THE PUSH CONTAINS LIBRARY YAML CHANGES — WHETHER YOU EDITED THE LIBRARY DIRECTLY ON THAT BRANCH OR THE LIBRARY WAS ALREADY MODIFIED IN THE COMMITS CARRIED OVER FROM `develop` OR `main` WHEN THE BRANCH WAS CREATED. IN BOTH CASES THE WORKFLOW WILL AUTOMATICALLY COMMIT AN UPDATED CHECKSUM BACK TO YOUR BRANCH. YOU MUST RUN `git pull` BEFORE MAKING ANY FURTHER LOCAL CHANGES OR PUSHES, OTHERWISE YOUR NEXT PUSH WILL BE REJECTED DUE TO DIVERGED HISTORY.**
+!!! warning
+      The checksum workflow fires whenever you push to a `release/**` or `hotfix/**` branch and the push contains library YAML changes — whether you edited the library directly on that branch or the library was already modified in the commits carried over from develop or main when the branch was created. In both cases the workflow will automatically commit an updated checksum back to your branch. You must run git pull before making any further local changes or pushes, otherwise your next push will be rejected due to diverged history.
 
 The `pypsa_models.yml` and `antares_legacy_models.yml` libraries in GEMS repository are excluded from `update-library-checksums` workflow because their checksums are managed by the respective converter repositories.
 
