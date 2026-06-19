@@ -6,9 +6,9 @@ The following entities currently use or have used the GEMS framework for their p
 
 ### RTE
 
-<img src="../../../assets/4_RTE_logo.svg.png" alt="RTE logo" style="height:50px;"/> 
+<img src="../../../assets/4_RTE_logo.png" alt="RTE logo" style="height:50px;"/> 
 
-[RTE](https://www.rte-france.com/) is using GEMS for the [Planeterr](https://planeterr.fr/) project.
+[RTE](https://www.rte-france.com/) is using GEMS for the <a href="https://planeterr.fr/"><img src="../../../assets/logo_planeterr.png" alt="Planeterr logo" style="height:20px; vertical-align:middle;"/> project</a>.
 
 ### RTE international
 
