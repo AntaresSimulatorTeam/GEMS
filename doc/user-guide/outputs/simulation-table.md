@@ -22,7 +22,7 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
 | `block`| The time block number (if the simulation was run in chunks or rolling horizon blocks; otherwise often 1 for the whole horizon).|
 | `component` | The component `id` to which this result pertains. Currently, all variables and constraints from all components are exported.|
 |`output`| The name of the output within that component. Typically this is the `id` of a decision variable, constraint identifiers and extra outputs with their values or status.|
-|`absolute_time_index`|The time step index (1-indexed) from the start of the simulation period. For example, 1 = first hour, 24 = 24th hour, etc.|
+|`absolute_time_index`|The time step index (1-indexed) from the start of the simulation period. For example, 1 = first hour, 24 = 24th hour, etc. Note: this is 1-based, whereas time indexing in input data series files is 0-based (first row = time step 0).|
 |`block_time_index`| The time index within the current block (if using multi-block simulation). In a single-block (full horizon) run, this will be the same as the absolute index|
 |`scenario_index`| The scenario number for this entry. If multiple Monte Carlo scenarios were run, this distinguishes them.|
 |`value`|The value of the output (variable). None for constraints.|
