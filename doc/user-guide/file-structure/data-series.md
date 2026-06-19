@@ -2,7 +2,7 @@
 
 Data series provide the numerical input data for time-varying and scenario-varying parameters and they are stored in `csv` files.
 
-The filename (without extension) serves as the `id` of the data series. For instance, a file named `demand_profile.csv` defines a data series with the `id` `demand_profile`. This `id` is what users would use in the system file to instantiate parameter values.
+The filename (without extension) serves as the `id` of the data series. For instance, a file named `demand_profile.csv` defines a data series with the `id` `demand_profile`. This `id` is what users would use in the [system file](system.md) to instantiate parameter values.
 
 All cell values are **floating-point numbers**. Values are whitespace-separated (spaces or tabs); no header row should be present.
 
@@ -21,7 +21,7 @@ Each line is the demand at a given time (with the first line corresponding to ti
 
 ## Scenario-dependent series
 
-Represent a value that varies by scenario, but is constant in time. The file should contain one row of numbers, with each column representing the value for one scenario. For example, if you have 4 scenarios defined, a scenario-dependent series file might contain a single line with 4 values:
+Represent a value that varies by scenario, but is constant in time. The file should contain one row of numbers, with each column representing the value for one scenario. The mapping from simulation scenarios to column indices is controlled by the [scenario builder](scenario-builder.md). For example, if you have 4 scenarios defined, a scenario-dependent series file might contain a single line with 4 values:
 
 ```text
 10 22 55 42

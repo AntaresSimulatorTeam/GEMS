@@ -70,7 +70,7 @@ Incorrect or unsupported parameter syntax may be ignored or cause solver errors.
 
 The simulation horizon defines the time steps included in the optimisation.
 
-Both parameters must be consistent with time-dependent data series definitions.
+Both parameters must be consistent with time-dependent [data series](data-series.md) definitions.
 
 ---
 
