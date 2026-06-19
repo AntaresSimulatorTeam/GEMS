@@ -161,7 +161,7 @@ nav:
       - Adequacy Example: examples/adequacy-example.md
       - Tutorial Notebooks:
           - Overview: examples/notebooks-presentation.md
-          - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
+          - Unit Commitment with GemsPy: examples/notebooks/tutorial-unit-commitment.ipynb
   - Support & Contributing:
       - FAQ: support/faq.md
       - Contact: support/contact.md
