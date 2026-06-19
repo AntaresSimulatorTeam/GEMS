@@ -80,6 +80,14 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: What's new](home/release-notes.md)
 
+-   :material-toolbox:{ .lg .middle } **References**
+
+    ---
+
+    Use ready-to-use libraries for your own projects.
+
+    [:octicons-arrow-right-24: Referenced libraries](overview/references/libraries.md)
+
 </div>
 
 ### Sections
