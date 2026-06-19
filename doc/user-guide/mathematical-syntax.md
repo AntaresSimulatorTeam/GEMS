@@ -168,7 +168,7 @@ This is commonly used for cyclic constraints such as storage dynamics.
 expression: levels[t+1] = levels + injection - withdrwal
 ```
 
-Now, it can be concluded that terms `levels[T+1]` and `levels[0]` are reffering to the same variable.
+Now, it can be concluded that terms `levels[t+1]` and `levels[0]` are referring to the same variable.
 
 ### **Time summation (full horizon)** `sum(X)`
 
