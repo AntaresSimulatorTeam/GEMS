@@ -44,7 +44,7 @@ This section is a glossary of the main concepts used by GEMS.
 | Concept            | Definition        |
 |--------------------|-------------------|
 | [Port](../user-guide/file-structure/library.md#ports)| A communication interface for exchanging expressions, called "fields"     |
-| [Field](../user-guide/file-structure/library.md#ports) | An expression exchanged by a port    |
+| [Field](../user-guide/file-structure/library.md#ports) | A scalar quantity carried by a port and exchanged between connected components (e.g., a power flow value) |
 | [Connection](../user-guide/file-structure/system.md#connections)| A link between two components' ports |
 
 ### Time and Scenario Dependency
