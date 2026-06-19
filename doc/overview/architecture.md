@@ -15,6 +15,6 @@ This architecture of GEMS aims to export the definition of component models and 
 - **Flexible modelling:** Models and system configurations can be defined, extended, or modified directly in configuration files—no changes to the core code are required.
 - **Interoperability:** The GEMS file format supports seamless integration with external tools and workflows, such as converting and simulating PyPSA studies using GemsPy.
 
-<div style="text-align: center; width:1000px;">
+<div style="text-align: center; width:100%;">
   <img src="../../assets/Architecture_GEMS.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />
 </div>
