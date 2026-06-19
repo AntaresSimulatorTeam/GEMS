@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Mathematical representation
 
 This part represents the optimization problem formulation of the example [QSE_Adequacy](adequacy-overview.md) that is built up from [`basic-models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library. The referenced library includes additional models that are not used in the example and are therefore not included in the optimization problem formulation.

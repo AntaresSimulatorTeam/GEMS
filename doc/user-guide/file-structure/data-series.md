@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Data Series
 
 Data series provide the numerical input data for time-varying and scenario-varying parameters and they are stored in `csv` files.

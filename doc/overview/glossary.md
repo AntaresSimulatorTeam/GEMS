@@ -2,12 +2,6 @@
 description: GEMS glossary — definitions of core concepts including libraries, models, components, ports, connections, system files, and data series used in the GEMS framework.
 ---
 
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Glossary
 
 This section is a glossary of the main concepts used by GEMS.

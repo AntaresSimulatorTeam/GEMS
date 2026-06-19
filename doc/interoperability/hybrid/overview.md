@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Antares Simulator Hybrid studies
 
 This page explains how to configure and run a [**hybrid study**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/08-hybrid-studies/) i.e. a study combining **GEMS components** and **Antares Simulator's Legacy Components**. In a hybrid study, the GEMS files are integrated into a Antares Simulator study's directory structure, allowing Antares Simulator to incorporate GEMS components.

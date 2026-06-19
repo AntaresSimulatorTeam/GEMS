@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # System File
 
 The **system file** defines the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and specifies how components are connected to each other. In practice, the system file answers questions such as which components are included, how they are linked, what parameter values they use (fixed, time-dependent, or scenario-dependent), and which model libraries are required. It acts as the central configuration that brings together models, data, and connections for a simulation run.

@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Scenario Builder
 
 The `modeler-scenariobuilder.dat` file, located in the `data-series` directory, is used to map simulation scenarios to columns of data series. Each line defines an association between a [**scenario group**](system.md#components) name and a **Monte Carlo scenario** (referred to as *scenario*) with a **data series column identifier** (referred to as *time series index*).

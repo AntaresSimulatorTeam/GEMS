@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Simulation and Optimization Parameters
 
 Global simulation and optimization parameters are defined in the `parameters.yml` file located at the **root of the study directory**.

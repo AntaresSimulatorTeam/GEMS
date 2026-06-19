@@ -2,12 +2,6 @@
 description: Reference for GEMS mathematical expression syntax — operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
 ---
 
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # GEMS Mathematical Expression Syntax
 
 [GEMS](../index.md) includes a **Mathematical Expression Syntax** that allows users to write equations for optimization problems in a clear, math-like syntax within specific configuration files. **Mathematical Expression Syntax** is independent of any programming code – model equations are specified as human-readable text, which [GEMS](../index.md) interprets to build the mathematical optimization problem.

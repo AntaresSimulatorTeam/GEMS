@@ -2,12 +2,6 @@
 description: Step-by-step installation guide for Antares Simulator's GEMS interpreter (Antares Modeler) — download, extract, and configure the GEMS interpreter within Antares Simulator.
 ---
 
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Antares Simulator's GEMS interpreter
 
 This section outlines the approach for configuring and utilizing the **Antares Modeler**, the interpreter for the **GEMS language** inside [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator).

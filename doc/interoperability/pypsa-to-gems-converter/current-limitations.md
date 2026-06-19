@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Current Limitations of the Converter
 
 We explicit here the **current** limitation of the PyPSA-to-GEMS converter, that are related to the current state of development of the converter. We foresee no limitations in terms of the expressiveness of the GEMS modelling language.

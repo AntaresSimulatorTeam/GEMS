@@ -2,12 +2,6 @@
 description: Introduction to the GEMS framework — how to describe energy systems declaratively using structured YAML files, mathematical expressions, and graph-based component connections.
 ---
 
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # GEMS Framework Introduction
 
 The [**GEMS framework**](../index.md) provides a declarative way to describe energy systems — and more generally, graph-based optimization problems — in a clear, stand-alone, solver-independent, and reproducible manner.

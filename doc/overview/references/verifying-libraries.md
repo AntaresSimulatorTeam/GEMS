@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Verifying GEMS Libraries
 
 Users may accidentaly modify a library file or download a corrupted version. Verifying the file's integrity against an official SHA-256 hash ensures:
