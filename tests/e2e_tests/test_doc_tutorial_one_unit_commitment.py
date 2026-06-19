@@ -77,8 +77,8 @@ def install_tutorial_library(paths: EnvironmentPaths, gems_study_path: Path) -> 
     source = (
         paths.repo_root
         / "doc"
-        / "getting-started"
-        / "tutorial-one-unit-commitment"
+        / "examples"
+        / "notebooks"
         / "unit-commitment-with-gemspy"
         / "gemspy_tutorial_library.yml"
     )

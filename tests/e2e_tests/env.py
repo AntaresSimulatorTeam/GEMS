@@ -60,15 +60,15 @@ def get_paths() -> EnvironmentPaths:
     tutorial_notebook_path = (
         repo_root
         / "doc"
-        / "getting-started"
-        / "tutorial-one-unit-commitment"
+        / "examples"
+        / "notebooks"
         / "tutorial-unit-commitment.ipynb"
     )
     tutorial_library_dir = (
         repo_root
         / "doc"
-        / "getting-started"
-        / "tutorial-one-unit-commitment"
+        / "examples"
+        / "notebooks"
         / "unit-commitment-with-gemspy"
     )
 
