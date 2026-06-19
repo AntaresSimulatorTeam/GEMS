@@ -6,7 +6,7 @@
 
 # System File
 
-The **system file** defines the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and specifies how components are connected to each other. In practice, the system file answers questions such as which components are included, how they are linked, what parameter values they use (fixed, time-dependent, or scenario-dependent), and which model libraries are required. It acts as the central configuration that brings together models, data, and connections for a simulation run.
+The **system file** (`system.yml`) defines the concrete energy system to be simulated. There is exactly one system file per study. It instantiates components from models provided by the libraries, assigns parameter values, and specifies how components are connected to each other. In practice, the system file answers questions such as which components are included, how they are linked, what parameter values they use (fixed, time-dependent, or scenario-dependent), and which model libraries are required. It acts as the central configuration that brings together models, data, and connections for a simulation run.
 
 The system file is a YAML file with a single root key `system`. The system contains fields for an `id`, `description`, a list of `model-libraries` to use, the list of `components` in the system, and the list of `connections` definitions between components. Every system file must have exactly one top-level `system` entry containing these sections. Below is an example snippet of a system file:
 
