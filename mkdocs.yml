@@ -94,7 +94,7 @@ plugins:
       fallback_to_build_date: true
 
 nav:
-  - About GEMS:
+  - Home:
       - Home: index.md
       - Key Principles: home/core-concepts.md
       - Use Cases: home/use-cases.md
