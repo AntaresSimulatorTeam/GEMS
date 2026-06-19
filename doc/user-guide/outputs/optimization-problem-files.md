@@ -12,7 +12,7 @@ This export is primarily intended for **verification, debugging, and external an
 
 A **GEMS interpreter** generates a MPS file in the study **output directory**. This functionality is available only in the [Antares Modeler interpreter](../../overview/gems-interpreters/antares-simulator.md). The [GemsPy interpreter](../../overview/gems-interpreters/gemspy.md) does not currently have a native function for this purpose; using the dedicated method of the underlying `OR-Tools` object that represents the optimisation problem is one possible way to export the MPS file.
 
-The MPS file follows the naming convention `{year}-{block}.mps`, where `year` is the Monte Carlo year number and `block` is the optimization block number (e.g., week or day depending on the solver configuration). For example, `1-1.mps` corresponds to year 1, block 1 and is automatically created in the output folder.
+The MPS file follows the naming convention `{year}-{block}.mps`, where `year` is the Monte Carlo year number and `block` is the optimization block number. For example, `1-1.mps` corresponds to year 1, block 1.
 
 The file is typically overwritten each time the study is executed.
 
