@@ -98,6 +98,7 @@ nav:
       - Home: index.md
       - Key Principles: home/core-concepts.md
       - Use Cases: home/use-cases.md
+      - Users of GEMS: home/users.md
       - Release Notes: home/release-notes.md
       - Support: home/support.md
   - Overview:
@@ -112,7 +113,6 @@ nav:
           - Libraries of models: overview/references/libraries.md
           - Verifying GEMS Libraries: overview/references/verifying-libraries.md
           - Classification of models: overview/references/classification.md
-          - Users of GEMS: overview/references/users.md
   - Getting Started:
       - Installation:
           - Antares Simulator's GEMS Interpreter: getting-started/installation/modeler-installation.md
