@@ -58,18 +58,10 @@ def get_paths() -> EnvironmentPaths:
         repo_root / "resources" / "e2e_studies" / "tutorial-one-unit-commitment"
     )
     tutorial_notebook_path = (
-        repo_root
-        / "doc"
-        / "examples"
-        / "notebooks"
-        / "tutorial-unit-commitment.ipynb"
+        repo_root / "doc" / "examples" / "notebooks" / "tutorial-unit-commitment.ipynb"
     )
     tutorial_library_dir = (
-        repo_root
-        / "doc"
-        / "examples"
-        / "notebooks"
-        / "unit-commitment-with-gemspy"
+        repo_root / "doc" / "examples" / "notebooks" / "unit-commitment-with-gemspy"
     )
 
     antares_version = _read_antares_version(repo_root)
