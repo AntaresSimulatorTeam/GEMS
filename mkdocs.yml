@@ -103,7 +103,7 @@ nav:
       - Support: home/support.md
   - Overview:
       - Architecture: overview/architecture.md
-      - Core Concepts: overview/glossary.md
+      - Glossary: overview/glossary.md
       - File Structure: overview/file-structure.md
       - Difference with other languages & tools: overview/difference-with-other-languages.md
       - GEMS Interpreters:
