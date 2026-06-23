@@ -12,8 +12,8 @@ GEMS represents a fundamental change from classical **OOME architectures (Object
 
 This architecture of GEMS aims to export the definition of component models and system configuration from the core software, by relying on **external YAML files**, which enables:
 
-- **Flexible modelling:** Models and system configurations can be defined, extended, or modified directly in configuration files—no changes to the core code are required.
-- **Interoperability:** The GEMS file format supports seamless integration with external tools and workflows, such as converting and simulating PyPSA studies using GemsPy.
+- **Flexible modelling:** Models and system configurations can be defined, extended, or modified directly in configuration files-no changes to the core code are required.
+- **Interoperability:** The GEMS file format supports seamless integration with external tools and workflows, such as converting and simulating PyPSA studies using [GemsPy](gems-interpreters/gemspy.md).
 
 <div style="text-align: center; width:100%;">
   <img src="../../assets/Architecture_GEMS.png" alt="Architecture Breakthrough of GEMS comparing to Classical OOME" />

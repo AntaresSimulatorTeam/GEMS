@@ -40,7 +40,7 @@ The branching model differs between repositories because merging to `main` in th
 | Branch | Role |
 |---|---|
 | `main` | Published branch. Every merge triggers a ReadTheDocs rebuild. Updated only via PRs from `release/` or `hotfix/`. Direct commits are not allowed. |
-| `develop` | Integration branch for ongoing work. All `feature`, `bugfix`, `chore` PRs target `develop`. Not protected — direct commits are allowed to resolve conflicts with `main`. |
+| `develop` | Integration branch for ongoing work. All `feature`, `bugfix`, `chore` PRs target `develop`. Not protected - direct commits are allowed to resolve conflicts with `main`. |
 
 #### Converter Repositories and GemsPy
 
@@ -58,7 +58,7 @@ The branching model differs between repositories because merging to `main` in th
 | `perf/...` | Performance improvements |
 | `docs/...` | Documentation changes |
 | `chore/...` | Maintenance, dependency updates |
-| `release/vX.Y.Z` | Release preparation — version bumps and changelog updates |
+| `release/vX.Y.Z` | Release preparation - version bumps and changelog updates |
 | `hotfix/vX.Y.Z` | Urgent post-release corrections |
 
 ### Naming Convention
@@ -184,18 +184,18 @@ Auto-generated concatenations like `fix comments, fix comments` or `fix(ruff): f
 
 Use one of the two formats below depending on the size of the PR:
 
-**Option A — Flat bullet list** (suitable for most PRs):
+**Option A - Flat bullet list** (suitable for most PRs):
 
 ```text
 feat(scope): short description of what the PR delivers
 
 - One line per logical change, scoped but not over-granular
-- Skip pure fixup commits — if it wouldn't go in a changelog, leave it out
+- Skip pure fixup commits - if it wouldn't go in a changelog, leave it out
 
 Co-authored-by: Name <email>
 ```
 
-**Option B — Structured sections** (suitable for larger PRs with many concerns):
+**Option B - Structured sections** (suitable for larger PRs with many concerns):
 
 ```text
 feat(scope): short description of what the PR delivers
@@ -295,13 +295,13 @@ All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`). The `libr
 |---|---|---|---|---|
 | Linting | `ruff` | `ruff` | `black` | `black` + `isort` |
 | Type checking | `mypy` | `mypy` | `mypy` | `mypy` |
-| YAML linting | `yamllint` | — | — | — |
+| YAML linting | `yamllint` | - | - | - |
 | Unit tests | `pytest tests/unit_tests/` | `pytest tests/unit_tests/` | `pytest` (with coverage) | `pytest` (with coverage) |
 | E2E tests | `pytest tests/e2e_tests/` | `pytest tests/e2e/` | `pytest tests/antares_historic/` | `pytest tests/e2e/` |
 
 PRs cannot be merged if any required CI check fails.
 
-GemsPy additionally has a `publish.yml` workflow that triggers automatically when a GitHub release is published — it builds the package and pushes it to PyPI. No manual action is needed after tagging.
+GemsPy additionally has a `publish.yml` workflow that triggers automatically when a GitHub release is published - it builds the package and pushes it to PyPI. No manual action is needed after tagging.
 
 ### Automated Dependency Monitoring
 
@@ -341,7 +341,7 @@ Each repository automatically maintains SHA256 checksum files alongside its libr
 - If the hash differs → `.sha256` file updated and committed back to the branch automatically.
 
 !!! warning
-      The checksum workflow fires whenever you push to a `release/**` or `hotfix/**` branch and the push contains library YAML changes — whether you edited the library directly on that branch or the library was already modified in the commits carried over from develop or main when the branch was created. In both cases the workflow will automatically commit an updated checksum back to your branch. You must run git pull before making any further local changes or pushes, otherwise your next push will be rejected due to diverged history.
+      The checksum workflow fires whenever you push to a `release/**` or `hotfix/**` branch and the push contains library YAML changes - whether you edited the library directly on that branch or the library was already modified in the commits carried over from develop or main when the branch was created. In both cases the workflow will automatically commit an updated checksum back to your branch. You must run git pull before making any further local changes or pushes, otherwise your next push will be rejected due to diverged history.
 
 The `pypsa_models.yml` and `antares_legacy_models.yml` libraries in GEMS repository are excluded from `update-library-checksums` workflow because their checksums are managed by the respective converter repositories.
 
@@ -365,7 +365,7 @@ When a model library is updated in a converter, an issue is automatically create
 5. If equal → GEMS is already up to date; workflow exits with no action.
 6. If different → opens an issue in the GEMS repository prompting synchronisation.
 
-This means the notification reflects the true synchronisation state between the converter and GEMS — it fires whenever the converter's library is ahead of GEMS, regardless of git history. Duplicate issues for the same version are suppressed.
+This means the notification reflects the true synchronisation state between the converter and GEMS - it fires whenever the converter's library is ahead of GEMS, regardless of git history. Duplicate issues for the same version are suppressed.
 
 Both workflows require the `GEMS_REPO_PAT` secret (a Personal Access Token with `repo` scope on the GEMS repository).
 
@@ -446,7 +446,7 @@ main  ──── squash PRs (feature, bugfix, chore…) ────► ready 
 
 The example below releases converter version `1.2.0` with a library bump to `1.1.0`.
 
-#### PyPSA Converter — Files to update
+#### PyPSA Converter - Files to update
 
 | File | What to change |
 |---|---|
@@ -455,7 +455,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 | `resources/pypsa_models/pypsa_models.yml` | Bump `library.version` to `1.1.0` (only if library changed) |
 | `resources/pypsa_models/CHANGELOG-pypsa_models_library.md` | Add library release entry (only if library changed) |
 
-#### PyPSA Converter — Steps
+#### PyPSA Converter - Steps
 
 1. Make sure `main` is up to date
 
@@ -483,7 +483,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 
 4. Go to GitHub → Releases → Draft a new release → create tag `v1.2.0` on `main` → paste the changelog entry → publish.
 
-5. Cross-repo notification (automatic) — if `library.version` in `resources/pypsa_models/pypsa_models.yml` was bumped, the `notify-gems-pypsa-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ. No manual action needed.
+5. Cross-repo notification (automatic) - if `library.version` in `resources/pypsa_models/pypsa_models.yml` was bumped, the `notify-gems-pypsa-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ. No manual action needed.
 
 ---
 
@@ -491,7 +491,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 
 Same flow as the PyPSA converter. The example below releases converter version `1.2.0` with a library bump to `1.1.0`.
 
-#### AntaresLegacy Converter — Files to update
+#### AntaresLegacy Converter - Files to update
 
 | File | What to change |
 |---|---|
@@ -500,7 +500,7 @@ Same flow as the PyPSA converter. The example below releases converter version `
 | `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` | Bump `library.version` to `1.1.0` (only if library changed) |
 | `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md` | Add library release entry (only if library changed) |
 
-#### AntaresLegacy Converter — Steps
+#### AntaresLegacy Converter - Steps
 
 Same flow as the PyPSA converter (steps 1–5). Replace the file paths with:
 
@@ -508,7 +508,7 @@ Same flow as the PyPSA converter (steps 1–5). Replace the file paths with:
 - `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` (if library changed)
 - `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md` (if library changed)
 
-Cross-repo notification (automatic) — if `library.version` in `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` was bumped, the `notify-gems-antares-legacy-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ.
+Cross-repo notification (automatic) - if `library.version` in `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` was bumped, the `notify-gems-antares-legacy-models-update` workflow fires automatically on the `main` merge. It compares the converter's version with the GEMS repository's version and opens an issue in GEMS if they differ.
 
 ---
 
@@ -516,17 +516,17 @@ Cross-repo notification (automatic) — if `library.version` in `src/antares_gem
 
 The example below releases GEMS version `1.2.0` after syncing an updated PyPSA models library.
 
-#### GEMS — Files to update
+#### GEMS - Files to update
 
 | File | What to change |
 |---|---|
 | `libraries/<library_name>.yml` | Apply library changes and bump `library.version` |
-| `libraries/<library_name>.yml.sha256` | Updated automatically by `update-library-checksums` workflow (GEMS-owned libraries only — `pypsa_models.yml` and `antares_legacy_models.yml` must be updated manually) |
+| `libraries/<library_name>.yml.sha256` | Updated automatically by `update-library-checksums` workflow (GEMS-owned libraries only - `pypsa_models.yml` and `antares_legacy_models.yml` must be updated manually) |
 | `libraries/CHANGELOG-<library_name>.md` | Add library changelog entry |
 | `doc/0_Home/4_release_notes.md` | Add release notes entry if GEMS Language spec changed |
 | `COMPATIBILITY.md` | Update documentation version and/or Antares version mapping if changed |
 
-#### GEMS — Steps
+#### GEMS - Steps
 
 1. Make sure `develop` is up to date
 
@@ -568,13 +568,13 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 
 ### 8.4 GemsPy Release
 
-#### GemsPy — Files to update
+#### GemsPy - Files to update
 
 | File | What to change |
 |---|---|
 | `pyproject.toml` | Bump `version` |
 
-#### GemsPy — Steps
+#### GemsPy - Steps
 
 1. Make sure `main` is up to date
 
@@ -602,7 +602,7 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 
 4. Go to GitHub → Releases → Draft a new release → create tag `v1.2.0` on `main` → fill in release notes → publish.
 
-5. PyPI publish (automatic) — the `publish.yml` workflow triggers on the GitHub release published event and pushes the package to PyPI automatically. No manual action needed.
+5. PyPI publish (automatic) - the `publish.yml` workflow triggers on the GitHub release published event and pushes the package to PyPI automatically. No manual action needed.
 
 ---
 
@@ -626,7 +626,7 @@ For critical issues discovered after a release:
 4. Open a PR from `hotfix/vX.Y.Z` targeting `main`
 5. Merge via **Squash & Merge**
 6. Go to GitHub → Releases → Draft a new release → create tag `vX.Y.Z` on `main` → paste the changelog entry → publish.
-7. **GEMS only** — merge `main` back into `develop`:
+7. **GEMS only** - merge `main` back into `develop`:
 
    ```bash
    git checkout develop

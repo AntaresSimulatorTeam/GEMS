@@ -1,6 +1,6 @@
 # Library File
 
-A library file defines a library of two collections of abstract objects:
+A library file defines a library of two collections of abstract objects (see [Glossary - Models and Components](../../overview/glossary.md#models-and-components) for concept definitions):
 
 - [Models](#models) - Contains the mathematical formulation for component type
 - [Ports Types](#port-types) - Describe the kinds of connections models can have
@@ -36,7 +36,7 @@ The equation `sum_connections(injection.flow) = 0` follows the GEMS [**Mathemati
 
 ## Rules for id naming
 
-All `id's` in the model library and system file must respect the following:
+All `id's` in the model library and [system file](system.md) must respect the following:
 
 - Alphanumeric characters are allowed, as well as the underscore _ character
 - All other characters are prohibited
@@ -185,7 +185,7 @@ A list of parameters that this model takes. Each parameter defines a configurabl
 | `time-dependent`| Boolean | `true` or `false`. If `true`, this parameter can vary over the simulation timeline (meaning it will be associated with a time series input). If `false`, it is treated as constant in time.|
 |`scenario-dependent`| Boolean | `true` or `false`. If `true`, the parameter can have different values in different scenarios (i.e., it requires scenario-specific data). If `false`, it does not vary between scenarios.|
 
-Together, these flags define how the parameter can be provided — as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md).
+Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md).
 
 #### Variables
 

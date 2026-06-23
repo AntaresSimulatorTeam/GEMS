@@ -1,5 +1,5 @@
 ---
-description: How to contribute to GEMS — guidelines for code contributions, documentation improvements, and model library contributions to the GEMS open-source project.
+description: How to contribute to GEMS - guidelines for code contributions, documentation improvements, and model library contributions to the GEMS open-source project.
 ---
 
 # Contributing

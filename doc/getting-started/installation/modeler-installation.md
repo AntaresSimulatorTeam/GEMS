@@ -1,5 +1,5 @@
 ---
-description: Step-by-step installation guide for Antares Simulator's GEMS interpreter (Antares Modeler) — download, extract, and configure the GEMS interpreter within Antares Simulator.
+description: Step-by-step installation guide for Antares Simulator's GEMS interpreter (Antares Modeler) - download, extract, and configure the GEMS interpreter within Antares Simulator.
 ---
 
 # Antares Simulator's GEMS interpreter
@@ -113,7 +113,7 @@ Let’s check if Modeler is working correctly.
 
 - Use the Hybrid Study tutorial :
 
-  Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../../interoperability/hybrid/overview.md) section
+  Refer to the tutorial inside the [Interoperability - Antares Hybrid Mode](../../interoperability/hybrid/overview.md) section
 
 - Run the following commands :
 
@@ -135,7 +135,7 @@ Replace `<path-to-study>` with the path to your Antares study directory.
 
 The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
 
-In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../../user-guide/file-structure/solver-optimization.md). Unlike the GemsPy interpreter, Modeler depends on this configuration file.
+In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../../user-guide/file-structure/solver-optimization.md). Unlike the [GemsPy interpreter](gemspy-installation.md), Modeler depends on this configuration file.
 
 ## Additional Resources
 

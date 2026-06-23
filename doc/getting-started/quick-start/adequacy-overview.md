@@ -153,7 +153,7 @@ The power flows between buses can be visualized as follows:
 
 System of the **Three-bus Adequacy** example relies on models defined in the GEMS library file [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries). These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimisation problem.
 
-The complete mathematical formulation corresponding to this example — including decision variables, parameters, objective function, and constraints — is detailed in the following document: **[detailed mathematical formulation and expressions](./adequacy-math-model.md)**.
+The complete mathematical formulation corresponding to this example - including decision variables, parameters, objective function, and constraints - is detailed in the following document: **[detailed mathematical formulation and expressions](./adequacy-math-model.md)**.
 
 ### System file configuration
 

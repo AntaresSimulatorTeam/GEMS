@@ -1,10 +1,10 @@
 ---
-description: Introduction to the GEMS framework — how to describe energy systems declaratively using structured YAML files, mathematical expressions, and graph-based component connections.
+description: Introduction to the GEMS framework - how to describe energy systems declaratively using structured YAML files, mathematical expressions, and graph-based component connections.
 ---
 
 # GEMS Framework Introduction
 
-The [**GEMS framework**](../index.md) provides a declarative way to describe energy systems — and more generally, graph-based optimization problems — in a clear, stand-alone, solver-independent, and reproducible manner.
+The [**GEMS framework**](../index.md) provides a declarative way to describe energy systems - and more generally, graph-based optimization problems - in a clear, stand-alone, solver-independent, and reproducible manner.
 
 Rather than writing imperative code, users define a study through **structured configuration files**, **mathematical expressions**, and **well-defined concepts** that together allow [GEMS](../index.md) to:
 
@@ -15,13 +15,13 @@ Rather than writing imperative code, users define a study through **structured c
 
 From a documentation perspective, the User Guide is organized into **four complementary sections**, each serving a distinct purpose:
 
-- [**Mathematical Syntax**](#mathematical-syntax) — rules for writing mathematical expressions
+- [**Mathematical Syntax**](#mathematical-syntax) - rules for writing mathematical expressions
 
-- [**File Structure**](#file-structure) — rules for writing [GEMS](../index.md) YAML files and how they reference each other  
+- [**File Structure**](#file-structure) - rules for writing [GEMS](../index.md) YAML files and how they reference each other  
 
-- [**Theoretical Concepts**](#theoretical-concepts) — core ideas behind the system representation and optimization formulation
+- [**Theoretical Concepts**](#theoretical-concepts) - core ideas behind the system representation and optimization formulation
 
-- [**Outputs**](#outputs) — produced result formats and how to interpret them  
+- [**Outputs**](#outputs) - produced result formats and how to interpret them  
 
 This separation is fundamental to understanding how [GEMS](../index.md) systems are written, interpreted, validated, and analysed.
 

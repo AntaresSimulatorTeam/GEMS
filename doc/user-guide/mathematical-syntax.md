@@ -1,5 +1,5 @@
 ---
-description: Reference for GEMS mathematical expression syntax — operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
+description: Reference for GEMS mathematical expression syntax - operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
 ---
 
 # GEMS Mathematical Expression Syntax

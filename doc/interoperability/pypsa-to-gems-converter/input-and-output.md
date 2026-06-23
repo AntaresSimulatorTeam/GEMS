@@ -32,3 +32,5 @@ study_directory/
             └── data-series/       -------> Time and/or scenarion dependent parameters
                 └── ...
 ```
+
+Each generated file follows the GEMS file structure conventions: see the [system file](../../user-guide/file-structure/system.md), [library file](../../user-guide/file-structure/library.md), [data series](../../user-guide/file-structure/data-series.md), and [solver parameters](../../user-guide/file-structure/solver-optimization.md) documentation for details on their format and content.

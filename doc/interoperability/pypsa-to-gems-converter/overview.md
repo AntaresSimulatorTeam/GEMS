@@ -1,5 +1,5 @@
 ---
-description: Overview of the PyPSA-to-GEMS Converter — an open-source Python package that exports PyPSA networks as GEMS study folders, supporting linear OPF and stochastic optimisation.
+description: Overview of the PyPSA-to-GEMS Converter - an open-source Python package that exports PyPSA networks as GEMS study folders, supporting linear OPF and stochastic optimisation.
 ---
 
 # Overview

@@ -1,5 +1,5 @@
 ---
-description: Explore GEMS key design principles — graph-based algebraic modelling, solver-independent syntax, YAML-based configuration, and support for LP, MIP, and MILP energy optimisation problems.
+description: Explore GEMS key design principles - graph-based algebraic modelling, solver-independent syntax, YAML-based configuration, and support for LP, MIP, and MILP energy optimisation problems.
 ---
 
 # Core concepts
@@ -210,5 +210,6 @@ system:
   lowering the barrier for new users while remaining expressive enough for advanced use cases.
   This approach facilitates <strong> model versioning, collaboration, and integration with external tools </strong>,
   while clearly separating model structure, data, and assumptions from the underlying optimisation engine.
+  See the <a href="../overview/file-structure.md"><strong>File Structure</strong></a> page for a detailed overview of all GEMS files and their roles.
    </p>
 </div>
