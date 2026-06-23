@@ -61,13 +61,15 @@ markdown_extensions:
       emoji_generator:
 
         !!python/name:material.extensions.emoji.to_svg ""
+hooks:
+  # Converts libraries/*.yml -> doc/assets/data/*.json before each build.
+  - doc/hooks/yaml_to_json.py
+
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  # YAML Dynamic Loader - Dependencies
-  - https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js
-  # YAML Dynamic Loader - Custom script
+  # yaml-loader.js uses JSON.parse() natively.
   - javascripts/yaml-loader.js
 
 extra_css:
