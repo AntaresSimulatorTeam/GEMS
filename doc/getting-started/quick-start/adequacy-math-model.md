@@ -108,13 +108,13 @@ $$
 \forall b \in B, \forall g \in G_b, \quad \underline{P}_g \leq P_g \leq \overline{P}_g
 $$
 
-# GEMS Representation and Library File
+## GEMS Representation and Library File
 
 This section shows how mathematical model is implemented for every power system element that figures in optimization problem. File in which models are defined is called *library file*, in this case [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) library.
 
 ![YAML Block description with mathematical equations](../../assets/2_QSE_Adequacy_maths.png)
 
-# Summary
+## Summary
 
 This mathematical description serves as the formal reference for the optimization problem, while the GEMS library provides its implementation layer within the GEMS framework. In other words:
 

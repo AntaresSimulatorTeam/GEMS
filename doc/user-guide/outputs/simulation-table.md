@@ -22,7 +22,7 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
 |`value`|The value of the output (variable). None for constraints.|
 |`basis_status`| The status in the solver basis for this variable or constraint. Possible values are, *Free*, *At lower bound*, *At upper bound*, *Fixed value*, *Basic*, *None (not available or not applicable)*|
 
-# Simulation Table exported by [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md)
+## Simulation Table exported by [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md)
 
 [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md) exports the **Simulation Table** as a .csv file. The `csv` file is named `simulation_table_{timestamp}.csv` (e.g. `simulation_table_20251223-1015.csv`) to distinguish runs. By default, the file will reside in the study’s output directory (`outputs/simulation_table_{timestamp}.csv`).
 

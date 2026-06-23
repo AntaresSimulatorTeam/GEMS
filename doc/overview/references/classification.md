@@ -9,6 +9,6 @@ This table contains all the referenced taxonomies of models created by different
 |----------|-------------|------|
 | `<name of the taxonomy>` | `<description>` | [Github link](https://github.com/AntaresSimulatorTeam/GEMS) |
 
-# Reference classification of models
+## Reference classification of models
 
 Some reference classification of models will be shared soon.
