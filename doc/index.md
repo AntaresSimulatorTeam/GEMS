@@ -27,7 +27,7 @@ GEMS has the key attributes required to support and sustain such a community.
 - **Interoperability/Interpretability** : GEMS relies on a **self-contained** and exhaustive mathematical formulation, ensuring that all modelling assumptions, variables, and constraints are explicitly defined. This guarantees unambiguous interpretability of models, which is a key enabler for true interoperability between tools, solvers, and modelling frameworks.
 
 <div align="center">
-    <img src="./assets/Context_Gems_Example_Model.png" alt="GEMS Logo" width="500"/>
+    <img src="./assets/0_context_gems.png" alt="GEMS Logo" width="500"/>
 </div>
 
 
