@@ -36,17 +36,17 @@ flowchart LR
     DataSeries --> Data2
     DataSeries --> Scenario
     
-    style Study fill:#c97d00,stroke:#ffc107,stroke-width:3px,color:#ffffff
-    style Input fill:#0a7fa8,stroke:#0dcaf0,stroke-width:2px,color:#ffffff
-    style ModelLib fill:#0a7fa8,stroke:#0dcaf0,stroke-width:2px,color:#ffffff
-    style DataSeries fill:#0a7fa8,stroke:#0dcaf0,stroke-width:2px,color:#ffffff
-    style System fill:#1e8a3f,stroke:#28a745,stroke-width:3px,color:#ffffff
-    style Params fill:#1e8a3f,stroke:#28a745,stroke-width:3px,color:#ffffff
-    style Lib1 fill:#1e8a3f,stroke:#28a745,stroke-width:3px,color:#ffffff
-    style Lib2 fill:#0270a0,stroke:#0288d1,stroke-width:2px,color:#ffffff
-    style Data1 fill:#0270a0,stroke:#0288d1,stroke-width:2px,color:#ffffff
-    style Data2 fill:#0270a0,stroke:#0288d1,stroke-width:2px,color:#ffffff
-    style Scenario fill:#0270a0,stroke:#0288d1,stroke-width:2px,color:#ffffff
+    style Study stroke:#d97706,stroke-width:3px,color:#ffffff
+    style Input stroke:#0891b2,stroke-width:2px,color:#ffffff
+    style ModelLib stroke:#0891b2,stroke-width:2px,color:#ffffff
+    style DataSeries stroke:#0891b2,stroke-width:2px,color:#ffffff
+    style System stroke:#16a34a,stroke-width:3px,color:#ffffff
+    style Params stroke:#16a34a,stroke-width:3px,color:#ffffff
+    style Lib1 stroke:#16a34a,stroke-width:3px,color:#ffffff
+    style Lib2 stroke:#3b82f6,stroke-width:2px,color:#ffffff
+    style Data1 stroke:#3b82f6,stroke-width:2px,color:#ffffff
+    style Data2 stroke:#3b82f6,stroke-width:2px,color:#ffffff
+    style Scenario stroke:#3b82f6,stroke-width:2px,color:#ffffff
 
     
     click ModelLib "../library/"
