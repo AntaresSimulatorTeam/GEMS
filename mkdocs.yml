@@ -96,7 +96,7 @@ plugins:
 nav:
   - Home:
       - Home: index.md
-      - Key Principles: home/core-concepts.md
+      - Key Principles: home/key-principles.md
       - Use Cases: home/use-cases.md
       - Users of GEMS: home/users.md
       - Release Notes: home/release-notes.md
