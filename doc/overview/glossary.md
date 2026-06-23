@@ -4,7 +4,7 @@ description: GEMS glossary - definitions of core concepts including libraries, m
 
 # Glossary
 
-This section is a glossary of the main concepts used by GEMS. For a detailed specification of each file, see the [User Guide - File Structure](../user-guide/file-structure/overview.md).
+This section is a glossary of the main concepts used by GEMS. For a detailed specification of each file, see the [file structure page](file-structure.md).
 
 ## Input Files
 
