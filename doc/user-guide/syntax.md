@@ -1,12 +1,12 @@
 ---
-description: Reference for GEMS mathematical expression syntax - operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
+description: Reference for GEMS expression syntax — operators, variables, parameters, port fields, linearity conditions, and time and scenario indexing mechanisms.
 ---
 
-# GEMS Mathematical Expression Syntax
+# GEMS Syntax
 
-[GEMS](../index.md) includes a **Mathematical Expression Syntax** that allows users to write equations for optimization problems in a clear, math-like syntax within specific configuration files. **Mathematical Expression Syntax** is independent of any programming code – model equations are specified as human-readable text, which [GEMS](../index.md) interprets to build the mathematical optimization problem.
+[GEMS](../index.md) includes an **Expression Syntax** that allows users to write equations for optimization problems in a clear, math-like syntax within specific configuration files. This syntax is independent of any programming code – model equations are specified as human-readable text, which [GEMS](../index.md) interprets to build the mathematical optimization problem.
 
-This section provides a description of the supported operators, linearity condition, the usage of parameters, variables, and ports in mathematical expressions, and the mechanisms for time and scenario indexing and aggregation.
+This section provides a description of the supported operators, linearity condition, the usage of parameters, variables, and ports in expressions, and the mechanisms for time and scenario indexing and aggregation.
 
 ## Basic Operators
 
@@ -65,7 +65,7 @@ expression: 3 * parameter_1 + 6.345 / parameter_2
 
 This would use the numeric value of `parameter_1` and `parameter_2` as provided in the system input data.
 
-Parameters can be time-dependent (having a separate value for each time step of the simulation horizon) or scenario-dependent (having different values under different scenario cases), or both. If a parameter is time-dependent, think of it as a series $p(t)$ over time; if scenario-dependent, as $p(s)$ varying by scenario; it can even be $p(t,s)$ if varying across both dimensions.
+Parameters can be time-dependent (having a separate value for each time step of the simulation horizon) or scenario-dependent (having different values under different scenario cases), or both. If a parameter is time-dependent, think of it as a series $p(t)$ over time; if scenario-dependent, as $p(s)$ varying by scenario; it can even be $p(t,s)$ if varying across both dimensions. See [Time Operators and Indexing](#time-operators-and-indexing) and [Scenario Operator](#scenario-operator) for how to write expressions involving such parameters.
 
 Parameters can be used freely in arithmetic operations. Since parameters are constants from the solver’s perspective (their values are fixed input), they may appear in linear or non-linear positions without violating linearity rules. For instance, multiplying two parameters or dividing by a parameter is allowed. However, dividing by a parameter that could be zero should be avoided, as this would create an undefined expression in some cases.
 
@@ -162,11 +162,17 @@ This is commonly used for cyclic constraints such as storage dynamics.
 expression: levels[t+1] = levels + injection - withdrawal
 ```
 
-Now, it can be concluded that terms `levels[T+1]` and `levels[0]` are reffering to the same variable.
+Now, it can be concluded that terms `levels[t+1]` and `levels[0]` are referring to the same variable.
 
 ### **Time summation (full horizon)** `sum(X)`
 
 Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. If *X* is defined for each time step from *0* to *T-1*, then `sum(X)` produces a single scalar equal to $\sum_{t=0}^{T-1} X_t$.
+
+!!! note "Difference `sum` from `sum_connections`"
+    - `sum(X)` : aggregate a time-dependent quantity **across time steps** (temporal summation).
+    - `sum_connections(port.field)` : aggregates a port field **across connected components** (structural summation). See [Port Operator](#port-operator).
+
+    For the full specification of these operators, see the [Antares Modeler Expressions reference](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/09-expressions/#time-operators).
 
 ### **Time summation (range)** `sum(S .. E, X)`
 

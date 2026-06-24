@@ -19,11 +19,15 @@ Explore how each library is written by navigating in the next interactive window
 
 *As the visualization is automatically updated with the newest libraries' version, the loading can last a few seconds*
 
-<div class="yaml-loader-container" id="yaml-loader-main" data-yaml-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-library-name="Basic Models Library">
+<!--
+  The JSON files are generated before each build by doc/hooks/yaml_to_json.py. 
+  They are not commited on the repo through gitignore.
+-->
+<div class="yaml-loader-container" id="yaml-loader-main" data-yaml-url="../../../assets/data/basic_models_library.json" data-library-name="Basic Models Library">
   <div class="yaml-library-selector">
-    <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/basic_models_library.yml" data-name="Basic Models Library">Basic Models Library</button>
-    <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/andromede_models.yml" data-name="Andromede Models">Andromede Models</button>
-    <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/antares_legacy_models.yml" data-name="Antares Legacy Models">Antares Legacy Models</button>
-    <button class="yaml-library-nav-btn" data-url="https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/libraries/pypsa_models.yml" data-name="PyPSA Models">PyPSA Models</button>
+    <button class="yaml-library-nav-btn" data-url="../../../assets/data/basic_models_library.json" data-name="Basic Models Library">Basic Models Library</button>
+    <button class="yaml-library-nav-btn" data-url="../../../assets/data/andromede_models.json" data-name="Andromede Models">Andromede Models</button>
+    <button class="yaml-library-nav-btn" data-url="../../../assets/data/antares_legacy_models.json" data-name="Antares Legacy Models">Antares Legacy Models</button>
+    <button class="yaml-library-nav-btn" data-url="../../../assets/data/pypsa_models.json" data-name="PyPSA Models">PyPSA Models</button>
   </div>
 </div>

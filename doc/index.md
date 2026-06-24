@@ -72,6 +72,8 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: Interpreters](./overview/gems-interpreters/gemspy.md)
 
+    [:octicons-arrow-right-24: Glossary](overview/glossary.md)
+
 -   :material-new-box:{ .lg .middle } **Release Notes**
 
     ---
@@ -124,7 +126,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Find here **Support** for using GEMS. How to **Contribute** to GEMS.
 
-    [:octicons-arrow-right-24: Support](./home/support.md)
+    [:octicons-arrow-right-24: Support](./support/contact.md)
 
     [:octicons-arrow-right-24: Contributing](support/contributing.md)
 

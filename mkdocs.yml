@@ -59,13 +59,15 @@ markdown_extensions:
       emoji_generator:
 
         !!python/name:material.extensions.emoji.to_svg ""
+hooks:
+  # Converts libraries/*.yml -> doc/assets/data/*.json before each build.
+  - doc/hooks/yaml_to_json.py
+
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  # YAML Dynamic Loader - Dependencies
-  - https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js
-  # YAML Dynamic Loader - Custom script
+  # yaml-loader.js uses JSON.parse() natively.
   - javascripts/yaml-loader.js
 
 extra_css:
@@ -100,7 +102,6 @@ nav:
       - Use Cases: home/use-cases.md
       - Users of GEMS: home/users.md
       - Release Notes: home/release-notes.md
-      - Support: home/support.md
   - Overview:
       - Architecture: overview/architecture.md
       - Glossary: overview/glossary.md
@@ -109,7 +110,7 @@ nav:
       - GEMS Interpreters:
           - GemsPy: overview/gems-interpreters/gemspy.md
           - Antares Simulator: overview/gems-interpreters/antares-simulator.md
-      - References:
+      - Classification of libraries of models:
           - Libraries of models: overview/references/libraries.md
           - Verifying GEMS Libraries: overview/references/verifying-libraries.md
           - Classification of models: overview/references/classification.md
@@ -127,7 +128,7 @@ nav:
         - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
-      - Mathematical Syntax: user-guide/mathematical-syntax.md
+      - GEMS Syntax: user-guide/syntax.md
       - File Structure:
           - Overview: user-guide/file-structure/overview.md
           - Library File: user-guide/file-structure/library.md
@@ -160,6 +161,9 @@ nav:
           - Limitations: interoperability/hybrid/limitations.md
   - Examples:
       - Adequacy Example: examples/adequacy-example.md
+      - Tutorial Notebooks:
+          - Overview: examples/notebooks-presentation.md
+          - Unit Commitment with GemsPy: examples/notebooks/tutorial-unit-commitment.ipynb
   - Support & Contributing:
       - FAQ: support/faq.md
       - Contact: support/contact.md

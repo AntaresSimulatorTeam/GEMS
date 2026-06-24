@@ -32,5 +32,5 @@ The [Examples section](../examples/adequacy-example.md) contains various use cas
 
 ### How do I report issues or get support?
 
-Visit the [Support & Contributing section](./contact.md) for contact information and support channels.
+Visit the [Support & Contributing section](./contributing.md) for contribution guidelines and support channels.
 
