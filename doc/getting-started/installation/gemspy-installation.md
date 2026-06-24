@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # GemsPy
 
 [GemsPy](https://gemspy.readthedocs.io/en/latest/) is a Python interpreter for GEMS that allows you to create, manipulate, and simulate energy system models.
@@ -18,8 +12,7 @@ This package requires:
 
 You can [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) by using `pip` installation :
 
-```bash
-# Install GemsPy package
+```shell
 pip install gemspy
 ```
 
@@ -41,14 +34,16 @@ It is recommended to create a **virtual environment** before installing [GemsPy]
 
     While working with GemsPy, activate the virtual environment:
 
-    - **Windows:**
-      ```
-      gemspy-env\Scripts\activate
-      ```
-    - **macOS/Linux:**
-      ```
-      source gemspy-env/bin/activate
-      ```
+    === "Windows"
+
+        ```powershell
+        gemspy-env\Scripts\activate
+        ```
+    === "MacOS/Linux"
+      
+        ```shell
+        source gemspy-env/bin/activate
+        ```
 
     When activated, the environment name will be visible in the terminal prompt:
 
@@ -59,13 +54,15 @@ It is recommended to create a **virtual environment** before installing [GemsPy]
 2. **Deactivate the Environment**
 
     Before working on another project, deactivate the environment:
-    ```
+
+    ```shell
     deactivate
     ```
 
 3. **Delete the Virtual Environment**
 
     If you need to completely remove a virtual environment:
+
     - Make sure it is deactivated first.
     - Delete the `gemspy-env` folder directly.
 

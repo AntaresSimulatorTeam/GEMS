@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Quick-start example 1: three-bus adequacy system
 
 ## Overview and problem description
@@ -17,60 +11,54 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 **Adequacy** is the ability of the electric grid to satisfy the end-user power demand at all times. The main challenge is to get the balance between the electric **Production** (generator, storage) and **Consumption** (load, spillage) while respecting the **limitations of the grid**.
 
 <p align="center">
-  <img src="../../assets/2_adequacy_scheme.png" alt="Adequacy Scheme" style="width:75%">
+  <img src="../../../assets/2_adequacy_scheme.png" alt="Adequacy Scheme" style="width:75%">
 </p>
 
 ### Problem description
 
 The following diagram represents the simulated [system](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
 <p align="center">
-  <img src="../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
+  <img src="../../../assets/2_QSE_1_Problem_definition.png" alt="Problem description" style="width:95%;">
 </p>
 
-??? info "Problem description in details"
+??? note "Problem description in detail"
 
     Time Horizon:
-    <ul>
-      <li> This example considers a single one-hour time step. </li>
-    </ul>
+
+    - This example considers a single one-hour time step.
 
     Network Components:
-    <ul>
-      <li>3 Buses (Regions 1, 2, 3 forming a triangle)</li>
-      <li>3 Links (connecting each pair of regions)</li>
-      <li>3 Generators (different capacities and costs)</li>
-      <li>3 Loads (fixed demands)</li>
-    </ul>
+
+    - 3 Buses (Regions 1, 2, 3 forming a triangle)
+    - 3 Links (connecting each pair of regions)
+    - 3 Generators (different capacities and costs)
+    - 3 Loads (fixed demands)
 
     In this example, the power flows on the links are constrained only by thermal capacities.
 
     Generation:
-    <ul>
-      <li><code>Generator 1</code> (Bus 1): 70-100 MW capacity, 35 €/MWh cost</li>
-      <li><code>Generator 2</code> (Bus 2): 50-90 MW capacity, 25 €/MWh cost</li>
-      <li><code>Generator 3</code> (Bus 3): 50-200 MW capacity, 42 €/MWh cost</li>
-    </ul>
+    - `Generator 1` (Bus 1): 70-100 MW capacity, 35 €/MWh cost
+    - `Generator 2` (Bus 2): 50-90 MW capacity, 25 €/MWh cost
+    - `Generator 3` (Bus 3): 50-200 MW capacity, 42 €/MWh cost
 
     Demand:
-    <ul>
-      <li>Bus 1: 50 MW</li>
-      <li>Bus 2: 40 MW</li>
-      <li>Bus 3: 150 MW</li>
-      <li>Total Load: 240 MW</li>
-    </ul>
+
+    - Bus 1: 50 MW
+    - Bus 2: 40 MW
+    - Bus 3: 150 MW
+    - Total Load: 240 MW
 
     Transmission Capacities:
-    <ul>
-      <li>Link 1-2: 40 MW (bidirectional)</li>
-      <li>Link 2-3: 30 MW (bidirectional)</li>
-      <li>Link 3-1: 50 MW (bidirectional)</li>
-    </ul>
+    
+    - Link 1-2: 40 MW (bidirectional)
+    - Link 2-3: 30 MW (bidirectional)
+    - Link 3-1: 50 MW (bidirectional)
 
     Economic Parameters:
-    <ul>
-      <li>Spillage cost: 1000 €/MWh (penalty for wasted energy)</li>
-      <li>Unsupplied energy cost: 10000 €/MWh (high penalty for unmet demand)</li>
-    </ul>
+
+    - Spillage cost: 1000 €/MWh (penalty for wasted energy)
+    - Unsupplied energy cost: 10000 €/MWh (high penalty for unmet demand)
+
 ## The GEMS study
 
 ### Files Structure
@@ -99,7 +87,7 @@ Simulation options can be configured in the `parameters.yml` file. For more deta
 The following diagram depicts the structural relationships between the [library file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) and the [system file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml):
 
 <p>
-  <img src="../../assets/2_QSE_1_system_complete.png" alt="complete diagram with ports" style="max-width:95%;">
+  <img src="../../../assets/2_QSE_1_system_complete.png" alt="Complete diagram with ports" style="max-width:95%;">
 </p>
 
 ???+ info "Library and System relations in details"
@@ -111,12 +99,10 @@ The following diagram depicts the structural relationships between the [library 
 
 ## Running the GEMS study with Antares Modeler
 
-<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
-  <strong>⚠️ Warning</strong><br>
-  <b>It's recommended to run this GEMS study with Antares Modeler or GemsPy</b>Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver. 
-  
- For more information about the hybrid mode of Antares Solver, see the <a href="../../interoperability/hybrid/">Hybrid Study</a> section.
-</div>
+!!! warning
+    It's recommended to run this GEMS study with Antares Modeler or GemsPy. Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver.
+
+    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/) section.
 
 1. Download [QSE_1_Adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy)
 2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_1_adequacy/input/model-libraries/`
@@ -167,7 +153,7 @@ The power flows between buses can be visualized as follows:
 
 System of the **Three-bus Adequacy** example relies on models defined in the GEMS library file [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries). These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimisation problem.
 
-The complete mathematical formulation corresponding to this example — including decision variables, parameters, objective function, and constraints — is detailed in the following document: **[detailed mathematical formulation and expressions](./adequacy-math-model.md)**.
+The complete mathematical formulation corresponding to this example - including decision variables, parameters, objective function, and constraints - is detailed in the following document: **[detailed mathematical formulation and expressions](./adequacy-math-model.md)**.
 
 ### System file configuration
 

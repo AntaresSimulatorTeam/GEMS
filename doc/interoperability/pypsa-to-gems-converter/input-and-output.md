@@ -1,27 +1,24 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-<div>
-<h1>Input and Output of the Converter</h1>
+# Input and Output of the Converter
 
-<h2>Input</h2>
-<p>The converter requires the following inputs:</p>
-<ul>
-  <li><strong>PyPSA network object</strong><br/>
-  The fully defined PyPSA network that will be converted into a GEMS-compatible study.</li>
-  <li><strong>Logger</strong><br/>
-  Used for debugging and tracing the conversion process. Logs can help identify configuration issues or data inconsistencies during conversion.</li>
-  <li><strong>Output path</strong><br/>
-  The directory where the generated GEMS study will be created.</li>
-  <li><strong>Time series file format</strong><br/>
-  Format used for exported time-dependent data (e.g. csv, tsv).</li>
-</ul>
+## Input
 
-<h2>Output</h2>
-<p>The converter generates a <strong>structured GEMS study directory</strong> at the provided output path.</p>
-<p>The directory layout follows the conventions expected by the GEMS modeler:</p>
+The converter requires the following inputs:
+
+- **PyPSA network object**  
+  The fully defined PyPSA network that will be converted into a GEMS-compatible study.
+- **Logger**  
+  Used for debugging and tracing the conversion process. Logs can help identify configuration issues or data inconsistencies during conversion.
+- **Output path**  
+  The directory where the generated GEMS study will be created.
+- **Time series file format**  
+  Format used for exported time-dependent data (e.g. csv, tsv).
+
+## Output
+
+The converter generates a **structured GEMS study directory** at the provided output path.
+
+The directory layout follows the conventions expected by the GEMS modeler:
+
 ```text
 study_directory/
 └── systems/
@@ -35,4 +32,5 @@ study_directory/
             └── data-series/       -------> Time and/or scenarion dependent parameters
                 └── ...
 ```
-</div>
+
+Each generated file follows the GEMS file structure conventions: see the [system file](../../user-guide/file-structure/system.md), [library file](../../user-guide/file-structure/library.md), [data series](../../user-guide/file-structure/data-series.md), and [solver parameters](../../user-guide/file-structure/solver-optimization.md) documentation for details on their format and content.

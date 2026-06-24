@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Coupling GEMS Components with Legacy Areas
 
 In a **hybrid study**, a `area-connection` between a GEMS component and a Legacy Area means that the component contributes to the energy balance at the given node, through a given port (field).
@@ -50,14 +44,13 @@ When connecting a component to an area, you must respect conventions on the sign
 | spillage-bound | Production |
 | unsupplied-energy-bound | Load |
 
-
-???+ info "Sign conventions for the `injection-to-balance`"
+??? note "Sign conventions for the `injection-to-balance`"
 
     - If you need to involve a **production**, make the expression **positive** (no `-` prefix):
 
         ```yaml
         port-field-definitions:
-          - port: balance_port
+        - port: balance_port
             field: flow_field
             definition: flat_production   # positive production
         ```
@@ -66,32 +59,33 @@ When connecting a component to an area, you must respect conventions on the sign
 
         ```yaml
         port-field-definitions:
-          - port: balance_port
+        - port: balance_port
             field: flow_field
             definition: -flat_load   # negative load
         ```
 
-???+ info "Sign conventions for the `spillage-bound`"
+??? note "Sign conventions for the `spillage-bound`"
 
     This connection is intended to limit the spillage optimization variable. The convention is the same as for the balance constraint: make the **production positive**, with no `-` prefix:
 
-    ```yaml
-    port-field-definitions:
-      - port: spillage_port
-        field: to-area-bound
-        definition: flat_production   # positive production
-    ```
+        ```yaml
+        port-field-definitions:
+        - port: spillage_port
+            field: to-area-bound
+            definition: flat_production   # positive production
+        ```
 
-???+ info "Sign conventions for the `unsupplied-energy-bound`"
+??? note "Sign conventions for the `unsupplied-energy-bound`"
 
     This connection is intended to limit the unsupplied energy optimization variable. Here, make the **load positive**, with no `-` prefix:
 
-    ```yaml
-    port-field-definitions:
-      - port: unsup_energy_port
-        field: from-area-bound
-        definition: flat_load   # positive load
-    ```
+        ```yaml
+        port-field-definitions:
+        - port: unsup_energy_port
+            field: from-area-bound
+            definition: flat_load   # positive load
+        ```
+
 
 ## Definition of the area-connections (in the [system](../../user-guide/file-structure/system.md) file)
 

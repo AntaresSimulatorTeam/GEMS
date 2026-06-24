@@ -1,33 +1,34 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-<div>
-<h1>How the Converter Works</h1>
-<p>The PyPSA to GEMS Converter transforms <a href="https://docs.pypsa.org/latest/api/networks/network/">PyPSA Network</a> into a <a href="https://gems-energy.readthedocs.io/en/latest/user-guide/file-structure/overview/">GEMS study folder</a>, through the following steps.</p>
+# How the Converter Works
 
-<h2 id="1-input-validation-and-preprocessing">1. <strong>Input Validation and Preprocessing</strong></h2>
-<p>The converter first validates that the PyPSA network meets the requirements for conversion.<br/>
-It performs necessary preprocessing steps such as normalizing component names, handling missing attributes, and ensuring data consistency.<br/>
-This stage ensures the input PyPSA model is <strong>compatible</strong> with the conversion process.</p>
+The PyPSA to GEMS Converter transforms [PyPSA Network](https://docs.pypsa.org/latest/api/networks/network/) into a [GEMS study folder](../../user-guide/file-structure/overview.md), through the following steps.
 
-<h2 id="2-component-registration-and-data-extraction">2. <strong>Component Registration and Data Extraction</strong></h2>
-<p>The converter identifies and extracts all relevant components from the PyPSA network, including both <strong>static (constant)</strong> and <strong>dynamic (time-dependent)</strong> parameters.<br/>
-It maps PyPSA-specific parameter names to their GEMS equivalents and organizes the data for conversion.</p>
+## 1. Input Validation and Preprocessing
 
-<h2 id="3-time-series-processing">3. <strong>Time Series Processing</strong></h2>
-<p>For parameters that vary over time, the converter extracts time series data and writes them to separate data files (<strong>CSV</strong> or <strong>TSV</strong> format).<br/>
-The converter handles both deterministic studies (single time series) and stochastic studies (multiple scenarios), maintaining the temporal structure of the original PyPSA model.</p>
+The converter first validates that the PyPSA network meets the requirements for conversion.
+It performs necessary preprocessing steps such as normalizing component names, handling missing attributes, and ensuring data consistency.
+This stage ensures the input PyPSA model is **compatible** with the conversion process.
 
-<h2 id="4-gems-component-generation">4. <strong>GEMS Component Generation</strong></h2>
-<p>Each PyPSA component is transformed into its corresponding GEMS representation.<br/>
-The converter creates GEMS components with appropriate parameters, distinguishing between constant values and time-dependent references.<br/>
-Connections between components (such as generators and loads connected to buses) are established through GEMS port connections.</p>
+## 2. Component Registration and Data Extraction
 
-<h2 id="5-global-constraints-handling">5. <strong>Global Constraints Handling</strong></h2>
-<p>If the PyPSA model includes global constraints (such as CO₂ emission limits), the converter identifies these and creates corresponding GEMS constraint components, linking them to the relevant system components.</p>
+The converter identifies and extracts all relevant components from the PyPSA network, including both **static (constant)** and **dynamic (time-dependent)** parameters.
+It maps PyPSA-specific parameter names to their GEMS equivalents and organizes the data for conversion.
 
-<h2 id="6-study-structure-generation">6. <strong>Study Structure Generation</strong></h2>
-<p>Finally, the converter generates the complete GEMS study structure.</p>
-</div>
+## 3. Time Series Processing
+
+For parameters that vary over time, the converter extracts time series data and writes them to separate data files (**CSV** or **TSV** format).
+The converter handles both deterministic studies (single time series) and stochastic studies (multiple scenarios), maintaining the temporal structure of the original PyPSA model.
+
+## 4. GEMS Component Generation
+
+Each PyPSA component is transformed into its corresponding GEMS representation.
+The converter creates GEMS components with appropriate parameters, distinguishing between constant values and time-dependent references.
+Connections between components (such as generators and loads connected to buses) are established through GEMS port connections.
+
+## 5. Global Constraints Handling
+
+If the PyPSA model includes global constraints (such as CO₂ emission limits), the converter identifies these and creates corresponding GEMS constraint components, linking them to the relevant system components.
+
+## 6. Study Structure Generation
+
+Finally, the converter generates the complete GEMS study structure.
+

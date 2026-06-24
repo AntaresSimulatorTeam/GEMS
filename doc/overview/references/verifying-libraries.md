@@ -1,12 +1,6 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Verifying GEMS Libraries
 
-Users may accidentaly modify a library file or download a corrupted version. Verifying the file's integrity against an official SHA-256 hash ensures:
+Users may accidentaly modify a [library file](../../user-guide/file-structure/library.md) or download a corrupted version from the [reference libraries](libraries.md). Verifying the file's integrity against an official SHA-256 hash ensures:
 
 - The file has not been modified
 - Simulation results are reproducible
@@ -15,7 +9,8 @@ Users may accidentaly modify a library file or download a corrupted version. Ver
 ## What is a SHA-256 hash?
 
 A SHA-256 hash is a unique fingerprint of a file. 
-- Any change — even a single character — produces a completely different hash. 
+
+- Any change - even a single character - produces a completely different hash. 
 - Identical files always produce the same hash.
 
 ## Where to find the official hash

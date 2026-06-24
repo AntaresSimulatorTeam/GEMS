@@ -383,7 +383,6 @@
     function renderGEMSLibrary(data, container) {
         // Preserve the library selector if it exists
         const selector = container.querySelector('.yaml-library-selector');
-        const yamlUrl = container.getAttribute('data-yaml-url');
         container.innerHTML = '';
         
         // Re-add the selector if it existed
@@ -413,10 +412,13 @@
         libButton.setAttribute('aria-expanded', 'true');
         libLevel1.appendChild(libButton);
         
-        // GitHub link button next to library name
-        if (yamlUrl) {
+        // GitHub link button next to library name.
+        // _github_url is injected at build time by doc/hooks/yaml_to_json.py into
+        // every JSON asset, so we read it directly instead of reconstructing it by
+        // string-replacing the asset URL (which would break for non-raw.githubusercontent paths).
+        if (data._github_url) {
             const githubLink = document.createElement('a');
-            githubLink.href = yamlUrl.replace('raw.githubusercontent.com', 'github.com').replace('/main/', '/blob/main/');
+            githubLink.href = data._github_url;
             githubLink.target = '_blank';
             githubLink.rel = 'noopener noreferrer';
             githubLink.className = 'yaml-github-link-btn';
@@ -1032,55 +1034,44 @@
     }
 
     /**
-     * Loads and parses a YAML file from a URL
-     * @param {string} yamlUrl - URL of the raw YAML file (raw.githubusercontent.com)
-     * @returns {Promise} YAML string on success, throws error otherwise
+     * Fetches a pre-built JSON asset and returns its raw text.
+     *
+     * Returning raw text (rather than a parsed object) lets the caller (loadYAML)
+     * own the JSON.parse() call and keeps the localStorage cache simple: we store
+     * text strings and avoid serialising a parsed object a second time.
+     *
+     * The JSON files are generated before each build by doc/hooks/yaml_to_json.py
+     * from the YAML sources in libraries/ and served as static assets by MkDocs.
+     *
+     * @param {string} jsonUrl - Relative URL of the JSON asset (e.g. ../../../assets/data/foo.json)
+     * @returns {Promise<string>} Raw JSON text on success, throws on network or HTTP error
      */
-    async function fetchYAML(yamlUrl) {
+    async function fetchJSON(jsonUrl) {
         try {
             // Try to get from cache first
-            const cached = getFromCache(yamlUrl);
+            const cached = getFromCache(jsonUrl);
             if (cached) {
                 return cached;
             }
 
-            const response = await fetch(yamlUrl);
-            
+            const response = await fetch(jsonUrl);
+
             if (!response.ok) {
                 throw new Error(`HTTP Error ${response.status}: ${response.statusText}`);
             }
 
             const text = await response.text();
-            
+
             if (!text.trim()) {
-                throw new Error('The YAML file is empty.');
+                throw new Error('The JSON file is empty.');
             }
 
             // Save to cache
-            saveToCache(yamlUrl, text);
+            saveToCache(jsonUrl, text);
 
             return text;
         } catch (error) {
-            throw new Error(`Unable to load YAML file: ${error.message}`);
-        }
-    }
-
-    /**
-     * Parses a YAML string into a JavaScript object
-     * Requires the js-yaml library
-     * @param {string} yamlString - Content of the YAML file
-     * @returns {Object} Parsed data
-     */
-    function parseYAML(yamlString) {
-        if (typeof jsyaml === 'undefined') {
-            throw new Error('The js-yaml library is not loaded. Check that js-yaml.js is included in mkdocs.yml.');
-        }
-
-        try {
-            const data = jsyaml.load(yamlString);
-            return data;
-        } catch (error) {
-            throw new Error(`Error during YAML parsing: ${error.message}`);
+            throw new Error(`Unable to load JSON file: ${error.message}`);
         }
     }
 
@@ -1220,27 +1211,27 @@
     }
 
     /**
-     * Main function: loads and displays YAML content
+     * Main function: loads and displays library content from a pre-built JSON asset
      * @param {HTMLElement} container - HTML container to display content
-     * @param {string} yamlUrl - URL of the YAML file
+     * @param {string} jsonUrl - URL of the JSON file (relative path to static asset)
      */
-    async function loadYAML(container, yamlUrl) {
+    async function loadYAML(container, jsonUrl) {
         const libraryName = container.getAttribute('data-library-name') || 'YAML';
-        
+
         // Show loading state with spinner
         displayLoadingSpinner(container, libraryName);
 
         try {
             // Validate the URL
-            if (!yamlUrl || typeof yamlUrl !== 'string') {
-                throw new Error('Invalid YAML file URL.');
+            if (!jsonUrl || typeof jsonUrl !== 'string') {
+                throw new Error('Invalid JSON file URL.');
             }
 
-            // Load the YAML file
-            const yamlString = await fetchYAML(yamlUrl);
+            // Load the JSON file (served as a static asset; generated at build time)
+            const jsonText = await fetchJSON(jsonUrl);
 
-            // Parse the YAML
-            let data = parseYAML(yamlString);
+            // JSON.parse is a native browser built-in — no third-party parser required.
+            let data = JSON.parse(jsonText);
 
             // Validate structure and determine type
             const validation = validateYAMLStructure(data);

@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-    <a href="../../../..">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </a>
-</div>
-
 # Taxonomy
 
 The **Taxonomy** defines a shared classification of GEMS models. It is used to organize models and components according to their functional role within the described energy systems. Each model declares a `taxonomy-group` (for example `production`, `consumption`, `storage`, or `balance`) that describes how its components participate in the overall system architecture. This classification is structural and descriptive, and does not define any calculations, constraints, or result aggregation by itself.  

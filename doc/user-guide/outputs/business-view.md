@@ -1,14 +1,8 @@
-<div style="display: flex; justify-content: flex-end;">
-    <a href="../../../..">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </a>
-</div>
-
 # Business Views
 
 ## What are Business Views?
 
-**Business Views** are result tables designed to meet business-user expectations. Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
+**Business Views** are result tables designed to meet business-user expectations. Each Business View exposes a set of Business Variables, which define the columns of the resulting tables. Their computation is configured through [Business View Configuration Files](../file-structure/business-view-configuration.md), which operate on data from the [Simulation Table](simulation-table.md).
 
 **The generation of Business View is still under active development in GEMS interpreters.**
 ## Business Views & advanced (graphical) representation
