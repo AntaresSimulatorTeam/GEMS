@@ -709,7 +709,7 @@ test = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "gemspy", specifier = "==0.1.0" },
+    { name = "gemspy", specifier = "==0.1.2" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pandas", specifier = ">=2.2.3" },
@@ -721,7 +721,7 @@ dev = [
     { name = "yamllint", specifier = ">=1.35.1" },
 ]
 doc = [
-    { name = "gemspy", specifier = "==0.1.0" },
+    { name = "gemspy", specifier = "==0.1.2" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mkdocs" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
@@ -731,7 +731,7 @@ doc = [
     { name = "mkdocs-redirects" },
 ]
 test = [
-    { name = "gemspy", specifier = "==0.1.0" },
+    { name = "gemspy", specifier = "==0.1.2" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pytest", specifier = ">=7.0.1" },
