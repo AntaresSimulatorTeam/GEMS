@@ -76,7 +76,7 @@ Instructions to run this GEMS study with [Antares Simulator](https://github.com/
 
     1. Download [QSE_2_unit_commitment](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_2_unit_commitment)
     1. Copy [`antares_legacy_models.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/antares_legacy_models.yml) into the `QSE_2_unit_commitment/input/model-libraries/`
-    1. Get Antares Modeler installed through this [tutorial](../installation/modeler-installation.md)
+    1. Get Antares Modeler installed through this [tutorial](../installation/gemspy-installation.md)
     1. Locate **bin** folder
     1. Open the terminal
     1. Run these command lines:
