@@ -19,6 +19,8 @@ This document defines the **standard development, branching, versioning, CI/CD, 
 
 This project uses [uv](https://docs.astral.sh/uv/getting-started/installation/) for dependency management.
 
+> **Rule:** Whenever you change dependencies in `pyproject.toml`, regenerate the lock file with `uv lock` and commit the updated `uv.lock` in the same PR. The lock file must always be in sync with `pyproject.toml`.
+
 ### GEMS setup
 
 ```bash
