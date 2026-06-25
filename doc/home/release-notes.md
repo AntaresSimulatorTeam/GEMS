@@ -6,6 +6,30 @@
 
 # Release Notes
 
+## v0.3.4 | *25-06-2026*
+
+### Added
+
+* Add a tutorial using the [PyPSA-eur dataset](https://pypsa-eur.readthedocs.io/en/latest/) ([PR37](https://github.com/AntaresSimulatorTeam/GEMS/pull/94))
+
+* Add an investment jupyter notebook ([PR51](https://github.com/AntaresSimulatorTeam/GEMS/pull/135))
+
+### Changed
+
+
+* Bump Antares Simulator version to v10.1.0 ([#160](https://github.com/AntaresSimulatorTeam/GEMS/pull/160))
+
+* Replace requirements txt file with uv lock ([#163](https://github.com/AntaresSimulatorTeam/GEMS/pull/163))
+
+* Chore CICD - Path Blocker ([#169](https://github.com/AntaresSimulatorTeam/GEMS/pull/169))
+
+* Rename sha256 files to follow <library>.yml.sha256 convention by ([#165](https://github.com/AntaresSimulatorTeam/GEMS/pull/165))
+
+* Bump documentation on GemsPy from v0.10 to v0.12 ([#161](https://github.com/AntaresSimulatorTeam/GEMS/pull/161))
+
+* Improve formatting ([#151](https://github.com/AntaresSimulatorTeam/GEMS/pull/151))
+
+
 ## v0.3.3 | *10-06-2026*
 
 ### Added
