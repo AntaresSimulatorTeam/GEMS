@@ -3,11 +3,11 @@
     <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
   </a>
 </div>
-<div>
-<h1>Step-by-Step Guide: Manually Executing a Simulation in GEMS Modeler</h1>
 
-<ol>
-<li><strong>Build or load a PyPSA network</strong>
+# Step-by-Step Guide: Manually Executing a Simulation in GEMS Modeler
+
+## Build or load a PyPSA network
+
 ```python
 # Setup
 logger = logging.getLogger(__name__)
@@ -22,9 +22,9 @@ network.add("Generator", "gen1", bus="bus1", p_nom=100, marginal_cost=50)
 # Option B: load the network from a file
 network = Network("simple_network.nc")  # Absolute path to the PyPSA file
 ```
-</li>
 
-<li><strong>Convert the PyPSA network to a GEMS study</strong>
+## Convert the PyPSA network to a GEMS study
+
 ```python
 # Convert PyPSA network to GEMS
 converter = PyPSAStudyConverter(
@@ -33,9 +33,9 @@ converter = PyPSAStudyConverter(
     series_file_format=".tsv",  # Supported formats: .tsv, .csv, tsv, csv
 ).to_gems_study()
 ```
-</li>
 
-<li><strong>Run the GEMS(Antares) optimization</strong>
+## Run the GEMS (Antares) optimization
+
 ```python
 # Path to the Antares modeler binary
 modeler_bin = Path("antares-9.3.5-Ubuntu-22.04/bin/antares-modeler")
@@ -46,6 +46,3 @@ subprocess.run([
     str(study_dir / "systems")
 ])
 ```
-</li>
-</ol>
-</div>
