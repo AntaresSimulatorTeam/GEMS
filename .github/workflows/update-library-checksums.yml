@@ -5,8 +5,6 @@ on:
     branches:
       - 'release/**'
       - 'hotfix/**'
-    paths:
-      - 'libraries/*.yml'
   workflow_dispatch:
 
 permissions:
