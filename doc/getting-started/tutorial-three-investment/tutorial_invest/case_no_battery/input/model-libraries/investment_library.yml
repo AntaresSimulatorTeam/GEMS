@@ -1,0 +1,203 @@
+# Copyright (c) 2026, RTE (https://www.rte-france.com)
+#
+# See AUTHORS.txt
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+# This file is part of the Antares project.
+library:
+  id: investment_library
+  description: "Library for the investment tutorial jupyter notebook"
+
+
+  port-types:
+    - id: flow
+      description: A port that transfers a power flow.
+      fields:
+        - id: flow
+    - id: energy
+      description: A port that transfers an amount of energy.
+      fields:
+        - id: cumulative_energy
+    - id: emission
+      description: A port that transfers quantities of gas emissions.
+      fields:
+        - id: co2
+
+  models:
+    - id: bus
+      parameters:
+        - id: spillage_cost
+        - id: unsupplied_energy_cost
+      variables:
+        - id: spillage
+          lower-bound: 0
+          variable-type: continuous
+        - id: unsupplied_energy
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(balance_port.flow) = spillage - unsupplied_energy
+      objective-contributions:
+        - id: objective
+          expression: sum(spillage_cost * spillage + unsupplied_energy_cost * unsupplied_energy)
+    - id: load
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: -load
+
+    - id: renewable
+      parameters:
+        - id: generation
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+
+    - id: generator
+      parameters:
+        - id: p_min
+          scenario-dependent: false
+          time-dependent: false
+        - id: p_max
+          scenario-dependent: false
+          time-dependent: false
+        - id: generation_cost
+          scenario-dependent: false
+          time-dependent: false
+        - id: co2_emission_factor
+          scenario-dependent: false
+          time-dependent: false
+      variables:
+        - id: generation
+          lower-bound: p_min
+          upper-bound: p_max
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+        - id: energy_port
+          type: energy
+        - id: emission_port
+          type: emission
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+        - port: energy_port
+          field: cumulative_energy
+          definition: sum(generation)
+        - port: emission_port
+          field: co2
+          definition: sum(generation * co2_emission_factor)
+      objective-contributions:
+        - id: objective
+          expression: sum(generation_cost * generation)
+
+    - id: candidate_generator
+      parameters:
+        - id: investment_cost      
+          time-dependent: false
+          scenario-dependent: false
+        - id: generation_cost      
+          time-dependent: false
+          scenario-dependent: false
+      variables:
+        - id: p_installed          
+          time-dependent: false   
+          scenario-dependent: false 
+          lower-bound: 0
+          variable-type: continuous
+        - id: generation          
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+      constraints:
+        - id: capacity_limit
+          expression: generation <= p_installed
+      objective-contributions:
+        - id: investment_cost_installation
+          expression: p_installed * investment_cost
+        - id: expected_operating_cost
+          expression: sum(generation_cost * generation)
+
+    - id: candidate_storage
+      parameters:
+        - id: investment_cost
+          time-dependent: false
+          scenario-dependent: false
+        - id: duration
+          time-dependent: false
+          scenario-dependent: false
+        - id: efficiency_injection
+          time-dependent: false
+          scenario-dependent: false
+        - id: efficiency_withdrawal
+          time-dependent: false
+          scenario-dependent: false
+        - id: initial_level
+          time-dependent: false
+          scenario-dependent: true
+      variables:
+        - id: p_installed
+          time-dependent: false
+          scenario-dependent: false
+          lower-bound: 0
+          variable-type: continuous
+        - id: p_injection
+          lower-bound: 0
+          variable-type: continuous
+        - id: p_withdrawal
+          lower-bound: 0
+          variable-type: continuous
+        - id: level
+          lower-bound: 0
+          variable-type: continuous
+      ports:
+        - id: injection_port
+          type: flow
+      port-field-definitions:
+        - port: injection_port
+          field: flow
+          definition: p_withdrawal - p_injection
+      constraints:
+        - id: injection_limit
+          expression: p_injection <= p_installed
+        - id: withdrawal_limit
+          expression: p_withdrawal <= p_installed
+        - id: level_limit
+          expression: level <= duration * p_installed
+        - id: initial_level_constraint
+          expression: level[0] = initial_level
+        - id: level_equation
+          expression: level[t+1] = level[t] + efficiency_injection * p_injection - efficiency_withdrawal * p_withdrawal
+      objective-contributions:
+        - id: investment_cost_installation
+          expression: p_installed * investment_cost

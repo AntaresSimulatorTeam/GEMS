@@ -24,6 +24,9 @@ class EnvironmentPaths:
     tutorial_notebook_path: Path
     tutorial_library_dir: Path
 
+    tutorial_investment_notebook_path: Path
+    tutorial_investment_doc_path: Path
+
     antares_root: Path
     antares_solver_bin: Path
     antares_modeler_bin: Path
@@ -72,6 +75,17 @@ def get_paths() -> EnvironmentPaths:
         / "unit-commitment-with-gemspy"
     )
 
+    tutorial_investment_notebook_path = (
+        repo_root
+        / "doc"
+        / "getting-started"
+        / "tutorial-three-investment"
+        / "tutorial-invest.ipynb"
+    )
+    tutorial_investment_doc_path = (
+        repo_root / "doc" / "getting-started" / "tutorial-three-investment" / "tutorial_invest"
+    )
+
     antares_version = _read_antares_version(repo_root)
     antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
     antares_solver_bin = antares_root / "bin" / "antares-solver"
@@ -87,6 +101,8 @@ def get_paths() -> EnvironmentPaths:
         tutorial_doc_examples_path=tutorial_doc_examples_path,
         tutorial_notebook_path=tutorial_notebook_path,
         tutorial_library_dir=tutorial_library_dir,
+        tutorial_investment_notebook_path=tutorial_investment_notebook_path,
+        tutorial_investment_doc_path=tutorial_investment_doc_path,
         antares_root=antares_root,
         antares_solver_bin=antares_solver_bin,
         antares_modeler_bin=antares_modeler_bin,
