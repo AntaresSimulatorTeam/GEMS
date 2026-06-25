@@ -127,7 +127,7 @@ nav:
           - PyPSA-Eur in GEMS format: getting-started/quick-start/pypsa-eur.md
       - Tutorial Notebooks:
         - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
-        - Investment Optimization with GemsPy: getting-started/tutorial-investment/tutorial-investment.ipynb
+        - Investment Optimization with GemsPy: getting-started/tutorial-three-investment/tutorial-invest.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - Mathematical Syntax: user-guide/mathematical-syntax.md
