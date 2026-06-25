@@ -56,9 +56,9 @@ The system file describes the energy system to be simulated. Each component defi
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique identifier for the component within this system. Must follow the [naming rules](library.md#rules-for-id-naming).|
-| `model` | String | Specifies which model this component instantiates. The format is `library_id.model_id`.|
+| `model` | String | Specifies which model this component instantiates. The format is `library_id.model_id`, combining the library `id` and the model `id` as defined in the [library file](../library#models).|
 |`scenario-group`| String | *(Optional)* The `id` of the scenario group this component belongs to. Used to map Monte Carlo scenarios to data series columns via the [scenario builder](scenario-builder.md).|
-|`parameters`| List | *(Optional)* Collection of values assigned to the model’s parameters. All parameters defined by the model must be assigned a value.|
+|`parameters`| List | *(Optional)* Collection of values assigned to the model’s parameters. All [parameters defined by the model](../library#parameters) must be assigned a value.|
 
 ### Parameters
 
@@ -77,6 +77,29 @@ For each parameter, the `value` field should be defined as follows:
 
 - Otherwise (when at least one of `time-dependent` or `scenario-dependent` is `true`), the `id` of a data series stored in the `data-series` directory. See [data series](./data-series.md) for file format details.
 
+### Properties 
+
+(Optional) These `properties` add extra-information for downstream tasks (Views building, visualisation). If a key is declared in the model, this key and its value should be declared in the related component. Other (key,value) pairs are allowed in the component. 
+
+Each property entry contains:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | The property key name, matching one declared in the [model's properties](../library#properties). |
+| `value` | String | The value assigned to this property key for this component. |
+
+```yaml
+system:
+  components:
+    - id: nuclear_1
+      model: basic.generator
+      properties:
+        - id: technology
+          value: nuclear
+        - id: company
+          value: frenchpower
+```
+
 ## Connections
 
 A list of connections between component ports. Each connection entry defines a link between two components’ ports, allowing them to interact.
@@ -90,7 +113,6 @@ A list of connections between component ports. Each connection entry defines a l
 
 The two ports being connected must be of the same port type.
 
-Port `connections` determine how linear expressions are exchanged between components. If a model defines a port only in the ports section, it acts as a **receiver** for that port and collects linear expressions emitted by connected components. A typical example is a **bus** model, which receives flow expressions from connected components (generators, load etc.).
+Port `connections` determine how linear expressions are exchanged between components. If a model defines a [port](../library#ports) only in the ports section, it acts as a **receiver** for that port and collects linear expressions emitted by connected components. A typical example is a **bus** model, which receives flow expressions from connected components (generators, load etc.).
 
-If a model additionally defines **port-field-definitions**, it acts as an **emitter** for that port. In this case, the model exposes linear expressions through the port, allowing connected receiver component to consume them. A common example is a generator model, which emits it's `generation` variable to connected bus component.
-
+If a model additionally defines [**port-field-definitions**](../library#port-field-definition), it acts as an **emitter** for that port. In this case, the model exposes linear expressions through the port, allowing connected receiver component to consume them. A common example is a generator model, which emits it's `generation` variable to connected bus component.
