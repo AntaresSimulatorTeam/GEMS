@@ -418,10 +418,10 @@ The workflow requires: `GEMS_REPO_PAT`, `ANTARES_LEGACY_CONVERTER_PAT`, and `GEM
 
 When a cross-repo notification issue is opened in GEMS (via `notify-gems-pypsa-models-update` or `notify-gems-antares-legacy-models-update`), follow these steps to copy the updated library into GEMS safely:
 
-1. In the converter repository, locate the authoritative `.yml` and `.yml.sha256` files produced by the `update-library-checksums` workflow on the converter's release branch.
-2. Copy both files byte-for-byte into `GEMS/libraries/` — do **not** regenerate the hash locally with `sha256sum`. The stored hash must match the converter's exact file byte-for-byte including line endings.
+1. In the converter repository, locate the three authoritative files: the library `.yml`, its `.yml.sha256` (produced by the `update-library-checksums` workflow on the converter's release branch), and the library `CHANGELOG-<library>.md`.
+2. Copy all three files byte-for-byte into `GEMS/libraries/` — do **not** regenerate the hash locally with `sha256sum`. The stored hash must match the converter's exact file byte-for-byte including line endings. The converter is the source of truth for these libraries; no further edits are needed in GEMS.
 3. Verify: `sha256sum GEMS/libraries/<library>.yml` must match the content of `GEMS/libraries/<library>.yml.sha256`.
-4. Commit both files together. Do not commit one without the other.
+4. Commit the three files together. Do not commit one without the others.
 5. Close the notification issue once the GEMS PR is merged.
 
 > **Checksum file naming:** All SHA256 files must follow the `<library>.yml.sha256` convention — the `.yml` extension is part of the checksum filename, making it unambiguous which file was hashed.
