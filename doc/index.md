@@ -17,7 +17,7 @@ GEMS is a high-level modelling language, close to mathematical syntax, and a dat
 The ambition behind the GEMS language is to **build and support a community of energy modellers and energy foresight practitioners** who can easily share models, assumptions, and studies. This approach is particularly important as future energy systems are increasingly conceived in a **multi-energy, multi-sector landscape**, characterised by rising complexity and tightly coupled interactions between energy carriers and sectors.
 
 <div align="center">
-    <img src="./assets/Communaute.jpg" alt="GEMS Logo" width="150px"/>
+    <img src="./assets/community.jpg" alt="GEMS Logo" width="150px"/>
 </div>
 
 GEMS has the key attributes required to support and sustain such a community.
