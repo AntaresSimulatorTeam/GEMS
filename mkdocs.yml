@@ -140,6 +140,7 @@ nav:
           - Solver parameters and optimization configuration files: user-guide/input-files/solver-optimization.md
           - Taxonomy File: user-guide/input-files/taxonomy.md
           - Views configuration: user-guide/input-files/view-configuration.md
+          - Catalog: user-guide/input-files/catalog.md
       - Theoretical Concepts:
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
