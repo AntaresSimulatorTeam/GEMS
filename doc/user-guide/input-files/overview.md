@@ -4,7 +4,7 @@
   </a>
 </div>
 
-# File Structure
+# Input Files
 
 This section provides a high-level overview of the specific files used by [**GEMS framework**](../../index.md) and how they collectively describe a complete GEMS study.
 
