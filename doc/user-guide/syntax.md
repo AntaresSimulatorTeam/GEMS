@@ -276,20 +276,31 @@ expression: parameter_1 < max(parameter_2, 100)
 expression: min(variable_1, parameter_1)
 ```
 
-### Floor/Ceil Operators
+### Floor/Ceil/Abs/Round Operators
 
-These unary operators `floor(X)` and `ceil(X)` are used within any expression, but with the following restrictions:
+These unary operators `floor(X)`, `ceil(X)`, `abs(X)`, and `round(X)` (round-half-to-even) are used within any expression, but with the following restrictions:
 
-  When `X` is time-dependent (a parameter, variable, or port field with time dimension), the operators apply pointwise on the underlying time-series. 
+  When `X` is time-dependent (a parameter, variable, or port field with time dimension), the operators apply pointwise on the underlying time-series.
 
-  In the context of a linear problem construction (any context but **extra-output**), the argument of
-`floor` or `ceil` must not depend on decision variables
+  In the context of a linear problem construction (any context but **extra-output**), the argument of `floor`, `ceil`, `abs`, or `round` must not depend on decision variables.
 
 ```yaml
 expression: floor(parameter_1 * 2)
 
 expression: ceil(parameter_1 / 2)
+
+expression: abs(parameter_1 - parameter_2)
+
+expression: round(parameter_1 / 3)
 ```
 
+In the context of **extra-output**, the argument can include decision variables since they are evaluated after solving.
 
+```yaml
+expression: abs(variable_1 - parameter_1)
+
+expression: round(variable_1 / parameter_1)
+```
+
+`round(X)` uses round-half-to-even (banker's rounding), consistent with Python 3 and NumPy behaviour.
 

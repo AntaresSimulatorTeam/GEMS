@@ -1,7 +1,9 @@
 docs_dir: doc
+repo_name: GEMS
 exclude_docs: |
   documentation_env/
-  getting-started/tutorial-two-pypsa-eur/*
+  getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
+  getting-started/tutorial-two-pypsa-eur/tutorial_pypsa_eur.ipynb
 site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy system Modelling Schema) is a
@@ -40,10 +42,10 @@ theme:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - admonition
-  - pymdownx.details
   - attr_list
   - md_in_html
+  - admonition
+  - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
   - footnotes
@@ -126,6 +128,9 @@ nav:
               - Mathematical Formulation: getting-started/quick-start/adequacy-math-model.md
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
           - PyPSA-Eur in GEMS format: getting-started/quick-start/pypsa-eur.md
+      - Tutorial Notebooks:
+        - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
+        - Investment Optimization with GemsPy: getting-started/tutorial-three-investment/tutorial-invest.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - GEMS Syntax: user-guide/syntax.md
@@ -142,7 +147,7 @@ nav:
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md
-          - Optimization Problem files: user-guide/outputs/optimization-problem-files.md
+          - Optimization Problem Files: user-guide/outputs/optimization-problem-files.md
           - Business View: user-guide/outputs/business-view.md
   - Interoperability:
       - PyPSA to GEMS Converter:
@@ -168,4 +173,4 @@ nav:
       - FAQ: support/faq.md
       - Contact: support/contact.md
       - Contributing: support/contributing.md
-      - Developer Guideline: support/dev-guidelines.md
+      - Developer Guidelines: support/dev-guidelines.md

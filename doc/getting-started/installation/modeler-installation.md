@@ -48,9 +48,15 @@ After extraction, navigate to the `bin` folder inside the extracted directory. Y
 **Antares Modeler** is currently a command-line–only tool with no graphical interface yet. It is used for launching studies with full GEMS syntax.
 **Antares Solver** is designed for running Antares legacy study and hybrid studies comprising a mix of legacy and Gems models.
 
-<div style="overflow: hidden;">
-  <img src="../../../assets/2_Modeler_bin.png" alt="ScreenShoot of bin folder" style="weigth: 100%; object-fit: contain;"/>
-</div>
+```txt
+cmake\
+pkgconfig\
+antares-batchrun.exe
+antares-config.exe
+antares-modeler         # GEMS studies
+antares-solver          # hybrid and legacy studies
+antares-study-finder
+```
 
 ### Launch the resolution of a GEMS study
 
@@ -70,7 +76,7 @@ Let’s check if Modeler is working correctly.
 
 - **Download the example study:**
 
-  Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
+    Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
 - **Run simulation:**
 
@@ -86,11 +92,35 @@ Let’s check if Modeler is working correctly.
 
 - **Check for success:**
 
-  If you see logs like these, Modeler works correctly !
+    If you see logs like these, Modeler works correctly !
 
-  Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
+    Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
 
-  ![Modeler installation test logs](../../assets/2_Modeler_logs.png)
+    ```txt
+    [2025-12-16 14:35:48][modeler][infos] Study path: QSE_1_Adequacy/
+    [2025-12-16 14:35:48][modeler][infos] Parameters loaded
+    [2025-12-16 14:35:48][modeler][infos] Loading modeler files...
+    [2025-12-16 14:35:48][modeler][infos] Library loaded: basic_models_library
+    [2025-12-16 14:35:48][modeler][infos] Libraries loaded
+    [2025-12-16 14:35:48][modeler][infos] Optim config file not found at QSE_1_Adequacy/input/optim-config.yml
+    [2025-12-16 14:35:48][modeler][infos] System loaded
+    [2025-12-16 14:35:48][modeler][infos] Data-series could not be loaded: Not a directory: QSE_1_Adequacy/input/data-series
+    [2025-12-16 14:35:48][modeler][infos] Timeseries loaded
+    [2025-12-16 14:35:48][modeler][infos] No scenario builder found, skipping scenario groups loading.
+    [2025-12-16 14:35:48][modeler][infos] Scenario groups loaded
+    [2025-12-16 14:35:48][modeler][infos] Modeler loaded in 0.003 s
+    [2025-12-16 14:35:48][modeler][infos] linear problem of System loaded
+    [2025-12-16 14:35:48][modeler][infos] Linear problem provided
+    [2025-12-16 14:35:48][modeler][infos] Number of variables: 18
+    [2025-12-16 14:35:48][modeler][infos] Number of constraints: 6
+    [2025-12-16 14:35:48][modeler][infos]
+    [2025-12-16 14:35:48][modeler][infos] Modeler build took 0.002 s
+    [2025-12-16 14:35:48][modeler][infos] Output folder : QSE_1_Adequacy/output
+    [2025-12-16 14:35:48][modeler][infos] Launching resolution...
+    [2025-12-16 14:35:48][modeler][infos] Solved in 0.001 s
+    [2025-12-16 14:35:48][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--20251216-1435.csv
+    [2025-12-16 14:35:48][modeler][infos] Simulation Table is generated in 0 ms
+    ``` 
 
 ### Launch the resolution of an Hybrid study
 

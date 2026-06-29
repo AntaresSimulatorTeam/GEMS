@@ -20,6 +20,57 @@ from .env import EnvironmentPaths
 logger = logging.getLogger(__name__)
 
 
+# Common function to extract values from notebooks
+def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> float:
+    """Extract the Nth GEMS objective value from a pre-executed notebook's cell outputs.
+
+    Scans code-cell outputs for lines matching 'Objective value (total system cost): <number> €' and returns the value at simulation_index (0-based).
+    """
+    with notebook_path.open(encoding="utf-8") as f:
+        notebook = json.load(f)
+
+    objectives = []
+    for cell in notebook["cells"]:
+        if cell["cell_type"] != "code":
+            continue
+        for output in cell.get("outputs", []):
+            text = "".join(output.get("text", []))
+            match = re.search(r"Objective value[^:]*:\s*([\d,]+(?:\.\d+)?(?:[eE][+-]?\d+)?)", text)
+            if match:
+                objectives.append(float(match.group(1).replace(",", "")))
+
+    if simulation_index >= len(objectives):
+        raise ValueError(
+            f"simulation_index {simulation_index} out of range: "
+            f"found {len(objectives)} objective(s) in {notebook_path}"
+        )
+
+    return objectives[simulation_index]
+
+
+def get_notebook_p_installed(notebook_path: Path, candidate: str, match_index: int = 0) -> float:
+    """Return the Nth p_installed value for a given candidate from a pre-executed notebook."""
+    with notebook_path.open(encoding="utf-8") as f:
+        notebook = json.load(f)
+
+    pattern = re.compile(rf"candidate {re.escape(candidate)} - p_installed\s*=\s*([\d.e+\-]+)\s*MW")
+    values = []
+    for cell in notebook["cells"]:
+        if cell["cell_type"] != "code":
+            continue
+        for output in cell.get("outputs", []):
+            text = "".join(output.get("text", []))
+            for m in pattern.finditer(text):
+                values.append(float(m.group(1)))
+
+    if match_index >= len(values):
+        raise ValueError(
+            f"match_index {match_index} out of range: "
+            f"found {len(values)} p_installed value(s) for '{candidate}' in {notebook_path}"
+        )
+    return values[match_index]
+
+
 def get_gems_objective_function_value(file_name: Path) -> float:
     """Read an objective function value from a CSV/TSV file produced by GEMS."""
     match file_name.suffix:
@@ -169,33 +220,6 @@ def get_pypsa_objective(network_path: Path) -> float:
     obj = float(n.objective + n.objective_constant)
     logger.info("PyPSA study optimized; objective=%s", obj)
     return obj
-
-
-def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> float:
-    """Extract the Nth GEMS objective value from a pre-executed notebook's cell outputs.
-
-    Scans code-cell outputs for lines matching 'Objective value (total system cost): <number> €' and returns the value at simulation_index (0-based).
-    """
-    with notebook_path.open(encoding="utf-8") as f:
-        nb = json.load(f)
-
-    objectives = []
-    for cell in nb["cells"]:
-        if cell["cell_type"] != "code":
-            continue
-        for output in cell.get("outputs", []):
-            text = "".join(output.get("text", []))
-            match = re.search(r"Objective value[^:]*:\s*([\d,]+(?:\.\d+)?)", text)
-            if match:
-                objectives.append(float(match.group(1).replace(",", "")))
-
-    if simulation_index >= len(objectives):
-        raise ValueError(
-            f"simulation_index {simulation_index} out of range: "
-            f"found {len(objectives)} objective(s) in {notebook_path}"
-        )
-
-    return objectives[simulation_index]
 
 
 def get_antares_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
