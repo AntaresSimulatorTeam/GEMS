@@ -4,16 +4,64 @@
     </a>
 </div>
 
-# Business Views Configuration Files
+# Views Configuration File
 
- **[Business Views](../outputs/view.md)** are result tables designed to meet business-user expectations.  
-Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
-These numerical values are computed exclusively from:
+The **Views configuration file** defines which [Views](../outputs/business-view.md) to produce and how. It selects the metrics to compute, the locations to aggregate over and the temporal resolution of the outputs fit for users ; the **views**.
 
-- the data contained in the **[Simulation Table](../outputs/simulation-table.md)**,
-- the topology of the [system](../file-structure/system.md).
-The algorithmic process to compute a Business View from this data is made explicit in a **Business View Configuration File**.
+> One views configuration file can define **views**.
 
-**The configuration and capabilities of Business Outputs are still under active development.**
+???+ note "Links with `catalog.yml`, `taxonomy.yml` and `calendar_file.csv`"
+    The views configuration references metrics defined in [`catalog.yml`](catalog.md).
 
+    Locations are selected using [`taxonomy-category`](taxonomy.md) from [`taxonomy.yml`](taxonomy.md).
 
+    The `calendar_file.csv` maps simulation time indices to real dates. It is a CSV file with the following columns:
+
+    | Column | Description |
+    |--------|-------------|
+    | `absolute_time_index` | Integer time index from the [simulation table](../outputs/simulation-table.md). |
+    | `block` | Scenario block index. |
+    | `granular_date` | Real datetime (e.g. `2025-01-01 00:00:00`). |
+
+## Example
+
+This is a partial excerpt from the [test_3 view_config](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder/blob/main/resources/test_inputs/test_3/view_config.yml) in the GEMS-ViewsBuilder repository.
+
+```yaml
+view:
+  id: view_area
+  scope:
+    - location:
+        taxonomy-category: balance
+    - calendar: calendar_file
+  aggregation:
+    - time: hour
+  catalog:
+    - id: catalog
+  metrics:
+    - id: catalog.PROD
+    - id: catalog.LOAD
+    - id: catalog.BALANCE
+```
+
+## Key elements in views configuration file
+
+Scope and aggregation:
+
+*This first part defines what to compute and at what resolution.*
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `view.id` | String | A unique identifier for the view.|
+| `view.scope[].location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects (e.g. buses or areas).|
+| `view.scope[].calendar` | String | Reference to the calendar file used to map time indices to real dates.|
+| `view.aggregation[].time` | String | Temporal resolution for the output: `hour`, `day`, `week`, `month`, or `year`.|
+
+Catalog and metrics:
+
+*This second part selects which metrics to include in the view.*
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `view.catalog[].id` | String | The `id` of a [catalog](catalog.md) to use.|
+| `view.metrics[].id` | String | A metric to include, referenced as `<catalog_id>.<metric_id>`. See [Catalog](catalog.md#key-elements-in-catalog-file) for metric definitions.|
