@@ -10,17 +10,17 @@
 
 **Views** are result tables designed by trimming and aggregation set by users called the metrics. They are produced by [GEMS-ViewsBuilder](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder) from GEMS simulation outputs.
 
-???+ info "Users can freely configured these `views`"
-    These `views` are fully designable by users though the views configuration files (`taxonomy`, `catalog`, `view-config`).
+???+ tip "Free customisable `views`"
+    These `views` are fully designed by users through the configuration files ([`taxonomy.yml`](../input-files/taxonomy.md), [`catalog.yml`](../input-files/catalog.md), [`view-config.yml`](../input-files/view-config.md)).
 
-???+ note "Links with `catalog.yml` and `view-config.yml`"
+???+ info "Links with `catalog.yml` and `view-config.yml`"
     `metrics` are defined in [`catalog.yml`](../input-files/catalog.md).
 
     The configuration of which metrics to compute and at what temporal resolution is inside the file [`view-config.yml`](../input-files/view-config.md).
 
 ## Output format
 
-Views are written as Parquet files at `results/view<timestamp>.parquet` inside the GEMS-ViewsBuilder input directory.
+Views are written as Parquet files at `results/view<timestamp>.parquet`.
 
 | Column | Description |
 |--------|-------------|
