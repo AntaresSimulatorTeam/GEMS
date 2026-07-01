@@ -20,6 +20,7 @@ The diagram below illustrates the typical organisation of a GEMS study:
 flowchart LR
     Study["📁 GEMS_Study/"]
     Input["📁 input/"]
+    Catalogs["📁 catalogs/ 🔗"]
     ModelLib["📁 model-libraries/ 🔗"]
     DataSeries["📁 data-series/ 🔗"]
     
@@ -30,12 +31,19 @@ flowchart LR
     Data1["📊 data-series_1.csv"]
     Data2["📊 data-series_2.csv"]
     Scenario["📄 modeler-scenariobuilder.dat 🔗"]
+    Calendar["📊 calendar_file.csv"]
+    Taxonomy["📊 taxonomy.yml 🔗"]
+    View_Configuration["📊 view_config.yml 🔗"]
     
     Study --> Input
     Study --> Params
     Input --> ModelLib
     Input --> System
     Input --> DataSeries
+    Input --> Catalogs
+    Input --> Taxonomy
+    Input --> Calendar
+    Input --> View_Configuration
     ModelLib --> Lib1
     ModelLib --> Lib2
     DataSeries --> Data1
@@ -43,16 +51,20 @@ flowchart LR
     DataSeries --> Scenario
     
     style Study fill:#fff3cd,stroke:#ffc107,stroke-width:3px
-    style Input fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
-    style ModelLib fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
-    style DataSeries fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
+    style Input fill:#d1ecf1,stroke:#0dcaf0,stroke-width:1px
+    style ModelLib fill:#d1ecf1,stroke:#0dcaf0,stroke-width:3px
+    style DataSeries fill:#d1ecf1,stroke:#0dcaf0,stroke-width:3px
+    style Catalogs fill:#d1ecf1,stroke:#0dcaf0,stroke-width:3px
     style System fill:#d4edda,stroke:#28a745,stroke-width:3px
+    style Taxonomy fill:#d4edda,stroke:#28a745,stroke-width:3px
+    style View_Configuration fill:#d4edda,stroke:#28a745,stroke-width:3px
+    style Calendar fill:#d4edda,stroke:#28a745,stroke-width:1px
     style Params fill:#d4edda,stroke:#28a745,stroke-width:3px
     style Lib1 fill:#d4edda,stroke:#28a745,stroke-width:3px
-    style Lib2 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
-    style Data1 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
-    style Data2 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
-    style Scenario fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    style Lib2 fill:#e1f5ff,stroke:#0288d1,stroke-width:1px
+    style Data1 fill:#e1f5ff,stroke:#0288d1,stroke-width:1px
+    style Data2 fill:#e1f5ff,stroke:#0288d1,stroke-width:1px
+    style Scenario fill:#e1f5ff,stroke:#0288d1,stroke-width:1px
 
     
     click ModelLib "../library/"
@@ -60,6 +72,9 @@ flowchart LR
     click DataSeries "../data-series/"
     click Scenario "../scenario-builder/"
     click Params "../solver-optimization/"
+    click Catalogs "../catalog/"
+    click Taxonomy "../taxonomy/"
+    click View_Configuration "../view-config/"
 ```
 
 The following pages of this section describe each file and folder in detail. Each page focuses on the role of a specific file, its expected structure, and how it interacts with the rest of the file to form a consistent and executable GEMS study.
