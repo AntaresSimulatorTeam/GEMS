@@ -10,7 +10,7 @@ The **Views configuration file** defines which [Views](../outputs/business-view.
 
 > One `view_config.yml` file can define **views**.
 
-???+ note "Links with `catalog.yml`, `taxonomy.yml` and `calendar_file.csv`"
+???+ info "Links with `catalog.yml`, `taxonomy.yml` and `calendar_file.csv`"
     The views configuration uses `metrics` defined in [`catalog.yml`](catalog.md).
 
     Locations are selected thanks to [`taxonomy-category`](taxonomy.md) from [`taxonomy.yml`](taxonomy.md).
