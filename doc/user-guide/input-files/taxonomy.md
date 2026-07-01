@@ -8,7 +8,7 @@
 
 The **Taxonomy** defines a shared classification of GEMS models. It is used to organize models and components by users' needs. Each [model](library.md#models) in a [library](library.md) declares a `taxonomy-category` (for example `production` or `balance`) that maps it to one of the categories defined here. This classification is "transparent" and doesn't impact the optimization solution
 
-???+ note "Link to `catalog.yml`"
+???+ info "Link to `catalog.yml`"
     The taxonomy is used by `catalog.yml` in [GEMS-ViewsBuilder](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder) to define **metrics** for each `taxonomy-category`. See [Business Views](../outputs/business-view.md) for more details.
 
 ## Example
