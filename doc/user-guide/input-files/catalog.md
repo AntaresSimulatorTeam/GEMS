@@ -10,7 +10,7 @@ The **Catalog** file defines **Metrics**. Each metric aggregates [simulation out
 
 > Users can use **several catalog files** based on their needs.
 
-??? note "Links with `taxonomy.yml` and `view-config.yml`"
+???+ info "Links with `taxonomy.yml` and `view-config.yml`"
     Catalogs use the taxonomy categories defined in [`taxonomy.yml`](taxonomy.md).
 
     [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Business Views](../outputs/business-view.md).
