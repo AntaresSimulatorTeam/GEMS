@@ -740,7 +740,7 @@ test = [
 
 [[package]]
 name = "gemspy"
-version = "0.1.0"
+version = "0.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "antlr4-python3-runtime" },
@@ -754,9 +754,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cc/16/80608c6c3243ad3e994503c999cac036c9f2ae9052b20138741568bf5f39/gemspy-0.1.0.tar.gz", hash = "sha256:b8f7f6728fcfc0474c34228b5500448a270be841fe01f90b0694e8f577f69264", size = 78914, upload-time = "2026-04-30T16:37:22.201Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/06/8a/4e4285e61e9d6716a19995cf0680373a7ec6dd573a659101b4c61d75043b/gemspy-0.1.2.tar.gz", hash = "sha256:55aeef7ac32f049136d82381d488e03744329ef95489f2562f3cd14b11193487", size = 88370, upload-time = "2026-06-11T12:13:17.994Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bf/fe/1ddae1fd3419a69d43aad6233d63aa3c93462b262a16ea091de9751929c7/gemspy-0.1.0-py3-none-any.whl", hash = "sha256:a999845d3cf2f522d43cdbbf511c874003c0ef0e9cf611abb2cffe4ecac542dc", size = 104610, upload-time = "2026-04-30T16:37:21.047Z" },
+    { url = "https://files.pythonhosted.org/packages/e2/a5/592b323148996541f80e4e812dddf92982d340afe5e14a765b62b590312c/gemspy-0.1.2-py3-none-any.whl", hash = "sha256:dd4b7b8adb9dfde1e00717f0c92df77725701b9b8bf2e5cc796a03cb594e1c65", size = 114582, upload-time = "2026-06-11T12:13:16.801Z" },
 ]
 
 [[package]]
