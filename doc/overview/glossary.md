@@ -16,9 +16,12 @@ This section is a glossary of the main concepts used by GEMS.
 
 | Term    | Definition    |
 |---------|---------------|
-| [Library](../user-guide/file-structure/library.md) | A file listing all the models representing general unspecified elements of a study. These models are used as "template" for creating their instances, called components|
-| [System](../user-guide/file-structure/system.md)  | A file listing all the "components", the instances of models defined by the system yaml file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
+| [Library](../user-guide/file-structure/library.md) | A file listing all the **models** representing general unspecified elements of a study. These models are used as "templates" for creating their instances, called components.|
+| [System](../user-guide/file-structure/system.md)  | A file listing all the "**components**", the instances of models defined by the system YAML file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
 | [Dataseries](../user-guide/file-structure/data-series.md) | A table containing all the data through time. It is used by time/scenario dependent components|
+| [Taxonomy](../user-guide/file-structure/business-view-configuration.md) | A file classifying component models into **categories**. Used to select which components contribute to a metric.|
+| [Catalog](../user-guide/file-structure/business-view-configuration.md) | A file defining a set of **BusinessMetrics** with their aggregation rules (terms, terms-operator, time-operator).|
+| [View Config](../user-guide/file-structure/business-view-configuration.md) | Configure **views** by specifying scope (location, calendar), time aggregation, and the metrics from `catalog.yml` to compute.|
 
 ## Concepts
 
@@ -53,5 +56,13 @@ This section is a glossary of the main concepts used by GEMS.
 |--------------------|-----------------------|
 | [Time dependent](../user-guide/mathematical-syntax.md#time-operators-and-indexing)     |  A parameter or variable depending on time. In this case, the parameter is instantiated as a dataseries. |
 | [Scenario dependent](../user-guide/mathematical-syntax.md#scenario-operator) | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as a dataseries. |
+
+
+## Output Files
+
+| Term    | Definition    |
+|---------|---------------|
+| [Simulation table](../user-guide/outputs/simulation-table.md) | A table providing the raw optimization results|
+| [Views](../user-guide/outputs/business-view.md) | They provide a representation of results based on users' requirements written inside the `view-config.yml`.|
 
 
