@@ -35,7 +35,7 @@ def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> fl
             continue
         for output in cell.get("outputs", []):
             text = "".join(output.get("text", []))
-            match = re.search(r"Objective value[^:]*:\s*([\d,]+(?:\.\d+)?(?:[eE][+-]?\d+)?)", text)
+            match = re.search(r"Objective value:\s*([\d,]+(?:\.\d+)?(?:[eE][+-]?\d+)?)", text)
             if match:
                 objectives.append(float(match.group(1).replace(",", "")))
 
