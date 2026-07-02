@@ -47,6 +47,10 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 30
+        - id: market_bid_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
         - id: startup_cost
           time-dependent: false
           scenario-dependent: false
@@ -145,6 +149,10 @@ system:
           scenario-dependent: false
           value: 100
         - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: market_bid_cost
           time-dependent: false
           scenario-dependent: false
           value: 50
@@ -282,6 +290,30 @@ system:
           scenario-dependent: false
           value: 0
         - id: level_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: is_overflow_allowed
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: is_injection_variation_penalized
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: is_withdrawal_variation_penalized
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: injection_variation_penalty
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: withdrawal_variation_penalty
+          time-dependent: false
+          scenario-dependent: false
+          value: 0
+        - id: overflow_cost
           time-dependent: false
           scenario-dependent: false
           value: 0
