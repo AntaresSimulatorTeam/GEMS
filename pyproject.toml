@@ -9,7 +9,6 @@ test = [
     "gemspy==0.1.2",
     "matplotlib>=3.10.9",
     "pandas>=2.2.3",
-    "pypsa",
     "pytest>=7.0.1",
     "pytest-xdist>=3.8.0",
 ]
