@@ -6,7 +6,7 @@
 
 # Business Views Configuration Files
 
- **[Business Views](../outputs/business-view.md)** are result tables designed to meet business-user expectations.  
+ **[Business Views](../outputs/view.md)** are result tables designed to meet business-user expectations.  
 Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
 These numerical values are computed exclusively from:
 
