@@ -79,6 +79,9 @@ For each parameter, the `value` field should be defined as follows:
 
 ### Properties 
 
+!!! info "GEMS Views Builder only"
+    This `properties` section is used exclusively by [GEMS Views Builder](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder). It has no effect on the optimisation problem solved by the GEMS engine.
+
 (Optional) These `properties` add extra-information for downstream tasks (Views building, visualisation). If a key is declared in the model, this key and its value should be declared in the related component. Other (key,value) pairs are allowed in the component. 
 
 Each property entry contains:

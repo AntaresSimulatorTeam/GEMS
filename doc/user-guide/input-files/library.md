@@ -308,6 +308,9 @@ Unlike in constraints, [direct port field usage](../mathematical-syntax.md#direc
 
 #### Properties 
 
+!!! info "GEMS Views Builder only"
+    This `properties` section is used exclusively by [GEMS Views Builder](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder). It has no effect on the optimisation problem solved by the GEMS engine.
+
 (Optional) If `properties` keys are declared in the model, the declaration of  such keys and their values are mandatory for the components that instantiate the model.
 
 In the library file, each entry only declares the key name, they are specified by a value for each component within the [system file](../system#properties).
@@ -325,6 +328,9 @@ models:
 ```
 
 #### Taxonomy
+
+!!! info "GEMS Views Builder only"
+    This `taxonomy-category` field is used exclusively by [GEMS Views Builder](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder). It has no effect on the optimisation problem solved by the GEMS engine.
 
 (Optional) A string that assigns the model to a category within a classification taxonomy. 
 
