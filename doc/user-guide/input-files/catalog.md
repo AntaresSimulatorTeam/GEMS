@@ -17,12 +17,12 @@ The **Catalog** file defines **Metrics**. Each metric aggregates [simulation out
 
 ## Example
 
-This is a partial excerpt from the [test_3 catalog](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder/blob/main/resources/test_inputs/test_3/catalogs/catalog.yml) in the GEMS-ViewsBuilder repository.
+This example uses the [Antares Legacy model library](library.md) and its `antares_legacy_taxonomy`.
 
 ```yaml
 catalog:
-  id: test_example_pypsa
-  taxonomy: my_taxonomy
+  id: antares_legacy_catalog
+  taxonomy: antares_legacy_taxonomy
 
   location:
     taxonomy-category: balance
@@ -31,9 +31,36 @@ catalog:
 
     - id: PROD
       terms:
-        - taxonomy-category: production
-          output-id: p
-          location-ports: p_balance_port
+        - taxonomy-category: dispatchable_generation
+          output-id: generation_power
+          location-ports: balance_port
+      terms-operator: sum
+      time-operator: sum
+
+    - id: LOAD
+      terms:
+        - taxonomy-category: fatal_consumption
+          output-id: actual_load
+          location-ports: balance_port
+      terms-operator: sum
+      time-operator: sum
+
+    - id: INSTALLED_PROD_CAPACITY
+      terms:
+        - taxonomy-category: dispatchable_generation
+          output-id: cluster_availability
+          location-ports: balance_port
+      terms-operator: sum
+      time-operator: sum
+
+    - id: BALANCE
+      terms:
+        - taxonomy-category: link
+          output-id: flow
+          location-ports: in_port
+        - taxonomy-category: link
+          output-id: minus_flow
+          location-ports: out_port
       terms-operator: sum
       time-operator: sum
 ```
