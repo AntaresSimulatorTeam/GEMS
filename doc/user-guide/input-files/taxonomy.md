@@ -23,8 +23,24 @@ taxonomy:
   categories:
     - id: balance
       ports:
-        - id: p_balance_port
-        - id: q_balance_port
+        - id: balance_port
+
+    - id: consumption
+      ports:
+        - id: balance_port
+
+    - id: production
+      ports:
+        - id: balance_port
+
+    - id: storage
+      ports:
+        - id: balance_port
+
+    - id: link
+      ports:
+        - id: out_port
+        - id: in_port
 ```
 
 ## Key elements in taxonomy file
