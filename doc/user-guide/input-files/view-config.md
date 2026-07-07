@@ -25,7 +25,7 @@ The **Views configuration file** defines which [Views](../outputs/business-view.
 
 ## Example
 
-This is a partial excerpt from the [test_3 view_config](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder/blob/main/resources/test_inputs/test_3/view_config.yml) in the GEMS-ViewsBuilder repo.
+This example uses the `antares_legacy_taxonomy` and `antares_legacy_catalog` defined in the [taxonomy](taxonomy.md) and [catalog](catalog.md) pages.
 
 ```yaml
 view:
@@ -37,11 +37,12 @@ view:
   aggregation:
     - time: hour
   catalog:
-    - id: catalog
+    - id: antares_legacy_catalog
   metrics:
-    - id: catalog.PROD
-    - id: catalog.LOAD
-    - id: catalog.BALANCE
+    - id: antares_legacy_catalog.PROD
+    - id: antares_legacy_catalog.LOAD
+    - id: antares_legacy_catalog.INSTALLED_PROD_CAPACITY
+    - id: antares_legacy_catalog.BALANCE
 ```
 
 ## Key elements in views configuration file
