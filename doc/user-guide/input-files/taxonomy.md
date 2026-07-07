@@ -13,27 +13,39 @@ The **Taxonomy** defines a shared classification of GEMS models. It is used to o
 
 ## Example
 
-This is a partial excerpt from the [test_3 taxonomy](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder/blob/main/resources/test_inputs/test_3/taxonomy.yml) in the GEMS-ViewsBuilder repository.
+This example uses the [Antares Legacy model library](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml). Each category matches the `taxonomy-category` declared on the corresponding model in the library.
 
 ```yaml
 taxonomy:
-  id: taxonomy_example
-  description: Taxonomy for Antares Legacy model library as representative example
+  id: antares_legacy_taxonomy
+  description: Taxonomy for the Antares Legacy model library
 
   categories:
     - id: balance
       ports:
         - id: balance_port
 
-    - id: consumption
+    - id: fatal_consumption
       ports:
         - id: balance_port
 
-    - id: production
+    - id: dispatchable_generation
       ports:
         - id: balance_port
 
-    - id: storage
+    - id: renewable_fatal_generation
+      ports:
+        - id: balance_port
+
+    - id: miscellaneous_fatal_generation
+      ports:
+        - id: balance_port
+
+    - id: short_term_storage
+      ports:
+        - id: balance_port
+
+    - id: long_term_storage
       ports:
         - id: balance_port
 
