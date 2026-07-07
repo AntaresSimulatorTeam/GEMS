@@ -329,9 +329,6 @@ models:
 
 #### Taxonomy
 
-!!! info "GEMS Views Builder only"
-    This `taxonomy-category` field is used exclusively by [GEMS Views Builder](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder). It has no effect on the optimisation problem solved by the GEMS engine.
-
 (Optional) A string that assigns the model to a category within a classification taxonomy. 
 
 ```yaml
