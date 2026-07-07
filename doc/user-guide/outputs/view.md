@@ -8,7 +8,7 @@
 
 ## What are Views?
 
-**Views** are result tables designed by trimming and aggregation set by users called the metrics. They are produced by [GEMS-ViewsBuilder](https://github.com/AntaresSimulatorTeam/GEMS-ViewsBuilder) from GEMS simulation outputs.
+**Views** are result tables designed by trimming and aggregation set by users called the metrics. They are produced from the simulation outputs.
 
 ???+ tip "Free customisable `views`"
     These `views` are fully designed by users through the configuration files ([`taxonomy.yml`](../input-files/taxonomy.md), [`catalog.yml`](../input-files/catalog.md), [`view-config.yml`](../input-files/view-config.md)).
