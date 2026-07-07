@@ -17,8 +17,8 @@ This is a partial excerpt from the [test_3 taxonomy](https://github.com/AntaresS
 
 ```yaml
 taxonomy:
-  id: my_taxonomy
-  description: Minimal taxonomy
+  id: taxonomy_example
+  description: Taxonomy for Antares Legacy model library as representative example
 
   categories:
     - id: balance
