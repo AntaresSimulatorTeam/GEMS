@@ -9,6 +9,7 @@ test = [
     "gemspy==0.1.0",
     "matplotlib>=3.10.9",
     "pandas>=2.2.3",
+    "pypsa",
     "pytest>=7.0.1",
     "pytest-xdist>=3.8.0",
 ]
@@ -29,6 +30,11 @@ doc = [
     "mkdocs-macros-plugin",
     "mkdocs-material",
     "mkdocs-redirects",
+]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:numpy.ndarray size changed:RuntimeWarning",
 ]
 
 [tool.ruff]
