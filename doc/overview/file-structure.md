@@ -1,6 +1,6 @@
 # File Structure
 
-## File Overview : Model, System, Optimization, Business
+## Input files overview : Model, System, Optimization, Business Intelligence
 
 The GEMS architecture enforces a structured approach, separating modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
