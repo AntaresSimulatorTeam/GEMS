@@ -18,7 +18,7 @@ Users can learn step by step how to build a study by running the cells gradually
 |----------|-------------|
 | [Unit Commitment with GemsPy](notebooks/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb) | Step-by-step tutorial building a unit commitment model with GemsPy, from a simple adequacy problem to a full unit commitment formulation. |
 | [Investment Optimization with GemsPy](notebooks/tutorial-three-investment/tutorial-invest.ipynb) | Tutorial showing how to model and solve an investment optimization problem (optimal capacity planning) using GemsPy. |
-| [PyPSA-Eur to GEMS](../interoperability/pypsa-to-gems-converter/overview.md) | Notebook explaining how to convert a PyPSA-Eur network into a GEMS study, *it is part of the [Interoperability](../interoperability/pypsa-to-gems-converter/overview.md) section*. |
+| [PyPSA-Eur to GEMS](../interoperability/pypsa-to-gems-converter/overview.md) | Example explaining via a notebook how to convert a PyPSA-Eur network into a GEMS study, *it is part of the [Getting Started](../getting-started/quick-start/pypsa-eur.md) section*. |
 
 ## Reference Libraries
 
