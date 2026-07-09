@@ -4,7 +4,6 @@ We explicit here the **current** limitation of the PyPSA-to-GEMS converter, that
 
 ## Unsupported PyPSA Components
 
-- Lines (not implemented)
 - Transformers (not implemented)
 
 ## Component Restrictions
