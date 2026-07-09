@@ -47,6 +47,10 @@ system:
           time-dependent: false
           scenario-dependent: false
           value: 30
+        - id: market_bid_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 30
         - id: startup_cost
           time-dependent: false
           scenario-dependent: false
@@ -145,6 +149,10 @@ system:
           scenario-dependent: false
           value: 100
         - id: generation_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+        - id: market_bid_cost
           time-dependent: false
           scenario-dependent: false
           value: 50
