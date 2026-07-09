@@ -24,7 +24,7 @@ def test_no_battery_objective(paths) -> None:
 
 def test_with_battery_objective(paths) -> None:
     notebook = paths.tutorial_investment_notebook_path
-    value = get_notebook_objective(notebook, simulation_index=1)
+    value = get_notebook_objective(notebook, simulation_index=2)
     assert value == pytest.approx(REF_OBJECTIVE_WITH_BATTERY, rel=OBJECTIVE_ATOL)
 
 
