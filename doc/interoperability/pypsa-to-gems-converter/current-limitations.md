@@ -22,6 +22,9 @@ We explicit here the **current** limitation of the PyPSA-to-GEMS converter, that
 
 - **`active = 1`** - All links are always active.
 
+### Lines
+- **`active = 1`** - All lines are always active.
+
 ### Storage Units
 
 - **`active = 1`** - All storage units are included in the optimization.
