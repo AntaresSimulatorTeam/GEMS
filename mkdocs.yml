@@ -161,6 +161,7 @@ nav:
           - Simple Example: interoperability/hybrid/example.md
           - Limitations: interoperability/hybrid/limitations.md
   - Examples:
+      - Overview: examples/overview-examples.md
       - Adequacy Example: examples/adequacy-example.md
       - Tutorial Notebooks:
           - Overview: examples/notebooks-presentation.md
