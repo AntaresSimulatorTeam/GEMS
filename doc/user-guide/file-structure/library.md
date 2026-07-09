@@ -55,13 +55,13 @@ library:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id`| String | A unique identifier for the library. This `id` is used by system files to reference models from this library. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
+| `id`| String | A unique identifier for the library. This `id` is used by [system files](../system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
 
 ### Port Types
 
-The `port-types` collection defines the set of port types available within a library. These port types can be used by models/components to communicate with each other by exchanging linear expressions.
+The `port-types` collection defines the set of port types available within a library. These port types can be used by models/components to communicate with each other by exchanging linear expressions through [connections](../system#connections).
 
 This collection is **optional**. A library may define no port types, although such a library has limited practical use, as its models cannot interact through ports. Alternatively, a library may rely on port types defined in another library, enabling reuse and interoperability across libraries.
 
@@ -172,7 +172,7 @@ A model is an abstract object, that will be instantiated once or several times i
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`id`| String | A unique identifier for the model within a library. Must follow the [naming rules](#rules-for-id-naming). System files reference the model by combining the library `id` and the model `id`.|
+|`id`| String | A unique identifier for the model within a library. Must follow the [naming rules](#rules-for-id-naming). [System files](../system#components) reference the model by combining the library `id` and the model `id`.|
 | `description`| String | *(Optional)* Text description of the model.|
 
 #### Parameters
@@ -185,7 +185,7 @@ A list of parameters that this model takes. Each parameter defines a configurabl
 | `time-dependent`| Boolean | `true` or `false`. If `true`, this parameter can vary over the simulation timeline (meaning it will be associated with a time series input). If `false`, it is treated as constant in time.|
 |`scenario-dependent`| Boolean | `true` or `false`. If `true`, the parameter can have different values in different scenarios (i.e., it requires scenario-specific data). If `false`, it does not vary between scenarios.|
 
-Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md).
+Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md). For how parameter values are assigned in the system file, see [System — Parameters](../system#parameters).
 
 #### Variables
 
@@ -300,3 +300,30 @@ Each entry under `extra-outputs` must contain:
 
 Unlike in constraints, [direct port field usage](../mathematical-syntax.md#direct-port-field-usage) **is allowed** in `extra-outputs`.
 
+#### Properties 
+
+(Optional) If `properties` keys are declared in the model, the declaration of  such keys and their values are mandatory for the components that instantiate the model.
+
+In the library file, each entry only declares the key name, they are specified by a value for each component within the [system file](../system#properties).
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | Unique property key name within the model. |
+
+```yaml
+models:
+  - id: thermal
+    properties:
+      - id: carrier
+      - id: company
+```
+
+#### Taxonomy
+
+(Optional) A string that assigns the model to a category within a classification taxonomy. 
+
+```yaml
+  models:
+    - id: generator
+      taxonomy-category: production
+```

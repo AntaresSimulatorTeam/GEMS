@@ -1,5 +1,6 @@
 docs_dir: doc
 repo_name: GEMS
+repo_name: GEMS
 exclude_docs: |
   documentation_env/
   getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
@@ -42,11 +43,13 @@ theme:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - attr_list
-  - md_in_html
+  - admonition
+  - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
   - footnotes
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.superfences:
@@ -126,6 +129,7 @@ nav:
           - PyPSA-Eur in GEMS format: getting-started/quick-start/pypsa-eur.md
       - Tutorial Notebooks:
         - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
+        - Investment Optimization with GemsPy: getting-started/tutorial-three-investment/tutorial-invest.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - GEMS Syntax: user-guide/syntax.md

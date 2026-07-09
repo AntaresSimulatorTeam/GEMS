@@ -20,7 +20,7 @@ This file currently controls:
 | Field | Description |
 |-----|------------|
 | **Type** | String |
-| **Expected values** | `sirius` (LP only), `scip` (MIP only), `coin`, `xpress`, `glpk` (Linux only), `highs`, `pdlp` (LP only) |
+| **Expected values** | `sirius` (LP only), `scip` (MIP only), `coin`, `xpress`, `glpk` (Linux only), `highs`, `pdlp` (LP only), `gurobi` |
 | **Required** | No |
 | **Default** | `sirius` |
 | **Usage** | Selects the optimisation solver used to solve the generated problem |
@@ -52,6 +52,7 @@ This file currently controls:
 |------------------|------|
 | `scip` | Supported |
 | `xpress` | Supported |
+| `gurobi` | Supported |
 | `pdlp` | Supported |
 | Others | Not supported |
 

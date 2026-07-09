@@ -213,8 +213,4 @@ __marimo__/
 output/
 *env/
 *tmp/
-pypsa-eur/
-PyPSA-to-GEMS-Converter/
-
-# JSON files generated at build time from libraries/*.yml
-doc/assets/data/*.json
+antares-*

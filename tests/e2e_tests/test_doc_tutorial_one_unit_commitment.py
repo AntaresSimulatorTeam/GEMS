@@ -1,9 +1,7 @@
 # This test runs the documentation the first tutorial notebook "Unit Commitment"
 # It checks that the objective values match those in the pre-executed notebook.
 
-import json
 import logging
-import re
 import shutil
 from pathlib import Path
 
@@ -14,6 +12,7 @@ from .utils import (
     copy_model_library,
     copy_study_dir_to_tmp,
     get_gems_study_objective,
+    get_notebook_objective,
 )
 
 logger = logging.getLogger(__name__)
@@ -41,35 +40,6 @@ def prepare_and_run_doc_study(
     obj = get_gems_study_objective(paths, gems_path)
     logger.info("[%s] Using %s -> objective: %s", study_name, library_filename, obj)
     return obj
-
-
-def get_notebook_objective(notebook_path: Path, simulation_index: int) -> float:
-    """
-    Extract the Nth objective value from the pre-executed notebook cell outputs.
-
-    Scans code cells in order for lines matching 'Objective value: <float>'
-    and returns the value at simulation_index (0-based).
-    """
-    with notebook_path.open(encoding="utf-8") as f:
-        nb = json.load(f)
-
-    objectives = []
-    for cell in nb["cells"]:
-        if cell["cell_type"] != "code":
-            continue
-        for output in cell.get("outputs", []):
-            text = "".join(output.get("text", []))
-            match = re.search(r"Objective value:\s*([\d.e+\-]+)", text)
-            if match:
-                objectives.append(float(match.group(1)))
-
-    if simulation_index >= len(objectives):
-        raise ValueError(
-            f"Simulation index {simulation_index} out of range: "
-            f"found {len(objectives)} objective(s) in {notebook_path}"
-        )
-
-    return objectives[simulation_index]
 
 
 def install_tutorial_library(paths: EnvironmentPaths, gems_study_path: Path) -> None:
