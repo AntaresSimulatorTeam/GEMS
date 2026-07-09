@@ -49,6 +49,7 @@ def install_tutorial_library(paths: EnvironmentPaths, gems_study_path: Path) -> 
         / "doc"
         / "examples"
         / "notebooks"
+        / "tutorial-one-unit-commitment"
         / "unit-commitment-with-gemspy"
         / "gemspy_tutorial_library.yml"
     )
