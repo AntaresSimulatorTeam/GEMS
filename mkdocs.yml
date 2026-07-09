@@ -3,8 +3,8 @@ repo_name: GEMS
 repo_name: GEMS
 exclude_docs: |
   documentation_env/
-  getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
-  getting-started/tutorial-two-pypsa-eur/tutorial_pypsa_eur.ipynb
+  examples/notebooks/tutorial-two-pypsa-eur/pypsa-eur/*
+  examples/notebooks/tutorial-two-pypsa-eur/tutorial_pypsa_eur.ipynb
 site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy system Modelling Schema) is a
@@ -91,7 +91,7 @@ plugins:
   - git-revision-date-localized:
       exclude:
         - documentation_env/*
-        - getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
+        - examples/notebooks/tutorial-two-pypsa-eur/pypsa-eur/*
       enable_creation_date: true
       enable_git_follow: true
       type: timeago
@@ -127,9 +127,6 @@ nav:
               - Mathematical Formulation: getting-started/quick-start/adequacy-math-model.md
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
           - PyPSA-Eur in GEMS format: getting-started/quick-start/pypsa-eur.md
-      - Tutorial Notebooks:
-        - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
-        - Investment Optimization with GemsPy: getting-started/tutorial-three-investment/tutorial-invest.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
       - GEMS Syntax: user-guide/syntax.md
@@ -167,7 +164,8 @@ nav:
       - Adequacy Example: examples/adequacy-example.md
       - Tutorial Notebooks:
           - Overview: examples/notebooks-presentation.md
-          - Unit Commitment with GemsPy: examples/notebooks/tutorial-unit-commitment.ipynb
+          - Unit Commitment with GemsPy: examples/notebooks/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
+          - Investment Optimization with GemsPy: examples/notebooks/tutorial-three-investment/tutorial-invest.ipynb
   - Support & Contributing:
       - FAQ: support/faq.md
       - Contact: support/contact.md
