@@ -213,5 +213,4 @@ __marimo__/
 output/
 *env/
 *tmp/
-pypsa-eur/
-PyPSA-to-GEMS-Converter/
+antares-*
