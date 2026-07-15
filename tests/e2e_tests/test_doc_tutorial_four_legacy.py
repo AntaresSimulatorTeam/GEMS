@@ -1,4 +1,4 @@
-# This test validates the antares legacy to GEMS converter tutorial (tutorial 4) against 
+# This test validates the antares legacy to GEMS converter tutorial (tutorial 4) against
 # hardcoded reference values extracted from a pre-executed tutorial-legacy-converter.ipynotebook.
 
 import pytest
@@ -8,7 +8,7 @@ from .utils import get_notebook_objective
 
 # Reference values
 
-REF_OBJECTIVE= 1e-4  # TODO: to be filled €
+REF_OBJECTIVE = 1e-4  # TODO: to be filled €
 
 
 def test_objective(paths) -> None:
