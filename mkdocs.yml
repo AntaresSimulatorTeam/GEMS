@@ -164,7 +164,6 @@ nav:
       - Overview: examples/overview-examples.md
       - Adequacy Example: examples/adequacy-example.md
       - Tutorial Notebooks:
-          - Overview: examples/notebooks-presentation.md
           - Unit Commitment with GemsPy: examples/notebooks/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
           - Investment Optimization with GemsPy: examples/notebooks/tutorial-three-investment/tutorial-invest.ipynb
   - Support & Contributing:
