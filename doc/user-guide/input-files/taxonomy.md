@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-    <a href="../../../..">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </a>
-</div>
-
 # Taxonomy
 
 The **Taxonomy** defines a shared classification of GEMS models. It is used to organize models by users' needs. If a [model](library.md#models) in a [library](library.md) declares a `taxonomy-category` (for example `production` or `balance`), it should then comply with the expected parameters, variables, properties, ports and extra-outputs of its category. On the contrary, additional features in the model (not declared in the taxonomy-category) are allowed. 
