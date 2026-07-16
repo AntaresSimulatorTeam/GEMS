@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Quick-start example 2: Unit Commitment - Simple Example
 
 ## Overview
@@ -12,10 +6,10 @@ This tutorial demonstrates a simple example of a **unit commitment** problem sta
 
 The study folder is on the [GEMS Github repository](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 
-<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
-  <strong>⚠️ Warning — This study requires Antares Simulator version &gt; {{ antares_simulator_version }}</strong><br>
-  You can find the latest version on the <a href="https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases">official releases page</a>.
-</div>
+!!! warning 
+    This study requires Antares Simulator version &gt; {{ antares_simulator_version }}.
+    
+    You can find the latest version on the[ official releases page](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
 
 ### Files Structure
 
@@ -63,12 +57,10 @@ The *Unit Commitment* problem here involves determining the on/off schema and di
 
 ## Running the GEMS study with Antares Modeler
 
-<div style="background-color:#fff3cd;border-left:5px solid #ffc107;padding:12px 16px;border-radius:4px;margin:16px 0;">
-  <strong>⚠️ Warning</strong><br>
-  <b>It's recommended to run this GEMS study with Antares Modeler or GemsPy</b>Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver. 
-  
- For more information about the hybrid mode of Antares Solver, see the <a href="../../interoperability/hybrid/">Hybrid Study</a> section.
-</div>
+!!! warning
+    It's recommended to run this GEMS study with Antares Modeler or GemsPy. Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver.
+
+    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/) section.
 
 Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
 
@@ -76,7 +68,7 @@ Instructions to run this GEMS study with [Antares Simulator](https://github.com/
 
     1. Download [QSE_2_unit_commitment](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_2_unit_commitment)
     1. Copy [`antares_legacy_models.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/antares_legacy_models.yml) into the `QSE_2_unit_commitment/input/model-libraries/`
-    1. Get Antares Modeler installed through this [tutorial](../installation/gemspy-installation.md)
+    1. Get Antares Modeler installed through this [tutorial](../installation/modeler-installation.md)
     1. Locate **bin** folder
     1. Open the terminal
     1. Run these command lines:
