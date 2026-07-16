@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # File Structure
 
 This section provides a high-level overview of the specific files used by [**GEMS framework**](../../index.md) and how they collectively describe a complete GEMS study.
@@ -42,17 +36,17 @@ flowchart LR
     DataSeries --> Data2
     DataSeries --> Scenario
     
-    style Study fill:#fff3cd,stroke:#ffc107,stroke-width:3px
-    style Input fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
-    style ModelLib fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
-    style DataSeries fill:#d1ecf1,stroke:#0dcaf0,stroke-width:2px
-    style System fill:#d4edda,stroke:#28a745,stroke-width:3px
-    style Params fill:#d4edda,stroke:#28a745,stroke-width:3px
-    style Lib1 fill:#d4edda,stroke:#28a745,stroke-width:3px
-    style Lib2 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
-    style Data1 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
-    style Data2 fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
-    style Scenario fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    style Study stroke:#d97706,stroke-width:3px,color:#ffffff
+    style Input stroke:#0891b2,stroke-width:2px,color:#ffffff
+    style ModelLib stroke:#0891b2,stroke-width:2px,color:#ffffff
+    style DataSeries stroke:#0891b2,stroke-width:2px,color:#ffffff
+    style System stroke:#16a34a,stroke-width:3px,color:#ffffff
+    style Params stroke:#16a34a,stroke-width:3px,color:#ffffff
+    style Lib1 stroke:#16a34a,stroke-width:3px,color:#ffffff
+    style Lib2 stroke:#3b82f6,stroke-width:2px,color:#ffffff
+    style Data1 stroke:#3b82f6,stroke-width:2px,color:#ffffff
+    style Data2 stroke:#3b82f6,stroke-width:2px,color:#ffffff
+    style Scenario stroke:#3b82f6,stroke-width:2px,color:#ffffff
 
     
     click ModelLib "../library/"

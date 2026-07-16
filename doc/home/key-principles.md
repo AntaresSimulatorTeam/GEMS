@@ -1,12 +1,6 @@
 ---
-description: Explore GEMS key design principles — graph-based algebraic modelling, solver-independent syntax, YAML-based configuration, and support for LP, MIP, and MILP energy optimisation problems.
+description: Explore GEMS key design principles - graph-based algebraic modelling, solver-independent syntax, YAML-based configuration, and support for LP, MIP, and MILP energy optimisation problems.
 ---
-
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
 
 # Core concepts
 
@@ -16,17 +10,13 @@ description: Explore GEMS key design principles — graph-based algebraic modell
 
 This language **differs from traditional optimization languages** in several ways by natively accounting for the specific needs of energy system modelling. Its underlying motivation is to provide essential features for advanced energy modelling: **a readable and user-friendly syntax, strong flexibility, and a tool-agnostic design.**
 
-<div style="height: 500px; overflow: hidden;">
-  <img src="../../assets/Gems_core_concepts.png" alt="Core Concepts" style="height: 100%; object-fit: contain;"/>
-</div>
-
-<br>
+![GEMS_core_concepts](../../assets/Gems_core_concepts.png)
 
 ## Defining Models and Systems as YAML Configurations
 <style>
 .yaml-diptych pre { white-space: pre-wrap; word-break: break-all; }
 </style>
-<div class="yaml-diptych" style="display: flex; gap: 1.5rem; align-items: flex-start; width: 125%">
+<div class="yaml-diptych" style="display: flex; gap: 1.5rem; align-items: flex-start; width: 100%; font-size: 0.85em;">
 <div style="flex: 1; min-width: 0;">
 
 <h3> Library </h3>
@@ -216,5 +206,6 @@ system:
   lowering the barrier for new users while remaining expressive enough for advanced use cases.
   This approach facilitates <strong> model versioning, collaboration, and integration with external tools </strong>,
   while clearly separating model structure, data, and assumptions from the underlying optimisation engine.
+  See the <a href="../overview/file-structure.md"><strong>File Structure</strong></a> page for a detailed overview of all GEMS files and their roles.
    </p>
 </div>

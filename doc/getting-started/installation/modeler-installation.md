@@ -1,12 +1,6 @@
 ---
-description: Step-by-step installation guide for Antares Simulator's GEMS interpreter (Antares Modeler) — download, extract, and configure the GEMS interpreter within Antares Simulator.
+description: Step-by-step installation guide for Antares Simulator's GEMS interpreter (Antares Modeler) - download, extract, and configure the GEMS interpreter within Antares Simulator.
 ---
-
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
 
 # Antares Simulator's GEMS interpreter
 
@@ -19,16 +13,24 @@ The following link provides access to the most recent stable version of the [Ant
 ### Download and Extract
 
 1. Go to the [**Antares Simulator releases page**](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases)
-2. Download the appropriate archive for your platform:
-    - **Windows**: `rte-antares-<simulator-version>-installer-64bits.zip`
-    - **Linux**: `rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
-3. Extract the archive to your desired location:
-    - **Windows**: Right-click and select "Extraction"
-    - **Linux**: `tar -xzf rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>tar.gz`
 
-<div style="height: 500px; overflow: hidden;">
-  <img src="../../../assets/2_modeler_download.png" alt="Download Page" style="height: 100%; object-fit: contain;"/>
-</div>
+2. Download the appropriate archive for your platform:
+
+    === "Windows"
+        `rte-antares-<simulator-version>-installer-64bits.zip`
+
+    === "Linux"
+        `rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>.tar.gz`
+
+3. Extract the archive to your desired location:
+
+    === "Windows"
+        Right-click the archive and select "Extract All"
+
+    === "Linux"
+        ```bash
+        tar -xzf rte-antares-<simulator-version>-Ubuntu-<ubuntu-version>.tar.gz
+        ```
 
 ### Locate the Executables
 
@@ -49,13 +51,25 @@ antares-modeler         # GEMS studies
 antares-solver          # hybrid and legacy studies
 antares-study-finder
 ```
+```txt
+cmake\
+pkgconfig\
+antares-batchrun.exe
+antares-config.exe
+antares-modeler         # GEMS studies
+antares-solver          # hybrid and legacy studies
+antares-study-finder
+```
 
 ### Launch the resolution of a GEMS study
 
 **Opening a terminal:**
 
-- **Windows**: Press `Win + R`, type `cmd` or `powershell`, and press Enter
-- **Linux**: Press `Ctrl + Alt + T` or search for "Terminal" in your applications menu
+=== "Windows"
+    Press `Win + R`, type `cmd` or `powershell`, and press Enter
+
+=== "Linux"
+    Press `Ctrl + Alt + T` or search for "Terminal" in your applications menu
 
 #### Antares Modeler
 
@@ -66,17 +80,16 @@ Let’s check if Modeler is working correctly.
 - **Download the example study:**
 
     Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
+    Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
 - **Run simulation:**
 
     === "Windows"
-
-        ```powershell
+        ```bash
         .\bin\antares-modeler.exe .\<absolute path to QSE_1_Adequacy study folder>
         ```
 
-    === "MacOS/Linux"
-
+    === "Linux"
         ```bash
         ./bin/antares-modeler ./<absolute path to QSE_1_Adequacy study folder>
         ```
@@ -84,7 +97,9 @@ Let’s check if Modeler is working correctly.
 - **Check for success:**
 
     If you see logs like these, Modeler works correctly !
+    If you see logs like these, Modeler works correctly !
 
+    Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
     Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
 
     ```txt
@@ -119,20 +134,18 @@ Let’s check if Modeler is working correctly.
 
 - Use the Hybrid Study tutorial :
 
-  Refer to the tutorial inside the [Interoperability — Antares Hybrid Mode](../../interoperability/hybrid/overview.md) section
+  Refer to the tutorial inside the [Interoperability - Antares Hybrid Mode](../../interoperability/hybrid/overview.md) section
 
-- Run the following commands :
+- Run the following commands:
 
     === "Windows"
-
-        ```powershell
+        ```bash
         rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
         ```
 
-    === "MacOS/Linux"
-    
+    === "Linux"
         ```bash
-        ./rte-antares-x.x.x-installer-64bits/bin/antares-solver  <path-to-study>
+        ./rte-antares-x.x.x-installer-64bits/bin/antares-solver <path-to-study>
         ```
 
 Replace `<path-to-study>` with the path to your Antares study directory.
@@ -141,7 +154,7 @@ Replace `<path-to-study>` with the path to your Antares study directory.
 
 The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
 
-In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study , and the process for creating this file is detailed in [this section](../../user-guide/file-structure/solver-optimization.md). Unlike the GemsPy interpreter, Modeler depends on this configuration file.
+In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study, and the process for creating this file is detailed in [this section](../../user-guide/file-structure/solver-optimization.md). Unlike the [GemsPy interpreter](gemspy-installation.md), Modeler depends on this configuration file.
 
 ## Additional Resources
 

@@ -1,12 +1,6 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # How the Converter Works
 
-The PyPSA to GEMS Converter transforms [PyPSA Network](https://docs.pypsa.org/latest/api/networks/network/) into a [GEMS study folder](https://gems-energy.readthedocs.io/en/latest/user-guide/file-structure/overview/), through the following steps.
+The PyPSA to GEMS Converter transforms [PyPSA Network](https://docs.pypsa.org/latest/api/networks/network/) into a [GEMS study folder](../../user-guide/file-structure/overview.md), through the following steps.
 
 ## 1. Input Validation and Preprocessing
 

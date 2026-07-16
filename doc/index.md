@@ -27,7 +27,7 @@ GEMS has the key attributes required to support and sustain such a community.
 - **Interoperability/Interpretability** : GEMS relies on a **self-contained** and exhaustive mathematical formulation, ensuring that all modelling assumptions, variables, and constraints are explicitly defined. This guarantees unambiguous interpretability of models, which is a key enabler for true interoperability between tools, solvers, and modelling frameworks.
 
 <div align="center">
-    <img src="./assets/Context_Gems_Example_Model.png" alt="GEMS Logo" width="500"/>
+    <img src="./assets/0_context_gems.png" alt="GEMS Logo" width="500"/>
 </div>
 
 
@@ -72,6 +72,8 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: Interpreters](./overview/gems-interpreters/gemspy.md)
 
+    [:octicons-arrow-right-24: Glossary](overview/glossary.md)
+
 -   :material-new-box:{ .lg .middle } **Release Notes**
 
     ---
@@ -79,6 +81,14 @@ The following **interpreters** can be used to run Gems modelling language :
     Check out the latest features, bug fixes and improvements in the release notes.
 
     [:octicons-arrow-right-24: What's new](home/release-notes.md)
+
+-   :material-toolbox:{ .lg .middle } **References**
+
+    ---
+
+    Use ready-to-use libraries for your own projects.
+
+    [:octicons-arrow-right-24: Referenced libraries](overview/references/libraries.md)
 
 </div>
 
@@ -116,7 +126,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Find here **Support** for using GEMS. How to **Contribute** to GEMS.
 
-    [:octicons-arrow-right-24: Support](./home/support.md)
+    [:octicons-arrow-right-24: Support](./support/contact.md)
 
     [:octicons-arrow-right-24: Contributing](support/contributing.md)
 
