@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # How to run a PyPSA-Eur study on a server with GEMS
 
 This tutorial is a workflow to run a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) study on a remote Linux server using GEMS. [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) is an open-source energy system model covering the European power grid coded in PyPSA format whose native format is not compatible with Antares Modeler. The package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) converts PyPSA format studies into GEMS readable studies.
@@ -21,7 +15,7 @@ The Jupyter environment runs inside Docker on the remote server and is accessed 
 
 The configuration of the VS Code Remote SSH linked to remote server running Jupyter docker image is detailed in this tutorial [VS Code Remote SSH + Jupyter tutorial](https://www.w3tutorials.net/blog/vscode-how-to-run-a-jupyter-notebook-in-a-docker-container-over-a-remote-server/).
 
-## Part 1 — Clone the GEMS repository
+## Part 1 - Clone the GEMS repository
 
 These steps are run **on the remote server** (connect via SSH first).
 
@@ -32,7 +26,7 @@ git clone https://github.com/AntaresSimulatorTeam/GEMS.git
 cd GEMS
 ```
 
-## Part 2 — Set up and run PyPSA-Eur
+## Part 2 - Set up and run PyPSA-Eur
 
 These steps are run **on the remote server**.
 
@@ -140,7 +134,7 @@ pixi run snakemake -c all all -j 4 --rerun-incomplete
 ```
 
 
-## Part 3 — Build docker image and Open the Jupyter notebook via Remote SSH
+## Part 3 - Build docker image and Open the Jupyter notebook via Remote SSH
 
 We have all what is needed by the docker image :
 - PyPSA Eur data

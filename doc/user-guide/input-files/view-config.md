@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-    <a href="../../../..">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </a>
-</div>
-
 # Views Configuration File
 
 The **Views configuration file** defines which [Views](../outputs/business-view.md) to produce and how. It selects the metrics to compute, the locations to aggregate over and the temporal resolution of the outputs fit for users ; the **views**.

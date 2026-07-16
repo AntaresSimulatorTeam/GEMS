@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-    <a href="../../../..">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </a>
-</div>
-
 # Antares Simulator's GEMS interpreter
 
 <div style="text-align: center;">
@@ -15,7 +9,7 @@
 Integrated alongside the **Antares Simulator [^1]**, this GEMS interpreter introduces new possibilities for extending legacy optimization structures directly within Antares studies. This integration enables users to broaden the standard simulation framework by creating new models and exploring enhanced problem formulations, all while remaining fully compatible with the Antares Simulator ecosystem.
 Two different usage mode of the GEMS interpreter are available with [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) :
 
-- **Hybrid mode**: allows the construction of studies that combine Antares’ legacy components with GEMS components. In terms of temporal and uncertainty modeling, this mode follows the historical approach of [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/). It is executed using `antares-solver`, the traditional Antares Simulator executable.  
+- **[Hybrid mode](../../interoperability/hybrid/overview.md)**: allows the construction of studies that combine Antares’ legacy components with GEMS components. In terms of temporal and uncertainty modeling, this mode follows the historical approach of [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/). It is executed using `antares-solver`, the traditional Antares Simulator executable.  
 - **Full modeler mode**: exclusively supports GEMS components and provides greater flexibility, as it is not constrained by [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/)’s temporal and uncertainty structures. It is executed using `antares-modeler`.
 
 For detailed usage and examples of [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/) and its GEMS interpreter, see:
