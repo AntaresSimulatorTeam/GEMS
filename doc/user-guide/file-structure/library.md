@@ -48,6 +48,11 @@ All `id's` in the model library and system file must respect the following:
 - All other characters are prohibited
 - Only lower-case is allowed
 
+!!! warning "Design proposal — not yet implemented"
+    A [set](#sets)'s `id` must not collide with any parameter or variable `id` within the same model.
+    This rule is part of the [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed)
+    proposal — not yet implemented in [GemsPy](../../index.md).
+
 ## Collections and key fields in library file
 
 Every library file must begin with the following header with optional `description` and `version`:
@@ -215,6 +220,69 @@ variables:
     upper-bound: injection_nominal_capacity
     variable-type: continuous
 ```
+
+#### Sets
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the library file schema. It is not yet
+    implemented in [GemsPy](../../index.md). See
+    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) for the
+    full expression-syntax proposal this schema supports.
+
+(Optional) A list of custom index sets declared by this model, usable to index `parameters` and
+`variables` (via the new `indexed-by` field described below) and to index `constraints`,
+`binding-constraints`, `objective-contributions`, and `extra-outputs`.
+
+| Element | Type | Description |
+|------|------|--------------------------|
+|`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming), and must not collide with any parameter or variable `id` in the same model.|
+| `description`| String | *(Optional)* A human-readable description of the set's purpose.|
+|`cardinality`| Integer or parameter `id` | *(Ordinal sets)* Either an integer literal or the `id` of a scalar, non-time/scenario-dependent parameter of this model. Defines 0-based integer positions `0 .. cardinality-1`. Referencing a parameter lets different components instantiating this model have different set sizes, using the ordinary per-component parameter-assignment mechanism (see [System — Parameters](../system.md#parameters)).|
+|`elements`| List of strings | *(Enumerated sets)* An ordered list of named elements. If omitted, the set's concrete elements must instead be supplied per component in the [system file](../system.md#sets).|
+
+Exactly one of `cardinality` or `elements` must be given, unless `elements` is intentionally omitted
+to defer the concrete list to each component (see [System — Sets](../system.md#sets)).
+
+```yaml
+models:
+  - id: multi_segment_storage
+    parameters:
+      - id: segment_count
+        time-dependent: false
+        scenario-dependent: false
+    sets:
+      - id: segment
+        description: "Price segments of the storage's marginal-value curve"
+        cardinality: segment_count
+      - id: fuel
+        elements: [gas, coal, oil]
+```
+
+To mark a parameter or variable as indexed by one (or more) of these sets, add an `indexed-by`
+field, analogous to `time-dependent`/`scenario-dependent`:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions. Referenced in expressions via `{...}` — e.g. `X{segment}` or `X{segment, fuel}` for multiple sets. See [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed).|
+
+```yaml
+parameters:
+  - id: segment_capacity
+    indexed-by: segment
+    time-dependent: false
+    scenario-dependent: false
+variables:
+  - id: segment_level
+    indexed-by: segment
+    lower-bound: 0
+    upper-bound: segment_capacity{segment}
+    variable-type: continuous
+```
+
+The same `indexed-by` field applies to `constraints`, `binding-constraints`,
+`objective-contributions`, and `extra-outputs`, to force unfolding over a set even when none of the
+constraint's own terms are set-indexed — see
+[Indexing a constraint explicitly](../mathematical-syntax.md#indexing-a-constraint-explicitly-and-referencing-the-index-value-itself).
 
 #### Ports
 

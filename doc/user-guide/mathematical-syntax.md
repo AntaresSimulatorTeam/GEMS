@@ -191,6 +191,175 @@ Using these time operators, advanced temporal constraints can be created. For ex
 expression: production[t] <= (1/3) * sum(t .. t+3, production)
 ```
 
+## Custom Sets and Indexing (Proposed)
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the Mathematical Expression Syntax. It is not
+    yet implemented in [GemsPy](../index.md) — no model library or study can use this syntax today.
+    It is documented here to gather feedback on the design before implementation begins.
+
+In addition to the built-in [time](#time-operators-and-indexing) and [scenario](#scenario-operator)
+dimensions, a model may declare arbitrary **custom sets** — user-defined discrete index domains (e.g.
+the price segments of a storage's marginal-value curve, a list of fuels, a set of sub-technologies)
+— and index parameters, variables, and expressions over them.
+
+Custom-set indexing uses curly braces `{ }`, a delimiter distinct from the square brackets `[ ]`
+reserved for time, so the two never collide. A set's own `id` doubles as its index variable: used
+bare inside `{ }` it means "the current element"; used with an explicit value it means "this specific
+element."
+
+### Declaring a set
+
+A model declares its custom sets in a `sets` collection, alongside `parameters` and `variables`. Two
+kinds of sets are supported:
+
+- **Ordinal (range) set** — `cardinality: <integer-literal-or-scalar-parameter-id>` gives 0-based
+  integer positions `0 .. cardinality-1` (consistent with time's 0-based convention). Pointing
+  `cardinality` at a scalar parameter id lets different components of the same model have different
+  set sizes, using the same per-component parameter-assignment mechanism already used for any other
+  parameter — no new mechanism is needed for this.
+- **Enumerated (named) set** — `elements: [id1, id2, ...]` gives named, ordered elements. If every
+  component instantiating the model shares the same list, declare it directly at model level (as
+  below). If different components need different lists, declare only the set's `id` at model level
+  (no `elements`) and supply the concrete list per component in `system.yml`, using the same
+  `sets:` mechanism `system.yml` already uses for [Properties](file-structure/system.md#properties).
+
+```yaml
+models:
+  - id: multi_segment_storage
+    parameters:
+      - id: segment_count
+        time-dependent: false
+        scenario-dependent: false
+    sets:
+      - id: segment
+        description: "Price segments of the storage's marginal-value curve"
+        cardinality: segment_count   # integer literal, or the id of a scalar parameter
+      - id: fuel
+        elements: [gas, coal, oil]  # enumerated/named set
+```
+
+### Marking a parameter or variable as set-indexed
+
+A new `indexed-by` field, alongside the existing `time-dependent` / `scenario-dependent` booleans,
+declares that a parameter or variable carries one or more custom-set dimensions:
+
+```yaml
+parameters:
+  - id: segment_capacity
+    indexed-by: segment
+    time-dependent: false
+    scenario-dependent: false
+variables:
+  - id: segment_level
+    indexed-by: segment
+    lower-bound: 0
+    upper-bound: segment_capacity{segment}
+    variable-type: continuous
+```
+
+`indexed-by` also accepts a list (`indexed-by: [segment, fuel]`) for a parameter or variable indexed
+by more than one custom set at once — see [Multiple indexing sets](#multiple-indexing-sets) below.
+
+### Indexing expressions
+
+| Form | Meaning | Time analogue |
+|---|---|---|
+| `X{segment}` | current element (implicit within an unfolded/aggregated context) | `X[t]` |
+| `X{2}` | explicit element at position 2 (ordinal sets, 0-based) | `X[5]` |
+| `X{segment+1}` / `X{segment-1}` | relative shift by position (ordinal sets only) | `X[t+1]` / `X[t-1]` |
+| `X{gas}` | explicit named-element access (enumerated sets) | *(no time equivalent)* |
+| `(expr){segment}` | index an arbitrary parenthesized **expression**, not just a bare identifier | `(expr)[t+1]` |
+| `X{segment}[t+1]` | compose set- and time-indexing on the same term | — |
+
+Because a set's `id` is an ordinary identifier — not a reserved keyword the way `t` is — standard
+arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctly; no dedicated
+"shift" grammar (like time's) is required for custom sets.
+
+### Aggregating over a custom set
+
+A new operator, `sum_over(<set_id>, <expr>)`, aggregates an expression across every element of a
+custom set, mirroring the pattern where each new dimension gets its own aggregator name (`sum` for
+time, `expec` for [scenario](#scenario-operator)) rather than overloading `sum`:
+
+```yaml
+constraints:
+  - id: total_level
+    expression: level = sum_over(segment, segment_level)
+```
+
+### Multiple indexing sets
+
+A parameter or variable can be indexed by more than one custom set. Indices are comma-separated
+inside a single pair of braces, in the same order as declared in `indexed-by`:
+
+```yaml
+sets:
+  - id: segment
+    cardinality: segment_count
+  - id: fuel
+    elements: [gas, coal, oil]
+
+parameters:
+  - id: segment_fuel_cost
+    indexed-by: [segment, fuel]
+    time-dependent: false
+    scenario-dependent: false
+```
+
+| Form | Meaning |
+|---|---|
+| `X{segment, fuel}` | current element of both (implicit/unfolded on both dimensions) |
+| `X{segment+1, fuel}` | shift `segment` by +1, keep `fuel` at its current element |
+| `X{2, gas}` | explicit position 2 on `segment`, explicit element `gas` on `fuel` |
+
+Aggregation stays single-set per call and nests for multi-set reduction, rather than introducing a
+second aggregation form:
+
+```yaml
+expression: total = sum_over(fuel, sum_over(segment, segment_fuel_cost))
+```
+
+### Implicit unfolding
+
+A constraint containing a set-indexed variable/parameter — without an explicit index, or with the
+"current element" form `X{segment}` — implicitly unfolds into one constraint per set element, exactly
+like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
+
+### Indexing a constraint explicitly, and referencing the index value itself
+
+Implicit unfolding only fires when the constraint contains a term that is itself `indexed-by` the
+set. To unfold a constraint over a set even when none of its terms are set-indexed — typically
+because the constraint only needs the *index value* itself, not a subscript into anything — add an
+explicit `indexed-by` field on the constraint (this field applies identically to
+`binding-constraints`, `objective-contributions`, and `extra-outputs`):
+
+```yaml
+constraints:
+  - id: segment_marginal_cost
+    indexed-by: segment
+    expression: segment_price{segment} = base_price + segment * price_step
+```
+
+Used bare, outside `{ }`, a set's own `id` evaluates to the current element's 0-based integer
+position within whichever set-indexed context it is unfolding in — e.g. bare `segment` above is a
+plain number (0, 1, 2, …), not a subscript operator. This holds uniformly for both ordinal and
+enumerated sets, since even an enumerated set has a well-defined declaration order (`fuel` bare = 0
+for `gas`, 1 for `coal`, 2 for `oil` given `elements: [gas, coal, oil]`).
+
+A set's `id` must not collide with any parameter or variable `id` in the same model (see
+[Rules for id naming](file-structure/library.md#rules-for-id-naming)), or a bare reference to that
+name would be ambiguous between "current index position" and a parameter/variable lookup.
+
+### Collision check
+
+- `[ ]` stays 100% reserved for time; never touched.
+- `{ }` is currently unused anywhere in the grammar — zero syntactic overlap.
+- `.` stays reserved for [ports](#ports).
+- `sum_over` is a new name, distinct from `sum`, `sum(S..E,X)`, `sum_connections`, `expec`.
+- `{` only ever appears immediately after an identifier (`X{...}`), never as the first character of
+  the expression string, so it can't be misparsed as a YAML flow mapping.
+
 ## Constraints
 
 A constraint is described by a single expression containing a comparison operator (`=`, `<=`, or `>=`). The left and right sides must be a linear expressions. Here are the key points about constraints:

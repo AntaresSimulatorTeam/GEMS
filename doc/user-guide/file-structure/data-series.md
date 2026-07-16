@@ -46,3 +46,52 @@ Represent data that varies across both time and scenarios (a different time seri
 
 Here, the first row contains the values at time-step 0 for scenarios 1, 2, 3 respectively, and the second row contains the values at time-step 1 for scenarios 1, 2, 3.
 
+## Set-indexed series
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the data-series format, part of the
+    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
+    It is not yet implemented in [GemsPy](../../index.md).
+
+A parameter declared `indexed-by` a [custom set](./library.md#sets) cannot use the positional matrix
+formats above: a third (or later) dimension cannot be expressed by shape alone without an arbitrary
+stacking convention, and an enumerated set's elements are *named*, not positional, so a plain matrix
+cannot carry their names. Such parameters instead use a **tidy/long CSV format, with a header row**
+— unlike every other data series, which has no header:
+
+```csv
+segment,time,scenario,value
+0,0,0,10.4
+0,0,1,11.0
+1,0,0,20.0
+```
+
+Only the columns that actually apply to the parameter appear. A `segment`-indexed parameter that is
+neither time- nor scenario-dependent is simply:
+
+```csv
+segment,value
+0,10.0
+1,25.0
+2,60.0
+```
+
+For a parameter indexed by an enumerated set, the column holds element names instead of integer
+positions:
+
+```csv
+fuel,value
+gas,42.0
+coal,55.0
+```
+
+For a parameter indexed by more than one set (`indexed-by: [segment, fuel]`), one column per set
+appears, each named after its set `id`:
+
+```csv
+segment,fuel,value
+0,gas,10.0
+0,coal,12.0
+1,gas,20.0
+```
+

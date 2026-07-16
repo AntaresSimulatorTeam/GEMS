@@ -100,6 +100,36 @@ system:
           value: frenchpower
 ```
 
+### Sets
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the system file schema, part of the
+    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
+    It is not yet implemented in [GemsPy](../../index.md).
+
+(Optional) When a model declares an [enumerated set](../library#sets) by `id` only (no `elements`),
+each component instantiating that model must supply the set's concrete element list here — mirroring
+how [Properties](#properties) values are supplied per component while their keys are declared in the
+model. This mechanism is not needed for ordinal (cardinality-based) sets, since their size already
+varies per component through the ordinary [parameter](#parameters) assignment mechanism above.
+
+Each set entry contains:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | The set key name, matching one declared in the [model's sets](../library#sets) without an `elements` list. |
+| `elements` | List of strings | The ordered list of named elements this component uses for that set. |
+
+```yaml
+system:
+  components:
+    - id: my_plant
+      model: mylib.multi_fuel_generator
+      sets:
+        - id: fuel
+          elements: [gas, coal]
+```
+
 ## Connections
 
 A list of connections between component ports. Each connection entry defines a link between two components’ ports, allowing them to interact.
