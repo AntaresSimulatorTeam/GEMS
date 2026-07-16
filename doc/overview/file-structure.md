@@ -26,9 +26,7 @@ The different types of files describing a GEMS study case are:
 
 The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) included in this documentation.
 
-<p align="center">
-    <img src="../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
-</p>
+![GEMS Architecture Diagram](../../assets/6_GEMS_architecture.png)
 
 ## Illustration with an example
 
