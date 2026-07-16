@@ -1,0 +1,6 @@
+solver: coin
+solver-parameters: THREADS 1
+solver-logs: false
+no-output: false
+first-time-step: 0
+last-time-step: 167

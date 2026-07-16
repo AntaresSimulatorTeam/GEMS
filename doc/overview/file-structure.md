@@ -1,16 +1,10 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # File Structure
 
 ## Data Workflow
 
 ![Workflow](../../assets/architectural_overview.png)
 
-## File Overview : Model, System, Optimization, Business
+## Input files overview : Model, System, Optimization, Business Intelligence
 
 The GEMS architecture enforces a structured approach, separating modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
@@ -25,10 +19,10 @@ The different types of files describing a GEMS study case are:
 | **Type of File**   | **Domain**  | **File**        | **Description & Role**  |
 |---------------------|-------------|-----------------|-------------------------|
 | **[Model Libraries](../user-guide/input-files/library.md)** | <span style="display:inline-block; width:12px; height:12px; background-color:#17A2B8; border-radius:50%; margin-right:5px;"></span>Abstract modelling | YAML (e.g., `basic-models-library.yml`, `antares-models-library.yml`)  |**Defines Models:** Abstract representations of system components to be simulated. **Models are defined in a library file** and specify their ports, parameters, and internal behavior. These definitions can also include optional constraint and objective contributions used in simulation.|
-| **[System](../user-guide/input-files/system.md)**  | <span style="display:inline-block; width:12px; height:12px; background-color:#D63384; border-radius:50%; margin-right:5px;"></span>System  | YAML  (`system.yml`) | **Defines Components:** Numerical instantiation of models, linking to model IDs (e.g., `example_library_id.example_model_id`). Specifies parameter values and connections between components via ports, forming the system graph.|
-| **[Timeseries](../user-guide/input-files/data-series.md)**  | <span style="display:inline-block; width:12px; height:12px; background-color:#D63384; border-radius:50%; margin-right:5px;"></span>System  | Dataseries (e.g., `wind_generation.csv`, `solar_generation.csv`)  | **Time-dependent Data:** Numerical data for parameters varying by time and scenario. Stored as `.csv` or `.tsv` files, typically in a data-series folder.|
-| **Solution Workflow**| <span style="display:inline-block; width:12px; height:12px; background-color:#F8A055; border-radius:50%; margin-right:5px;"></span>Solution Workflow| YAML (`optim-config.yml`)| **Workflow Definition:** Describes calculation block processing (sequential, parallel, Xpansion frontale, Benders decomposition) and master problem constraints, especially for investment variables.|
-|**[Optimization Parameters](../user-guide/input-files/solver-optimization.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#F8A055; border-radius:50%; margin-right:5px;"></span>Solution Workflow| YAML (`parameters.yml`)| **Solver & Configuration Settings:** Contains solver parameters and configuration required for running Modeler.|
+| **[System](../user-guide/input-files/system.md)**  | <span style="display:inline-block; width:12px; height:12px; background-color:#D63384; border-radius:50%; margin-right:5px;"></span>System  | YAML  (`system.yml`) | **Defines Components:** Numerical instantiation of models, linking to model IDs (e.g., `example_library_id.example_model_id`). Specifies parameter values and connections between components via ports, forming the system graph. There is exactly one system file per study.|
+| **[Timeseries](../user-guide/input-files/data-series.md)**  | <span style="display:inline-block; width:12px; height:12px; background-color:#D63384; border-radius:50%; margin-right:5px;"></span>System  | Dataseries (e.g., `wind_generation.csv`, `solar_generation.csv`)  | **Time-dependent Data:** Numerical data for parameters varying by time and scenario. Stored as .csv or .tsv files (parquet support coming soon), typically in a data-series folder.|
+| **Solution Workflow**| <span style="display:inline-block; width:12px; height:12px; background-color:#F8A055; border-radius:50%; margin-right:5px;"></span>Solution Workflow| YAML (`optim-config.yml`)| **Workflow Definition:** Describes calculation block processing (sequential, parallel, decomposition methods) and master problem constraints, especially for investment variables.|
+|**[Optimization Parameters](../user-guide/input-files/solver-optimization.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#F8A055; border-radius:50%; margin-right:5px;"></span>Solution Workflow| YAML (`parameters.yml`)| **Solver & Configuration Settings:** Contains solver parameters and configuration required for running Modeler (a GEMS interpreter).|
 | **[Taxonomy](../user-guide/input-files/taxonomy.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#17A2B8; border-radius:50%; margin-right:5px;"></span>Abstract modelling| YAML (`taxonomy.yml`)| **Classifies Components:** Classifies component models into categories used to select which components contribute to a metric.|
 | **[Metrics Catalog](../user-guide/input-files/catalog.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#8B5FB5; border-radius:50%; margin-right:5px;"></span>Business Intelligence| YAML (`catalog.yml`) | **Metrics Logic:** Defines a set of Metrics with their aggregation rules (terms, terms-operator, time-operator). Used by `view-config.yml`.|
 | **[Views Configurations](../user-guide/input-files/view-configuration.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#8B5FB5; border-radius:50%; margin-right:5px;"></span>Business Intelligence| YAML (`view-config.yml`) | **Views Logic:** Configures views by specifying scope (location, calendar), time aggregation resolution, and the metrics from `catalog.yml` to compute.|
@@ -37,9 +31,7 @@ The different types of files describing a GEMS study case are:
 
 The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) included in this documentation.
 
-<p align="center">
-    <img src="../../assets/6_GEMS_architecture.png" alt="GEMS Architecture Diagram">
-</p>
+![GEMS Architecture Diagram](../../assets/6_GEMS_architecture.png)
 
 ## Illustration with an example
 
@@ -66,4 +58,4 @@ The outputs of GEMS consist of three main categories of objects: **Optimization 
 
 - **Optimization Problem** represents the global mathematical formulation of the energy system simulation/optimization.
 - **Simulation Table** contains the raw results of the simulation or optimization, including the optimal values of decision variables and the values of expressions computed from them.
-- **Business Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../user-guide/outputs/view.md).
+- **Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../user-guide/outputs/view.md).

@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Simple example of a [hybrid study](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/Hybrid_Study)
 
 This section represents a simple example of a hybrid study that demonstrates how to integrate GEMS models into Antares Simulator. The example can be found in the [resources folder](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples) and covers a one-week time horizon.
@@ -15,7 +9,7 @@ This section represents a simple example of a hybrid study that demonstrates how
     This consists of an area from Solver framework with a constant demand of 60
     MW throughout one week and a wind farm component made from the
     **renewable model** from the
-    [`basic-models-library`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml).
+    [`basic-models-library`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) (see [reference libraries](../../overview/references/libraries.md)).
 
     Concerning the connection between the area and the renewable component, it's configured by these yaml files:
 
