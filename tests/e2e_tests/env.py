@@ -101,7 +101,7 @@ def get_paths() -> EnvironmentPaths:
     tutorial_legacy_converter_notebook_path = (
         repo_root
         / "doc"
-        / "getting-started"
+        / "examples"
         / "tutorial-four-antares-legacy"
         / "tutorial-antares-legacy.ipynb")
 
