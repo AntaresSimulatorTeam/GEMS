@@ -63,6 +63,6 @@ This section is a glossary of the main concepts used by GEMS.
 | Term    | Definition    |
 |---------|---------------|
 | [Simulation table](../user-guide/outputs/simulation-table.md) | A table providing the raw optimization results|
-| [Views](../user-guide/outputs/business-view.md) | They provide a representation of results based on users' requirements written inside the `view-config.yml`.|
+| [Views](../user-guide/outputs/business-view.md) | They provide a representation of results as Metrics, based on users' requirements written inside the `view-config.yml`.|
 
 
