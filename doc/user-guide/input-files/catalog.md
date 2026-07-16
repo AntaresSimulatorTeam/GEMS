@@ -17,9 +17,9 @@ Generalities:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | A unique identifier for the catalog.|
-| `taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) this catalog uses.|
-| `location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects (e.g. buses or areas).|
+| `catalog.id` | String | A unique identifier for the catalog.|
+| `catalog.taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) this catalog uses.|
+| `catalog.location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects (e.g. buses or areas).|
 
 Metrics definition:
 
@@ -27,10 +27,10 @@ Metrics definition:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | A unique identifier for the metric.|
-| `terms` | List | List of terms contributing to the metric. Each term selects a component group by [`taxonomy-category`](taxonomy.md), an `output-id` (referencing a [model output](library.md#extra-output)) and the [`location-ports`](taxonomy.md#key-elements-in-taxonomy-file) through which it connects to the location.|
-| `terms-operator` | String | How to combine values across components: `sum` or `avg`.|
-| `time-operator` | String | How to aggregate values over time: `sum` or `avg`.|
+| `metrics-definition.id` | String | A unique identifier for the metric.|
+| `metrics-definition.terms` | List | List of terms contributing to the metric. Each term selects a component group by [`taxonomy-category`](taxonomy.md), an `output-id` (referencing a [model output](library.md#extra-output)) and the [`location-ports`](taxonomy.md#key-elements-in-taxonomy-file) through which it connects to the location.|
+| `metrics-definition.terms-operator` | String | How to combine values across components: `sum` or `avg`.|
+| `metrics-definition.time-operator` | String | How to aggregate values over time: `sum` or `avg`.|
 
 ## Example
 
