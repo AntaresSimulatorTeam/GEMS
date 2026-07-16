@@ -1,7 +1,7 @@
 # Business Views Configuration Files
 
  **[Views](../outputs/view.md)** are result tables designed to meet business-user expectations.  
-Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
+Each View exposes a set of end-use Metrics, with spatial and temporal resolutions that depends on the configuration of the view.  
 These numerical values are computed exclusively from:
 
 - the data contained in the **[Simulation Table](../outputs/simulation-table.md)**,
