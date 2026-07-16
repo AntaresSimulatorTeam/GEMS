@@ -20,7 +20,7 @@ This section is a glossary of the main concepts used by GEMS.
 | [System](../user-guide/input-files/system.md)  | A file listing all the "**components**", the instances of models defined by the system YAML file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
 | [Dataseries](../user-guide/input-files/data-series.md) | A table containing all the data through time. It is used by time/scenario dependent components|
 | [Taxonomy](../user-guide/input-files/business-view-configuration.md) | A file classifying component models into **categories**. Used to select which components contribute to a metric.|
-| [Catalog](../user-guide/input-files/business-view-configuration.md) | A file defining a set of **BusinessMetrics** with their aggregation rules (terms, terms-operator, time-operator).|
+| [Catalog](../user-guide/input-files/business-view-configuration.md) | A file defining a set of end-use **Metrics** with their aggregation rules (terms, terms-operator, time-operator).|
 | [View Config](../user-guide/input-files/business-view-configuration.md) | Configure **views** by specifying scope (location, calendar), time aggregation, and the metrics from `catalog.yml` to compute.|
 
 ## Concepts
