@@ -1,12 +1,6 @@
 ---
-description: How to contribute to GEMS — guidelines for code contributions, documentation improvements, and model library contributions to the GEMS open-source project.
+description: How to contribute to GEMS - guidelines for code contributions, documentation improvements, and model library contributions to the GEMS open-source project.
 ---
-
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
 
 # Contributing
 
@@ -40,7 +34,7 @@ GEMS welcomes any contribution in all forms.
 
         GEMS repository containing documentation:
 
-        - [GESM](https://github.com/AntaresSimulatorTeam/GEMS)
+        - [GEMS](https://github.com/AntaresSimulatorTeam/GEMS)
 
         Steps to contribute:
 
