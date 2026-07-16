@@ -178,7 +178,7 @@ system:
 
 Every library-level global set used anywhere in the system must be resolved by instantiation time —
 either given directly in the library, or, if left unresolved there, supplied here. A set already given
-a literal value in the library should not be re-specified here (or, if it is, it must match exactly).
+a literal value in the library must not be re-specified here.
 
 ## Connections
 

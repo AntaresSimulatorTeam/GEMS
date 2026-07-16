@@ -336,9 +336,11 @@ by more than one custom set at once — see [Multiple indexing sets](#multiple-i
 
 ### Port fields and custom sets
 
-A port-type field may declare `indexed-by` directly, exactly like a parameter or variable — but it
-may only reference a **global** set, never a local one, since port types are declared independently
-of any model and have no visibility into a model's local sets:
+A port-type field may declare `indexed-by` directly, exactly like a parameter or variable — including
+a list for a field indexed by more than one set (`indexed-by: [fuel, region]`, using the same
+comma-list `{...}` syntax as [Multiple indexing sets](#multiple-indexing-sets)) — but it may only
+reference **global** sets, never a local one, since port types are declared independently of any
+model and have no visibility into a model's local sets:
 
 ```yaml
 port-types:
@@ -365,11 +367,17 @@ that port type necessarily shares that exact global set, [`sum_connections`](#po
 [binding constraint](file-structure/library.md#binding-constraints) built on top of it are well-defined
 by construction — no additional runtime guard is needed beyond this schema-level restriction.
 
-**Escape hatch:** if a model genuinely needs a port-facing global set *and* a related-but-different,
-per-component-flexible local set, keep them as two distinctly-named sets and have the
-`port-field-definition` reduce explicitly from the local set to the global one (e.g. via `sum_over`,
-with the model author writing the correspondence by hand). There is no generic set-to-set mapping
-primitive in this proposal — a true index-alignment/mapping feature would be future work.
+**Escape hatch, and its limit:** if a model genuinely needs a port-facing global set *and* a
+related-but-different, per-component-flexible local set, `sum_over` only helps in the degenerate case
+where the port field itself ends up **unindexed** — i.e. the field is a plain aggregate total, not
+broken down by element (`sum_over(local_set, internal_var)` fully collapses `local_set` to a scalar,
+per the [dimension-selectivity rule](#aggregating-over-a-custom-set) above). It **cannot** produce a
+value still indexed by the global set (e.g. `flow{fuel}`) out of a differently-shaped local set —
+`sum_over` reduces a dimension to a scalar, it does not remap one set's index space onto another's.
+If the port field must genuinely stay broken down by global-set element, and the model's internal
+detail lives on a different, differently-shaped local set, **this proposal has no solution**: it would
+require a true set-to-set mapping/index-alignment primitive, which does not exist here and would be
+future work.
 
 ### Indexing expressions
 
@@ -440,12 +448,11 @@ A constraint containing a set-indexed variable/parameter — without an explicit
 "current element" form `X{segment}` — implicitly unfolds into one constraint per set element, exactly
 like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
 
-!!! note "Open question"
-    What happens when a constraint's *implicit* set dimension (inferred from one of its own terms)
-    differs from an *explicitly* declared `indexed-by` naming a different set on that same constraint
-    (see below)? This proposal does not yet specify whether the constraint should unfold over the
-    union/product of both, or how such a mismatch should be reported. Flagged here as unresolved —
-    left for a follow-up refinement rather than the initial proposal.
+**Cross-product unfolding:** a constraint whose terms carry more than one dimension — two different
+custom sets, or a custom set alongside time and/or scenario — unfolds over the **cross-product** of
+all of them, generalizing the time+scenario dual-unfolding rule the base doc already establishes (a
+term that is both time- and scenario-dependent already unfolds per `(t, s)` pair today; a term that is
+also `segment`-indexed unfolds per `(t, s, segment)` triple, and so on for any further set).
 
 ### Indexing a constraint explicitly, and referencing the index value itself
 
@@ -476,6 +483,11 @@ A set's `id` must not collide with (see [Rules for id naming](file-structure/lib
 
 or a bare reference to that name would be ambiguous between "current index position", a
 parameter/variable lookup, or the built-in time index.
+
+This also resolves the case of a constraint that carries *both* an implicit set dimension (inferred
+from one of its own terms) and an explicit `indexed-by` naming a *different* set: per
+[Cross-product unfolding](#implicit-unfolding) above, the constraint simply unfolds over the
+union/cross-product of both dimensions, exactly as it would for any other combination of dimensions.
 
 ### Collision check
 

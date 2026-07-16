@@ -87,11 +87,14 @@ library:
 
 The `sets` collection, a sibling of `port-types` and `models`, declares **global** custom index sets
 — shared by every model and port-type field in this library that references them. This is the only
-kind of custom set usable by a [port-type field](#port-types) or across a
-[binding constraint](#binding-constraints), since every component connecting through a port must agree
-on the exact same index domain (see
-[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). Model-level,
-per-component-varying sets are declared separately — see [Sets](#sets) under Models below.
+kind of custom set that may cross a port: a [port-type field](#port-types)'s `indexed-by` may only
+name a global set, and the argument passed to `sum_connections` inside a
+[binding constraint](#binding-constraints) may only be indexed by one, since every component
+connecting through a port must agree on the exact same index domain (see
+[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). This does
+**not** restrict a binding constraint as a whole — it may still freely reference the model's own local
+sets in parts of its expression that don't cross the port. Model-level, per-component-varying sets are
+declared separately — see [Sets](#sets) under Models below.
 
 This collection is **optional**.
 
@@ -144,8 +147,9 @@ port-types:
 |`fields`| List | A list of fields carried by this port. Each field has an `id` (unique within the port type) that identifies a scalar floating-point quantity exchanged through the port (e.g. a power flow value).|
 
 !!! warning "Design proposal — not yet implemented"
-    A field may declare `indexed-by`, referencing a [library-level set](#library-level-sets) `id`, to
-    mark the field as carrying a custom-set dimension (never a model-level set — see
+    A field may declare `indexed-by`, referencing one or more [library-level set](#library-level-sets)
+    `id`s (a single `id`, or a list for a field indexed by more than one set), to mark the field as
+    carrying a custom-set dimension (never a model-level set — see
     [Port fields and custom sets](../mathematical-syntax.md#port-fields-and-custom-sets)):
     ```yaml
     port-types:

@@ -96,3 +96,19 @@ segment,fuel,value
 1,gas,20.0
 ```
 
+**Column order:** in the general case — any number of sets, combined with time and/or scenario — the
+canonical column order is: sets, in the same order as declared in `indexed-by`, followed by `time`,
+then `scenario`, then `value`:
+
+```csv
+segment,fuel,time,scenario,value
+0,gas,0,0,10.4
+0,gas,0,1,11.0
+0,coal,0,0,9.2
+```
+
+If a set's `elements` are left unresolved in the library (deferred to a study-wide instantiation in
+[`system.yml`'s Global Sets](./system.md#global-sets)), the column's values must match exactly
+whatever that instantiation ultimately declares for the set — the library alone does not tell a
+data-series author the concrete element list to use.
+
