@@ -48,11 +48,11 @@ flowchart LR
     style Input stroke:#0891b2,stroke-width:3px,color:#ffffff
     style ModelLib stroke:#0891b2,stroke-width:3px,color:#ffffff
     style DataSeries stroke:#0891b2,stroke-width:3px,color:#ffffff
-    style Catalogs fill:#d1ecf1,stroke:#0dcaf0,stroke-width:3px,color:#ffffff
+    style Catalogs stroke:#0dcaf0,stroke-width:3px,color:#ffffff
     style System stroke:#16a34a,stroke-width:3px,color:#ffffff
-    style Taxonomy fill:#d4edda,stroke:#28a745,stroke-width:3px,color:#ffffff
-    style View_Configuration fill:#d4edda,stroke:#28a745,stroke-width:3px,color:#ffffff
-    style Calendar fill:#d4edda,stroke:#28a745,stroke-width:1px,color:#ffffff
+    style Taxonomy stroke:#28a745,stroke-width:3px,color:#ffffff
+    style View_Configuration stroke:#28a745,stroke-width:3px,color:#ffffff
+    style Calendar stroke:#28a745,stroke-width:1px,color:#ffffff
     style Params stroke:#16a34a,stroke-width:3px,color:#ffffff
     style Lib1 stroke:#16a34a,stroke-width:3px,color:#ffffff
     style Lib2 stroke:#3b82f6,stroke-width:3px,color:#ffffff
