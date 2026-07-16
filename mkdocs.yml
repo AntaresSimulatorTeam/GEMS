@@ -1,9 +1,10 @@
 docs_dir: doc
 repo_name: GEMS
+repo_name: GEMS
 exclude_docs: |
   documentation_env/
-  getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
-  getting-started/tutorial-two-pypsa-eur/tutorial_pypsa_eur.ipynb
+  examples/notebooks/tutorial-two-pypsa-eur/pypsa-eur/*
+  examples/notebooks/tutorial-two-pypsa-eur/tutorial_pypsa_eur.ipynb
 site_name: GEMS - Generic Energy system Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy system Modelling Schema) is a
@@ -16,7 +17,7 @@ edit_uri: edit/doc/doc/
 
 theme:
   name: material
-  logo: assets/gemsV2.png
+  logo: assets/0_gems_favicon.png
   favicon: assets/0_gems_favicon.png
   prev_next_buttons_location: none
   features:
@@ -40,15 +41,17 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
-  - admonition
-  - pymdownx.details
   - attr_list
   - md_in_html
+  - admonition
+  - pymdownx.details
   - admonition
   - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
   - footnotes
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.superfences:
@@ -61,13 +64,15 @@ markdown_extensions:
       emoji_generator:
 
         !!python/name:material.extensions.emoji.to_svg ""
+hooks:
+  # Converts libraries/*.yml -> doc/assets/data/*.json before each build.
+  - doc/hooks/yaml_to_json.py
+
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  # YAML Dynamic Loader - Dependencies
-  - https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js
-  # YAML Dynamic Loader - Custom script
+  # yaml-loader.js uses JSON.parse() natively.
   - javascripts/yaml-loader.js
 
 extra_css:
@@ -88,7 +93,7 @@ plugins:
   - git-revision-date-localized:
       exclude:
         - documentation_env/*
-        - getting-started/tutorial-two-pypsa-eur/pypsa-eur/*
+        - examples/notebooks/tutorial-two-pypsa-eur/pypsa-eur/*
       enable_creation_date: true
       enable_git_follow: true
       type: timeago
@@ -96,25 +101,24 @@ plugins:
       fallback_to_build_date: true
 
 nav:
-  - About GEMS:
+  - Home:
       - Home: index.md
-      - Key Principles: home/core-concepts.md
+      - Key Principles: home/key-principles.md
       - Use Cases: home/use-cases.md
+      - Users of GEMS: home/users.md
       - Release Notes: home/release-notes.md
-      - Support: home/support.md
   - Overview:
       - Architecture: overview/architecture.md
-      - Core Concepts: overview/glossary.md
+      - Glossary: overview/glossary.md
       - File Structure: overview/file-structure.md
       - Difference with other languages & tools: overview/difference-with-other-languages.md
       - GEMS Interpreters:
           - GemsPy: overview/gems-interpreters/gemspy.md
           - Antares Simulator: overview/gems-interpreters/antares-simulator.md
-      - References:
+      - Classification of libraries of models:
           - Libraries of models: overview/references/libraries.md
           - Verifying GEMS Libraries: overview/references/verifying-libraries.md
           - Classification of models: overview/references/classification.md
-          - Users of GEMS: overview/references/users.md
   - Getting Started:
       - Installation:
           - Antares Simulator's GEMS Interpreter: getting-started/installation/modeler-installation.md
@@ -125,12 +129,9 @@ nav:
               - Mathematical Formulation: getting-started/quick-start/adequacy-math-model.md
           - Unit Commitment Example: getting-started/quick-start/unit-commitment.md
           - PyPSA-Eur in GEMS format: getting-started/quick-start/pypsa-eur.md
-      - Tutorial Notebooks:
-        - Unit Commitment with GemsPy: getting-started/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
-        - Investment Optimization with GemsPy: getting-started/tutorial-three-investment/tutorial-invest.ipynb
   - User Guide:
       - Introduction: user-guide/introduction.md
-      - Mathematical Syntax: user-guide/mathematical-syntax.md
+      - GEMS Syntax: user-guide/syntax.md
       - File Structure:
           - Overview: user-guide/input-files/overview.md
           - Library File: user-guide/input-files/library.md
@@ -163,7 +164,11 @@ nav:
           - Simple Example: interoperability/hybrid/example.md
           - Limitations: interoperability/hybrid/limitations.md
   - Examples:
+      - Overview: examples/overview-examples.md
       - Adequacy Example: examples/adequacy-example.md
+      - Tutorial Notebooks:
+          - Unit Commitment with GemsPy: examples/notebooks/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
+          - Investment Optimization with GemsPy: examples/notebooks/tutorial-three-investment/tutorial-invest.ipynb
   - Support & Contributing:
       - FAQ: support/faq.md
       - Contact: support/contact.md
