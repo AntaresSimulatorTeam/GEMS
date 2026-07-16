@@ -25,38 +25,19 @@ catalog:
 
     - id: PROD
       terms:
-        - taxonomy-category: dispatchable_generation
+        - taxonomy-category: generation
           output-id: generation_power
           location-ports: balance_port
       terms-operator: sum
       time-operator: sum
 
-    - id: LOAD
+    - id: PRICE
       terms:
-        - taxonomy-category: fatal_consumption
-          output-id: actual_load
+        - taxonomy-category: balance
+          output-id: price
           location-ports: balance_port
-      terms-operator: sum
-      time-operator: sum
-
-    - id: INSTALLED_PROD_CAPACITY
-      terms:
-        - taxonomy-category: dispatchable_generation
-          output-id: cluster_availability
-          location-ports: balance_port
-      terms-operator: sum
-      time-operator: sum
-
-    - id: BALANCE
-      terms:
-        - taxonomy-category: link
-          output-id: flow
-          location-ports: in_port
-        - taxonomy-category: link
-          output-id: minus_flow
-          location-ports: out_port
-      terms-operator: sum
-      time-operator: sum
+      terms-operator: avg
+      time-operator: avg
 ```
 
 ## Key elements in catalog file
