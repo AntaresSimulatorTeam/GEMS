@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Scenario Builder
 
 The `modeler-scenariobuilder.dat` file, located in the `data-series` directory, is used to map simulation scenarios to columns of data series. Each line defines an association between a [**scenario group**](system.md#components) name and a **Monte Carlo scenario** (referred to as *scenario*) with a **data series column identifier** (referred to as *time series index*).
@@ -30,7 +24,7 @@ scenario_group_id, scenario = time_series_index
 |-------|------|-------------|
 | `scenario_group_id` | String | Matches the `scenario-group` `id` assigned to a component in the [system file](system.md#components). |
 | `scenario` | Integer (≥ 0) | 0-based index of the Monte Carlo scenario. |
-| `time_series_index` | Integer (≥ 1) | 1-based column index in the data series file to use for this scenario. |
+| `time_series_index` | Integer (≥ 1) | 1-based column index in the [data series](data-series.md) file to use for this scenario. |
 
 ## Example
 
