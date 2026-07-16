@@ -53,4 +53,4 @@ The outputs of GEMS consist of three main categories of objects: **Optimization 
 
 - **Optimization Problem** represents the global mathematical formulation of the energy system simulation/optimization.
 - **Simulation Table** contains the raw results of the simulation or optimization, including the optimal values of decision variables and the values of expressions computed from them.
-- **Business Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../user-guide/outputs/view.md).
+- **Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../user-guide/outputs/view.md).
