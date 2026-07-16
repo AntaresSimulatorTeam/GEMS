@@ -1,12 +1,6 @@
 ---
-description: Overview of the PyPSA-to-GEMS Converter — an open-source Python package that exports PyPSA networks as GEMS study folders, supporting linear OPF and stochastic optimisation.
+description: Overview of the PyPSA-to-GEMS Converter - an open-source Python package that exports PyPSA networks as GEMS study folders, supporting linear OPF and stochastic optimisation.
 ---
-
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
 
 # Overview
 
@@ -14,7 +8,7 @@ The [PyPSA-to-GEMS](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Conver
 is an open-source & standalone python package that enables the conversion of studies 
 conducted in PyPSA into the GEMS format: it exports a 
 [PyPSA Network](https://docs.pypsa.org/latest/api/networks/network.md) as a 
-[GEMS](https://gems-energy.readthedocs.io/en/latest/user-guide/file-structure/overview.md) folder.
+[GEMS](https://gems-energy.readthedocs.io/en/latest/user-guide/input-files/overview.md) folder.
 
 This converter is based on the representation of the PyPSA models of components as a GEMS library of models: [pypsa_models.yml](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/pypsa_models.yml).
 

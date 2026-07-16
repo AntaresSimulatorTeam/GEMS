@@ -56,7 +56,9 @@ def get_paths() -> EnvironmentPaths:
     sts_studies_path = studies_folder / "test_sts"
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
-    pypsa_eur_tutorial_path = repo_root / "doc" / "getting-started" / "tutorial-two-pypsa-eur"
+    pypsa_eur_tutorial_path = (
+        repo_root / "doc" / "examples" / "notebooks" / "tutorial-two-pypsa-eur"
+    )
 
     # Paths for tutorial notebooks e2e tests
     tutorial_doc_examples_path = (
@@ -65,14 +67,16 @@ def get_paths() -> EnvironmentPaths:
     tutorial_notebook_path = (
         repo_root
         / "doc"
-        / "getting-started"
+        / "examples"
+        / "notebooks"
         / "tutorial-one-unit-commitment"
         / "tutorial-unit-commitment.ipynb"
     )
     tutorial_library_dir = (
         repo_root
         / "doc"
-        / "getting-started"
+        / "examples"
+        / "notebooks"
         / "tutorial-one-unit-commitment"
         / "unit-commitment-with-gemspy"
     )
@@ -80,12 +84,18 @@ def get_paths() -> EnvironmentPaths:
     tutorial_investment_notebook_path = (
         repo_root
         / "doc"
-        / "getting-started"
+        / "examples"
+        / "notebooks"
         / "tutorial-three-investment"
         / "tutorial-invest.ipynb"
     )
     tutorial_investment_doc_path = (
-        repo_root / "doc" / "getting-started" / "tutorial-three-investment" / "tutorial_invest"
+        repo_root
+        / "doc"
+        / "examples"
+        / "notebooks"
+        / "tutorial-three-investment"
+        / "tutorial_invest"
     )
 
     tutorial_legacy_converter_notebook_path = (

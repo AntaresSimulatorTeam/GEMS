@@ -1,13 +1,7 @@
-<div style="display: flex; justify-content: flex-end;">
-    <a href="../../../..">
-        <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-    </a>
-</div>
-
 # Business Views Configuration Files
 
- **[Business Views](../outputs/business-view.md)** are result tables designed to meet business-user expectations.  
-Each Business View exposes a set of Business Variables, which define the columns of the resulting tables.  
+ **[Views](../outputs/view.md)** are result tables designed to meet business-user expectations.  
+Each View exposes a set of end-use Metrics, with spatial and temporal resolutions that depends on the configuration of the view.  
 These numerical values are computed exclusively from:
 
 - the data contained in the **[Simulation Table](../outputs/simulation-table.md)**,

@@ -27,7 +27,7 @@ GEMS has the key attributes required to support and sustain such a community.
 - **Interoperability/Interpretability** : GEMS relies on a **self-contained** and exhaustive mathematical formulation, ensuring that all modelling assumptions, variables, and constraints are explicitly defined. This guarantees unambiguous interpretability of models, which is a key enabler for true interoperability between tools, solvers, and modelling frameworks.
 
 <div align="center">
-    <img src="./assets/Context_Gems_Example_Model.png" alt="GEMS Logo" width="500"/>
+    <img src="./assets/0_context_gems.png" alt="GEMS Logo" width="500"/>
 </div>
 
 
@@ -43,7 +43,7 @@ The following **interpreters** can be used to run Gems modelling language :
 **Converters** are available to translate existing studies into the GEMS modelling language:
 
 - [Antares Legacy Models to GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) : a Python package that enables the migration of Antares Legacy Models to GEMS.
-- [PyPSA to Gems Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](./user-guide/file-structure/system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./overview/architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
+- [PyPSA to Gems Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](./user-guide/input-files/system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./overview/architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
 
 
 ## Documentation Highlights
@@ -72,6 +72,8 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: Interpreters](./overview/gems-interpreters/gemspy.md)
 
+    [:octicons-arrow-right-24: Glossary](overview/glossary.md)
+
 -   :material-new-box:{ .lg .middle } **Release Notes**
 
     ---
@@ -79,6 +81,14 @@ The following **interpreters** can be used to run Gems modelling language :
     Check out the latest features, bug fixes and improvements in the release notes.
 
     [:octicons-arrow-right-24: What's new](home/release-notes.md)
+
+-   :material-toolbox:{ .lg .middle } **References**
+
+    ---
+
+    Use ready-to-use libraries for your own projects.
+
+    [:octicons-arrow-right-24: Referenced libraries](overview/references/libraries.md)
 
 </div>
 
@@ -116,7 +126,7 @@ The following **interpreters** can be used to run Gems modelling language :
 
     Find here **Support** for using GEMS. How to **Contribute** to GEMS.
 
-    [:octicons-arrow-right-24: Support](./home/support.md)
+    [:octicons-arrow-right-24: Support](./support/contact.md)
 
     [:octicons-arrow-right-24: Contributing](support/contributing.md)
 
