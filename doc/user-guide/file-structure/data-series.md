@@ -53,7 +53,8 @@ Here, the first row contains the values at time-step 0 for scenarios 1, 2, 3 res
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
     It is not yet implemented in [GemsPy](../../index.md).
 
-A parameter declared `indexed-by` a [custom set](./library.md#sets) cannot use the positional matrix
+A parameter declared `indexed-by` a [custom set](./library.md#sets) — whether a local (model-level)
+or [global (library-level)](./library.md#library-level-sets) set — cannot use the positional matrix
 formats above: a third (or later) dimension cannot be expressed by shape alone without an arbitrary
 stacking convention, and an enumerated set's elements are *named*, not positional, so a plain matrix
 cannot carry their names. Such parameters instead use a **tidy/long CSV format, with a header row**

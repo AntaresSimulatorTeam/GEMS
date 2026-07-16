@@ -10,6 +10,11 @@ The **system file** defines the concrete energy system to be simulated. It insta
 
 The system file is a YAML file with a single root key `system`. The system contains fields for an `id`, `description`, a list of `model-libraries` to use, the list of `components` in the system, and the list of `connections` definitions between components. Every system file must have exactly one top-level `system` entry containing these sections. Below is an example snippet of a system file:
 
+!!! warning "Design proposal — not yet implemented"
+    A proposed sixth top-level field, [`sets`](#global-sets), instantiates
+    [library-level global sets](../library.md#library-level-sets) for the whole study. Not yet
+    implemented in [GemsPy](../../index.md).
+
 ```yaml
 system:
   id: my_system
@@ -48,6 +53,7 @@ The top-level fields of a system file are:
 | `model-libraries` | String | *(Optional)* Comma-separated list of library IDs whose models are used in this system (e.g. `my_library_1, my_library_2`). Must match the `id` fields of the library files available to the simulation.|
 | `components` | List | The list of component instantiations in the system.|
 | `connections` | List | The list of port connections between components.|
+| `sets` | List | *(Optional, [proposed](#global-sets), not yet implemented)* Study-wide instantiation of [library-level global sets](../library.md#library-level-sets).|
 
 ## Components
 
@@ -100,35 +106,79 @@ system:
           value: frenchpower
 ```
 
-### Sets
+### Local Sets
 
 !!! warning "Design proposal — not yet implemented"
     This section describes a **proposed** extension to the system file schema, part of the
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
     It is not yet implemented in [GemsPy](../../index.md).
 
-(Optional) When a model declares an [enumerated set](../library#sets) by `id` only (no `elements`),
-each component instantiating that model must supply the set's concrete element list here — mirroring
-how [Properties](#properties) values are supplied per component while their keys are declared in the
-model. This mechanism is not needed for ordinal (cardinality-based) sets, since their size already
-varies per component through the ordinary [parameter](#parameters) assignment mechanism above.
+(Optional) When a model declares a **local**, model-level [enumerated set](../library#sets) by `id`
+only (no `elements`), each component instantiating that model must supply the set's concrete element
+list here — mirroring how [Properties](#properties) values are supplied per component while their
+keys are declared in the model. This mechanism is not needed for ordinal (cardinality-based) local
+sets, since their size already varies per component through the ordinary [parameter](#parameters)
+assignment mechanism above, nor for [global sets](#global-sets), which are never overridden
+per-component (see [Global Sets](#global-sets) below and
+[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)).
 
 Each set entry contains:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | The set key name, matching one declared in the [model's sets](../library#sets) without an `elements` list. |
+| `id` | String | The set key name, matching one declared in the [model's local sets](../library#sets) without an `elements` list. |
 | `elements` | List of strings | The ordered list of named elements this component uses for that set. |
 
 ```yaml
 system:
   components:
-    - id: my_plant
-      model: mylib.multi_fuel_generator
+    - id: my_battery
+      model: mylib.multi_zone_battery
       sets:
-        - id: fuel
-          elements: [gas, coal]
+        - id: zone
+          elements: [north, south]
 ```
+
+## Global Sets
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the system file schema, part of the
+    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
+    It is not yet implemented in [GemsPy](../../index.md).
+
+(Optional) A top-level `sets` collection — a sibling of `components` and `connections` — that
+instantiates any [library-level global set](../library.md#library-level-sets) left unresolved (no
+`cardinality`/`elements`) in the library. Unlike [Local Sets](#local-sets), this instantiation applies
+**once, uniformly, to the whole study** — never per component — because every component connecting
+through a port that uses this set must agree on the exact same index domain; a per-component override
+would defeat that guarantee (see
+[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). This mirrors
+how `--duration`/`--scenarios` fix the time and scenario dimensions once for an entire run rather than
+per component.
+
+Each set entry contains:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | The set key name, matching a [library-level set](../library.md#library-level-sets) left unresolved in the library. |
+| `cardinality` | Integer | *(Ordinal sets)* The set's size, as an integer literal. |
+| `elements` | List of strings | *(Enumerated sets)* The ordered list of named elements. |
+
+```yaml
+system:
+  id: my_system
+  model-libraries: example_library
+  sets:
+    - id: technology
+      elements: [ccgt, ocgt, pv, wind]
+  components:
+    - id: gen_1
+      model: example_library.multi_fuel_generator
+```
+
+Every library-level global set used anywhere in the system must be resolved by instantiation time —
+either given directly in the library, or, if left unresolved there, supplied here. A set already given
+a literal value in the library should not be re-specified here (or, if it is, it must match exactly).
 
 ## Connections
 

@@ -208,16 +208,41 @@ reserved for time, so the two never collide. A set's own `id` doubles as its ind
 bare inside `{ }` it means "the current element"; used with an explicit value it means "this specific
 element."
 
-### Declaring a set
+Custom sets come in two scopes, and the right choice depends on whether the set ever needs to be
+shared across connected components (through a port) or stays purely internal to one model:
 
-A model declares its custom sets in a `sets` collection, alongside `parameters` and `variables`. Two
-kinds of sets are supported:
+- **Local sets** — declared at [model level](#declaring-a-local-model-level-set); may vary per
+  component; never visible outside the model that declares them.
+- **Global sets** — declared once at [library level](#declaring-a-global-library-level-set); visible
+  to every model and port-type field in that library; **required** whenever a set needs to cross a
+  port, since every component connecting through that port must agree on the exact same index domain.
+
+### Why the distinction matters
+
+Time and scenario are *global* dimensions: every component in a study shares the same time horizon
+and scenario count, which is exactly why results can be laid out on one shared array indexed by
+(component, time, scenario) in [GemsPy](../index.md)'s solver implementation. A **local** set is
+inherently *ragged*: different components of the same model can have a
+different cardinality or different named elements. A ragged dimension cannot be safely combined
+across components — there is no well-defined meaning to summing "element 0" of one component's list
+against "element 0" of a different component's list if the lists don't actually agree. That is why
+local sets may only be used internally, within the model that declares them, and why anything that
+needs to cross a port must use a **global** set instead — a global set is guaranteed identical for
+every component that can ever connect through it, so it behaves like time/scenario: uniform, not
+ragged.
+
+### Declaring a local (model-level) set
+
+A model declares its local custom sets in a `sets` collection, alongside `parameters` and `variables`.
+Two kinds of sets are supported:
 
 - **Ordinal (range) set** — `cardinality: <integer-literal-or-scalar-parameter-id>` gives 0-based
   integer positions `0 .. cardinality-1` (consistent with time's 0-based convention). Pointing
   `cardinality` at a scalar parameter id lets different components of the same model have different
   set sizes, using the same per-component parameter-assignment mechanism already used for any other
-  parameter — no new mechanism is needed for this.
+  parameter — no new mechanism is needed for this. The referenced parameter must itself be scalar
+  (non-time/scenario-dependent, as already required of any `cardinality` parameter) and must not
+  itself be set-indexed, to avoid a circular "set size depends on another set" dependency.
 - **Enumerated (named) set** — `elements: [id1, id2, ...]` gives named, ordered elements. If every
   component instantiating the model shares the same list, declare it directly at model level (as
   below). If different components need different lists, declare only the set's `id` at model level
@@ -235,14 +260,62 @@ models:
       - id: segment
         description: "Price segments of the storage's marginal-value curve"
         cardinality: segment_count   # integer literal, or the id of a scalar parameter
-      - id: fuel
-        elements: [gas, coal, oil]  # enumerated/named set
 ```
+
+### Declaring a global (library-level) set
+
+A library declares its global custom sets in a `sets` collection, a sibling of `port-types` and
+`models` — not nested inside any one of them, since a global set may be shared by several models and
+port types at once:
+
+```yaml
+library:
+  id: example_library
+  sets:
+    - id: fuel
+      elements: [gas, coal, oil]   # fixed once and for all in the library, or...
+    - id: technology
+      # ...left unresolved here, to be instantiated per-study —
+      # see System — Global Sets in file-structure/system.md
+  port-types:
+    - id: multi_fuel_port
+      fields:
+        - id: flow
+        # see "Port fields and custom sets" below
+  models:
+    - id: multi_fuel_generator
+      parameters:
+        - id: gen_capacity
+          indexed-by: fuel   # references the global set directly, no local declaration needed
+          time-dependent: false
+          scenario-dependent: false
+```
+
+A global set's `cardinality`, unlike a local set's, must be an integer **literal** — a library isn't
+owned by any one component, so it has no scalar parameter to point at. `elements` may likewise be
+given directly, or left unresolved in the library and instantiated once for the whole study in
+`system.yml`'s new top-level [`sets`](file-structure/system.md#global-sets) section (never
+per-component — see [Why the distinction matters](#why-the-distinction-matters) above for why a
+per-component override would defeat the purpose of a global set).
+
+**Recommended practice:** make global sets *universal* — the superset of every element that could
+ever be relevant across the library (e.g. `elements: [gas, coal, oil, biomass, hydrogen]` even if a
+given generator only burns two of them) — and express per-component variation through the *data*
+(e.g. a capacity/bound of `0` for unused elements) rather than through differing set membership. This
+keeps the set's dimension uniform across every component, exactly like time and scenario already are,
+which is what makes cross-component aggregation (`sum_connections`, binding constraints — see
+[Port fields and custom sets](#port-fields-and-custom-sets)) well-defined without any extra runtime
+validation.
+
+A model's own local set `id`s must not collide with any global set `id` visible in the same library
+(in addition to the naming rules in [Indexing a constraint explicitly](#indexing-a-constraint-explicitly-and-referencing-the-index-value-itself)
+below) — since both are resolved through the same `indexed-by` lookup.
 
 ### Marking a parameter or variable as set-indexed
 
 A new `indexed-by` field, alongside the existing `time-dependent` / `scenario-dependent` booleans,
-declares that a parameter or variable carries one or more custom-set dimensions:
+declares that a parameter or variable carries one or more custom-set dimensions. It resolves against
+the model's own local sets, plus every global set declared in the library:
 
 ```yaml
 parameters:
@@ -260,6 +333,43 @@ variables:
 
 `indexed-by` also accepts a list (`indexed-by: [segment, fuel]`) for a parameter or variable indexed
 by more than one custom set at once — see [Multiple indexing sets](#multiple-indexing-sets) below.
+
+### Port fields and custom sets
+
+A port-type field may declare `indexed-by` directly, exactly like a parameter or variable — but it
+may only reference a **global** set, never a local one, since port types are declared independently
+of any model and have no visibility into a model's local sets:
+
+```yaml
+port-types:
+  - id: multi_fuel_port
+    fields:
+      - id: flow
+        indexed-by: fuel
+```
+
+A [`port-field-definition`](file-structure/library.md#port-field-definition)'s expression must produce
+a value whose inferred indexing matches the field's declared `indexed-by` exactly — the same kind of
+consistency check already required to keep a variable's declared time/scenario structure consistent
+with its defining expression, extended to this new dimension:
+
+```yaml
+port-field-definitions:
+  - port: injection_port
+    field: flow
+    definition: p_generation{fuel}   # must be `fuel`-indexed to match flow's declared indexed-by
+```
+
+Because a port field's `indexed-by` can only name a global set, and every component connecting through
+that port type necessarily shares that exact global set, [`sum_connections`](#port-operator) and any
+[binding constraint](file-structure/library.md#binding-constraints) built on top of it are well-defined
+by construction — no additional runtime guard is needed beyond this schema-level restriction.
+
+**Escape hatch:** if a model genuinely needs a port-facing global set *and* a related-but-different,
+per-component-flexible local set, keep them as two distinctly-named sets and have the
+`port-field-definition` reduce explicitly from the local set to the global one (e.g. via `sum_over`,
+with the model author writing the correspondence by hand). There is no generic set-to-set mapping
+primitive in this proposal — a true index-alignment/mapping feature would be future work.
 
 ### Indexing expressions
 
@@ -287,6 +397,10 @@ constraints:
   - id: total_level
     expression: level = sum_over(segment, segment_level)
 ```
+
+`sum_over(set_id, expr)` collapses only the named set's dimension; every other dimension the operand
+carries — time, scenario, or another custom set — is preserved, exactly as `sum(X)` collapses time
+alone and leaves scenario untouched.
 
 ### Multiple indexing sets
 
@@ -326,6 +440,13 @@ A constraint containing a set-indexed variable/parameter — without an explicit
 "current element" form `X{segment}` — implicitly unfolds into one constraint per set element, exactly
 like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
 
+!!! note "Open question"
+    What happens when a constraint's *implicit* set dimension (inferred from one of its own terms)
+    differs from an *explicitly* declared `indexed-by` naming a different set on that same constraint
+    (see below)? This proposal does not yet specify whether the constraint should unfold over the
+    union/product of both, or how such a mismatch should be reported. Flagged here as unresolved —
+    left for a follow-up refinement rather than the initial proposal.
+
 ### Indexing a constraint explicitly, and referencing the index value itself
 
 Implicit unfolding only fires when the constraint contains a term that is itself `indexed-by` the
@@ -347,9 +468,14 @@ plain number (0, 1, 2, …), not a subscript operator. This holds uniformly for 
 enumerated sets, since even an enumerated set has a well-defined declaration order (`fuel` bare = 0
 for `gas`, 1 for `coal`, 2 for `oil` given `elements: [gas, coal, oil]`).
 
-A set's `id` must not collide with any parameter or variable `id` in the same model (see
-[Rules for id naming](file-structure/library.md#rules-for-id-naming)), or a bare reference to that
-name would be ambiguous between "current index position" and a parameter/variable lookup.
+A set's `id` must not collide with (see [Rules for id naming](file-structure/library.md#rules-for-id-naming)):
+
+- any parameter or variable `id` in the same model,
+- any global set `id` visible in the same library (for a local set),
+- the reserved literal `t`,
+
+or a bare reference to that name would be ambiguous between "current index position", a
+parameter/variable lookup, or the built-in time index.
 
 ### Collision check
 

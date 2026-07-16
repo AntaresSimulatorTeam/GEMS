@@ -35,7 +35,7 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
 
 | Column | Description |
 |------|--------------------------|
-|`set_id`| Blank for outputs with no [custom-set](../file-structure/library.md#sets) dimension. Otherwise, the `id` of the set this output is indexed by. For an output indexed by more than one set (e.g. `X{segment, fuel}`), a comma-joined list in declaration order, e.g. `segment,fuel`.|
+|`set_id`| Blank for outputs with no [custom-set](../file-structure/library.md#sets) dimension. Otherwise, the `id` of the set this output is indexed by — a local (model-level) or [global (library-level)](../file-structure/library.md#library-level-sets) set, encoded identically either way. For an output indexed by more than one set (e.g. `X{segment, fuel}`), a comma-joined list in declaration order, e.g. `segment,fuel`.|
 |`set_index`| Blank when `set_id` is blank. Otherwise, the element of that set for this row — an integer position for ordinal sets, or the element name for enumerated sets. For a multi-set output, a comma-joined list in the same order as `set_id`, e.g. `1,gas`.|
 
 # Simulation Table exported by [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md)

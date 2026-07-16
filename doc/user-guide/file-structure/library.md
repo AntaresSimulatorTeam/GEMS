@@ -11,6 +11,11 @@ A library file defines a library of two collections of abstract objects:
 - [Models](#models) - Contains the mathematical formulation for component type
 - [Ports Types](#port-types) - Describe the kinds of connections models can have
 
+!!! warning "Design proposal — not yet implemented"
+    A proposed third collection, [Library-Level Sets](#library-level-sets), declares global custom
+    index sets shared across `port-types` and `models`. Not yet implemented in
+    [GemsPy](../../index.md).
+
 The library file is a YAML file with a single root key, `library`. Under this root, the library’s identifier, an optional description, and the collections of `port-types` and `models` are defined. All fields, unless explicitly marked as optional, must be present for the library to be considered valid. The following example illustrates the structure of a simple library file:
 
 ```yaml
@@ -49,9 +54,11 @@ All `id's` in the model library and system file must respect the following:
 - Only lower-case is allowed
 
 !!! warning "Design proposal — not yet implemented"
-    A [set](#sets)'s `id` must not collide with any parameter or variable `id` within the same model.
-    This rule is part of the [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed)
-    proposal — not yet implemented in [GemsPy](../../index.md).
+    A [set](#sets)'s `id` must not collide with: any parameter or variable `id` within the same model;
+    any [global (library-level) set](#library-level-sets) `id` visible in the same library (for a
+    local, model-level set); or the reserved literal `t`. This rule is part of the
+    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal —
+    not yet implemented in [GemsPy](../../index.md).
 
 ## Collections and key fields in library file
 
@@ -69,6 +76,47 @@ library:
 | `id`| String | A unique identifier for the library. This `id` is used by [system files](../system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
+
+### Library-Level Sets
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the library file schema. It is not yet
+    implemented in [GemsPy](../../index.md). See
+    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) for the
+    full expression-syntax proposal this schema supports.
+
+The `sets` collection, a sibling of `port-types` and `models`, declares **global** custom index sets
+— shared by every model and port-type field in this library that references them. This is the only
+kind of custom set usable by a [port-type field](#port-types) or across a
+[binding constraint](#binding-constraints), since every component connecting through a port must agree
+on the exact same index domain (see
+[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). Model-level,
+per-component-varying sets are declared separately — see [Sets](#sets) under Models below.
+
+This collection is **optional**.
+
+```yaml
+library:
+  id: example_library
+  sets:
+    - id: fuel
+      elements: [gas, coal, oil]   # fixed once and for all in the library, or...
+    - id: technology
+      # ...left unresolved here, to be instantiated per-study —
+      # see System — Global Sets in system.md
+```
+
+| Element | Type | Description |
+|------|------|--------------------------|
+|`id`| String | Unique set identifier within the library. Must follow the [naming rules](#rules-for-id-naming).|
+| `description`| String | *(Optional)* A human-readable description of the set's purpose.|
+|`cardinality`| Integer | *(Ordinal sets)* An integer literal defining 0-based integer positions `0 .. cardinality-1`. Unlike a model-level set, this must be a literal — a library isn't owned by any one component, so it has no scalar parameter to point at.|
+|`elements`| List of strings | *(Enumerated sets)* An ordered list of named elements. May be omitted, deferring the concrete list to a study-wide instantiation in [`system.yml`](../system.md#global-sets).|
+
+Exactly one of `cardinality` or `elements` should be given, unless both are intentionally omitted to
+defer instantiation to the system file. **Recommended practice:** declare global sets as *universal*
+— the superset of every element that could ever be relevant — and express per-component variation
+through data (e.g. a `0` capacity/bound for unused elements) rather than through differing membership.
 
 ### Port Types
 
@@ -94,6 +142,19 @@ port-types:
 | `id`| String | Unique `id` for the port type within this library. Must follow the [naming rules](#rules-for-id-naming) and must not conflict with other port type `id`s in the same library.|
 | `description` | String | *(Optional)* A human-readable description of the port type’s purpose.|
 |`fields`| List | A list of fields carried by this port. Each field has an `id` (unique within the port type) that identifies a scalar floating-point quantity exchanged through the port (e.g. a power flow value).|
+
+!!! warning "Design proposal — not yet implemented"
+    A field may declare `indexed-by`, referencing a [library-level set](#library-level-sets) `id`, to
+    mark the field as carrying a custom-set dimension (never a model-level set — see
+    [Port fields and custom sets](../mathematical-syntax.md#port-fields-and-custom-sets)):
+    ```yaml
+    port-types:
+      - id: multi_fuel_port
+        fields:
+          - id: flow
+            indexed-by: fuel
+    ```
+    Not yet implemented in [GemsPy](../../index.md).
 
 ### Models
 
@@ -229,19 +290,24 @@ variables:
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) for the
     full expression-syntax proposal this schema supports.
 
-(Optional) A list of custom index sets declared by this model, usable to index `parameters` and
-`variables` (via the new `indexed-by` field described below) and to index `constraints`,
-`binding-constraints`, `objective-contributions`, and `extra-outputs`.
+(Optional) A list of **local** custom index sets declared by this model — usable to index this
+model's own `parameters` and `variables` (via the new `indexed-by` field described below) and to
+index its `constraints`, `binding-constraints`, `objective-contributions`, and `extra-outputs`. Local
+sets may vary per component (see `cardinality` below) but are not visible outside this model. A model
+may also use a [library-level set](#library-level-sets) directly via `indexed-by`, without declaring
+anything here — declare a local set only when the index genuinely needs to vary per component or stay
+internal to this model; see
+[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters).
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming), and must not collide with any parameter or variable `id` in the same model.|
+|`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming), and must not collide with any parameter or variable `id` in the same model, any [library-level set](#library-level-sets) `id` visible in this library, or the reserved literal `t`.|
 | `description`| String | *(Optional)* A human-readable description of the set's purpose.|
-|`cardinality`| Integer or parameter `id` | *(Ordinal sets)* Either an integer literal or the `id` of a scalar, non-time/scenario-dependent parameter of this model. Defines 0-based integer positions `0 .. cardinality-1`. Referencing a parameter lets different components instantiating this model have different set sizes, using the ordinary per-component parameter-assignment mechanism (see [System — Parameters](../system.md#parameters)).|
-|`elements`| List of strings | *(Enumerated sets)* An ordered list of named elements. If omitted, the set's concrete elements must instead be supplied per component in the [system file](../system.md#sets).|
+|`cardinality`| Integer or parameter `id` | *(Ordinal sets)* Either an integer literal or the `id` of a scalar, non-time/scenario-dependent, non-set-indexed parameter of this model. Defines 0-based integer positions `0 .. cardinality-1`. Referencing a parameter lets different components instantiating this model have different set sizes, using the ordinary per-component parameter-assignment mechanism (see [System — Parameters](../system.md#parameters)).|
+|`elements`| List of strings | *(Enumerated sets)* An ordered list of named elements. If omitted, the set's concrete elements must instead be supplied per component in the [system file](../system.md#local-sets).|
 
 Exactly one of `cardinality` or `elements` must be given, unless `elements` is intentionally omitted
-to defer the concrete list to each component (see [System — Sets](../system.md#sets)).
+to defer the concrete list to each component (see [System — Local Sets](../system.md#local-sets)).
 
 ```yaml
 models:
@@ -254,16 +320,17 @@ models:
       - id: segment
         description: "Price segments of the storage's marginal-value curve"
         cardinality: segment_count
-      - id: fuel
-        elements: [gas, coal, oil]
+      - id: operating_mode
+        elements: [off, standby, full]
 ```
 
 To mark a parameter or variable as indexed by one (or more) of these sets, add an `indexed-by`
-field, analogous to `time-dependent`/`scenario-dependent`:
+field, analogous to `time-dependent`/`scenario-dependent`. It resolves against this model's own local
+sets, plus every [library-level set](#library-level-sets) visible in this library:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions. Referenced in expressions via `{...}` — e.g. `X{segment}` or `X{segment, fuel}` for multiple sets. See [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed).|
+|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `{...}` — e.g. `X{segment}` or `X{segment, fuel}` for multiple sets. See [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed).|
 
 ```yaml
 parameters:
@@ -305,6 +372,12 @@ A collection of definitions describing the ports **emitted** by a model. Each en
 | `field`| String | The field `id` as defined in the corresponding [port type](#port-types).|
 |`definition`| [Mathematical Expression](../mathematical-syntax.md) | A linear expression giving the value of that port field, using the model’s variables and/or parameters.|
 
+!!! warning "Design proposal — not yet implemented"
+    If the port field declares `indexed-by` (see [Port Types](#port-types)), this `definition`'s
+    expression must produce a value whose inferred indexing matches it exactly — see
+    [Port fields and custom sets](../mathematical-syntax.md#port-fields-and-custom-sets). Not yet
+    implemented in [GemsPy](../../index.md).
+
 #### Constraints
 
 A list of internal constraints of a model. These are equations or inequalities that involve the model’s own variables, parameters. Each constraint has:
@@ -334,6 +407,14 @@ A list of external constraints that involve model’s ports (i.e., constraints t
 | `expression`| [Mathematical Expression](../mathematical-syntax.md#constraints) | An equation or inequality that may use [port operators](../mathematical-syntax.md#port-operator) to aggregate expressions from connected components.|
 
 Binding constraints are defined in the same manner as internal constraints, but they may include [port operators](../mathematical-syntax.md#port-operator), which aggregate linear expressions emitted through a port.
+
+!!! warning "Design proposal — not yet implemented"
+    `sum_connections(port.field{s})` is well-defined for any custom set `s`, because a port field can
+    only be `indexed-by` a [library-level (global) set](#library-level-sets) — every component
+    connecting through that port type necessarily shares the exact same set, so no additional runtime
+    guard is needed beyond that schema-level restriction. See
+    [Port fields and custom sets](../mathematical-syntax.md#port-fields-and-custom-sets). Not yet
+    implemented in [GemsPy](../../index.md).
 
 An explicit example is provided by the `bus` model implementing the energy balance constraint (**First Kirchhoff Law**):
 
