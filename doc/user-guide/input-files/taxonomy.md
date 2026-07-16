@@ -9,7 +9,7 @@
 The **Taxonomy** defines a shared classification of GEMS models. It is used to organize models by users' needs. If a [model](library.md#models) in a [library](library.md) declares a `taxonomy-category` (for example `production` or `balance`), it should then comply with the expected parameters, variables, properties, ports and extra-outputs of its category. On the contrary, additional features in the model (not declared in the taxonomy-category) are allowed. 
 
 This classification is "transparent" and doesn't impact the optimization solution: it is only used for the building of Views and to standardize graphical interfaces.
-    The taxonomy is notably used by `catalog.yml` to define **Metrics** ; taxonomy categories serve as interface with [Models](library.md), to specify the variables, properties, extra-outputs or ports that are expected by the Catalog for the computation of each Metric. See [Views](../outputs/view.md) for more details.
+    The taxonomy is notably used by `catalog.yml` to define **Metrics** ; taxonomy categories serve as interface with [Models](library.md#models), to specify the variables, properties, extra-outputs or ports that are expected by the Catalog for the computation of each Metric. See [Views](../outputs/view.md) for more details.
 ???+ info "Link to `catalog.yml`"
     The taxonomy is used by `catalog.yml` to define **metrics** for each `taxonomy-category`. See [Business Views](../outputs/business-view.md) for more details.
 
@@ -20,41 +20,27 @@ This example uses the [Antares Legacy model library](https://github.com/AntaresS
 ```yaml
 taxonomy:
   id: antares_legacy_taxonomy
-  description: Taxonomy for the Antares Legacy model library
-
+  description: GEMS taxonomy configuration for Antares Legacy Models.
   categories:
+
     - id: balance
+      variables:
+        - id: unsupplied_energy
+        - id: spilled_energy
       ports:
         - id: balance_port
+      binding-constraints:
+        - id: balance
+      extra-outputs:
+        - id: price
+        - id: imbalance_cost
+        - id: is_loss_of_load
+        - id: is_significant_loss_of_load
+        - id: is_near_loss_of_load
 
-    - id: fatal_consumption
+    - id: generation
       ports:
         - id: balance_port
-
-    - id: dispatchable_generation
-      ports:
-        - id: balance_port
-
-    - id: renewable_fatal_generation
-      ports:
-        - id: balance_port
-
-    - id: miscellaneous_fatal_generation
-      ports:
-        - id: balance_port
-
-    - id: short_term_storage
-      ports:
-        - id: balance_port
-
-    - id: long_term_storage
-      ports:
-        - id: balance_port
-
-    - id: link
-      ports:
-        - id: out_port
-        - id: in_port
 ```
 
 ## Key elements in taxonomy file
