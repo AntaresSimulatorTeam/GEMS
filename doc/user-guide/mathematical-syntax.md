@@ -307,9 +307,10 @@ which is what makes cross-component aggregation (`sum_connections`, binding cons
 [Port fields and custom sets](#port-fields-and-custom-sets)) well-defined without any extra runtime
 validation.
 
-A model's own local set `id`s must not collide with any global set `id` visible in the same library
-(in addition to the naming rules in [Indexing a constraint explicitly](#indexing-a-constraint-explicitly-and-referencing-the-index-value-itself)
-below) — since both are resolved through the same `indexed-by` lookup.
+No locally-declared identifier in a model — not just a local set, but also a parameter, variable,
+port, constraint, or any other model-level `id` — may collide with a global set's `id` visible in the
+same library, since both are resolved through the same bare-identifier / `indexed-by` lookup; see
+[Rules for id naming](file-structure/library.md#rules-for-id-naming) for the complete rule.
 
 ### Marking a parameter or variable as set-indexed
 
@@ -475,13 +476,10 @@ plain number (0, 1, 2, …), not a subscript operator. This holds uniformly for 
 enumerated sets, since even an enumerated set has a well-defined declaration order (`fuel` bare = 0
 for `gas`, 1 for `coal`, 2 for `oil` given `elements: [gas, coal, oil]`).
 
-A set's `id` must not collide with (see [Rules for id naming](file-structure/library.md#rules-for-id-naming)):
-
-- any parameter or variable `id` in the same model,
-- any global set `id` visible in the same library (for a local set),
-- the reserved literal `t`,
-
-or a bare reference to that name would be ambiguous between "current index position", a
+This is exactly why the naming rules forbid a set's `id` from colliding with a parameter/variable `id`
+or the reserved literal `t` (a local set), or with any locally-declared identifier at all (a global
+set) — see [Rules for id naming](file-structure/library.md#rules-for-id-naming) for the complete rule
+— otherwise a bare reference to that name would be ambiguous between "current index position", a
 parameter/variable lookup, or the built-in time index.
 
 This also resolves the case of a constraint that carries *both* an implicit set dimension (inferred

@@ -54,9 +54,17 @@ All `id's` in the model library and system file must respect the following:
 - Only lower-case is allowed
 
 !!! warning "Design proposal — not yet implemented"
-    A [set](#sets)'s `id` must not collide with: any parameter or variable `id` within the same model;
-    any [global (library-level) set](#library-level-sets) `id` visible in the same library (for a
-    local, model-level set); or the reserved literal `t`. This rule is part of the
+    A local [set](#sets)'s `id` must not collide with any parameter or variable `id` within the same
+    model, or with the reserved literal `t`.
+
+    More generally: **no locally-declared identifier in a model — a parameter, variable, local set,
+    port, constraint, binding-constraint, objective-contribution, or extra-output `id` — may collide
+    with any [global (library-level) set](#library-level-sets) `id` visible in that library.** A
+    global set's `id` is usable bare from inside any model in the library (via `indexed-by`, or as a
+    bare current-position reference) without that model declaring anything locally, so any local `id`
+    that happens to match one creates the same kind of ambiguity a local-set/parameter collision would.
+
+    These rules are part of the
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal —
     not yet implemented in [GemsPy](../../index.md).
 
@@ -305,7 +313,7 @@ internal to this model; see
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming), and must not collide with any parameter or variable `id` in the same model, any [library-level set](#library-level-sets) `id` visible in this library, or the reserved literal `t`.|
+|`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming) (including the naming-collision constraints against parameters/variables/`t`/global sets described there).|
 | `description`| String | *(Optional)* A human-readable description of the set's purpose.|
 |`cardinality`| Integer or parameter `id` | *(Ordinal sets)* Either an integer literal or the `id` of a scalar, non-time/scenario-dependent, non-set-indexed parameter of this model. Defines 0-based integer positions `0 .. cardinality-1`. Referencing a parameter lets different components instantiating this model have different set sizes, using the ordinary per-component parameter-assignment mechanism (see [System — Parameters](../system.md#parameters)).|
 |`elements`| List of strings | *(Enumerated sets)* An ordered list of named elements. If omitted, the set's concrete elements must instead be supplied per component in the [system file](../system.md#local-sets).|
