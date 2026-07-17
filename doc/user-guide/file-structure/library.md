@@ -55,7 +55,9 @@ All `id's` in the model library and system file must respect the following:
 
 !!! warning "Design proposal — not yet implemented"
     A local [set](#sets)'s `id` must not collide with any parameter or variable `id` within the same
-    model, or with the reserved literal `t`.
+    model, or with the reserved literal `t`. **A global (library-level) set's `id` must likewise never
+    be the reserved literal `t`** — it is just as usable bare, in any model in the library, as a local
+    set's id is, so the same ambiguity applies.
 
     More generally: **no locally-declared identifier in a model — a parameter, variable, local set,
     port, constraint, binding-constraint, objective-contribution, or extra-output `id` — may collide

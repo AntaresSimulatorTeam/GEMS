@@ -171,8 +171,10 @@ system:
   id: my_system
   model-libraries: example_library
   sets:
-    - id: technology
-      elements: [ccgt, ocgt, pv, wind]
+    - id: fuel                      # kind: enumerated in the library
+      elements: [gas, coal, oil]
+    - id: segment_count_set         # kind: ordinal in the library
+      cardinality: 5
   components:
     - id: gen_1
       model: example_library.multi_fuel_generator

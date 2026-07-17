@@ -246,8 +246,9 @@ Two kinds of sets are supported:
 - **Enumerated (named) set** — `elements: [id1, id2, ...]` gives named, ordered elements. If every
   component instantiating the model shares the same list, declare it directly at model level (as
   below). If different components need different lists, declare only the set's `id` at model level
-  (no `elements`) and supply the concrete list per component in `system.yml`, using the same
-  `sets:` mechanism `system.yml` already uses for [Properties](file-structure/system.md#properties).
+  (no `elements`) and supply the concrete list per component in `system.yml`'s `sets:` list, mirroring
+  how [Properties](file-structure/system.md#properties) values are supplied per component while their
+  keys are declared in the model.
 
 ```yaml
 models:
@@ -382,7 +383,7 @@ by construction — no additional runtime guard is needed beyond this schema-lev
 related-but-different, per-component-flexible local set, `sum_over` only helps in the degenerate case
 where the port field itself ends up **unindexed** — i.e. the field is a plain aggregate total, not
 broken down by element (`sum_over(local_set, internal_var)` fully collapses `local_set` to a scalar,
-per the [dimension-selectivity rule](#aggregating-over-a-custom-set) above). It **cannot** produce a
+per the [dimension-selectivity rule](#aggregating-over-a-custom-set) below). It **cannot** produce a
 value still indexed by the global set (e.g. `flow{fuel}`) out of a differently-shaped local set —
 `sum_over` reduces a dimension to a scalar, it does not remap one set's index space onto another's.
 If the port field must genuinely stay broken down by global-set element, and the model's internal
@@ -397,7 +398,7 @@ future work.
 | `X{segment}` | current element (implicit within an unfolded/aggregated context) | `X[t]` |
 | `X{2}` | explicit element at position 2 (ordinal sets, 0-based) | `X[5]` |
 | `X{segment+1}` / `X{segment-1}` | relative shift by position (ordinal sets only) | `X[t+1]` / `X[t-1]` |
-| `X{gas}` | explicit named-element access (enumerated sets) | *(no time equivalent)* |
+| `X{gas}` | explicit named-element access (enumerated **local** sets only — never valid against a global set, see [Declaring a global (library-level) set](#declaring-a-global-library-level-set)) | *(no time equivalent)* |
 | `(expr){segment}` | index an arbitrary parenthesized **expression**, not just a bare identifier | `(expr)[t+1]` |
 | `X{segment}[t+1]` | compose set- and time-indexing on the same term | — |
 
