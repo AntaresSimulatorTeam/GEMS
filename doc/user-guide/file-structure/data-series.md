@@ -53,6 +53,13 @@ Here, the first row contains the values at time-step 0 for scenarios 1, 2, 3 res
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
     It is not yet implemented in [GemsPy](../../index.md).
 
+**Backward compatibility:** this section is purely additive. A parameter that does not declare
+`indexed-by` is entirely unaffected — it continues to use one of the three existing headerless matrix
+formats above ([Time-dependent](#time-dependent-series), [Scenario-dependent](#scenario-dependent-series),
+or [Time-and-scenario-dependent](#time-and-scenario-dependent-series) series), completely unchanged.
+The new tidy/long, headered CSV format below applies exclusively to parameters that declare
+`indexed-by`; it is never a replacement for the existing formats, only a new option alongside them.
+
 A parameter declared `indexed-by` a [custom set](./library.md#sets) — whether a local (model-level)
 or [global (library-level)](./library.md#library-level-sets) set — cannot use the positional matrix
 formats above: a third (or later) dimension cannot be expressed by shape alone without an arbitrary
