@@ -114,11 +114,9 @@ segment,fuel,time,scenario,value
 0,coal,0,0,9.2
 ```
 
-For a **global** set, the library never gives concrete `elements`/`cardinality` at all — they always
-come from [`system.yml`'s Global Sets section](./system.md#global-sets) — so the column's values must
-match exactly whatever that study's instantiation declares; the library alone never tells a
-data-series author the concrete element list to use. For a **local** set whose `elements` are
-optionally left unresolved in the model (deferred to a per-component instantiation in
-[`system.yml`'s Local Sets](./system.md#local-sets)), the same applies: match whatever that component's
-instantiation declares.
+Neither a global nor a local set ever gives concrete `elements`/`cardinality` in the library or model —
+both always come from `system.yml`: once, study-wide, in [Global Sets](./system.md#global-sets) for a
+global set, or per component, in [Local Sets](./system.md#local-sets) for a local enumerated set. The
+library/model alone never tells a data-series author the concrete element list to use — the column's
+values must match exactly whatever the relevant `system.yml` instantiation declares.
 

@@ -217,6 +217,14 @@ shared across connected components (through a port) or stays purely internal to 
   to every model and port-type field in that library; **required** whenever a set needs to cross a
   port, since every component connecting through that port must agree on the exact same index domain.
 
+**Both scopes follow the same rule for where a set's concrete contents live: never in the library.** A
+model or library only ever declares that a set exists (its `id` and **kind** — `ordinal` or
+`enumerated`); the concrete `cardinality`/`elements` are always assigned in `system.yml` — once,
+study-wide, for a global set, or per component, for a local set. This mirrors exactly how GEMS already
+treats parameters and properties (declared in the library, valued in the system file), applied to sets
+too, and it means named-element access (`X{gas}`) is never valid in library expressions for *any* set
+— see [Indexing expressions](#indexing-expressions) below.
+
 ### Why the distinction matters
 
 Time and scenario are *global* dimensions: every component in a study shares the same time horizon
@@ -234,21 +242,20 @@ ragged.
 ### Declaring a local (model-level) set
 
 A model declares its local custom sets in a `sets` collection, alongside `parameters` and `variables`.
-Two kinds of sets are supported:
+Every local set states its **kind** (`ordinal` or `enumerated`) — its concrete contents are never
+given here, exactly like a global set (see below):
 
-- **Ordinal (range) set** — `cardinality: <integer-literal-or-scalar-parameter-id>` gives 0-based
-  integer positions `0 .. cardinality-1` (consistent with time's 0-based convention). Pointing
-  `cardinality` at a scalar parameter id lets different components of the same model have different
-  set sizes, using the same per-component parameter-assignment mechanism already used for any other
-  parameter — no new mechanism is needed for this. The referenced parameter must itself be scalar
-  (non-time/scenario-dependent, as already required of any `cardinality` parameter) and must not
-  itself be set-indexed, to avoid a circular "set size depends on another set" dependency.
-- **Enumerated (named) set** — `elements: [id1, id2, ...]` gives named, ordered elements. If every
-  component instantiating the model shares the same list, declare it directly at model level (as
-  below). If different components need different lists, declare only the set's `id` at model level
-  (no `elements`) and supply the concrete list per component in `system.yml`'s `sets:` list, mirroring
+- **Ordinal (range) set** (`kind: ordinal`) — 0-based integer positions `0 .. cardinality-1`
+  (consistent with time's 0-based convention). `cardinality` names a scalar parameter of this model —
+  never a literal — whose *value* (assigned per component, via the ordinary parameter-assignment
+  mechanism in `system.yml`, exactly like any other parameter) gives that component's set size. This
+  is how a local ordinal set varies per component: no new mechanism beyond the one parameters already
+  use. The referenced parameter must itself be scalar (non-time/scenario-dependent) and must not
+  itself be `indexed-by` anything, to avoid a circular "set size depends on another set" dependency.
+- **Enumerated (named) set** (`kind: enumerated`) — named, ordered elements. The concrete `elements`
+  list is always supplied per component in `system.yml`'s `sets:` list (never in the model), mirroring
   how [Properties](file-structure/system.md#properties) values are supplied per component while their
-  keys are declared in the model.
+  keys are declared in the model — see [System — Local Sets](file-structure/system.md#local-sets).
 
 ```yaml
 models:
@@ -260,7 +267,10 @@ models:
     sets:
       - id: segment
         description: "Price segments of the storage's marginal-value curve"
-        cardinality: segment_count   # integer literal, or the id of a scalar parameter
+        kind: ordinal
+        cardinality: segment_count   # names a scalar parameter; its value is assigned per component
+      - id: operating_mode
+        kind: enumerated             # elements are supplied per component in system.yml
 ```
 
 ### Declaring a global (library-level) set
@@ -303,10 +313,11 @@ access (e.g. `X{gas}`) is never valid against a global set inside library expres
 only use ordinal-style access against a global set: the bare set-id for the current position
 (`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This holds
 regardless of `kind` — `enumerated` still means "named, ordered elements" once `system.yml` resolves
-it, it just means library expressions can only reach those elements by position, never by name.
-Contrast with a **local** set whose `elements` are given directly in the model (see [Declaring a local
-(model-level) set](#declaring-a-local-model-level-set) above) — there, named access is fully
-available, since the names are known at library-authoring time.
+it, it just means library expressions can only reach those elements by position, never by name. This
+is not actually specific to global sets: since **local** sets now follow the identical rule (concrete
+contents always assigned in `system.yml`, never given in the model — see [Declaring a local
+(model-level) set](#declaring-a-local-model-level-set) above), named-element access is never valid
+against *any* set inside library expressions, local or global.
 
 **Recommended practice** (a `system.yml`-level concern now, since that's the only place a global set's
 concrete contents ever exist): instantiate each study's global sets as *universal* — the superset of
@@ -398,13 +409,16 @@ future work.
 | `X{segment}` | current element (implicit within an unfolded/aggregated context) | `X[t]` |
 | `X{2}` | explicit element at position 2 (ordinal sets, 0-based) | `X[5]` |
 | `X{segment+1}` / `X{segment-1}` | relative shift by position (ordinal sets only) | `X[t+1]` / `X[t-1]` |
-| `X{gas}` | explicit named-element access (enumerated **local** sets only — never valid against a global set, see [Declaring a global (library-level) set](#declaring-a-global-library-level-set)) | *(no time equivalent)* |
 | `(expr){segment}` | index an arbitrary parenthesized **expression**, not just a bare identifier | `(expr)[t+1]` |
 | `X{segment}[t+1]` | compose set- and time-indexing on the same term | — |
 
 Because a set's `id` is an ordinary identifier — not a reserved keyword the way `t` is — standard
 arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctly; no dedicated
 "shift" grammar (like time's) is required for custom sets.
+
+**Note:** there is deliberately no "bare named-element" form (e.g. `X{gas}`) in this table — a set's
+concrete elements are never known at library-authoring time (see [Declaring a global (library-level)
+set](#declaring-a-global-library-level-set) above), so named access is not part of this syntax at all.
 
 ### Aggregating over a custom set
 
@@ -430,9 +444,10 @@ inside a single pair of braces, in the same order as declared in `indexed-by`:
 ```yaml
 sets:
   - id: segment
+    kind: ordinal
     cardinality: segment_count
   - id: fuel
-    elements: [gas, coal, oil]
+    kind: enumerated   # elements supplied per component in system.yml
 
 parameters:
   - id: segment_fuel_cost
@@ -445,14 +460,14 @@ parameters:
 |---|---|
 | `X{segment, fuel}` | current element of both (implicit/unfolded on both dimensions) |
 | `X{segment+1, fuel}` | shift `segment` by +1, keep `fuel` at its current element |
-| `X{2, gas}` | explicit position 2 on `segment`, explicit element `gas` on `fuel` |
+| `X{2, 1}` | explicit position 2 on `segment`, explicit position 1 on `fuel` |
 
-Both `segment` and `fuel` here are **local** sets (note `segment`'s cardinality references a model
-parameter, which is only ever valid for a local set — see [Declaring a local (model-level)
-set](#declaring-a-local-model-level-set)), so named access like `{gas}` is available because `fuel`'s
-`elements` are given directly. If either were a **global** set instead, the same multi-set syntax
-still applies, but any global-set slot would be restricted to position-based access only (`{2}`, not
-`{gas}`) — see [Declaring a global (library-level) set](#declaring-a-global-library-level-set).
+Both `segment` and `fuel` here are **local** sets, but the same multi-set syntax applies identically
+to global sets, or a mix of the two — `indexed-by` doesn't care about scope, only about which sets are
+named and in what order. As always, every index in every slot is position-based only — `X{2, 1}`, not
+`X{2, gas}` — since neither set's concrete elements are known at library-authoring time (see
+[Declaring a local (model-level) set](#declaring-a-local-model-level-set) and [Declaring a global
+(library-level) set](#declaring-a-global-library-level-set)).
 
 Aggregation stays single-set per call and nests for multi-set reduction, rather than introducing a
 second aggregation form:
@@ -491,8 +506,8 @@ constraints:
 Used bare, outside `{ }`, a set's own `id` evaluates to the current element's 0-based integer
 position within whichever set-indexed context it is unfolding in — e.g. bare `segment` above is a
 plain number (0, 1, 2, …), not a subscript operator. This holds uniformly for both ordinal and
-enumerated sets, since even an enumerated set has a well-defined declaration order (`fuel` bare = 0
-for `gas`, 1 for `coal`, 2 for `oil` given `elements: [gas, coal, oil]`).
+enumerated sets, since even an enumerated set has a well-defined order once `system.yml` resolves it
+(`fuel` bare = 0 for `gas`, 1 for `coal`, 2 for `oil`, given a resolved `elements: [gas, coal, oil]`).
 
 This is exactly why the naming rules forbid a set's `id` from colliding with a parameter/variable `id`
 or the reserved literal `t` (a local set), or with any locally-declared identifier at all (a global

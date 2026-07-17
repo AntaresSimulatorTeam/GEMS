@@ -106,7 +106,10 @@ connecting through a port must agree on the exact same index domain (see
 sets in parts of its expression that don't cross the port. Model-level, per-component-varying sets are
 declared separately — see [Sets](#sets) under Models below.
 
-This collection is **optional**.
+This collection is **optional**. A [local set](#sets) (declared under Models, below) follows the
+identical "never given in the library" rule — the only difference between the two scopes is *who*
+supplies the concrete value and *how uniformly*: once, study-wide, for a global set, versus per
+component for a local set.
 
 A global set's concrete size or contents are **never** given in the library — only its `id`,
 `description`, and **kind** (`ordinal` or `enumerated`). This mirrors GEMS's existing pattern of the
@@ -136,9 +139,9 @@ access (e.g. `X{gas}`) is never valid against a global set inside library expres
 only use ordinal-style access against a global set: the bare set-id for the current position
 (`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This holds
 regardless of `kind`: `enumerated` still means "named, ordered elements" once `system.yml` resolves it,
-it just means library expressions can only reach those elements by position, never by name. Contrast
-with a **local** set whose `elements` are given directly in the model (see [Sets](#sets) under Models
-below) — there, named access is fully available, since the names are known at library-authoring time.
+it just means library expressions can only reach those elements by position, never by name. A [local
+set](#sets) (under Models, below) follows the identical rule — its `elements` are likewise never given
+in the model, so named access is never valid there either.
 
 **Recommended practice** (a `system.yml`-level concern now, since that's the only place a global set's
 concrete contents ever exist): make each study's instantiation *universal* — the superset of every
@@ -321,21 +324,27 @@ variables:
 (Optional) A list of **local** custom index sets declared by this model — usable to index this
 model's own `parameters` and `variables` (via the new `indexed-by` field described below) and to
 index its `constraints`, `binding-constraints`, `objective-contributions`, and `extra-outputs`. Local
-sets may vary per component (see `cardinality` below) but are not visible outside this model. A model
-may also use a [library-level set](#library-level-sets) directly via `indexed-by`, without declaring
-anything here — declare a local set only when the index genuinely needs to vary per component or stay
-internal to this model; see
-[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters).
+sets may vary per component but are not visible outside this model. A model may also use a
+[library-level set](#library-level-sets) directly via `indexed-by`, without declaring anything here —
+declare a local set only when the index genuinely needs to vary per component or stay internal to
+this model; see [Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters).
+
+Exactly like a [library-level set](#library-level-sets), **a local set's concrete contents are never
+given in the model** — only its `id`, `description`, and `kind`. The concrete value is always assigned
+in `system.yml`: per component, for both kinds (an ordinal set's `cardinality` names a scalar
+parameter, whose *value* is assigned per component through the ordinary parameter-assignment
+mechanism; an enumerated set's `elements` are assigned per component directly, in `system.yml`'s
+[Local Sets](../system.md#local-sets) list).
 
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming) (including the naming-collision constraints against parameters/variables/`t`/global sets described there).|
 | `description`| String | *(Optional)* A human-readable description of the set's purpose.|
-|`cardinality`| Integer or parameter `id` | *(Ordinal sets)* Either an integer literal or the `id` of a scalar, non-time/scenario-dependent, non-set-indexed parameter of this model. Defines 0-based integer positions `0 .. cardinality-1`. Referencing a parameter lets different components instantiating this model have different set sizes, using the ordinary per-component parameter-assignment mechanism (see [System — Parameters](../system.md#parameters)).|
-|`elements`| List of strings | *(Enumerated sets)* An ordered list of named elements. If omitted, the set's concrete elements must instead be supplied per component in the [system file](../system.md#local-sets).|
+|`kind`| Enum | `ordinal` or `enumerated` — mandatory, same as for a [library-level set](#library-level-sets).|
+|`cardinality`| Parameter `id` | *(`kind: ordinal` only)* The `id` of a scalar, non-time/scenario-dependent, non-set-indexed parameter of this model — never a literal integer. That parameter's *value*, assigned per component via the ordinary parameter-assignment mechanism (see [System — Parameters](../system.md#parameters)), gives that component's 0-based set size `0 .. cardinality-1`. Required for `kind: ordinal`; must be absent for `kind: enumerated`.|
 
-Exactly one of `cardinality` or `elements` must be given, unless `elements` is intentionally omitted
-to defer the concrete list to each component (see [System — Local Sets](../system.md#local-sets)).
+There is no `elements` field here — an enumerated local set's concrete elements are always supplied
+per component in [`system.yml`'s Local Sets](../system.md#local-sets) list, never in the model.
 
 ```yaml
 models:
@@ -347,9 +356,10 @@ models:
     sets:
       - id: segment
         description: "Price segments of the storage's marginal-value curve"
-        cardinality: segment_count
+        kind: ordinal
+        cardinality: segment_count   # names a scalar parameter; its value is assigned per component
       - id: operating_mode
-        elements: [off, standby, full]
+        kind: enumerated             # elements are supplied per component in system.yml
 ```
 
 To mark a parameter or variable as indexed by one (or more) of these sets, add an `indexed-by`

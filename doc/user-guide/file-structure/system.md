@@ -113,20 +113,23 @@ system:
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
     It is not yet implemented in [GemsPy](../../index.md).
 
-(Optional) When a model declares a **local**, model-level [enumerated set](../library#sets) by `id`
-only (no `elements`), each component instantiating that model must supply the set's concrete element
-list here — mirroring how [Properties](#properties) values are supplied per component while their
-keys are declared in the model. This mechanism is not needed for ordinal (cardinality-based) local
-sets, since their size already varies per component through the ordinary [parameter](#parameters)
-assignment mechanism above, nor for [global sets](#global-sets), which are never overridden
-per-component (see [Global Sets](#global-sets) below and
+(Required whenever a model declares a **local**, model-level [enumerated set](../library#sets)) A
+model never gives an enumerated local set's concrete `elements` itself (see [Sets](../library#sets)
+under Models) — every component instantiating that model must supply the set's concrete element list
+here, mirroring how [Properties](#properties) values are supplied per component while their keys are
+declared in the model. This mechanism is not needed for **ordinal** local sets, whose size varies per
+component through the ordinary [parameter](#parameters) assignment mechanism above instead (a local
+ordinal set's `cardinality` names a scalar parameter, and that parameter's value is what's assigned
+here — there is no separate `sets:` entry for it), nor for [global sets](#global-sets), which are
+instantiated once, study-wide, in a different top-level section (see [Global
+Sets](#global-sets) below and
 [Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)).
 
 Each set entry contains:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | The set key name, matching one declared in the [model's local sets](../library#sets) without an `elements` list. |
+| `id` | String | The set key name, matching an enumerated set declared in the [model's local sets](../library#sets). |
 | `elements` | List of strings | The ordered list of named elements this component uses for that set. |
 
 ```yaml
