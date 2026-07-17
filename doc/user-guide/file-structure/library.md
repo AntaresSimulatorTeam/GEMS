@@ -106,27 +106,41 @@ declared separately — see [Sets](#sets) under Models below.
 
 This collection is **optional**.
 
+A global set's concrete size or contents are **never** given in the library — only its `id`,
+`description`, and **kind** (`ordinal` or `enumerated`). This mirrors GEMS's existing pattern of the
+library declaring structure while the system file assigns concrete values (the same way a model
+declares that a parameter exists, but only `system.yml` gives it a value). The concrete `cardinality`
+(ordinal) or `elements` (enumerated) are always supplied exactly once, study-wide, in
+[`system.yml`'s Global Sets section](../system.md#global-sets) — see below.
+
 ```yaml
 library:
   id: example_library
   sets:
     - id: fuel
-      elements: [gas, coal, oil]   # fixed once and for all in the library, or...
-    - id: technology
-      # ...left unresolved here, to be instantiated per-study —
-      # see System — Global Sets in system.md
+      kind: enumerated
+    - id: segment_count_set
+      kind: ordinal
 ```
 
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique set identifier within the library. Must follow the [naming rules](#rules-for-id-naming).|
 | `description`| String | *(Optional)* A human-readable description of the set's purpose.|
-|`cardinality`| Integer | *(Ordinal sets)* An integer literal defining 0-based integer positions `0 .. cardinality-1`. Unlike a model-level set, this must be a literal — a library isn't owned by any one component, so it has no scalar parameter to point at.|
-|`elements`| List of strings | *(Enumerated sets)* An ordered list of named elements. May be omitted, deferring the concrete list to a study-wide instantiation in [`system.yml`](../system.md#global-sets).|
+|`kind`| Enum | `ordinal` or `enumerated`. Determines which indexing forms are valid against this set in expressions (see below) — the concrete size/elements are resolved later, in `system.yml`, so this is the only thing the library itself needs to know.|
 
-Exactly one of `cardinality` or `elements` should be given, unless both are intentionally omitted to
-defer instantiation to the system file. **Recommended practice:** declare global sets as *universal*
-— the superset of every element that could ever be relevant — and express per-component variation
+Because a global set's `elements` are never known at library-authoring time, **bare named-element
+access (e.g. `X{gas}`) is never valid against a global set inside library expressions** — a model may
+only use ordinal-style access against a global set: the bare set-id for the current position
+(`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This holds
+regardless of `kind`: `enumerated` still means "named, ordered elements" once `system.yml` resolves it,
+it just means library expressions can only reach those elements by position, never by name. Contrast
+with a **local** set whose `elements` are given directly in the model (see [Sets](#sets) under Models
+below) — there, named access is fully available, since the names are known at library-authoring time.
+
+**Recommended practice** (a `system.yml`-level concern now, since that's the only place a global set's
+concrete contents ever exist): make each study's instantiation *universal* — the superset of every
+element that could ever be relevant across the whole system — and express per-component variation
 through data (e.g. a `0` capacity/bound for unused elements) rather than through differing membership.
 
 ### Port Types

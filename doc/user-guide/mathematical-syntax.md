@@ -266,17 +266,23 @@ models:
 
 A library declares its global custom sets in a `sets` collection, a sibling of `port-types` and
 `models` — not nested inside any one of them, since a global set may be shared by several models and
-port types at once:
+port types at once. **A global set's concrete size or contents are never given in the library** —
+only its `id`, `description`, and **kind** (`ordinal` or `enumerated`), matching GEMS's existing
+pattern of the library declaring structure while the system file assigns concrete values (the same way
+a model declares that a parameter exists, but only `system.yml` gives it a value). The concrete
+`cardinality` (ordinal) or `elements` (enumerated) are always supplied exactly once, study-wide, in
+`system.yml`'s new top-level [`sets`](file-structure/system.md#global-sets) section — never given in
+the library, and never per-component (see [Why the distinction matters](#why-the-distinction-matters)
+above for why a per-component override would defeat the purpose of a global set):
 
 ```yaml
 library:
   id: example_library
   sets:
     - id: fuel
-      elements: [gas, coal, oil]   # fixed once and for all in the library, or...
-    - id: technology
-      # ...left unresolved here, to be instantiated per-study —
-      # see System — Global Sets in file-structure/system.md
+      kind: enumerated
+    - id: segment_count_set
+      kind: ordinal
   port-types:
     - id: multi_fuel_port
       fields:
@@ -291,21 +297,25 @@ library:
           scenario-dependent: false
 ```
 
-A global set's `cardinality`, unlike a local set's, must be an integer **literal** — a library isn't
-owned by any one component, so it has no scalar parameter to point at. `elements` may likewise be
-given directly, or left unresolved in the library and instantiated once for the whole study in
-`system.yml`'s new top-level [`sets`](file-structure/system.md#global-sets) section (never
-per-component — see [Why the distinction matters](#why-the-distinction-matters) above for why a
-per-component override would defeat the purpose of a global set).
+Because a global set's `elements` are never known at library-authoring time, **bare named-element
+access (e.g. `X{gas}`) is never valid against a global set inside library expressions** — a model may
+only use ordinal-style access against a global set: the bare set-id for the current position
+(`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This holds
+regardless of `kind` — `enumerated` still means "named, ordered elements" once `system.yml` resolves
+it, it just means library expressions can only reach those elements by position, never by name.
+Contrast with a **local** set whose `elements` are given directly in the model (see [Declaring a local
+(model-level) set](#declaring-a-local-model-level-set) above) — there, named access is fully
+available, since the names are known at library-authoring time.
 
-**Recommended practice:** make global sets *universal* — the superset of every element that could
-ever be relevant across the library (e.g. `elements: [gas, coal, oil, biomass, hydrogen]` even if a
-given generator only burns two of them) — and express per-component variation through the *data*
-(e.g. a capacity/bound of `0` for unused elements) rather than through differing set membership. This
-keeps the set's dimension uniform across every component, exactly like time and scenario already are,
-which is what makes cross-component aggregation (`sum_connections`, binding constraints — see
-[Port fields and custom sets](#port-fields-and-custom-sets)) well-defined without any extra runtime
-validation.
+**Recommended practice** (a `system.yml`-level concern now, since that's the only place a global set's
+concrete contents ever exist): instantiate each study's global sets as *universal* — the superset of
+every element that could ever be relevant across the whole system (e.g. `elements: [gas, coal, oil,
+biomass, hydrogen]` even if a given generator only burns two of them) — and express per-component
+variation through the *data* (e.g. a capacity/bound of `0` for unused elements) rather than through
+differing set membership. This keeps the set's dimension uniform across every component, exactly like
+time and scenario already are, which is what makes cross-component aggregation (`sum_connections`,
+binding constraints — see [Port fields and custom sets](#port-fields-and-custom-sets)) well-defined
+without any extra runtime validation.
 
 No locally-declared identifier in a model — not just a local set, but also a parameter, variable,
 port, constraint, or any other model-level `id` — may collide with a global set's `id` visible in the
@@ -435,6 +445,13 @@ parameters:
 | `X{segment, fuel}` | current element of both (implicit/unfolded on both dimensions) |
 | `X{segment+1, fuel}` | shift `segment` by +1, keep `fuel` at its current element |
 | `X{2, gas}` | explicit position 2 on `segment`, explicit element `gas` on `fuel` |
+
+Both `segment` and `fuel` here are **local** sets (note `segment`'s cardinality references a model
+parameter, which is only ever valid for a local set — see [Declaring a local (model-level)
+set](#declaring-a-local-model-level-set)), so named access like `{gas}` is available because `fuel`'s
+`elements` are given directly. If either were a **global** set instead, the same multi-set syntax
+still applies, but any global-set slot would be restricted to position-based access only (`{2}`, not
+`{gas}`) — see [Declaring a global (library-level) set](#declaring-a-global-library-level-set).
 
 Aggregation stays single-set per call and nests for multi-set reduction, rather than introducing a
 second aggregation form:
