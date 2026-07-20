@@ -42,7 +42,7 @@ Mathematical syntax is **solver-agnostic** and intentionally restricted to ensur
 
 Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where parameters and variables come from or how components are wired together as a system.
 
-See: [**Mathematical Syntax and Rules**](./mathematical-syntax.md)
+See: [**Mathematical Syntax and Rules**](../syntax.md)
 
 ## File Structure
 
@@ -58,7 +58,7 @@ It specifies:
 - How optimization options are configured
 - (When applicable) How to create Business View configuration file
 
-These rules governs the **structure and semantics** of all [GEMS](../index.md) YAML files.
+These rules govern the **structure and semantics** of all [GEMS](../index.md) YAML files.
 
 See: [**File Structure**](./file-structure/overview.md)
 

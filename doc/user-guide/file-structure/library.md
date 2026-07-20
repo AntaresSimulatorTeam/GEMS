@@ -55,7 +55,7 @@ library:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id`| String | A unique identifier for the library. This `id` is used by [system files](../system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
+| `id`| String | A unique identifier for the library. This `id` is used by [system files](system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
 
@@ -229,7 +229,7 @@ A collection of definitions describing the ports **emitted** by a model. Each en
 |------|------|--------------------------|
 |`port`| String | The `id` of a port listed in the [ports section](#ports) of this model.|
 | `field`| String | The field `id` as defined in the corresponding [port type](#port-types).|
-|`definition`| [Mathematical Expression](../mathematical-syntax.md) | A linear expression giving the value of that port field, using the model’s variables and/or parameters.|
+|`definition`| [Mathematical Expression](../syntax.md) | A linear expression giving the value of that port field, using the model’s variables and/or parameters.|
 
 #### Constraints
 
@@ -238,7 +238,7 @@ A list of internal constraints of a model. These are equations or inequalities t
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique `id` for the constraint within the model. Must follow the [naming rules](#rules-for-id-naming).|
-| `expression`| [Mathematical Expression](../mathematical-syntax.md#constraints) | An equation or inequality using the model’s variables and parameters.|
+| `expression`| [Mathematical Expression](../syntax.md#constraints) | An equation or inequality using the model’s variables and parameters.|
 
 An explicit example is provided by the `storage` model constraint defining the initial reservoir level:
 
@@ -248,7 +248,7 @@ constraints:
     expression: level[0] = initial_level * reservoir_capacity
 ```
 
-Constraint **expression** must comply with the [**Mathematical Expression Syntax**](../mathematical-syntax.md#constraints) to ensure it is interpreted correctly during model evaluation.
+Constraint **expression** must comply with the [**Mathematical Expression Syntax**](../syntax.md#constraints) to ensure it is interpreted correctly during model evaluation.
 
 #### Binding-Constraints
 
@@ -257,9 +257,9 @@ A list of external constraints that involve model’s ports (i.e., constraints t
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique `id` for the binding constraint within the model. Must follow the [naming rules](#rules-for-id-naming).|
-| `expression`| [Mathematical Expression](../mathematical-syntax.md#constraints) | An equation or inequality that may use [port operators](../mathematical-syntax.md#port-operator) to aggregate expressions from connected components.|
+| `expression`| [Mathematical Expression](../syntax.md#constraints) | An equation or inequality that may use [port operators](../syntax.md#port-operator) to aggregate expressions from connected components.|
 
-Binding constraints are defined in the same manner as internal constraints, but they may include [port operators](../mathematical-syntax.md#port-operator), which aggregate linear expressions emitted through a port.
+Binding constraints are defined in the same manner as internal constraints, but they may include [port operators](../syntax.md#port-operator), which aggregate linear expressions emitted through a port.
 
 An explicit example is provided by the `bus` model implementing the energy balance constraint (**First Kirchhoff Law**):
 
@@ -277,7 +277,7 @@ An `objective contribution` is a linear expression that represents a cost or pen
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique `id` for the objective contribution within the model. Must follow the [naming rules](#rules-for-id-naming).|
-| `expression`| [Mathematical Expression](../mathematical-syntax.md) | A linear expression representing a cost or penalty term. All contributions across all components are summed to form the global minimisation objective.|
+| `expression`| [Mathematical Expression](../syntax.md) | A linear expression representing a cost or penalty term. All contributions across all components are summed to form the global minimisation objective.|
 
 ```yaml
 objective-contributions:
@@ -296,9 +296,9 @@ Each entry under `extra-outputs` must contain:
 | Field | Type | Description |
 |------|------|-----------------|
 | `id` | String | Unique identifier for the extra output within the model. Must follow the [naming rules](#rules-for-id-naming). |
-| `expression` | [Mathematical Expression](../mathematical-syntax.md) | A linear expression evaluated from optimal variable values after the solve. May use variables, parameters, and [direct port field access](../mathematical-syntax.md#direct-port-field-usage) (unlike constraints). |
+| `expression` | [Mathematical Expression](../syntax.md) | A linear expression evaluated from optimal variable values after the solve. May use variables, parameters, and [direct port field access](../syntax.md#direct-port-field-usage) (unlike constraints). |
 
-Unlike in constraints, [direct port field usage](../mathematical-syntax.md#direct-port-field-usage) **is allowed** in `extra-outputs`.
+Unlike in constraints, [direct port field usage](../syntax.md#direct-port-field-usage) **is allowed** in `extra-outputs`.
 
 #### Properties 
 

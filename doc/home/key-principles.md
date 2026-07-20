@@ -21,11 +21,11 @@ This language **differs from traditional optimization languages** in several way
 
 <h3> Library </h3>
 
-A YAML file defining abstract objects called <a href="../user-guide/file-structure/library.md#models">models</a>, which describe the mathematical formulation of a category of energy system element.
+A YAML file defining abstract objects called <a href="../user-guide/file-structure/library/#models">models</a>, which describe the mathematical formulation of a category of energy system element.
 
 <br>
 <br>
-For more details, see the <a href="../user-guide/file-structure/library.md"><b>Library</b></a> page of the user guide.
+For more details, see the <a href="../user-guide/file-structure/library/"><b>Library</b></a> page of the user guide.
 
 ```yaml
 library:
@@ -84,7 +84,7 @@ library:
 A YAML file describing the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and defines the connections between components.
 
 <br>
-For more details, see the <a href="../user-guide/file-structure/system.md"><b>System</b></a> page of the user guide.
+For more details, see the <a href="../user-guide/file-structure/system/"><b>System</b></a> page of the user guide.
 
 ```yaml
 system:
@@ -206,6 +206,6 @@ system:
   lowering the barrier for new users while remaining expressive enough for advanced use cases.
   This approach facilitates <strong> model versioning, collaboration, and integration with external tools </strong>,
   while clearly separating model structure, data, and assumptions from the underlying optimisation engine.
-  See the <a href="../overview/file-structure.md"><strong>File Structure</strong></a> page for a detailed overview of all GEMS files and their roles.
+  See the <a href="../overview/file-structure/"><strong>File Structure</strong></a> page for a detailed overview of all GEMS files and their roles.
    </p>
 </div>

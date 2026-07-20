@@ -102,7 +102,7 @@ The following diagram depicts the structural relationships between the [library 
 !!! warning
     It's recommended to run this GEMS study with Antares Modeler or GemsPy. Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver.
 
-    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/) section.
+    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/overview.md) section.
 
 1. Download [QSE_1_Adequacy](https://github.com/AntaresSimulatorTeam/GEMS/tree/documentation/get_started_quick_examples/resources/Documentation_Examples/QSE/QSE_1_Adequacy)
 2. Copy [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries/basic_models_library.yml) into the `QSE_1_adequacy/input/model-libraries/`

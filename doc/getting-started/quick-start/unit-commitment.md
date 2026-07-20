@@ -60,7 +60,7 @@ The *Unit Commitment* problem here involves determining the on/off schema and di
 !!! warning
     It's recommended to run this GEMS study with Antares Modeler or GemsPy. Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver.
 
-    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/) section.
+    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/overview.md) section.
 
 Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
 
