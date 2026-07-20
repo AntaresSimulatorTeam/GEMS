@@ -151,20 +151,20 @@ The power flows between buses can be visualized as follows:
 
 ### Models Library
 
-System of the **Three-bus Adequacy** example relies on models defined in the GEMS library file [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries). These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimisation problem.
+The system of the **Three-bus Adequacy** example relies on models defined in the GEMS library file [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/tree/f5c772ab6cbfd7d6de9861478a1d70a25edf339d/libraries). These models encode the decision variables, objective-function contributions, and constraints that collectively form the optimisation problem.
 
 The complete mathematical formulation corresponding to this example - including decision variables, parameters, objective function, and constraints - is detailed in the following document: **[detailed mathematical formulation and expressions](./adequacy-math-model.md)**.
 
 ### System file configuration
 
-The description of an energy system is the combination of a model library and a graph of components (instanciation of models) described in the system file.
+The description of an energy system is the combination of a model library and a graph of components (instantiation of models) described in the system file.
 For example, for the component bus_1, here is an extract of the [system file](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml) :
 
 ![diagram with only one bus](../../assets/2_QSE_Adequacy_system_only_one.png)
 
 ???+ info "Full system file description for the Three-bus system - Simple Adequacy Example"
 
-    The following diagrams explains the structure of the system file for the Three-bus system - Simple Adequacy Example :
+    The following diagrams explain the structure of the system file for the Three-bus system - Simple Adequacy Example :
 
     ![diagram with all components](../../assets/2_QSE_Adequacy_system.png)
 

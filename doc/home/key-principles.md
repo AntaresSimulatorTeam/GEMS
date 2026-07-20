@@ -166,7 +166,7 @@ system:
 
   <p style="margin: 0;">
   GEMS natively incorporates <strong> time and scenario dimensions</strong> into its modelling framework.
-  <strong>Temporal </strong> and <strong>scenarios </strong> indices are natively available in the language, either in an implicit or explicit form. This allows users to easly define <strong>dynamic behaviours, inter-temporal constraints, and scenario-based analyses</strong> in a clear and structured way, while ensuring consistency and scalability of the resulting optimisation problems.
+  <strong>Temporal </strong> and <strong>scenarios </strong> indices are natively available in the language, either in an implicit or explicit form. This allows users to easily define <strong>dynamic behaviours, inter-temporal constraints, and scenario-based analyses</strong> in a clear and structured way, while ensuring consistency and scalability of the resulting optimisation problems.
   </p>
 </div>
 

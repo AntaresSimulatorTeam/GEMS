@@ -9,7 +9,7 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 !!! warning 
     This study requires Antares Simulator version &gt; {{ antares_simulator_version }}.
     
-    You can find the latest version on the[ official releases page](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
+    You can find the latest version on the [official releases page](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
 
 ### Files Structure
 
