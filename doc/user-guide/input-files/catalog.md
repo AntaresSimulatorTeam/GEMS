@@ -21,16 +21,26 @@ GEMS lets the users the possibility to configure its own outputs. The outputs ar
 | `catalog.taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) this catalog uses.|
 | `catalog.location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects for the View (e.g. buses/areas, links, generators...).|
 
-### 2. Terms definition
+### 2. Metrics definition
 
 *This second part defines the metrics.*
 
 | Element | Type | Description |
 |------|------|--------------------------|
 | `metrics-definition.id` | String | A unique identifier for the metric.|
-| `metrics-definition.terms` | List | List of terms contributing to the metric. Each term selects a component group by [`taxonomy-category`](taxonomy.md), an `output-id` (referencing a [model output](library.md#extra-output)) and the [`location-ports`](taxonomy.md#key-elements-in-taxonomy-file) through which it connects to the location.|
+| `metrics-definition.terms` | List | List of [terms](#3-terms) contributing to the metric.|
 | `metrics-definition.terms-operator` | String | How to combine values across components: `sum` or `avg`.|
 | `metrics-definition.time-operator` | String | How to aggregate values over time: `sum` or `avg`.|
+
+#### 3. Terms
+
+Each term in `metrics-definition.terms` selects a group of components defined by the `taxonomy` file and a simulation output to aggregate into the metric.
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) identifying the group of components to aggregate.|
+| `output-id` | String | The identifier of the [model output](library.md#extra-output) to read from those components.|
+| `location-ports` | String | The [`location-ports`](taxonomy.md#key-elements-in-taxonomy-file) through which the selected components connect to the metric location.|
 
 ## Example
 
