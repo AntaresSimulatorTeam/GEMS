@@ -9,9 +9,9 @@ GEMS lets the users the possibility to configure its own outputs. The outputs ar
 
     [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/business-view.md).
 
-## Structure of catalog files
+## Structure of `catalog` files
 
-Generalities:
+### 1. `catalog` header
 
 *This first part configures the `catalog` file.*
 
@@ -21,7 +21,7 @@ Generalities:
 | `catalog.taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) this catalog uses.|
 | `catalog.location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects for the View (e.g. buses/areas, links, generators...).|
 
-Metrics definition:
+### 2. Terms definition
 
 *This second part defines the metrics.*
 
