@@ -46,7 +46,7 @@ Each term in `metrics-definition.terms` selects a group of components defined by
 
 ## Example
 
-This example uses the [Antares Legacy Models library](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml) and its taxonomy `antares_legacy_taxonomy.yml`.
+This example uses the [Antares Legacy Models library](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml) and its taxonomy [`antares_legacy_taxonomy.yml`](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/blob/main/src/antares_gems_converter/taxonomies/antares_legacy_taxonomy.yml).
 
 ```yaml
 catalog:
