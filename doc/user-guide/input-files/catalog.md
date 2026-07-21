@@ -34,7 +34,7 @@ Metrics definition:
 
 ## Example
 
-This example uses the [Antares Legacy model library](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml) and its `antares_legacy_taxonomy`.
+This example uses the [Antares Legacy Models library](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/antares_legacy_models.yml) and its taxonomy `antares_legacy_taxonomy.yml`.
 
 ```yaml
 catalog:
