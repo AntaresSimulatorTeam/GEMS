@@ -4,7 +4,7 @@
 
 **Views** are result tables designed by trimming and aggregation set by users called the metrics. They are produced from the simulation outputs.
 
-???+ tip "Free customisable `views`"
+???+ tip "Free customisable `Views`"
     These `views` are fully designed by users through the configuration files ([`taxonomy.yml`](../input-files/taxonomy.md), [`catalog.yml`](../input-files/catalog.md), [`view-config.yml`](../input-files/view-config.md)).
 
 ???+ info "Links with `catalog.yml` and `view-config.yml`"
