@@ -27,7 +27,7 @@ flowchart LR
     Scenario["📄 modeler-scenariobuilder.dat 🔗"]
     Calendar["📊 calendar_file.csv"]
     Taxonomy["📊 taxonomy.yml 🔗"]
-    View_Configuration["📊 view_config.yml 🔗"]
+    Views_Configuration["📊views_config.yml 🔗"]
     
     Study --> Input
     Study --> Params
@@ -37,7 +37,7 @@ flowchart LR
     Input --> Catalogs
     Input --> Taxonomy
     Input --> Calendar
-    Input --> View_Configuration
+    Input --> Views_Configuration
     ModelLib --> Lib1
     ModelLib --> Lib2
     DataSeries --> Data1
@@ -51,7 +51,7 @@ flowchart LR
     style Catalogs stroke:#0dcaf0,stroke-width:3px,color:#ffffff
     style System stroke:#16a34a,stroke-width:3px,color:#ffffff
     style Taxonomy stroke:#28a745,stroke-width:3px,color:#ffffff
-    style View_Configuration stroke:#28a745,stroke-width:3px,color:#ffffff
+    style Views_Configuration stroke:#28a745,stroke-width:3px,color:#ffffff
     style Calendar stroke:#28a745,stroke-width:1px,color:#ffffff
     style Params stroke:#16a34a,stroke-width:3px,color:#ffffff
     style Lib1 stroke:#16a34a,stroke-width:3px,color:#ffffff
@@ -68,7 +68,7 @@ flowchart LR
     click Params "../solver-optimization/"
     click Catalogs "../catalog/"
     click Taxonomy "../taxonomy/"
-    click View_Configuration "../view-config/"
+    click Views_Configuration "..views-config/"
 ```
 
 The following pages of this section describe each file and folder in detail. Each page focuses on the role of a specific file, its expected structure, and how it interacts with the rest of the file to form a consistent and executable GEMS study.
