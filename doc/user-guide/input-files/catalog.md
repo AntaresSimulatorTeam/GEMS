@@ -34,13 +34,15 @@ GEMS lets the users the possibility to configure its own outputs. The outputs ar
 
 #### 3. Terms
 
+*This third section focuses on the terms definition*
+
 Each term in `metrics-definition.terms` selects a group of components defined by the `taxonomy` file and a simulation output to aggregate into the metric.
 
 | Element | Type | Description |
 |------|------|--------------------------|
 | `taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) identifying the group of components to aggregate.|
 | `output-id` | String | The identifier of the [model output](library.md#extra-output) to read from those components.|
-| `location-ports` | String | The [`location-ports`](taxonomy.md#key-elements-in-taxonomy-file) through which the selected components connect to the metric location.|
+| `location-port` | String | The [`location-port`](taxonomy.md#key-elements-in-taxonomy-file) through which the selected components connect to the metric location.|
 
 ## Example
 
