@@ -2,7 +2,7 @@
 
 The **Views configuration file** defines which [Views](../outputs/business-view.md) to produce and how. It selects the metrics to compute, the locations to aggregate over and the temporal resolution of the outputs fit for users ; the **views**.
 
-> One `view_config.yml` file define a **Views**.
+> One View Configuration file define a **[Views](../outputs/business-view.md)**.
 
 ???+ info "Links with Catalog, Taxonomy and Calendar files"
     The views configuration uses `metrics` defined in the [Catalog file](catalog.md).
