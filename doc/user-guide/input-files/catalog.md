@@ -19,7 +19,7 @@ Generalities:
 |------|------|--------------------------|
 | `catalog.id` | String | A unique identifier for the catalog.|
 | `catalog.taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) this catalog uses.|
-| `catalog.location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects (e.g. buses or areas).|
+| `catalog.location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects for the View (e.g. buses/areas, links, generators...).|
 
 Metrics definition:
 
