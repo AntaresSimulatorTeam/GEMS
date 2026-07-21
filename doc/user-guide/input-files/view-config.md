@@ -2,16 +2,16 @@
 
 The **Views configuration file** defines which [Views](../outputs/business-view.md) to produce and how. It selects the metrics to compute, the locations to aggregate over and the temporal resolution of the outputs fit for users ; the **views**.
 
-> One `view_config.yml` file can define **views**.
+> One `view_config.yml` file define a **Views**.
 
-???+ info "Links with `catalog.yml`, `taxonomy.yml` and `calendar_file.csv`"
-    The views configuration uses `metrics` defined in [`catalog.yml`](catalog.md).
+???+ info "Links with Catalog, Taxonomy and Calendar files"
+    The views configuration uses `metrics` defined in the [Catalog file](catalog.md).
 
-    Locations are selected thanks to [`taxonomy-category`](taxonomy.md) from [`taxonomy.yml`](taxonomy.md).
+    Locations are selected thanks to [`taxonomy-category`](taxonomy.md) from the [Taxonomy file](taxonomy.md).
 
-    The `calendar_file.csv` maps simulation time indices to real dates. It is a CSV file with the following columns:
+    The Calendar file maps simulation time indices to real dates. It is a CSV file with the following columns:
 
-    | Column in `calendar_file` | Description |
+    | Column in the Calendar file | Description |
     |--------|-------------|
     | `absolute_time_index` | Integer time index from the [simulation table](../outputs/simulation-table.md). |
     | `block` | Scenario block index. |
@@ -59,4 +59,4 @@ view:
 | Element | Type | Description |
 |------|------|--------------------------|
 | `catalog.id` | String | The `id` of a [catalog](catalog.md) to use.|
-| `metrics.id` | String | A metric to include, referenced as `<catalog_id>.<metric_id>` from [`catalog.yml`](catalog.md).|
+| `metrics.id` | String | A metric to include, referenced as `<catalog_id>.<metric_id>` from the [Catalog file](catalog.md).|
