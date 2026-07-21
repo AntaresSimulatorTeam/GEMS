@@ -1,6 +1,6 @@
 # Business Views Configuration Files
 
- **[Views](../outputs/view.md)** are result tables designed to meet business-user expectations.  
+ **[Views](../outputs/views.md)** are result tables designed to meet business-user expectations.  
 Each View exposes a set of end-use Metrics, with spatial and temporal resolutions that depends on the configuration of the view.  
 These numerical values are computed exclusively from:
 

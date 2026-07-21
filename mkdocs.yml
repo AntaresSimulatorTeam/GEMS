@@ -146,7 +146,7 @@ nav:
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md
           - Optimization Problem Files: user-guide/outputs/optimization-problem-files.md
-          - View: user-guide/outputs/view.md
+          - Views: user-guide/outputs/views.md
   - Interoperability:
       - PyPSA to GEMS Converter:
           - Overview: interoperability/pypsa-to-gems-converter/overview.md
