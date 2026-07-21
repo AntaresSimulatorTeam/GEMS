@@ -9,7 +9,7 @@ Whereas in Antares legacy the outputs were predefined, GEMS lets the users the p
 
     [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/business-view.md).
 
-## Key elements in catalog file
+## Structure of catalog files
 
 Generalities:
 
