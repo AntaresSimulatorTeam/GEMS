@@ -54,7 +54,7 @@ view:
 
 ### Catalog and metrics
 
-*This second part selects which Metrics from which Catalogs to include in the View.
+*This second part selects which Metrics from which Catalogs to include in the View.*
 
 | Element | Type | Description |
 |------|------|--------------------------|
