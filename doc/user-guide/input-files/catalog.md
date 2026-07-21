@@ -7,7 +7,7 @@ Whereas in Antares legacy the outputs were predefined, GEMS lets the users the p
 ???+ info "Links with `taxonomy.yml` and `view-config.yml`"
     Catalogs use the taxonomy categories defined in [a taxonomy file](taxonomy.md).
 
-    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Business Views](../outputs/business-view.md).
+    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/business-view.md).
 
 ## Key elements in catalog file
 
