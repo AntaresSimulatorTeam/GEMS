@@ -1,4 +1,4 @@
-# Views Configuration File
+# Views Configuration Files
 
 The **Views configuration file** defines which [Views](../outputs/business-view.md) to produce and how. It selects the metrics to compute, the locations to aggregate over and the temporal resolution of the outputs fit for users ; the **views**.
 
@@ -39,9 +39,9 @@ view:
     - id: antares_legacy_catalog.BALANCE
 ```
 
-## Key elements in views configuration file
+## Structure of the View Configuration files
 
-Scope and Aggregation:
+### Scope and Aggregation
 
 *This first part defines what is evaluated and at what resolution.*
 
@@ -52,9 +52,9 @@ Scope and Aggregation:
 | `scope.calendar` | String | Reference to the calendar file used to map time indices to real dates.|
 | `aggregation.time` | String | Temporal resolution for the output: `hour`, `day`, `week`, `month`, or `year`.|
 
-Catalog and metrics:
+### Catalog and metrics
 
-*This second part selects which metrics to include in the views.*
+*This second part selects which Metrics from which Catalogs to include in the View.
 
 | Element | Type | Description |
 |------|------|--------------------------|
