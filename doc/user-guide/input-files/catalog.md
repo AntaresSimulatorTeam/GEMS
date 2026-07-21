@@ -1,4 +1,4 @@
-# Catalog File
+# Catalog Files
 
 Whereas in Antares legacy the outputs were predefined, GEMS lets the users the possibility to configure its own outputs. The outputs are defined by **Metrics** specified inside the **Catalog** file. Each metric aggregates [simulation outputs](../outputs/simulation-table.md) from components selected by their [`taxonomy-category`](taxonomy.md).
 
