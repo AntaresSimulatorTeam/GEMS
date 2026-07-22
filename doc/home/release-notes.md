@@ -1,6 +1,26 @@
 
 # Release Notes
 
+## v0.3.5 | *24-07-2026*
+
+### Added
+
+### Changed
+
+* Bump Antares Simulator version to v10.1.1 ([PR73](https://github.com/AntaresSimulatorTeam/GEMS/pull/190))
+
+* Bump Antares Legacy Library to v2.1.2 ([PR72](https://github.com/AntaresSimulatorTeam/GEMS/pull/188))
+
+* Refactoring of documentation based on general comments ([PR64](https://github.com/AntaresSimulatorTeam/GEMS/pull/171))
+
+* Update developer guide — branching model, CI table, workflows and release process ([PR62](https://github.com/AntaresSimulatorTeam/GEMS/pull/166))
+
+### Fixed
+
+* Fix picture paths and UV lock usage in tutorials ([#197](https://github.com/AntaresSimulatorTeam/GEMS/pull/197))
+
+* Fix PyPSA-eur tutorial e2e tests ([#198](https://github.com/AntaresSimulatorTeam/GEMS/pull/198))
+
 ## v0.3.4 | *25-06-2026*
 
 ### Added
