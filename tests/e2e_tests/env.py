@@ -102,6 +102,7 @@ def get_paths() -> EnvironmentPaths:
         repo_root
         / "doc"
         / "examples"
+        / "notebooks"
         / "tutorial-four-antares-legacy"
         / "tutorial-antares-legacy.ipynb")
 
