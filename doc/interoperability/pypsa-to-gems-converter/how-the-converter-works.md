@@ -1,6 +1,6 @@
 # How the Converter Works
 
-The PyPSA to GEMS Converter transforms [PyPSA Network](https://docs.pypsa.org/latest/api/networks/network/) into a [GEMS study folder](../../user-guide/file-structure/overview.md), through the following steps.
+The PyPSA to GEMS Converter transforms [PyPSA Network](https://docs.pypsa.org/latest/api/networks/network/) into a [GEMS study folder](../../user-guide/input-files/overview.md), through the following steps.
 
 ## 1. Input Validation and Preprocessing
 

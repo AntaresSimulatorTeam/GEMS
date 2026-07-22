@@ -133,20 +133,20 @@ nav:
       - Introduction: user-guide/introduction.md
       - GEMS Syntax: user-guide/syntax.md
       - File Structure:
-          - Overview: user-guide/file-structure/overview.md
-          - Library File: user-guide/file-structure/library.md
-          - System File: user-guide/file-structure/system.md
-          - Dataseries File: user-guide/file-structure/data-series.md
-          - Scenario Builder File: user-guide/file-structure/scenario-builder.md
-          - Solver parameters and optimization configuration files: user-guide/file-structure/solver-optimization.md
-          - Taxonomy File: user-guide/file-structure/taxonomy.md
-          - Business Views configuration files: user-guide/file-structure/business-view-configuration.md
+          - Overview: user-guide/input-files/overview.md
+          - Library File: user-guide/input-files/library.md
+          - System File: user-guide/input-files/system.md
+          - Dataseries File: user-guide/input-files/data-series.md
+          - Scenario Builder File: user-guide/input-files/scenario-builder.md
+          - Solver parameters and optimization configuration files: user-guide/input-files/solver-optimization.md
+          - Taxonomy File: user-guide/input-files/taxonomy.md
+          - Views configuration files: user-guide/input-files/view-configuration.md
       - Theoretical Concepts:
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md
           - Optimization Problem Files: user-guide/outputs/optimization-problem-files.md
-          - Business View: user-guide/outputs/business-view.md
+          - View: user-guide/outputs/view.md
   - Interoperability:
       - PyPSA to GEMS Converter:
           - Overview: interoperability/pypsa-to-gems-converter/overview.md
