@@ -42,7 +42,7 @@ Mathematical syntax is **solver-agnostic** and intentionally restricted to ensur
 
 Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where parameters and variables come from or how components are wired together as a system.
 
-See: [**Mathematical Syntax and Rules**](../syntax.md)
+See: [**Mathematical Syntax and Rules**](syntax.md)
 
 ## File Structure
 

@@ -61,7 +61,7 @@ library:
 
 ### Port Types
 
-The `port-types` collection defines the set of port types available within a library. These port types can be used by models/components to communicate with each other by exchanging linear expressions through [connections](../system#connections).
+The `port-types` collection defines the set of port types available within a library. These port types can be used by models/components to communicate with each other by exchanging linear expressions through [connections](system.md#connections).
 
 This collection is **optional**. A library may define no port types, although such a library has limited practical use, as its models cannot interact through ports. Alternatively, a library may rely on port types defined in another library, enabling reuse and interoperability across libraries.
 
@@ -172,7 +172,7 @@ A model is an abstract object, that will be instantiated once or several times i
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`id`| String | A unique identifier for the model within a library. Must follow the [naming rules](#rules-for-id-naming). [System files](../system#components) reference the model by combining the library `id` and the model `id`.|
+|`id`| String | A unique identifier for the model within a library. Must follow the [naming rules](#rules-for-id-naming). [System files](system.md#components) reference the model by combining the library `id` and the model `id`.|
 | `description`| String | *(Optional)* Text description of the model.|
 
 #### Parameters
@@ -185,7 +185,7 @@ A list of parameters that this model takes. Each parameter defines a configurabl
 | `time-dependent`| Boolean | `true` or `false`. If `true`, this parameter can vary over the simulation timeline (meaning it will be associated with a time series input). If `false`, it is treated as constant in time.|
 |`scenario-dependent`| Boolean | `true` or `false`. If `true`, the parameter can have different values in different scenarios (i.e., it requires scenario-specific data). If `false`, it does not vary between scenarios.|
 
-Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md). For how parameter values are assigned in the system file, see [System — Parameters](../system#parameters).
+Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md). For how parameter values are assigned in the system file, see [System — Parameters](system.md#parameters).
 
 #### Variables
 
@@ -304,7 +304,7 @@ Unlike in constraints, [direct port field usage](../syntax.md#direct-port-field-
 
 (Optional) If `properties` keys are declared in the model, the declaration of  such keys and their values are mandatory for the components that instantiate the model.
 
-In the library file, each entry only declares the key name, they are specified by a value for each component within the [system file](../system#properties).
+In the library file, each entry only declares the key name, they are specified by a value for each component within the [system file](system.md#properties).
 
 | Element | Type | Description |
 |------|------|--------------------------|
