@@ -33,7 +33,7 @@ The nature of the contribution depends on the fields:
 
 These fields are independent: you don't have to define all 3 at the same time, you can define only one. However, all three keys must be present in the `area-connection` section even if some values are left empty.
 
-## Conventions on the sign of expressions
+### Conventions on the sign of expressions
 
 When connecting a component to an area, you must respect conventions on the sign of the linear expression contributed by the port field.
 
@@ -87,7 +87,7 @@ When connecting a component to an area, you must respect conventions on the sign
         ```
 
 
-## Definition of the area-connections (in the [system](../../user-guide/file-structure/system.md) file)
+### Definition of the area-connections (in the [system](../../user-guide/file-structure/system.md) file)
 
 The `area-connections` section of the system file is used to declare each connection between a GEMS component and an Antares Legacy Area.
 
@@ -105,3 +105,5 @@ Explanation of fields:
 - **component:** Refers to the `id` of the GEMS component to be connected. This `id` must match the one declared in the components section of the `system.yml` file. In this example, it refers to a component named `wind_farm`
 - **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding **port type** must include an `area-connection` section in the model library definition, and must specify at least one of `injection-to-balance`, `spillage-bound` or `unsupplied-energy-bound`
 - **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area's balance constraint during simulation
+
+## 
