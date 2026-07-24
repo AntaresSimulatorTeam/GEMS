@@ -25,7 +25,7 @@ Represent a value that varies by scenario, but is constant in time. The file sho
 10, 22, 55, 42
 ```
 
-This would indicate the parameter's value in scenario 1 is 10, scenario 2 is 22, and scenario 3 is 55.
+This would indicate the parameter's value in scenario 1 is 10, scenario 2 is 22, scenario 3 is 55, and scenario 4 is 42.
 
 ## Time-and-scenario-dependent series
 

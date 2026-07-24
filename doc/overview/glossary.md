@@ -49,9 +49,9 @@ This section is a glossary of the main concepts used by GEMS. For a detailed spe
 | Concept            | Definition            |
 |--------------------|-----------------------|
 | Time | Energy systems modelled and optimized within GEMS are, in most cases, inherently temporal. To make this tractable within a computational framework, GEMS represents time in a discrete rather than continuous manner.
-| [Time dependent](../user-guide/mathematical-syntax.md#time-operators-and-indexing)     |  A parameter or variable depending on time. In this case, the parameter is instantiated as a dataseries. |
+| [Time dependent](../user-guide/syntax.md#time-operators-and-indexing)     |  A parameter or variable depending on time. In this case, the parameter is instantiated as a dataseries. |
 | Scenario | Condition of the system environment (e.g., weather patterns, demand levels) over the simulation horizon. Multiple scenarios can be evaluated in a single study to capture variability or uncertainty. |
-| [Scenario dependent](../user-guide/mathematical-syntax.md#scenario-operator) | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as a dataseries. |
+| [Scenario dependent](../user-guide/syntax.md#scenario-operator) | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as a dataseries. |
 
 
 ## Output Files

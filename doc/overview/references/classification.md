@@ -7,7 +7,7 @@ This table contains all the referenced taxonomies of models created by different
 
 | Taxonomy | Description | Link |
 |----------|-------------|------|
-| `<name of the taxonomy>` | `<description>` | [Github link](https://github.com/AntaresSimulatorTeam/GEMS) |
+| `antares_legacy_taxonomy.yml` | `GEMS taxonomy configuration for Antares Legacy Models` | [antares_legacy_taxonomy.yml](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter/blob/main/src/antares_gems_converter/taxonomies/antares_legacy_taxonomy.yml) |
 
 ## Reference classification of models
 
