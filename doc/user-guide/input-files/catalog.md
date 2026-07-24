@@ -7,7 +7,7 @@ GEMS lets the users the possibility to configure its own outputs. The outputs ar
 ???+ info "Links with `taxonomy.yml` and `view-config.yml`"
     Catalogs use the taxonomy categories defined in [a taxonomy file](taxonomy.md).
 
-    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/business-view.md).
+    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/views.md).
 
 ## Structure of `catalog` files
 
