@@ -1,6 +1,6 @@
 # Coupling GEMS Components with Legacy Areas
 
-In a **hybrid study**, a `area-connection` between a GEMS component and a Legacy Area means that the component contributes to the energy balance at the given node, through a given port (field).
+In a **hybrid study**, an `area-connection` between a GEMS component and a Legacy Area means that the component contributes to the energy balance at the given node, through a given port (field).
 
 In practical terms, connecting a GEMS **Generator** component to an Antares Legacy Area injects the generator's power output into that area's balance equation (the supply-demand constraint). *Without this connection, the GEMS component would remain isolated*.
 
@@ -38,7 +38,7 @@ These fields are independent: you don't have to define all 3 at the same time, y
 When connecting a component to an area, you must respect conventions on the sign of the linear expression contributed by the port field.
 
 
-| Area Connecton Field | Sign Convention: Positive for... |
+| Area Connection Field | Sign Convention: Positive for... |
 |---|---|
 | injection-to-balance | Production |
 | spillage-bound | Production |
