@@ -32,7 +32,7 @@ The ambition behind the GEMS language is to **build and support a community of e
 This approach is particularly important as future energy systems — strategic by nature — are increasingly conceived in a **multi-energy, multi-actor landscape**, characterised by rising systemic complexity and tightly coupled interactions across scales.
 
 <div align="center">
-    <img src="./doc/assets/Communaute.jpg" alt="GEMS Logo" width="150px"/>
+    <img src="./doc/assets/community.png" alt="GEMS Logo" width="150px"/>
 </div>
 
 GEMS has the key attributes required to support and sustain such a community.
