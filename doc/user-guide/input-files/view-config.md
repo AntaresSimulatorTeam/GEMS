@@ -1,13 +1,62 @@
-# Business Views Configuration Files
+# Views Configuration Files
 
- **[Views](../outputs/views.md)** are result tables designed to meet business-user expectations.  
-Each View exposes a set of end-use Metrics, with spatial and temporal resolutions that depends on the configuration of the view.  
-These numerical values are computed exclusively from:
+The **Views configuration file** defines which [Views](../outputs/business-view.md) to produce and how. It selects the metrics to compute, the locations to aggregate over and the temporal resolution of the outputs fit for users ; the **views**.
 
-- the data contained in the **[Simulation Table](../outputs/simulation-table.md)**,
-- the topology of the [system](../file-structure/system.md).
-The algorithmic process to compute a Business View from this data is made explicit in a **Business View Configuration File**.
+> One Views Configuration file define a **[Views](../outputs/business-view.md)**.
 
-**The configuration and capabilities of Business Outputs are still under active development.**
+???+ info "Links with Catalog, Taxonomy and Calendar files"
+    The views configuration uses `metrics` defined in the [Catalog file](catalog.md).
 
+    Locations are selected thanks to [`taxonomy-category`](taxonomy.md) from the [Taxonomy file](taxonomy.md).
 
+    The Calendar file maps simulation time indices to real dates. It is a CSV file with the following columns:
+
+    | Column in the Calendar file | Description |
+    |--------|-------------|
+    | `absolute_time_index` | Integer time index from the [simulation table](../outputs/simulation-table.md). |
+    | `block` | Scenario block index. |
+    | `granular_date` | Real datetime (like `2025-01-01 00:00:00`). |
+
+## Example
+
+This example uses the `antares_legacy_taxonomy` and `antares_legacy_catalog` defined in the [taxonomy](taxonomy.md) and [catalog](catalog.md) pages.
+
+```yaml
+view:
+  id: view_area
+  scope:
+    - location:
+        taxonomy-category: balance
+    - calendar: calendar_file
+  aggregation:
+    - time: hour
+  catalog:
+    - id: antares_legacy_catalog
+  metrics:
+    - id: antares_legacy_catalog.PROD
+    - id: antares_legacy_catalog.LOAD
+    - id: antares_legacy_catalog.INSTALLED_PROD_CAPACITY
+    - id: antares_legacy_catalog.BALANCE
+```
+
+## Structure of the Views Configuration files
+
+### Scope and Aggregation
+
+*This first part defines what is evaluated and at what resolution.*
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | A unique identifier for the view.|
+| `scope.location` | String | The [`taxonomy-category`](taxonomy.md) whose components serve as location objects (e.g. buses or areas).|
+| `scope.calendar` | String | Reference to the calendar file used to map time indices to real dates.|
+| `aggregation.time` | String | Temporal resolution for the output: `hour`, `day`, `week`, `month`, or `year`.|
+
+### Catalog and metrics
+
+*This second part selects which Metrics from which Catalogs to include in the View.*
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `catalog.id` | String | The `id` of a [catalog](catalog.md) to use.|
+| `metrics.id` | String | A metric to include, referenced as `<catalog_id>.<metric_id>` from the [Catalog file](catalog.md).|

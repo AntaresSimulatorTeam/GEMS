@@ -115,7 +115,7 @@ nav:
       - GEMS Interpreters:
           - GemsPy: overview/gems-interpreters/gemspy.md
           - Antares Simulator: overview/gems-interpreters/antares-simulator.md
-      - Classification of libraries of models:
+      - Reference libraries & taxonomies of models:
           - Libraries of models: overview/references/libraries.md
           - Verifying GEMS Libraries: overview/references/verifying-libraries.md
           - Classification of models: overview/references/classification.md
@@ -140,7 +140,7 @@ nav:
           - Scenario Builder File: user-guide/input-files/scenario-builder.md
           - Solver parameters and optimization configuration files: user-guide/input-files/solver-optimization.md
           - Taxonomy File: user-guide/input-files/taxonomy.md
-          - Views configuration files: user-guide/input-files/view-configuration.md
+          - Views Configuration Files: user-guide/input-files/view-config.md
       - Theoretical Concepts:
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
