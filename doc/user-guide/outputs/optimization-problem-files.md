@@ -1,6 +1,6 @@
 # Optimization Problem MPS Files
 
-One can expect from any [GEMS](../../index.md) interpreter to export the fully assembled optimisation problem in a **standard mathematical programming format** [**MPS**](https://lpsolve.sourceforge.net/5.5/mps-format.htm?utm_source=chatgpt.com). The exported file contains the complete linear or mixed-integer formulation constructed from the system configuration, model libraries, and input data.
+One can expect from any [GEMS](../../index.md) interpreter to export the fully assembled optimisation problem in a **standard mathematical programming format** [**MPS**](https://lpsolve.sourceforge.net/5.5/mps-format.htm). The exported file contains the complete linear or mixed-integer formulation constructed from the system configuration, model libraries, and input data.
 
 This export is primarily intended for **verification, debugging, and external analysis** of the optimisation problem.
 

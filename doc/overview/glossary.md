@@ -10,9 +10,12 @@ This section is a glossary of the main concepts used by GEMS. For a detailed spe
 
 | Term    | Definition    |
 |---------|---------------|
-| [Library](../user-guide/input-files/library.md) | A file listing all the models representing general unspecified elements of a study. These models are used as "template" for creating their instances, called components|
-| [System](../user-guide/input-files/system.md)  | A file listing all the "components", the instances of models defined by the **library** yaml file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
+| [Library](../user-guide/input-files/library.md) | A file listing all the **models** representing general unspecified elements of a study. These models are used as "templates" for creating their instances, called components.|
+| [System](../user-guide/input-files/system.md)  | A file listing all the "**components**", the instances of models defined by the system YAML file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
 | [Dataseries](../user-guide/input-files/data-series.md) | A table containing all the data through time. It is used by time/scenario dependent components|
+| [Taxonomy](../user-guide/input-files/business-view-configuration.md) | A file classifying component models into **categories**. Used to select which components contribute to a metric.|
+| [Catalog](../user-guide/input-files/business-view-configuration.md) | A file defining a set of end-use **Metrics** with their aggregation rules (terms, terms-operator, time-operator).|
+| [View Config](../user-guide/input-files/business-view-configuration.md) | Configure **views** by specifying scope (location, calendar), time aggregation, and the metrics from `catalog.yml` to compute.|
 
 ## Concepts
 
@@ -46,8 +49,16 @@ This section is a glossary of the main concepts used by GEMS. For a detailed spe
 | Concept            | Definition            |
 |--------------------|-----------------------|
 | Time | Energy systems modelled and optimized within GEMS are, in most cases, inherently temporal. To make this tractable within a computational framework, GEMS represents time in a discrete rather than continuous manner.
-| [Time dependent](../user-guide/mathematical-syntax.md#time-operators-and-indexing)     |  A parameter or variable depending on time. In this case, the parameter is instantiated as a dataseries. |
+| [Time dependent](../user-guide/syntax.md#time-operators-and-indexing)     |  A parameter or variable depending on time. In this case, the parameter is instantiated as a dataseries. |
 | Scenario | Condition of the system environment (e.g., weather patterns, demand levels) over the simulation horizon. Multiple scenarios can be evaluated in a single study to capture variability or uncertainty. |
-| [Scenario dependent](../user-guide/mathematical-syntax.md#scenario-operator) | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as a dataseries. |
+| [Scenario dependent](../user-guide/syntax.md#scenario-operator) | A parameter or variable depending on the scenario. In this case, the parameter is instantiated as a dataseries. |
+
+
+## Output Files
+
+| Term    | Definition    |
+|---------|---------------|
+| [Simulation table](../user-guide/outputs/simulation-table.md) | A table providing the raw optimization results|
+| [Views](../user-guide/outputs/business-view.md) | They provide a representation of results as Metrics, based on users' requirements written inside the `view-config.yml`.|
 
 
