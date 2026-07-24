@@ -8,7 +8,7 @@ Currently, there is no GUI integrated into the [Antares Simulator repository](ht
 
 ### Can I use GEMS components inside a Legacy Study ?
 
-Yes, you can run hybrid studies (a Legacy study with GEMS components inside) with Antares Legacy. For a pratical tutorial, refer to the [Hybrid Study Section](../interoperability/hybrid/overview.md).
+Yes, you can run hybrid studies (a Legacy study with GEMS components inside) with Antares Legacy. For a practical tutorial, refer to the [Hybrid Study Section](../interoperability/hybrid/overview.md).
 
 ### Can I model unit commitment with GEMS?
 

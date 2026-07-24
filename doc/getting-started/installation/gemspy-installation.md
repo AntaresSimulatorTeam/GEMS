@@ -10,7 +10,7 @@ This package requires:
 
 ## GemsPy installation
 
-You can [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) by using `pip` installation :
+You can install [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) using `pip` :
 
 ```shell
 pip install gemspy
