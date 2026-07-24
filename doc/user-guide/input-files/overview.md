@@ -1,4 +1,4 @@
-# File Structure
+# Input Files
 
 This section provides a high-level overview of the specific files used by [**GEMS framework**](../../index.md) and how they collectively describe a complete GEMS study.
 
@@ -68,7 +68,7 @@ flowchart LR
     click Params "../solver-optimization/"
     click Catalogs "../catalog/"
     click Taxonomy "../taxonomy/"
-    click Views_Configuration "..views-config/"
+    click Views_Configuration "../views-config/"
 ```
 
 The following pages of this section describe each file and folder in detail. Each page focuses on the role of a specific file, its expected structure, and how it interacts with the rest of the file to form a consistent and executable GEMS study.
