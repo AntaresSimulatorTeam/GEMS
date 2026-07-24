@@ -3,8 +3,6 @@
 
 ## v0.3.5 | *24-07-2026*
 
-### Added
-
 ### Changed
 
 * Bump Antares Simulator version to v10.1.1 ([PR73](https://github.com/AntaresSimulatorTeam/GEMS/pull/190))
