@@ -10,7 +10,7 @@
 
 
 
-To contact the GEMS development team, please use the following GitHub issue trackers: :
+To contact the GEMS development team, please use the following GitHub issue trackers :
 
 | Project | Description |
 |--------|------------|
