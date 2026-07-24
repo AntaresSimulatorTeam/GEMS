@@ -140,7 +140,7 @@ nav:
           - Scenario Builder File: user-guide/input-files/scenario-builder.md
           - Solver parameters and optimization configuration files: user-guide/input-files/solver-optimization.md
           - Taxonomy File: user-guide/input-files/taxonomy.md
-          - Views configuration File: user-guide/input-files/view-config.md
+          - Views Configuration Files: user-guide/input-files/view-config.md
       - Theoretical Concepts:
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
