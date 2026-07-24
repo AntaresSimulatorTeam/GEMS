@@ -38,7 +38,7 @@
 
 * Chore CICD - Path Blocker ([#169](https://github.com/AntaresSimulatorTeam/GEMS/pull/169))
 
-* Rename sha256 files to follow <library>.yml.sha256 convention by ([#165](https://github.com/AntaresSimulatorTeam/GEMS/pull/165))
+* Rename sha256 files to follow `<library>.yml.sha256` convention ([#165](https://github.com/AntaresSimulatorTeam/GEMS/pull/165))
 
 * Bump documentation on GemsPy from v0.10 to v0.12 ([#161](https://github.com/AntaresSimulatorTeam/GEMS/pull/161))
 

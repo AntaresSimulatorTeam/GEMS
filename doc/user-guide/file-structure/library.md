@@ -32,7 +32,7 @@ library:
 
 In this example, one port type `flow_port` and one model `bus` are defined. The model contains a port named `balance_port` of type `flow_port`, along with a binding constraint equation that enforces **First Kirchhoff Law**.
 
-The equation `sum_connections(injection.flow) = 0` follows the GEMS [**Mathematical Expression Syntax**](../syntax.md#ports).
+The equation `sum_connections(flow_port.flow) = 0` follows the GEMS [**Mathematical Expression Syntax**](../syntax.md#ports).
 
 ## Rules for id naming
 
@@ -177,7 +177,7 @@ A model is an abstract object, that will be instantiated once or several times i
 
 #### Parameters
 
-A list of parameters that this model takes. Each parameter defines a configurable value for the model when it’s used in a system. For each parameter user can specify specify:
+A list of parameters that this model takes. Each parameter defines a configurable value for the model when it’s used in a system. For each parameter, a user can specify:
 
 | Element | Type | Description |
 |------|------|--------------------------|
