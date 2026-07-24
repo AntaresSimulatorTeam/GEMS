@@ -385,6 +385,26 @@ port-field-definitions:
     definition: p_generation{fuel}   # must be `fuel`-indexed to match flow's declared indexed-by
 ```
 
+**Multidimensional port fields** — a field's `indexed-by` list can name more than one set, exactly
+like a parameter or variable's can (see [Multiple indexing sets](#multiple-indexing-sets)):
+
+```yaml
+port-types:
+  - id: multi_fuel_multi_region_port
+    fields:
+      - id: flow
+        indexed-by: [fuel, region]
+
+port-field-definitions:
+  - port: injection_port
+    field: flow
+    definition: p_generation{fuel, region}   # must match flow's declared indexed-by exactly
+```
+
+Because a port field may only ever reference global sets in the first place, this holds dimension by
+dimension: **every** set in a multidimensional port field's `indexed-by` must be global — there is no
+partial or mixed case where some dimensions are global and others local.
+
 Because a port field's `indexed-by` can only name a global set, and every component connecting through
 that port type necessarily shares that exact global set, [`sum_connections`](#port-operator) and any
 [binding constraint](file-structure/library.md#binding-constraints) built on top of it are well-defined

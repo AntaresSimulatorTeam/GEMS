@@ -185,7 +185,18 @@ port-types:
           - id: flow
             indexed-by: fuel
     ```
-    Not yet implemented in [GemsPy](../../index.md).
+    A field's `indexed-by` list can name more than one global set, for a **multidimensional** port
+    field:
+    ```yaml
+    port-types:
+      - id: multi_fuel_multi_region_port
+        fields:
+          - id: flow
+            indexed-by: [fuel, region]
+    ```
+    Every set in the list must be global — since a port field can never reference a model-level set at
+    all, this holds dimension by dimension; there is no partial or mixed case. Not yet implemented in
+    [GemsPy](../../index.md).
 
 ### Models
 
