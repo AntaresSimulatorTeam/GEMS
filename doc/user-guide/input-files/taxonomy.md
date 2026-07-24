@@ -5,7 +5,7 @@ The **Taxonomy** defines a shared classification of GEMS models. It is used to o
 This classification is "transparent" and doesn't impact the optimization solution: it is only used for the building of Views and to standardize graphical interfaces.
 
 ???+ info "Link to `catalog.yml`"
-    The taxonomy is notably used by `catalog.yml` to define **Metrics** ; taxonomy categories serve as interface with [Models](library.md#models), to specify the variables, properties, extra-outputs or ports that are expected by the Catalog for the computation of each Metric. See [Views](../outputs/view.md) for more details.
+    The taxonomy is notably used by `catalog.yml` to define **Metrics** ; taxonomy categories serve as interface with [Models](library.md#models), to specify the variables, properties, extra-outputs or ports that are expected by the Catalog for the computation of each Metric. See [Views](../outputs/views.md) for more details.
 
 ## Key elements in taxonomy file
 

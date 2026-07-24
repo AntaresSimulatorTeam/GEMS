@@ -132,7 +132,7 @@ nav:
   - User Guide:
       - Introduction: user-guide/introduction.md
       - GEMS Syntax: user-guide/syntax.md
-      - File Structure:
+      - Input Files:
           - Overview: user-guide/input-files/overview.md
           - Library File: user-guide/input-files/library.md
           - System File: user-guide/input-files/system.md
@@ -140,13 +140,14 @@ nav:
           - Scenario Builder File: user-guide/input-files/scenario-builder.md
           - Solver parameters and optimization configuration files: user-guide/input-files/solver-optimization.md
           - Taxonomy File: user-guide/input-files/taxonomy.md
+          - Catalog File: user-guide/input-files/catalog.md
           - Views Configuration Files: user-guide/input-files/view-config.md
       - Theoretical Concepts:
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md
           - Optimization Problem Files: user-guide/outputs/optimization-problem-files.md
-          - View: user-guide/outputs/view.md
+          - Views: user-guide/outputs/views.md
   - Interoperability:
       - PyPSA to GEMS Converter:
           - Overview: interoperability/pypsa-to-gems-converter/overview.md

@@ -1,13 +1,13 @@
 # Catalog Files
 
-GEMS lets the users the possibility to configure its own outputs. The outputs are defined by **Metrics** specified inside the **Catalog** file. Each metric aggregates [simulation outputs](../outputs/simulation-table.md) from components selected by their [`taxonomy-category`](taxonomy.md).
+GEMS lets users configure their own outputs. The outputs are defined by **Metrics** specified inside the **Catalog** file. Each metric aggregates [simulation outputs](../outputs/simulation-table.md) from components selected by their [`taxonomy-category`](taxonomy.md).
 
 > Users can use **several catalog files** based on their needs.
 
 ???+ info "Links with `taxonomy.yml` and `view-config.yml`"
     Catalogs use the taxonomy categories defined in [a taxonomy file](taxonomy.md).
 
-    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/business-view.md).
+    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/views.md).
 
 ## Structure of `catalog` files
 
@@ -42,7 +42,7 @@ Each term in `metrics-definition.terms` selects a group of components defined by
 |------|------|--------------------------|
 | `taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) identifying the group of components to aggregate.|
 | `output-id` | String | The identifier of the [model output](library.md#extra-output) to read from those components.|
-| `location-port` | None/String | The [`location-port`](taxonomy.md#key-elements-in-taxonomy-file) that connects each contributing component (within the selected taxonomy category) to a neighbouring component acting as its location. If None, each contributing component is its own location (self-reference).|
+| `location-ports` | None/String | The [`location-ports`](taxonomy.md#key-elements-in-taxonomy-file) that connects each contributing component (within the selected taxonomy category) to a neighbouring component acting as its location. If None, each contributing component is its own location (self-reference).|
 
 ## Example
 

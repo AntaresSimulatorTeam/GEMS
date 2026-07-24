@@ -1,6 +1,6 @@
 # Verifying GEMS Libraries
 
-Users may accidentally modify a [library file](../../user-guide/file-structure/library.md) or download a corrupted version from the [reference libraries](libraries.md). Verifying the file's integrity against an official SHA-256 hash ensures:
+Users may accidentally modify a [library file](../../user-guide/input-files/library.md) or download a corrupted version from the [reference libraries](libraries.md). Verifying the file's integrity against an official SHA-256 hash ensures:
 
 - The file has not been modified
 - Simulation results are reproducible
