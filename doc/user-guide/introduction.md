@@ -60,7 +60,7 @@ It specifies:
 
 These rules govern the **structure and semantics** of all [GEMS](../index.md) YAML files.
 
-See: [**File Structure**](./file-structure/overview.md)
+See: [**File Structure**](./input-files/overview.md)
 
 ## Theoretical Concepts
 

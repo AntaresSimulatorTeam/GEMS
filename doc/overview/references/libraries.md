@@ -1,6 +1,6 @@
 # Reference libraries of models
 
-The following table lists reference model libraries developed within projects that make use of the GEMS modelling framework. For the YAML syntax of a [library file](../../user-guide/file-structure/library.md), see the User Guide.
+The following table lists reference model libraries developed within projects that make use of the GEMS modelling framework. For the YAML syntax of a [library file](../../user-guide/input-files/library.md), see the User Guide.
 
 | Library Name         | Description                  | Link                                                      |
 |----------------------|------------------------------|-----------------------------------------------------------|

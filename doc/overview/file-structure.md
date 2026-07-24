@@ -22,11 +22,11 @@ The different types of files describing a GEMS study case are:
 |**[Optimization Parameters](../user-guide/input-files/solver-optimization.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#F8A055; border-radius:50%; margin-right:5px;"></span>Solution Workflow| YAML (`parameters.yml`)| **Solver & Configuration Settings:** Contains solver parameters and configuration required for running Modeler (a GEMS interpreter).|
 | **[Taxonomy](../user-guide/input-files/taxonomy.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#17A2B8; border-radius:50%; margin-right:5px;"></span>Abstract modelling| YAML (`taxonomy.yml`)| **Models Classification:** Classifies component models into categories used to select which components contribute to a metric.|
 | **[Metrics Catalog](../user-guide/input-files/catalog.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#8B5FB5; border-radius:50%; margin-right:5px;"></span>Business Intelligence| YAML (`catalog.yml`) | **Metrics Logic:** Defines a set of Metrics with their aggregation rules (terms, terms-operator, time-operator). Used by `view-config.yml`.|
-| **[Views Configurations](../user-guide/input-files/view-configuration.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#8B5FB5; border-radius:50%; margin-right:5px;"></span>Business Intelligence| YAML (`view-config.yml`) | **Views Logic:** Configures views by specifying scope (location, calendar), time aggregation resolution, and the metrics from `catalog.yml` to compute.|
+| **[Views Configurations](../user-guide/input-files/view-config.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#8B5FB5; border-radius:50%; margin-right:5px;"></span>Business Intelligence| YAML (`view-config.yml`) | **Views Logic:** Configures views by specifying scope (location, calendar), time aggregation resolution, and the metrics from `catalog.yml` to compute.|
 
 ## Data Workflow
 
-![Workflow](../../assets/architectural_overview.png)
+![Workflow](../assets/architectural_overview.png)
 
 ## Files Interaction
 
