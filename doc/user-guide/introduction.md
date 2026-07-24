@@ -17,7 +17,7 @@ From a documentation perspective, the User Guide is organized into **four comple
 
 - [**Mathematical Syntax**](#mathematical-syntax) - rules for writing mathematical expressions
 
-- [**File Structure**](#file-structure) - rules for writing [GEMS](../index.md) YAML files and how they reference each other  
+- [**Input Files**](#input-files) - rules for writing [GEMS](../index.md) YAML files and how they reference each other  
 
 - [**Theoretical Concepts**](#theoretical-concepts) - core ideas behind the system representation and optimization formulation
 
@@ -44,9 +44,9 @@ Mathematical syntax focuses exclusively on *equations and rules*. It does not de
 
 See: [**Mathematical Syntax and Rules**](syntax.md)
 
-## File Structure
+## Input Files
 
-The **GEMS Framework File Structure** defines how components are **declared, structured, and connected**  to form a system, and how these systems can be translated as optimization problems, using YAML files.
+The **GEMS Framework Input Files** define how components are **declared, structured, and connected** to form a system, and how these systems can be translated as optimization problems, using YAML files.
 
 It specifies:
 
@@ -56,11 +56,11 @@ It specifies:
 - How parameters are defined in a component
 - How to use ports to connect components to form a system graph
 - How optimization options are configured
-- (When applicable) How to create Business View configuration file
+- (When applicable) How to create Views configuration files
 
 These rules govern the **structure and semantics** of all [GEMS](../index.md) YAML files.
 
-See: [**File Structure**](./input-files/overview.md)
+See: [**Input Files**](./input-files/overview.md)
 
 ## Theoretical Concepts
 
