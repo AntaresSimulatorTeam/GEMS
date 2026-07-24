@@ -1,6 +1,6 @@
 # File Structure
 
-## Input files overview : Model, System, Optimization, Business Intelligence
+## Input files overview : Model, System, Optimization, Views
 
 The GEMS architecture enforces a structured approach, separating modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
@@ -14,13 +14,18 @@ The different types of files describing a GEMS study case are:
 
 | **Type of File**   | **Domain**  | **File**        | **Description & Role**  |
 |---------------------|-------------|-----------------|-------------------------|
-| **[Model Libraries](../user-guide/file-structure/library.md)** | <span style="display:inline-block; width:12px; height:12px; background-color:#17A2B8; border-radius:50%; margin-right:5px;"></span>Abstract modelling | YAML (e.g., `basic-models-library.yml`, `antares-models-library.yml`)  |**Defines Models:** Abstract representations of system components to be simulated. **Models are defined in a library file** and specify their ports, parameters, and internal behavior.These definitions can also include optional constraint and objective contributions used in simulation.|
-| **[Taxonomy](../user-guide/file-structure/taxonomy.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#17A2B8; border-radius:50%; margin-right:5px;"></span>Abstract modelling| YAML (e.g., `taxonomy.yml`)| **Model Structure & Categories:** Specifies mandatory parameters, variables, ports, or extra outputs per category. Useful for structuring the UI (user interface) and simulation outputs.|
-| **[System](../user-guide/file-structure/system.md)**  | <span style="display:inline-block; width:12px; height:12px; background-color:#D63384; border-radius:50%; margin-right:5px;"></span>System  | YAML  (`system.yml`) | **Defines Components:** Numerical instantiation of models, linking to model IDs (e.g., `example_library_id.example_model_id`). Specifies parameter values and connections between components via ports, forming the system graph. There is exactly one system file per study.|
-| **[Timeseries](../user-guide/file-structure/data-series.md)**  | <span style="display:inline-block; width:12px; height:12px; background-color:#D63384; border-radius:50%; margin-right:5px;"></span>System  | Dataseries (e.g., `wind_generation.csv`, `solar_generation.csv`)  | **Time-dependent Data:** Numerical data for parameters varying by time and scenario. Stored as .csv or .tsv files (parquet support coming soon), typically in a data-series folder.|
+| **[Model Libraries](../user-guide/input-files/library.md)** | <span style="display:inline-block; width:12px; height:12px; background-color:#17A2B8; border-radius:50%; margin-right:5px;"></span>Abstract modelling | YAML (e.g., `basic-models-library.yml`, `antares-models-library.yml`)  |**Defines Models:** Abstract representations of system components to be simulated. **Models are defined in a library file** and specify their ports, parameters, and internal behavior.These definitions can also include optional constraint and objective contributions used in simulation.|
+| **[System](../user-guide/input-files/system.md)**  | <span style="display:inline-block; width:12px; height:12px; background-color:#D63384; border-radius:50%; margin-right:5px;"></span>System  | YAML  (`system.yml`) | **Defines Components:** Numerical instantiation of models, linking to model IDs (e.g., `example_library_id.example_model_id`). Specifies parameter values and connections between components via ports, forming the system graph. There is exactly one system file per study.|
+| **[Timeseries](../user-guide/input-files/data-series.md)**  | <span style="display:inline-block; width:12px; height:12px; background-color:#D63384; border-radius:50%; margin-right:5px;"></span>System  | Dataseries (e.g., `wind_generation.csv`, `solar_generation.csv`)  | **Time-dependent Data:** Numerical data for parameters varying by time and scenario. Stored as .csv or .tsv files (parquet support coming soon), typically in a data-series folder.|
 | **Solution Workflow**| <span style="display:inline-block; width:12px; height:12px; background-color:#F8A055; border-radius:50%; margin-right:5px;"></span>Solution Workflow| YAML (`optim-config.yml`)| **Workflow Definition:** Describes calculation block processing (sequential, parallel, decomposition methods) and master problem constraints, especially for investment variables.|
-|**[Optimization Parameters](../user-guide/file-structure/solver-optimization.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#F8A055; border-radius:50%; margin-right:5px;"></span>Solution Workflow| YAML (`parameters.yml`)| **Solver & Configuration Settings:** Contains solver parameters and configuration required for running Modeler (a GEMS interpreter).|
-| **[Business Views Configurations](../user-guide/file-structure/business-view-configuration.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#8B5FB5; border-radius:50%; margin-right:5px;"></span>Business Intelligence| YAML (e.g., `business-view-def.yml`, `business-metric.yml`) | **Business Metrics Logic:** Calculates business metrics from simulation results in two phases: Step 1 (component scope, complex arithmetic), Step 2 (global scope, aggregation/filtering).|
+|**[Optimization Parameters](../user-guide/input-files/solver-optimization.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#F8A055; border-radius:50%; margin-right:5px;"></span>Solution Workflow| YAML (`parameters.yml`)| **Solver & Configuration Settings:** Contains solver parameters and configuration required for running Modeler (a GEMS interpreter).|
+| **[Taxonomy](../user-guide/input-files/taxonomy.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#17A2B8; border-radius:50%; margin-right:5px;"></span>Abstract modelling| YAML (`taxonomy.yml`)| **Models Classification:** Classifies component models into categories used to select which components contribute to a metric.|
+| **[Metrics Catalog](../user-guide/input-files/catalog.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#8B5FB5; border-radius:50%; margin-right:5px;"></span>Business Intelligence| YAML (`catalog.yml`) | **Metrics Logic:** Defines a set of Metrics with their aggregation rules (terms, terms-operator, time-operator). Used by `view-config.yml`.|
+| **[Views Configurations](../user-guide/input-files/view-config.md)**| <span style="display:inline-block; width:12px; height:12px; background-color:#8B5FB5; border-radius:50%; margin-right:5px;"></span>Business Intelligence| YAML (`view-config.yml`) | **Views Logic:** Configures views by specifying scope (location, calendar), time aggregation resolution, and the metrics from `catalog.yml` to compute.|
+
+## Data Workflow
+
+![Workflow](../assets/architectural_overview.png)
 
 ## Files Interaction
 
@@ -47,10 +52,10 @@ To get familiar with these concepts, see the table below for a correspondence be
 |Scenario dependency| The maximum power output `p_max` can depend on the scenario chosen by the users (and also depends on the time)|
 |Time dependency|`p_max` is a time dependent parameter (and also depends on the scenario)|
 
-## Output Files (generated by a Gems interpreter)
+## Output Files (generated by a GEMS interpreter)
 
 The outputs of GEMS consist of three main categories of objects: **Optimization Problem**, **Simulation Table** and **Views**. Their structure is detailed in the [User Guide section](../user-guide/outputs/simulation-table.md).
 
 - **Optimization Problem** represents the global mathematical formulation of the energy system simulation/optimization.
 - **Simulation Table** contains the raw results of the simulation or optimization, including the optimal values of decision variables and the values of expressions computed from them.
-- **Business Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../user-guide/outputs/business-view.md).
+- **Views** provide curated representations of the simulation or optimization results from a business-intelligence perspective, tailored to users [specific needs](../user-guide/outputs/views.md).
