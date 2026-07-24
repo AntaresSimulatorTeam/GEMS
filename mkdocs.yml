@@ -132,7 +132,7 @@ nav:
   - User Guide:
       - Introduction: user-guide/introduction.md
       - GEMS Syntax: user-guide/syntax.md
-      - File Structure:
+      - Input Files:
           - Overview: user-guide/input-files/overview.md
           - Library File: user-guide/input-files/library.md
           - System File: user-guide/input-files/system.md
