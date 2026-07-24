@@ -13,9 +13,9 @@ This section is a glossary of the main concepts used by GEMS. For a detailed spe
 | [Library](../user-guide/input-files/library.md) | A file listing all the **models** representing general unspecified elements of a study. These models are used as "templates" for creating their instances, called components.|
 | [System](../user-guide/input-files/system.md)  | A file listing all the "**components**", the instances of models defined by the system YAML file, representing all the specified elements of the simulated grid. This file also contains all the connections between the components|
 | [Dataseries](../user-guide/input-files/data-series.md) | A table containing all the data through time. It is used by time/scenario dependent components|
-| [Taxonomy](../user-guide/input-files/view-config.md.md) | A file classifying component models into **categories**. Used to select which components contribute to a metric.|
-| [Catalog](../user-guide/input-files/view-config.md.md) | A file defining a set of end-use **Metrics** with their aggregation rules (terms, terms-operator, time-operator).|
-| [View Config](../user-guide/input-files/view-config.md.md) | Configure **views** by specifying scope (location, calendar), time aggregation, and the metrics from `catalog.yml` to compute.|
+| [Taxonomy](../user-guide/input-files/view-config.md) | A file classifying component models into **categories**. Used to select which components contribute to a metric.|
+| [Catalog](../user-guide/input-files/view-config.md) | A file defining a set of end-use **Metrics** with their aggregation rules (terms, terms-operator, time-operator).|
+| [View Config](../user-guide/input-files/view-config.md) | Configure **views** by specifying scope (location, calendar), time aggregation, and the metrics from `catalog.yml` to compute.|
 
 ## Concepts
 
