@@ -145,5 +145,5 @@ Explanation of fields:
     - **area:** The id of the Antares Simulator area that contains the thermal cluster
     - **cluster-id:** The id of the thermal cluster within that area
 
-!!! note "Investment studies requirement"
+!!! note "Hybrid Investment studies requirements"
     As in Legacy Mode, MC years are optimized separatly, so for **investment hybrid** studies has to use the `resolution-mode: benders-decomposition` inside the `optim-config.yml` file to use scenario-dependent variables.
