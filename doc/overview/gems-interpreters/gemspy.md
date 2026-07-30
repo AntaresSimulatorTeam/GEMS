@@ -1,6 +1,6 @@
 # GemsPy Presentation
 
-[GemsPy](https://gemspy.readthedocs.io/en/latest/) is a stand-alone Python package to interpret the language GEMS. At this point, this Python package is still a prototype.
+[GemsPy](https://gemspy.readthedocs.io/en/latest/) is a stand-alone Python package to interpret the language GEMS. GemsPy is under active development.
 
 ## GemsPy API Overview
 
@@ -14,11 +14,11 @@ For detailed API usage and examples, see:
 
 ## Package Structure
 
-Since v0.1.3, GemsPy is divided by two sub-packages :
+Since v0.1.3, GemsPy is divided into two sub-packages :
 
 | Sub-package | Role |
 |---|---|
-| `gems_craft` | Create and Read studies |
+| `gems_craft` | Create and read studies |
 | `gems_runner` | Run studies |
 
 !!! warning
