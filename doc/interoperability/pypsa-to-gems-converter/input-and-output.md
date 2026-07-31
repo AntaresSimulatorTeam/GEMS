@@ -29,7 +29,7 @@ study_directory/
             ├── parameters.yml     -------> Solver and simulation parameters
             ├── model-libraries/
             │   └── pypsa_models.yml -----> Model library definitions
-            └── data-series/       -------> Time and/or scenarion dependent parameters
+            └── data-series/       -------> Time and/or scenario dependent parameters
                 └── ...
 ```
 

@@ -24,7 +24,7 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
 
 ## Simulation Table exported by [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md)
 
-[Antares Simulator](../../overview/gems-interpreters/antares-simulator.md) exports the **Simulation Table** as a .csv file. The `csv` file is named `simulation_table_{timestamp}.csv` (e.g. `simulation_table_20251223-1015.csv`) to distinguish runs. By default, the file will reside in the study’s output directory (`outputs/simulation_table_{timestamp}.csv`).
+[Antares Simulator](../../overview/gems-interpreters/antares-simulator.md) exports the **Simulation Table** as a .csv file. The `csv` file is named `simulation_table--{timestamp}.csv` (e.g. `simulation_table--20251223-1015.csv`) to distinguish runs. By default, the file will reside in the study’s output directory (`outputs/simulation_table--{timestamp}.csv`).
 
 **Example:** To illustrate, here are a couple of rows from a simulation table:
 

@@ -4,7 +4,7 @@ This section presents several examples to learn how to use GEMS language.
 
 ## Ready-to-use examples
 
-Users can execute the examples directly by yourself, they already contain all the inputs needed for being running by GEMS interpreter.
+These examples are ready to run as they already contain all the inputs needed by the GEMS interpreter.
 
 | Example | Description |
 |---------|-------------|

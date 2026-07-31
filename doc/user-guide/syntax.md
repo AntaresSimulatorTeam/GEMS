@@ -57,7 +57,7 @@ expression: 3 * 66.32 - 5 / 3.14
 
 ## Parameters
 
-Parameters represent fixed input data values that can be referenced by their `id` as a simbol to include it's value in expressions. For example:
+Parameters represent fixed input data values that can be referenced by their `id` as a symbol to include its value in expressions. For example:
 
 ```yaml
 expression: 3 * parameter_1 + 6.345 / parameter_2
@@ -211,7 +211,7 @@ If a constraint expression includes any time-indexed element (e.g. a time-depend
 |  Constraint | Functionality  |
 | -----------  | ----------  |
 |`x[t] <= 100`| For each time-step apply constraint|
-|`sum(x) <= 100`| Single constrant over entire time horizon|
+|`sum(x) <= 100`| Single constraint over entire time horizon|
 
 ## Objective Function
 
@@ -236,7 +236,7 @@ expression: sum(generation * generation_cost)
 In some cases, there is a  need to access dual results of variables or constraints of the linear problem. Depending on the case, the dual unary operator is :
 
 - dual result of a variable whose id is `my_var` is accessed by `-reduced_cost(variable_id)`
-- dual result of a constraint whose if is `my_constraint` is accessed by `dual(constraint_id)`
+- dual result of a constraint whose id is `my_constraint` is accessed by `dual(constraint_id)`
 
 ### Power Operator
 
@@ -248,7 +248,7 @@ In the context of a linear problem construction, its operands can only be litera
 expression: parameter_1^(1 + parameter_2)
 ```
 
- In the context of a extracting results, its operands can be literals, parameters or variables.
+ In the context of extracting results, its operands can be literals, parameters or variables.
 
 ```yaml
 expression: variable_1^(1 + parameter_1)
@@ -264,7 +264,7 @@ These n-ary operators `max(u, v, ...)`/`min(u, v, ...)` are used within any expr
 expression: parameter_1 < max(parameter_2, 100)
 ```
 
- In the context of a extracting results, its operands can be literals, parameters or variables.
+ In the context of extracting results, its operands can be literals, parameters or variables.
 
 ```yaml
 expression: min(variable_1, parameter_1)

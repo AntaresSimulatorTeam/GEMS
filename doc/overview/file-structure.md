@@ -1,6 +1,6 @@
 # File Structure
 
-## Input files overview : Model, System, Optimization, Business Intelligence
+## Input files overview : Model, System, Optimization, Views
 
 The GEMS architecture enforces a structured approach, separating modelling logic, system configuration, optimization workflow, and business intelligence into four distinct "bounded domains" (see the following definition diagram):
 
@@ -26,7 +26,7 @@ The different types of files describing a GEMS study case are:
 
 The following scheme shows the interaction of the different core concepts presented previously. It is based on the [*basic-model-library*](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) included in this documentation.
 
-![GEMS Architecture Diagram](../../assets/6_GEMS_architecture.png)
+![GEMS Architecture Diagram](../assets/6_GEMS_architecture.png)
 
 ## Illustration with an example
 

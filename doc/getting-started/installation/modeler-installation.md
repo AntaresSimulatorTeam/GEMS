@@ -80,7 +80,6 @@ Let’s check if Modeler is working correctly.
 - **Download the example study:**
 
     Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
-    Download the [first Quick Start Example (QSE_1_Adequacy)](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_1_Adequacy) and save the "QSE_1_Adequacy" folder.
 
 - **Run simulation:**
 
@@ -97,9 +96,7 @@ Let’s check if Modeler is working correctly.
 - **Check for success:**
 
     If you see logs like these, Modeler works correctly !
-    If you see logs like these, Modeler works correctly !
 
-    Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
     Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
 
     ```txt

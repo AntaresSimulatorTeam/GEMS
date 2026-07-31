@@ -4,9 +4,9 @@ This page explains how to configure and run a [**hybrid study**](https://antares
 
 ## Definition
 
-A [**hybrid study**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/08-hybrid-studies/) is essentially a **Antares Simulator** study that includes additional **GEMS** input data (in the `input/` folder). The Antares Simulator executable (*antares-solver*) is able to run such a simulation, although the input directory contains **GEMS-specific files** (such as [system](../../user-guide/file-structure/system.md), [model libraries](../../user-guide/file-structure/library.md) and [data-series](../../user-guide/file-structure/data-series.md)) describing GEMS components.
+A [**hybrid study**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/08-hybrid-studies/) is essentially an **Antares Simulator** study that includes additional **GEMS** input data (in the `input/` folder). The Antares Simulator executable (*antares-solver*) is able to run such a simulation, although the input directory contains **GEMS-specific files** (such as [system](../../user-guide/file-structure/system.md), [model libraries](../../user-guide/file-structure/library.md) and [data-series](../../user-guide/file-structure/data-series.md)) describing GEMS components.
 
-In this hybrid mode, the file `parameter.yml` is not used: if it exists, it will be ignored. Instead, the study relies on the Antares Simulator simulation settings. In summary, the **hybrid study's** input directory merges the modeler files with the typical Antares files, and the Antares solver's built-in GEMS interpreter handles the GEMS components during the simulation.
+In this hybrid mode, the file `parameters.yml` is not used: if it exists, it will be ignored. Instead, the study relies on the Antares Simulator simulation settings. In summary, the **hybrid study's** input directory merges the modeler files with the typical Antares files, and the Antares solver's built-in GEMS interpreter handles the GEMS components during the simulation.
 
 ```text
 Antares-Simulator-Study/

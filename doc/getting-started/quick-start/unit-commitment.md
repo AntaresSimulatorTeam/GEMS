@@ -9,11 +9,11 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
 !!! warning 
     This study requires Antares Simulator version &gt; {{ antares_simulator_version }}.
     
-    You can find the latest version on the[ official releases page](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
+    You can find the latest version on the [official releases page](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
 
-### Files Structure
+### File Structure
 
-The diagram below describe the file structure of the [study](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
+The diagram below describes the file structure of the [study](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 
 ```text
 QSE_2_Unit_Commitment/
@@ -60,7 +60,7 @@ The *Unit Commitment* problem here involves determining the on/off schema and di
 !!! warning
     It's recommended to run this GEMS study with Antares Modeler or GemsPy. Indeed, Antares Solver's hybrid mode manages GEMS objects, but there are some limitations regarding the temporal structure (8,760 timestep timeseries and weekly decomposition) related to the Legacy part of Antares Solver.
 
-    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/) section.
+    For more information about the hybrid mode of Antares Solver, see the [Hybrid Study](../../interoperability/hybrid/overview.md) section.
 
 Instructions to run this GEMS study with [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) are available below.
 
