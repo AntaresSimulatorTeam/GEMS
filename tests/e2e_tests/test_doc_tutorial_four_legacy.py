@@ -8,7 +8,7 @@ from .utils import get_notebook_objective
 
 # Reference values
 
-REF_OBJECTIVE = 1e-4  # TODO: to be filled €
+REF_OBJECTIVE = 67084963.8
 
 
 def test_objective(paths) -> None:
