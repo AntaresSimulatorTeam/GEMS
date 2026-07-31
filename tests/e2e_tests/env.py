@@ -104,7 +104,8 @@ def get_paths() -> EnvironmentPaths:
         / "examples"
         / "notebooks"
         / "tutorial-four-antares-legacy"
-        / "tutorial-antares-legacy.ipynb")
+        / "tutorial-antares-legacy.ipynb"
+    )
 
     antares_version = _read_antares_version(repo_root)
     antares_root = repo_root / f"antares-{antares_version}-Ubuntu-22.04"
