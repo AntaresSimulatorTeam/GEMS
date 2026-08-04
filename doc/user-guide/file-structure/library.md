@@ -12,9 +12,11 @@ A library file defines a library of two collections of abstract objects:
 - [Ports Types](#port-types) - Describe the kinds of connections models can have
 
 !!! warning "Design proposal — not yet implemented"
-    A proposed third collection, [Library-Level Sets](#library-level-sets), declares global custom
-    index sets shared across `port-types` and `models`. Not yet implemented in
-    [GemsPy](../../index.md).
+    Two proposed additional collections declare study-wide, library-scoped data: [Global
+    Parameters](#global-parameters) (scalar constants, valued once study-wide in `system.yml`) and
+    [Library-Level Sets](#library-level-sets) (global custom index sets shared across `port-types`
+    and `models`, whose ordinal sizing is itself expressed via a global parameter). Not yet
+    implemented in [GemsPy](../../index.md).
 
 The library file is a YAML file with a single root key, `library`. Under this root, the library’s identifier, an optional description, and the collections of `port-types` and `models` are defined. All fields, unless explicitly marked as optional, must be present for the library to be considered valid. The following example illustrates the structure of a simple library file:
 
@@ -55,16 +57,19 @@ All `id's` in the model library and system file must respect the following:
 
 !!! warning "Design proposal — not yet implemented"
     A local [set](#sets)'s `id` must not collide with any parameter or variable `id` within the same
-    model, or with the reserved literal `t`. **A global (library-level) set's `id` must likewise never
-    be the reserved literal `t`** — it is just as usable bare, in any model in the library, as a local
-    set's id is, so the same ambiguity applies.
+    model, or with the reserved literal `t`. **A global (library-level) set's `id`, and a [global
+    parameter](#global-parameters)'s `id`, must likewise never be the reserved literal `t`** — both
+    are just as usable bare, in any model in the library, as a local set's id is, so the same
+    ambiguity applies.
 
     More generally: **no locally-declared identifier in a model — a parameter, variable, local set,
     port, constraint, binding-constraint, objective-contribution, or extra-output `id` — may collide
-    with any [global (library-level) set](#library-level-sets) `id` visible in that library.** A
-    global set's `id` is usable bare from inside any model in the library (via `indexed-by`, or as a
-    bare current-position reference) without that model declaring anything locally, so any local `id`
-    that happens to match one creates the same kind of ambiguity a local-set/parameter collision would.
+    with any [global (library-level) set](#library-level-sets) `id` or [global parameter](#global-parameters)
+    `id` visible in that library.** A global set's or global parameter's `id` is usable bare from
+    inside any model in the library (via `indexed-by`, as a bare current-position reference, or as a
+    plain scalar term) without that model declaring anything locally, so any local `id` that happens
+    to match one creates the same kind of ambiguity a local-set/parameter collision would. Global
+    parameter `id`s and global set `id`s must also not collide with each other, for the same reason.
 
     These rules are part of the
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal —
@@ -87,6 +92,44 @@ library:
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
 
+### Global Parameters
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the library file schema. It is not yet
+    implemented in [GemsPy](../../index.md). See
+    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) for the
+    full expression-syntax proposal this schema supports.
+
+The `parameters` collection, a sibling of `sets`, `port-types`, and `models`, declares **global**
+scalar constants — the library-level counterpart to a model's own (per-component) `parameters`. A
+global parameter is always a single, scalar value **for the whole study** — never time-dependent,
+never scenario-dependent, never per-component — exactly mirroring how the simulation horizon itself
+(`first-time-step`/`last-time-step`) is a single study-wide value rather than per-component data
+(see [Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). Like a
+[global set](#library-level-sets), a global parameter only ever declares that it exists in the
+library — its concrete value is always assigned exactly once, study-wide, in
+[`system.yml`'s Global Parameters section](../system.md#global-parameters).
+
+The primary use of a global parameter is as the `cardinality` of a [global ordinal
+set](#library-level-sets) — giving global sets the same "cardinality names a parameter, never a
+literal" indirection that local sets already have (see [Library-Level Sets](#library-level-sets)
+below). Like a model parameter, a global parameter may also be referenced directly as a plain
+scalar term in any expression within the library (a bare identifier, resolved study-wide rather than
+per-component).
+
+```yaml
+library:
+  id: example_library
+  parameters:
+    - id: segment_count
+      description: "Number of price segments, fixed for the whole study"
+```
+
+| Element | Type | Description |
+|------|------|--------------------------|
+|`id`| String | Unique parameter identifier within the library. Must follow the [naming rules](#rules-for-id-naming).|
+| `description`| String | *(Optional)* A human-readable description of the parameter's purpose.|
+
 ### Library-Level Sets
 
 !!! warning "Design proposal — not yet implemented"
@@ -95,7 +138,7 @@ library:
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) for the
     full expression-syntax proposal this schema supports.
 
-The `sets` collection, a sibling of `port-types` and `models`, declares **global** custom index sets
+The `sets` collection, a sibling of `parameters`, `port-types`, and `models`, declares **global** custom index sets
 — shared by every model and port-type field in this library that references them. This is the only
 kind of custom set that may cross a port: a [port-type field](#port-types)'s `indexed-by` may only
 name a global set, and the argument passed to `sum_connections` inside a
@@ -114,18 +157,27 @@ component for a local set.
 A global set's concrete size or contents are **never** given in the library — only its `id`,
 `description`, and **kind** (`ordinal` or `enumerated`). This mirrors GEMS's existing pattern of the
 library declaring structure while the system file assigns concrete values (the same way a model
-declares that a parameter exists, but only `system.yml` gives it a value). The concrete `cardinality`
-(ordinal) or `elements` (enumerated) are always supplied exactly once, study-wide, in
-[`system.yml`'s Global Sets section](../system.md#global-sets) — see below.
+declares that a parameter exists, but only `system.yml` gives it a value). For `kind: enumerated`,
+the concrete `elements` are always supplied exactly once, study-wide, in
+[`system.yml`'s Global Sets section](../system.md#global-sets) — see below. For `kind: ordinal`,
+there is no separate value to supply in the `sets:` section at all: sizing is delegated entirely to
+a [global parameter](#global-parameters), exactly mirroring how a **local** ordinal set's
+`cardinality` names a *model* parameter instead of embedding a value directly (see [Sets](#sets)
+under Models, and [Why not a literal?](#why-not-a-literal-cardinality) below) — a global set is
+never sized by a literal, only ever by naming a parameter, and *which* parameter collection it names
+(model-level vs. library-level) is the only thing that changes with scope.
 
 ```yaml
 library:
   id: example_library
+  parameters:
+    - id: segment_count
   sets:
     - id: fuel
       kind: enumerated
     - id: segment_count_set
       kind: ordinal
+      cardinality: segment_count   # names a global parameter; its value is assigned once, study-wide
 ```
 
 | Element | Type | Description |
@@ -133,15 +185,30 @@ library:
 |`id`| String | Unique set identifier within the library. Must follow the [naming rules](#rules-for-id-naming).|
 | `description`| String | *(Optional)* A human-readable description of the set's purpose.|
 |`kind`| Enum | `ordinal` or `enumerated`. Determines which indexing forms are valid against this set in expressions (see below) — the concrete size/elements are resolved later, in `system.yml`, so this is the only thing the library itself needs to know.|
+|`cardinality`| [Global parameter](#global-parameters) `id` | *(`kind: ordinal` only)* The `id` of a scalar [global parameter](#global-parameters) declared in this same library — never a literal integer. That parameter's *value*, assigned once, study-wide, in [`system.yml`'s Global Parameters section](../system.md#global-parameters), gives the set's 0-based size `0 .. cardinality-1`. Required for `kind: ordinal`; must be absent for `kind: enumerated`.|
+
+#### Why not a literal cardinality?
+
+A global ordinal set's `cardinality` is always a parameter reference, never a literal integer, for
+the same reason a [local ordinal set's](#sets) is: it keeps the two scopes symmetric. The only
+difference between them is *which* parameter collection the name resolves against, and *how*
+(and how often) that parameter gets a concrete value — a model parameter, assigned per component;
+or a global parameter, assigned once, study-wide (see [Global Parameters](#global-parameters)
+above). Treating global sets this way mirrors how GEMS already treats the time dimension itself:
+the simulation horizon is never embedded as a literal inside a model or library either — it is a
+study-wide setting, resolved once, outside any per-component data (see [Why the distinction
+matters](../mathematical-syntax.md#why-the-distinction-matters)).
 
 Because a global set's `elements` are never known at library-authoring time, **bare named-element
-access (e.g. `X{gas}`) is never valid against a global set inside library expressions** — a model may
-only use ordinal-style access against a global set: the bare set-id for the current position
-(`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This holds
-regardless of `kind`: `enumerated` still means "named, ordered elements" once `system.yml` resolves it,
-it just means library expressions can only reach those elements by position, never by name. A [local
-set](#sets) (under Models, below) follows the identical rule — its `elements` are likewise never given
-in the model, so named access is never valid there either.
+access (e.g. `X[fuel=gas]`) is never valid against a global set inside library expressions** — a
+model may only use ordinal-style access against a global set: the bare set-id for the current
+position (`X[fuel]`), a relative shift (`X[fuel+1]`), or an explicit integer position given via the
+keyword form (`X[fuel=0]`) — see [Indexing expressions](../mathematical-syntax.md#indexing-expressions)
+for the full `[ ]` grammar. This holds regardless of `kind`: `enumerated` still means "named, ordered
+elements" once `system.yml` resolves it, it just means library expressions can only reach those
+elements by position, never by name. A [local set](#sets) (under Models, below) follows the identical
+rule — its `elements` are likewise never given in the model, so named access is never valid there
+either.
 
 **Recommended practice** (a `system.yml`-level concern now, since that's the only place a global set's
 concrete contents ever exist): make each study's instantiation *universal* — the superset of every
@@ -379,7 +446,7 @@ sets, plus every [library-level set](#library-level-sets) visible in this librar
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `{...}` — e.g. `X{segment}` or `X{segment, fuel}` for multiple sets. See [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed).|
+|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `[...]` — e.g. `X[segment]` or `X[segment, fuel]` for multiple sets, the same bracket already used for [time indexing](../mathematical-syntax.md#time-operators-and-indexing). See [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed).|
 
 ```yaml
 parameters:
@@ -391,7 +458,7 @@ variables:
   - id: segment_level
     indexed-by: segment
     lower-bound: 0
-    upper-bound: segment_capacity{segment}
+    upper-bound: segment_capacity[segment]
     variable-type: continuous
 ```
 
@@ -458,7 +525,7 @@ A list of external constraints that involve model’s ports (i.e., constraints t
 Binding constraints are defined in the same manner as internal constraints, but they may include [port operators](../mathematical-syntax.md#port-operator), which aggregate linear expressions emitted through a port.
 
 !!! warning "Design proposal — not yet implemented"
-    `sum_connections(port.field{s})` is well-defined for any custom set `s`, because a port field can
+    `sum_connections(port.field[s])` is well-defined for any custom set `s`, because a port field can
     only be `indexed-by` a [library-level (global) set](#library-level-sets) — every component
     connecting through that port type necessarily shares the exact same set, so no additional runtime
     guard is needed beyond that schema-level restriction. See

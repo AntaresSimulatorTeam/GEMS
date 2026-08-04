@@ -203,10 +203,12 @@ dimensions, a model may declare arbitrary **custom sets** — user-defined discr
 the price segments of a storage's marginal-value curve, a list of fuels, a set of sub-technologies)
 — and index parameters, variables, and expressions over them.
 
-Custom-set indexing uses curly braces `{ }`, a delimiter distinct from the square brackets `[ ]`
-reserved for time, so the two never collide. A set's own `id` doubles as its index variable: used
-bare inside `{ }` it means "the current element"; used with an explicit value it means "this specific
-element."
+Custom-set indexing reuses the same square brackets `[ ]` already used for [time
+indexing](#time-operators-and-indexing) — there is no second bracket delimiter to learn. A set's own
+`id` doubles as its index variable inside `[ ]`: used bare (`X[fuel]`) it means "the current
+element"; used with an explicit `set_id=value` keyword form (`X[fuel=2]`) it means "this specific
+element." See [Indexing expressions](#indexing-expressions) below for the full grammar, including how
+a custom-set index composes with a time index in the same brackets (`X[t+1, fuel]`).
 
 Custom sets come in two scopes, and the right choice depends on whether the set ever needs to be
 shared across connected components (through a port) or stays purely internal to one model:
@@ -220,9 +222,14 @@ shared across connected components (through a port) or stays purely internal to 
 **Both scopes follow the same rule for where a set's concrete contents live: never in the library.** A
 model or library only ever declares that a set exists (its `id` and **kind** — `ordinal` or
 `enumerated`); the concrete `cardinality`/`elements` are always assigned in `system.yml` — once,
-study-wide, for a global set, or per component, for a local set. This mirrors exactly how GEMS already
-treats parameters and properties (declared in the library, valued in the system file), applied to sets
-too, and it means named-element access (`X{gas}`) is never valid in library expressions for *any* set
+study-wide, for a global set, or per component, for a local set. **`cardinality` is itself never a
+literal, for either scope** — it always names a parameter (a model parameter for a local set, a
+[global parameter](file-structure/library.md#global-parameters) for a global set), whose value is
+what `system.yml` actually assigns (see [Declaring a local (model-level)
+set](#declaring-a-local-model-level-set) and [Declaring a global (library-level)
+set](#declaring-a-global-library-level-set) below). This mirrors exactly how GEMS already treats
+parameters and properties (declared in the library, valued in the system file), applied to sets too,
+and it means named-element access (`X[fuel=gas]`) is never valid in library expressions for *any* set
 — see [Indexing expressions](#indexing-expressions) below.
 
 ### Why the distinction matters
@@ -275,25 +282,34 @@ models:
 
 ### Declaring a global (library-level) set
 
-A library declares its global custom sets in a `sets` collection, a sibling of `port-types` and
-`models` — not nested inside any one of them, since a global set may be shared by several models and
-port types at once. **A global set's concrete size or contents are never given in the library** —
-only its `id`, `description`, and **kind** (`ordinal` or `enumerated`), matching GEMS's existing
-pattern of the library declaring structure while the system file assigns concrete values (the same way
-a model declares that a parameter exists, but only `system.yml` gives it a value). The concrete
-`cardinality` (ordinal) or `elements` (enumerated) are always supplied exactly once, study-wide, in
-`system.yml`'s new top-level [`sets`](file-structure/system.md#global-sets) section — never given in
-the library, and never per-component (see [Why the distinction matters](#why-the-distinction-matters)
-above for why a per-component override would defeat the purpose of a global set):
+A library declares its global custom sets in a `sets` collection, a sibling of `parameters`,
+`port-types`, and `models` — not nested inside any one of them, since a global set may be shared by
+several models and port types at once. **A global set's concrete size or contents are never given in
+the library** — only its `id`, `description`, and **kind** (`ordinal` or `enumerated`), matching
+GEMS's existing pattern of the library declaring structure while the system file assigns concrete
+values (the same way a model declares that a parameter exists, but only `system.yml` gives it a
+value). For `kind: enumerated`, the concrete `elements` are supplied exactly once, study-wide, in
+`system.yml`'s new top-level [`sets`](file-structure/system.md#global-sets) section. For
+`kind: ordinal`, there is no concrete value in the `sets:` section at all — instead the library's
+`sets` entry names a **[global parameter](file-structure/library.md#global-parameters)** as its
+`cardinality`, exactly as a local set's `cardinality` names a *model* parameter, and that global
+parameter's value is what `system.yml`'s new top-level
+[`parameters`](file-structure/system.md#global-parameters) section supplies, once, study-wide. Either
+way, a global set's concrete contents are never given in the library, and never per-component (see
+[Why the distinction matters](#why-the-distinction-matters) above for why a per-component override
+would defeat the purpose of a global set):
 
 ```yaml
 library:
   id: example_library
+  parameters:
+    - id: segment_count
   sets:
     - id: fuel
       kind: enumerated
     - id: segment_count_set
       kind: ordinal
+      cardinality: segment_count   # names a global parameter; its value is assigned once, study-wide
   port-types:
     - id: multi_fuel_port
       fields:
@@ -309,15 +325,15 @@ library:
 ```
 
 Because a global set's `elements` are never known at library-authoring time, **bare named-element
-access (e.g. `X{gas}`) is never valid against a global set inside library expressions** — a model may
-only use ordinal-style access against a global set: the bare set-id for the current position
-(`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This holds
-regardless of `kind` — `enumerated` still means "named, ordered elements" once `system.yml` resolves
-it, it just means library expressions can only reach those elements by position, never by name. This
-is not actually specific to global sets: since **local** sets now follow the identical rule (concrete
-contents always assigned in `system.yml`, never given in the model — see [Declaring a local
-(model-level) set](#declaring-a-local-model-level-set) above), named-element access is never valid
-against *any* set inside library expressions, local or global.
+access (e.g. `X[fuel=gas]`) is never valid against a global set inside library expressions** — a model
+may only use ordinal-style access against a global set: the bare set-id for the current position
+(`X[fuel]`), a relative shift (`X[fuel+1]`), or an explicit integer position given via the keyword
+form (`X[fuel=0]`). This holds regardless of `kind` — `enumerated` still means "named, ordered
+elements" once `system.yml` resolves it, it just means library expressions can only reach those
+elements by position, never by name. This is not actually specific to global sets: since **local**
+sets now follow the identical rule (concrete contents always assigned in `system.yml`, never given in
+the model — see [Declaring a local (model-level) set](#declaring-a-local-model-level-set) above),
+named-element access is never valid against *any* set inside library expressions, local or global.
 
 **Recommended practice** (a `system.yml`-level concern now, since that's the only place a global set's
 concrete contents ever exist): instantiate each study's global sets as *universal* — the superset of
@@ -330,9 +346,10 @@ binding constraints — see [Port fields and custom sets](#port-fields-and-custo
 without any extra runtime validation.
 
 No locally-declared identifier in a model — not just a local set, but also a parameter, variable,
-port, constraint, or any other model-level `id` — may collide with a global set's `id` visible in the
-same library, since both are resolved through the same bare-identifier / `indexed-by` lookup; see
-[Rules for id naming](file-structure/library.md#rules-for-id-naming) for the complete rule.
+port, constraint, or any other model-level `id` — may collide with a global set's `id`, or a [global
+parameter's](file-structure/library.md#global-parameters) `id`, visible in the same library, since all
+of these are resolved through the same bare-identifier / `indexed-by` lookup; see [Rules for id
+naming](file-structure/library.md#rules-for-id-naming) for the complete rule.
 
 ### Marking a parameter or variable as set-indexed
 
@@ -350,7 +367,7 @@ variables:
   - id: segment_level
     indexed-by: segment
     lower-bound: 0
-    upper-bound: segment_capacity{segment}
+    upper-bound: segment_capacity[segment]
     variable-type: continuous
 ```
 
@@ -361,7 +378,7 @@ by more than one custom set at once — see [Multiple indexing sets](#multiple-i
 
 A port-type field may declare `indexed-by` directly, exactly like a parameter or variable — including
 a list for a field indexed by more than one set (`indexed-by: [fuel, region]`, using the same
-comma-list `{...}` syntax as [Multiple indexing sets](#multiple-indexing-sets)) — but it may only
+comma-list `[...]` syntax as [Multiple indexing sets](#multiple-indexing-sets)) — but it may only
 reference **global** sets, never a local one, since port types are declared independently of any
 model and have no visibility into a model's local sets:
 
@@ -382,7 +399,7 @@ with its defining expression, extended to this new dimension:
 port-field-definitions:
   - port: injection_port
     field: flow
-    definition: p_generation{fuel}   # must be `fuel`-indexed to match flow's declared indexed-by
+    definition: p_generation[fuel]   # must be `fuel`-indexed to match flow's declared indexed-by
 ```
 
 **Multidimensional port fields** — a field's `indexed-by` list can name more than one set, exactly
@@ -398,7 +415,7 @@ port-types:
 port-field-definitions:
   - port: injection_port
     field: flow
-    definition: p_generation{fuel, region}   # must match flow's declared indexed-by exactly
+    definition: p_generation[fuel, region]   # must match flow's declared indexed-by exactly
 ```
 
 Because a port field may only ever reference global sets in the first place, this holds dimension by
@@ -415,7 +432,7 @@ related-but-different, per-component-flexible local set, `sum_over` only helps i
 where the port field itself ends up **unindexed** — i.e. the field is a plain aggregate total, not
 broken down by element (`sum_over(local_set, internal_var)` fully collapses `local_set` to a scalar,
 per the [dimension-selectivity rule](#aggregating-over-a-custom-set) below). It **cannot** produce a
-value still indexed by the global set (e.g. `flow{fuel}`) out of a differently-shaped local set —
+value still indexed by the global set (e.g. `flow[fuel]`) out of a differently-shaped local set —
 `sum_over` reduces a dimension to a scalar, it does not remap one set's index space onto another's.
 If the port field must genuinely stay broken down by global-set element, and the model's internal
 detail lives on a different, differently-shaped local set, **this proposal has no solution**: it would
@@ -424,21 +441,59 @@ future work.
 
 ### Indexing expressions
 
-| Form | Meaning | Time analogue |
+Custom-set indexing extends the same `[ ]` operator already defined in [Time Operators and
+Indexing](#time-operators-and-indexing), rather than introducing a second bracket. A single pair of
+brackets can carry any number of comma-separated **index terms**, one per dimension being indexed
+(time and/or one or more custom sets):
+
+```
+index-list  := index-term (',' index-term)*
+index-term  := int-expr                                # legacy form — always means the time dimension
+             | identifier (('+' | '-') int-expr)?       # current position, or relative shift
+             | identifier '=' int-expr                  # explicit position (keyword form)
+identifier  := 't' | <declared set id>                  # a local set, or a global set visible in this library
+```
+
+| Form | Meaning | Notes |
 |---|---|---|
-| `X{segment}` | current element (implicit within an unfolded/aggregated context) | `X[t]` |
-| `X{2}` | explicit element at position 2 (ordinal sets, 0-based) | `X[5]` |
-| `X{segment+1}` / `X{segment-1}` | relative shift by position (ordinal sets only) | `X[t+1]` / `X[t-1]` |
-| `(expr){segment}` | index an arbitrary parenthesized **expression**, not just a bare identifier | `(expr)[t+1]` |
-| `X{segment}[t+1]` | compose set- and time-indexing on the same term | — |
+| `X[t]` / `X` (no brackets) | current time step | unchanged from today |
+| `X[5]` | explicit time step 5 | a **bare integer term always means time** — see rule below |
+| `X[t+1]` / `X[t-1]` | relative time shift | unchanged from today |
+| `X[fuel]` | current element of set `fuel` | the `[ ]` analogue of `X[t]` |
+| `X[fuel+1]` / `X[fuel-1]` | relative shift by position on `fuel` | ordinal sets only |
+| `X[fuel=2]` | explicit position 2 on set `fuel` | keyword form — see rule below |
+| `X[t+1, fuel]` | compose a time shift with current-`fuel` | any mix of dimensions, comma-separated |
+| `X[segment=2, fuel=1]` | explicit positions on two sets at once | order-independent — see [Multiple indexing sets](#multiple-indexing-sets) |
+| `(expr)[fuel]` | index an arbitrary parenthesized **expression**, not just a bare identifier | as for time today |
+
+Two rules keep this grammar unambiguous and fully backward compatible:
+
+- **A bare integer index term always and only means the time dimension** (`X[5]` ≡ `X[t=5]`), never
+  inferred as a position on some other dimension of `X`, even when `X` has no time dimension at all
+  (in which case it is simply invalid, exactly as it is today). This is what keeps every existing
+  `X[t]`, `X[5]`, `X[t+1]`, `X[t-1]` example valid, unchanged, with zero new ambiguity — a small
+  trade of brevity for a rule with no exceptions.
+- **An explicit position on a custom set always uses the keyword form** (`X[fuel=2]`), never a bare
+  integer (`X[2]` would mean time). This also removes the old proposal's fragile "positional,
+  declaration-order-dependent" multi-index form — see [Multiple indexing sets](#multiple-indexing-sets)
+  below.
 
 Because a set's `id` is an ordinary identifier — not a reserved keyword the way `t` is — standard
-arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctly; no dedicated
-"shift" grammar (like time's) is required for custom sets.
+arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctly on the right-hand
+side of a shift or keyword term; no dedicated "shift" grammar beyond time's is required for custom
+sets.
 
-**Note:** there is deliberately no "bare named-element" form (e.g. `X{gas}`) in this table — a set's
-concrete elements are never known at library-authoring time (see [Declaring a global (library-level)
-set](#declaring-a-global-library-level-set) above), so named access is not part of this syntax at all.
+**No implicit brackets needed for the common case:** exactly as a bare `generation` (no brackets)
+today implicitly means `generation[t]`, a set-indexed parameter or variable used with **no brackets
+at all** implicitly means "current position on every one of its declared dimensions" — time, and
+every set in its `indexed-by`. Brackets are needed only to *deviate* from "current" on one or more
+dimensions; any dimension left out of the bracket list simply stays at its current position (exactly
+as `X[t+1]` today shifts only time and leaves every other dimension, if any existed, untouched).
+
+**Note:** there is deliberately no "bare named-element" form (e.g. `X[fuel=gas]`) in this grammar — a
+set's concrete elements are never known at library-authoring time (see [Declaring a global
+(library-level) set](#declaring-a-global-library-level-set) above), so named access is not part of
+this syntax at all; the keyword form's right-hand side is always an integer position.
 
 ### Aggregating over a custom set
 
@@ -459,7 +514,9 @@ alone and leaves scenario untouched.
 ### Multiple indexing sets
 
 A parameter or variable can be indexed by more than one custom set. Indices are comma-separated
-inside a single pair of braces, in the same order as declared in `indexed-by`:
+inside a single pair of square brackets, exactly like combining a time shift with a set index —
+`indexed-by`'s declaration order has no bearing on how a multi-index expression must be written,
+since every dimension is named explicitly:
 
 ```yaml
 sets:
@@ -478,16 +535,19 @@ parameters:
 
 | Form | Meaning |
 |---|---|
-| `X{segment, fuel}` | current element of both (implicit/unfolded on both dimensions) |
-| `X{segment+1, fuel}` | shift `segment` by +1, keep `fuel` at its current element |
-| `X{2, 1}` | explicit position 2 on `segment`, explicit position 1 on `fuel` |
+| `X[segment, fuel]` | current element of both (implicit/unfolded on both dimensions) |
+| `X[segment+1, fuel]` | shift `segment` by +1, keep `fuel` at its current element |
+| `X[segment=2, fuel=1]` | explicit position 2 on `segment`, explicit position 1 on `fuel` |
 
 Both `segment` and `fuel` here are **local** sets, but the same multi-set syntax applies identically
 to global sets, or a mix of the two — `indexed-by` doesn't care about scope, only about which sets are
-named and in what order. As always, every index in every slot is position-based only — `X{2, 1}`, not
-`X{2, gas}` — since neither set's concrete elements are known at library-authoring time (see
-[Declaring a local (model-level) set](#declaring-a-local-model-level-set) and [Declaring a global
-(library-level) set](#declaring-a-global-library-level-set)).
+named. As always, every explicit position is integer-only, never a named element — `X[segment=2,
+fuel=1]`, never `X[segment=2, fuel=gas]` — since neither set's concrete elements are known at
+library-authoring time (see [Declaring a local (model-level) set](#declaring-a-local-model-level-set)
+and [Declaring a global (library-level) set](#declaring-a-global-library-level-set)). Unlike a
+positional scheme, the keyword form `set_id=value` is **order-independent**: `X[fuel=1, segment=2]`
+and `X[segment=2, fuel=1]` are the same expression, since each term names the dimension it applies to
+rather than relying on matching `indexed-by`'s declaration order.
 
 Aggregation stays single-set per call and nests for multi-set reduction, rather than introducing a
 second aggregation form:
@@ -498,9 +558,10 @@ expression: total = sum_over(fuel, sum_over(segment, segment_fuel_cost))
 
 ### Implicit unfolding
 
-A constraint containing a set-indexed variable/parameter — without an explicit index, or with the
-"current element" form `X{segment}` — implicitly unfolds into one constraint per set element, exactly
-like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
+A constraint containing a set-indexed variable/parameter — used bare (no brackets at all), or with the
+explicit "current element" form `X[segment]` — implicitly unfolds into one constraint per set element,
+exactly like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs.
+Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
 
 **Cross-product unfolding:** a constraint whose terms carry more than one dimension — two different
 custom sets, or a custom set alongside time and/or scenario — unfolds over the **cross-product** of
@@ -520,7 +581,7 @@ explicit `indexed-by` field on the constraint (this field applies identically to
 constraints:
   - id: segment_marginal_cost
     indexed-by: segment
-    expression: segment_price{segment} = base_price + segment * price_step
+    expression: segment_price[segment] = base_price + segment * price_step
 ```
 
 Used bare, outside `{ }`, a set's own `id` evaluates to the current element's 0-based integer
@@ -542,12 +603,27 @@ union/cross-product of both dimensions, exactly as it would for any other combin
 
 ### Collision check
 
-- `[ ]` stays 100% reserved for time; never touched.
-- `{ }` is currently unused anywhere in the grammar — zero syntactic overlap.
+- `[ ]` is no longer time-only: it becomes the single reserved indexing delimiter for every
+  dimension — time and custom sets alike. `{ }` is dropped from this proposal entirely and stays
+  fully unused/reserved.
+- Every existing time-only form (`X[t]`, `X[5]`, `X[t+1]`, `X[t-1]`) keeps its exact current meaning
+  — see the [bare-integer-always-means-time rule](#indexing-expressions) — so this change is
+  additive, not breaking, for anything written against today's syntax.
+- The `=` introduced by the keyword form (`X[fuel=2]`) does not collide with the "exactly one
+  comparison operator" rule for constraints (see [Comparison Operators](#comparison-operators)):
+  that rule counts `=`/`<=`/`>=` at the **top level** of a constraint expression, outside all
+  bracket/paren nesting. A parser that respects bracket nesting (as it already must, to parse
+  `sum(t .. t+3, production)` correctly today) scopes a keyword-form `=` to its enclosing `[ ]` and
+  never surfaces it to top-level comparison-operator counting.
+- The `,` introduced for multi-dimensional indexing (`X[segment, fuel]`) does not collide with the
+  pre-existing use of `,` inside `sum(S..E, X)` or `min(u, v, ...)`/`max(u, v, ...)` — those are
+  function-call parentheses `()`, a different delimiter from the index brackets `[ ]`.
+- `indexed-by: [fuel, region]` (a YAML list, parsed by the YAML loader before any expression string
+  is handed to the math-expression parser) and `X[fuel, region]` (inside an `expression:` string,
+  parsed by the math-expression grammar above) are visually similar but live in two entirely
+  different layers — no actual collision, but worth calling out explicitly since both use `[ ]`.
 - `.` stays reserved for [ports](#ports).
 - `sum_over` is a new name, distinct from `sum`, `sum(S..E,X)`, `sum_connections`, `expec`.
-- `{` only ever appears immediately after an identifier (`X{...}`), never as the first character of
-  the expression string, so it can't be misparsed as a YAML flow mapping.
 
 ## Constraints
 

@@ -11,8 +11,11 @@ The **system file** defines the concrete energy system to be simulated. It insta
 The system file is a YAML file with a single root key `system`. The system contains fields for an `id`, `description`, a list of `model-libraries` to use, the list of `components` in the system, and the list of `connections` definitions between components. Every system file must have exactly one top-level `system` entry containing these sections. Below is an example snippet of a system file:
 
 !!! warning "Design proposal — not yet implemented"
-    A proposed sixth top-level field, [`sets`](#global-sets), instantiates
-    [library-level global sets](../library.md#library-level-sets) for the whole study. Not yet
+    Two proposed additional top-level fields instantiate study-wide, library-scoped data:
+    [`parameters`](#global-parameters), which assigns a value to every
+    [library-level global parameter](../library.md#global-parameters), and
+    [`sets`](#global-sets), which instantiates every
+    [library-level global set](../library.md#library-level-sets) — for the whole study. Not yet
     implemented in [GemsPy](../../index.md).
 
 ```yaml
@@ -53,6 +56,7 @@ The top-level fields of a system file are:
 | `model-libraries` | String | *(Optional)* Comma-separated list of library IDs whose models are used in this system (e.g. `my_library_1, my_library_2`). Must match the `id` fields of the library files available to the simulation.|
 | `components` | List | The list of component instantiations in the system.|
 | `connections` | List | The list of port connections between components.|
+| `parameters` | List | *([Proposed](#global-parameters), not yet implemented — required whenever any used library declares global parameters)* Study-wide value assignment for every [library-level global parameter](../library.md#global-parameters) declared by this system's libraries.|
 | `sets` | List | *([Proposed](#global-sets), not yet implemented — required whenever any used library declares global sets)* Study-wide instantiation of every [library-level global set](../library.md#library-level-sets) declared by this system's libraries.|
 
 ## Components
@@ -142,6 +146,44 @@ system:
           elements: [north, south]
 ```
 
+## Global Parameters
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the system file schema, part of the
+    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
+    It is not yet implemented in [GemsPy](../../index.md).
+
+(Required whenever any used library declares [global parameters](../library.md#global-parameters)) A
+top-level `parameters` collection — a sibling of `sets`, `components`, and `connections` — that
+assigns a value to **every** [library-level global parameter](../library.md#global-parameters)
+declared by any library this system uses. A library never gives a global parameter's concrete value
+itself — `system.yml` is the **only** place that ever does, and it must do so for every one of them,
+not just some. This assignment applies **once, uniformly, to the whole study** — never per component —
+exactly mirroring how `first-time-step`/`last-time-step` (see [Simulation
+Horizon](solver-optimization.md#simulation-horizon)) fix the time dimension once for an entire run
+rather than per component.
+
+Each parameter entry contains:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | The parameter key name, matching a [global parameter](../library.md#global-parameters) declared by one of this system's libraries. |
+| `value` | Number | The value assigned to this parameter, study-wide. |
+
+```yaml
+system:
+  id: my_system
+  model-libraries: example_library
+  parameters:
+    - id: segment_count
+      value: 5
+```
+
+Every global parameter declared by any library used in the system must appear here exactly once; a
+library using this feature with no matching entry in `system.yml` is an error at study-instantiation
+time. When a global parameter is used as a [global ordinal set's](../library.md#library-level-sets)
+`cardinality`, its assigned value must be a non-negative integer.
+
 ## Global Sets
 
 !!! warning "Design proposal — not yet implemented"
@@ -150,9 +192,9 @@ system:
     It is not yet implemented in [GemsPy](../../index.md).
 
 (Required whenever any used library declares global sets) A top-level `sets` collection — a sibling of
-`components` and `connections` — that instantiates **every** [library-level global
+`parameters`, `components`, and `connections` — that instantiates **every** [library-level global
 set](../library.md#library-level-sets) declared by any library this system uses. A library never gives
-a global set's concrete size or contents itself (see [Library-Level
+a global set's concrete contents itself (see [Library-Level
 Sets](../library.md#library-level-sets)) — `system.yml` is the **only** place that ever does, and it
 must do so for every one of them, not just some. This instantiation applies **once, uniformly, to the
 whole study** — never per component — because every component connecting through a port that uses this
@@ -161,33 +203,42 @@ set must agree on the exact same index domain; a per-component override would de
 mirrors how `--duration`/`--scenarios` fix the time and scenario dimensions once for an entire run
 rather than per component.
 
+This collection only ever contains `elements:` entries, for `kind: enumerated` sets. A `kind: ordinal`
+global set has **no entry here at all** — its size is fixed entirely by the
+[global parameter](#global-parameters) its library declaration names as `cardinality` (see [Global
+Parameters](#global-parameters) above and [Library-Level Sets](../library.md#library-level-sets)).
+This mirrors exactly how a **local** ordinal set has no `sets:` entry of its own either — its size is
+hidden inside the ordinary per-component parameter assignment instead (see [Local Sets](#local-sets)
+above) — so an ordinal set, local or global, is never given a size directly in a `sets:` list; only
+enumerated sets are.
+
 Each set entry contains:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | The set key name, matching a [library-level set](../library.md#library-level-sets) declared by one of this system's libraries. |
-| `cardinality` | Integer | *(Sets declared `kind: ordinal` in the library)* The set's size, as an integer literal. |
-| `elements` | List of strings | *(Sets declared `kind: enumerated` in the library)* The ordered list of named elements. |
+| `id` | String | The set key name, matching an [enumerated](../library.md#library-level-sets) library-level set declared by one of this system's libraries. |
+| `elements` | List of strings | The ordered list of named elements. |
 
 ```yaml
 system:
   id: my_system
   model-libraries: example_library
+  parameters:
+    - id: segment_count             # sizes segment_count_set below (kind: ordinal in the library)
+      value: 5
   sets:
     - id: fuel                      # kind: enumerated in the library
       elements: [gas, coal, oil]
-    - id: segment_count_set         # kind: ordinal in the library
-      cardinality: 5
   components:
     - id: gen_1
       model: example_library.multi_fuel_generator
 ```
 
-Whether an entry gives `cardinality` or `elements` must match the `kind` (`ordinal`/`enumerated`) that
-library declared for that set — supplying the wrong shape (e.g. `elements` for a set the library marked
-`kind: ordinal`) is an error. Every global set declared by any library used in the system must appear
-here exactly once; a library using this feature with no matching entry in `system.yml` is an error at
-study-instantiation time.
+Every `kind: enumerated` global set declared by any library used in the system must appear here
+exactly once; a library using this feature with no matching entry in `system.yml` is an error at
+study-instantiation time. Supplying a `sets:` entry for a `kind: ordinal` set (or a `cardinality:`
+field anywhere in this collection) is likewise an error — ordinal sizing always goes through [Global
+Parameters](#global-parameters) instead.
 
 **Recommended practice:** instantiate each global set as *universal* — the superset of every element
 that could ever be relevant across the whole system (e.g. `elements: [gas, coal, oil, biomass,
