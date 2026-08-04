@@ -462,11 +462,6 @@ variables:
     variable-type: continuous
 ```
 
-The same `indexed-by` field applies to `constraints`, `binding-constraints`,
-`objective-contributions`, and `extra-outputs`, to force unfolding over a set even when none of the
-constraint's own terms are set-indexed — see
-[Indexing a constraint explicitly](../mathematical-syntax.md#indexing-a-constraint-explicitly-and-referencing-the-index-value-itself).
-
 #### Ports
 
 A list of ports that model exposes to connect with other models. Each port has:

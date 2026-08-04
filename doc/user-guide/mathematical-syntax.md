@@ -558,37 +558,52 @@ expression: total = sum_over(fuel, sum_over(segment, segment_fuel_cost))
 
 ### Implicit unfolding
 
-A constraint containing a set-indexed variable/parameter — used bare (no brackets at all), or with the
-explicit "current element" form `X[segment]` — implicitly unfolds into one constraint per set element,
-exactly like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs.
-Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
+A constraint unfolds over a custom set whenever it contains, anywhere in its expression, **either**
+of two things:
+
+- a set-indexed variable/parameter — used bare (no brackets at all), or with the explicit "current
+  element" form `X[segment]` — exactly like today's time/scenario unfolding rule (see
+  [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended
+  to a third dimension; or
+- a **bare reference to the set's own `id`, used as a scalar value** — e.g. plain `segment` in
+  `base_price + segment * price_step` — even when no parameter or variable in the expression is
+  itself declared `indexed-by` that set. Referencing a set's index value only ever makes sense within
+  a context unfolding over that set, so this occurrence is itself enough to trigger unfolding — see
+  [Referencing a set's index value](#referencing-a-sets-index-value) below.
+
+Because these two conditions cover every way an expression can possibly depend on a custom set, this
+detection is always automatic — there is no scenario left where a constraint needs to unfold over a
+set without either condition holding (an expression containing neither would be N identical,
+non-varying copies of the same equation, which has no modeling purpose).
 
 **Cross-product unfolding:** a constraint whose terms carry more than one dimension — two different
 custom sets, or a custom set alongside time and/or scenario — unfolds over the **cross-product** of
 all of them, generalizing the time+scenario dual-unfolding rule the base doc already establishes (a
 term that is both time- and scenario-dependent already unfolds per `(t, s)` pair today; a term that is
-also `segment`-indexed unfolds per `(t, s, segment)` triple, and so on for any further set).
+also `segment`-indexed, or that bare-references `segment`, unfolds per `(t, s, segment)` triple, and
+so on for any further set).
 
-### Indexing a constraint explicitly, and referencing the index value itself
+### Referencing a set's index value
 
-Implicit unfolding only fires when the constraint contains a term that is itself `indexed-by` the
-set. To unfold a constraint over a set even when none of its terms are set-indexed — typically
-because the constraint only needs the *index value* itself, not a subscript into anything — add an
-explicit `indexed-by` field on the constraint (this field applies identically to
-`binding-constraints`, `objective-contributions`, and `extra-outputs`):
-
-```yaml
-constraints:
-  - id: segment_marginal_cost
-    indexed-by: segment
-    expression: segment_price[segment] = base_price + segment * price_step
-```
-
-Used bare, outside `{ }`, a set's own `id` evaluates to the current element's 0-based integer
-position within whichever set-indexed context it is unfolding in — e.g. bare `segment` above is a
+Used bare, outside `[ ]`, a set's own `id` evaluates to the current element's 0-based integer
+position within whichever set-indexed context it is unfolding in — e.g. plain `segment` below is a
 plain number (0, 1, 2, …), not a subscript operator. This holds uniformly for both ordinal and
 enumerated sets, since even an enumerated set has a well-defined order once `system.yml` resolves it
 (`fuel` bare = 0 for `gas`, 1 for `coal`, 2 for `oil`, given a resolved `elements: [gas, coal, oil]`).
+
+As established in [Implicit unfolding](#implicit-unfolding) above, this bare reference is on its own
+enough to make a constraint unfold over that set — no separate tag is needed, even when nothing else
+in the expression is set-indexed:
+
+```yaml
+extra-outputs:
+  - id: segment_number
+    expression: segment
+```
+
+Here `segment` is the *only* thing in the expression connected to the `segment` set — no parameter or
+variable is indexed by it — yet this alone unfolds the output into one row per segment element,
+reporting that element's position.
 
 This is exactly why the naming rules forbid a set's `id` from colliding with a parameter/variable `id`
 or the reserved literal `t` (a local set), or with any locally-declared identifier at all (a global
@@ -596,10 +611,10 @@ set) — see [Rules for id naming](file-structure/library.md#rules-for-id-naming
 — otherwise a bare reference to that name would be ambiguous between "current index position", a
 parameter/variable lookup, or the built-in time index.
 
-This also resolves the case of a constraint that carries *both* an implicit set dimension (inferred
-from one of its own terms) and an explicit `indexed-by` naming a *different* set: per
+This also covers the case of a constraint that carries *several* set dimensions at once — some
+inferred from a set-indexed term, others from a bare index-value reference like `segment` above: per
 [Cross-product unfolding](#implicit-unfolding) above, the constraint simply unfolds over the
-union/cross-product of both dimensions, exactly as it would for any other combination of dimensions.
+union/cross-product of all of them, exactly as it would for any other combination of dimensions.
 
 ### Collision check
 
