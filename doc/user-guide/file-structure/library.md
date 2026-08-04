@@ -400,9 +400,11 @@ variables:
     full expression-syntax proposal this schema supports.
 
 (Optional) A list of **local** custom index sets declared by this model — usable to index this
-model's own `parameters` and `variables` (via the new `indexed-by` field described below) and to
-index its `constraints`, `binding-constraints`, `objective-contributions`, and `extra-outputs`. Local
-sets may vary per component but are not visible outside this model. A model may also use a
+model's own `parameters` and `variables` (via the new `indexed-by` field described below), and to
+unfold its `constraints`, `binding-constraints`, `objective-contributions`, and `extra-outputs` (via a
+set-indexed term or a bare current-position reference — see [Implicit
+unfolding](../mathematical-syntax.md#implicit-unfolding); there is no `indexed-by` field on these).
+Local sets may vary per component but are not visible outside this model. A model may also use a
 [library-level set](#library-level-sets) directly via `indexed-by`, without declaring anything here —
 declare a local set only when the index genuinely needs to vary per component or stay internal to
 this model; see [Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters).
