@@ -38,7 +38,7 @@ Comparison operators are used to form constraints (equations or inequalities).
 | `<=` | Used in constraints to require `LHS ≤ RHS` |`expression_1 <= expression_2`|
 | `>=` | Used in constraints to require `LHS ≥ RHS` | `expression_1 >= expression_2`|
 
-**Important:** Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions). Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
+**Important:** Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions), with one exception: in [`extra-outputs`](file-structure/library.md#extra-output), a comparison operator evaluates to a boolean (`0`/`1`) instead of forming a constraint — e.g. `unsupplied_energy >= 0.000001` to flag loss of load. Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
  dividing the expression into a left-hand side (LHS) and right-hand side (RHS). Chained comparisons (e.g. `A <= B <= C`) are not permitted; if needed, break them into separate constraints.
 
 [**GEMS framework**](../index.md) **Mathematical Expression Syntax** does not support certain operations common in programming or math notation. For example, non-linear functions (log, sin, etc.) are not part of the expression syntax. If a mathematical relationship is non-linear, it must be linearized or reformulated.
@@ -134,7 +134,7 @@ expression: sum_connections(balance_port.flow) = 0
 
 ## Time Operators and Indexing
 
-**Mathematical Expression Syntax**  provides convenient time operators to refer to specific time-indexed values or to aggregate over time. These operators apply to time-dependent parameters, variables, or port fields.  Note that time indices are 0-based (typically, 0 = first time step).
+**Mathematical Expression Syntax**  provides convenient time operators to refer to specific time-indexed values or to aggregate over time. These operators apply to time-dependent parameters, variables, or port fields.  Note that time indices are 0-based (typically, 0 = first time step). `T` (used below, not a syntax element) denotes the horizon length: valid indices range from `0` to `T-1`, `T-1` being the [`last-time-step`](file-structure/solver-optimization.md#simulation-horizon) (inclusive).
 
 ### **Current time step** `[t]`
 
@@ -162,7 +162,7 @@ This is commonly used for cyclic constraints such as storage dynamics.
 expression: levels[t+1] = levels + injection - withdrawal
 ```
 
-Now, it can be concluded that terms `levels[t+1]` and `levels[0]` are referring to the same variable.
+Now, it can be concluded that terms `levels[T]` and `levels[0]` are referring to the same variable.
 
 ### **Time summation (full horizon)** `sum(X)`
 
