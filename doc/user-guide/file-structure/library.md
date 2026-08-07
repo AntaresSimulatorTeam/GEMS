@@ -54,17 +54,18 @@ All `id's` in the model library and system file must respect the following:
 - Only lower-case is allowed
 
 !!! warning "Design proposal — not yet implemented"
-    A local [set](#sets)'s `id` must not collide with any parameter or variable `id` within the same
-    model, or with the reserved literal `t`. **A global (library-level) set's `id` must likewise never
-    be the reserved literal `t`** — it is just as usable bare, in any model in the library, as a local
-    set's id is, so the same ambiguity applies.
+    A local [set](#sets)'s `id` must not collide with any [global (library-level)
+    set](#library-level-sets) `id` visible in the same library — since `indexed-by: x` (or a bare
+    reference to `x` inside `{...}`) would otherwise be ambiguous between the two. This is the only
+    id-collision rule custom sets add: a set is only ever looked up in two places — inside `{...}`
+    right after an identifier, or as the value of `indexed-by:` — and both positions only ever accept a
+    set `id`, never a parameter or variable `id`, so **parameter and variable ids are free to collide
+    with set ids** (local or global) without any ambiguity. This is not recommended, though: even
+    though the parser never confuses the two, a reader has to hold both meanings in their head — prefer
+    giving a set a distinct `id` from any parameter or variable in scope.
 
-    More generally: **no locally-declared identifier in a model — a parameter, variable, local set,
-    port, constraint, binding-constraint, objective-contribution, or extra-output `id` — may collide
-    with any [global (library-level) set](#library-level-sets) `id` visible in that library.** A
-    global set's `id` is usable bare from inside any model in the library (via `indexed-by`, or as a
-    bare current-position reference) without that model declaring anything locally, so any local `id`
-    that happens to match one creates the same kind of ambiguity a local-set/parameter collision would.
+    `t` remains reserved and may never be used as a set `id` (local or global), exactly like it's
+    already reserved for other identifiers in this syntax.
 
     These rules are part of the
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal —
@@ -97,56 +98,34 @@ library:
 
 The `sets` collection, a sibling of `port-types` and `models`, declares **global** custom index sets
 — shared by every model and port-type field in this library that references them. This is the only
-kind of custom set that may cross a port: a [port-type field](#port-types)'s `indexed-by` may only
-name a global set, and the argument passed to `sum_connections` inside a
-[binding constraint](#binding-constraints) may only be indexed by one, since every component
-connecting through a port must agree on the exact same index domain (see
-[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). This does
-**not** restrict a binding constraint as a whole — it may still freely reference the model's own local
-sets in parts of its expression that don't cross the port. Model-level, per-component-varying sets are
-declared separately — see [Sets](#sets) under Models below.
+kind of custom set that may cross a port (see [Port fields and custom
+sets](../mathematical-syntax.md#port-fields-and-custom-sets) for the precise rules), since every
+component connecting through a port must agree on the exact same index domain (see [Why the
+distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). Model-level,
+per-component-varying sets are declared separately — see [Sets](#sets) under Models below.
 
-This collection is **optional**. A [local set](#sets) (declared under Models, below) follows the
-identical "never given in the library" rule — the only difference between the two scopes is *who*
-supplies the concrete value and *how uniformly*: once, study-wide, for a global set, versus per
-component for a local set.
-
-A global set's concrete size or contents are **never** given in the library — only its `id`,
-`description`, and **kind** (`ordinal` or `enumerated`). This mirrors GEMS's existing pattern of the
-library declaring structure while the system file assigns concrete values (the same way a model
-declares that a parameter exists, but only `system.yml` gives it a value). The concrete `cardinality`
-(ordinal) or `elements` (enumerated) are always supplied exactly once, study-wide, in
-[`system.yml`'s Global Sets section](../system.md#global-sets) — see below.
+This collection is **optional**. A global set's concrete contents are **never** given in the library —
+only its `id` and an optional `description`; concrete `elements` are always supplied exactly once,
+study-wide, in [`system.yml`'s Global Sets section](../system.md#global-sets). A [local set](#sets)
+(declared under Models, below) follows the same shape, scoped to a single model instead — see there.
 
 ```yaml
 library:
   id: example_library
   sets:
     - id: fuel
-      kind: enumerated
     - id: segment_count_set
-      kind: ordinal
 ```
 
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique set identifier within the library. Must follow the [naming rules](#rules-for-id-naming).|
 | `description`| String | *(Optional)* A human-readable description of the set's purpose.|
-|`kind`| Enum | `ordinal` or `enumerated`. Determines which indexing forms are valid against this set in expressions (see below) — the concrete size/elements are resolved later, in `system.yml`, so this is the only thing the library itself needs to know.|
 
-Because a global set's `elements` are never known at library-authoring time, **bare named-element
-access (e.g. `X{gas}`) is never valid against a global set inside library expressions** — a model may
-only use ordinal-style access against a global set: the bare set-id for the current position
-(`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This holds
-regardless of `kind`: `enumerated` still means "named, ordered elements" once `system.yml` resolves it,
-it just means library expressions can only reach those elements by position, never by name. A [local
-set](#sets) (under Models, below) follows the identical rule — its `elements` are likewise never given
-in the model, so named access is never valid there either.
-
-**Recommended practice** (a `system.yml`-level concern now, since that's the only place a global set's
-concrete contents ever exist): make each study's instantiation *universal* — the superset of every
-element that could ever be relevant across the whole system — and express per-component variation
-through data (e.g. a `0` capacity/bound for unused elements) rather than through differing membership.
+See [Indexing expressions](../mathematical-syntax.md#indexing-expressions) for why library/model
+expressions can only ever access a set's elements positionally (never by name). See [System — Global
+Sets](../system.md#global-sets) for how `system.yml` instantiates `elements` and the recommended
+practice for instantiating a global set.
 
 ### Port Types
 
@@ -172,31 +151,6 @@ port-types:
 | `id`| String | Unique `id` for the port type within this library. Must follow the [naming rules](#rules-for-id-naming) and must not conflict with other port type `id`s in the same library.|
 | `description` | String | *(Optional)* A human-readable description of the port type’s purpose.|
 |`fields`| List | A list of fields carried by this port. Each field has an `id` (unique within the port type) that identifies a scalar floating-point quantity exchanged through the port (e.g. a power flow value).|
-
-!!! warning "Design proposal — not yet implemented"
-    A field may declare `indexed-by`, referencing one or more [library-level set](#library-level-sets)
-    `id`s (a single `id`, or a list for a field indexed by more than one set), to mark the field as
-    carrying a custom-set dimension (never a model-level set — see
-    [Port fields and custom sets](../mathematical-syntax.md#port-fields-and-custom-sets)):
-    ```yaml
-    port-types:
-      - id: multi_fuel_port
-        fields:
-          - id: flow
-            indexed-by: fuel
-    ```
-    A field's `indexed-by` list can name more than one global set, for a **multidimensional** port
-    field:
-    ```yaml
-    port-types:
-      - id: multi_fuel_multi_region_port
-        fields:
-          - id: flow
-            indexed-by: [fuel, region]
-    ```
-    Every set in the list must be global — since a port field can never reference a model-level set at
-    all, this holds dimension by dimension; there is no partial or mixed case. Not yet implemented in
-    [GemsPy](../../index.md).
 
 ### Models
 
@@ -333,44 +287,28 @@ variables:
     full expression-syntax proposal this schema supports.
 
 (Optional) A list of **local** custom index sets declared by this model — usable to index this
-model's own `parameters` and `variables` (via the new `indexed-by` field described below) and to
-index its `constraints`, `binding-constraints`, `objective-contributions`, and `extra-outputs`. Local
-sets may vary per component but are not visible outside this model. A model may also use a
-[library-level set](#library-level-sets) directly via `indexed-by`, without declaring anything here —
-declare a local set only when the index genuinely needs to vary per component or stay internal to
-this model; see [Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters).
+model's own `parameters` and `variables` via the `indexed-by` field described below. Local sets may
+vary per component but are not visible outside this model. A model may also use a [library-level
+set](#library-level-sets) directly via `indexed-by`, without declaring anything here — declare a local
+set only when the index genuinely needs to vary per component or stay internal to this model; see
+[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters).
 
-Exactly like a [library-level set](#library-level-sets), **a local set's concrete contents are never
-given in the model** — only its `id`, `description`, and `kind`. The concrete value is always assigned
-in `system.yml`: per component, for both kinds (an ordinal set's `cardinality` names a scalar
-parameter, whose *value* is assigned per component through the ordinary parameter-assignment
-mechanism; an enumerated set's `elements` are assigned per component directly, in `system.yml`'s
-[Local Sets](../system.md#local-sets) list).
+Exactly like a [library-level set](#library-level-sets) (see above for why a set never gives its
+concrete contents here), a local set's `elements` are assigned per component instead, in
+`system.yml`'s [Local Sets](../system.md#local-sets) list.
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming) (including the naming-collision constraints against parameters/variables/`t`/global sets described there).|
+|`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming) (including the local-vs-global-set collision rule described there).|
 | `description`| String | *(Optional)* A human-readable description of the set's purpose.|
-|`kind`| Enum | `ordinal` or `enumerated` — mandatory, same as for a [library-level set](#library-level-sets).|
-|`cardinality`| Parameter `id` | *(`kind: ordinal` only)* The `id` of a scalar, non-time/scenario-dependent, non-set-indexed parameter of this model — never a literal integer. That parameter's *value*, assigned per component via the ordinary parameter-assignment mechanism (see [System — Parameters](../system.md#parameters)), gives that component's 0-based set size `0 .. cardinality-1`. Required for `kind: ordinal`; must be absent for `kind: enumerated`.|
-
-There is no `elements` field here — an enumerated local set's concrete elements are always supplied
-per component in [`system.yml`'s Local Sets](../system.md#local-sets) list, never in the model.
 
 ```yaml
 models:
   - id: multi_segment_storage
-    parameters:
-      - id: segment_count
-        time-dependent: false
-        scenario-dependent: false
     sets:
       - id: segment
         description: "Price segments of the storage's marginal-value curve"
-        kind: ordinal
-        cardinality: segment_count   # names a scalar parameter; its value is assigned per component
       - id: operating_mode
-        kind: enumerated             # elements are supplied per component in system.yml
 ```
 
 To mark a parameter or variable as indexed by one (or more) of these sets, add an `indexed-by`
@@ -395,10 +333,8 @@ variables:
     variable-type: continuous
 ```
 
-The same `indexed-by` field applies to `constraints`, `binding-constraints`,
-`objective-contributions`, and `extra-outputs`, to force unfolding over a set even when none of the
-constraint's own terms are set-indexed — see
-[Indexing a constraint explicitly](../mathematical-syntax.md#indexing-a-constraint-explicitly-and-referencing-the-index-value-itself).
+`indexed-by` exists only on `parameters` and `variables` — `constraints`, `binding-constraints`,
+`objective-contributions`, and `extra-outputs` never declare it.
 
 #### Ports
 
@@ -420,12 +356,6 @@ A collection of definitions describing the ports **emitted** by a model. Each en
 |`port`| String | The `id` of a port listed in the [ports section](#ports) of this model.|
 | `field`| String | The field `id` as defined in the corresponding [port type](#port-types).|
 |`definition`| [Mathematical Expression](../mathematical-syntax.md) | A linear expression giving the value of that port field, using the model’s variables and/or parameters.|
-
-!!! warning "Design proposal — not yet implemented"
-    If the port field declares `indexed-by` (see [Port Types](#port-types)), this `definition`'s
-    expression must produce a value whose inferred indexing matches it exactly — see
-    [Port fields and custom sets](../mathematical-syntax.md#port-fields-and-custom-sets). Not yet
-    implemented in [GemsPy](../../index.md).
 
 #### Constraints
 
@@ -456,14 +386,6 @@ A list of external constraints that involve model’s ports (i.e., constraints t
 | `expression`| [Mathematical Expression](../mathematical-syntax.md#constraints) | An equation or inequality that may use [port operators](../mathematical-syntax.md#port-operator) to aggregate expressions from connected components.|
 
 Binding constraints are defined in the same manner as internal constraints, but they may include [port operators](../mathematical-syntax.md#port-operator), which aggregate linear expressions emitted through a port.
-
-!!! warning "Design proposal — not yet implemented"
-    `sum_connections(port.field{s})` is well-defined for any custom set `s`, because a port field can
-    only be `indexed-by` a [library-level (global) set](#library-level-sets) — every component
-    connecting through that port type necessarily shares the exact same set, so no additional runtime
-    guard is needed beyond that schema-level restriction. See
-    [Port fields and custom sets](../mathematical-syntax.md#port-fields-and-custom-sets). Not yet
-    implemented in [GemsPy](../../index.md).
 
 An explicit example is provided by the `bus` model implementing the energy balance constraint (**First Kirchhoff Law**):
 
