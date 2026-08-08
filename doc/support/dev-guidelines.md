@@ -376,6 +376,20 @@ The `pypsa_models.yml` and `antares_legacy_models.yml` libraries in GEMS reposit
 
 ---
 
+### Cloudflare Pages Deployment (GEMS)
+
+The GEMS documentation site is additionally deployed to Cloudflare Pages (in parallel with the canonical ReadTheDocs hosting). Cloudflare Pages ties its **Production** deployment — the one served on the project's principal/custom domain — to a single Git branch, and rebuilds it on every push to that branch. Every other branch (including PR branches) automatically gets its own **preview** deployment at `https://<branch>.<project>.pages.dev`.
+
+To make the principal domain always show the latest GitHub Release rather than the latest commit on `main`:
+
+1. In the Cloudflare Pages dashboard, set the project's **Production branch** to `production` (not `main`).
+2. The `promote-release-to-production` workflow (`.github/workflows/promote-release-to-production.yml`) fast-forwards the `production` branch to the released tag whenever a GitHub Release is published on `main`. Cloudflare then rebuilds the principal domain from that branch automatically.
+3. No manual step is needed after publishing a release — `production` only moves when step 4 of the GEMS release process (§8.3) is completed.
+
+PR/branch previews need no repository-side change: Cloudflare Pages already builds one per branch. To expose them under a custom domain instead of the default `*.pages.dev` alias, configure a wildcard **Preview URL custom domain** (e.g. `*.preview.<your-domain>`) for the project in the Cloudflare Pages dashboard → Custom domains.
+
+---
+
 ### Cross-Repository Notifications
 
 When a model library is updated in a converter, an issue is automatically created in the **GEMS** repository to prompt synchronisation of the shared library YAML.

@@ -1,0 +1,36 @@
+name: Promote Release to Production
+
+# Cloudflare Pages ties its "Production" deployment (the principal/custom
+# domain) to a single Git branch and rebuilds it on every push to that
+# branch. To make the principal URL always reflect the latest GitHub
+# Release instead of the latest commit on `main`, this workflow fast-forwards
+# a dedicated `production` branch to the released tag whenever a release is
+# published. Point the Cloudflare Pages project's "Production branch"
+# setting to `production` (not `main`) for this to take effect.
+#
+# Branch/PR preview URLs are unaffected: Cloudflare Pages already deploys a
+# preview build (with its own URL) for every other branch automatically.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    name: Fast-forward production branch to released tag
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout released tag
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          fetch-depth: 0
+
+      - name: Update production branch
+        run: |
+          git checkout -B production "${{ github.event.release.tag_name }}"
+          git push --force-with-lease origin production
