@@ -134,7 +134,7 @@ expression: sum_connections(balance_port.flow) = 0
 
 ## Time Operators and Indexing
 
-**Mathematical Expression Syntax**  provides convenient time operators to refer to specific time-indexed values or to aggregate over time. These operators apply to time-dependent parameters, variables, or port fields.  Note that time indices are 0-based (typically, 0 = first time step). `T` (used below, not a syntax element) denotes the horizon length: valid indices range from `0` to `T-1`, `T-1` being the [`last-time-step`](file-structure/solver-optimization.md#simulation-horizon) (inclusive).
+**Mathematical Expression Syntax**  provides convenient time operators to refer to specific time-indexed values or to aggregate over time. These operators apply to time-dependent parameters, variables, or port fields.  Note that time indices are 0-based (typically, 0 = first time step).
 
 ### **Current time step** `[t]`
 
@@ -162,11 +162,11 @@ This is commonly used for cyclic constraints such as storage dynamics.
 expression: levels[t+1] = levels + injection - withdrawal
 ```
 
-Now, it can be concluded that terms `levels[T]` and `levels[0]` are referring to the same variable.
+Here, when `t` corresponds to the last time step, `levels[t+1]` is the same as `levels[0]`.
 
 ### **Time summation (full horizon)** `sum(X)`
 
-Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. If *X* is defined for each time step from *0* to *T-1*, then `sum(X)` produces a single scalar equal to $\sum_{t=0}^{T-1} X_t$.
+Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. `sum(X)` produces a single scalar equal to the sum of *X* over every time step from `0` to the [`last-time-step`](file-structure/solver-optimization.md#simulation-horizon) (inclusive).
 
 !!! note "Difference `sum` from `sum_connections`"
     - `sum(X)` : aggregate a time-dependent quantity **across time steps** (temporal summation).
