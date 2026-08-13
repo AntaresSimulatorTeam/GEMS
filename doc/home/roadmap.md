@@ -14,7 +14,7 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     ---
 
-    Let modellers define their own sets and dimensions, enabling — among other things — multi-horizon investment studies, specific demand-response constraints, reserve modelling, and piecewise-linear costs.
+    Let users define their own sets and dimensions, enabling (among other things) multi-horizon investment studies, specific demand-response constraints, advanced processes modelling, reserve modelling, and piecewise-linear costs.
 
     `Language`
 
