@@ -102,7 +102,7 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     ---
 
-    New language operators to work across scenarios, such as CVaR and equality constraints between variables across scenarios.
+    New language operators to work across scenarios, such as CVaR constraints and equality constraints between variables across scenarios.
 
     `Language`
 
