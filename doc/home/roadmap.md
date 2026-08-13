@@ -116,5 +116,5 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
 </div>
 
-!!! note "This is a plan, not a promise"
+??? note "This roadmap is a plan, not a promise"
     Items reflect current thinking, not a delivery commitment. Priorities can change based on community feedback, available effort, and technical findings along the way.
