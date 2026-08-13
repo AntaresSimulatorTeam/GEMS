@@ -66,6 +66,14 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     `Language`
 
+-   :material-speedometer:{ .lg .middle } **Warm start in GemsPy**
+
+    ---
+
+    Reuse a previous solution as a warm start to speed up GemsPy optimisation, matching a capability already available in Antares Simulator.
+
+    `Performance`
+
 </div>
 
 ## Later
@@ -105,14 +113,6 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
     New language operators to work across scenarios, such as CVaR constraints and equality constraints between variables across scenarios.
 
     `Language`
-
--   :material-speedometer:{ .lg .middle } **Warm start in GemsPy**
-
-    ---
-
-    Reuse a previous solution as a warm start to speed up GemsPy optimisation, matching a capability already available in Antares Simulator.
-
-    `Performance`
 
 </div>
 
