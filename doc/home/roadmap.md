@@ -26,6 +26,14 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     `Outputs & UI`
 
+-   :material-speedometer:{ .lg .middle } **Warm start in GemsPy**
+
+    ---
+
+    Reuse a previous solution as a warm start to speed up GemsPy optimisation, matching a capability already available in Antares Simulator.
+
+    `Performance`
+
 </div>
 
 ## Next
@@ -66,13 +74,6 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     `Language`
 
--   :material-speedometer:{ .lg .middle } **Warm start in GemsPy**
-
-    ---
-
-    Reuse a previous solution as a warm start to speed up GemsPy optimisation, matching a capability already available in Antares Simulator.
-
-    `Performance`
 
 </div>
 
