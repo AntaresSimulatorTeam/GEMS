@@ -11,9 +11,9 @@ The study folder is on the [GEMS Github repository](https://github.com/AntaresSi
     
     You can find the latest version on the [official releases page](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases).
 
-### Files Structure
+### File Structure
 
-The diagram below describe the file structure of the [study](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
+The diagram below describes the file structure of the [study](https://github.com/AntaresSimulatorTeam/GEMS/tree/main/resources/Documentation_Examples/QSE/QSE_2_Unit_Commitment).
 
 ```text
 QSE_2_Unit_Commitment/
