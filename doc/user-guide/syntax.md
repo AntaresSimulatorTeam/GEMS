@@ -38,7 +38,7 @@ Comparison operators are used to form constraints (equations or inequalities).
 | `<=` | Used in constraints to require `LHS ≤ RHS` |`expression_1 <= expression_2`|
 | `>=` | Used in constraints to require `LHS ≥ RHS` | `expression_1 >= expression_2`|
 
-**Important:** Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions). Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
+**Important:** Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions), with one exception: in [`extra-outputs`](file-structure/library.md#extra-output), a comparison operator evaluates to a boolean (`0`/`1`) instead of forming a constraint — e.g. `unsupplied_energy >= 0.000001` to flag loss of load. Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
  dividing the expression into a left-hand side (LHS) and right-hand side (RHS). Chained comparisons (e.g. `A <= B <= C`) are not permitted; if needed, break them into separate constraints.
 
 [**GEMS framework**](../index.md) **Mathematical Expression Syntax** does not support certain operations common in programming or math notation. For example, non-linear functions (log, sin, etc.) are not part of the expression syntax. If a mathematical relationship is non-linear, it must be linearized or reformulated.
@@ -57,7 +57,7 @@ expression: 3 * 66.32 - 5 / 3.14
 
 ## Parameters
 
-Parameters represent fixed input data values that can be referenced by their `id` as a simbol to include it's value in expressions. For example:
+Parameters represent fixed input data values that can be referenced by their `id` as a symbol to include its value in expressions. For example:
 
 ```yaml
 expression: 3 * parameter_1 + 6.345 / parameter_2
@@ -162,11 +162,11 @@ This is commonly used for cyclic constraints such as storage dynamics.
 expression: levels[t+1] = levels + injection - withdrawal
 ```
 
-Now, it can be concluded that terms `levels[t+1]` and `levels[0]` are referring to the same variable.
+Here, when `t` corresponds to the last time step, `levels[t+1]` is the same as `levels[0]`.
 
 ### **Time summation (full horizon)** `sum(X)`
 
-Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. If *X* is defined for each time step from *0* to *T-1*, then `sum(X)` produces a single scalar equal to $\sum_{t=0}^{T-1} X_t$.
+Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. `sum(X)` produces a single scalar equal to the sum of *X* over every time step from `0` to the [`last-time-step`](file-structure/solver-optimization.md#simulation-horizon) (inclusive).
 
 !!! note "Difference `sum` from `sum_connections`"
     - `sum(X)` : aggregate a time-dependent quantity **across time steps** (temporal summation).
@@ -211,7 +211,7 @@ If a constraint expression includes any time-indexed element (e.g. a time-depend
 |  Constraint | Functionality  |
 | -----------  | ----------  |
 |`x[t] <= 100`| For each time-step apply constraint|
-|`sum(x) <= 100`| Single constrant over entire time horizon|
+|`sum(x) <= 100`| Single constraint over entire time horizon|
 
 ## Objective Function
 
@@ -236,7 +236,7 @@ expression: sum(generation * generation_cost)
 In some cases, there is a  need to access dual results of variables or constraints of the linear problem. Depending on the case, the dual unary operator is :
 
 - dual result of a variable whose id is `my_var` is accessed by `-reduced_cost(variable_id)`
-- dual result of a constraint whose if is `my_constraint` is accessed by `dual(constraint_id)`
+- dual result of a constraint whose id is `my_constraint` is accessed by `dual(constraint_id)`
 
 ### Power Operator
 
@@ -248,7 +248,7 @@ In the context of a linear problem construction, its operands can only be litera
 expression: parameter_1^(1 + parameter_2)
 ```
 
- In the context of a extracting results, its operands can be literals, parameters or variables.
+ In the context of extracting results, its operands can be literals, parameters or variables.
 
 ```yaml
 expression: variable_1^(1 + parameter_1)
@@ -264,7 +264,7 @@ These n-ary operators `max(u, v, ...)`/`min(u, v, ...)` are used within any expr
 expression: parameter_1 < max(parameter_2, 100)
 ```
 
- In the context of a extracting results, its operands can be literals, parameters or variables.
+ In the context of extracting results, its operands can be literals, parameters or variables.
 
 ```yaml
 expression: min(variable_1, parameter_1)

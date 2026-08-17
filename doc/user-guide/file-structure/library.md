@@ -32,7 +32,7 @@ library:
 
 In this example, one port type `flow_port` and one model `bus` are defined. The model contains a port named `balance_port` of type `flow_port`, along with a binding constraint equation that enforces **First Kirchhoff Law**.
 
-The equation `sum_connections(injection.flow) = 0` follows the GEMS [**Mathematical Expression Syntax**](../mathematical-syntax.md#ports).
+The equation `sum_connections(flow_port.flow) = 0` follows the GEMS [**Mathematical Expression Syntax**](../syntax.md#ports).
 
 ## Rules for id naming
 
@@ -55,13 +55,13 @@ library:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id`| String | A unique identifier for the library. This `id` is used by [system files](../system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
+| `id`| String | A unique identifier for the library. This `id` is used by [system files](system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
 
 ### Port Types
 
-The `port-types` collection defines the set of port types available within a library. These port types can be used by models/components to communicate with each other by exchanging linear expressions through [connections](../system#connections).
+The `port-types` collection defines the set of port types available within a library. These port types can be used by models/components to communicate with each other by exchanging linear expressions through [connections](system.md#connections).
 
 This collection is **optional**. A library may define no port types, although such a library has limited practical use, as its models cannot interact through ports. Alternatively, a library may rely on port types defined in another library, enabling reuse and interoperability across libraries.
 
@@ -172,12 +172,12 @@ A model is an abstract object, that will be instantiated once or several times i
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`id`| String | A unique identifier for the model within a library. Must follow the [naming rules](#rules-for-id-naming). [System files](../system#components) reference the model by combining the library `id` and the model `id`.|
+|`id`| String | A unique identifier for the model within a library. Must follow the [naming rules](#rules-for-id-naming). [System files](system.md#components) reference the model by combining the library `id` and the model `id`.|
 | `description`| String | *(Optional)* Text description of the model.|
 
 #### Parameters
 
-A list of parameters that this model takes. Each parameter defines a configurable value for the model when it’s used in a system. For each parameter user can specify specify:
+A list of parameters that this model takes. Each parameter defines a configurable value for the model when it’s used in a system. For each parameter, a user can specify:
 
 | Element | Type | Description |
 |------|------|--------------------------|
@@ -185,7 +185,7 @@ A list of parameters that this model takes. Each parameter defines a configurabl
 | `time-dependent`| Boolean | `true` or `false`. If `true`, this parameter can vary over the simulation timeline (meaning it will be associated with a time series input). If `false`, it is treated as constant in time.|
 |`scenario-dependent`| Boolean | `true` or `false`. If `true`, the parameter can have different values in different scenarios (i.e., it requires scenario-specific data). If `false`, it does not vary between scenarios.|
 
-Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md). For how parameter values are assigned in the system file, see [System — Parameters](../system#parameters).
+Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md). For how parameter values are assigned in the system file, see [System — Parameters](system.md#parameters).
 
 #### Variables
 
@@ -229,7 +229,7 @@ A collection of definitions describing the ports **emitted** by a model. Each en
 |------|------|--------------------------|
 |`port`| String | The `id` of a port listed in the [ports section](#ports) of this model.|
 | `field`| String | The field `id` as defined in the corresponding [port type](#port-types).|
-|`definition`| [Mathematical Expression](../mathematical-syntax.md) | A linear expression giving the value of that port field, using the model’s variables and/or parameters.|
+|`definition`| [Mathematical Expression](../syntax.md) | A linear expression giving the value of that port field, using the model’s variables and/or parameters.|
 
 #### Constraints
 
@@ -238,7 +238,7 @@ A list of internal constraints of a model. These are equations or inequalities t
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique `id` for the constraint within the model. Must follow the [naming rules](#rules-for-id-naming).|
-| `expression`| [Mathematical Expression](../mathematical-syntax.md#constraints) | An equation or inequality using the model’s variables and parameters.|
+| `expression`| [Mathematical Expression](../syntax.md#constraints) | An equation or inequality using the model’s variables and parameters.|
 
 An explicit example is provided by the `storage` model constraint defining the initial reservoir level:
 
@@ -248,7 +248,7 @@ constraints:
     expression: level[0] = initial_level * reservoir_capacity
 ```
 
-Constraint **expression** must comply with the [**Mathematical Expression Syntax**](../mathematical-syntax.md#constraints) to ensure it is interpreted correctly during model evaluation.
+Constraint **expression** must comply with the [**Mathematical Expression Syntax**](../syntax.md#constraints) to ensure it is interpreted correctly during model evaluation.
 
 #### Binding-Constraints
 
@@ -257,9 +257,9 @@ A list of external constraints that involve model’s ports (i.e., constraints t
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique `id` for the binding constraint within the model. Must follow the [naming rules](#rules-for-id-naming).|
-| `expression`| [Mathematical Expression](../mathematical-syntax.md#constraints) | An equation or inequality that may use [port operators](../mathematical-syntax.md#port-operator) to aggregate expressions from connected components.|
+| `expression`| [Mathematical Expression](../syntax.md#constraints) | An equation or inequality that may use [port operators](../syntax.md#port-operator) to aggregate expressions from connected components.|
 
-Binding constraints are defined in the same manner as internal constraints, but they may include [port operators](../mathematical-syntax.md#port-operator), which aggregate linear expressions emitted through a port.
+Binding constraints are defined in the same manner as internal constraints, but they may include [port operators](../syntax.md#port-operator), which aggregate linear expressions emitted through a port.
 
 An explicit example is provided by the `bus` model implementing the energy balance constraint (**First Kirchhoff Law**):
 
@@ -277,7 +277,7 @@ An `objective contribution` is a linear expression that represents a cost or pen
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique `id` for the objective contribution within the model. Must follow the [naming rules](#rules-for-id-naming).|
-| `expression`| [Mathematical Expression](../mathematical-syntax.md) | A linear expression representing a cost or penalty term. All contributions across all components are summed to form the global minimisation objective.|
+| `expression`| [Mathematical Expression](../syntax.md) | A linear expression representing a cost or penalty term. All contributions across all components are summed to form the global minimisation objective.|
 
 ```yaml
 objective-contributions:
@@ -296,15 +296,15 @@ Each entry under `extra-outputs` must contain:
 | Field | Type | Description |
 |------|------|-----------------|
 | `id` | String | Unique identifier for the extra output within the model. Must follow the [naming rules](#rules-for-id-naming). |
-| `expression` | [Mathematical Expression](../mathematical-syntax.md) | A linear expression evaluated from optimal variable values after the solve. May use variables, parameters, and [direct port field access](../mathematical-syntax.md#direct-port-field-usage) (unlike constraints). |
+| `expression` | [Mathematical Expression](../syntax.md) | A linear expression evaluated from optimal variable values after the solve. May use variables, parameters, and [direct port field access](../syntax.md#direct-port-field-usage) (unlike constraints). |
 
-Unlike in constraints, [direct port field usage](../mathematical-syntax.md#direct-port-field-usage) **is allowed** in `extra-outputs`.
+Unlike in constraints, [direct port field usage](../syntax.md#direct-port-field-usage) **is allowed** in `extra-outputs`.
 
 #### Properties 
 
 (Optional) If `properties` keys are declared in the model, the declaration of  such keys and their values are mandatory for the components that instantiate the model.
 
-In the library file, each entry only declares the key name, they are specified by a value for each component within the [system file](../system#properties).
+In the library file, each entry only declares the key name, they are specified by a value for each component within the [system file](system.md#properties).
 
 | Element | Type | Description |
 |------|------|--------------------------|
