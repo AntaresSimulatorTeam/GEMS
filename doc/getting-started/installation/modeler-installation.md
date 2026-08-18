@@ -51,15 +51,6 @@ antares-modeler         # GEMS studies
 antares-solver          # hybrid and legacy studies
 antares-study-finder
 ```
-```txt
-cmake\
-pkgconfig\
-antares-batchrun.exe
-antares-config.exe
-antares-modeler         # GEMS studies
-antares-solver          # hybrid and legacy studies
-antares-study-finder
-```
 
 ### Launch the resolution of a GEMS study
 
