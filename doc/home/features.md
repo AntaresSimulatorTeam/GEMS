@@ -57,7 +57,7 @@ For what is being worked on next, see the [Roadmap](roadmap.md). For the history
 
     ---
 
-    No index sets to declare for time: refer to the current time step, shift it forward or backward for storage and ramping dynamics, and aggregate over the full horizon or a moving window. 
+    No index sets to declare for time: refer to the current time step, shift it forward or backward (e.g. for storage and ramping dynamics), and aggregate over the full horizon or a moving window. 
 
     `Language`
 
