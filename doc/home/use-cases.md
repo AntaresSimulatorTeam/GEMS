@@ -45,6 +45,17 @@ Each tile links to the reference page describing the feature in detail.
     [:octicons-arrow-right-24: Variables](../user-guide/file-structure/library.md#variables)
 
 
+-   :material-swap-horizontal:{ .lg .middle } **Solver-agnostic by design**
+
+    ---
+
+    Model equations live in YAML files, never in software code, and are interpreted at run time. The optimisation solver is a configuration choice with solver-specific options passed through.
+
+    `Solving`
+
+    [:octicons-arrow-right-24: Solver configuration](../user-guide/file-structure/solver-optimization.md)
+
+
 -   :material-clock-outline:{ .lg .middle } **Time as a native dimension**
 
     ---
@@ -95,6 +106,7 @@ Each tile links to the reference page describing the feature in detail.
     `Data`
 
     [:octicons-arrow-right-24: Scenario builder](../user-guide/file-structure/scenario-builder.md)
+    
 -   :material-tag-outline:{ .lg .middle } **Component properties and metadata**
 
     ---
@@ -104,18 +116,6 @@ Each tile links to the reference page describing the feature in detail.
     `Data`
 
     [:octicons-arrow-right-24: Component properties](../user-guide/file-structure/system.md#properties)
-
--   :material-swap-horizontal:{ .lg .middle } **Solver-agnostic by design**
-
-    ---
-
-    Model equations live in YAML files, never in software code, and are interpreted at run time. The optimisation solver is a configuration choice with solver-specific options passed through.
-
-    `Solving`
-
-    [:octicons-arrow-right-24: Solver configuration](../user-guide/file-structure/solver-optimization.md)
-
-
 
 
 
