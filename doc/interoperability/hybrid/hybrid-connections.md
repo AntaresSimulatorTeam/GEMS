@@ -6,9 +6,9 @@ In practical terms, connecting a GEMS **Generator** component to an Antares Lega
 
 The following steps describe how to **link the GEMS part of the study to the Legacy part**:
 
-## Abstract definition of the area-connection field type (in the [library](../../user-guide/file-structure/library.md) file)
+## Abstract definition of the area-connection field type (in the [library](../../user-guide/input-files/library.md) file)
 
-In order to successfully inject a GEMS component's port into an Antares Legacy Area, the port's type must declare which field will contribute to the optimization problem. This is configured in the [library](../../user-guide/file-structure/library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
+In order to successfully inject a GEMS component's port into an Antares Legacy Area, the port's type must declare which field will contribute to the optimization problem. This is configured in the [library](../../user-guide/input-files/library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
 
 The `area-connection` section is optional in general, but becomes mandatory when the port type is intended to be used in a **hybrid study**. It can accept 3 types of fields `injection-to-balance`, `spillage-bound` and `unsupplied-energy-bound` :
 
@@ -87,7 +87,7 @@ When connecting a component to an area, you must respect conventions on the sign
         ```
 
 
-## Definition of the area-connections (in the [system](../../user-guide/file-structure/system.md) file)
+## Definition of the area-connections (in the [system](../../user-guide/input-files/system.md) file)
 
 The `area-connections` section of the system file is used to declare each connection between a GEMS component and an Antares Legacy Area.
 
