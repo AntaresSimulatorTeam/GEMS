@@ -10,6 +10,8 @@ description: GEMS is a high-level, object- and graph-oriented algebraic modellin
 
 GEMS is a high-level modelling language, close to mathematical syntax, and a data structure for describing energy systems. Compared to other algebraic modelling languages, GEMS is object- and graph-oriented, making it particularly well-suited to representing energy systems.
 
+To go further, see the [Key Principles](home/key-principles.md) behind the language and the [Features](home/features.md) it supports today.
+
 ## Vision and Ambitions for GEMS
 
 The ambition behind the GEMS language is to **build and support a community of energy modellers and energy foresight practitioners** who can easily share models, assumptions, and studies. This approach is particularly important as future energy systems are increasingly conceived in a **multi-energy, multi-sector landscape**, characterised by rising complexity and tightly coupled interactions between energy carriers and sectors.
