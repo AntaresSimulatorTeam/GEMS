@@ -1,6 +1,6 @@
 # Roadmap
 
-This page gives a high-level view of where the GEMS language and its ecosystem are heading. It is grouped into three horizons: **Now**, **Next**, and **Later**.
+Alongside the [Features](features.md) page, this page gives a high-level view of where the GEMS language and its ecosystem are heading. It is grouped into three horizons: **Now**, **Next**, and **Later**.
 
 Looking for what has already shipped? Check the Release Notes for [the GEMS language](release-notes.md) and its two interpreters, [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) and [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy/releases). If you have a feature you'd like to see prioritized, or a use case we should know about, open an issue or start a discussion on the [GitHub repository](https://github.com/AntaresSimulatorTeam/GEMS).
 

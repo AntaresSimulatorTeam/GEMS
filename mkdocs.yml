@@ -104,8 +104,9 @@ nav:
   - Home:
       - Home: index.md
       - Key Principles: home/key-principles.md
-      - Features and Use Cases: home/use-cases.md
+      - Use Cases: home/use-cases.md
       - Users of GEMS: home/users.md
+      - Use Cases: home/features.md
       - Roadmap: home/roadmap.md
       - Release Notes: home/release-notes.md
   - Overview:
