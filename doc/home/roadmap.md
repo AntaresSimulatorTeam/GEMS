@@ -22,7 +22,7 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     ---
 
-    Connect the ViewsBuilder tool directly to Antares Simulator and GemsPy outputs.
+    Connect the ViewsBuilder tool directly to Antares Simulator and GemsPy outputs, to enable seamless custom output metrics definition and computation.
 
     `Outputs & UI`
 
