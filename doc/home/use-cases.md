@@ -18,7 +18,7 @@ Each tile links to the reference page describing the feature in detail.
 
     ---
 
-    Define abstract models once in a library, instantiate them as components, and connect them through typed ports. Balance equations are written once inside a model and resolved over the whole graph, so a system is assembled rather than hard-coded.
+    Define abstract models once in a library, instantiate them as components, and connect them through typed ports. 
 
     `Language`
 
@@ -28,7 +28,7 @@ Each tile links to the reference page describing the feature in detail.
 
     ---
 
-    Write equations as text close to the mathematics — arithmetic and comparison operators, `min`/`max`/`floor`/`ceil`/`abs`/`round`, powers — with linearity checked by the interpreter so the resulting problem stays solvable.
+    Write equations as text close to the mathematics — arithmetic and comparison operators, `min`/`max`/`floor`/`ceil`/`abs`/`round`, powers — with linearity checked by the interpreters.
 
     `Language`
 
@@ -44,11 +44,11 @@ Each tile links to the reference page describing the feature in detail.
 
     [:octicons-arrow-right-24: Port types](../user-guide/file-structure/library.md#port-types)
 
--   :material-clock-outline:{ .lg .middle } **Time built into the language**
+-   :material-clock-outline:{ .lg .middle } **Time as a native dimension**
 
     ---
 
-    No index sets to declare: refer to the current time step, shift it forward or backward for storage and ramping dynamics, and aggregate over the full horizon or a moving window. Shifted indices wrap around to keep the horizon periodic.
+    No index sets to declare for time: refer to the current time step, shift it forward or backward for storage and ramping dynamics, and aggregate over the full horizon or a moving window. 
 
     `Language`
 
@@ -58,7 +58,7 @@ Each tile links to the reference page describing the feature in detail.
 
     ---
 
-    Parameters and variables can vary by scenario alongside time, and the expectation operator aggregates across the scenario dimension — the basis for Monte Carlo studies and for coupling scenarios in stochastic formulations.
+    Parameters and variables can vary by scenario alongside time, and the expectation operator aggregates across the scenario dimension: the basis for Monte Carlo studies and for coupling scenarios through 2-stage stochastic formulations.
 
     `Language`
 
@@ -78,7 +78,7 @@ Each tile links to the reference page describing the feature in detail.
 
     ---
 
-    Attach arbitrary key/value properties to components — carrier, technology, operator — either declared by the model or added freely. They carry no mathematical meaning and are available downstream for filtering, aggregation and visualisation.
+    Attach arbitrary key/value properties to components (e.g. carrier, technology, operator) either declared by the model or added freely. They are available downstream for filtering, aggregation and visualisation.
 
     `Data`
 
@@ -98,7 +98,7 @@ Each tile links to the reference page describing the feature in detail.
 
     ---
 
-    Variables can be continuous, integer or binary, with bounds given by parameters or expressions. Discrete operational decisions — unit commitment, start-up and shut-down logic — are expressed directly in the model.
+    Variables can be continuous, integer or binary, with bounds given by parameters or expressions. Discrete operational decisions (e.g. unit commitment, start-up and shut-down logic) are expressed directly in the model.
 
     `Solving`
 
@@ -118,7 +118,7 @@ Each tile links to the reference page describing the feature in detail.
 
     ---
 
-    A long horizon can be solved in successive blocks rather than as one monolithic problem, the basis for rolling-horizon resolution. Every result carries the block it came from. Block workflows are configured outside the system file and their coverage differs between interpreters.
+    A long horizon can be solved in successive blocks rather than as one monolithic problem, the basis for rolling-horizon resolution. Every result carries the block it came from. 
 
     `Solving`
 
@@ -128,21 +128,12 @@ Each tile links to the reference page describing the feature in detail.
 
     ---
 
-    One flat table holds the value of every variable, constraint, port field and extra output, identified by component, time step and scenario. It includes duals and reduced costs for marginal prices, and user-defined extra outputs evaluated after the solve — where comparisons become 0/1 flags, for indicators such as loss of load.
+    One flat table holds the value of every variable, constraint, port field and extra output, identified by component, time step and scenario. It includes duals and reduced costs for marginal prices, and user-defined extra outputs evaluated after the solve.
 
     `Outputs`
 
     [:octicons-arrow-right-24: Simulation table](../user-guide/outputs/simulation-table.md)
 
--   :material-file-export-outline:{ .lg .middle } **Inspect the problem you actually solve**
-
-    ---
-
-    The fully assembled linear or mixed-integer problem can be exported in the standard MPS format. Nothing about the formulation stays hidden inside the tool, which makes results verifiable, debuggable and comparable across solvers.
-
-    `Outputs`
-
-    [:octicons-arrow-right-24: Optimization problem files](../user-guide/outputs/optimization-problem-files.md)
 
 </div>
 
