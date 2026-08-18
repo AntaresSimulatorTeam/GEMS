@@ -34,15 +34,16 @@ Each tile links to the reference page describing the feature in detail.
 
     [:octicons-arrow-right-24: GEMS syntax](../user-guide/syntax.md)
 
--   :material-transit-connection-variant:{ .lg .middle } **Multi-energy and sector coupling**
+-   :material-vector-polyline:{ .lg .middle } **LP, MIP and MILP problems**
 
     ---
 
-    Port types are defined by the user, not fixed by the tool. A single component can expose several of them at once — power flow, cumulative energy, emissions — making integrated multi-energy and multi-sector systems a natural fit.
+    Variables can be continuous, integer or binary, with bounds given by parameters or expressions. Discrete operational decisions (e.g. unit commitment, start-up and shut-down logic) are expressed directly in the model.
 
-    `Language`
+    `Solving`
 
-    [:octicons-arrow-right-24: Port types](../user-guide/file-structure/library.md#port-types)
+    [:octicons-arrow-right-24: Variables](../user-guide/file-structure/library.md#variables)
+
 
 -   :material-clock-outline:{ .lg .middle } **Time as a native dimension**
 
@@ -64,45 +65,6 @@ Each tile links to the reference page describing the feature in detail.
 
     [:octicons-arrow-right-24: Scenario operator](../user-guide/syntax.md#scenario-operator)
 
--   :material-file-table-outline:{ .lg .middle } **Scenario building from data series**
-
-    ---
-
-    Time-dependent, scenario-dependent and time × scenario data live in plain CSV files. The scenario builder maps each Monte Carlo scenario to a data series column per scenario group, so the same system can be replayed against different datasets.
-
-    `Data`
-
-    [:octicons-arrow-right-24: Scenario builder](../user-guide/file-structure/scenario-builder.md)
-
--   :material-tag-outline:{ .lg .middle } **Component properties and metadata**
-
-    ---
-
-    Attach arbitrary key/value properties to components (e.g. carrier, technology, operator) either declared by the model or added freely. They are available downstream for filtering, aggregation and visualisation.
-
-    `Data`
-
-    [:octicons-arrow-right-24: Component properties](../user-guide/file-structure/system.md#properties)
-
--   :material-swap-horizontal:{ .lg .middle } **Solver-agnostic by design**
-
-    ---
-
-    Model equations live in YAML files, never in software code, and are interpreted at run time. The optimisation solver is a configuration choice — `sirius`, `scip`, `xpress`, `gurobi`, `highs`, `coin`, `glpk` or `pdlp` — with solver-specific options passed through.
-
-    `Solving`
-
-    [:octicons-arrow-right-24: Solver configuration](../user-guide/file-structure/solver-optimization.md)
-
--   :material-vector-polyline:{ .lg .middle } **LP, MIP and MILP problems**
-
-    ---
-
-    Variables can be continuous, integer or binary, with bounds given by parameters or expressions. Discrete operational decisions (e.g. unit commitment, start-up and shut-down logic) are expressed directly in the model.
-
-    `Solving`
-
-    [:octicons-arrow-right-24: Variables](../user-guide/file-structure/library.md#variables)
 
 -   :material-trending-up:{ .lg .middle } **Investment and two-stage stochastic optimisation**
 
@@ -123,6 +85,39 @@ Each tile links to the reference page describing the feature in detail.
     `Solving`
 
     [:octicons-arrow-right-24: The `block` column](../user-guide/outputs/simulation-table.md)
+    
+-   :material-file-table-outline:{ .lg .middle } **Scenario building from data series**
+
+    ---
+
+    Time-dependent, scenario-dependent and time × scenario data live in plain CSV files. The scenario builder maps each Monte Carlo scenario to a data series column per scenario group, so the same system can be replayed against different datasets.
+
+    `Data`
+
+    [:octicons-arrow-right-24: Scenario builder](../user-guide/file-structure/scenario-builder.md)
+-   :material-tag-outline:{ .lg .middle } **Component properties and metadata**
+
+    ---
+
+    Attach arbitrary key/value properties to components (e.g. carrier, technology, operator) either declared by the model or added freely. They are available downstream for filtering, aggregation and visualisation.
+
+    `Data`
+
+    [:octicons-arrow-right-24: Component properties](../user-guide/file-structure/system.md#properties)
+
+-   :material-swap-horizontal:{ .lg .middle } **Solver-agnostic by design**
+
+    ---
+
+    Model equations live in YAML files, never in software code, and are interpreted at run time. The optimisation solver is a configuration choice with solver-specific options passed through.
+
+    `Solving`
+
+    [:octicons-arrow-right-24: Solver configuration](../user-guide/file-structure/solver-optimization.md)
+
+
+
+
 
 -   :material-table-large:{ .lg .middle } **Full, granular results**
 
