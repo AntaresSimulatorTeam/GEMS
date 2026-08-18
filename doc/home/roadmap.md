@@ -2,7 +2,7 @@
 
 Alongside the [Features](features.md) page, this page gives a high-level view of where the GEMS language and its ecosystem are heading. It is grouped into three horizons: **Now**, **Next**, and **Later**.
 
-Looking for what has already shipped? Check the Release Notes for [the GEMS language](release-notes.md) and its two interpreters, [Antares Simulator](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) and [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy/releases). If you have a feature you'd like to see prioritized, or a use case we should know about, open an issue or start a discussion on the [GitHub repository](https://github.com/AntaresSimulatorTeam/GEMS).
+Looking for what has already shipped? Check the Change Logs for [the GEMS language](release-notes.md) and its two interpreters, [Antares Simulator](https://antares-doc.readthedocs.io/en/latest/overview/changelogs/) and [GemsPy](https://gemspy.readthedocs.io/en/latest/CHANGELOG/). If you have a feature you'd like to see prioritized, or a use case we should know about, open an issue or start a discussion on the [GitHub repository](https://github.com/AntaresSimulatorTeam/GEMS).
 
 ## Now
 
@@ -22,15 +22,15 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     ---
 
-    Connect the ViewsBuilder tool directly to Antares Simulator and GemsPy outputs, to enable seamless custom output metrics definition and computation.
+    Connect the ViewsBuilder tool directly to the GEMS interpreters (Antares Simulator and GemsPy) outputs, to enable seamless custom output metrics definition and computation.
 
     `Outputs & UI`
 
--   :material-speedometer:{ .lg .middle } **Warm start in GemsPy**
+-   :material-speedometer:{ .lg .middle } **Warm start**
 
     ---
 
-    Reuse a previous solution as a warm start to speed up GemsPy optimisation, matching a capability already available in Antares Simulator.
+    Configuration options inside the GEMS syntax to reuse a previous solution as a warm start to speed up optimisation.
 
     `Performance`
 
@@ -46,7 +46,7 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     ---
 
-    Allow connections between components to hold weights, enabling flow-based constraints and the modelling of advanced processes.
+     Allow connections between components to hold weights, to facilitate, among other, the modelling of flow-based constraints or of complex energy processes.
 
     `Language`
 
@@ -62,7 +62,7 @@ Looking for what has already shipped? Check the Release Notes for [the GEMS lang
 
     ---
 
-    Operators to declare dynamics and constraints across blocks, enabling policy constraints — such as security of supply or CO2 targets — to be handled inside decomposed investment problems.
+    Language operators to declare dynamics and constraints across blocks, enabling policy constraints — such as security of supply or CO2 targets — to be handled inside decomposed investment problems.
 
     `Language`
 
