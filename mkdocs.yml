@@ -156,6 +156,8 @@ nav:
           - Current Limitations of the Converter: interoperability/pypsa-to-gems-converter/current-limitations.md
           - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: interoperability/pypsa-to-gems-converter/step-by-step-guide.md
           - Comparing Results Between GEMS Modeler and PyPSA: interoperability/pypsa-to-gems-converter/comparing-results.md
+      - Antares Legacy Converter:
+          - Overview: interoperability/legacy/overview.md
       - Antares Hybrid Mode:
           - Overview: interoperability/hybrid/overview.md
           - Coupling GEMS Components with Legacy Areas: interoperability/hybrid/hybrid-connections.md
