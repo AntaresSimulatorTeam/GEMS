@@ -125,7 +125,9 @@ system:
 </div>
 </div>
 
-## Key Design Principles and Capabilities
+## Key Design Principles
+
+This section explains the design choices behind the language. For a structured overview of what the language supports today, see the [Features](features.md) page.
 
 ### Separating Model Definition from Solver Execution
 
@@ -168,31 +170,6 @@ system:
   GEMS natively incorporates <strong> time and scenario dimensions</strong> into its modelling framework.
   <strong>Temporal </strong> and <strong>scenarios </strong> indices are natively available in the language, either in an implicit or explicit form. This allows users to easily define <strong>dynamic behaviours, inter-temporal constraints, and scenario-based analyses</strong> in a clear and structured way, while ensuring consistency and scalability of the resulting optimisation problems.
   </p>
-</div>
-
-### Supported Optimisation Problem Classes
-
-<div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
-  <img src="../../assets/Core_concept_optimisation_problems.png" width="40" alt="Optimisation icon"/>
-
-  <div>
-    <p style="margin: 0 0 8px 0;">
-      GEMS supports a wide range of optimisation formulations commonly used in energy system studies.
-      It is designed to handle:
-    </p>
-
-    <ul style="margin: 0; padding-left: 20px;">
-      <li>
-        <strong> <a href="https://en.wikipedia.org/wiki/Integer_programming">Mixed Integer Linear Programming (MILP)</a> </strong> problems, enabling the representation
-        of discrete operational or investment decisions alongside continuous operational variables.
-      </li>
-      <li>
-        <strong> <a href="https://en.wikipedia.org/wiki/Stochastic_programming">Two-stage stochastic optimisation </a> </strong> problems, where first-stage (here-and-now)
-        decisions are coupled with second-stage (recourse) decisions, providing a robust
-        framework for decision-making under uncertainty.
-      </li>
-    </ul>
-  </div>
 </div>
 
 ### YAML-Based, User-Friendly Model Definition

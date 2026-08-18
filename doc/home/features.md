@@ -2,11 +2,11 @@
 description: What the GEMS language supports today - graph-based modelling, native time and scenario dimensions, LP/MIP/MILP and two-stage stochastic optimisation, granular outputs.
 ---
 
-# Features 
+# Features
 
-This page summarises what the GEMS language and format support **today**, and the kinds of studies they were designed for.
+This page summarises what the GEMS language and format support **today**.
 
-For what is being worked on next, see the [Roadmap](roadmap.md). For the history of changes, see the [Release Notes](release-notes.md).
+For the design philosophy behind these capabilities, see [Core concepts](key-principles.md); for the kinds of studies GEMS was designed for, see [Use Cases](use-cases.md). For what is being worked on next, see the [Roadmap](roadmap.md), and for the history of changes, see the [Release Notes](release-notes.md).
 
 
 <div class="grid cards" markdown>

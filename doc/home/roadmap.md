@@ -1,3 +1,7 @@
+---
+description: The public roadmap of the GEMS language - what is in progress now, planned next, and envisioned later.
+---
+
 # Roadmap
 
 Alongside the [Features](features.md) page, this page gives a high-level view of where the GEMS language and its ecosystem are heading. It is grouped into three horizons: **Now**, **Next**, and **Later**.
@@ -24,7 +28,7 @@ Looking for what has already shipped? Check the Change Logs for [the GEMS langua
 
     Connect the ViewsBuilder tool directly to the GEMS interpreters (Antares Simulator and GemsPy) outputs, to enable seamless custom output metrics definition and computation.
 
-    `Outputs & UI`
+    `Outputs`
 
 -   :material-speedometer:{ .lg .middle } **Warm start**
 
@@ -32,7 +36,7 @@ Looking for what has already shipped? Check the Change Logs for [the GEMS langua
 
     Configuration options inside the GEMS syntax to reuse a previous solution as a warm start to speed up optimisation.
 
-    `Performance`
+    `Solving`
 
 </div>
 
@@ -46,7 +50,7 @@ Looking for what has already shipped? Check the Change Logs for [the GEMS langua
 
     ---
 
-     Allow connections between components to hold weights, to facilitate, among other, the modelling of flow-based constraints or of complex energy processes.
+    Allow connections between components to hold weights, to facilitate, among others, the modelling of flow-based constraints or of complex energy processes.
 
     `Language`
 
@@ -72,7 +76,7 @@ Looking for what has already shipped? Check the Change Logs for [the GEMS langua
 
     Support the Parquet file format for input data series, for faster loading and smaller files on large studies.
 
-    `Language`
+    `Data`
 
 
 </div>
@@ -97,7 +101,7 @@ Looking for what has already shipped? Check the Change Logs for [the GEMS langua
 
     Built-in heuristics for hydro reservoir management, including water value computation.
 
-    `Language`
+    `Solving`
 
 -   :material-chart-scatter-plot:{ .lg .middle } **Pareto fronts and sensitivity analysis**
 
@@ -105,7 +109,7 @@ Looking for what has already shipped? Check the Change Logs for [the GEMS langua
 
     Native support for multi-objective Pareto front generation and sensitivity analysis on study parameters.
 
-    `Language`
+    `Solving`
 
 -   :material-source-branch:{ .lg .middle } **Cross-scenario operators**
 

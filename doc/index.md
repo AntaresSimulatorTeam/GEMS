@@ -74,11 +74,15 @@ The following **interpreters** can be used to run Gems modelling language :
 
     [:octicons-arrow-right-24: Glossary](overview/glossary.md)
 
--   :material-new-box:{ .lg .middle } **Release Notes**
+-   :material-new-box:{ .lg .middle } **Features & Roadmap**
 
     ---
 
-    Check out the latest features, bug fixes and improvements in the release notes.
+    What the GEMS language supports **today**, and where it is heading **next**.
+
+    [:octicons-arrow-right-24: Features](home/features.md)
+
+    [:octicons-arrow-right-24: Roadmap](home/roadmap.md)
 
     [:octicons-arrow-right-24: What's new](home/release-notes.md)
 
