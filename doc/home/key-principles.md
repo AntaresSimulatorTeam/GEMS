@@ -43,6 +43,19 @@ library:
         - id: balance
           expression: sum_connections(flow_port.flow) = 0
 
+    - id: load
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: -load
+
     - id: generator
       parameters:
         - id: p_min
@@ -93,13 +106,6 @@ system:
   model-libraries: example_library
   components:
 
-    - id: load_1
-      model: example_library.load
-      scenario-group: load_group
-      parameters:
-        - id: load
-          time-dependent: true
-          value: demand_profile
 
     - id: bus_1
       model: example_library.bus
@@ -108,6 +114,14 @@ system:
           value: 1000
         - id: unsupplied_energy_cost
           value: 10000
+
+    - id: load_1
+      model: example_library.load
+      scenario-group: load_group
+      parameters:
+        - id: load
+          time-dependent: true
+          value: demand_profile
 
     - id: generator_1
       model: example_library.generator
