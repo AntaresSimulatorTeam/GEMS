@@ -1,4 +1,4 @@
-# File Structure
+# Input Files
 
 This section provides a high-level overview of the specific files used by [**GEMS framework**](../../index.md) and how they collectively describe a complete GEMS study.
 
@@ -14,6 +14,7 @@ The diagram below illustrates the typical organisation of a GEMS study:
 flowchart LR
     Study["📁 GEMS_Study/"]
     Input["📁 input/"]
+    Catalogs["📁 catalogs/ 🔗"]
     ModelLib["📁 model-libraries/ 🔗"]
     DataSeries["📁 data-series/ 🔗"]
     
@@ -24,12 +25,19 @@ flowchart LR
     Data1["📊 data-series_1.csv"]
     Data2["📊 data-series_2.csv"]
     Scenario["📄 modeler-scenariobuilder.dat 🔗"]
+    Calendar["📊 calendar_file.csv"]
+    Taxonomy["📊 taxonomy.yml 🔗"]
+    Views_Configuration["📊views_config.yml 🔗"]
     
     Study --> Input
     Study --> Params
     Input --> ModelLib
     Input --> System
     Input --> DataSeries
+    Input --> Catalogs
+    Input --> Taxonomy
+    Input --> Calendar
+    Input --> Views_Configuration
     ModelLib --> Lib1
     ModelLib --> Lib2
     DataSeries --> Data1
@@ -37,16 +45,20 @@ flowchart LR
     DataSeries --> Scenario
     
     style Study stroke:#d97706,stroke-width:3px,color:#ffffff
-    style Input stroke:#0891b2,stroke-width:2px,color:#ffffff
-    style ModelLib stroke:#0891b2,stroke-width:2px,color:#ffffff
-    style DataSeries stroke:#0891b2,stroke-width:2px,color:#ffffff
+    style Input stroke:#0891b2,stroke-width:3px,color:#ffffff
+    style ModelLib stroke:#0891b2,stroke-width:3px,color:#ffffff
+    style DataSeries stroke:#0891b2,stroke-width:3px,color:#ffffff
+    style Catalogs stroke:#0dcaf0,stroke-width:3px,color:#ffffff
     style System stroke:#16a34a,stroke-width:3px,color:#ffffff
+    style Taxonomy stroke:#28a745,stroke-width:3px,color:#ffffff
+    style Views_Configuration stroke:#28a745,stroke-width:3px,color:#ffffff
+    style Calendar stroke:#28a745,stroke-width:1px,color:#ffffff
     style Params stroke:#16a34a,stroke-width:3px,color:#ffffff
     style Lib1 stroke:#16a34a,stroke-width:3px,color:#ffffff
-    style Lib2 stroke:#3b82f6,stroke-width:2px,color:#ffffff
-    style Data1 stroke:#3b82f6,stroke-width:2px,color:#ffffff
-    style Data2 stroke:#3b82f6,stroke-width:2px,color:#ffffff
-    style Scenario stroke:#3b82f6,stroke-width:2px,color:#ffffff
+    style Lib2 stroke:#3b82f6,stroke-width:3px,color:#ffffff
+    style Data1 stroke:#3b82f6,stroke-width:3px,color:#ffffff
+    style Data2 stroke:#3b82f6,stroke-width:3px,color:#ffffff
+    style Scenario stroke:#3b82f6,stroke-width:3px,color:#ffffff
 
     
     click ModelLib "../library/"
@@ -54,6 +66,9 @@ flowchart LR
     click DataSeries "../data-series/"
     click Scenario "../scenario-builder/"
     click Params "../solver-optimization/"
+    click Catalogs "../catalog/"
+    click Taxonomy "../taxonomy/"
+    click Views_Configuration "../views-config/"
 ```
 
 The following pages of this section describe each file and folder in detail. Each page focuses on the role of a specific file, its expected structure, and how it interacts with the rest of the file to form a consistent and executable GEMS study.
