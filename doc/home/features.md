@@ -88,7 +88,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     ---
 
-    A long horizon can be solved in successive blocks rather than as one monolithic problem, the basis for rolling-horizon resolution. Every result carries the block it came from. 
+    A long horizon can be solved in successive (or independent) blocks rather than as one monolithic problem. Every result carries the block it came from. 
 
     `Solving`
 
