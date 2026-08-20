@@ -41,6 +41,14 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     [:octicons-arrow-right-24: Variables](../user-guide/file-structure/library.md#variables)
 
+-   :material-decimal-decrease:{ .lg .middle } **Rounding heuristics for integer decisions**
+
+    ---
+
+    When solving a mixed-integer problem to proven optimality is too costly, a rounding heuristic gives a fast, feasible answer instead: the relaxed problem is solved first, integer decisions are rounded, and the remaining continuous decisions are re-optimised. The heuristics are built into the interpreters and referenced from the study, so the same models can be run in exact or heuristic mode.
+
+    `Solving`
+
 
 -   :material-swap-horizontal:{ .lg .middle } **Solver-agnostic by design**
 
