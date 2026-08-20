@@ -4,7 +4,7 @@ When constructing hybrid studies, the following important constraints should be 
 
 ## Time Series Length
 
-The [time series data](../../user-guide/file-structure/data-series.md) used in GEMS modeler components (for example, the generation profile of a renewable) must align with the Antares simulation horizon and resolution. In practice, this means the number of time steps and the granularity of GEMS time-dependent inputs should match the solver's expectations (e.g., 8760 hourly values for a yearly hourly simulation). The hybrid solver will not accept a modeler time series that doesn't fit the configured simulation timeframe.
+The [time series data](../../user-guide/input-files/data-series.md) used in GEMS modeler components (for example, the generation profile of a renewable) must align with the Antares simulation horizon and resolution. In practice, this means the number of time steps and the granularity of GEMS time-dependent inputs should match the solver's expectations (e.g., 8760 hourly values for a yearly hourly simulation). The hybrid solver will not accept a modeler time series that doesn't fit the configured simulation timeframe.
 
 ## Integer/Binary Decision Variables
 

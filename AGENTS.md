@@ -50,11 +50,11 @@ Full reference documentation lives in `doc/`. Read the relevant file before edit
 
 | Topic | Reference |
 |-------|-----------|
-| GEMS study file types and domains (model libraries, system, timeseries, solver, business views) | [`doc/overview/file-structure.md`](doc/overview/file-structure.md) |
-| Library file structure (port-types, models, parameters, variables, constraints) | [`doc/user-guide/file-structure/library.md`](doc/user-guide/file-structure/library.md) |
-| Mathematical expression syntax (operators, time indexing, aggregation, linearity) | [`doc/user-guide/mathematical-syntax.md`](doc/user-guide/mathematical-syntax.md) |
-| Study folder layout (system.yml, data-series/, model-libraries/, optim-config.yml, parameters.yml) | [`doc/user-guide/file-structure/overview.md`](doc/user-guide/file-structure/overview.md) |
-| System file (components, connections, parameter assignment) | [`doc/user-guide/file-structure/system.md`](doc/user-guide/file-structure/system.md) |
+| GEMS study file types and domains (model libraries, system, timeseries, solver, views) | [`doc/overview/file-structure.md`](doc/overview/file-structure.md) |
+| Library file structure (port-types, models, parameters, variables, constraints) | [`doc/user-guide/input-files/library.md`](doc/user-guide/input-files/library.md) |
+| Mathematical expression syntax (operators, time indexing, aggregation, linearity) | [`doc/user-guide/syntax.md`](doc/user-guide/syntax.md) |
+| Study folder layout (system.yml, data-series/, model-libraries/, optim-config.yml, parameters.yml) | [`doc/user-guide/input-files/overview.md`](doc/user-guide/input-files/overview.md) |
+| System file (components, connections, parameter assignment) | [`doc/user-guide/input-files/system.md`](doc/user-guide/input-files/system.md) |
 
 ---
 
