@@ -19,7 +19,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     `Language`
 
-    [:octicons-arrow-right-24: Library file](../user-guide/file-structure/library.md)
+    [:octicons-arrow-right-24: Library file](../user-guide/input-files/library.md)
 
 -   :material-function-variant:{ .lg .middle } **Readable, math-like expression syntax**
 
@@ -39,7 +39,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     `Solving`
 
-    [:octicons-arrow-right-24: Variables](../user-guide/file-structure/library.md#variables)
+    [:octicons-arrow-right-24: Variables](../user-guide/input-files/library.md#variables)
 
 -   :material-decimal-decrease:{ .lg .middle } **Rounding heuristics for integer decisions**
 
@@ -58,7 +58,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     `Solving`
 
-    [:octicons-arrow-right-24: Solver configuration](../user-guide/file-structure/solver-optimization.md)
+    [:octicons-arrow-right-24: Solver configuration](../user-guide/input-files/solver-optimization.md)
 
 
 -   :material-clock-outline:{ .lg .middle } **Time as a native dimension**
@@ -90,7 +90,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     `Solving`
 
-    [:octicons-arrow-right-24: Objective contributions](../user-guide/file-structure/library.md#objective-contribution)
+    [:octicons-arrow-right-24: Objective contributions](../user-guide/input-files/library.md#objective-contribution)
 
 -   :material-view-week-outline:{ .lg .middle } **Block decomposition of the horizon**
 
@@ -110,7 +110,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     `Data`
 
-    [:octicons-arrow-right-24: Scenario builder](../user-guide/file-structure/scenario-builder.md)
+    [:octicons-arrow-right-24: Scenario builder](../user-guide/input-files/scenario-builder.md)
     
 -   :material-tag-outline:{ .lg .middle } **Component properties and metadata**
 
@@ -120,7 +120,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     `Data`
 
-    [:octicons-arrow-right-24: Component properties](../user-guide/file-structure/system.md#properties)
+    [:octicons-arrow-right-24: Component properties](../user-guide/input-files/system.md#properties)
 
 
 
