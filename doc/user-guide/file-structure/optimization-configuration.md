@@ -44,3 +44,78 @@ models:
         - id: level_equation
           mode: cyclic 
 ```
+
+## Structure of the Optimisation Configuration File
+
+### (optional) Time Scope
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `first-time-step` | Integer | `0` | First time step index |
+| `last-time-step` | Integer | `0` | Last time step index  |
+
+
+### (optional) Scenario Scope
+
+The `scenario-scope` key defines which Monte Carlo scenarios are executed. When absent, only scenario `0` is run. Two forms are mutually exclusive:
+
+**Inline form** — list scenario indices directly:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `scenario-scope.include` | List of integers or ranges (e.g. `"0-9"`) | Scenarios to run |
+| `scenario-scope.exclude` | List of integers | (optional) Scenarios to remove from `include` |
+
+**Playlist-file form** — reference an external JSON file (flat array of indices):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `scenario-scope.playlist-file` | Path | JSON file containing scenario indices |
+| `scenario-scope.exclude` | List of integers | (optional) Scenarios to further filter from the playlist |
+
+Example of scenario-scope configuration
+```yaml
+scenario-scope:
+  playlist-file: mc_playlist.json
+  exclude:
+    - 1
+    - "3-4"
+```
+Example of `mc_playlist.json`
+```yaml
+[0, 1, 2, 3, 4, 5]
+```
+
+### (optional) Solver
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `solver.name` | String | `highs` | Solver name between :`highs`, `xpress`, `gurobi` |
+| `solver.logs` | Boolean | `false` | Enable solver output in logs |
+| `solver.parameters` | String | None | Space-separated `key=value` pairs passed to the solver |
+
+
+### (optional) Resolution Strategy
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `resolution-mode` | String | `frontal` | Decomposition strategy: `frontal`, `sequential-subproblems`, `parallel-subproblems`, `benders-decomposition` |
+| `block-length` | Integer | None | Number of time steps per optimisation block (not required for `frontal mode`) |
+| `block-overlap` | Integer | `0` | Overlap time steps between consecutive blocks |
+
+Explanations of the different resolution modes:
+| Mode | Description |
+|------|-------------|
+| `frontal` | Entire horizon solved as a single LP |
+| `sequential-subproblems` | Consecutive windows solved sequentially; state carried over between blocks |
+| `parallel-subproblems` | Independent blocks solved in parallel |
+| `benders-decomposition` | Investment (master) separated from operation (subproblems) — required for investment studies |
+
+
+### (optional) Per-Model Configuration
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `out-of-bounds-processing.constraints[].mode` | String | `cyclic` | How to handle time-shifted references at block boundaries: `cyclic` (wrap around) or `drop` (skip constraint) |
+| `decomposition` | String | `subproblems` | Benders partition: `subproblems`, `master`, `master-and-subproblems` |
+| `heuristics.integer-strategy` | String | `exact` | Integer handling: `exact` (MILP), `relaxed` (continuous), `heuristic` (relax then refine) |
