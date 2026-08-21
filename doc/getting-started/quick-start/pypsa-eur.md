@@ -117,7 +117,7 @@ Then edit `config/config.yaml` to set the target countries, number of clusters, 
 
 ### 2.5 Run the workflow
 
-Now, we can download data from PyPSA Eur.
+Now, we can download data from PyPSA-Eur.
 
 !!! warning
 
@@ -137,7 +137,7 @@ pixi run snakemake -c all all -j 4 --rerun-incomplete
 ## Part 3 - Build docker image and Open the Jupyter notebook via Remote SSH
 
 We have everything needed by the docker image :
-- PyPSA Eur data
+- PyPSA-Eur data
 - GEMS repo with the jupyter notebook and docker configuration
 
 We can create now the docker image inside the server :
