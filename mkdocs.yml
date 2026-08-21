@@ -138,7 +138,8 @@ nav:
           - System File: user-guide/file-structure/system.md
           - Dataseries File: user-guide/file-structure/data-series.md
           - Scenario Builder File: user-guide/file-structure/scenario-builder.md
-          - Solver parameters and optimization configuration files: user-guide/file-structure/solver-optimization.md
+          - Solver parameters: user-guide/file-structure/solver-optimization.md
+          - Optimization Configuration File: user-guide/file-structure/optimization-configuration.md
           - Taxonomy File: user-guide/file-structure/taxonomy.md
           - Business Views configuration files: user-guide/file-structure/business-view-configuration.md
       - Theoretical Concepts:
