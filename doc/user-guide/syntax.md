@@ -104,6 +104,14 @@ When using a port field in an expression, the same dependency rules apply: if th
 
 If a port’s expressions need to be used in a time-independent manner (for example, when calculating a sum over the full time horizon), an aggregator must be applied to remove the time index. See the section on the [**Time Summation Operator**](#time-summation-full-horizon-sumx) for details. A practical implementation is provided in [`basic_models_library.yml`](https://github.com/AntaresSimulatorTeam/GEMS/blob/main/libraries/basic_models_library.yml) where the `emission_port` is used to support pollutant-related constraints.
 
+!!! warning "Design proposal — not yet implemented"
+    The same inference applies to a third dimension, too: if a port field's defining expression is
+    indexed by a [custom set](#custom-sets-and-indexing-proposed) (deduced the same way, from the
+    parameters/variables the expression depends on), the field carries that dimension — no separate
+    declaration is needed, exactly like time and scenario. See [Port fields and custom
+    sets](#port-fields-and-custom-sets) for the two rules this inference must additionally satisfy
+    before a field can be aggregated across connections. Not yet implemented in [GemsPy](../index.md).
+
 ### Port Operator
 
 A single port on a model can have multiple connections feeding into it (multiple components can connect to the same port of this component). To aggregate all incoming values of a port field, **Mathematical Expression Syntax**  provides a special operator:
@@ -190,6 +198,238 @@ Using these time operators, advanced temporal constraints can be created. For ex
 # Enforce that each period's production <= average of next 3 periods
 expression: production[t] <= (1/3) * sum(t .. t+3, production)
 ```
+
+## Custom Sets and Indexing (Proposed)
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the Mathematical Expression Syntax. It is not
+    yet implemented in [GemsPy](../index.md) — no model library or study can use this syntax today.
+    It is documented here to gather feedback on the design before implementation begins.
+
+In addition to the built-in [time](#time-operators-and-indexing) and [scenario](#scenario-operator)
+dimensions, a model may declare arbitrary **custom sets** — user-defined discrete index domains (e.g.
+the price segments of a storage's marginal-value curve, a list of fuels, a set of sub-technologies)
+— and index parameters, variables, and expressions over them.
+
+Custom-set indexing uses curly braces `{ }`, a delimiter distinct from the square brackets `[ ]`
+reserved for time, so the two never collide. A set's own `id` doubles as its index variable: used
+bare inside `{ }` it means "the current element"; used with an explicit value it means "this specific
+element."
+
+Custom sets come in two scopes, and the right choice depends on whether the set ever needs to be
+shared across connected components (through a port) or stays purely internal to one model:
+
+- **Local sets** — declared at [model level](input-files/library.md#sets); may vary per
+  component; never visible outside the model that declares them.
+- **Global sets** — declared once at [library level](input-files/library.md#library-level-sets); visible
+  to every model and port-type field in that library; **required** whenever a set needs to cross a
+  port, since every component connecting through that port must agree on the exact same index domain.
+
+### Why the distinction matters
+
+Time and scenario are *global* dimensions: every component in a study shares the same time horizon
+and scenario count, which is exactly why results can be laid out on one shared array indexed by
+(component, time, scenario) in [GemsPy](../index.md)'s solver implementation. A **local** set is
+inherently *ragged*: different components of the same model can have a
+different number of elements, or the same number under different names. A ragged dimension cannot be safely combined
+across components — there is no well-defined meaning to summing "element 0" of one component's list
+against "element 0" of a different component's list if the lists don't actually agree. That is why
+local sets may only be used internally, within the model that declares them, and why anything that
+needs to cross a port must use a **global** set instead — a global set is guaranteed identical for
+every component that can ever connect through it, so it behaves like time/scenario: uniform, not
+ragged.
+
+### Port fields and custom sets
+
+Exactly like time/scenario dependence for ports (see [the base Ports
+section](#ports) above), a port-type field declares nothing new for custom sets: a field's custom-set
+indexing is inferred purely from how connected models define it — e.g. if `p_generation` is
+`indexed-by: fuel`, then
+
+```yaml
+port-field-definitions:
+  - port: injection_port
+    field: flow
+    definition: p_generation{fuel}
+```
+
+infers that `flow` is fuel-indexed too.
+
+The only restriction on this inference: **a `port-field-definition`'s expression may only be indexed by
+global sets, never a local one** — local sets are per-component/ragged (see [Why the distinction
+matters](#why-the-distinction-matters) above), so letting one cross a port would silently break
+aggregation the moment two connected components' local sets disagree in size or content. This is
+checked on every model's `definition` on its own.
+
+Different models connecting to the same port type do **not** need to agree on which global set(s) they
+use for the same field — one model's definition can be `fuel`-indexed, another's `region`-indexed,
+another's unindexed, all for the same field of the same port type. `sum_connections` and any binding
+constraint combining them unfolds over the **union** of every global set involved, exactly like today's
+[cross-product unfolding](#implicit-unfolding) of mixed time/scenario-dependent terms: each model's
+contribution is broadcast — replicated — across whichever of those dimensions its own definition
+doesn't carry, then summed element-wise. This is the same mechanism that already combines a purely
+time-dependent term with a purely scenario-dependent one; custom sets just add further dimensions to
+the same cross-product.
+
+A definition indexed by more than one set at once (`p_generation{fuel, region}`) is simply inferred as
+such, exactly as for a parameter or variable (see [Multiple indexing sets](#multiple-indexing-sets)) —
+the global-only restriction then applies dimension by dimension (every set in the tuple must be global,
+never a mix).
+
+**Escape hatch, and its limit:** `sum_over` can bridge a port-facing global set and a related local set
+only in the degenerate case where the port field ends up **unindexed** — `sum_over(local_set,
+internal_var)` fully collapses the local set to a scalar (see [Aggregating over a custom
+set](#aggregating-over-a-custom-set) below). It cannot remap a local set's index space onto a global
+set's: if the port field must stay broken down by global-set element while the model's internal detail
+lives on a differently-shaped local set, **this proposal has no solution** — that would require a true
+set-to-set mapping primitive, left as future work.
+
+### Indexing expressions
+
+| Form | Meaning | Time analogue |
+|---|---|---|
+| `X{segment}` | current element (implicit within an unfolded/aggregated context) | `X[t]` |
+| `X{2}` | explicit element at position 2 (0-based) | `X[5]` |
+| `X{segment+1}` / `X{segment-1}` | relative shift by position | `X[t+1]` / `X[t-1]` |
+| `(expr){segment}` | index an arbitrary parenthesized **expression**, not just a bare identifier | `(expr)[t+1]` |
+| `X{segment}[t+1]` | compose set- and time-indexing on the same term | — |
+
+Because a set's `id` is an ordinary identifier — not a reserved keyword the way `t` is — standard
+arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctly; no dedicated
+"shift" grammar (like time's) is required for custom sets.
+
+**Note:** there is deliberately no "bare named-element" form (e.g. `X{gas}`) in this table. A set's
+`elements` are never known at library-authoring time — only once `system.yml`
+[instantiates them](input-files/system.md#global-sets) (for a global set) or per component (for a
+local one) — so a model may only ever access a set positionally: the bare set-id for the current
+position (`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This
+holds no matter how `system.yml` ends up instantiating the set's elements — a name list still only
+reaches its elements by position from inside the library, never by name. This applies identically to
+local and global sets.
+
+**Position and label are not the same thing once a range doesn't start at 0.** With a 0-based range
+(`0..4`), position and value happen to coincide — but nothing requires a range to start there. Given
+`elements: 2020..2024` (e.g. a set of vintage years) in `system.yml`, `X{0}` still means "the first
+declared element" — here, the element whose value is `2020` — not "the element whose value is 0."
+Positional indexing (`X{segment}`, `X{2}`, `X{segment+1}`) always addresses *position within the
+declared list*, never the element's value, whether that list came from an explicit list or a range.
+
+**On meaningfulness, not validity:** every form above is well-defined for any set — `system.yml`
+always resolves a set to an ordered list, whether it came from a range or a name list, and `{...}`
+only ever operates on that order positionally. But `X{segment+1}`-style relative shift only makes
+*modeling* sense when the set's declared order itself carries meaning — price tiers, vintage years,
+dispatch priority. For a set whose order is incidental (e.g. `fuel: [gas, coal, oil]`, listed in no
+particular order), `X{fuel+1}` is syntactically legal but likely a modeling mistake, not a real "next
+fuel" relationship. Unlike time, whose order is always chronological, GEMS doesn't distinguish the two
+cases in the schema — it's on the library author to only rely on relative shift where the declared
+order is deliberate.
+
+**Getting data associated with each element:** there is no way to use a set's index position as a bare
+arithmetic value (e.g. `segment * price_step`, using `segment` as a raw number) — only the forms above
+are supported. If a model needs per-element data — a price step per segment, a conversion factor per
+fuel — declare an ordinary parameter `indexed-by` that set and supply its values via the [set-indexed
+data series](input-files/data-series.md#set-indexed-series) format, the same way a time-dependent
+parameter's values come from a time series rather than from any implicit function of `t`:
+
+```yaml
+parameters:
+  - id: segment_price_step
+    indexed-by: segment
+    time-dependent: false
+    scenario-dependent: false
+
+constraints:
+  - id: segment_marginal_cost
+    expression: segment_price{segment} = base_price + segment_price_step{segment}
+```
+
+### Aggregating over a custom set
+
+A new operator, `sum_over(<set_id>, <expr>)`, aggregates an expression across every element of a
+custom set, mirroring the pattern where each new dimension gets its own aggregator name (`sum` for
+time, `expec` for [scenario](#scenario-operator)) rather than overloading `sum`:
+
+```yaml
+constraints:
+  - id: total_level
+    expression: level = sum_over(segment, segment_level)
+```
+
+`sum_over(set_id, expr)` collapses only the named set's dimension; every other dimension the operand
+carries — time, scenario, or another custom set — is preserved, exactly as `sum(X)` collapses time
+alone and leaves scenario untouched.
+
+**Getting a set's size:** there is no dedicated operator for this — `t`'s own count (`T`) isn't
+exposed to expressions either, so a set doesn't get special treatment here. `sum_over(set_id, 1)`
+already gives it for free: summing the constant `1` once per element yields the set's cardinality,
+with no new syntax needed.
+
+```yaml
+expression: average_level = sum_over(segment, segment_level) / sum_over(segment, 1)
+```
+
+### Multiple indexing sets
+
+A parameter or variable can be indexed by more than one custom set. Indices are comma-separated
+inside a single pair of braces, in the same order as declared in `indexed-by`:
+
+```yaml
+sets:
+  - id: segment
+  - id: fuel
+
+parameters:
+  - id: segment_fuel_cost
+    indexed-by: [segment, fuel]
+    time-dependent: false
+    scenario-dependent: false
+```
+
+| Form | Meaning |
+|---|---|
+| `X{segment, fuel}` | current element of both (implicit/unfolded on both dimensions) |
+| `X{segment+1, fuel}` | shift `segment` by +1, keep `fuel` at its current element |
+| `X{2, 1}` | explicit position 2 on `segment`, explicit position 1 on `fuel` |
+
+Both `segment` and `fuel` here are **local** sets, but the same multi-set syntax applies identically
+to global sets, or a mix of the two — `indexed-by` doesn't care about scope, only about which sets are
+named and in what order. As always, every index in every slot is position-based only — `X{2, 1}`, not
+`X{2, gas}` — see [Indexing expressions](#indexing-expressions) above for why.
+
+Aggregation stays single-set per call and nests for multi-set reduction, rather than introducing a
+second aggregation form:
+
+```yaml
+expression: total = sum_over(fuel, sum_over(segment, segment_fuel_cost))
+```
+
+### Implicit unfolding
+
+A constraint containing a set-indexed variable/parameter — without an explicit index, or with the
+"current element" form `X{segment}` — implicitly unfolds into one constraint per set element, exactly
+like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
+
+**Cross-product unfolding:** a constraint whose terms carry more than one dimension — two different
+custom sets, or a custom set alongside time and/or scenario — unfolds over the **cross-product** of
+all of them, generalizing the time+scenario dual-unfolding rule the base doc already establishes (a
+term that is both time- and scenario-dependent already unfolds per `(t, s)` pair today; a term that is
+also `segment`-indexed unfolds per `(t, s, segment)` triple, and so on for any further set).
+
+Unfolding over a custom set is driven entirely by set-indexed parameter/variable terms appearing in the
+expression, exactly like time/scenario unfolding today — there is no mechanism to force-unfold a
+constraint over a set with no set-indexed term in it. This follows from `indexed-by` [existing only on
+parameters and variables](input-files/library.md#sets) (see [Indexing
+expressions](#indexing-expressions) above for the replacement pattern when a constraint needs data
+associated with each element).
+
+### Collision check
+
+- `[ ]` stays 100% reserved for time; never touched.
+- `{ }` is currently unused anywhere in the grammar — zero syntactic overlap.
+- `.` stays reserved for [ports](#ports).
+- `sum_over` is a new name, distinct from `sum`, `sum(S..E,X)`, `sum_connections`, `expec`.
+- `{` only ever appears immediately after an identifier (`X{...}`), never as the first character of
+  the expression string, so it can't be misparsed as a YAML flow mapping.
 
 ## Constraints
 
