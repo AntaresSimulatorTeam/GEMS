@@ -45,7 +45,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     ---
 
-    When proving optimality is too costly, a rounding heuristic gives a fast feasible solution instead: solve the relaxation, round the integer decisions, re-optimise the continuous ones. Heuristics are built into the interpreters and selected from the study, so the same models run in exact or heuristic mode.
+    When exact MILP solving is too costly, a rounding heuristic gives a fast feasible solution instead: solve the relaxation, round the integer decisions, re-optimise the continuous ones. Heuristics are built into the interpreters and selected from the study, so the same models run in exact or heuristic mode.
 
     `Solving`
 
