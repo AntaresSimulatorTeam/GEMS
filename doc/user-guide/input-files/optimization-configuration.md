@@ -2,7 +2,7 @@
 
 The `optim-config.yml` file defines the resolution strategy and execution scope of a GEMS study. It is placed at `input/optim-config.yml` inside the study directory.
 
-This file is **optional**. If users don't mention it, default values apply and the study runs in frontal (single LP) mode over scenario `0`.
+This file is **optional**. If users don't mention it, default values apply and the study runs in frontal mode over scenario `0`.
 
 It controls:
 
@@ -11,7 +11,7 @@ It controls:
 - the **resolution strategy**: how the optimisation horizon is decomposed (frontal, sequential blocks, parallel blocks, or Benders decomposition for investment studies)
 - **per-model settings**: out-of-bounds time handling and decomposition assignment
 
-The file is read by both the [Antares Modeler](../../overview/gems-interpreters/antares-simulator.md) and [GemsPy](../../overview/gems-interpreters/gemspy.md) interpreters.
+The file is read by [GemsPy](../../overview/gems-interpreters/gemspy.md).
 
 
 ## Example
