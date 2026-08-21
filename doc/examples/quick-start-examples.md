@@ -1,6 +1,8 @@
-# Quick Start
+# Quick Start Examples
 
-If you want to get started immediately, follow the **Adequacy Quick Start example**, which walks you through:
+## Adequacy Quick Start Example
+
+If you want to get started immediately, follow the **Adequacy Quick Start Example**, which walks you through:
 
 - formulating an adequacy problem
 - building a simple energy system with GEMS
@@ -9,3 +11,7 @@ If you want to get started immediately, follow the **Adequacy Quick Start exampl
 👉 **[Go to the Adequacy Example Quick Start](../getting-started/quick-start/adequacy-overview.md)**
 
 More advanced examples are currently a **work in progress**.
+
+## Unit Commitment Example
+
+## PyPSA Eur Example
