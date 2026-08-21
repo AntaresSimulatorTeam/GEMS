@@ -113,24 +113,19 @@ system:
     [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
     It is not yet implemented in [GemsPy](../../index.md).
 
-(Required whenever a model declares a **local**, model-level [enumerated set](../library#sets)) A
-model never gives an enumerated local set's concrete `elements` itself (see [Sets](../library#sets)
-under Models) — every component instantiating that model must supply the set's concrete element list
-here, mirroring how [Properties](#properties) values are supplied per component while their keys are
-declared in the model. This mechanism is not needed for **ordinal** local sets, whose size varies per
-component through the ordinary [parameter](#parameters) assignment mechanism above instead (a local
-ordinal set's `cardinality` names a scalar parameter, and that parameter's value is what's assigned
-here — there is no separate `sets:` entry for it), nor for [global sets](#global-sets), which are
-instantiated once, study-wide, in a different top-level section (see [Global
-Sets](#global-sets) below and
-[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)).
+(Required whenever a model declares a **local**, model-level [set](../library#sets) — see
+[library.md's Sets](../library.md#sets) for why a local set never gives its concrete `elements`
+itself) Every component instantiating that model must supply the set's concrete element list here,
+mirroring how [Properties](#properties) values are supplied per component while their keys are
+declared in the model. This is not needed for [global sets](#global-sets), which are instantiated
+once, study-wide, in a different top-level section instead (see [Global Sets](#global-sets) below).
 
 Each set entry contains:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | The set key name, matching an enumerated set declared in the [model's local sets](../library#sets). |
-| `elements` | List of strings | The ordered list of named elements this component uses for that set. |
+| `id` | String | The set key name, matching a set declared in the [model's local sets](../library#sets). |
+| `elements` | List, or range shorthand | The ordered elements this component uses for that set — same two forms (explicit list or `S..E` range shorthand) as for a [global set](#global-sets); see there for the full explanation. |
 
 ```yaml
 system:
@@ -140,6 +135,11 @@ system:
       sets:
         - id: zone
           elements: [north, south]
+    - id: my_storage
+      model: mylib.multi_segment_storage
+      sets:
+        - id: segment
+          elements: 0..3        # shorthand for [0, 1, 2, 3]
 ```
 
 ## Global Sets
@@ -151,43 +151,48 @@ system:
 
 (Required whenever any used library declares global sets) A top-level `sets` collection — a sibling of
 `components` and `connections` — that instantiates **every** [library-level global
-set](../library.md#library-level-sets) declared by any library this system uses. A library never gives
-a global set's concrete size or contents itself (see [Library-Level
-Sets](../library.md#library-level-sets)) — `system.yml` is the **only** place that ever does, and it
-must do so for every one of them, not just some. This instantiation applies **once, uniformly, to the
-whole study** — never per component — because every component connecting through a port that uses this
-set must agree on the exact same index domain; a per-component override would defeat that guarantee
-(see [Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). This
-mirrors how `--duration`/`--scenarios` fix the time and scenario dimensions once for an entire run
-rather than per component.
+set](../library.md#library-level-sets) declared by any library this system uses (see [library.md's
+Library-Level Sets](../library.md#library-level-sets) for why a global set never gives its concrete
+contents itself). It must do so for every one of them, not just some. This instantiation applies
+**once, uniformly, to the whole study** — never per component — because every component connecting
+through a port that uses this set must agree on the exact same index domain; a per-component override
+would defeat that guarantee (see [Why the distinction
+matters](../mathematical-syntax.md#why-the-distinction-matters)). This mirrors how
+`--duration`/`--scenarios` fix the time and scenario dimensions once for an entire run rather than per
+component.
 
 Each set entry contains:
 
 | Element | Type | Description |
 |------|------|--------------------------|
 | `id` | String | The set key name, matching a [library-level set](../library.md#library-level-sets) declared by one of this system's libraries. |
-| `cardinality` | Integer | *(Sets declared `kind: ordinal` in the library)* The set's size, as an integer literal. |
-| `elements` | List of strings | *(Sets declared `kind: enumerated` in the library)* The ordered list of named elements. |
+| `elements` | List, or range shorthand | The set's concrete, ordered elements — see the two accepted forms below. |
+
+`elements` accepts one of two forms — the same two forms a [local set](#local-sets) accepts:
+
+- **An explicit list** — names (`elements: [gas, coal, oil]`) or numbers (`elements: [10, 20, 30]`,
+  including non-consecutive ones).
+- **A range shorthand**, reusing the `..` token from the [time range summation
+  operator](../mathematical-syntax.md#time-operators-and-indexing): `elements: 0..3` is shorthand for
+  the explicit list `[0, 1, 2, 3]` — inclusive of both ends. `S` and `E` must be plain non-negative
+  integers (`S <= E`; `S == E` is legal, for a single-element set).
 
 ```yaml
 system:
   id: my_system
   model-libraries: example_library
   sets:
-    - id: fuel                      # kind: enumerated in the library
+    - id: fuel
       elements: [gas, coal, oil]
-    - id: segment_count_set         # kind: ordinal in the library
-      cardinality: 5
+    - id: segment_count_set
+      elements: 0..4        # shorthand for [0, 1, 2, 3, 4]
   components:
     - id: gen_1
       model: example_library.multi_fuel_generator
 ```
 
-Whether an entry gives `cardinality` or `elements` must match the `kind` (`ordinal`/`enumerated`) that
-library declared for that set — supplying the wrong shape (e.g. `elements` for a set the library marked
-`kind: ordinal`) is an error. Every global set declared by any library used in the system must appear
-here exactly once; a library using this feature with no matching entry in `system.yml` is an error at
-study-instantiation time.
+Every global set declared by any library used in the system must appear here exactly once; a library
+using this feature with no matching entry in `system.yml` is an error at study-instantiation time.
 
 **Recommended practice:** instantiate each global set as *universal* — the superset of every element
 that could ever be relevant across the whole system (e.g. `elements: [gas, coal, oil, biomass,

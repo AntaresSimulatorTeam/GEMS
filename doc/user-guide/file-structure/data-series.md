@@ -63,9 +63,9 @@ The new tidy/long, headered CSV format below applies exclusively to parameters t
 A parameter declared `indexed-by` a [custom set](./library.md#sets) — whether a local (model-level)
 or [global (library-level)](./library.md#library-level-sets) set — cannot use the positional matrix
 formats above: a third (or later) dimension cannot be expressed by shape alone without an arbitrary
-stacking convention, and an enumerated set's elements are *named*, not positional, so a plain matrix
-cannot carry their names. Such parameters instead use a **tidy/long CSV format, with a header row**
-— unlike every other data series, which has no header:
+stacking convention, and a set instantiated with named elements in `system.yml` has *named*, not
+positional, elements, so a plain matrix cannot carry their names. Such parameters instead use a
+**tidy/long CSV format, with a header row** — unlike every other data series, which has no header:
 
 ```csv
 segment,time,scenario,value
@@ -84,8 +84,8 @@ segment,value
 2,60.0
 ```
 
-For a parameter indexed by an enumerated set, the column holds element names instead of integer
-positions:
+For a parameter indexed by a set `system.yml` instantiated with named elements (an explicit list, e.g.
+`elements: [gas, coal, oil]`), the column holds those names instead of integer positions:
 
 ```csv
 fuel,value
@@ -114,9 +114,10 @@ segment,fuel,time,scenario,value
 0,coal,0,0,9.2
 ```
 
-Neither a global nor a local set ever gives concrete `elements`/`cardinality` in the library or model —
-both always come from `system.yml`: once, study-wide, in [Global Sets](./system.md#global-sets) for a
-global set, or per component, in [Local Sets](./system.md#local-sets) for a local enumerated set. The
-library/model alone never tells a data-series author the concrete element list to use — the column's
-values must match exactly whatever the relevant `system.yml` instantiation declares.
+A data-series column's values must match exactly whatever `system.yml` declares for that set —
+[Global Sets](./system.md#global-sets) or [Local Sets](./system.md#local-sets) — whether that
+instantiation was an explicit list or a range shorthand (a range-instantiated set's column simply
+holds the resulting integers); the library/model alone never tells a data-series author the concrete
+element list to use, since neither ever gives a set's concrete `elements` itself (see
+[library.md's Sets](./library.md#sets)).
 
