@@ -2,10 +2,10 @@
 
 The **Simulation Table** is a structured table that contains the values of all 
 
-- [Variables](../file-structure/library.md/#variables)
-- [Constraints](../file-structure/library.md/#constraints)
-- [Port Fields](../file-structure/library.md/#port-field-definition)
-- [Extra Outputs](../file-structure/library.md/#extra-output)
+- [Variables](../input-files/library.md#variables)
+- [Constraints](../input-files/library.md#constraints)
+- [Port Fields](../input-files/library.md#port-field-definition)
+- [Extra Outputs](../input-files/library.md#extra-output)
 
 from the solved [optimization problem](./optimization-problem-files.md). It essentially provides a flat table of the optimization solution, with enough information to identify each value’s context (which component, which variable or other output, which time and scenario). This is the most granular output data that we can think of – it’s meant for analysts or developers who want to examine the full solution or feed it into further processing.
 

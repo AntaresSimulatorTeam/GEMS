@@ -38,7 +38,7 @@ Comparison operators are used to form constraints (equations or inequalities).
 | `<=` | Used in constraints to require `LHS ≤ RHS` |`expression_1 <= expression_2`|
 | `>=` | Used in constraints to require `LHS ≥ RHS` | `expression_1 >= expression_2`|
 
-**Important:** Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions), with one exception: in [`extra-outputs`](file-structure/library.md#extra-output), a comparison operator evaluates to a boolean (`0`/`1`) instead of forming a constraint — e.g. `unsupplied_energy >= 0.000001` to flag loss of load. Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
+**Important:** Comparison operators are only allowed in constraint expressions (not in general arithmetic expressions), with one exception: in [`extra-outputs`](input-files/library.md#extra-output), a comparison operator evaluates to a boolean (`0`/`1`) instead of forming a constraint — e.g. `unsupplied_energy >= 0.000001` to flag loss of load. Each constraint expression must contain exactly one comparison operator (`=`, `<=`, or `>=`)
  dividing the expression into a left-hand side (LHS) and right-hand side (RHS). Chained comparisons (e.g. `A <= B <= C`) are not permitted; if needed, break them into separate constraints.
 
 [**GEMS framework**](../index.md) **Mathematical Expression Syntax** does not support certain operations common in programming or math notation. For example, non-linear functions (log, sin, etc.) are not part of the expression syntax. If a mathematical relationship is non-linear, it must be linearized or reformulated.
@@ -166,7 +166,7 @@ Here, when `t` corresponds to the last time step, `levels[t+1]` is the same as `
 
 ### **Time summation (full horizon)** `sum(X)`
 
-Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. `sum(X)` produces a single scalar equal to the sum of *X* over every time step from `0` to the [`last-time-step`](file-structure/solver-optimization.md#simulation-horizon) (inclusive).
+Denotes the sum of the time-dependent operand *X* over the entire optimization horizon. `sum(X)` produces a single scalar equal to the sum of *X* over every time step from `0` to the [`last-time-step`](input-files/solver-optimization.md#simulation-horizon) (inclusive).
 
 !!! note "Difference `sum` from `sum_connections`"
     - `sum(X)` : aggregate a time-dependent quantity **across time steps** (temporal summation).
