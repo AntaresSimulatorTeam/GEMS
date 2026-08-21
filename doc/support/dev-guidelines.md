@@ -95,7 +95,7 @@ All repositories use the same `main`-only branching model.
 | `perf/...` | Performance improvements |
 | `docs/...` | Documentation changes |
 | `chore/...` | Maintenance, dependency updates |
-| `release/vX.Y.Z` | Release preparation — version bumps and changelog updates |
+| `release/vX.Y.Z` | Release preparation - version bumps and changelog updates |
 | `hotfix/vX.Y.Z` | Urgent post-release corrections |
 
 ### Naming Convention
@@ -209,18 +209,18 @@ Auto-generated concatenations like `fix comments, fix comments` or `fix(ruff): f
 
 Use one of the two formats below depending on the size of the PR:
 
-**Option A — Flat bullet list** (suitable for most PRs):
+**Option A - Flat bullet list** (suitable for most PRs):
 
 ```text
 feat(scope): short description of what the PR delivers
 
 - One line per logical change, scoped but not over-granular
-- Skip pure fixup commits — if it wouldn't go in a changelog, leave it out
+- Skip pure fixup commits - if it wouldn't go in a changelog, leave it out
 
 Co-authored-by: Name <email>
 ```
 
-**Option B — Structured sections** (suitable for larger PRs with many concerns):
+**Option B - Structured sections** (suitable for larger PRs with many concerns):
 
 ```text
 feat(scope): short description of what the PR delivers
@@ -300,7 +300,7 @@ All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`). The `vers
 
 | Component | Bump rule | Version field |
 |---|---|---|
-| GEMS Language / Documentation | Versioned together with the documentation. Major: breaking syntax change / Minor: new construct or keyword / Patch: clarification or doc fix | Release notes at `doc/0_Home/4_release_notes.md` |
+| GEMS Language / Documentation | Versioned together with the documentation. Major: breaking syntax change / Minor: new construct or keyword / Patch: clarification or doc fix | Release notes at `doc/home/release-notes.md` |
 | Model libraries (`libraries/*.yml`) | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `version` under `library:` in each `libraries/<library_name>.yml` |
 | Antares-Simulator | Pinned version used by CI and E2E tests | `dependencies.json` → `antares_simulator_version` |
 
@@ -394,7 +394,7 @@ When a model library is updated in a converter, an issue is automatically create
 5. If equal → GEMS is already up to date; workflow exits with no action.
 6. If different → opens an issue in the GEMS repository prompting synchronisation.
 
-This means the notification reflects the true synchronisation state between the converter and GEMS — it fires whenever the converter's library is ahead of GEMS, regardless of git history. Duplicate issues for the same version are suppressed.
+This means the notification reflects the true synchronisation state between the converter and GEMS - it fires whenever the converter's library is ahead of GEMS, regardless of git history. Duplicate issues for the same version are suppressed.
 
 Both workflows require the `GEMS_REPO_PAT` secret (a Personal Access Token with `repo` scope on the GEMS repository).
 
@@ -500,7 +500,7 @@ main  ──── squash PRs (feature, bugfix, chore…) ────► ready 
 
 The example below releases converter version `1.2.0` with a library bump to `1.1.0`.
 
-#### PyPSA Converter — Files to update
+#### PyPSA Converter - Files to update
 
 | File | What to change |
 |---|---|
@@ -509,7 +509,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 | `resources/pypsa_models/pypsa_models.yml` | Bump `version` under `library:` to `1.1.0` (only if library changed) |
 | `resources/pypsa_models/CHANGELOG-pypsa_models_library.md` | Add library release entry (only if library changed) |
 
-#### PyPSA Converter — Steps
+#### PyPSA Converter - Steps
 
 1. Make sure `main` is up to date
 
@@ -545,7 +545,7 @@ The example below releases converter version `1.2.0` with a library bump to `1.1
 
 Same flow as the PyPSA converter. The example below releases converter version `1.2.0` with a library bump to `1.1.0`.
 
-#### AntaresLegacy Converter — Files to update
+#### AntaresLegacy Converter - Files to update
 
 | File | What to change |
 |---|---|
@@ -554,7 +554,7 @@ Same flow as the PyPSA converter. The example below releases converter version `
 | `src/antares_gems_converter/libs/antares_historic/antares_legacy_models.yml` | Bump `version` under `library:` to `1.1.0` (only if library changed) |
 | `src/antares_gems_converter/libs/antares_historic/CHANGELOG-antares_legacy_models_library.md` | Add library release entry (only if library changed) |
 
-#### AntaresLegacy Converter — Steps
+#### AntaresLegacy Converter - Steps
 
 Same flow as the PyPSA converter (steps 1–5). Replace the file paths with:
 
@@ -570,17 +570,17 @@ Cross-repo notification (automatic) — if `version` under `library:` in `src/an
 
 The example below releases GEMS version `1.2.0` after syncing an updated PyPSA models library.
 
-#### GEMS — Files to update
+#### GEMS - Files to update
 
 | File | What to change |
 |---|---|
 | `libraries/<library_name>.yml` | Apply library changes and bump `version` under `library:` |
 | `libraries/<library_name>.yml.sha256` | Updated automatically by `update-library-checksums` workflow (GEMS-owned libraries only — `pypsa_models.yml` and `antares_legacy_models.yml` must be updated manually) |
 | `libraries/CHANGELOG-<library_name>.md` | Add library changelog entry |
-| `doc/0_Home/4_release_notes.md` | Add release notes entry if GEMS Language spec changed |
+| `doc/home/release-notes.md` | Add release notes entry if GEMS Language spec changed |
 | `COMPATIBILITY.md` | Update documentation version and/or Antares version mapping if changed |
 
-#### GEMS — Steps
+#### GEMS - Steps
 
 1. Make sure `main` is up to date
 
@@ -614,14 +614,14 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 
 ### 8.4 GemsPy Release
 
-#### GemsPy — Files to update
+#### GemsPy - Files to update
 
 | File | What to change |
 |---|---|
 | `pyproject.toml` | Bump `version` |
 | `docs/CHANGELOG.md` | Add release entry |
 
-#### GemsPy — Steps
+#### GemsPy - Steps
 
 1. Make sure `main` is up to date
 

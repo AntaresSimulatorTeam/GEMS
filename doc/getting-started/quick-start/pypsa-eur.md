@@ -1,14 +1,8 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # How to run a PyPSA-Eur study on a server with GEMS
 
 This tutorial is a workflow to run a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) study on a remote Linux server using GEMS. [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) is an open-source energy system model covering the European power grid coded in PyPSA format whose native format is not compatible with Antares Modeler. The package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) converts PyPSA format studies into GEMS readable studies.
 
-1. **Configure a simple PyPSA-Eur study** with a minimal settings (one area only, 3 days), download the data.
+1. **Configure a simple PyPSA-Eur study** with minimal settings (one area only, 3 days), download the data.
 2. **Convert to GEMS format** using the Python package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) inside a Docker-hosted Jupyter notebook.
 3. **Run the simulation** with [Antares Modeler](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) from within the same notebook.
 
@@ -21,7 +15,7 @@ The Jupyter environment runs inside Docker on the remote server and is accessed 
 
 The configuration of the VS Code Remote SSH linked to remote server running Jupyter docker image is detailed in this tutorial [VS Code Remote SSH + Jupyter tutorial](https://www.w3tutorials.net/blog/vscode-how-to-run-a-jupyter-notebook-in-a-docker-container-over-a-remote-server/).
 
-## Part 1 — Clone the GEMS repository
+## Part 1 - Clone the GEMS repository
 
 These steps are run **on the remote server** (connect via SSH first).
 
@@ -32,7 +26,7 @@ git clone https://github.com/AntaresSimulatorTeam/GEMS.git
 cd GEMS
 ```
 
-## Part 2 — Set up and run PyPSA-Eur
+## Part 2 - Set up and run PyPSA-Eur
 
 These steps are run **on the remote server**.
 
@@ -74,7 +68,7 @@ cp config/config.default.yaml config/config.yaml
 
 Then edit `config/config.yaml` to set the target countries, number of clusters, planning horizon, and other study parameters.
 
-??? info "Example config file with oly FR node"
+??? info "Example config file with only FR node"
 
     ```yaml
     # PyPSA-Eur: simple one-year electricity study (runs on a normal PC)
@@ -123,7 +117,7 @@ Then edit `config/config.yaml` to set the target countries, number of clusters, 
 
 ### 2.5 Run the workflow
 
-Now, we can download data from PyPSA Eur.
+Now, we can download data from PyPSA-Eur.
 
 !!! warning
 
@@ -140,11 +134,11 @@ pixi run snakemake -c all all -j 4 --rerun-incomplete
 ```
 
 
-## Part 3 — Build docker image and Open the Jupyter notebook via Remote SSH
+## Part 3 - Build docker image and Open the Jupyter notebook via Remote SSH
 
-We have all what is needed by the docker image :
-- PyPSA Eur data
-- GEMS repo with the jupyer notebook and docker configuration
+We have everything needed by the docker image :
+- PyPSA-Eur data
+- GEMS repo with the jupyter notebook and docker configuration
 
 We can create now the docker image inside the server :
 

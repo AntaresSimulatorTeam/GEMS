@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Input and Output of the Converter
 
 ## Input
@@ -35,6 +29,8 @@ study_directory/
             ├── parameters.yml     -------> Solver and simulation parameters
             ├── model-libraries/
             │   └── pypsa_models.yml -----> Model library definitions
-            └── data-series/       -------> Time and/or scenarion dependent parameters
+            └── data-series/       -------> Time and/or scenario dependent parameters
                 └── ...
 ```
+
+Each generated file follows the GEMS file structure conventions: see the [system file](../../user-guide/input-files/system.md), [library file](../../user-guide/input-files/library.md), [data series](../../user-guide/input-files/data-series.md), and [solver parameters](../../user-guide/input-files/solver-optimization.md) documentation for details on their format and content.

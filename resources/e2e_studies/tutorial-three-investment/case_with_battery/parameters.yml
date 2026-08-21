@@ -1,6 +1,1 @@
-solver: coin
-solver-parameters: THREADS 1
-solver-logs: false
-no-output: false
-first-time-step: 0
-last-time-step: 167
+../../../../doc/examples/notebooks/tutorial-three-investment/tutorial_invest/case_with_battery/parameters.yml
