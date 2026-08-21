@@ -6,9 +6,11 @@ A library file defines a library of two collections of abstract objects (see [Gl
 - [Ports Types](#port-types) - Describe the kinds of connections models can have
 
 !!! warning "Design proposal — not yet implemented"
-    A proposed third collection, [Library-Level Sets](#library-level-sets), declares global custom
-    index sets shared across `port-types` and `models`. Not yet implemented in
-    [GemsPy](../../index.md).
+    Two proposed additional collections declare study-wide, library-scoped data: [Global
+    Parameters](#global-parameters) (scalar constants, valued once study-wide in `system.yml`) and
+    [Library-Level Sets](#library-level-sets) (global custom index sets shared across `port-types`
+    and `models`, whose ordinal sizing is itself expressed via a global parameter). Not yet
+    implemented in [GemsPy](../../index.md).
 
 The library file is a YAML file with a single root key, `library`. Under this root, the library’s identifier, an optional description, and the collections of `port-types` and `models` are defined. All fields, unless explicitly marked as optional, must be present for the library to be considered valid. The following example illustrates the structure of a simple library file:
 
@@ -50,8 +52,8 @@ All `id's` in the model library and [system file](system.md) must respect the fo
 !!! warning "Design proposal — not yet implemented"
     A local [set](#sets)'s `id` must not collide with any [global (library-level)
     set](#library-level-sets) `id` visible in the same library — since `indexed-by: x` (or a bare
-    reference to `x` inside `{...}`) would otherwise be ambiguous between the two. This is the only
-    id-collision rule custom sets add: a set is only ever looked up in two places — inside `{...}`
+    reference to `x` inside `[...]`) would otherwise be ambiguous between the two. This is the only
+    id-collision rule custom sets add: a set is only ever looked up in two places — inside `[...]`
     right after an identifier, or as the value of `indexed-by:` — and both positions only ever accept a
     set `id`, never a parameter or variable `id`, so **parameter and variable ids are free to collide
     with set ids** (local or global) without any ambiguity. This is not recommended, though: even
@@ -82,6 +84,44 @@ library:
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
 
+### Global Parameters
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the library file schema. It is not yet
+    implemented in [GemsPy](../../index.md). See
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) for the
+    full expression-syntax proposal this schema supports.
+
+The `parameters` collection, a sibling of `sets`, `port-types`, and `models`, declares **global**
+scalar constants — the library-level counterpart to a model's own (per-component) `parameters`. A
+global parameter is always a single, scalar value **for the whole study** — never time-dependent,
+never scenario-dependent, never per-component — exactly mirroring how the simulation horizon itself
+(`first-time-step`/`last-time-step`) is a single study-wide value rather than per-component data
+(see [Why the distinction matters](../syntax.md#why-the-distinction-matters)). Like a
+[global set](#library-level-sets), a global parameter only ever declares that it exists in the
+library — its concrete value is always assigned exactly once, study-wide, in
+[`system.yml`'s Global Parameters section](../system.md#global-parameters).
+
+The primary use of a global parameter is as the `cardinality` of a [global ordinal
+set](#library-level-sets) — giving global sets the same "cardinality names a parameter, never a
+literal" indirection that local sets already have (see [Library-Level Sets](#library-level-sets)
+below). Like a model parameter, a global parameter may also be referenced directly as a plain
+scalar term in any expression within the library (a bare identifier, resolved study-wide rather than
+per-component).
+
+```yaml
+library:
+  id: example_library
+  parameters:
+    - id: segment_count
+      description: "Number of price segments, fixed for the whole study"
+```
+
+| Element | Type | Description |
+|------|------|--------------------------|
+|`id`| String | Unique parameter identifier within the library. Must follow the [naming rules](#rules-for-id-naming).|
+| `description`| String | *(Optional)* A human-readable description of the parameter's purpose.|
+
 ### Library-Level Sets
 
 !!! warning "Design proposal — not yet implemented"
@@ -90,7 +130,7 @@ library:
     [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) for the
     full expression-syntax proposal this schema supports.
 
-The `sets` collection, a sibling of `port-types` and `models`, declares **global** custom index sets
+The `sets` collection, a sibling of `parameters`, `port-types`, and `models`, declares **global** custom index sets
 — shared by every model and port-type field in this library that references them. This is the only
 kind of custom set that may cross a port (see [Port fields and custom
 sets](../syntax.md#port-fields-and-custom-sets) for the precise rules), since every
@@ -106,6 +146,8 @@ study-wide, in [`system.yml`'s Global Sets section](system.md#global-sets). A [l
 ```yaml
 library:
   id: example_library
+  parameters:
+    - id: segment_count
   sets:
     - id: fuel
     - id: segment_count_set
@@ -311,7 +353,7 @@ sets, plus every [library-level set](#library-level-sets) visible in this librar
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `{...}` — e.g. `X{segment}` or `X{segment, fuel}` for multiple sets. See [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed).|
+|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `[...]` — e.g. `X[segment]` or `X[segment, fuel]` for multiple sets, the same bracket already used for [time indexing](../syntax.md#time-operators-and-indexing). See [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed).|
 
 ```yaml
 parameters:
@@ -323,7 +365,7 @@ variables:
   - id: segment_level
     indexed-by: segment
     lower-bound: 0
-    upper-bound: segment_capacity{segment}
+    upper-bound: segment_capacity[segment]
     variable-type: continuous
 ```
 

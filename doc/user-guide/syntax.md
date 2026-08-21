@@ -211,10 +211,12 @@ dimensions, a model may declare arbitrary **custom sets** — user-defined discr
 the price segments of a storage's marginal-value curve, a list of fuels, a set of sub-technologies)
 — and index parameters, variables, and expressions over them.
 
-Custom-set indexing uses curly braces `{ }`, a delimiter distinct from the square brackets `[ ]`
-reserved for time, so the two never collide. A set's own `id` doubles as its index variable: used
-bare inside `{ }` it means "the current element"; used with an explicit value it means "this specific
-element."
+Custom-set indexing reuses the same square brackets `[ ]` already used for [time
+indexing](#time-operators-and-indexing) — there is no second bracket delimiter to learn. A set's own
+`id` doubles as its index variable inside `[ ]`: used bare (`X[fuel]`) it means "the current
+element"; used with an explicit `set_id=value` keyword form (`X[fuel=2]`) it means "this specific
+element." See [Indexing expressions](#indexing-expressions) below for the full grammar, including how
+a custom-set index composes with a time index in the same brackets (`X[t+1, fuel]`).
 
 Custom sets come in two scopes, and the right choice depends on whether the set ever needs to be
 shared across connected components (through a port) or stays purely internal to one model:
@@ -250,7 +252,7 @@ indexing is inferred purely from how connected models define it — e.g. if `p_g
 port-field-definitions:
   - port: injection_port
     field: flow
-    definition: p_generation{fuel}
+    definition: p_generation[fuel]   # must be `fuel`-indexed to match flow's declared indexed-by
 ```
 
 infers that `flow` is fuel-indexed too.
@@ -271,7 +273,7 @@ doesn't carry, then summed element-wise. This is the same mechanism that already
 time-dependent term with a purely scenario-dependent one; custom sets just add further dimensions to
 the same cross-product.
 
-A definition indexed by more than one set at once (`p_generation{fuel, region}`) is simply inferred as
+A definition indexed by more than one set at once (`p_generation[fuel, region]`) is simply inferred as
 such, exactly as for a parameter or variable (see [Multiple indexing sets](#multiple-indexing-sets)) —
 the global-only restriction then applies dimension by dimension (every set in the tuple must be global,
 never a mix).
@@ -286,40 +288,78 @@ set-to-set mapping primitive, left as future work.
 
 ### Indexing expressions
 
-| Form | Meaning | Time analogue |
+Custom-set indexing extends the same `[ ]` operator already defined in [Time Operators and
+Indexing](#time-operators-and-indexing), rather than introducing a second bracket. A single pair of
+brackets can carry any number of comma-separated **index terms**, one per dimension being indexed
+(time and/or one or more custom sets):
+
+```
+index-list  := index-term (',' index-term)*
+index-term  := int-expr                                # legacy form — always means the time dimension
+             | identifier (('+' | '-') int-expr)?       # current position, or relative shift
+             | identifier '=' int-expr                  # explicit position (keyword form)
+identifier  := 't' | <declared set id>                  # a local set, or a global set visible in this library
+```
+
+| Form | Meaning | Notes |
 |---|---|---|
-| `X{segment}` | current element (implicit within an unfolded/aggregated context) | `X[t]` |
-| `X{2}` | explicit element at position 2 (0-based) | `X[5]` |
-| `X{segment+1}` / `X{segment-1}` | relative shift by position | `X[t+1]` / `X[t-1]` |
-| `(expr){segment}` | index an arbitrary parenthesized **expression**, not just a bare identifier | `(expr)[t+1]` |
-| `X{segment}[t+1]` | compose set- and time-indexing on the same term | — |
+| `X[t]` / `X` (no brackets) | current time step | unchanged from today |
+| `X[5]` | explicit time step 5 | a **bare integer term always means time** — see rule below |
+| `X[t+1]` / `X[t-1]` | relative time shift | unchanged from today |
+| `X[fuel]` | current element of set `fuel` | the `[ ]` analogue of `X[t]` |
+| `X[fuel+1]` / `X[fuel-1]` | relative shift by position on `fuel` | ordinal sets only |
+| `X[fuel=2]` | explicit position 2 on set `fuel` | keyword form — see rule below |
+| `X[t+1, fuel]` | compose a time shift with current-`fuel` | any mix of dimensions, comma-separated |
+| `X[segment=2, fuel=1]` | explicit positions on two sets at once | order-independent — see [Multiple indexing sets](#multiple-indexing-sets) |
+| `(expr)[fuel]` | index an arbitrary parenthesized **expression**, not just a bare identifier | as for time today |
+
+Two rules keep this grammar unambiguous and fully backward compatible:
+
+- **A bare integer index term always and only means the time dimension** (`X[5]` ≡ `X[t=5]`), never
+  inferred as a position on some other dimension of `X`, even when `X` has no time dimension at all
+  (in which case it is simply invalid, exactly as it is today). This is what keeps every existing
+  `X[t]`, `X[5]`, `X[t+1]`, `X[t-1]` example valid, unchanged, with zero new ambiguity — a small
+  trade of brevity for a rule with no exceptions.
+- **An explicit position on a custom set always uses the keyword form** (`X[fuel=2]`), never a bare
+  integer (`X[2]` would mean time). This also removes the old proposal's fragile "positional,
+  declaration-order-dependent" multi-index form — see [Multiple indexing sets](#multiple-indexing-sets)
+  below.
 
 Because a set's `id` is an ordinary identifier — not a reserved keyword the way `t` is — standard
-arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctly; no dedicated
-"shift" grammar (like time's) is required for custom sets.
+arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctly on the right-hand
+side of a shift or keyword term; no dedicated "shift" grammar beyond time's is required for custom
+sets.
 
-**Note:** there is deliberately no "bare named-element" form (e.g. `X{gas}`) in this table. A set's
-`elements` are never known at library-authoring time — only once `system.yml`
+**No implicit brackets needed for the common case:** exactly as a bare `generation` (no brackets)
+today implicitly means `generation[t]`, a set-indexed parameter or variable used with **no brackets
+at all** implicitly means "current position on every one of its declared dimensions" — time, and
+every set in its `indexed-by`. Brackets are needed only to *deviate* from "current" on one or more
+dimensions; any dimension left out of the bracket list simply stays at its current position (exactly
+as `X[t+1]` today shifts only time and leaves every other dimension, if any existed, untouched).
+
+**Note:** there is deliberately no "bare named-element" form (e.g. `X[fuel=gas]`) in this grammar. A
+set's `elements` are never known at library-authoring time — only once `system.yml`
 [instantiates them](input-files/system.md#global-sets) (for a global set) or per component (for a
 local one) — so a model may only ever access a set positionally: the bare set-id for the current
-position (`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This
-holds no matter how `system.yml` ends up instantiating the set's elements — a name list still only
-reaches its elements by position from inside the library, never by name. This applies identically to
-local and global sets.
+position (`X[fuel]`), a relative shift (`X[fuel+1]`), or an explicit integer position via the keyword
+form (`X[fuel=0]`). This holds no matter how `system.yml` ends up instantiating the set's elements — a
+name list still only reaches its elements by position from inside the library, never by name. This
+applies identically to local and global sets.
 
 **Position and label are not the same thing once a range doesn't start at 0.** With a 0-based range
 (`0..4`), position and value happen to coincide — but nothing requires a range to start there. Given
-`elements: 2020..2024` (e.g. a set of vintage years) in `system.yml`, `X{0}` still means "the first
-declared element" — here, the element whose value is `2020` — not "the element whose value is 0."
-Positional indexing (`X{segment}`, `X{2}`, `X{segment+1}`) always addresses *position within the
-declared list*, never the element's value, whether that list came from an explicit list or a range.
+`elements: 2020..2024` (e.g. a `vintage` set of years) in `system.yml`, `X[vintage=0]` still means
+"the first declared element" — here, the element whose value is `2020` — not "the element whose value
+is 0." Positional indexing (`X[segment]`, `X[segment=2]`, `X[segment+1]`) always addresses *position
+within the declared list*, never the element's value, whether that list came from an explicit list or
+a range.
 
 **On meaningfulness, not validity:** every form above is well-defined for any set — `system.yml`
-always resolves a set to an ordered list, whether it came from a range or a name list, and `{...}`
-only ever operates on that order positionally. But `X{segment+1}`-style relative shift only makes
+always resolves a set to an ordered list, whether it came from a range or a name list, and `[ ]` only
+ever operates on that order positionally. But `X[segment+1]`-style relative shift only makes
 *modeling* sense when the set's declared order itself carries meaning — price tiers, vintage years,
 dispatch priority. For a set whose order is incidental (e.g. `fuel: [gas, coal, oil]`, listed in no
-particular order), `X{fuel+1}` is syntactically legal but likely a modeling mistake, not a real "next
+particular order), `X[fuel+1]` is syntactically legal but likely a modeling mistake, not a real "next
 fuel" relationship. Unlike time, whose order is always chronological, GEMS doesn't distinguish the two
 cases in the schema — it's on the library author to only rely on relative shift where the declared
 order is deliberate.
@@ -340,7 +380,7 @@ parameters:
 
 constraints:
   - id: segment_marginal_cost
-    expression: segment_price{segment} = base_price + segment_price_step{segment}
+    expression: segment_price[segment] = base_price + segment_price_step[segment]
 ```
 
 ### Aggregating over a custom set
@@ -371,7 +411,9 @@ expression: average_level = sum_over(segment, segment_level) / sum_over(segment,
 ### Multiple indexing sets
 
 A parameter or variable can be indexed by more than one custom set. Indices are comma-separated
-inside a single pair of braces, in the same order as declared in `indexed-by`:
+inside a single pair of square brackets, exactly like combining a time shift with a set index —
+`indexed-by`'s declaration order has no bearing on how a multi-index expression must be written,
+since every dimension is named explicitly:
 
 ```yaml
 sets:
@@ -387,14 +429,19 @@ parameters:
 
 | Form | Meaning |
 |---|---|
-| `X{segment, fuel}` | current element of both (implicit/unfolded on both dimensions) |
-| `X{segment+1, fuel}` | shift `segment` by +1, keep `fuel` at its current element |
-| `X{2, 1}` | explicit position 2 on `segment`, explicit position 1 on `fuel` |
+| `X[segment, fuel]` | current element of both (implicit/unfolded on both dimensions) |
+| `X[segment+1, fuel]` | shift `segment` by +1, keep `fuel` at its current element |
+| `X[segment=2, fuel=1]` | explicit position 2 on `segment`, explicit position 1 on `fuel` |
 
 Both `segment` and `fuel` here are **local** sets, but the same multi-set syntax applies identically
 to global sets, or a mix of the two — `indexed-by` doesn't care about scope, only about which sets are
-named and in what order. As always, every index in every slot is position-based only — `X{2, 1}`, not
-`X{2, gas}` — see [Indexing expressions](#indexing-expressions) above for why.
+named. As always, every explicit position is integer-only, never a named element — `X[segment=2,
+fuel=1]`, never `X[segment=2, fuel=gas]` — since neither set's concrete elements are known at
+library-authoring time (see [Local sets](input-files/library.md#sets) and [Library-Level
+Sets](input-files/library.md#library-level-sets)). Unlike a positional scheme, the keyword form
+`set_id=value` is **order-independent**: `X[fuel=1, segment=2]` and `X[segment=2, fuel=1]` are the
+same expression, since each term names the dimension it applies to rather than relying on matching
+`indexed-by`'s declaration order.
 
 Aggregation stays single-set per call and nests for multi-set reduction, rather than introducing a
 second aggregation form:
@@ -405,31 +452,87 @@ expression: total = sum_over(fuel, sum_over(segment, segment_fuel_cost))
 
 ### Implicit unfolding
 
-A constraint containing a set-indexed variable/parameter — without an explicit index, or with the
-"current element" form `X{segment}` — implicitly unfolds into one constraint per set element, exactly
-like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
+A constraint unfolds over a custom set whenever it contains, anywhere in its expression, **either**
+of two things:
+
+- a set-indexed variable/parameter — used bare (no brackets at all), or with the explicit "current
+  element" form `X[segment]` — exactly like today's time/scenario unfolding rule (see
+  [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended
+  to a third dimension; or
+- a **bare reference to the set's own `id`, used as a scalar value** — e.g. plain `segment` in
+  `base_price + segment * price_step` — even when no parameter or variable in the expression is
+  itself declared `indexed-by` that set. Referencing a set's index value only ever makes sense within
+  a context unfolding over that set, so this occurrence is itself enough to trigger unfolding — see
+  [Referencing a set's index value](#referencing-a-sets-index-value) below.
+
+Because these two conditions cover every way an expression can possibly depend on a custom set, this
+detection is always automatic — there is no scenario left where a constraint needs to unfold over a
+set without either condition holding (an expression containing neither would be N identical,
+non-varying copies of the same equation, which has no modeling purpose).
 
 **Cross-product unfolding:** a constraint whose terms carry more than one dimension — two different
 custom sets, or a custom set alongside time and/or scenario — unfolds over the **cross-product** of
 all of them, generalizing the time+scenario dual-unfolding rule the base doc already establishes (a
 term that is both time- and scenario-dependent already unfolds per `(t, s)` pair today; a term that is
-also `segment`-indexed unfolds per `(t, s, segment)` triple, and so on for any further set).
+also `segment`-indexed, or that bare-references `segment`, unfolds per `(t, s, segment)` triple, and
+so on for any further set).
 
-Unfolding over a custom set is driven entirely by set-indexed parameter/variable terms appearing in the
-expression, exactly like time/scenario unfolding today — there is no mechanism to force-unfold a
-constraint over a set with no set-indexed term in it. This follows from `indexed-by` [existing only on
-parameters and variables](input-files/library.md#sets) (see [Indexing
-expressions](#indexing-expressions) above for the replacement pattern when a constraint needs data
-associated with each element).
+### Referencing a set's index value
+
+Used bare, outside `[ ]`, a set's own `id` evaluates to the current element's 0-based integer
+position within whichever set-indexed context it is unfolding in — e.g. plain `segment` below is a
+plain number (0, 1, 2, …), not a subscript operator. This holds uniformly for both ordinal and
+enumerated sets, since even an enumerated set has a well-defined order once `system.yml` resolves it
+(`fuel` bare = 0 for `gas`, 1 for `coal`, 2 for `oil`, given a resolved `elements: [gas, coal, oil]`).
+
+As established in [Implicit unfolding](#implicit-unfolding) above, this bare reference is on its own
+enough to make a constraint unfold over that set — no separate tag is needed, even when nothing else
+in the expression is set-indexed:
+
+```yaml
+extra-outputs:
+  - id: segment_number
+    expression: segment
+```
+
+Here `segment` is the *only* thing in the expression connected to the `segment` set — no parameter or
+variable is indexed by it — yet this alone unfolds the output into one row per segment element,
+reporting that element's position.
+
+This is exactly why the naming rules forbid a set's `id` from colliding with a parameter/variable `id`
+or the reserved literal `t` (a local set), or with any locally-declared identifier at all (a global
+set) — see [Rules for id naming](input-files/library.md#rules-for-id-naming) for the complete rule
+— otherwise a bare reference to that name would be ambiguous between "current index position", a
+parameter/variable lookup, or the built-in time index.
+
+This also covers the case of a constraint that carries *several* set dimensions at once — some
+inferred from a set-indexed term, others from a bare index-value reference like `segment` above: per
+[Cross-product unfolding](#implicit-unfolding) above, the constraint simply unfolds over the
+union/cross-product of all of them, exactly as it would for any other combination of dimensions.
 
 ### Collision check
 
-- `[ ]` stays 100% reserved for time; never touched.
-- `{ }` is currently unused anywhere in the grammar — zero syntactic overlap.
+- `[ ]` is no longer time-only: it becomes the single reserved indexing delimiter for every
+  dimension — time and custom sets alike. `{ }` is dropped from this proposal entirely and stays
+  fully unused/reserved.
+- Every existing time-only form (`X[t]`, `X[5]`, `X[t+1]`, `X[t-1]`) keeps its exact current meaning
+  — see the [bare-integer-always-means-time rule](#indexing-expressions) — so this change is
+  additive, not breaking, for anything written against today's syntax.
+- The `=` introduced by the keyword form (`X[fuel=2]`) does not collide with the "exactly one
+  comparison operator" rule for constraints (see [Comparison Operators](#comparison-operators)):
+  that rule counts `=`/`<=`/`>=` at the **top level** of a constraint expression, outside all
+  bracket/paren nesting. A parser that respects bracket nesting (as it already must, to parse
+  `sum(t .. t+3, production)` correctly today) scopes a keyword-form `=` to its enclosing `[ ]` and
+  never surfaces it to top-level comparison-operator counting.
+- The `,` introduced for multi-dimensional indexing (`X[segment, fuel]`) does not collide with the
+  pre-existing use of `,` inside `sum(S..E, X)` or `min(u, v, ...)`/`max(u, v, ...)` — those are
+  function-call parentheses `()`, a different delimiter from the index brackets `[ ]`.
+- `indexed-by: [fuel, region]` (a YAML list, parsed by the YAML loader before any expression string
+  is handed to the math-expression parser) and `X[fuel, region]` (inside an `expression:` string,
+  parsed by the math-expression grammar above) are visually similar but live in two entirely
+  different layers — no actual collision, but worth calling out explicitly since both use `[ ]`.
 - `.` stays reserved for [ports](#ports).
 - `sum_over` is a new name, distinct from `sum`, `sum(S..E,X)`, `sum_connections`, `expec`.
-- `{` only ever appears immediately after an identifier (`X{...}`), never as the first character of
-  the expression string, so it can't be misparsed as a YAML flow mapping.
 
 ## Constraints
 
