@@ -7,9 +7,9 @@ The system file is a YAML file with a single root key `system`. The system conta
 !!! warning "Design proposal — not yet implemented"
     Two proposed additional top-level fields instantiate study-wide, library-scoped data:
     [`parameters`](#global-parameters), which assigns a value to every
-    [library-level global parameter](../library.md#global-parameters), and
+    [library-level global parameter](library.md#global-parameters), and
     [`sets`](#global-sets), which instantiates every
-    [library-level global set](../library.md#library-level-sets) — for the whole study. Not yet
+    [library-level global set](library.md#library-level-sets) — for the whole study. Not yet
     implemented in [GemsPy](../../index.md).
 
 ```yaml
@@ -111,8 +111,8 @@ system:
     [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) proposal.
     It is not yet implemented in [GemsPy](../../index.md).
 
-(Required whenever a model declares a **local**, model-level [set](../library#sets) — see
-[library.md's Sets](../library.md#sets) for why a local set never gives its concrete `elements`
+(Required whenever a model declares a **local**, model-level [set](library.md#sets) — see
+[library.md's Sets](library.md#sets) for why a local set never gives its concrete `elements`
 itself) Every component instantiating that model must supply the set's concrete element list here,
 mirroring how [Properties](#properties) values are supplied per component while their keys are
 declared in the model. This is not needed for [global sets](#global-sets), which are instantiated
@@ -122,7 +122,7 @@ Each set entry contains:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | The set key name, matching a set declared in the [model's local sets](../library#sets). |
+| `id` | String | The set key name, matching a set declared in the [model's local sets](library.md#sets). |
 | `elements` | List, or range shorthand | The ordered elements this component uses for that set — same two forms (explicit list or `S..E` range shorthand) as for a [global set](#global-sets); see there for the full explanation. |
 
 ```yaml
@@ -187,8 +187,8 @@ time. When a global parameter is used as a [global ordinal set's](../library.md#
 
 (Required whenever any used library declares global sets) A top-level `sets` collection — a sibling of
 `parameters`, `components`, and `connections` — that instantiates **every** [library-level global
-set](../library.md#library-level-sets) declared by any library this system uses(see [library.md's
-Library-Level Sets](../library.md#library-level-sets) for why a global set never gives its concrete
+set](library.md#library-level-sets) declared by any library this system uses (see [library.md's
+Library-Level Sets](library.md#library-level-sets) for why a global set never gives its concrete
 contents itself). It must do so for every one of them, not just some. This instantiation applies **once, uniformly, to the
 whole study** — never per component — because every component connecting through a port that uses this
 set must agree on the exact same index domain; a per-component override would defeat that guarantee
@@ -199,7 +199,7 @@ rather than per component.
 This collection only ever contains `elements:` entries, for `kind: enumerated` sets. A `kind: ordinal`
 global set has **no entry here at all** — its size is fixed entirely by the
 [global parameter](#global-parameters) its library declaration names as `cardinality` (see [Global
-Parameters](#global-parameters) above and [Library-Level Sets](../library.md#library-level-sets)).
+Parameters](#global-parameters) above and [Library-Level Sets](library.md#library-level-sets)).
 This mirrors exactly how a **local** ordinal set has no `sets:` entry of its own either — its size is
 hidden inside the ordinary per-component parameter assignment instead (see [Local Sets](#local-sets)
 above) — so an ordinal set, local or global, is never given a size directly in a `sets:` list; only
@@ -209,7 +209,7 @@ Each set entry contains:
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | The set key name, matching a [library-level set](../library.md#library-level-sets) declared by one of this system's libraries. |
+| `id` | String | The set key name, matching a [library-level set](library.md#library-level-sets) declared by one of this system's libraries. |
 | `elements` | List, or range shorthand | The set's concrete, ordered elements — see the two accepted forms below. |
 
 `elements` accepts one of two forms — the same two forms a [local set](#local-sets) accepts:

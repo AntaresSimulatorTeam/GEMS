@@ -140,7 +140,7 @@ per-component-varying sets are declared separately — see [Sets](#sets) under M
 
 This collection is **optional**. A global set's concrete contents are **never** given in the library —
 only its `id` and an optional `description`; concrete `elements` are always supplied exactly once,
-study-wide, in [`system.yml`'s Global Sets section](../system.md#global-sets). A [local set](#sets)
+study-wide, in [`system.yml`'s Global Sets section](system.md#global-sets). A [local set](#sets)
 (declared under Models, below) follows the same shape, scoped to a single model instead — see there.
 
 ```yaml
@@ -160,7 +160,7 @@ library:
 
 See [Indexing expressions](../syntax.md#indexing-expressions) for why library/model
 expressions can only ever access a set's elements positionally (never by name). See [System — Global
-Sets](../system.md#global-sets) for how `system.yml` instantiates `elements` and the recommended
+Sets](system.md#global-sets) for how `system.yml` instantiates `elements` and the recommended
 practice for instantiating a global set.
 
 ### Port Types
@@ -331,7 +331,7 @@ set only when the index genuinely needs to vary per component or stay internal t
 
 Exactly like a [library-level set](#library-level-sets) (see above for why a set never gives its
 concrete contents here), a local set's `elements` are assigned per component instead, in
-`system.yml`'s [Local Sets](../system.md#local-sets) list.
+`system.yml`'s [Local Sets](system.md#local-sets) list.
 
 | Element | Type | Description |
 |------|------|--------------------------|
