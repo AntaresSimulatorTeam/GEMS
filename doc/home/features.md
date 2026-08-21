@@ -41,7 +41,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     [:octicons-arrow-right-24: Variables](../user-guide/input-files/library.md#variables)
 
--   :material-decimal-decrease:{ .lg .middle } **Rounding heuristics for integer decisions**
+-   :material-approximately-equal:{ .lg .middle } **Rounding heuristics for integer decisions**
 
     ---
 
