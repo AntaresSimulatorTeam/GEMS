@@ -17,11 +17,11 @@
 
 * Clarify time-index notation and extra-output comparisons in syntax reference ([#212](https://github.com/AntaresSimulatorTeam/GEMS/pull/212))
 
+* Refactor Quick Start Examples presentation page ([PR78](https://github.com/AntaresSimulatorTeam/GEMS/pull/230))
+
 ### Fixed
 
 * Remove duplicated blocks and fix broken links ([#224](https://github.com/AntaresSimulatorTeam/GEMS/pull/224))
-
-* Refactor Quick Start Examples presentation page ([PR78](https://github.com/AntaresSimulatorTeam/GEMS/pull/230))
 
 ## v0.3.5 | *24-07-2026*
 
@@ -51,7 +51,6 @@
 
 ### Changed
 
-
 * Bump Antares Simulator version to v10.1.0 ([#160](https://github.com/AntaresSimulatorTeam/GEMS/pull/160))
 
 * Replace requirements txt file with uv lock ([#163](https://github.com/AntaresSimulatorTeam/GEMS/pull/163))
@@ -63,7 +62,6 @@
 * Bump documentation on GemsPy from v0.10 to v0.12 ([#161](https://github.com/AntaresSimulatorTeam/GEMS/pull/161))
 
 * Improve formatting ([#151](https://github.com/AntaresSimulatorTeam/GEMS/pull/151))
-
 
 ## v0.3.3 | *10-06-2026*
 
