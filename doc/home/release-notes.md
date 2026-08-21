@@ -21,6 +21,8 @@
 
 * Remove duplicated blocks and fix broken links ([#224](https://github.com/AntaresSimulatorTeam/GEMS/pull/224))
 
+* Refactor Quick Start Examples presentation page ([PR78](https://github.com/AntaresSimulatorTeam/GEMS/pull/230))
+
 ## v0.3.5 | *24-07-2026*
 
 ### Changed
