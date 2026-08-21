@@ -62,7 +62,7 @@ All `id's` in the model library and [system file](system.md) must respect the fo
     already reserved for other identifiers in this syntax.
 
     These rules are part of the
-    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal —
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) proposal —
     not yet implemented in [GemsPy](../../index.md).
 
 ## Collections and key fields in library file
@@ -87,20 +87,20 @@ library:
 !!! warning "Design proposal — not yet implemented"
     This section describes a **proposed** extension to the library file schema. It is not yet
     implemented in [GemsPy](../../index.md). See
-    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) for the
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) for the
     full expression-syntax proposal this schema supports.
 
 The `sets` collection, a sibling of `port-types` and `models`, declares **global** custom index sets
 — shared by every model and port-type field in this library that references them. This is the only
 kind of custom set that may cross a port (see [Port fields and custom
-sets](../mathematical-syntax.md#port-fields-and-custom-sets) for the precise rules), since every
+sets](../syntax.md#port-fields-and-custom-sets) for the precise rules), since every
 component connecting through a port must agree on the exact same index domain (see [Why the
-distinction matters](../mathematical-syntax.md#why-the-distinction-matters)). Model-level,
+distinction matters](../syntax.md#why-the-distinction-matters)). Model-level,
 per-component-varying sets are declared separately — see [Sets](#sets) under Models below.
 
 This collection is **optional**. A global set's concrete contents are **never** given in the library —
 only its `id` and an optional `description`; concrete `elements` are always supplied exactly once,
-study-wide, in [`system.yml`'s Global Sets section](../system.md#global-sets). A [local set](#sets)
+study-wide, in [`system.yml`'s Global Sets section](system.md#global-sets). A [local set](#sets)
 (declared under Models, below) follows the same shape, scoped to a single model instead — see there.
 
 ```yaml
@@ -116,9 +116,9 @@ library:
 |`id`| String | Unique set identifier within the library. Must follow the [naming rules](#rules-for-id-naming).|
 | `description`| String | *(Optional)* A human-readable description of the set's purpose.|
 
-See [Indexing expressions](../mathematical-syntax.md#indexing-expressions) for why library/model
+See [Indexing expressions](../syntax.md#indexing-expressions) for why library/model
 expressions can only ever access a set's elements positionally (never by name). See [System — Global
-Sets](../system.md#global-sets) for how `system.yml` instantiates `elements` and the recommended
+Sets](system.md#global-sets) for how `system.yml` instantiates `elements` and the recommended
 practice for instantiating a global set.
 
 ### Port Types
@@ -277,7 +277,7 @@ variables:
 !!! warning "Design proposal — not yet implemented"
     This section describes a **proposed** extension to the library file schema. It is not yet
     implemented in [GemsPy](../../index.md). See
-    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) for the
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) for the
     full expression-syntax proposal this schema supports.
 
 (Optional) A list of **local** custom index sets declared by this model — usable to index this
@@ -285,11 +285,11 @@ model's own `parameters` and `variables` via the `indexed-by` field described be
 vary per component but are not visible outside this model. A model may also use a [library-level
 set](#library-level-sets) directly via `indexed-by`, without declaring anything here — declare a local
 set only when the index genuinely needs to vary per component or stay internal to this model; see
-[Why the distinction matters](../mathematical-syntax.md#why-the-distinction-matters).
+[Why the distinction matters](../syntax.md#why-the-distinction-matters).
 
 Exactly like a [library-level set](#library-level-sets) (see above for why a set never gives its
 concrete contents here), a local set's `elements` are assigned per component instead, in
-`system.yml`'s [Local Sets](../system.md#local-sets) list.
+`system.yml`'s [Local Sets](system.md#local-sets) list.
 
 | Element | Type | Description |
 |------|------|--------------------------|
@@ -311,7 +311,7 @@ sets, plus every [library-level set](#library-level-sets) visible in this librar
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `{...}` — e.g. `X{segment}` or `X{segment, fuel}` for multiple sets. See [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed).|
+|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `{...}` — e.g. `X{segment}` or `X{segment, fuel}` for multiple sets. See [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed).|
 
 ```yaml
 parameters:

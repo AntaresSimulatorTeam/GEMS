@@ -42,7 +42,7 @@ Here, the first row contains the values at time-step 0 for scenarios 1, 2, 3 res
 
 !!! warning "Design proposal — not yet implemented"
     This section describes a **proposed** extension to the data-series format, part of the
-    [Custom Sets and Indexing](../mathematical-syntax.md#custom-sets-and-indexing-proposed) proposal.
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) proposal.
     It is not yet implemented in [GemsPy](../../index.md).
 
 **Backward compatibility:** this section is purely additive. A parameter that does not declare

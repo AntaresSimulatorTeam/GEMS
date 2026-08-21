@@ -219,9 +219,9 @@ element."
 Custom sets come in two scopes, and the right choice depends on whether the set ever needs to be
 shared across connected components (through a port) or stays purely internal to one model:
 
-- **Local sets** — declared at [model level](file-structure/library.md#sets); may vary per
+- **Local sets** — declared at [model level](input-files/library.md#sets); may vary per
   component; never visible outside the model that declares them.
-- **Global sets** — declared once at [library level](file-structure/library.md#library-level-sets); visible
+- **Global sets** — declared once at [library level](input-files/library.md#library-level-sets); visible
   to every model and port-type field in that library; **required** whenever a set needs to cross a
   port, since every component connecting through that port must agree on the exact same index domain.
 
@@ -300,7 +300,7 @@ arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctl
 
 **Note:** there is deliberately no "bare named-element" form (e.g. `X{gas}`) in this table. A set's
 `elements` are never known at library-authoring time — only once `system.yml`
-[instantiates them](file-structure/system.md#global-sets) (for a global set) or per component (for a
+[instantiates them](input-files/system.md#global-sets) (for a global set) or per component (for a
 local one) — so a model may only ever access a set positionally: the bare set-id for the current
 position (`X{fuel}`), a relative shift (`X{fuel+1}`), or an explicit integer position (`X{0}`). This
 holds no matter how `system.yml` ends up instantiating the set's elements — a name list still only
@@ -328,7 +328,7 @@ order is deliberate.
 arithmetic value (e.g. `segment * price_step`, using `segment` as a raw number) — only the forms above
 are supported. If a model needs per-element data — a price step per segment, a conversion factor per
 fuel — declare an ordinary parameter `indexed-by` that set and supply its values via the [set-indexed
-data series](file-structure/data-series.md#set-indexed-series) format, the same way a time-dependent
+data series](input-files/data-series.md#set-indexed-series) format, the same way a time-dependent
 parameter's values come from a time series rather than from any implicit function of `t`:
 
 ```yaml
@@ -418,7 +418,7 @@ also `segment`-indexed unfolds per `(t, s, segment)` triple, and so on for any f
 Unfolding over a custom set is driven entirely by set-indexed parameter/variable terms appearing in the
 expression, exactly like time/scenario unfolding today — there is no mechanism to force-unfold a
 constraint over a set with no set-indexed term in it. This follows from `indexed-by` [existing only on
-parameters and variables](file-structure/library.md#sets) (see [Indexing
+parameters and variables](input-files/library.md#sets) (see [Indexing
 expressions](#indexing-expressions) above for the replacement pattern when a constraint needs data
 associated with each element).
 
