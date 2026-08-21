@@ -12,7 +12,7 @@ If you want to get started immediately, follow the **Adequacy Quick Start Exampl
 
 ## Unit Commitment Example
 
-Another example shows you how to run an unit commitment optimisation problem :
+Another example shows you how to run a unit commitment optimisation problem :
 
 - configuring thermal clusters for unit commitment
 - analyze the results 
@@ -21,7 +21,7 @@ Another example shows you how to run an unit commitment optimisation problem :
 
 ## PyPSA Eur Example
 
-The following tutorial teachs you how to convert PyPSA Eur inside a docker cluster and run the study with GEMS with this path :
+The following tutorial teaches you how to convert PyPSA Eur inside a Docker cluster and run the study with GEMS with this path :
 
 - downloading a simple PyPSA-Eur study with minimal settings
 - converting to GEMS inside a Docker-hosted Jupyter notebook
