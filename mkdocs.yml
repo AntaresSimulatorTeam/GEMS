@@ -169,7 +169,7 @@ nav:
           - Limitations: interoperability/hybrid/limitations.md
   - Examples:
       - Overview: examples/overview-examples.md
-      - Quick Start Example: examples/quick-start-example.md
+      - Quick Start Examples: examples/quick-start-examples.md
       - Tutorial Notebooks:
           - Unit Commitment with GemsPy: examples/notebooks/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
           - Investment Optimization with GemsPy: examples/notebooks/tutorial-three-investment/tutorial-invest.ipynb
