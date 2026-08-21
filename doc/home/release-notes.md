@@ -1,6 +1,24 @@
 
 # Release Notes
 
+## v0.3.6 | *21-08-2026*
+
+### Added
+
+* Document Views — new section covering the `view-config` file and its integration in the user guide ([PR65](https://github.com/AntaresSimulatorTeam/GEMS/pull/191))
+
+* Document thermal connection in hybrid studies ([PR75](https://github.com/AntaresSimulatorTeam/GEMS/pull/204))
+
+### Changed
+
+* Bump GemsPy to v0.1.3 — update notebooks and document new GemsPy release ([PR76](https://github.com/AntaresSimulatorTeam/GEMS/pull/209))
+
+* Clarify time-index notation and extra-output comparisons in syntax reference ([#212](https://github.com/AntaresSimulatorTeam/GEMS/pull/212))
+
+### Fixed
+
+* Remove duplicated blocks and fix broken links ([#224](https://github.com/AntaresSimulatorTeam/GEMS/pull/224))
+
 ## v0.3.5 | *24-07-2026*
 
 ### Changed
