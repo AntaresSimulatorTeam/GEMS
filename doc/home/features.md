@@ -45,7 +45,7 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     ---
 
-    When solving a mixed-integer problem to proven optimality is too costly, a rounding heuristic gives a fast, feasible answer instead: the relaxed problem is solved first, integer decisions are rounded, and the remaining continuous decisions are re-optimised. The heuristics are built into the interpreters and referenced from the study, so the same models can be run in exact or heuristic mode.
+    When proving optimality is too costly, a rounding heuristic gives a fast feasible solution instead: solve the relaxation, round the integer decisions, re-optimise the continuous ones. Heuristics are built into the interpreters and selected from the study, so the same models run in exact or heuristic mode.
 
     `Solving`
 
