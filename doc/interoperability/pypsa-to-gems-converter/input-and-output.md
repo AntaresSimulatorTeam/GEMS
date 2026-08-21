@@ -33,4 +33,4 @@ study_directory/
                 └── ...
 ```
 
-Each generated file follows the GEMS file structure conventions: see the [system file](../../user-guide/file-structure/system.md), [library file](../../user-guide/file-structure/library.md), [data series](../../user-guide/file-structure/data-series.md), and [solver parameters](../../user-guide/file-structure/solver-optimization.md) documentation for details on their format and content.
+Each generated file follows the GEMS file structure conventions: see the [system file](../../user-guide/file-structure/system.md), [library file](../../user-guide/file-structure/library.md), [data series](../../user-guide/file-structure/data-series.md), [solver parameters](../../user-guide/file-structure/solver-optimization.md), and [optimization configuration](../../user-guide/file-structure/optimization-configuration.md) documentation for details on their format and content.

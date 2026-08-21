@@ -19,6 +19,7 @@ flowchart LR
     
     System["📄 system.yml 🔗"]
     Params["📄 parameters.yml 🔗"]
+    OptimConfig["📄 optim-config.yml 🔗"]
     Lib1["📄 library_1.yml"]
     Lib2["📄 library_2.yml"]
     Data1["📊 data-series_1.csv"]
@@ -29,6 +30,7 @@ flowchart LR
     Study --> Params
     Input --> ModelLib
     Input --> System
+    Input --> OptimConfig
     Input --> DataSeries
     ModelLib --> Lib1
     ModelLib --> Lib2
@@ -42,6 +44,7 @@ flowchart LR
     style DataSeries stroke:#0891b2,stroke-width:2px,color:#ffffff
     style System stroke:#16a34a,stroke-width:3px,color:#ffffff
     style Params stroke:#16a34a,stroke-width:3px,color:#ffffff
+    style OptimConfig stroke:#16a34a,stroke-width:3px,color:#ffffff
     style Lib1 stroke:#16a34a,stroke-width:3px,color:#ffffff
     style Lib2 stroke:#3b82f6,stroke-width:2px,color:#ffffff
     style Data1 stroke:#3b82f6,stroke-width:2px,color:#ffffff
@@ -51,6 +54,7 @@ flowchart LR
     
     click ModelLib "../library/"
     click System "../system/"
+    click OptimConfig "../optimization-configuration/"
     click DataSeries "../data-series/"
     click Scenario "../scenario-builder/"
     click Params "../solver-optimization/"
