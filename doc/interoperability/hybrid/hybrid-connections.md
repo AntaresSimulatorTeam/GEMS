@@ -1,20 +1,14 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Coupling GEMS Components with Legacy Areas
 
-In a **hybrid study**, a `area-connection` between a GEMS component and a Legacy Area means that the component contributes to the energy balance at the given node, through a given port (field).
+In a **hybrid study**, an `area-connection` between a GEMS component and a Legacy Area means that the component contributes to the energy balance at the given node, through a given port (field).
 
 In practical terms, connecting a GEMS **Generator** component to an Antares Legacy Area injects the generator's power output into that area's balance equation (the supply-demand constraint). *Without this connection, the GEMS component would remain isolated*.
 
 The following steps describe how to **link the GEMS part of the study to the Legacy part**:
 
-## Abstract definition of the area-connection field type (in the [library](../../user-guide/file-structure/library.md) file)
+## Abstract definition of the area-connection field type (in the [library](../../user-guide/input-files/library.md) file)
 
-In order to successfully inject a GEMS component's port into an Antares Legacy Area, the port's type must declare which field will contribute to the optimization problem. This is configured in the [library](../../user-guide/file-structure/library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
+In order to successfully inject a GEMS component's port into an Antares Legacy Area, the port's type must declare which field will contribute to the optimization problem. This is configured in the [library](../../user-guide/input-files/library.md) of the component's model (e.g. a file `model-libraries/library.yml`). 
 
 The `area-connection` section is optional in general, but becomes mandatory when the port type is intended to be used in a **hybrid study**. It can accept 3 types of fields `injection-to-balance`, `spillage-bound` and `unsupplied-energy-bound` :
 
@@ -39,12 +33,12 @@ The nature of the contribution depends on the fields:
 
 These fields are independent: you don't have to define all 3 at the same time, you can define only one. However, all three keys must be present in the `area-connection` section even if some values are left empty.
 
-## Conventions on the sign of expressions
+### Conventions on the sign of expressions
 
 When connecting a component to an area, you must respect conventions on the sign of the linear expression contributed by the port field.
 
 
-| Area Connecton Field | Sign Convention: Positive for... |
+| Area Connection Field | Sign Convention: Positive for... |
 |---|---|
 | injection-to-balance | Production |
 | spillage-bound | Production |
@@ -93,7 +87,7 @@ When connecting a component to an area, you must respect conventions on the sign
         ```
 
 
-## Definition of the area-connections (in the [system](../../user-guide/file-structure/system.md) file)
+## Definition of the area-connections (in the [system](../../user-guide/input-files/system.md) file)
 
 The `area-connections` section of the system file is used to declare each connection between a GEMS component and an Antares Legacy Area.
 
@@ -111,3 +105,48 @@ Explanation of fields:
 - **component:** Refers to the `id` of the GEMS component to be connected. This `id` must match the one declared in the components section of the `system.yml` file. In this example, it refers to a component named `wind_farm`
 - **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding **port type** must include an `area-connection` section in the model library definition, and must specify at least one of `injection-to-balance`, `spillage-bound` or `unsupplied-energy-bound`
 - **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area's balance constraint during simulation
+
+## Abstract definition of the thermal-capacity-connection field type 
+
+This part describes how to link a GEMS component to a Legacy Thermal Cluster thanks to the `thermal-capacity-connection`, **inside the context of an investment study**.
+
+The modeler expression defined on this port **replaces the legacy thermal cluster's capacity time series** during optimization. This feature is configured in both the library file and the system file, as shown below.
+
+### Model library
+
+The `thermal-capacity-connection` is declared in the port type definition inside the library:
+
+```yaml
+port-types:
+  - id: capacity_port
+    fields:
+      - id: capacity
+    thermal-capacity-connection:
+      capacity-field: capacity
+```
+
+### System
+
+The `thermal-capacity-connection` is instantiated for a specific component and thermal cluster in the system file:
+
+```yaml
+thermal-capacity-connections:
+  - component: my_thermal_invest
+    port: capacity_port
+    thermal-component:
+      area: fr
+      cluster-id: nuclear1
+```
+
+> In our example, the component `my_thermal_invest` connects to a legacy thermal cluster `nuclear1` in area `fr` through the port named `capacity_port`.
+
+Explanation of fields:
+
+- **component:** Refers to the `id` of the GEMS component to be connected. This `id` must match the one declared in the components section of the `system.yml` file. In this example, it refers to a component named `my_thermal_invest`
+- **port:** Specifies which port on the component is used to establish the connection to the Legacy Thermal Cluster. The corresponding **port type** must include a `thermal-capacity-connection` section in the model library definition with a `capacity-field` key
+- **thermal-component:** Identifies the target Legacy Thermal Cluster:
+    - **area:** The id of the Antares Simulator area that contains the thermal cluster
+    - **cluster-id:** The id of the thermal cluster within that area
+
+!!! note "Investment studies requirement"
+    As in Legacy Mode, MC years are optimized separately, so **investment hybrid** studies have to use the `resolution-mode: benders-decomposition` inside the `optim-config.yml` file to use scenario-dependent variables.

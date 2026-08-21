@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # Frequently Asked Questions
 
 ## General Questions
@@ -14,7 +8,7 @@ Currently, there is no GUI integrated into the [Antares Simulator repository](ht
 
 ### Can I use GEMS components inside a Legacy Study ?
 
-Yes, you can run hybrid studies (a Legacy study with GEMS components inside) with Antares Legacy. For a pratical tutorial, refer to the [Hybrid Study Section](../interoperability/hybrid/overview.md).
+Yes, you can run hybrid studies (a Legacy study with GEMS components inside) with Antares Legacy. For a practical tutorial, refer to the [Hybrid Study Section](../interoperability/hybrid/overview.md).
 
 ### Can I model unit commitment with GEMS?
 
@@ -38,5 +32,5 @@ The [Examples section](../examples/adequacy-example.md) contains various use cas
 
 ### How do I report issues or get support?
 
-Visit the [Support & Contributing section](./contact.md) for contact information and support channels.
+Visit the [Support & Contributing section](./contributing.md) for contribution guidelines and support channels.
 

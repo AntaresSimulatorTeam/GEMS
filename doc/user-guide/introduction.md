@@ -1,16 +1,10 @@
 ---
-description: Introduction to the GEMS framework — how to describe energy systems declaratively using structured YAML files, mathematical expressions, and graph-based component connections.
+description: Introduction to the GEMS framework - how to describe energy systems declaratively using structured YAML files, mathematical expressions, and graph-based component connections.
 ---
-
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
 
 # GEMS Framework Introduction
 
-The [**GEMS framework**](../index.md) provides a declarative way to describe energy systems — and more generally, graph-based optimization problems — in a clear, stand-alone, solver-independent, and reproducible manner.
+The [**GEMS framework**](../index.md) provides a declarative way to describe energy systems - and more generally, graph-based optimization problems - in a clear, stand-alone, solver-independent, and reproducible manner.
 
 Rather than writing imperative code, users define a study through **structured configuration files**, **mathematical expressions**, and **well-defined concepts** that together allow [GEMS](../index.md) to:
 
@@ -21,19 +15,19 @@ Rather than writing imperative code, users define a study through **structured c
 
 From a documentation perspective, the User Guide is organized into **four complementary sections**, each serving a distinct purpose:
 
-- [**Mathematical Syntax**](#mathematical-syntax) — rules for writing mathematical expressions
+- [**Mathematical Syntax**](#mathematical-syntax) - rules for writing mathematical expressions
 
-- [**File Structure**](#file-structure) — rules for writing [GEMS](../index.md) YAML files and how they reference each other  
+- [**Input Files**](#input-files) - rules for writing [GEMS](../index.md) YAML files and how they reference each other  
 
-- [**Theoretical Concepts**](#theoretical-concepts) — core ideas behind the system representation and optimization formulation
+- [**Theoretical Concepts**](#theoretical-concepts) - core ideas behind the system representation and optimization formulation
 
-- [**Outputs**](#outputs) — produced result formats and how to interpret them  
+- [**Outputs**](#outputs) - produced result formats and how to interpret them  
 
 This separation is fundamental to understanding how [GEMS](../index.md) systems are written, interpreted, validated, and analysed.
 
 ## Mathematical Syntax
 
-The **GEMS Framework Mathematical Syntax** represents set of rules for creating mathematical expressions which will be used in building an optimization problem.
+The **GEMS Framework Mathematical Syntax** represents a set of rules for creating mathematical expressions which will be used in building an optimization problem.
 
 It defines:
 
@@ -48,11 +42,11 @@ Mathematical syntax is **solver-agnostic** and intentionally restricted to ensur
 
 Mathematical syntax focuses exclusively on *equations and rules*. It does not describe where parameters and variables come from or how components are wired together as a system.
 
-See: [**Mathematical Syntax and Rules**](./mathematical-syntax.md)
+See: [**Mathematical Syntax and Rules**](syntax.md)
 
-## File Structure
+## Input Files
 
-The **GEMS Framework File Structure** defines how components are **declared, structured, and connected**  to form a system, and how these systems can be translated as optimization problems, using YAML files.
+The **GEMS Framework Input Files** define how components are **declared, structured, and connected** to form a system, and how these systems can be translated as optimization problems, using YAML files.
 
 It specifies:
 
@@ -62,11 +56,11 @@ It specifies:
 - How parameters are defined in a component
 - How to use ports to connect components to form a system graph
 - How optimization options are configured
-- (When applicable) How to create Business View configuration file
+- (When applicable) How to create Views configuration files
 
-These rules governs the **structure and semantics** of all [GEMS](../index.md) YAML files.
+These rules govern the **structure and semantics** of all [GEMS](../index.md) YAML files.
 
-See: [**File Structure**](./file-structure/overview.md)
+See: [**Input Files**](./input-files/overview.md)
 
 ## Theoretical Concepts
 

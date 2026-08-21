@@ -1,9 +1,3 @@
-<div style="display: flex; justify-content: flex-end;">
-  <a href="../../../..">
-    <img src="../../../assets/gemsV2.png" alt="GEMS Logo" width="150"/>
-  </a>
-</div>
-
 # GemsPy
 
 [GemsPy](https://gemspy.readthedocs.io/en/latest/) is a Python interpreter for GEMS that allows you to create, manipulate, and simulate energy system models.
@@ -16,7 +10,7 @@ This package requires:
 
 ## GemsPy installation
 
-You can [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) by using `pip` installation :
+You can install [GemsPy](https://github.com/AntaresSimulatorTeam/GemsPy) using `pip` :
 
 ```shell
 pip install gemspy
