@@ -50,8 +50,8 @@ All `id's` in the model library and [system file](system.md) must respect the fo
 !!! warning "Design proposal — not yet implemented"
     A local [set](#sets)'s `id` must not collide with any [global (library-level)
     set](#library-level-sets) `id` visible in the same library — since `indexed-by: x` (or a bare
-    reference to `x` inside `{...}`) would otherwise be ambiguous between the two. This is the only
-    id-collision rule custom sets add: a set is only ever looked up in two places — inside `{...}`
+    reference to `x` inside `[...]`) would otherwise be ambiguous between the two. This is the only
+    id-collision rule custom sets add: a set is only ever looked up in two places — inside `[...]`
     right after an identifier, or as the value of `indexed-by:` — and both positions only ever accept a
     set `id`, never a parameter or variable `id`, so **parameter and variable ids are free to collide
     with set ids** (local or global) without any ambiguity. This is not recommended, though: even
@@ -108,7 +108,7 @@ library:
   id: example_library
   sets:
     - id: fuel
-    - id: segment_count_set
+    - id: segment
 ```
 
 | Element | Type | Description |
@@ -311,7 +311,7 @@ sets, plus every [library-level set](#library-level-sets) visible in this librar
 
 | Element | Type | Description |
 |------|------|--------------------------|
-|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `{...}` — e.g. `X{segment}` or `X{segment, fuel}` for multiple sets. See [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed).|
+|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `[...]` — e.g. `X[segment]` or `X[segment, fuel]` for multiple sets, the same bracket already used for [time indexing](../syntax.md#time-operators-and-indexing). See [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed).|
 
 ```yaml
 parameters:
@@ -323,7 +323,7 @@ variables:
   - id: segment_level
     indexed-by: segment
     lower-bound: 0
-    upper-bound: segment_capacity{segment}
+    upper-bound: segment_capacity[segment]
     variable-type: continuous
 ```
 

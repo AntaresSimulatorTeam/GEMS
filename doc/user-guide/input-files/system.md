@@ -178,7 +178,7 @@ system:
   sets:
     - id: fuel
       elements: [gas, coal, oil]
-    - id: segment_count_set
+    - id: segment
       elements: 0..4        # shorthand for [0, 1, 2, 3, 4]
   components:
     - id: gen_1
