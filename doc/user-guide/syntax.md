@@ -212,7 +212,7 @@ the price segments of a storage's marginal-value curve, a list of fuels, a set o
 — and index parameters, variables, and expressions over them.
 
 Custom-set indexing reuses the same square brackets `[ ]` already used for [time
-indexing](#time-operators-and-indexing) — there is no second bracket delimiter to learn. A set's own
+indexing](#time-operators-and-indexing). A set's own
 `id` doubles as its index variable inside `[ ]`: used bare (`X[fuel]`) it means "the current
 element"; used with an explicit `set_id=value` keyword form (`X[fuel=2]`) it means "this specific
 element." See [Indexing expressions](#indexing-expressions) below for the full grammar, including how
@@ -321,9 +321,7 @@ Two rules keep this grammar unambiguous and fully backward compatible:
   `X[t]`, `X[5]`, `X[t+1]`, `X[t-1]` example valid, unchanged, with zero new ambiguity — a small
   trade of brevity for a rule with no exceptions.
 - **An explicit position on a custom set always uses the keyword form** (`X[fuel=2]`), never a bare
-  integer (`X[2]` would mean time). This also removes the old proposal's fragile "positional,
-  declaration-order-dependent" multi-index form — see [Multiple indexing sets](#multiple-indexing-sets)
-  below.
+  integer (`X[2]` would mean time) — see [Multiple indexing sets](#multiple-indexing-sets) below.
 
 Because a set's `id` is an ordinary identifier — not a reserved keyword the way `t` is — standard
 arithmetic precedence already parses `segment+1`, `2*segment - 1`, etc. correctly on the right-hand
@@ -452,69 +450,27 @@ expression: total = sum_over(fuel, sum_over(segment, segment_fuel_cost))
 
 ### Implicit unfolding
 
-A constraint unfolds over a custom set whenever it contains, anywhere in its expression, **either**
-of two things:
-
-- a set-indexed variable/parameter — used bare (no brackets at all), or with the explicit "current
-  element" form `X[segment]` — exactly like today's time/scenario unfolding rule (see
-  [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended
-  to a third dimension; or
-- a **bare reference to the set's own `id`, used as a scalar value** — e.g. plain `segment` in
-  `base_price + segment * price_step` — even when no parameter or variable in the expression is
-  itself declared `indexed-by` that set. Referencing a set's index value only ever makes sense within
-  a context unfolding over that set, so this occurrence is itself enough to trigger unfolding — see
-  [Referencing a set's index value](#referencing-a-sets-index-value) below.
-
-Because these two conditions cover every way an expression can possibly depend on a custom set, this
-detection is always automatic — there is no scenario left where a constraint needs to unfold over a
-set without either condition holding (an expression containing neither would be N identical,
-non-varying copies of the same equation, which has no modeling purpose).
+A constraint containing a set-indexed variable/parameter — without an explicit index, or with the
+"current element" form `X[segment]` — implicitly unfolds into one constraint per set element, exactly
+like today's time/scenario unfolding rule (see [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)), extended to a third dimension.
 
 **Cross-product unfolding:** a constraint whose terms carry more than one dimension — two different
 custom sets, or a custom set alongside time and/or scenario — unfolds over the **cross-product** of
 all of them, generalizing the time+scenario dual-unfolding rule the base doc already establishes (a
 term that is both time- and scenario-dependent already unfolds per `(t, s)` pair today; a term that is
-also `segment`-indexed, or that bare-references `segment`, unfolds per `(t, s, segment)` triple, and
-so on for any further set).
+also `segment`-indexed unfolds per `(t, s, segment)` triple, and so on for any further set).
 
-### Referencing a set's index value
-
-Used bare, outside `[ ]`, a set's own `id` evaluates to the current element's 0-based integer
-position within whichever set-indexed context it is unfolding in — e.g. plain `segment` below is a
-plain number (0, 1, 2, …), not a subscript operator. This holds uniformly for both ordinal and
-enumerated sets, since even an enumerated set has a well-defined order once `system.yml` resolves it
-(`fuel` bare = 0 for `gas`, 1 for `coal`, 2 for `oil`, given a resolved `elements: [gas, coal, oil]`).
-
-As established in [Implicit unfolding](#implicit-unfolding) above, this bare reference is on its own
-enough to make a constraint unfold over that set — no separate tag is needed, even when nothing else
-in the expression is set-indexed:
-
-```yaml
-extra-outputs:
-  - id: segment_number
-    expression: segment
-```
-
-Here `segment` is the *only* thing in the expression connected to the `segment` set — no parameter or
-variable is indexed by it — yet this alone unfolds the output into one row per segment element,
-reporting that element's position.
-
-This is exactly why the naming rules forbid a set's `id` from colliding with a parameter/variable `id`
-or the reserved literal `t` (a local set), or with any locally-declared identifier at all (a global
-set) — see [Rules for id naming](input-files/library.md#rules-for-id-naming) for the complete rule
-— otherwise a bare reference to that name would be ambiguous between "current index position", a
-parameter/variable lookup, or the built-in time index.
-
-This also covers the case of a constraint that carries *several* set dimensions at once — some
-inferred from a set-indexed term, others from a bare index-value reference like `segment` above: per
-[Cross-product unfolding](#implicit-unfolding) above, the constraint simply unfolds over the
-union/cross-product of all of them, exactly as it would for any other combination of dimensions.
+Unfolding over a custom set is driven entirely by set-indexed parameter/variable terms appearing in the
+expression, exactly like time/scenario unfolding today — there is no mechanism to force-unfold a
+constraint over a set with no set-indexed term in it. This follows from `indexed-by` [existing only on
+parameters and variables](input-files/library.md#sets) (see [Indexing
+expressions](#indexing-expressions) above for the replacement pattern when a constraint needs data
+associated with each element).
 
 ### Collision check
 
 - `[ ]` is no longer time-only: it becomes the single reserved indexing delimiter for every
-  dimension — time and custom sets alike. `{ }` is dropped from this proposal entirely and stays
-  fully unused/reserved.
+  dimension — time and custom sets alike.
 - Every existing time-only form (`X[t]`, `X[5]`, `X[t+1]`, `X[t-1]`) keeps its exact current meaning
   — see the [bare-integer-always-means-time rule](#indexing-expressions) — so this change is
   additive, not breaking, for anything written against today's syntax.
