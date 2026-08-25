@@ -107,7 +107,7 @@ Explanations of the different resolution modes:
 |------|-------------|
 | `frontal` | Entire horizon solved as a single LP |
 | `sequential-subproblems` | Consecutive windows solved sequentially; state carried over between blocks |
-| `parallel-subproblems` | Independent blocks solved in parallel |
+| `parallel-subproblems` | Independent blocks that can be solved in parallel |
 | `benders-decomposition` | Investment (master) separated from operation (subproblems) — required for investment studies |
 
 
