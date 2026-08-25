@@ -104,8 +104,10 @@ nav:
   - Home:
       - Home: index.md
       - Key Principles: home/key-principles.md
+      - Features: home/features.md
       - Use Cases: home/use-cases.md
-      - Users of GEMS: home/users.md
+      - Users: home/users.md
+      - Roadmap: home/roadmap.md
       - Release Notes: home/release-notes.md
   - Overview:
       - Architecture: overview/architecture.md
@@ -168,7 +170,7 @@ nav:
           - Limitations: interoperability/hybrid/limitations.md
   - Examples:
       - Overview: examples/overview-examples.md
-      - Adequacy Example: examples/adequacy-example.md
+      - Quick Start Examples: examples/quick-start-examples.md
       - Tutorial Notebooks:
           - Unit Commitment with GemsPy: examples/notebooks/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
           - Investment Optimization with GemsPy: examples/notebooks/tutorial-three-investment/tutorial-invest.ipynb
