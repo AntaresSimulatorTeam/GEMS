@@ -69,6 +69,8 @@ This `solver` part chooses the solver parameters.
 
 ### (optional) Resolution Strategy
 
+This section sets the resolution mode of the optimisation.
+
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `resolution-mode` | String | `frontal` | Decomposition strategy: `frontal`, `sequential-subproblems`, `parallel-subproblems`, `benders-decomposition` |
