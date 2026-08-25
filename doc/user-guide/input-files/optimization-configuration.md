@@ -88,13 +88,44 @@ Explanations of the different resolution modes:
 
 ### (optional) Per-Model Configuration
 
-The `models` key is a list of entries configuring how boundary-crossing time references are handled, which Benders partition the model belongs to, and how integer variables are treated. 
+The `models` key is a list of entries configuring :
+- how boundary-crossing time references are handled
+- which Benders partition the model belongs to
+- how integer variables are treated 
 
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `out-of-bounds-processing.constraints[].mode` | String | `cyclic` | How to handle time-shifted references at block boundaries: `cyclic` (wrap around) or `drop` (skip constraint) |
-| `decomposition` | String | `subproblems` | Benders partition: `subproblems`, `master`, `master-and-subproblems` |
-| `heuristics.integer-strategy` | String | `exact` | Integer handling: `exact` (MILP), `relaxed` (continuous), `heuristic` (relax then refine) |
+#### Out-of-Bounds Processing 
+
+| Field | Type | Default | Description | 
+|-------|------|---------|-------------| 
+| `out-of-bounds-processing.constraints[].mode` | String | `cyclic` | How to handle time-shifted references at block boundaries: `cyclic` (wrap around) or `drop` (skip constraint) | 
+ 
+- **`cyclic`** : the out-of-range index is wrapped to the opposite end of the block (e.g. `t-1` at step `0` becomes the last step, like a weekly constraint)
+
+- **`drop`** : the constraint is omitted entirely for the affected time step. 
+
+#### Decomposition 
+
+| Field | Type | Default | Description | 
+|-------|------|---------|-------------| 
+| `decomposition` | String | `subproblems` | Benders partition: `subproblems`, `master`, `master-and-subproblems` | 
+
+- **`subproblems`** : the model's variables and constraints appear only in the operational subproblems (e.g. a dispatchable generator). 
+
+- **`master`** : the model appears only in the investment master problem (e.g. a candidate generation cluster). 
+
+- **`master-and-subproblems`** : the model is replicated in both levels, with coupling constraints linking the two. 
+
+#### Integer Strategy 
+
+| Field | Type | Default | Description | 
+|-------|------|---------|-------------| 
+| `heuristics.integer-strategy` | String | `exact` | Integer handling: `exact` (MILP), `relaxed` (continuous), `heuristic` (relax then refine) | 
+
+- **`exact`** : integer constraints are enforced strictly (MILP). Produces optimal integer solutions at the cost of higher computational time. 
+
+- **`relaxed`** : integer variables are treated as continuous. Faster, but the quality of the solution is not the best. 
+
+- **`heuristic`** : the problem is first solved relaxed, then integer variables are fixed to rounded values and the problem is re-solved. It's a compromise between speed and solution quality. 
 
 ## Example
 
