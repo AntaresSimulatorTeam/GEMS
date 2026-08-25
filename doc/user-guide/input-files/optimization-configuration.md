@@ -90,7 +90,7 @@ Explanations of the different resolution modes:
 
 ## Example
 
-Minimal configuration for a frontal simulation run:
+This code describe a minimal configuration for a frontal simulation run:
 
 ```yaml
 # Time range matching a typical weekly optimisation (168 h, 0-based)
