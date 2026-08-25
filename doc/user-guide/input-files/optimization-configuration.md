@@ -88,6 +88,8 @@ Explanations of the different resolution modes:
 
 ### (optional) Per-Model Configuration
 
+The `models` key is a list of entries configuring how boundary-crossing time references are handled, which Benders partition the model belongs to, and how integer variables are treated. 
+
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `out-of-bounds-processing.constraints[].mode` | String | `cyclic` | How to handle time-shifted references at block boundaries: `cyclic` (wrap around) or `drop` (skip constraint) |
