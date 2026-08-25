@@ -13,37 +13,6 @@ It controls:
 
 
 
-## Example
-
-Minimal configuration for a frontal simulation run:
-
-```yaml
-# Time range matching a typical weekly optimisation (168 h, 0-based)
-first-time-step: 0
-last-time-step: 167
-
-# Run over 3 Monte Carlo scenarios
-scenario-scope:
-  include:
-    - "0-2"
-
-solver:
-  name: highs
-  logs: false
-
-resolution-mode: frontal
-
-# short_term_storage.level_equation references level[t-1].
-# At t=0 that is out of bounds; cyclic wraps it to level[167],
-# which is pinned by the library's initial_level_constraint.
-models:
-  - id: antares_legacy_models.short_term_storage
-    out-of-bounds-processing:
-      constraints:
-        - id: level_equation
-          mode: cyclic 
-```
-
 ## Structure of the Optimisation Configuration File
 
 ### (optional) Time Scope
@@ -118,3 +87,34 @@ Explanations of the different resolution modes:
 | `out-of-bounds-processing.constraints[].mode` | String | `cyclic` | How to handle time-shifted references at block boundaries: `cyclic` (wrap around) or `drop` (skip constraint) |
 | `decomposition` | String | `subproblems` | Benders partition: `subproblems`, `master`, `master-and-subproblems` |
 | `heuristics.integer-strategy` | String | `exact` | Integer handling: `exact` (MILP), `relaxed` (continuous), `heuristic` (relax then refine) |
+
+## Example
+
+Minimal configuration for a frontal simulation run:
+
+```yaml
+# Time range matching a typical weekly optimisation (168 h, 0-based)
+first-time-step: 0
+last-time-step: 167
+
+# Run over 3 Monte Carlo scenarios
+scenario-scope:
+  include:
+    - "0-2"
+
+solver:
+  name: highs
+  logs: false
+
+resolution-mode: frontal
+
+# short_term_storage.level_equation references level[t-1].
+# At t=0 that is out of bounds; cyclic wraps it to level[167],
+# which is pinned by the library's initial_level_constraint.
+models:
+  - id: antares_legacy_models.short_term_storage
+    out-of-bounds-processing:
+      constraints:
+        - id: level_equation
+          mode: cyclic 
+```
