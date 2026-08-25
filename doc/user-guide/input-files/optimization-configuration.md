@@ -88,12 +88,11 @@ Explanations of the different resolution modes:
 
 ### (optional) Per-Model Configuration
 
-The `models` key is a list of entries configuring :
-- how boundary-crossing time references are handled
-- which Benders partition the model belongs to
-- how integer variables are treated 
+The `models` key is a list of entries configuring boundary-crossing, Benders partition, the integer resolution mode.
 
 #### Out-of-Bounds Processing 
+
+It sets how boundary-crossing time references are handled :
 
 | Field | Type | Default | Description | 
 |-------|------|---------|-------------| 
@@ -104,6 +103,8 @@ The `models` key is a list of entries configuring :
 - **`drop`** : the constraint is omitted entirely for the affected time step. 
 
 #### Decomposition 
+
+It sets which Benders partition the model belongs to :
 
 | Field | Type | Default | Description | 
 |-------|------|---------|-------------| 
@@ -117,19 +118,21 @@ The `models` key is a list of entries configuring :
 
 #### Integer Strategy 
 
+It sets how integer variables are treated :
+
 | Field | Type | Default | Description | 
 |-------|------|---------|-------------| 
 | `heuristics.integer-strategy` | String | `exact` | Integer handling: `exact` (MILP), `relaxed` (continuous), `heuristic` (relax then refine) | 
 
 - **`exact`** : integer constraints are enforced strictly (MILP). Produces optimal integer solutions at the cost of higher computational time. 
 
-- **`relaxed`** : integer variables are treated as continuous. Faster, but the quality of the solution is not the best. 
+- **`relaxed`** : integer variables are treated as continuous. Faster, but the quality of the solution is lower. 
 
-- **`heuristic`** : the problem is first solved relaxed, then integer variables are fixed to rounded values and the problem is re-solved. It's a compromise between speed and solution quality. 
+- **`heuristic`** : the problem is first solved relaxed, then integer variables are fixed to rounded values and the problem is re-solved. A compromise between speed and solution quality. 
 
 ## Example
 
-This code describe a minimal configuration for a frontal simulation run:
+This code describes a minimal configuration for a frontal simulation run:
 
 ```yaml
 # Time range matching a typical weekly optimisation (168 h, 0-based)
