@@ -11,7 +11,6 @@ It controls:
 - the **resolution strategy**: how the optimisation horizon is decomposed (frontal, sequential blocks, parallel blocks, or Benders decomposition for investment studies)
 - **per-model settings**: out-of-bounds time handling and decomposition assignment
 
-The file is read by [GemsPy](../../overview/gems-interpreters/gemspy.md).
 
 
 ## Example
