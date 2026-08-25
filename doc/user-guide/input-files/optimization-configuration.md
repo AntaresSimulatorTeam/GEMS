@@ -17,6 +17,8 @@ It controls:
 
 ### (optional) Time Scope
 
+The `time-scope` section configures the time index. If it's unconfigured, default values are taken into account.
+
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `first-time-step` | Integer | `0` | First time step index |
