@@ -98,7 +98,7 @@ It sets how boundary-crossing time references are handled :
 |-------|------|---------|-------------| 
 | `out-of-bounds-processing.constraints[].mode` | String | `cyclic` | How to handle time-shifted references at block boundaries: `cyclic` (wrap around) or `drop` (skip constraint) | 
  
-- **`cyclic`** : the out-of-range index is wrapped to the opposite end of the block (e.g. `t-1` at step `0` becomes the last step, like a weekly constraint)
+- **`cyclic`** : the out-of-range index is wrapped to the opposite end of the block (e.g. `t-1` at step `0` becomes the last step)
 
 - **`drop`** : the constraint is omitted entirely for the affected time step. 
 
