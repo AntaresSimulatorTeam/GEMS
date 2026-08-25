@@ -58,6 +58,8 @@ Example of `mc_playlist.json`
 
 ### (optional) Solver
 
+This `solver` part chooses the solver parameters.
+
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `solver.name` | String | `highs` | Solver name between :`highs`, `xpress`, `gurobi` |
