@@ -56,16 +56,6 @@ Example of `mc_playlist.json`
 [0, 1, 2, 3, 4, 5]
 ```
 
-### (optional) Solver
-
-This `solver` part chooses the solver parameters.
-
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `solver.name` | String | `highs` | Solver name between :`highs`, `xpress`, `gurobi` |
-| `solver.logs` | Boolean | `false` | Enable solver output in logs |
-| `solver.parameters` | String | None | Space-separated `key=value` pairs passed to the solver |
-
 
 ### (optional) Resolution Strategy
 
@@ -85,14 +75,26 @@ Explanations of the different resolution modes:
 | `parallel-subproblems` | Independent blocks that can be solved in parallel |
 | `benders-decomposition` | Investment (master) separated from operation (subproblems) — required for investment studies |
 
+### (optional) Solver
+
+The `solver` section allows you to select the (MI)LP used for the resolution and declare its settings.
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `solver.name` | String | `highs` | Solver name between :`highs`, `xpress`, `gurobi` |
+| `solver.logs` | Boolean | `false` | Enable solver output in logs |
+| `solver.parameters` | String | None | Space-separated `key=value` pairs passed to the solver |
 
 ### (optional) Per-Model Configuration
 
-The `models` key is a list of entries configuring boundary-crossing, Benders partition, the integer resolution mode.
+The `models` section is dedicated to advanced settings of models. For a list of models designated by their `id`, the following collections can be declared:
+- `out-of-bounds-processing`: management of temporal block boundaries for time shift operators,
+- `decomposition`: management the master/subproblem partition for Benders decomposition,
+- `heuristics.integer-strategy`: declaration of the integer resolution mode.
 
 #### Out-of-Bounds Processing 
 
-It sets how boundary-crossing time references are handled :
+This section declares how temporal block boundaries are handled:
 
 | Field | Type | Default | Description | 
 |-------|------|---------|-------------| 
@@ -104,7 +106,7 @@ It sets how boundary-crossing time references are handled :
 
 #### Decomposition 
 
-It sets which Benders partition the model belongs to :
+(Benders resolution mode only) This section specifies how a model's variables, constraints, and objective contributions are dispatched among subproblems, master, and master-and-subproblems.
 
 | Field | Type | Default | Description | 
 |-------|------|---------|-------------| 
@@ -126,9 +128,9 @@ It sets how integer variables are treated :
 
 - **`exact`** : integer constraints are enforced strictly (MILP). Produces optimal integer solutions at the cost of higher computational time. 
 
-- **`relaxed`** : integer variables are treated as continuous. Faster, but the quality of the solution is lower. 
+- **`relaxed`** : integer variables are treated as continuous. 
 
-- **`heuristic`** : the problem is first solved relaxed, then integer variables are fixed to rounded values and the problem is re-solved. A compromise between speed and solution quality. 
+- **`heuristic`** : the problem is first solved relaxed, then integer variables are fixed to rounded values and the problem is re-solved. 
 
 ## Example
 
