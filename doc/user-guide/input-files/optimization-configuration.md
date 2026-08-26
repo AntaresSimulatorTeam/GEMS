@@ -17,7 +17,7 @@ It controls:
 
 ### (optional) Time Scope
 
-The 'time-scope' section determines which time indices are considered in the simulation. 
+The `time-scope` section determines which time indices are considered in the simulation. 
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
