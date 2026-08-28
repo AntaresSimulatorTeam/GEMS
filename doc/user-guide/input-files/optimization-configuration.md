@@ -183,10 +183,6 @@ solver-options:
   parameters: "THREADS 1 MAXTIME 300"   # THREADS = 1, MAXTIME = 300
 ```
 
-!!! warning
-    Commercial solvers such as Xpress and Gurobi require their own installation and a valid
-    license. `highs` is open source and always available.
-
 ---
 
 ## `resolution`
@@ -632,13 +628,3 @@ in `subproblems`.
     Note how the two per-model sections combine on `candidate_storage`: `model-decomposition`
     splits it across the two levels, while `out-of-bounds-processing` governs its behavior at
     the horizon's edges. Both are optional and independent of each other.
-
----
-
-## See also
-
-- [Study file structure](overview.md) — where `optim-config.yml` sits among the input files
-- [System file](system.md) — the components whose models this file configures
-- [Model libraries](library.md) — where constraints, variables and objective contributions are defined
-- [GEMS syntax](../syntax.md) — time operators, and the shifts that make boundary handling necessary
-- [Scenario builder file](scenario-builder.md) — how Monte-Carlo scenarios draw their data
