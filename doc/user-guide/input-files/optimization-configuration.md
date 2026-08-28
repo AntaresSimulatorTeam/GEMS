@@ -548,9 +548,9 @@ in `subproblems`.
 
 === "Parallel"
 
-    Independent blocks, solved concurrently. Here a year is cut into 52 self-contained weeks:
-    each one closes its own storage cycle, which is what makes them independent in the first
-    place.
+    Independent blocks, that can be solved concurrently. Here a year is cut into 52
+    self-contained weeks: each one closes its own storage cycle, which is what makes them
+    independent in the first place.
 
     ```yaml
     time-scope:
