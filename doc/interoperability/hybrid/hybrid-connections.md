@@ -149,4 +149,4 @@ Explanation of fields:
     - **cluster-id:** The id of the thermal cluster within that area
 
 !!! note "Investment studies requirement"
-    As in Legacy Mode, MC years are optimized separately, so **investment hybrid** studies have to use the `resolution-mode: benders-decomposition` inside the [`optim-config.yml`](../../user-guide/file-structure/optimization-configuration.md) file to use scenario-dependent variables.
+    As in Legacy Mode, MC years are optimized separately, so **investment hybrid** studies have to use the `resolution-mode: benders-decomposition` inside the [`optim-config.yml`](../../user-guide/input-files/optimization-configuration.md) file to use scenario-dependent variables.
