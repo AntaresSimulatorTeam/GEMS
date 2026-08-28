@@ -17,16 +17,19 @@ my_study/
     └── data-series/
 ```
 
-The file describes the **resolution strategy only**. It never changes what is modelled: the
+The file describes the **resolution strategy only**. It never changes what is modeled: the
 components, their parameters and their connections all live in the
 [system file](system.md), and their equations in the [model libraries](library.md).
 The same system can therefore be solved several ways by editing this file alone.
 
-!!! note "The file is optional"
-    When `optim-config.yml` is absent, every key falls back to its default: a single time step
-    (`0`), a single Monte-Carlo scenario (`0`), the `highs` solver, and the `frontal` resolution
-    mode. Each section below is independently optional too — declare only what you need to
-    change.
+The file itself is optional, and so is every section within it: when a key is absent it falls
+back to the default given in its table below, so a study needs to declare only what it changes.
+
+!!! warning "Language reference, not an interpreter reference"
+    This page documents `optim-config.yml` as defined by the **latest design of the GEMS
+    language**. Not every feature described here is necessarily supported by every interpreter.
+    Refer to the documentation of the interpreter you are running to know which features it
+    supports.
 
 ## Top-level keys
 
