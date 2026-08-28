@@ -322,8 +322,9 @@ element goes to which side is declared per model, in
 [`model-decomposition`](#model-decomposition).
 
 !!! warning
-    Under `benders-decomposition`, subproblems must be continuous: no integer or binary variable
-    may end up on the subproblem side.
+    The subproblems must be continuous. A variable a model declares as integer or binary has to
+    be placed in the master problem, unless the components using that model relax it to
+    continuous. See [`model-decomposition`](#model-decomposition).
 
 ---
 
@@ -467,8 +468,11 @@ in `subproblems`.
     - **Constraints and objective contributions placed in `master` may only reference variables
       placed in `master` or `master-and-subproblems`.** The master problem has no access to
       operational variables.
-    - Under `benders-decomposition`, no integer or binary variable may remain on the subproblem
-      side.
+    - **A variable declared as integer or binary must be placed in `master`.** The subproblems
+      have to stay continuous, and `master-and-subproblems` puts a copy of the variable in the
+      subproblems too, so it is rejected for such a variable just as `subproblems` is. The rule
+      concerns variables that are actually built as integers: it does not apply where the
+      components using the model relax them to continuous.
 
     These rules are checked against the model libraries before solving, and every violation is
     reported at once.
