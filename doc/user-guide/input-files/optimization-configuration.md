@@ -75,8 +75,8 @@ models:
 
 ## `time-scope`
 
-Selects the range of time steps to simulate. Both bounds are **0-based and inclusive**, so the
-number of time steps solved is `last-time-step − first-time-step + 1`.
+Selects the range of time steps to simulate. Both bounds are **0-based and inclusive**, so
+`first-time-step: 0` together with `last-time-step: 167` selects 168 time steps.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
@@ -223,8 +223,8 @@ with many scenarios.
 ### `sequential-subproblems`
 
 The horizon is cut into blocks of `block-length` time steps, solved **one after another** in
-chronological order. Each block starts `block-length − block-overlap` time steps after the
-previous one, so consecutive blocks share `block-overlap` time steps. Of those shared time
+chronological order. Each block starts `block-overlap` time steps before the previous one ends,
+so consecutive blocks share that many time steps. Of those shared time
 steps, the first `carry-over-length` are **fixed** to the values the previous block computed for
 the same absolute time steps; the rest are re-optimized freely.
 
