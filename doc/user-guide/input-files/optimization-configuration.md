@@ -349,8 +349,7 @@ models:
 Four points about how this list is matched:
 
 - **Entries target models, not components.** `id` is the identifier of a model defined in a
-  [model library](library.md), qualified by that library's id: the same string a component uses
-  in its `model:` field in the [system file](system.md). It is *not* a component id.
+  [model library](library.md).
 - **Settings apply to every component built from that model.** Declaring
   `antares_legacy_models.short_term_storage` configures all storage components of the study at
   once. There is no per-component override.
