@@ -99,22 +99,22 @@ parameter of the study.
 Selects which Monte-Carlo scenarios are simulated. Scenario indices are **0-based**, matching
 the convention of the [scenario builder file](scenario-builder.md).
 
-The base set of scenarios is given by exactly one of two mutually exclusive keys — `include`
+The base set of scenarios is given by exactly one of two mutually exclusive keys: `include`
 (written inline) or `playlist-file` (read from a JSON file). `exclude` is optional and can be
 combined with either.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `include` | List of entries | — | The scenarios to simulate. Mutually exclusive with `playlist-file` |
-| `playlist-file` | Path | — | A JSON file listing the scenarios to simulate. Mutually exclusive with `include` |
-| `exclude` | List of entries | — | Scenarios removed from the base set |
+| `include` | List of entries | None | The scenarios to simulate. Mutually exclusive with `playlist-file` |
+| `playlist-file` | Path | None | A JSON file listing the scenarios to simulate. Mutually exclusive with `include` |
+| `exclude` | List of entries | None | Scenarios removed from the base set |
 
 Each entry of `include` and `exclude` is one of:
 
 | Entry form | Example | Meaning |
 |---|---|---|
 | Integer | `5` | Scenario 5 |
-| Quoted integer | `"5"` | Scenario 5 — identical to `5` |
+| Quoted integer | `"5"` | Scenario 5, identical to `5` |
 | Quoted range | `"0-9"` | Scenarios 0 to 9 inclusive (ten scenarios) |
 
 ### Inline form
@@ -129,7 +129,7 @@ scenario-scope:
     - 14
 ```
 
-This simulates scenarios 0–19 and 49–59, minus 9 and 14 — 30 scenarios in total.
+This simulates scenarios 0 to 19 and 49 to 59, minus 9 and 14, so 30 scenarios in total.
 
 ### Playlist-file form
 
@@ -170,7 +170,7 @@ Selects the (MI)LP solver and how it is driven.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `name` | String | `highs` | Solver to call — for example `highs`, `xpress` or `gurobi` |
+| `name` | String | `highs` | Solver to call, for example `highs`, `xpress` or `gurobi` |
 | `logs` | Boolean | `false` | Print the solver's own output |
 | `parameters` | String | `""` | Solver-specific options, forwarded as-is |
 
@@ -197,13 +197,13 @@ solving time, memory use, and whether the result is a global optimum.
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `mode` | String | `frontal` | `frontal`, `sequential-subproblems`, `parallel-subproblems` or `benders-decomposition` |
-| `block-length` | Integer | — | Number of time steps per block. **Required** for `sequential-subproblems` and `parallel-subproblems`; not used by the other modes |
+| `block-length` | Integer | None | Number of time steps per block. **Required** for `sequential-subproblems` and `parallel-subproblems`; not used by the other modes |
 | `block-overlap` | Integer | `0` | Number of time steps shared by two consecutive blocks. `sequential-subproblems` only; must satisfy `0 ≤ block-overlap < block-length` |
 | `carry-over-length` | Integer | `block-overlap` | How many of the shared time steps are fixed to the previous block's solution. `sequential-subproblems` only; must satisfy `0 ≤ carry-over-length ≤ block-overlap` |
 
 `block-overlap` and `carry-over-length` describe how consecutive blocks are stitched together,
 which only happens in `sequential-subproblems`. Declaring either one in any other mode is an
-error rather than a silently ignored key — including an explicit `block-overlap: 0`.
+error rather than a silently ignored key, and this includes an explicit `block-overlap: 0`.
 
 ### `frontal`
 
@@ -215,8 +215,8 @@ resolution:
 ```
 
 This is the only mode that gives a globally optimal solution over the full horizon with no
-approximation, and the only one where inter-temporal constraints — storage cycles, minimum up
-and down durations — are enforced end to end without any boundary treatment. Its cost is size:
+approximation, and the only one where inter-temporal constraints (storage cycles, minimum up
+and down durations) are enforced end to end without any boundary treatment. Its cost is size:
 the problem must fit in memory as a whole, which becomes the limiting factor on long horizons
 with many scenarios.
 
@@ -268,13 +268,13 @@ Two values deserve to be spelled out:
 - **Omitting `carry-over-length`** resolves it to `block-overlap`: the entire shared window is
   fixed. This is the right default when the overlap exists only to supply history.
 - **`carry-over-length: 0`** is legal and different from omitting the key: the blocks still
-  overlap — so lag-dependent constraints keep their history — but nothing is fixed, and block
+  overlap, so lag-dependent constraints keep their history, but nothing is fixed, and block
   *N+1* re-solves the shared window on its own.
 
 !!! note "What carry-over does and does not do"
     Carry-over is plain variable fixing: every time-dependent variable of every model whose
     block-relative index falls in the carried-over window is fixed to the value the previous
-    block gave it at the same absolute time step. It is not an initial-condition mechanism —
+    block gave it at the same absolute time step. It is not an initial-condition mechanism:
     block *N+1* is not handed the time step preceding its own window, so a `[t-1]` reference at
     its very first time step still resolves against that block's own boundary rule
     (see [`out-of-bounds-processing`](#out-of-bounds-processing)).
@@ -299,7 +299,7 @@ resolution:
 ```
 
 Nothing links one block to the next: no overlap, no carry-over, no shared state. This is the
-fastest mode for horizons whose blocks are genuinely independent — or where the coupling between
+fastest mode for horizons whose blocks are genuinely independent, or where the coupling between
 them is weak enough to be neglected. Where inter-temporal dynamics matter across block
 boundaries, `sequential-subproblems` reproduces them and this mode does not.
 
@@ -348,14 +348,14 @@ models:
 Four points about how this list is matched:
 
 - **Entries target models, not components.** `id` is the identifier of a model defined in a
-  [model library](library.md), qualified by that library's id — the same string a component uses
+  [model library](library.md), qualified by that library's id: the same string a component uses
   in its `model:` field in the [system file](system.md). It is *not* a component id.
 - **Settings apply to every component built from that model.** Declaring
   `antares_legacy_models.short_term_storage` configures all storage components of the study at
   once. There is no per-component override.
 - **Each entry must name a model actually used by the system**, and every constraint, variable
-  or objective contribution it refers to must exist in that model. Any mismatch — a model no
-  component instantiates, a misspelled constraint id — is reported as an error before solving.
+  or objective contribution it refers to must exist in that model. Any mismatch, such as a model
+  no component instantiates or a misspelled constraint id, is reported as an error before solving.
 - **Everything unlisted keeps its default.** Models absent from the list, and elements absent
   from an entry, behave as described in the two sections below. A model can declare
   `out-of-bounds-processing`, `model-decomposition`, or both; the two are independent.
@@ -367,7 +367,7 @@ Order does not matter, but each model should appear at most once.
 A constraint may refer to a time step other than the current one, through a
 [relative time shift](../syntax.md#relative-shift-tn-t-n) such as `level[t-1]`, or a
 [relative time sum](../syntax.md#time-summation-range-sums-e-x). Near the edges of an
-optimization block, those references point **outside the block** — `level[t-1]` at the first
+optimization block, those references point **outside the block**: `level[t-1]` at the first
 time step, `generation[t+1]` at the last one. This section declares what happens then.
 
 ```yaml
@@ -387,7 +387,7 @@ models:
 | `cyclic` | The out-of-range index wraps around to the other end of the block: at the first time step, `[t-1]` reads the block's last time step |
 | `drop` | The constraint is not generated for the time steps whose references fall outside the block; it still applies everywhere else |
 
-**`cyclic` is the default** — a constraint not listed here, and a model not listed in `models` at
+**`cyclic` is the default**: a constraint not listed here, and a model not listed in `models` at
 all, wraps around. Listing a constraint with `mode: cyclic` is therefore a way of making that
 choice explicit in the file.
 
@@ -400,17 +400,16 @@ Two aspects are worth keeping in mind:
 - **`drop` removes constraint instances, not the constraint.** Only the affected time steps lose
   it. It applies per component, since a shift amount may be a parameter with a different value on
   each component. For that reason, a dropped constraint's shift amounts and time-sum bounds must
-  be constants or parameter references — a shift that depends on a variable cannot be checked
-  against the block boundary.
+  be constants or parameter references, because a shift that depends on a variable cannot be
+  checked against the block boundary.
 
 Which mode to pick follows from what the constraint means:
 
-- `cyclic` suits a quantity that is expected to return to its starting point over the block — a
-  storage level over a representative week, for instance, where wrapping enforces exactly that
-  closure.
-- `drop` suits a constraint that has no meaning before the block starts — a start-up or minimum
-  up-duration constraint whose history is genuinely unknown at the first time step, where
-  wrapping would invent a spurious link between the end and the start of the block.
+- `cyclic` suits a quantity that is expected to return to its starting point over the block, such
+  as a storage level over a representative week, where wrapping enforces exactly that closure.
+- `drop` suits a constraint that has no meaning before the block starts, such as a start-up or
+  minimum up-duration constraint whose history is genuinely unknown at the first time step.
+  Wrapping would there invent a spurious link between the end and the start of the block.
 
 The model library often settles the question. `antares_legacy_models.short_term_storage`, for
 example, declares both `level_equation` (`level = level[t-1] + …`) and an
@@ -438,8 +437,8 @@ models:
           location: subproblems
 ```
 
-The mapping holds up to three lists — `variables`, `constraints` and
-`objective-contributions` — each a list of `{id, location}` pairs naming an element of the model:
+The mapping holds up to three lists (`variables`, `constraints` and `objective-contributions`),
+each a list of `{id, location}` pairs naming an element of the model:
 
 | Key | Type | Description |
 |---|---|---|
@@ -451,11 +450,11 @@ The mapping holds up to three lists — `variables`, `constraints` and
 
 | `location` | Meaning |
 |---|---|
-| `subproblems` | The element exists in each operational subproblem only — the **default** for anything not listed |
+| `subproblems` | The element exists in each operational subproblem only. This is the **default** for anything not listed |
 | `master` | The element exists in the investment master problem only |
 | `master-and-subproblems` | A **coupling** element: decided in the master problem, then used by the subproblems as a fixed input |
 
-The typical investment model uses all three. Its sizing variable is `master-and-subproblems` —
+The typical investment model uses all three. Its sizing variable is `master-and-subproblems`:
 the master chooses the installed capacity, and each subproblem operates against that value. Its
 annualized investment cost is `master`, since it depends only on the sizing decision. Its
 operating cost, and the operational constraints that bound generation by installed capacity, stay
@@ -542,9 +541,9 @@ in `subproblems`.
               mode: drop
     ```
 
-    Setting `carry-over-length: 0` instead would keep the same overlap — so the same history for
-    `level[t-1]` — while letting each block re-optimize the shared day with a full week of
-    look-ahead.
+    Setting `carry-over-length: 0` instead would keep the same overlap, and therefore the same
+    history for `level[t-1]`, while letting each block re-optimize the shared day with a full
+    week of look-ahead.
 
 === "Parallel"
 
