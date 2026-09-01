@@ -9,7 +9,7 @@ GemsPy's API allows users to create studies programmatically.
 For detailed API usage and examples, see:
 
 - [Installation Guide](../../getting-started/installation/gemspy-installation.md)
-- In the [Examples section](../../examples/adequacy-example.md), it is explained how simulations can be run with GemsPy.
+- In the [Examples section](../../examples/overview-examples.md), it is explained how simulations can be run with GemsPy.
 - [Building with GemsPy API](https://gemspy.readthedocs.io/en/latest/user-guide/building/)
 
 ## Package Structure
