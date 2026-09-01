@@ -5,7 +5,7 @@
       "pattern": "\\.(png|jpg|jpeg|webp|svg|gif|ico|drawio)$"
     },
     {
-      "comment": "ignore links to localhost",
+      "comment": "ignore links from localhost",
       "pattern": "^http://127\\.0\\.0\\.1"
     }
   ]
