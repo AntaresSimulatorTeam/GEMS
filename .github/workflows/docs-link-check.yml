@@ -17,7 +17,9 @@ jobs:
           fetch-depth: 0 # overpass mkdocs-git-revision-date-localized-plugin
 
       - name: Check external link validity
-        uses: tcort/github-action-markdown-link-check@v1
+        run: |
+          npm install -g markdown-link-check
+          find . -name "*.md" ! -path "./.git/*" | xargs -L1 markdown-link-check
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
