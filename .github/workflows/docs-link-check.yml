@@ -16,6 +16,9 @@ jobs:
         with:
           fetch-depth: 0 # overpass mkdocs-git-revision-date-localized-plugin
 
+      - name: Check external link validity
+        uses: tcort/github-action-markdown-link-check@v1
+
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
@@ -28,10 +31,49 @@ jobs:
       - name: Build MkDocs
         run: uv run mkdocs build --strict
 
-      # Check all links and images in the built site (local + external)
-      # Local image paths are resolved against the built site/ directory,
-      # matching what browsers actually render — broken images show alt text
-      - name: Check links and images
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: --no-progress site/
+      # Resolve every <img src> relative to its HTML file in site/ as a browser would.
+      # A missing file means the browser would render the alt text instead of the image.
+      - name: Check images (alt-text technique)
+        run: |
+          python3 - <<'EOF'
+          import sys
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          class ImgCollector(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.images = []
+              def handle_starttag(self, tag, attrs):
+                  if tag == "img":
+                      d = dict(attrs)
+                      src = d.get("src", "")
+                      alt = d.get("alt", "")
+                      if src:
+                          self.images.append((src, alt))
+
+          site = Path("site")
+          broken = []
+          for html in sorted(site.rglob("*.html")):
+              if html.name == "404.html":
+                  continue
+              c = ImgCollector()
+              c.feed(html.read_text(encoding="utf-8", errors="ignore"))
+              for src, alt in c.images:
+                  p = urlparse(src)
+                  if p.scheme in ("http", "https", "data", "mailto"):
+                      continue
+                  if src.startswith("/"):  # root-relative: deployment-specific, skip
+                      continue
+                  resolved = (html.parent / src).resolve()
+                  if not resolved.exists():
+                      rel_html = html.relative_to(site)
+                      broken.append((str(rel_html), src, alt))
+
+          if broken:
+              print(f"ERROR: {len(broken)} broken image(s) — browser would show alt text:")
+              for page, src, alt in broken:
+                  print(f"  [{page}] {src!r}  alt={alt!r}")
+              sys.exit(1)
+          print(f"All images OK ({len(list(site.rglob('*.html')))} pages checked)")

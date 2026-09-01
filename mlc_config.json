@@ -1,0 +1,7 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "\\.(png|jpg|jpeg|webp|svg|gif|ico|drawio)$"
+    }
+  ]
+}
