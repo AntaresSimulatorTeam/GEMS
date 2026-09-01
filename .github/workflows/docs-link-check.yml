@@ -3,9 +3,6 @@ name: Docs Build and Link Check
 on:
   pull_request:
     branches: ['**']
-    paths:
-      - 'doc/**'
-      - 'mkdocs.yml'
   workflow_dispatch:
 
 jobs:
