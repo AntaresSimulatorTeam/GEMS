@@ -3,7 +3,7 @@ description: GEMS is a high-level, object- and graph-oriented algebraic modellin
 ---
 <h1 style="display: none;">GEMS</h1>
 <div align="center">
-    <img src="./assets/gemsV2.png" alt="GEMS Logo" width="800"/>
+    <img src="./assets/debug_test.png" alt="GEMS Logo" width="800"/>
 </div>
 
 ## What is GEMS?
