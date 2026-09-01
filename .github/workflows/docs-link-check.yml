@@ -21,10 +21,13 @@ jobs:
           npm install -g markdown-link-check
           find . -name "*.md" ! -path "./.git/*" | xargs -L1 markdown-link-check
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Install uv
+        run: pip install uv
 
       - name: Install doc dependencies
         run: uv sync --frozen --only-group doc
