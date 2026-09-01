@@ -16,9 +16,6 @@ jobs:
         with:
           fetch-depth: 0 # overpass mkdocs-git-revision-date-localized-plugin
 
-      - name: Check external link validity
-        uses: tcort/github-action-markdown-link-check@v1
-
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
@@ -27,6 +24,14 @@ jobs:
       - name: Install doc dependencies
         run: uv sync --frozen --only-group doc
 
-      # Fail if any internal link is broken
+      # Fail if any internal page link is broken
       - name: Build MkDocs
         run: uv run mkdocs build --strict
+
+      # Check all links and images in the built site (local + external)
+      # Local image paths are resolved against the built site/ directory,
+      # matching what browsers actually render — broken images show alt text
+      - name: Check links and images
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress site/
