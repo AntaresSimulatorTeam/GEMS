@@ -1,0 +1,35 @@
+name: Docs Build and Link Check
+
+on:
+  pull_request:
+    branches: ['**']
+    paths:
+      - 'doc/**'
+      - 'mkdocs.yml'
+  workflow_dispatch:
+
+jobs:
+  docs-check:
+    name: Docs build and link check
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0 # overpass mkdocs-git-revision-date-localized-plugin
+
+      - name: Check external link validity
+        uses: tcort/github-action-markdown-link-check@v1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install doc dependencies
+        run: uv sync --frozen --only-group doc
+
+      # Fail if any internal link is broken
+      - name: Build MkDocs
+        run: uv run mkdocs build --strict
