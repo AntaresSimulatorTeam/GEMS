@@ -1,4 +1,4 @@
-name: Docs Build and Link Check
+name: Links Check
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   docs-check:
-    name: Docs build and link check
+    name: Links Check
     runs-on: ubuntu-22.04
 
     steps:
