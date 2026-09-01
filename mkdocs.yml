@@ -5,9 +5,9 @@ exclude_docs: |
   documentation_env/
   examples/notebooks/tutorial-two-pypsa-eur/pypsa-eur/*
   examples/notebooks/tutorial-two-pypsa-eur/tutorial_pypsa_eur.ipynb
-site_name: GEMS - Generic Energy system Modelling Schema
+site_name: GEMS - Generic Energy systems Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
-site_description: "GEMS (Generic Energy system Modelling Schema) is a
+site_description: "GEMS (Generic Energy systems Modelling Schema) is a
   graph-based algebraic modelling language for defining and solving energy
   system optimisation problems."
 site_author: "Antares Simulator Team - RTE"
@@ -104,8 +104,10 @@ nav:
   - Home:
       - Home: index.md
       - Key Principles: home/key-principles.md
+      - Features: home/features.md
       - Use Cases: home/use-cases.md
-      - Users of GEMS: home/users.md
+      - Users: home/users.md
+      - Roadmap: home/roadmap.md
       - Release Notes: home/release-notes.md
   - Overview:
       - Architecture: overview/architecture.md
@@ -132,21 +134,23 @@ nav:
   - User Guide:
       - Introduction: user-guide/introduction.md
       - GEMS Syntax: user-guide/syntax.md
-      - File Structure:
+      - Input Files:
           - Overview: user-guide/input-files/overview.md
           - Library File: user-guide/input-files/library.md
           - System File: user-guide/input-files/system.md
           - Dataseries File: user-guide/input-files/data-series.md
           - Scenario Builder File: user-guide/input-files/scenario-builder.md
-          - Solver parameters and optimization configuration files: user-guide/input-files/solver-optimization.md
+          - Solver parameters: user-guide/input-files/solver-optimization.md
+          - Optimization Configuration File: user-guide/input-files/optimization-configuration.md
           - Taxonomy File: user-guide/input-files/taxonomy.md
-          - Views configuration files: user-guide/input-files/view-configuration.md
+          - Catalog File: user-guide/input-files/catalog.md
+          - Views Configuration Files: user-guide/input-files/view-config.md
       - Theoretical Concepts:
           - Optimization Problem: user-guide/theoretical-concepts/optimization-problem.md
       - Outputs:
           - Simulation Table: user-guide/outputs/simulation-table.md
           - Optimization Problem Files: user-guide/outputs/optimization-problem-files.md
-          - View: user-guide/outputs/view.md
+          - Views: user-guide/outputs/views.md
   - Interoperability:
       - PyPSA to GEMS Converter:
           - Overview: interoperability/pypsa-to-gems-converter/overview.md
@@ -155,6 +159,8 @@ nav:
           - Current Limitations of the Converter: interoperability/pypsa-to-gems-converter/current-limitations.md
           - Step-by-Step Guide Manually Executing a Simulation in GEMS Modeler: interoperability/pypsa-to-gems-converter/step-by-step-guide.md
           - Comparing Results Between GEMS Modeler and PyPSA: interoperability/pypsa-to-gems-converter/comparing-results.md
+      - Antares Legacy Converter:
+          - Overview: interoperability/legacy/overview.md
       - Antares Hybrid Mode:
           - Overview: interoperability/hybrid/overview.md
           - Coupling GEMS Components with Legacy Areas: interoperability/hybrid/hybrid-connections.md
@@ -164,7 +170,7 @@ nav:
           - Limitations: interoperability/hybrid/limitations.md
   - Examples:
       - Overview: examples/overview-examples.md
-      - Adequacy Example: examples/adequacy-example.md
+      - Quick Start Examples: examples/quick-start-examples.md
       - Tutorial Notebooks:
           - Unit Commitment with GemsPy: examples/notebooks/tutorial-one-unit-commitment/tutorial-unit-commitment.ipynb
           - Investment Optimization with GemsPy: examples/notebooks/tutorial-three-investment/tutorial-invest.ipynb

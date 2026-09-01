@@ -300,7 +300,7 @@ All repositories follow **Semantic Versioning** (`MAJOR.MINOR.PATCH`). The `vers
 
 | Component | Bump rule | Version field |
 |---|---|---|
-| GEMS Language / Documentation | Versioned together with the documentation. Major: breaking syntax change / Minor: new construct or keyword / Patch: clarification or doc fix | Release notes at `doc/0_Home/4_release_notes.md` |
+| GEMS Language / Documentation | Versioned together with the documentation. Major: breaking syntax change / Minor: new construct or keyword / Patch: clarification or doc fix | Release notes at `doc/home/release-notes.md` |
 | Model libraries (`libraries/*.yml`) | Major: new model / Minor: bug fix or improvement / Patch: rename or refactor | `version` under `library:` in each `libraries/<library_name>.yml` |
 | Antares-Simulator | Pinned version used by CI and E2E tests | `dependencies.json` → `antares_simulator_version` |
 
@@ -577,7 +577,7 @@ The example below releases GEMS version `1.2.0` after syncing an updated PyPSA m
 | `libraries/<library_name>.yml` | Apply library changes and bump `version` under `library:` |
 | `libraries/<library_name>.yml.sha256` | Updated automatically by `update-library-checksums` workflow (GEMS-owned libraries only — `pypsa_models.yml` and `antares_legacy_models.yml` must be updated manually) |
 | `libraries/CHANGELOG-<library_name>.md` | Add library changelog entry |
-| `doc/0_Home/4_release_notes.md` | Add release notes entry if GEMS Language spec changed |
+| `doc/home/release-notes.md` | Add release notes entry if GEMS Language spec changed |
 | `COMPATIBILITY.md` | Update documentation version and/or Antares version mapping if changed |
 
 #### GEMS - Steps

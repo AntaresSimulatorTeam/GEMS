@@ -8,7 +8,9 @@ These examples are ready to run as they already contain all the inputs needed by
 
 | Example | Description |
 |---------|-------------|
-| [Adequacy Quick Start](adequacy-example.md) | A minimal three-bus adequacy study to get started immediately with GEMS, including input files ready to run. |
+| [Adequacy Quick Start Example](quick-start-examples.md#adequacy-quick-start-example) | A minimal three-bus adequacy study to get started immediately with GEMS, including input files ready to run. |
+| [Unit Commitment Quick Start Example](quick-start-examples.md#unit-commitment-example) | Simple example of a unit commitment problem stated with GEMS. |
+| [PyPSA-Eur Example](quick-start-examples.md#pypsa-eur-example) | Presentation of a workflow to run a PyPSA-Eur study on a remote Linux server using GEMS. |
 
 ## Jupyter Notebooks
 

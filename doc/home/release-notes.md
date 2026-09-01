@@ -1,6 +1,28 @@
 
 # Release Notes
 
+## v0.4.0 | *21-08-2026*
+
+### Added
+
+* Document Views : new section integrated in the user guide ([PR65](https://github.com/AntaresSimulatorTeam/GEMS/pull/191))
+
+* Document thermal connection in hybrid studies ([PR75](https://github.com/AntaresSimulatorTeam/GEMS/pull/204))
+
+* Add a public roadmap in the Home chapter ([#221](https://github.com/AntaresSimulatorTeam/GEMS/pull/221))
+
+### Changed
+
+* Bump GemsPy to v0.1.3 : update notebooks and document new GemsPy release ([PR76](https://github.com/AntaresSimulatorTeam/GEMS/pull/209))
+
+* Clarify time-index notation and extra-output comparisons in syntax reference ([#212](https://github.com/AntaresSimulatorTeam/GEMS/pull/212))
+
+* Refactor Quick Start Examples presentation page ([PR78](https://github.com/AntaresSimulatorTeam/GEMS/pull/230))
+
+### Fixed
+
+* Remove duplicated blocks and fix broken links ([#224](https://github.com/AntaresSimulatorTeam/GEMS/pull/224))
+
 ## v0.3.5 | *24-07-2026*
 
 ### Changed
@@ -29,7 +51,6 @@
 
 ### Changed
 
-
 * Bump Antares Simulator version to v10.1.0 ([#160](https://github.com/AntaresSimulatorTeam/GEMS/pull/160))
 
 * Replace requirements txt file with uv lock ([#163](https://github.com/AntaresSimulatorTeam/GEMS/pull/163))
@@ -41,7 +62,6 @@
 * Bump documentation on GemsPy from v0.10 to v0.12 ([#161](https://github.com/AntaresSimulatorTeam/GEMS/pull/161))
 
 * Improve formatting ([#151](https://github.com/AntaresSimulatorTeam/GEMS/pull/151))
-
 
 ## v0.3.3 | *10-06-2026*
 

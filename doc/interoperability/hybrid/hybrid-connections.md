@@ -33,7 +33,7 @@ The nature of the contribution depends on the fields:
 
 These fields are independent: you don't have to define all 3 at the same time, you can define only one. However, all three keys must be present in the `area-connection` section even if some values are left empty.
 
-## Conventions on the sign of expressions
+### Conventions on the sign of expressions
 
 When connecting a component to an area, you must respect conventions on the sign of the linear expression contributed by the port field.
 
@@ -105,3 +105,48 @@ Explanation of fields:
 - **component:** Refers to the `id` of the GEMS component to be connected. This `id` must match the one declared in the components section of the `system.yml` file. In this example, it refers to a component named `wind_farm`
 - **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding **port type** must include an `area-connection` section in the model library definition, and must specify at least one of `injection-to-balance`, `spillage-bound` or `unsupplied-energy-bound`
 - **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area's balance constraint during simulation
+
+## Abstract definition of the thermal-capacity-connection field type 
+
+This part describes how to link a GEMS component to a Legacy Thermal Cluster thanks to the `thermal-capacity-connection`, **inside the context of an investment study**.
+
+The modeler expression defined on this port **replaces the legacy thermal cluster's capacity time series** during optimization. This feature is configured in both the library file and the system file, as shown below.
+
+### Model library
+
+The `thermal-capacity-connection` is declared in the port type definition inside the library:
+
+```yaml
+port-types:
+  - id: capacity_port
+    fields:
+      - id: capacity
+    thermal-capacity-connection:
+      capacity-field: capacity
+```
+
+### System
+
+The `thermal-capacity-connection` is instantiated for a specific component and thermal cluster in the system file:
+
+```yaml
+thermal-capacity-connections:
+  - component: my_thermal_invest
+    port: capacity_port
+    thermal-component:
+      area: fr
+      cluster-id: nuclear1
+```
+
+> In our example, the component `my_thermal_invest` connects to a legacy thermal cluster `nuclear1` in area `fr` through the port named `capacity_port`.
+
+Explanation of fields:
+
+- **component:** Refers to the `id` of the GEMS component to be connected. This `id` must match the one declared in the components section of the `system.yml` file. In this example, it refers to a component named `my_thermal_invest`
+- **port:** Specifies which port on the component is used to establish the connection to the Legacy Thermal Cluster. The corresponding **port type** must include a `thermal-capacity-connection` section in the model library definition with a `capacity-field` key
+- **thermal-component:** Identifies the target Legacy Thermal Cluster:
+    - **area:** The id of the Antares Simulator area that contains the thermal cluster
+    - **cluster-id:** The id of the thermal cluster within that area
+
+!!! note "Investment studies requirement"
+    As in Legacy Mode, MC years are optimized separately, so **investment hybrid** studies have to use the `resolution-mode: benders-decomposition` inside the [`optim-config.yml`](../../user-guide/input-files/optimization-configuration.md) file to use scenario-dependent variables.

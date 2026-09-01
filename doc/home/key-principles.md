@@ -2,7 +2,7 @@
 description: Explore GEMS key design principles - graph-based algebraic modelling, solver-independent syntax, YAML-based configuration, and support for LP, MIP, and MILP energy optimisation problems.
 ---
 
-# Core concepts
+# Key Principles
 
 ## An Optimisation Language Tailored for Energy System Modelling
 
@@ -21,11 +21,11 @@ This language **differs from traditional optimization languages** in several way
 
 <h3> Library </h3>
 
-A YAML file defining abstract objects called <a href="../user-guide/input-files/library.md#models">models</a>, which describe the mathematical formulation of a category of energy system element.
+A YAML file defining abstract objects called <a href="../../user-guide/input-files/library/#models">models</a>, which describe the mathematical formulation of a category of energy system element.
 
 <br>
 <br>
-For more details, see the <a href="../user-guide/input-files/library.md"><b>Library</b></a> page of the user guide.
+For more details, see the <a href="../../user-guide/input-files/library/"><b>Library</b></a> page of the user guide.
 
 ```yaml
 library:
@@ -42,6 +42,19 @@ library:
       binding-constraints:
         - id: balance
           expression: sum_connections(flow_port.flow) = 0
+
+    - id: load
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: -load
 
     - id: generator
       parameters:
@@ -84,7 +97,7 @@ library:
 A YAML file describing the concrete energy system to be simulated. It instantiates components from models provided by the libraries, assigns parameter values, and defines the connections between components.
 
 <br>
-For more details, see the <a href="../user-guide/input-files/system.md"><b>System</b></a> page of the user guide.
+For more details, see the <a href="../../user-guide/input-files/system/"><b>System</b></a> page of the user guide.
 
 ```yaml
 system:
@@ -93,13 +106,6 @@ system:
   model-libraries: example_library
   components:
 
-    - id: load_1
-      model: example_library.load
-      scenario-group: load_group
-      parameters:
-        - id: load
-          time-dependent: true
-          value: demand_profile
 
     - id: bus_1
       model: example_library.bus
@@ -108,6 +114,14 @@ system:
           value: 1000
         - id: unsupplied_energy_cost
           value: 10000
+
+    - id: load_1
+      model: example_library.load
+      scenario-group: load_group
+      parameters:
+        - id: load
+          time-dependent: true
+          value: demand_profile
 
     - id: generator_1
       model: example_library.generator
@@ -125,7 +139,9 @@ system:
 </div>
 </div>
 
-## Key Design Principles and Capabilities
+## Key Design Principles
+
+This section explains the design choices behind the language. For a structured overview of what the language supports today, see the [Features](features.md) page.
 
 ### Separating Model Definition from Solver Execution
 
@@ -168,31 +184,6 @@ system:
   GEMS natively incorporates <strong> time and scenario dimensions</strong> into its modelling framework.
   <strong>Temporal </strong> and <strong>scenarios </strong> indices are natively available in the language, either in an implicit or explicit form. This allows users to easily define <strong>dynamic behaviours, inter-temporal constraints, and scenario-based analyses</strong> in a clear and structured way, while ensuring consistency and scalability of the resulting optimisation problems.
   </p>
-</div>
-
-### Supported Optimisation Problem Classes
-
-<div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;">
-  <img src="../../assets/Core_concept_optimisation_problems.png" width="40" alt="Optimisation icon"/>
-
-  <div>
-    <p style="margin: 0 0 8px 0;">
-      GEMS supports a wide range of optimisation formulations commonly used in energy system studies.
-      It is designed to handle:
-    </p>
-
-    <ul style="margin: 0; padding-left: 20px;">
-      <li>
-        <strong> <a href="https://en.wikipedia.org/wiki/Integer_programming">Mixed Integer Linear Programming (MILP)</a> </strong> problems, enabling the representation
-        of discrete operational or investment decisions alongside continuous operational variables.
-      </li>
-      <li>
-        <strong> <a href="https://en.wikipedia.org/wiki/Stochastic_programming">Two-stage stochastic optimisation </a> </strong> problems, where first-stage (here-and-now)
-        decisions are coupled with second-stage (recourse) decisions, providing a robust
-        framework for decision-making under uncertainty.
-      </li>
-    </ul>
-  </div>
 </div>
 
 ### YAML-Based, User-Friendly Model Definition
