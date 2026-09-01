@@ -2,6 +2,9 @@
   "ignorePatterns": [
     {
       "pattern": "\\.(png|jpg|jpeg|webp|svg|gif|ico|drawio)$"
+    },
+    {
+      "pattern": "^http://127\\.0\\.0\\.1"
     }
   ]
 }
