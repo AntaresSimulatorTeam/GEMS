@@ -19,7 +19,7 @@ jobs:
       - name: Check external link validity
         run: |
           npm install -g markdown-link-check
-          find . -name "*.md" ! -path "./.git/*" | xargs -L1 markdown-link-check
+          find . -name "*.md" ! -path "./.git/*" | xargs -L1 markdown-link-check --config .mlc_config.json
 
       - name: Set up Python
         uses: actions/setup-python@v5
