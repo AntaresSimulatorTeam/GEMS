@@ -1,0 +1,12 @@
+{
+  "ignorePatterns": [
+    {
+      "comment": "ignore image files, which are not links to check",
+      "pattern": "\\.(png|jpg|jpeg|webp|svg|gif|ico|drawio)$"
+    },
+    {
+      "comment": "ignore links from localhost",
+      "pattern": "^http://127\\.0\\.0\\.1"
+    }
+  ]
+}

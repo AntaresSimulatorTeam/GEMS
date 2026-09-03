@@ -1,0 +1,42 @@
+name: Links Check
+
+on:
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
+
+jobs:
+  docs-check:
+    name: Links Check
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0 # overpass mkdocs-git-revision-date-localized-plugin
+
+      - name: Check external link validity
+        run: |
+          npm install -g markdown-link-check
+          find . -name "*.md" ! -path "./.git/*" | xargs -L1 markdown-link-check --config .mlc_config.json
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install doc dependencies
+        run: uv sync --frozen --only-group doc
+
+      # Fail if any internal page link is broken
+      - name: Build MkDocs
+        run: uv run mkdocs build --strict
+
+      # Resolve every <img src> relative to its HTML file in site/ as a browser would.
+      # A missing file means the browser would render the alt text instead of the image.
+      - name: Check images (alt-text technique)
+        run: python3 .github/scripts/check_images.py

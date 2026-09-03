@@ -13,7 +13,7 @@
 [🔎 Overview](https://gems-energy.readthedocs.io/en/latest/overview/architecture/) •
 [📚 UserGuide](https://gems-energy.readthedocs.io/en/latest/user-guide/introduction/) •
 [↔️ Interoperability](https://gems-energy.readthedocs.io/en/latest/interoperability/pypsa-to-gems-converter/overview/) •
-[💡 Examples](https://gems-energy.readthedocs.io/en/latest/examples/adequacy-example/) •
+[💡 Examples](https://gems-energy.readthedocs.io/en/latest/examples/overview-examples/) •
 [🤝 Support & Contributing](https://gems-energy.readthedocs.io/en/latest/support/faq/)
 
 </div>
@@ -61,4 +61,4 @@ The following **interpreters** can be used to run GEMS modelling language :
 **Converters** are available to translate existing studies into the GEMS modelling language:
 
 - [Antares Legacy Models to GEMS Converter](https://github.com/AntaresSimulatorTeam/AntaresLegacyModels-to-GEMS-Converter) : a Python package that enables the migration of Antares Legacy Models to GEMS.
-- [PyPSA to GEMS Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](doc/user-guide/file-structure/system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](./1_Overview/1_Architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
+- [PyPSA to GEMS Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter), a stand-alone Python package to export PyPSA [Networks](https://docs.pypsa.org/v1.0.2/user-guide/design/#network-object) as [GEMS system](doc/user-guide/input-files/system.md). This converter supports [PyPSA two-stage stochastic optimization problems](https://docs.pypsa.org/v1.0.2/user-guide/optimization/stochastic/): such problems can be addressed by GEMS [interpreters](doc/overview/architecture.md) and solved with [Antares Xpansion's Benders decomposition algorithm](https://antares-xpansion.readthedocs.io/en/stable/).
