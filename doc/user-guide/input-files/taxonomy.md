@@ -17,7 +17,7 @@ This classification is "transparent" and doesn't impact the optimization solutio
 | `categories.variables` | List | *(Optional)* The [variables](library.md#variables) that models in this category must declare.|
 | `categories.parameters` | List | *(Optional)* The [parameters](library.md#parameters) that models in this category must declare.|
 | `categories.ports` | List | *(Optional)* The [ports](library.md#ports) on which metrics can be computed for this category. It has to be the same port names as declared in the [library](library.md) [models](library.md#models).|
-| `categories.extra-outputs` | List | *(Optional)* The [extra-outputs](library.md#extra-outputs) that models in this category must declare.|
+| `categories.extra-outputs` | List | *(Optional)* The [extra-outputs](library.md#extra-output) that models in this category must declare.|
 | `categories.properties` | List | *(Optional)* The [properties](library.md#properties) that models in this category must declare.|
 
 ## Example

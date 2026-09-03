@@ -26,7 +26,7 @@ Start with the [Getting Started guide](../getting-started/installation/modeler-i
 
 ### Where can I find examples?
 
-The [Examples section](../examples/adequacy-example.md) contains various use cases and complete working models to help you understand GEMS capabilities.
+The [Examples section](../examples/overview-examples.md) contains various use cases and complete working models to help you understand GEMS capabilities.
 
 ## Support
 
