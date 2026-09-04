@@ -12,11 +12,11 @@ resolution-markers = [
     "python_full_version == '3.14.*' and sys_platform != 'emscripten' and sys_platform != 'win32'",
     "python_full_version >= '3.12' and python_full_version < '3.14' and platform_machine == 'ARM64' and sys_platform == 'win32'",
     "python_full_version >= '3.12' and python_full_version < '3.14' and platform_machine != 'ARM64' and sys_platform == 'win32'",
+    "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform != 'emscripten' and sys_platform != 'win32'",
     "python_full_version < '3.12' and platform_machine == 'ARM64' and sys_platform == 'win32'",
     "python_full_version < '3.12' and platform_machine != 'ARM64' and sys_platform == 'win32'",
-    "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform == 'emscripten'",
     "python_full_version < '3.12' and sys_platform == 'emscripten'",
-    "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform != 'emscripten' and sys_platform != 'win32'",
     "python_full_version < '3.12' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 
@@ -235,7 +235,7 @@ name = "cffi"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser", marker = "implementation_name != 'PyPy'" },
+    { name = "pycparser" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/57/5f/ff100cae70ebe9d8df1c01a00e510e45d9adb5c1fdda84791b199141de97/cffi-2.1.0.tar.gz", hash = "sha256:efc1cdd798b1aaf39b4610bba7aad28c9bea9b910f25c784ccf9ec1fa719d1f9", size = 531036, upload-time = "2026-07-06T21:34:30.382Z" }
 wheels = [
@@ -780,7 +780,7 @@ test = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "gemspy", specifier = "==0.1.3" },
+    { name = "gemspy", specifier = "==0.2.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pandas", specifier = ">=2.2.3" },
@@ -793,7 +793,7 @@ dev = [
     { name = "yamllint", specifier = ">=1.35.1" },
 ]
 doc = [
-    { name = "gemspy", specifier = "==0.1.3" },
+    { name = "gemspy", specifier = "==0.2.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mkdocs" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
@@ -803,7 +803,7 @@ doc = [
     { name = "mkdocs-redirects" },
 ]
 test = [
-    { name = "gemspy", specifier = "==0.1.3" },
+    { name = "gemspy", specifier = "==0.2.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pypsa" },
@@ -813,7 +813,7 @@ test = [
 
 [[package]]
 name = "gemspy"
-version = "0.1.3"
+version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "antlr4-python3-runtime" },
@@ -828,9 +828,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fe/e2/8260139805f657cdd5dd2d5f3e02c974c05e4cd3ac83724b6b759c488892/gemspy-0.1.3.tar.gz", hash = "sha256:49325e19f37be1f1b1dc394fab4f29d85b813a95256a5da62756936100c5341a", size = 90736, upload-time = "2026-07-24T09:54:41.674Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9c/6c/233bc4095f2f6c706a01d2cbc51789862aad8fdf66789156b9c78b5a67e4/gemspy-0.2.0.tar.gz", hash = "sha256:c64a8abc6ce27ad8c8fa24ccb178f66a97c4367f7253936b4f4498c2641fac9e", size = 102784, upload-time = "2026-08-24T10:05:57.811Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/95/d4/208b59a521ba66f75de1e5757401ce029469e4d537ff559602d670f641b3/gemspy-0.1.3-py3-none-any.whl", hash = "sha256:115dd4b344551ab3e4f6cadc68328e9926d01f1297fe1227e25c61b34aebf0bd", size = 120811, upload-time = "2026-07-24T09:54:40.693Z" },
+    { url = "https://files.pythonhosted.org/packages/78/66/c71e92b95ccc10bcdedd7c409a8939c2dece7100f5536bae1fe984221bf3/gemspy-0.2.0-py3-none-any.whl", hash = "sha256:6699f86bfb25fa9e256e4d2d5daf7bc335e921f191eca3c398482eb5e90b44e1", size = 134372, upload-time = "2026-08-24T10:05:56.612Z" },
 ]
 
 [[package]]
@@ -962,7 +962,7 @@ name = "importlib-metadata"
 version = "9.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "zipp", marker = "python_full_version < '3.12'" },
+    { name = "zipp" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a9/01/15bb152d77b21318514a96f43af312635eb2500c96b55398d020c93d86ea/importlib_metadata-9.0.0.tar.gz", hash = "sha256:a4f57ab599e6a2e3016d7595cfd72eb4661a5106e787a95bcc90c7105b831efc", size = 56405, upload-time = "2026-03-20T06:42:56.999Z" }
 wheels = [
@@ -1408,7 +1408,7 @@ wheels = [
 
 [[package]]
 name = "linopy"
-version = "0.8.0"
+version = "0.9.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "bottleneck" },
@@ -1425,9 +1425,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/28/7f/80c12a3bba2a2bd8c17777fb272a37ccd16e65e53dc81d0d137fabd29241/linopy-0.8.0.tar.gz", hash = "sha256:566ede05d6134abf978fb4c1e18e0e5b67cd1acf0b26e9d80adcada3632d9c02", size = 1453088, upload-time = "2026-06-10T09:48:45.124Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/93/cf/466120a5436a753604f653f9b91908546d79205015e90e85b175fde20ea6/linopy-0.9.1.tar.gz", hash = "sha256:549c7961e86023631d5ae9e180fa40160b126cd62cb8dec70e7efc8fed5c40ac", size = 1534644, upload-time = "2026-08-18T10:44:25.423Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bc/a9/987a9f2ad9a0b846147092edf0071b0f96b84c0e5933ac354192d8a3836d/linopy-0.8.0-py3-none-any.whl", hash = "sha256:107f9dcb63943bb02e457693f639e4adceea265040d76f8949bad8b496558304", size = 184634, upload-time = "2026-06-10T09:48:43.147Z" },
+    { url = "https://files.pythonhosted.org/packages/2b/74/5155452610328255ed1b2ba7698cd453877e5822eb9e3477b96b25379af6/linopy-0.9.1-py3-none-any.whl", hash = "sha256:70edf6790487bfc5caa041e81532c5cca064809d3f9db8a82e0b9d16bf9a4960", size = 212256, upload-time = "2026-08-18T10:44:23.503Z" },
 ]
 
 [[package]]
@@ -2305,7 +2305,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ptyprocess", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "ptyprocess" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
@@ -3263,7 +3263,7 @@ resolution-markers = [
     "python_full_version < '3.12' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" } },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/7a/97/5a3609c4f8d58b039179648e62dd220f89864f56f7357f5d4f45c29eb2cc/scipy-1.17.1.tar.gz", hash = "sha256:95d8e012d8cb8816c226aef832200b1d45109ed4464303e997c5b13122b297c0", size = 30573822, upload-time = "2026-02-23T00:26:24.851Z" }
 wheels = [
@@ -3348,7 +3348,7 @@ resolution-markers = [
     "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "numpy", version = "2.5.1", source = { registry = "https://pypi.org/simple" } },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a7/25/c2700dfaf6442b4effaa91af24ebce5dc9d31bb4a69706313aae70d72cd0/scipy-1.18.0.tar.gz", hash = "sha256:67b2ad2ad54c72ca6d04975a9b2df8c3638c34ddd5b28738e94fc2b57929d378", size = 30774447, upload-time = "2026-06-19T15:01:43.456Z" }
 wheels = [
