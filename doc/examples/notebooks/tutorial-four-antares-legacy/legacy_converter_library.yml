@@ -21,6 +21,10 @@ library:
       fields:
         - id: flow
         - id: price
+      area-connection:
+        injection-to-balance: flow
+        spillage-bound: flow
+        unsupplied-energy-bound:
 
   models:
     - id: area
