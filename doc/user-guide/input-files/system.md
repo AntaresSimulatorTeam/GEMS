@@ -4,6 +4,11 @@ The **system file** defines the concrete energy system to be simulated. It insta
 
 The system file is a YAML file with a single root key `system`. The system contains fields for an `id`, `description`, a list of `model-libraries` to use, the list of `components` in the system, and the list of `connections` definitions between components. Every system file must have exactly one top-level `system` entry containing these sections. Below is an example snippet of a system file:
 
+!!! warning "Design proposal — not yet implemented"
+    A proposed sixth top-level field, [`sets`](#global-sets), instantiates
+    [library-level global sets](library.md#library-level-sets) for the whole study. Not yet
+    implemented in [GemsPy](../../index.md).
+
 ```yaml
 system:
   id: my_system
@@ -42,6 +47,7 @@ The top-level fields of a system file are:
 | `model-libraries` | String | *(Optional)* Comma-separated list of library IDs whose models are used in this system (e.g. `my_library_1, my_library_2`). Must match the `id` fields of the library files available to the simulation.|
 | `components` | List | The list of component instantiations in the system.|
 | `connections` | List | The list of port connections between components.|
+| `sets` | List | *([Proposed](#global-sets), not yet implemented — required whenever any used library declares global sets)* Study-wide instantiation of every [library-level global set](library.md#library-level-sets) declared by this system's libraries.|
 
 ## Components
 
@@ -93,6 +99,101 @@ system:
         - id: company
           value: frenchpower
 ```
+
+### Local Sets
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the system file schema, part of the
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) proposal.
+    It is not yet implemented in [GemsPy](../../index.md).
+
+(Required whenever a model declares a **local**, model-level [set](library.md#sets) — see
+[library.md's Sets](library.md#sets) for why a local set never gives its concrete `elements`
+itself) Every component instantiating that model must supply the set's concrete element list here,
+mirroring how [Properties](#properties) values are supplied per component while their keys are
+declared in the model. This is not needed for [global sets](#global-sets), which are instantiated
+once, study-wide, in a different top-level section instead (see [Global Sets](#global-sets) below).
+
+Each set entry contains:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | The set key name, matching a set declared in the [model's local sets](library.md#sets). |
+| `elements` | List, or range shorthand | The ordered elements this component uses for that set — same two forms (explicit list or `S..E` range shorthand) as for a [global set](#global-sets); see there for the full explanation. |
+
+```yaml
+system:
+  components:
+    - id: my_battery
+      model: mylib.multi_zone_battery
+      sets:
+        - id: zone
+          elements: [north, south]
+    - id: my_storage
+      model: mylib.multi_segment_storage
+      sets:
+        - id: segment
+          elements: 0..3        # shorthand for [0, 1, 2, 3]
+```
+
+## Global Sets
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the system file schema, part of the
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) proposal.
+    It is not yet implemented in [GemsPy](../../index.md).
+
+(Required whenever any used library declares global sets) A top-level `sets` collection — a sibling of
+`components` and `connections` — that instantiates **every** [library-level global
+set](library.md#library-level-sets) declared by any library this system uses (see [library.md's
+Library-Level Sets](library.md#library-level-sets) for why a global set never gives its concrete
+contents itself). It must do so for every one of them, not just some. This instantiation applies
+**once, uniformly, to the whole study** — never per component — because every component connecting
+through a port that uses this set must agree on the exact same index domain; a per-component override
+would defeat that guarantee (see [Why the distinction
+matters](../syntax.md#why-the-distinction-matters)). This mirrors how
+`--duration`/`--scenarios` fix the time and scenario dimensions once for an entire run rather than per
+component.
+
+Each set entry contains:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | The set key name, matching a [library-level set](library.md#library-level-sets) declared by one of this system's libraries. |
+| `elements` | List, or range shorthand | The set's concrete, ordered elements — see the two accepted forms below. |
+
+`elements` accepts one of two forms — the same two forms a [local set](#local-sets) accepts:
+
+- **An explicit list** — names (`elements: [gas, coal, oil]`) or numbers (`elements: [10, 20, 30]`,
+  including non-consecutive ones).
+- **A range shorthand**, reusing the `..` token from the [time range summation
+  operator](../syntax.md#time-operators-and-indexing): `elements: 0..3` is shorthand for
+  the explicit list `[0, 1, 2, 3]` — inclusive of both ends. `S` and `E` must be plain non-negative
+  integers (`S <= E`; `S == E` is legal, for a single-element set).
+
+```yaml
+system:
+  id: my_system
+  model-libraries: example_library
+  sets:
+    - id: fuel
+      elements: [gas, coal, oil]
+    - id: segment
+      elements: 0..4        # shorthand for [0, 1, 2, 3, 4]
+  components:
+    - id: gen_1
+      model: example_library.multi_fuel_generator
+```
+
+Every global set declared by any library used in the system must appear here exactly once; a library
+using this feature with no matching entry in `system.yml` is an error at study-instantiation time.
+
+**Recommended practice:** instantiate each global set as *universal* — the superset of every element
+that could ever be relevant across the whole system (e.g. `elements: [gas, coal, oil, biomass,
+hydrogen]` even if a given generator only burns two of them) — and express per-component variation
+through data (e.g. a `0` capacity/bound for unused elements) rather than through differing set
+membership. This keeps every component's view of the set uniform, which is what makes cross-component
+aggregation (`sum_connections`, binding constraints) well-defined without extra runtime validation.
 
 ## Connections
 

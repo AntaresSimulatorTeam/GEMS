@@ -5,6 +5,11 @@ A library file defines a library of two collections of abstract objects (see [Gl
 - [Models](#models) - Contains the mathematical formulation for component type
 - [Ports Types](#port-types) - Describe the kinds of connections models can have
 
+!!! warning "Design proposal — not yet implemented"
+    A proposed third collection, [Library-Level Sets](#library-level-sets), declares global custom
+    index sets shared across `port-types` and `models`. Not yet implemented in
+    [GemsPy](../../index.md).
+
 The library file is a YAML file with a single root key, `library`. Under this root, the library’s identifier, an optional description, and the collections of `port-types` and `models` are defined. All fields, unless explicitly marked as optional, must be present for the library to be considered valid. The following example illustrates the structure of a simple library file:
 
 ```yaml
@@ -42,6 +47,24 @@ All `id's` in the model library and [system file](system.md) must respect the fo
 - All other characters are prohibited
 - Only lower-case is allowed
 
+!!! warning "Design proposal — not yet implemented"
+    A local [set](#sets)'s `id` must not collide with any [global (library-level)
+    set](#library-level-sets) `id` visible in the same library — since `indexed-by: x` (or a bare
+    reference to `x` inside `[...]`) would otherwise be ambiguous between the two. This is the only
+    id-collision rule custom sets add: a set is only ever looked up in two places — inside `[...]`
+    right after an identifier, or as the value of `indexed-by:` — and both positions only ever accept a
+    set `id`, never a parameter or variable `id`, so **parameter and variable ids are free to collide
+    with set ids** (local or global) without any ambiguity. This is not recommended, though: even
+    though the parser never confuses the two, a reader has to hold both meanings in their head — prefer
+    giving a set a distinct `id` from any parameter or variable in scope.
+
+    `t` remains reserved and may never be used as a set `id` (local or global), exactly like it's
+    already reserved for other identifiers in this syntax.
+
+    These rules are part of the
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) proposal —
+    not yet implemented in [GemsPy](../../index.md).
+
 ## Collections and key fields in library file
 
 Every library file must begin with the following header with optional `description` and `version`:
@@ -58,6 +81,45 @@ library:
 | `id`| String | A unique identifier for the library. This `id` is used by [system files](system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
+
+### Library-Level Sets
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the library file schema. It is not yet
+    implemented in [GemsPy](../../index.md). See
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) for the
+    full expression-syntax proposal this schema supports.
+
+The `sets` collection, a sibling of `port-types` and `models`, declares **global** custom index sets
+— shared by every model and port-type field in this library that references them. This is the only
+kind of custom set that may cross a port (see [Port fields and custom
+sets](../syntax.md#port-fields-and-custom-sets) for the precise rules), since every
+component connecting through a port must agree on the exact same index domain (see [Why the
+distinction matters](../syntax.md#why-the-distinction-matters)). Model-level,
+per-component-varying sets are declared separately — see [Sets](#sets) under Models below.
+
+This collection is **optional**. A global set's concrete contents are **never** given in the library —
+only its `id` and an optional `description`; concrete `elements` are always supplied exactly once,
+study-wide, in [`system.yml`'s Global Sets section](system.md#global-sets). A [local set](#sets)
+(declared under Models, below) follows the same shape, scoped to a single model instead — see there.
+
+```yaml
+library:
+  id: example_library
+  sets:
+    - id: fuel
+    - id: segment
+```
+
+| Element | Type | Description |
+|------|------|--------------------------|
+|`id`| String | Unique set identifier within the library. Must follow the [naming rules](#rules-for-id-naming).|
+| `description`| String | *(Optional)* A human-readable description of the set's purpose.|
+
+See [Indexing expressions](../syntax.md#indexing-expressions) for why library/model
+expressions can only ever access a set's elements positionally (never by name). See [System — Global
+Sets](system.md#global-sets) for how `system.yml` instantiates `elements` and the recommended
+practice for instantiating a global set.
 
 ### Port Types
 
@@ -209,6 +271,64 @@ variables:
     upper-bound: injection_nominal_capacity
     variable-type: continuous
 ```
+
+#### Sets
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension to the library file schema. It is not yet
+    implemented in [GemsPy](../../index.md). See
+    [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed) for the
+    full expression-syntax proposal this schema supports.
+
+(Optional) A list of **local** custom index sets declared by this model — usable to index this
+model's own `parameters` and `variables` via the `indexed-by` field described below. Local sets may
+vary per component but are not visible outside this model. A model may also use a [library-level
+set](#library-level-sets) directly via `indexed-by`, without declaring anything here — declare a local
+set only when the index genuinely needs to vary per component or stay internal to this model; see
+[Why the distinction matters](../syntax.md#why-the-distinction-matters).
+
+Exactly like a [library-level set](#library-level-sets) (see above for why a set never gives its
+concrete contents here), a local set's `elements` are assigned per component instead, in
+`system.yml`'s [Local Sets](system.md#local-sets) list.
+
+| Element | Type | Description |
+|------|------|--------------------------|
+|`id`| String | Unique set identifier within the model. Must follow the [naming rules](#rules-for-id-naming) (including the local-vs-global-set collision rule described there).|
+| `description`| String | *(Optional)* A human-readable description of the set's purpose.|
+
+```yaml
+models:
+  - id: multi_segment_storage
+    sets:
+      - id: segment
+        description: "Price segments of the storage's marginal-value curve"
+      - id: operating_mode
+```
+
+To mark a parameter or variable as indexed by one (or more) of these sets, add an `indexed-by`
+field, analogous to `time-dependent`/`scenario-dependent`. It resolves against this model's own local
+sets, plus every [library-level set](#library-level-sets) visible in this library:
+
+| Element | Type | Description |
+|------|------|--------------------------|
+|`indexed-by`| Set `id`, or list of set `id`s | *(Optional)* Declares that this parameter/variable carries one or more custom-set dimensions (local, global, or a mix). Referenced in expressions via `[...]` — e.g. `X[segment]` or `X[segment, fuel]` for multiple sets, the same bracket already used for [time indexing](../syntax.md#time-operators-and-indexing). See [Custom Sets and Indexing](../syntax.md#custom-sets-and-indexing-proposed).|
+
+```yaml
+parameters:
+  - id: segment_capacity
+    indexed-by: segment
+    time-dependent: false
+    scenario-dependent: false
+variables:
+  - id: segment_level
+    indexed-by: segment
+    lower-bound: 0
+    upper-bound: segment_capacity[segment]
+    variable-type: continuous
+```
+
+`indexed-by` exists only on `parameters` and `variables` — `constraints`, `binding-constraints`,
+`objective-contributions`, and `extra-outputs` never declare it.
 
 #### Ports
 
