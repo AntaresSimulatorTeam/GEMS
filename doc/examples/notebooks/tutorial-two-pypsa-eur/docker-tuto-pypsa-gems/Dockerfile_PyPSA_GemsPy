@@ -24,11 +24,10 @@ RUN pip install --no-cache-dir --no-input \
 
 # The pypsa-to-gems-converter 0.0.1 wheel omits the model library it copies into
 # every generated study, so to_gems_study() fails on a missing pypsa_models.yml.
-# Supply it at the path the package resolves internally (site-packages/resources/).
-COPY converter-resources/pypsa_models.yml /tmp/pypsa_models.yml
+# docker-compose bind-mounts the repo's libraries/pypsa_models.yml over this path;
+# create the directory so the mount has somewhere to land.
 RUN SITE_PACKAGES="$(python -c 'import src, pathlib; print(pathlib.Path(src.__file__).parent.parent)')" \
-    && mkdir -p "$SITE_PACKAGES/resources/pypsa_models" \
-    && mv /tmp/pypsa_models.yml "$SITE_PACKAGES/resources/pypsa_models/pypsa_models.yml"
+    && mkdir -p "$SITE_PACKAGES/resources/pypsa_models"
 
 WORKDIR /workspace
 

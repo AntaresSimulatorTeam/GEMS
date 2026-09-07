@@ -9,5 +9,7 @@ services:
     network_mode: host
     volumes:
       - ../pypsa-eur/resources:/workspace/pypsa-eur/resources:ro
+      # Single source of truth for the model library the converter wheel is missing
+      - ../../../../../libraries/pypsa_models.yml:/usr/local/lib/python3.12/site-packages/resources/pypsa_models/pypsa_models.yml:ro
 
 volumes: {}
