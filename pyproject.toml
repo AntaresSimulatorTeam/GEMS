@@ -30,6 +30,8 @@ doc = [
     "mkdocs-macros-plugin",
     "mkdocs-material",
     "mkdocs-redirects",
+    "pypsa==1.2.0",
+    "pypsa-to-gems-converter==0.0.1",
 ]
 
 [tool.pytest.ini_options]
