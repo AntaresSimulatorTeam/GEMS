@@ -751,6 +751,7 @@ dev = [
     { name = "pandas" },
     { name = "pandas-stubs" },
     { name = "pypsa" },
+    { name = "pypsa-to-gems-converter" },
     { name = "pytest" },
     { name = "pytest-xdist" },
     { name = "ruff" },
@@ -774,6 +775,7 @@ test = [
     { name = "matplotlib" },
     { name = "pandas" },
     { name = "pypsa" },
+    { name = "pypsa-to-gems-converter" },
     { name = "pytest" },
     { name = "pytest-xdist" },
 ]
@@ -788,6 +790,7 @@ dev = [
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pandas-stubs" },
     { name = "pypsa" },
+    { name = "pypsa-to-gems-converter", specifier = "==0.0.1" },
     { name = "pytest", specifier = ">=7.0.1" },
     { name = "pytest-xdist", specifier = ">=3.8.0" },
     { name = "ruff", specifier = ">=0.9.10" },
@@ -811,6 +814,7 @@ test = [
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pypsa" },
+    { name = "pypsa-to-gems-converter", specifier = "==0.0.1" },
     { name = "pytest", specifier = ">=7.0.1" },
     { name = "pytest-xdist", specifier = ">=3.8.0" },
 ]
