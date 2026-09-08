@@ -14,7 +14,7 @@ from .utils import get_notebook_objective, get_pypsa_objective
 logger = logging.getLogger(__name__)
 
 NETWORK_FILE = "pypsa-eur/resources/networks/base_s_1_elec.nc"
-NOTEBOOK_FILE = "tutorial_pypsa_eur.ipynb"
+NOTEBOOK_FILE = "tutorial_pypsa_eur_gemspy.ipynb"
 
 
 def test_pypsa_eur_objective_matches_gems(

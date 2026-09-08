@@ -1,0 +1,40 @@
+FROM python:3.12-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.pixi/bin:$PATH"
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    tar \
+    ca-certificates \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install pixi
+RUN curl -fsSL https://pixi.sh/install.sh | bash
+
+RUN pip install --no-cache-dir --no-input \
+    jupyter \
+    matplotlib \
+    netcdf4 \
+    xarray \
+    pypsa \
+    pypsa-to-gems-converter \
+    gemspy==0.1.3
+
+# The pypsa-to-gems-converter 0.0.1 wheel omits the model library it copies into
+# every generated study, so to_gems_study() fails on a missing pypsa_models.yml.
+# docker-compose bind-mounts the repo's libraries/pypsa_models.yml over this path;
+# create the directory so the mount has somewhere to land.
+RUN SITE_PACKAGES="$(python -c 'import src, pathlib; print(pathlib.Path(src.__file__).parent.parent)')" \
+    && mkdir -p "$SITE_PACKAGES/resources/pypsa_models"
+
+WORKDIR /workspace
+
+# Build context is tutorial-two-pypsa-eur/
+COPY pypsa-eur/ /workspace/pypsa-eur/
+COPY tutorial_pypsa_eur_gemspy.ipynb /workspace/tutorial_pypsa_eur_gemspy.ipynb
+
+EXPOSE 9988
+
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=9988", "--no-browser", "--IdentityProvider.token=", "--LabApp.extension_manager=readonly", "--allow-root"]

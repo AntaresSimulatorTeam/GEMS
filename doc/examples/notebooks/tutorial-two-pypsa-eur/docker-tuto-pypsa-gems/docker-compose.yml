@@ -1,14 +1,15 @@
 services:
-  pypsa:
+  pypsa_gemspy:
     build:
       context: ..
-      dockerfile: docker-tuto-pypsa-gems/Dockerfile_PyPSA
+      dockerfile: docker-tuto-pypsa-gems/Dockerfile_PyPSA_GemsPy
       network: host
-    image: my-pypsa-tuto
-    container_name: my-pypsa-tuto
-    ports:
-      - "8889:8889"
+    image: my-pypsa-gemspy-tuto
+    container_name: my-pypsa-gemspy-tuto
+    network_mode: host
     volumes:
       - ../pypsa-eur/resources:/workspace/pypsa-eur/resources:ro
+      # Single source of truth for the model library the converter wheel is missing
+      - ../../../../../libraries/pypsa_models.yml:/usr/local/lib/python3.12/site-packages/resources/pypsa_models/pypsa_models.yml:ro
 
 volumes: {}
