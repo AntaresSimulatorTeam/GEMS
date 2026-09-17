@@ -26,8 +26,7 @@ RUN pip install --no-cache-dir --no-input \
 # every generated study, so to_gems_study() fails on a missing pypsa_models.yml.
 # docker-compose bind-mounts the repo's libraries/pypsa_models.yml over this path;
 # create the directory so the mount has somewhere to land.
-RUN SITE_PACKAGES="$(python -c 'import src, pathlib; print(pathlib.Path(src.__file__).parent.parent)')" \
-    && mkdir -p "$SITE_PACKAGES/resources/pypsa_models"
+RUN mkdir -p /usr/local/lib/python3.12/site-packages/resources/pypsa_models
 
 WORKDIR /workspace
 
