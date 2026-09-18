@@ -4,7 +4,6 @@ repo_name: GEMS
 exclude_docs: |
   documentation_env/
   examples/notebooks/tutorial-two-pypsa-eur/pypsa-eur/*
-  examples/notebooks/tutorial-two-pypsa-eur/tutorial_pypsa_eur.ipynb
 site_name: GEMS - Generic Energy systems Modelling Schema
 site_url: https://gems-energy.readthedocs.io/en/latest/
 site_description: "GEMS (Generic Energy systems Modelling Schema) is a
