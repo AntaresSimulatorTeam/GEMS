@@ -99,14 +99,11 @@ parameter of the study.
 Selects which Monte-Carlo scenarios are simulated. Scenario indices are **0-based**, matching
 the convention of the [scenario builder file](scenario-builder.md).
 
-The base set of scenarios is given by exactly one of two mutually exclusive keys: `include`
-(written inline) or `playlist-file` (read from a JSON file). `exclude` is optional and can be
-combined with either.
+The base set of scenarios is given by `include` (written inline). `exclude` is optional.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `include` | List of entries | None | The scenarios to simulate. Mutually exclusive with `playlist-file` |
-| `playlist-file` | Path | None | A JSON file listing the scenarios to simulate. Mutually exclusive with `include` |
+| `include` | List of entries | None | The scenarios to simulate. |
 | `exclude` | List of entries | None | Scenarios removed from the base set |
 
 Each entry of `include` and `exclude` is one of:
@@ -131,33 +128,12 @@ scenario-scope:
 
 This simulates scenarios 0 to 19 and 49 to 59, minus 9 and 14, so 30 scenarios in total.
 
-### Playlist-file form
-
-When the scenario list is long or produced programmatically, keep it in a separate JSON file.
-The path is resolved relative to `optim-config.yml`.
-
-```yaml
-scenario-scope:
-  playlist-file: mc_playlist.json
-  exclude:
-    - 4
-    - "8-10"
-```
-
-The referenced file holds a flat JSON array of non-negative integers:
-
-```json
-[0, 2, 4, 6, 8, 10, 12]
-```
-
-Combining `playlist-file` with `exclude` lets you drop a few scenarios for one run without
-editing the playlist itself.
 
 !!! info "Rules"
     - All indices must be greater than or equal to `0`.
     - Duplicates are removed and the resulting set is sorted in ascending order.
     - An `exclude` entry that is not in the base set is ignored, with a warning.
-    - `exclude` cannot be used on its own: it requires `include` or `playlist-file`.
+    - `exclude` cannot be used on its own: it requires `include`.
     - When `scenario-scope` is omitted, scenario `0` alone is simulated.
     - When a [scenario builder file](scenario-builder.md) is present, every selected index must
       be defined for every scenario group it declares.
@@ -560,7 +536,6 @@ in `subproblems`.
       last-time-step: 8759
 
     scenario-scope:
-      playlist-file: mc_playlist.json    # scenario list kept in a separate JSON file
       exclude:
         - 7                              # scenario 7 dropped for this run
 
