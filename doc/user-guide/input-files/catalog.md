@@ -42,7 +42,7 @@ Each term in `metrics-definition.terms` selects a group of components defined by
 |------|------|--------------------------|
 | `taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) identifying the group of components to aggregate.|
 | `output-id` | String | The identifier of the [model output](library.md#extra-output) to read from those components.|
-| `location-ports` | None/String | The [`location-ports`](taxonomy.md#key-elements-in-taxonomy-file) that connects each contributing component (within the selected taxonomy category) to a neighbouring component acting as its location. If None, each contributing component is its own location (self-reference).|
+| `location-port` | None/String | The [`location-port`](taxonomy.md#key-elements-in-taxonomy-file) that connects each contributing component (within the selected taxonomy category) to a neighbouring component acting as its location. If None, each contributing component is its own location (self-reference).|
 
 ## Example
 
@@ -62,7 +62,7 @@ catalog:
       terms:
         - taxonomy-category: generation
           output-id: generation_power
-          location-ports: balance_port
+          location-port: balance_port
       terms-operator: sum
       time-operator: sum
 
@@ -70,7 +70,7 @@ catalog:
       terms:
         - taxonomy-category: balance
           output-id: price
-          location-ports: balance_port
+          location-port: balance_port
       terms-operator: avg
       time-operator: avg
 ```
