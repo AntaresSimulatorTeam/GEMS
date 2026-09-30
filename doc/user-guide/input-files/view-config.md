@@ -68,7 +68,7 @@ The view configuration file has a single root key `view`. Unknown keys are rejec
 | `id` | String | A unique identifier for the view.|
 | `taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) used by the view. It must match the taxonomy file and the `taxonomy` of every [catalog](catalog.md) used.|
 | `scope.location.taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) whose components serve as location objects (e.g. buses or areas). It must be defined in the taxonomy and match the `location.taxonomy-category` of every [catalog](catalog.md) used.|
-| `scope.calendar` | String | Name of the calendar file (without the `.csv` extension) used to map time indices to real dates. It is informative: the calendar actually used is the file given to ViewsBuilder.|
+| `scope.calendar` | String | Name of the calendar file (without the `.csv` extension) used to map time indices to real dates. It is informative: the calendar actually used is the calendar file provided as input.|
 | `scope.extra-locations` | List | *(Optional)* List of [property](library.md#properties) keys, each given by its `id` (`- id: country`). For each location component having one of these properties, the metric is also computed at the location named by the property value (e.g. all areas with `country: France` also contribute to the location `France`). Location components without the property only contribute to their own location.|
 
 ### Aggregation patterns
