@@ -11,7 +11,7 @@ GEMS lets users configure their own outputs. The outputs are defined by **Metric
 
 ## Structure of `catalog` files
 
-The catalog file has a single root key `catalog`. Unknown keys are rejected.
+The catalog file has a single root key `catalog`. Unknown keys under `catalog` are rejected.
 
 ### 1. `catalog` header
 
@@ -31,9 +31,9 @@ The catalog file has a single root key `catalog`. Unknown keys are rejected.
 |------|------|--------------------------|
 | `id` | String | A unique identifier for the metric within the catalog. It must not contain a `.`.|
 | `terms` | List | List of [terms](#3-terms) contributing to the metric.|
-| `terms-operator` | String | How to combine values across contributing components of all terms (for a given location, time step and scenario): `sum` or `avg`.|
+| `terms-operator` | String | How to combine values across contributing components of all terms (for a given location, breakdown value, time step and scenario): `sum` or `avg`.|
 | `time-operator` | String | How to aggregate values over time, up to the time granularity requested in the [View Configuration file](view-config.md#aggregation-patterns): `sum` or `avg`.|
-| `breakdown` | List | *(Optional)* List of component [properties](library.md#properties) (as set in the [system](system.md)) used to split the metric, each given by its `key` (`- key: technology`). The values of these properties on the contributing components are written in the `breakdown_properties` column of the [Views](../outputs/views.md) (e.g. `{(technology,nuclear),(company,A)}`). A component that does not have the property gets the value `None`.|
+| `breakdown` | List | *(Optional)* List of component [properties](library.md#properties) (as set in the [system](system.md)) used to split the metric, each given by its `key` (`- key: technology`). The values of these properties on the contributing components are written in the `breakdown_properties` column of the [Views](../outputs/views.md) (e.g. `{(technology,nuclear),(company,A)}`). A component that does not have the property gets the value `None`. Without `breakdown`, the column is `{}`.|
 | `filter` | Object | *(Optional)* A single component [property](library.md#properties) condition, given by a `key` and a `value`. Only the contributing components whose property `key` is equal to `value` are kept for the metric. `value` is mandatory and is a string: quote numbers or booleans (e.g. `value: "1"`).|
 
 #### 3. Terms
@@ -46,7 +46,7 @@ Each term in `terms` selects a group of components defined by the `taxonomy` fil
 |------|------|--------------------------|
 | `taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) identifying the group of components to aggregate. It must be defined in the taxonomy.|
 | `output-id` | String | The identifier of the output to read from those components. It must be declared as a `variable` or an `extra-output` of the [taxonomy category](taxonomy.md#categories).|
-| `location-port` | String/null | The [port](taxonomy.md#categories) that connects each contributing component to its location, i.e. a component of the `catalog.location.taxonomy-category`. It must be declared as a `port` of the taxonomy category, and each contributing component must be connected through this port to exactly one location component, otherwise the View building fails. If `null`, each contributing component is its own location (self-reference): the term `taxonomy-category` must then be the location taxonomy category.|
+| `location-port` | String/null | The [port](taxonomy.md#categories) that connects each contributing component to its location, i.e. a component of the `catalog.location.taxonomy-category`. It must be declared as a `port` of the taxonomy category, and every component of the term's `taxonomy-category` (including those excluded by `filter`) must be connected through this port to exactly one location component, otherwise the View building fails. If `null`, each contributing component is its own location (self-reference): the term `taxonomy-category` must then be the location taxonomy category.|
 | `weight-output-id` | String | *(Optional)* Reserved for weighted aggregation. It is accepted but not used yet: all terms currently have a weight of 1.|
 
 ???+ warning "`location-port` is required"

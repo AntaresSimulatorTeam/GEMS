@@ -14,7 +14,7 @@ The **Views configuration file** defines which [Views](../outputs/views.md) to p
     | Column in the Calendar file | Description |
     |--------|-------------|
     | `absolute_time_index` | Integer time index from the [simulation table](../outputs/simulation-table.md). Values must be contiguous and start at `0` (`0, 1, ..., N-1`).|
-    | `block` | Scenario block index. |
+    | `block` | Time block index. It must match the `block` column of the simulation table. |
     | `granular_date` | Real datetime (like `2025-01-01 00:00:00`). The time step between two consecutive rows must be constant. |
 
 ## Example
@@ -57,7 +57,7 @@ view:
 
 ## Structure of the Views Configuration files
 
-The view configuration file has a single root key `view`. Unknown keys are rejected.
+The view configuration file has a single root key `view`. Unknown keys under `view` are rejected.
 
 ### Scope
 

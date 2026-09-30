@@ -16,7 +16,7 @@ This classification is "transparent" and doesn't impact the optimization solutio
 
 ## Key elements in taxonomy file
 
-The taxonomy file has a single root key `taxonomy`. Unknown keys are rejected.
+The taxonomy file has a single root key `taxonomy`. Unknown keys under `taxonomy` are rejected.
 
 | Element | Type | Description |
 |------|------|--------------------------|
