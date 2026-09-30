@@ -12,7 +12,7 @@ This classification is "transparent" and doesn't impact the optimization solutio
 ???+ warning "Every model used in the system needs a `taxonomy-category`"
     To build Views, each component of the [system](system.md) is attached to the `taxonomy-category` of its model. Models without a `taxonomy-category` cannot be used to build Views.
 
-    The building of Views does not check that models comply with their category: only the [Catalog](catalog.md) terms are checked against the taxonomy. A model's `taxonomy-category` should therefore be a category of the taxonomy file.
+    The building of Views does not check that models comply with their category: only the [Catalog](catalog.md) terms are checked against the taxonomy. A model's `taxonomy-category` should therefore be a category of the taxonomy file, and the model should produce the outputs of its category: if a component does not produce an output read by a Catalog term, the building of Views does not fail but gives misleading values (see [`output-id`](catalog.md#3-terms)).
 
 ## Key elements in taxonomy file
 
@@ -35,7 +35,7 @@ Each category lists the elements expected from the models declaring it. Each ele
 | `variables` | List | *(Optional)* The [variables](library.md#variables) that models in this category must declare.|
 | `parameters` | List | *(Optional)* The [parameters](library.md#parameters) that models in this category must declare.|
 | `ports` | List | *(Optional)* The [ports](library.md#ports) on which metrics can be located for this category. It has to be the same port names as declared in the [library](library.md) [models](library.md#models).|
-| `constraints` | List | *(Optional)* The [constraints](library.md#constraints) that models in this category must declare.|
+| `constraints` | List | *(Optional)* The [constraints](library.md#constraints) and [binding-constraints](library.md#binding-constraints) that models in this category must declare. Both are listed under `constraints`: a category has no `binding-constraints` key (the `balance` binding-constraint of the example below is listed this way).|
 | `extra-outputs` | List | *(Optional)* The [extra-outputs](library.md#extra-output) that models in this category must declare.|
 | `properties` | List | *(Optional)* The [properties](library.md#properties) that models in this category must declare. They can be used by catalogs to [filter or break down](catalog.md#2-metrics-definition) metrics.|
 
@@ -43,7 +43,7 @@ Each category lists the elements expected from the models declaring it. Each ele
     In a [Catalog](catalog.md) term using a given category:
 
     - `output-id` must be one of the category's `variables` or `extra-outputs` ;
-    - `location-port` must be one of the category's `ports`.
+    - `location-port` must be one of the category's `ports`, or `null` when the category is the location category (self-location).
 
 ## Example
 

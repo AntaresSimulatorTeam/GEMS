@@ -7,7 +7,7 @@ GEMS lets users configure their own outputs. The outputs are defined by **Metric
 ???+ info "Links with `taxonomy.yml` and `view-config.yml`"
     Catalogs use the taxonomy categories defined in [a taxonomy file](taxonomy.md).
 
-    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/views.md). The `taxonomy` and `location.taxonomy-category` of each catalog used by a View must match the ones of the [View Configuration file](view-config.md).
+    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/views.md). The `taxonomy` and `location.taxonomy-category` of each catalog listed in a [View Configuration file](view-config.md) must match the ones of this file, and all the metrics of the catalog are checked against the taxonomy, even the metrics the View does not select.
 
 ## Structure of `catalog` files
 
@@ -29,12 +29,12 @@ The catalog file has a single root key `catalog`. Unknown keys under `catalog` a
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | A unique identifier for the metric within the catalog. It must not contain a `.`.|
+| `id` | String | A unique identifier for the metric within the catalog. It must not contain a `.`. Only this `id` (without the catalog `id`) is written in the `metric_id` column of the Views: metrics of different catalogs used by the same View should therefore have different ids.|
 | `terms` | List | List of [terms](#3-terms) contributing to the metric.|
 | `terms-operator` | String | How to combine values across contributing components of all terms (for a given location, breakdown value, time step and scenario): `sum` or `avg`.|
 | `time-operator` | String | How to aggregate values over time, up to the time granularity requested in the [View Configuration file](view-config.md#aggregation-patterns): `sum` or `avg`.|
 | `breakdown` | List | *(Optional)* List of component [properties](library.md#properties) (as set in the [system](system.md)) used to split the metric, each given by its `key` (`- key: technology`). The values of these properties on the contributing components are written in the `breakdown_properties` column of the [Views](../outputs/views.md) (e.g. `{(technology,nuclear),(company,A)}`). A component that does not have the property gets the value `None`. Without `breakdown`, the column is `{}`.|
-| `filter` | Object | *(Optional)* A single component [property](library.md#properties) condition, given by a `key` and a `value`. Only the contributing components whose property `key` is equal to `value` are kept for the metric. `value` is mandatory and is a string: quote numbers or booleans (e.g. `value: "1"`).|
+| `filter` | Object | *(Optional)* A single component [property](library.md#properties) condition, given by a `key` and a `value`. Only the contributing components whose property `key` is equal to `value` are kept for the metric. `value` is mandatory and is a string: quote any value that YAML would not read as text, such as numbers, `true`/`false`, `yes`/`no`/`on`/`off` or dates (e.g. `value: "1"`, or `value: "NO"` for the country code of Norway).|
 
 #### 3. Terms
 
@@ -45,12 +45,17 @@ Each term in `terms` selects a group of components defined by the `taxonomy` fil
 | Element | Type | Description |
 |------|------|--------------------------|
 | `taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) identifying the group of components to aggregate. It must be defined in the taxonomy.|
-| `output-id` | String | The identifier of the output to read from those components. It must be declared as a `variable` or an `extra-output` of the [taxonomy category](taxonomy.md#categories).|
-| `location-port` | String/null | The [port](taxonomy.md#categories) that connects each contributing component to its location, i.e. a component of the `catalog.location.taxonomy-category`. It must be declared as a `port` of the taxonomy category, and every component of the term's `taxonomy-category` (including those excluded by `filter`) must be connected through this port to exactly one location component, otherwise the View building fails. If `null`, each contributing component is its own location (self-reference): the term `taxonomy-category` must then be the location taxonomy category.|
+| `output-id` | String | The identifier of the output to read from those components. It must be declared as a `variable` or an `extra-output` of the [taxonomy category](taxonomy.md#categories). An output that is not time-dependent (e.g. an installed capacity) gives a single value with an empty `view_date` at every time granularity; with a simulation in several time blocks, the values of all blocks are combined with the `terms-operator` (e.g. summed). An output that is not scenario-dependent gives an empty `scenario_id`.|
+| `location-port` | String/null | The [port](taxonomy.md#categories) that connects each contributing component to its location, i.e. a component of the `catalog.location.taxonomy-category`. It must be declared as a `port` of the taxonomy category, and every component of the term's `taxonomy-category` (including those excluded by `filter`) must be connected through this port to one component only, which must be a location component, otherwise the View building fails (a port also connected to another component is rejected). If `null`, each contributing component is its own location (self-reference): the term `taxonomy-category` must then be the location taxonomy category.|
 | `weight-output-id` | String | *(Optional)* Reserved for weighted aggregation. It is accepted but not used yet: all terms currently have a weight of 1.|
 
 ???+ warning "`location-port` is required"
     `location-port` must always be written in each term, even for a self-referencing term (`location-port: null`). An empty string is not allowed.
+
+???+ warning "Cases giving no error but misleading results"
+    - **Output not found**: if a contributing component has no value of the `output-id` in the simulation table (for example because its model does not produce it), each such component adds, at its location, a row with an empty `view_date` and `scenario_id` and a `0` value (an empty value with `avg`). These rows look like a time-independent output.
+    - **Mixed outputs**: the terms of a metric should all be time-dependent, or all not, and all scenario-dependent, or all not. Otherwise their values are not combined but written in separate rows, and with `scenario: true` the scenario-independent row is counted as an additional scenario in `exp`/`std`/`min`/`max`.
+    - **No contributing component**: a metric without any contributing component (e.g. a `filter` that matches no component, or a term category used by no model of the system) is absent from the Views. Likewise, a location without any contributing component has no row for the metric, not a `0` value.
 
 ## Example
 
