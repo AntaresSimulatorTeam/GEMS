@@ -28,3 +28,16 @@ Editor use (VS Code, YAML extension):
 
 `gems-relationships.json` lists the cross-file references of a study (which key of which file must match which key of another),
 with cardinality and the rule applied. It is documentation/tooling input, not a JSON Schema.
+
+## Checking a study folder
+
+```bash
+python schemas/check_study.py path/to/study                 # JSON Schema validation + cross-file checks
+python schemas/check_study.py path/to/study --libs libraries  # libraries kept outside the study
+python schemas/check_study.py path/to/study --json --no-schema
+```
+
+Each finding names the relationship id from `gems-relationships.json`. The exit status is 1 when there is at least one
+error. Relationships marked `derived` (expression names, time-scope coverage of data series) are not checked.
+Data series are looked up as `.csv`, `.txt` or `.tsv`. With `--libs`, only libraries used by the system are taken from
+those folders, and the study's own copy of a library wins.
