@@ -29,13 +29,6 @@
             "$ref": "#/$defs/model"
           }
         },
-        "dependencies": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Ids of libraries this one depends on (GemsPy)."
-        },
         "taxonomy": {
           "type": "string",
           "description": "Id of the taxonomy the models' taxonomy-category values refer to."
