@@ -31,7 +31,7 @@ Each category lists the elements expected from the models declaring it. Each ele
 | Element | Type | Description |
 |------|------|--------------------------|
 | `id` | String | A unique identifier for the category.|
-| `parent-category` | String | *(Optional)* The `id` of a parent category. It is currently informative only: a category does **not** inherit the elements of its parent, so all the elements needed by the catalog must be declared on the category itself.|
+| `parent-category` | String | *(Optional)* The `id` of a parent category. Inheritance from the parent category is work in progress: elements are not inherited yet.|
 | `variables` | List | *(Optional)* The [variables](library.md#variables) that models in this category must declare.|
 | `parameters` | List | *(Optional)* The [parameters](library.md#parameters) that models in this category must declare.|
 | `ports` | List | *(Optional)* The [ports](library.md#ports) on which metrics can be located for this category. It has to be the same port names as declared in the [library](library.md) [models](library.md#models).|
