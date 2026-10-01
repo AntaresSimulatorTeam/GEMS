@@ -1,0 +1,410 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/schemas/gems-optim-config.schema.json",
+  "title": "GEMS optimisation configuration",
+  "description": "input/optim-config.yml",
+  "type": "object",
+  "properties": {
+    "time-scope": {
+      "type": "object",
+      "properties": {
+        "first-time-step": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "last-time-step": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenario-scope": {
+      "type": "object",
+      "properties": {
+        "include": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9]+(-[0-9]+)?$"
+              }
+            ],
+            "description": "Scenario index, or an inclusive range such as \"0-9\"."
+          }
+        },
+        "playlist-file": {
+          "type": "string"
+        },
+        "exclude": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9]+(-[0-9]+)?$"
+              }
+            ],
+            "description": "Scenario index, or an inclusive range such as \"0-9\"."
+          }
+        }
+      },
+      "additionalProperties": false,
+      "not": {
+        "required": [
+          "include",
+          "playlist-file"
+        ]
+      },
+      "if": {
+        "required": [
+          "exclude"
+        ]
+      },
+      "then": {
+        "anyOf": [
+          {
+            "required": [
+              "include"
+            ]
+          },
+          {
+            "required": [
+              "playlist-file"
+            ]
+          }
+        ]
+      }
+    },
+    "solver-options": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": "highs"
+        },
+        "logs": {
+          "type": "boolean",
+          "default": false
+        },
+        "parameters": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "additionalProperties": false
+    },
+    "resolution": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "frontal",
+            "sequential-subproblems",
+            "parallel-subproblems",
+            "benders-decomposition"
+          ],
+          "default": "frontal"
+        },
+        "block-length": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "block-overlap": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "carry-over-length": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "sequential-subproblems",
+                  "parallel-subproblems"
+                ]
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "required": [
+              "block-length"
+            ]
+          }
+        },
+        {
+          "if": {
+            "not": {
+              "properties": {
+                "mode": {
+                  "const": "sequential-subproblems"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            }
+          },
+          "then": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "block-overlap"
+                  ]
+                },
+                {
+                  "required": [
+                    "carry-over-length"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "<library-id>.<model-id>"
+          },
+          "out-of-bounds-processing": {
+            "type": "object",
+            "properties": {
+              "constraints": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "mode": {
+                      "enum": [
+                        "cyclic",
+                        "drop"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "mode"
+                  ]
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "model-decomposition": {
+            "type": "object",
+            "properties": {
+              "variables": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "enum": [
+                        "subproblems",
+                        "master",
+                        "master-and-subproblems"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "location"
+                  ]
+                }
+              },
+              "constraints": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "enum": [
+                        "subproblems",
+                        "master",
+                        "master-and-subproblems"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "location"
+                  ]
+                }
+              },
+              "objective-contributions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "enum": [
+                        "subproblems",
+                        "master",
+                        "master-and-subproblems"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "location"
+                  ]
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "heuristics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "enum": [
+                    "fast",
+                    "accurate"
+                  ]
+                },
+                "inputs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "heuristic-element",
+                      "id"
+                    ],
+                    "properties": {
+                      "heuristic-element": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "enum": [
+                          "parameter",
+                          "variable-solution",
+                          "variable-lower-bound",
+                          "variable-upper-bound"
+                        ],
+                        "default": "parameter"
+                      }
+                    }
+                  }
+                },
+                "outputs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "heuristic-element",
+                      "id"
+                    ],
+                    "properties": {
+                      "heuristic-element": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "enum": [
+                          "parameter",
+                          "variable-solution",
+                          "variable-lower-bound",
+                          "variable-upper-bound"
+                        ],
+                        "default": "parameter"
+                      }
+                    }
+                  }
+                }
+              },
+              "description": "Inputs/outputs must cover exactly the heuristic's elements; outputs must be variable-lower-bound or variable-upper-bound.",
+              "x-heuristic-elements": {
+                "inputs": {
+                  "accurate": [
+                    "num_units_on_opt",
+                    "num_units_max",
+                    "min_up_duration",
+                    "min_down_duration"
+                  ],
+                  "fast": [
+                    "generation_power",
+                    "cluster_max_generation",
+                    "min_power_per_unit",
+                    "max_power_per_unit",
+                    "min_up_duration",
+                    "min_down_duration"
+                  ]
+                },
+                "outputs": {
+                  "accurate": [
+                    "minimum_num_units_on"
+                  ],
+                  "fast": [
+                    "minimum_generation_power",
+                    "maximum_generation_power"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

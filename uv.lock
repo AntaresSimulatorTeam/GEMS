@@ -746,6 +746,7 @@ source = { virtual = "." }
 [package.dev-dependencies]
 dev = [
     { name = "gemspy" },
+    { name = "jsonschema" },
     { name = "matplotlib" },
     { name = "mypy" },
     { name = "pandas" },
@@ -769,6 +770,7 @@ doc = [
 ]
 test = [
     { name = "gemspy" },
+    { name = "jsonschema" },
     { name = "matplotlib" },
     { name = "pandas" },
     { name = "pypsa" },
@@ -781,6 +783,7 @@ test = [
 [package.metadata.requires-dev]
 dev = [
     { name = "gemspy", specifier = "==0.1.3" },
+    { name = "jsonschema", specifier = ">=4.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pandas", specifier = ">=2.2.3" },
@@ -804,6 +807,7 @@ doc = [
 ]
 test = [
     { name = "gemspy", specifier = "==0.1.3" },
+    { name = "jsonschema", specifier = ">=4.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pypsa" },

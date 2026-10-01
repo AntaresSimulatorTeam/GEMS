@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/schemas/gems-parameters.schema.json",
+  "title": "GEMS simulation parameters",
+  "description": "Study-root parameters.yml, used by the Antares Modeler interpreter.",
+  "type": "object",
+  "properties": {
+    "solver": {
+      "enum": [
+        "sirius",
+        "scip",
+        "coin",
+        "xpress",
+        "glpk",
+        "highs",
+        "pdlp",
+        "gurobi"
+      ],
+      "default": "sirius"
+    },
+    "solver-logs": {
+      "type": "boolean",
+      "default": false
+    },
+    "solver-parameters": {
+      "type": "string",
+      "default": ""
+    },
+    "first-time-step": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last-time-step": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "no-output": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "first-time-step",
+    "last-time-step"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/schemas/gems-catalog.schema.json",
+  "title": "GEMS catalog",
+  "description": "Catalog file defining output metrics.",
+  "type": "object",
+  "properties": {
+    "catalog": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "taxonomy": {
+          "type": "string"
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "taxonomy-category": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "taxonomy-category"
+          ]
+        },
+        "metrics-definition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "terms": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "taxonomy-category": {
+                      "type": "string"
+                    },
+                    "output-id": {
+                      "type": "string"
+                    },
+                    "location-ports": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "taxonomy-category",
+                    "output-id"
+                  ]
+                }
+              },
+              "terms-operator": {
+                "enum": [
+                  "sum",
+                  "avg"
+                ]
+              },
+              "time-operator": {
+                "enum": [
+                  "sum",
+                  "avg"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "terms",
+              "terms-operator",
+              "time-operator"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "taxonomy",
+        "location",
+        "metrics-definition"
+      ]
+    }
+  },
+  "required": [
+    "catalog"
+  ],
+  "additionalProperties": false,
+  "$defs": {}
+}

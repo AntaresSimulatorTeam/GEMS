@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/schemas/gems-system.schema.json",
+  "title": "GEMS system",
+  "description": "A GEMS system file (input/system.yml).",
+  "type": "object",
+  "properties": {
+    "system": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "model-libraries": {
+          "type": "string",
+          "description": "Comma-separated library ids."
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/connection"
+          }
+        },
+        "area-connections": {
+          "type": "array",
+          "description": "Hybrid studies: couple a component port to a Legacy Area.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "component",
+              "port",
+              "area"
+            ],
+            "properties": {
+              "component": {
+                "type": "string",
+                "minLength": 1
+              },
+              "port": {
+                "type": "string",
+                "minLength": 1
+              },
+              "area": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "thermal-capacity-connections": {
+          "type": "array",
+          "description": "Hybrid studies: couple a component port to a Legacy thermal cluster capacity.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "component",
+              "port",
+              "thermal-component"
+            ],
+            "properties": {
+              "component": {
+                "type": "string",
+                "minLength": 1
+              },
+              "port": {
+                "type": "string",
+                "minLength": 1
+              },
+              "thermal-component": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "area",
+                  "cluster-id"
+                ],
+                "properties": {
+                  "area": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "cluster-id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "system"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier. Documented convention: lowercase alphanumerics and underscores only; not enforced by GemsPy, so existing studies use other forms (e.g. hyphens, spaces) and this schema accepts them."
+    },
+    "parameterValue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "time-dependent": {
+          "type": "boolean",
+          "default": false
+        },
+        "scenario-dependent": {
+          "type": "boolean",
+          "default": false
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "Number when neither flag is true; otherwise the id of a data series."
+        },
+        "scenario-group": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "value"
+      ]
+    },
+    "component": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "model": {
+          "type": "string",
+          "pattern": "^[^.]+\\.[^.]+$",
+          "description": "<library_id>.<model_id>"
+        },
+        "scenario-group": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/parameterValue"
+          }
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "value"
+            ]
+          }
+        },
+        "integer-strategy": {
+          "$ref": "#/$defs/integerStrategy"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "model"
+      ]
+    },
+    "connection": {
+      "type": "object",
+      "properties": {
+        "component1": {
+          "$ref": "#/$defs/id"
+        },
+        "component2": {
+          "$ref": "#/$defs/id"
+        },
+        "port1": {
+          "$ref": "#/$defs/id"
+        },
+        "port2": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "component1",
+        "component2",
+        "port1",
+        "port2"
+      ]
+    },
+    "integerStrategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "enum": [
+            "exact",
+            "relaxed",
+            "heuristic"
+          ],
+          "default": "exact"
+        },
+        "heuristic-id": {
+          "enum": [
+            "fast",
+            "accurate"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "heuristic"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "then": {
+            "required": [
+              "heuristic-id"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "heuristic-id"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

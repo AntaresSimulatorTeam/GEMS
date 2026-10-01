@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/schemas/gems-view-config.schema.json",
+  "title": "GEMS views configuration",
+  "description": "Views configuration file.",
+  "type": "object",
+  "properties": {
+    "view": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "object",
+                "properties": {
+                  "taxonomy-category": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "taxonomy-category"
+                ]
+              },
+              "calendar": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "aggregation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time": {
+                "enum": [
+                  "hour",
+                  "day",
+                  "week",
+                  "month",
+                  "year"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "time"
+            ]
+          }
+        },
+        "catalog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[^.]+\\.[^.]+$",
+                "description": "<catalog_id>.<metric_id>"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "required": [
+    "view"
+  ],
+  "additionalProperties": false,
+  "$defs": {}
+}

@@ -1,0 +1,461 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/main/schemas/gems-library.schema.json",
+  "title": "GEMS model library",
+  "description": "A GEMS model library file (libraries/*.yml, input/model-libraries/*.yml).",
+  "type": "object",
+  "properties": {
+    "library": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "port-types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/portType"
+          }
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/model"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ids of libraries this one depends on (GemsPy)."
+        },
+        "taxonomy": {
+          "type": "string",
+          "description": "Id of the taxonomy the models' taxonomy-category values refer to."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "required": [
+    "library"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier. Documented convention: lowercase alphanumerics and underscores only; not enforced by GemsPy, so existing studies use other forms (e.g. hyphens, spaces) and this schema accepts them."
+    },
+    "portType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id"
+            ]
+          },
+          "description": "Scalar quantities exchanged through the port."
+        },
+        "area-connection": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "injection-to-balance": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "spillage-bound": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "unsupplied-energy-bound": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "description": "Hybrid studies: which port field feeds the Legacy Area's balance / spillage bound / unsupplied-energy bound."
+            },
+            {
+              "type": "array",
+              "deprecated": true,
+              "description": "Legacy list form, e.g. [{injection-field: flow}].",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "injection-field": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          ]
+        },
+        "thermal-capacity-connection": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "capacity-field": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "capacity-field"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "parameter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "time-dependent": {
+          "type": "boolean",
+          "default": false
+        },
+        "scenario-dependent": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "variable": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "variable-type": {
+          "enum": [
+            "continuous",
+            "integer",
+            "binary"
+          ],
+          "default": "continuous"
+        },
+        "lower-bound": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ],
+          "description": "Numeric literal, or an expression over model parameters and constants only."
+        },
+        "upper-bound": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ],
+          "description": "Numeric literal, or an expression over model parameters and constants only."
+        },
+        "time-dependent": {
+          "type": "boolean",
+          "default": true
+        },
+        "scenario-dependent": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "port": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A port-type id."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "portFieldDefinition": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "$ref": "#/$defs/id"
+        },
+        "field": {
+          "$ref": "#/$defs/id"
+        },
+        "definition": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Linear expression giving the value of the port field."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "port",
+        "field",
+        "definition"
+      ]
+    },
+    "constraint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Equation or inequality over the model's variables and parameters."
+        },
+        "lower-bound": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "upper-bound": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "expression"
+      ]
+    },
+    "bindingConstraint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Equation or inequality that may use port operators (e.g. sum_connections)."
+        },
+        "lower-bound": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "upper-bound": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "expression"
+      ]
+    },
+    "objectiveContribution": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Linear cost term; all contributions are summed and minimised."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "expression"
+      ]
+    },
+    "extraOutput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Expression evaluated after the solve; may use direct port-field access."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "expression"
+      ]
+    },
+    "property": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "taxonomy-category": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/parameter"
+          }
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/variable"
+          }
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/port"
+          }
+        },
+        "port-field-definitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/portFieldDefinition"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/constraint"
+          }
+        },
+        "binding-constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bindingConstraint"
+          }
+        },
+        "objective-contributions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/objectiveContribution"
+          }
+        },
+        "extra-outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/extraOutput"
+          }
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/property"
+          },
+          "description": "Property keys that components of this model must declare."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    }
+  }
+}
