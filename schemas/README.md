@@ -25,3 +25,6 @@ Editor use (VS Code, YAML extension):
 ```
 
 `tests/unit_tests/test_json_schemas.py` validates the repository's own YAML files against them.
+
+`gems-relationships.json` lists the cross-file references of a study (which key of which file must match which key of another),
+with cardinality and the rule applied. It is documentation/tooling input, not a JSON Schema.

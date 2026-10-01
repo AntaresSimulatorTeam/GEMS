@@ -1,0 +1,602 @@
+{
+  "$comment": "Cross-file relationships of a GEMS study. 'derived' = checked by interpreters, not a literal key lookup. Paths use [] for list items.",
+  "title": "GEMS file relationships",
+  "version": 1,
+  "files": {
+    "library": {
+      "root": "library",
+      "location": "input/model-libraries/*.yml",
+      "identifier": "library.id",
+      "schema": "gems-library.schema.json"
+    },
+    "system": {
+      "root": "system",
+      "location": "input/system.yml",
+      "identifier": "system.id",
+      "schema": "gems-system.schema.json"
+    },
+    "parameters": {
+      "root": null,
+      "location": "parameters.yml (study root)",
+      "schema": "gems-parameters.schema.json"
+    },
+    "optim-config": {
+      "root": null,
+      "location": "input/optim-config.yml",
+      "schema": "gems-optim-config.schema.json"
+    },
+    "taxonomy": {
+      "root": "taxonomy",
+      "location": "input/taxonomy*.yml",
+      "identifier": "taxonomy.id",
+      "schema": "gems-taxonomy.schema.json"
+    },
+    "catalog": {
+      "root": "catalog",
+      "location": "input/catalogs/*.yml",
+      "identifier": "catalog.id",
+      "schema": "gems-catalog.schema.json"
+    },
+    "view-config": {
+      "root": "view",
+      "location": "input/views*.yml",
+      "identifier": "view.id",
+      "schema": "gems-view-config.schema.json"
+    },
+    "data-series": {
+      "format": "csv",
+      "location": "input/data-series/<id>.csv",
+      "identifier": "file name without extension"
+    },
+    "scenario-builder": {
+      "format": "dat",
+      "location": "input/data-series/modeler-scenariobuilder.dat"
+    },
+    "calendar": {
+      "format": "csv",
+      "location": "input/<name>.csv",
+      "identifier": "file name without extension"
+    },
+    "legacy-study": {
+      "format": "Antares Simulator study",
+      "location": "hybrid studies only"
+    }
+  },
+  "relationships": [
+    {
+      "id": "system-uses-library",
+      "from": {
+        "file": "system",
+        "path": "system.model-libraries",
+        "format": "comma-separated list"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Every id listed must match the id of an available library file."
+    },
+    {
+      "id": "component-instantiates-model",
+      "from": {
+        "file": "system",
+        "path": "system.components[].model",
+        "format": "<library_id>.<model_id>"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].id",
+        "qualified_by": "library.id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "The library part must be a library listed in system.model-libraries (when the key is present); the model part must exist in it."
+    },
+    {
+      "id": "component-parameter-declared",
+      "from": {
+        "file": "system",
+        "path": "system.components[].parameters[].id"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].parameters[].id",
+        "scope": "the instantiated model"
+      },
+      "cardinality": "one-to-one",
+      "rule": "Each id must be a parameter of the component's model; every model parameter must be assigned."
+    },
+    {
+      "id": "component-parameter-flags-within-model",
+      "from": {
+        "file": "system",
+        "path": "system.components[].parameters[].time-dependent / scenario-dependent"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].parameters[].time-dependent / scenario-dependent"
+      },
+      "cardinality": "many-to-one",
+      "rule": "A flag cannot be true in the system if it is false in the model (the converse is allowed only for constant data)."
+    },
+    {
+      "id": "component-parameter-value-is-series",
+      "from": {
+        "file": "system",
+        "path": "system.components[].parameters[].value",
+        "when": "time-dependent or scenario-dependent is true"
+      },
+      "to": {
+        "file": "data-series",
+        "path": "<id>.csv"
+      },
+      "cardinality": "many-to-one",
+      "rule": "The value is the id (file name without extension) of a data series; otherwise the value is a number."
+    },
+    {
+      "id": "component-property-declared",
+      "from": {
+        "file": "system",
+        "path": "system.components[].properties[].id"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].properties[].id",
+        "scope": "the instantiated model"
+      },
+      "cardinality": "one-to-one",
+      "rule": "Every property key declared by the model must be given a value; extra keys are allowed."
+    },
+    {
+      "id": "component-scenario-group",
+      "from": {
+        "file": "system",
+        "path": "system.components[].scenario-group"
+      },
+      "to": {
+        "file": "scenario-builder",
+        "path": "<scenario_group_id>, <scenario> = <index>"
+      },
+      "cardinality": "many-to-many",
+      "rule": "The group id is the left token of the scenario-builder lines mapping scenarios to data-series columns."
+    },
+    {
+      "id": "connection-component",
+      "from": {
+        "file": "system",
+        "path": "system.connections[].component1 / component2"
+      },
+      "to": {
+        "file": "system",
+        "path": "system.components[].id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Both ends must be components of the same system."
+    },
+    {
+      "id": "connection-port",
+      "from": {
+        "file": "system",
+        "path": "system.connections[].port1 / port2"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].ports[].id",
+        "scope": "model of the referenced component"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Each port must exist on its component's model."
+    },
+    {
+      "id": "connection-port-types-match",
+      "from": {
+        "file": "library",
+        "path": "library.models[].ports[].type (port1 side)"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].ports[].type (port2 side)"
+      },
+      "cardinality": "one-to-one",
+      "rule": "The two connected ports must have the same port type.",
+      "derived": true
+    },
+    {
+      "id": "port-uses-port-type",
+      "from": {
+        "file": "library",
+        "path": "library.models[].ports[].type"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.port-types[].id",
+        "scope": "this library or any library in the system"
+      },
+      "cardinality": "many-to-one",
+      "rule": "A port type may be defined in another library of the system."
+    },
+    {
+      "id": "port-field-definition-port",
+      "from": {
+        "file": "library",
+        "path": "library.models[].port-field-definitions[].port"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].ports[].id",
+        "scope": "same model"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Must name a port of the same model."
+    },
+    {
+      "id": "port-field-definition-field",
+      "from": {
+        "file": "library",
+        "path": "library.models[].port-field-definitions[].field"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.port-types[].fields[].id",
+        "scope": "port type of the referenced port"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Must name a field of the port's type; an emitting port must define all its fields."
+    },
+    {
+      "id": "expression-names",
+      "from": {
+        "file": "library",
+        "path": "library.models[].(constraints|binding-constraints|objective-contributions|extra-outputs|port-field-definitions)[].expression|definition"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].(parameters|variables|ports|port-types.fields)",
+        "scope": "same model"
+      },
+      "cardinality": "many-to-many",
+      "rule": "Expressions may reference only parameters, variables and port fields of their own model.",
+      "derived": true
+    },
+    {
+      "id": "library-taxonomy",
+      "from": {
+        "file": "library",
+        "path": "library.taxonomy"
+      },
+      "to": {
+        "file": "taxonomy",
+        "path": "taxonomy.id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Optional link to the taxonomy classifying the models."
+    },
+    {
+      "id": "model-taxonomy-category",
+      "from": {
+        "file": "library",
+        "path": "library.models[].taxonomy-category"
+      },
+      "to": {
+        "file": "taxonomy",
+        "path": "taxonomy.categories[].id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "The model must provide what its category requires: variables, parameters, ports, extra-outputs, properties.",
+      "extra": {
+        "requirements": "taxonomy.categories[].(variables|parameters|ports|port-field-definitions|constraints|binding-constraints|extra-outputs|properties)[].id must exist in the model"
+      }
+    },
+    {
+      "id": "taxonomy-parent",
+      "from": {
+        "file": "taxonomy",
+        "path": "taxonomy.categories[].parent-category"
+      },
+      "to": {
+        "file": "taxonomy",
+        "path": "taxonomy.categories[].id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Parent must be a category of the same taxonomy."
+    },
+    {
+      "id": "catalog-taxonomy",
+      "from": {
+        "file": "catalog",
+        "path": "catalog.taxonomy"
+      },
+      "to": {
+        "file": "taxonomy",
+        "path": "taxonomy.id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "The catalog uses categories of this taxonomy."
+    },
+    {
+      "id": "catalog-location-category",
+      "from": {
+        "file": "catalog",
+        "path": "catalog.location.taxonomy-category"
+      },
+      "to": {
+        "file": "taxonomy",
+        "path": "taxonomy.categories[].id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Components of this category are the locations."
+    },
+    {
+      "id": "metric-term-category",
+      "from": {
+        "file": "catalog",
+        "path": "catalog.metrics-definition[].terms[].taxonomy-category"
+      },
+      "to": {
+        "file": "taxonomy",
+        "path": "taxonomy.categories[].id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Selects the components whose outputs are aggregated."
+    },
+    {
+      "id": "metric-term-output",
+      "from": {
+        "file": "catalog",
+        "path": "catalog.metrics-definition[].terms[].output-id"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].extra-outputs[].id",
+        "scope": "models of the term's category"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Must be an extra-output of those models (listed in the category's extra-outputs)."
+    },
+    {
+      "id": "metric-term-location-port",
+      "from": {
+        "file": "catalog",
+        "path": "catalog.metrics-definition[].terms[].location-ports"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].ports[].id",
+        "scope": "models of the term's category"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Port linking the component to its location component; null means the component is its own location."
+    },
+    {
+      "id": "view-catalog",
+      "from": {
+        "file": "view-config",
+        "path": "view.catalog[].id"
+      },
+      "to": {
+        "file": "catalog",
+        "path": "catalog.id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Catalogs used by the view."
+    },
+    {
+      "id": "view-metric",
+      "from": {
+        "file": "view-config",
+        "path": "view.metrics[].id",
+        "format": "<catalog_id>.<metric_id>"
+      },
+      "to": {
+        "file": "catalog",
+        "path": "catalog.metrics-definition[].id",
+        "qualified_by": "catalog.id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "The catalog part must be listed in view.catalog."
+    },
+    {
+      "id": "view-location-category",
+      "from": {
+        "file": "view-config",
+        "path": "view.scope[].location.taxonomy-category"
+      },
+      "to": {
+        "file": "taxonomy",
+        "path": "taxonomy.categories[].id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Locations of the view."
+    },
+    {
+      "id": "view-calendar",
+      "from": {
+        "file": "view-config",
+        "path": "view.scope[].calendar"
+      },
+      "to": {
+        "file": "calendar",
+        "path": "<name>.csv"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Maps time indices to dates."
+    },
+    {
+      "id": "optim-config-model",
+      "from": {
+        "file": "optim-config",
+        "path": "models[].id",
+        "format": "<library_id>.<model_id>"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].id",
+        "qualified_by": "library.id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Must name a model instantiated by at least one component of the system."
+    },
+    {
+      "id": "optim-config-constraint",
+      "from": {
+        "file": "optim-config",
+        "path": "models[].out-of-bounds-processing.constraints[].id / model-decomposition.constraints[].id"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].(constraints|binding-constraints)[].id",
+        "scope": "the model"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Must exist in the model."
+    },
+    {
+      "id": "optim-config-variable",
+      "from": {
+        "file": "optim-config",
+        "path": "models[].model-decomposition.variables[].id"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].variables[].id",
+        "scope": "the model"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Must exist in the model."
+    },
+    {
+      "id": "optim-config-objective",
+      "from": {
+        "file": "optim-config",
+        "path": "models[].model-decomposition.objective-contributions[].id"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].objective-contributions[].id",
+        "scope": "the model"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Must exist in the model."
+    },
+    {
+      "id": "optim-config-heuristic-element",
+      "from": {
+        "file": "optim-config",
+        "path": "models[].heuristics[].(inputs|outputs)[].id"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.models[].(parameters|variables)[].id",
+        "scope": "the model"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Resolved according to the element's type (parameter, variable-solution, variable-lower-bound, variable-upper-bound)."
+    },
+    {
+      "id": "component-integer-strategy-heuristic",
+      "from": {
+        "file": "system",
+        "path": "system.components[].integer-strategy.heuristic-id"
+      },
+      "to": {
+        "file": "optim-config",
+        "path": "models[].heuristics[].id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "A component using the 'heuristic' strategy needs a matching heuristic configured for its model."
+    },
+    {
+      "id": "optim-config-time-scope-data",
+      "from": {
+        "file": "optim-config",
+        "path": "time-scope"
+      },
+      "to": {
+        "file": "data-series",
+        "path": "<id>.csv"
+      },
+      "cardinality": "many-to-many",
+      "rule": "The time range must be covered by every time-dependent series.",
+      "derived": true
+    },
+    {
+      "id": "parameters-time-scope-data",
+      "from": {
+        "file": "parameters",
+        "path": "first-time-step / last-time-step"
+      },
+      "to": {
+        "file": "data-series",
+        "path": "<id>.csv"
+      },
+      "cardinality": "many-to-many",
+      "rule": "Same as above, for the Antares Modeler.",
+      "derived": true
+    },
+    {
+      "id": "scenario-scope-playlist",
+      "from": {
+        "file": "optim-config",
+        "path": "scenario-scope.playlist-file"
+      },
+      "to": {
+        "file": "optim-config",
+        "path": "<JSON file>",
+        "format": "flat array of integers"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Path relative to optim-config.yml."
+    },
+    {
+      "id": "hybrid-port-type-fields",
+      "from": {
+        "file": "library",
+        "path": "library.port-types[].area-connection.(injection-to-balance|spillage-bound|unsupplied-energy-bound)"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.port-types[].fields[].id",
+        "scope": "same port type"
+      },
+      "cardinality": "many-to-one",
+      "rule": "Must name a field of the same port type.",
+      "hybrid_only": true
+    },
+    {
+      "id": "hybrid-area-connection",
+      "from": {
+        "file": "system",
+        "path": "system.area-connections[].(component, port, area)"
+      },
+      "to": {
+        "file": "system",
+        "path": "system.components[].id / library.models[].ports[].id"
+      },
+      "cardinality": "many-to-one",
+      "rule": "component and port must exist; the port's type needs an area-connection; area names a Legacy Area.",
+      "hybrid_only": true,
+      "also_references": {
+        "file": "legacy-study",
+        "path": "areas"
+      }
+    },
+    {
+      "id": "hybrid-thermal-connection",
+      "from": {
+        "file": "system",
+        "path": "system.thermal-capacity-connections[].(component, port, thermal-component.area, thermal-component.cluster-id)"
+      },
+      "to": {
+        "file": "library",
+        "path": "library.port-types[].thermal-capacity-connection.capacity-field"
+      },
+      "cardinality": "many-to-one",
+      "rule": "The port type declares the field carrying capacity; area and cluster-id name a Legacy thermal cluster.",
+      "hybrid_only": true,
+      "also_references": {
+        "file": "legacy-study",
+        "path": "thermal clusters"
+      }
+    }
+  ]
+}
