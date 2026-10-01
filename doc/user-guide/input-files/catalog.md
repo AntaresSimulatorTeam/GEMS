@@ -52,11 +52,6 @@ Each term in `terms` selects a group of components defined by the `taxonomy` fil
 ???+ warning "`location-port` is required"
     `location-port` must always be written in each term, even for a self-referencing term (`location-port: null`). An empty string is not allowed.
 
-???+ warning "Cases giving no error but misleading results"
-    - **Output not found**: if a contributing component has no value of the `output-id` in the simulation table (for example because its model does not produce it), each such component adds, at its location, a row with an empty `view_date` and `scenario_id` and a `0` value (an empty value with `avg`). These rows look like a time-independent output.
-    - **Mixed outputs**: the terms of a metric should all be time-dependent, or all not, and all scenario-dependent, or all not. Otherwise their values are not combined but written in separate rows, and with `scenario: true` the scenario-independent row is counted as an additional scenario in `exp`/`std`/`min`/`max`.
-    - **No contributing component**: a metric without any contributing component (e.g. a `filter` that matches no component, or a term category used by no model of the system) is absent from the Views. Likewise, a location without any contributing component has no row for the metric, not a `0` value.
-
 ## Example
 
 This example uses the taxonomy `my_taxonomy` defined in the [taxonomy page](taxonomy.md#example). The catalog file is named `catalog.yml`.
