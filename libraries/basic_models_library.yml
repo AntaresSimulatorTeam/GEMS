@@ -1,7 +1,7 @@
 library:
   id: basic_models_library
   description: Ready for use basic models to build simple optimal dispatch problems
-  version: "1.0.0"
+  version: "1.0.1"
 
   port-types:
     - id: flow
