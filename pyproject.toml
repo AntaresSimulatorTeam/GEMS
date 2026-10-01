@@ -10,6 +10,7 @@ test = [
     "matplotlib>=3.10.9",
     "pandas>=2.2.3",
     "pypsa",
+    "pypsa-to-gems-converter==0.0.1",
     "pytest>=7.0.1",
     "pytest-xdist>=3.8.0",
 ]
@@ -30,6 +31,8 @@ doc = [
     "mkdocs-macros-plugin",
     "mkdocs-material",
     "mkdocs-redirects",
+    "pypsa==1.2.0",
+    "pypsa-to-gems-converter==0.0.1",
 ]
 
 [tool.pytest.ini_options]
