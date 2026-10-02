@@ -140,7 +140,7 @@ Replace `<path-to-study>` with the path to your Antares study directory.
 
 ## Requirements
 
-The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/user-guide/02-install/).
+The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/reference/installation/).
 
 In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study, and the process for creating this file is detailed in [this section](../../user-guide/input-files/solver-optimization.md). Unlike the [GemsPy interpreter](gemspy-installation.md), Modeler depends on this configuration file.
 
@@ -150,7 +150,7 @@ In addition, Antares Modeler requires inside, the study folder, a `parameters.ym
 |-------------------------|----------------------------------------------------------------------|
 | Antares Simulator GitHub | [Antares Simulator on GitHub](https://github.com/AntaresSimulatorTeam/Antares_Simulator) |
 | Online Documentation     | [Antares Simulator Docs](https://antares-simulator.readthedocs.io/en/latest/) |
-| Modeler Documentation    | [GEMS Modeler Docs](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/01-overview-modeler/) |
+| Modeler Documentation    | [GEMS Modeler Docs](https://antares-simulator.readthedocs.io/en/latest/reference/modeler/01-overview-modeler/) |
 | Examples                 | See the repository's `examples/` directory                           |
 | FAQ                      | [FAQ](../../support/faq.md)                   |
 | GitHub Issues            | [Antares Simulator Issues](https://github.com/AntaresSimulatorTeam/Antares_Simulator/issues) |
