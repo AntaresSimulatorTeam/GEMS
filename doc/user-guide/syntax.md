@@ -172,7 +172,7 @@ Denotes the sum of the time-dependent operand *X* over the entire optimization h
     - `sum(X)` : aggregate a time-dependent quantity **across time steps** (temporal summation).
     - `sum_connections(port.field)` : aggregates a port field **across connected components** (structural summation). See [Port Operator](#port-operator).
 
-    For the full specification of these operators, see the [Antares Modeler Expressions reference](https://antares-simulator.readthedocs.io/en/latest/user-guide/modeler/09-expressions/#time-operators).
+    For the full specification of these operators, see the [Antares Modeler Expressions reference](https://antares-simulator.readthedocs.io/en/latest/reference/modeler/09-expressions/#time-operators).
 
 ### **Time summation (range)** `sum(S .. E, X)`
 

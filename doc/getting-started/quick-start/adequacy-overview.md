@@ -80,7 +80,7 @@ The example study makes use of models provided by the [GEMS library](https://git
 
 Since this example performs the simulation over a single time step, the data-series folder does not contain any time-series data.
 
-Simulation options can be configured in the `parameters.yml` file. For more details on available simulation options, refer to the [following link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/user-guide/modeler/04-parameters.md).
+Simulation options can be configured in the `parameters.yml` file. For more details on available simulation options, refer to the [following link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/reference/modeler/04-parameters.md).
 
 ### Relations between library and system files
 
