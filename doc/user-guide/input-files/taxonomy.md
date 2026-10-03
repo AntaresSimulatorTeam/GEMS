@@ -12,8 +12,6 @@ This classification is "transparent" and doesn't impact the optimization solutio
 ???+ warning "Every model used in the system needs a `taxonomy-category`"
     To build Views, each component of the [system](system.md) is attached to the `taxonomy-category` of its model. Models without a `taxonomy-category` cannot be used to build Views.
 
-    The building of Views does not check that models comply with their category: only the [Catalog](catalog.md) terms are checked against the taxonomy. A model's `taxonomy-category` should therefore be a category of the taxonomy file, and the model should produce the outputs of its category: if a component does not produce an output read by a Catalog term, the building of Views does not fail but gives misleading values (see [`output-id`](catalog.md#3-terms)).
-
 ## Key elements in taxonomy file
 
 The taxonomy file has a single root key `taxonomy`. Unknown keys under `taxonomy` are rejected.
