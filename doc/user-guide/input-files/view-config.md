@@ -20,41 +20,6 @@ The **View Configuration file** defines which [Views](../outputs/views.md) to pr
     ???+ warning "Calendar and simulation table must match"
         If no time step of the calendar matches the simulation table (for example because of different `block` values), the View is still produced without error, but each metric on time-dependent outputs only has a single row with an empty `view_date` and `scenario_id` and a `0` value (an empty value with `avg`). Metrics on outputs that are not time-dependent keep their values, so the View can look partly correct.
 
-## Example
-
-This example uses the `my_taxonomy` taxonomy and the `catalog` catalog defined in the [taxonomy](taxonomy.md#example) and [catalog](catalog.md#example) pages.
-
-```yaml
-view:
-  id: view_area
-
-  taxonomy: my_taxonomy
-
-  scope:
-    location:
-      taxonomy-category: balance
-    calendar: calendar_file
-    extra-locations:
-      - id: country
-
-  aggregations-patterns:
-    - id: hourly
-      time-granularity: hour
-      scenario: false
-    - id: yearly_stats
-      time-granularity: year
-      scenario: true
-      spatial-filter:
-        - area_fr
-        - France
-
-  metrics:
-    - id: catalog.PRODUCTION
-    - id: catalog.LOAD
-    - id: catalog.PRODUCTION_BY_TECH_AND_COMPANY
-    - id: catalog.NUCLEAR_PRODUCTION
-```
-
 ## Structure of the View Configuration file
 
 The View Configuration file has a single root key `view`. Unknown keys under `view` are rejected.
@@ -94,3 +59,38 @@ The View Configuration file has a single root key `view`. Unknown keys under `vi
 | Element | Type | Description |
 |------|------|--------------------------|
 | `metrics` | List | List of at least one metric, each given by its `id` referenced as `<catalog_id>.<metric_id>`. `<catalog_id>` is the `id` of one of the [catalog](catalog.md) files provided, and the metric must be defined in that catalog. As `.` is the separator, catalog and metric ids must not contain a `.`. Only the metric id is written in the Views: selected metrics should have different ids, and a metric should be listed only once (otherwise its rows are written twice).|
+
+## Example
+
+This example uses the `my_taxonomy` taxonomy and the `catalog` catalog defined in the [taxonomy](taxonomy.md#example) and [catalog](catalog.md#example) pages.
+
+```yaml
+view:
+  id: view_area
+
+  taxonomy: my_taxonomy
+
+  scope:
+    location:
+      taxonomy-category: balance
+    calendar: calendar_file
+    extra-locations:
+      - id: country
+
+  aggregations-patterns:
+    - id: hourly
+      time-granularity: hour
+      scenario: false
+    - id: yearly_stats
+      time-granularity: year
+      scenario: true
+      spatial-filter:
+        - area_fr
+        - France
+
+  metrics:
+    - id: catalog.PRODUCTION
+    - id: catalog.LOAD
+    - id: catalog.PRODUCTION_BY_TECH_AND_COMPANY
+    - id: catalog.NUCLEAR_PRODUCTION
+```
