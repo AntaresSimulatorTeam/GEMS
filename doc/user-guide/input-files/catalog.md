@@ -2,12 +2,12 @@
 
 GEMS lets users configure their own outputs. The outputs are defined by **Metrics** specified inside the **Catalog** file. Each metric aggregates [simulation outputs](../outputs/simulation-table.md) from components selected by their [`taxonomy-category`](taxonomy.md).
 
-> Users can use **several catalog files** based on their needs. All catalog files are placed in a single catalogs directory, which must only contain `.yml` files, and each file must be named after its `id` (`<catalog_id>.yml`).
+> Users can use **several catalog files** based on their needs. Catalog files must have the `.yml` extension. A catalog is identified by its `id`, not by its file name.
 
 ???+ info "Links with `taxonomy.yml` and `view-config.yml`"
     Catalogs use the taxonomy categories defined in [a taxonomy file](taxonomy.md).
 
-    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/views.md). The `taxonomy` and `location.taxonomy-category` of each catalog listed in a [View Configuration file](view-config.md) must match the ones of this file, and all the metrics of the catalog are checked against the taxonomy, even the metrics the View does not select.
+    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/views.md). Every catalog file provided must have the same `taxonomy` as the [View Configuration file](view-config.md), and a `location.taxonomy-category` equal to its `scope.location.taxonomy-category`. All the metrics of every catalog file provided are checked against the taxonomy, even the metrics the View does not select.
 
 ## Structure of `catalog` files
 
@@ -19,7 +19,7 @@ The catalog file has a single root key `catalog`. Unknown keys under `catalog` a
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `catalog.id` | String | A unique identifier for the catalog. It must match the file name (`<id>.yml`) and must not contain a `.`.|
+| `catalog.id` | String | A unique identifier for the catalog, used to reference its metrics as `<catalog_id>.<metric_id>` in the [View Configuration file](view-config.md#metrics). It must not contain a `.`. Two catalog files must not have the same `id`: only one of them would be used, without warning.|
 | `catalog.taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) this catalog uses.|
 | `catalog.location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects for the metrics (e.g. buses/areas, links, generators...).|
 

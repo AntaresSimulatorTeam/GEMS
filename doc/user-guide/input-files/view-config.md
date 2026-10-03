@@ -48,9 +48,6 @@ view:
         - area_fr
         - France
 
-  catalogs:
-    - id: catalog
-
   metrics:
     - id: catalog.PRODUCTION
     - id: catalog.LOAD
@@ -69,8 +66,8 @@ The View Configuration file has a single root key `view`. Unknown keys under `vi
 | Element | Type | Description |
 |------|------|--------------------------|
 | `id` | String | A unique identifier for the view.|
-| `taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) used by the view. It must match the taxonomy file and the `taxonomy` of every [catalog](catalog.md) listed in `catalogs`.|
-| `scope.location.taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) whose components serve as location objects (e.g. buses or areas). It must be defined in the taxonomy and match the `location.taxonomy-category` of every [catalog](catalog.md) listed in `catalogs`.|
+| `taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) used by the view. It must match the taxonomy file and the `taxonomy` of every [catalog](catalog.md) file provided.|
+| `scope.location.taxonomy-category` | String | The [`taxonomy-category`](taxonomy.md) whose components serve as location objects (e.g. buses or areas). It must be defined in the taxonomy and match the `location.taxonomy-category` of every [catalog](catalog.md) file provided.|
 | `scope.calendar` | String | Name of the calendar file (without the `.csv` extension) used to map time indices to real dates. It is informative: the calendar actually used is the calendar file provided as input.|
 | `scope.extra-locations` | List | *(Optional)* List of [property](library.md#properties) keys, each given by its `id` (`- id: country`). For each location component having one of these properties, the metric is also computed at the location named by the property value (e.g. all areas with `country: France` also contribute to the location `France`). Location components without the property only contribute to their own location. Location ids and extra-location names share the same names: contributions to the same name are added together, so an extra-location value should not be equal to a location component id, and one location component should not get the same name from two extra-location keys.|
 
@@ -90,11 +87,10 @@ The View Configuration file has a single root key `view`. Unknown keys under `vi
 
     Patterns sharing the same `time-granularity` are written in the same output file; the `scenario_aggregation` column of the [Views](../outputs/views.md) tells them apart. The pattern `id` is not written in the output.
 
-### Catalogs and metrics
+### Metrics
 
 *This third part selects which Metrics from which Catalogs to include in the View.*
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `catalogs` | List | List of at least one [catalog](catalog.md), each given by its `id` (`- id: catalog`). The catalog is read from the file `<id>.yml` of the catalogs directory; other catalog files of the directory are ignored. Every listed catalog is fully checked, including the metrics that are not selected in `metrics`.|
-| `metrics` | List | List of at least one metric, each given by its `id` referenced as `<catalog_id>.<metric_id>`. The catalog must be listed in `catalogs` and the metric must be defined in that [catalog](catalog.md). As `.` is the separator, catalog and metric ids must not contain a `.`. Only the metric id is written in the Views: selected metrics should have different ids, and a metric should be listed only once (otherwise its rows are written twice).|
+| `metrics` | List | List of at least one metric, each given by its `id` referenced as `<catalog_id>.<metric_id>`. `<catalog_id>` is the `id` of one of the [catalog](catalog.md) files provided, and the metric must be defined in that catalog. As `.` is the separator, catalog and metric ids must not contain a `.`. Only the metric id is written in the Views: selected metrics should have different ids, and a metric should be listed only once (otherwise its rows are written twice).|
