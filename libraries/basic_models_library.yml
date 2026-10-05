@@ -1,7 +1,7 @@
 library:
   id: basic_models_library
   description: Ready for use basic models to build simple optimal dispatch problems
-  version: "1.0.0"
+  version: "1.0.1"
 
   port-types:
     - id: flow
@@ -191,7 +191,7 @@ library:
       description: Model for enforcing system-wide limits on pollutant emissions.
       parameters:
         - id: emission_limit # Tons of CO2
-          time-dependant: false
+          time-dependent: false
           scenario-dependent: false
       ports:
         - id: emission_port
@@ -204,7 +204,7 @@ library:
       description: Model for hard energy limitation constraint that enforces maximum generation constraint
       parameters:
         - id: energy_limit
-          time-dependant: false
+          time-dependent: false
           scenario-dependent: false
       ports:
         - id: energy_port
@@ -217,10 +217,10 @@ library:
       description: Model for soft energy limitation constraint that enforces maximum generation constraint
       parameters:
         - id: slack_penalty
-          time-dependant: false
+          time-dependent: false
           scenario-dependent: false
         - id: energy_limit
-          time-dependant: false
+          time-dependent: false
           scenario-dependent: false
       variables:
         - id: slack
