@@ -14,7 +14,7 @@
 
 ## View output files
 
-One View Configuration file produces one timestamped file per `time-granularity` used in its [aggregation patterns](../input-files/view-config.md#aggregation-patterns). Views are written as Parquet or CSV files.
+One [View Configuration file](../input-files/view-config.md) produces one timestamped file per `time-granularity` used in its [aggregation patterns](../input-files/view-config.md#aggregation-patterns). Views are written as Parquet or CSV files.
 
 Patterns sharing the same `time-granularity` (at most two: one with `scenario: false`, one with `scenario: true`) are written in the same file: the `scenario_aggregation` column tells them apart. With a [`spatial-filter`](../input-files/view-config.md#aggregation-patterns), these two patterns can cover different locations.
 
