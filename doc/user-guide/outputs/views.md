@@ -2,7 +2,7 @@
 
 ## What are Views?
 
-**Views** are result tables computed from the [simulation outputs](simulation-table.md). Each row holds a metric aggregated over a location, a time period and either one scenario or all scenarios.
+**Views** are result tables computed from the [simulation outputs](simulation-table.md). Each row holds a metric aggregated over a location, a time period and either one scenario or all scenarios (in case of statistics over several scenarios).
 
 ???+ tip "Freely customisable `Views`"
     These `Views` are fully designed by users through the configuration files ([Taxonomy file](../input-files/taxonomy.md), [Catalog file](../input-files/catalog.md), [View Configuration file](../input-files/view-config.md)).
