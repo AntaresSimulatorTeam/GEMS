@@ -21,14 +21,6 @@ Patterns sharing the same `time-granularity` (at most two: one with `scenario: f
 ???+ info "CSV files"
     CSV files use a comma separator and a header row. An empty field is a missing value (e.g. the `scenario_id` of the statistics rows). Booleans are written `true`/`false` and dates in ISO 8601 format (e.g. `2025-01-01T04:00:00.000000`, followed by `+0000` when the calendar dates have a UTC offset). Values containing a comma, such as most `breakdown_properties`, are double-quoted.
 
-## Rows of a View
-
-With a pattern having `scenario: false`, a View has one row per metric, location, breakdown value, period and scenario. With a pattern having `scenario: true`, it has four rows, one per statistic, per metric, location, breakdown value and period. A location with no contributing component has no row (and not a `0` value).
-
-Values only cover the time steps listed in the calendar. A period only partly covered by the calendar (e.g. a year, for a one-week simulation) is aggregated over its covered time steps only, and is still dated by the start of the period: a simulation starting on Wednesday `2025-01-01` gives a first week dated Monday `2024-12-30`.
-
-Statistics across scenarios are computed on the time-aggregated values: for a yearly pattern, `max` is the largest yearly value among the scenarios, not an hourly peak.
-
 ## Columns of Views
 
 ???+ warning "Read columns by name"
@@ -44,6 +36,14 @@ Statistics across scenarios are computed on the time-aggregated values: for a ye
 | `metric_value` | Float | Aggregated metric value. When `scenario_aggregation` is `true`, value of the statistic named in `scenario_stat`.|
 | `scenario_aggregation` | Boolean | `false` for the rows of a pattern with `scenario: false` (one value per scenario), `true` for the rows of a pattern with `scenario: true` (statistics across scenarios).|
 | `scenario_stat` | String | Statistic across scenarios when `scenario_aggregation` is `true`: `exp` (mean over the scenarios, all having the same weight), `std` (population standard deviation), `min` or `max`. Empty when `scenario_aggregation` is `false`.|
+
+## Rows of a View
+
+With a pattern having `scenario: false`, a View has one row per metric, location, breakdown value, period and scenario. With a pattern having `scenario: true`, it has four rows, one per statistic, per metric, location, breakdown value and period. A location with no contributing component has no row (and not a `0` value).
+
+Values only cover the time steps listed in the calendar. A period only partly covered by the calendar (e.g. a year, for a one-week simulation) is aggregated over its covered time steps only, and is still dated by the start of the period: a simulation starting on Wednesday `2025-01-01` gives a first week dated Monday `2024-12-30`.
+
+Statistics across scenarios are computed on the time-aggregated values: for a yearly pattern, `max` is the largest yearly value among the scenarios, not an hourly peak.
 
 ## Example
 
