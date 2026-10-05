@@ -18,9 +18,6 @@ One [View Configuration file](../input-files/view-config.md) produces one timest
 
 Patterns sharing the same `time-granularity` (at most two: one with `scenario: false`, one with `scenario: true`) are written in the same file: the `scenario_aggregation` column tells them apart. With a [`spatial-filter`](../input-files/view-config.md#aggregation-patterns), these two patterns can cover different locations.
 
-???+ warning "Read columns by name"
-    The order of the columns and of the rows is not guaranteed: it can differ from one file to another. Columns should be read by their name.
-
 ???+ info "CSV files"
     CSV files use a comma separator and a header row. An empty field is a missing value (e.g. the `scenario_id` of the statistics rows). Booleans are written `true`/`false` and dates in ISO 8601 format (e.g. `2025-01-01T04:00:00.000000`, followed by `+0000` when the calendar dates have a UTC offset). Values containing a comma, such as most `breakdown_properties`, are double-quoted.
 
@@ -32,7 +29,10 @@ Values only cover the time steps listed in the calendar. A period only partly co
 
 Statistics across scenarios are computed on the time-aggregated values: for a yearly pattern, `max` is the largest yearly value among the scenarios, not an hourly peak.
 
-## Structure of Views
+## Columns of Views
+
+???+ warning "Read columns by name"
+    The order of the columns and of the rows is not guaranteed: it can differ from one file to another. Columns should be read by their name.
 
 | Views Column | Type | Description |
 |--------|------|-------------|
