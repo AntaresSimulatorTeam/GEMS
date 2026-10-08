@@ -45,9 +45,11 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     ---
 
-    When exact MILP solving is too costly, a rounding heuristic gives a fast feasible solution instead: solve the relaxation, round the integer decisions, re-optimise the continuous ones. Heuristics are built into the interpreters; their I/O and how they branch on components are standardised in the GEMS format.
+    When exact MILP solving is too costly, a rounding heuristic gives a fast feasible solution instead: solve the relaxation, round the integer decisions, re-optimise the continuous ones. Heuristics are built into the interpreter; their I/O and how they branch on components are standardised in the GEMS format. Only available in GemsPy.
 
     `Solving`
+
+    [:octicons-arrow-right-24: Integer strategy](../user-guide/input-files/system.md#integer-strategy)
 
 
 -   :material-swap-horizontal:{ .lg .middle } **Solver-agnostic by design**

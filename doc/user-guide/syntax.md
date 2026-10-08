@@ -238,6 +238,29 @@ In some cases, there is a  need to access dual results of variables or constrain
 - dual result of a variable whose id is `my_var` is accessed by `-reduced_cost(variable_id)`
 - dual result of a constraint whose id is `my_constraint` is accessed by `dual(constraint_id)`
 
+### Variable Bound Operators
+
+!!! note "Only available in GemsPy"
+    `lower_bound` and `upper_bound` are only available in GemsPy (from v0.2.0). Antares modeler
+    does not support them: it rejects expressions that use them.
+
+The bounds of a variable, as used by the solver, are accessed by two unary operators:
+
+- lower bound of a variable whose id is `my_var` is accessed by `lower_bound(my_var)`
+- upper bound of a variable whose id is `my_var` is accessed by `upper_bound(my_var)`
+
+The operand must be the id of a variable of the model. The result has the same time and scenario dependence as that variable.
+
+These operators give the bounds of the last solve. They are usually the bounds declared in the [library](input-files/library.md#variables), except for components whose [integer strategy](input-files/system.md#integer-strategy) is `heuristic`: the heuristic changes some bounds before the second solve, and these operators then give the changed bounds.
+
+Like the dual operators, they read results of the solve, so they can only be used in the context of extracting results: in [extra outputs](input-files/library.md#extra-output), or in [port field definitions](input-files/library.md#port-field-definition) used by them.
+
+```yaml
+extra-outputs:
+  - id: min_units_on
+    expression: lower_bound(nb_units_on)
+```
+
 ### Power Operator
 
 This binary operator `^` is used within any expression, but with following restrictions.
