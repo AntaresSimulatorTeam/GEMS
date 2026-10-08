@@ -518,46 +518,18 @@ Each entry of `inputs` and `outputs` binds an element of the heuristic to an ele
 | `variable-lower-bound` | The lower bound of the variable `id` | Inputs and outputs |
 | `variable-upper-bound` | The upper bound of the variable `id` | Inputs and outputs |
 
-Two heuristics are available. Both derive, from the first solve, a commitment of the thermal
-units that respects the minimum up and down durations.
-
-**`accurate`** computes the minimum number of units on at each time step by solving a small
-linear problem: it starts from the solved number of units on, rounded up, and enforces the
-minimum up and down durations.
-
-| Element | Direction | Time-dependent | Meaning |
-|---|---|---|---|
-| `num_units_on_opt` | input | Yes | Number of units on in the first solve |
-| `num_units_max` | input | Either | Maximum number of units on |
-| `min_up_duration` | input | No | Minimum up duration, in time steps |
-| `min_down_duration` | input | No | Minimum down duration, in time steps |
-| `minimum_num_units_on` | output | Yes | Minimum number of units on |
-
-**`fast`** computes the number of units needed at each time step from the solved generation and
-the maximum generation of one unit. It groups the time steps into windows as long as the longer
-of the minimum up and down durations, and keeps each window's largest number of units. The minimum
-and maximum generation are that number of units times the minimum and maximum generation of one
-unit, capped by the maximum generation of the cluster.
-
-| Element | Direction | Time-dependent | Meaning |
-|---|---|---|---|
-| `generation_power` | input | Yes | Generation in the first solve |
-| `cluster_max_generation` | input | Either | Maximum generation of the cluster |
-| `min_power_per_unit` | input | No | Minimum generation of one unit |
-| `max_power_per_unit` | input | No | Maximum generation of one unit |
-| `min_up_duration` | input | No | Minimum up duration, in time steps |
-| `min_down_duration` | input | No | Minimum down duration, in time steps |
-| `minimum_generation_power` | output | Yes | Minimum generation |
-| `maximum_generation_power` | output | Yes | Maximum generation |
+??? info "Heuristics available in GemsPy"
+    GemsPy implements two heuristics, `fast` and `accurate`. What each one computes, and the
+    elements it reads and writes, are described in the
+    [GemsPy documentation](https://gemspy.readthedocs.io/en/latest/user-guide/optim-config/#available-heuristics).
 
 !!! info "Validation rules"
-    - **`inputs` and `outputs` list exactly the heuristic's elements**, each once, as given in the
-      tables above.
+    - **`inputs` and `outputs` list exactly the heuristic's elements**, each once, as given in
+      the interpreter's documentation (see above).
     - **Outputs are variable bounds**: their `type` must be `variable-lower-bound` or
       `variable-upper-bound`.
     - **Each `id` names an element of the model**: a parameter for `type: parameter`, a variable
-      for the other types. Its time dependence must match the "Time-dependent" column; "Either"
-      accepts both.
+      for the other types, with the time dependence the heuristic expects for that element.
     - **Every component with `integer-strategy` `heuristic` uses a declared heuristic**: its model
       must have an entry in this section for its `heuristic-id`.
     - **Heuristics cannot be used with [`benders-decomposition`](#benders-decomposition)**: no
