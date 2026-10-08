@@ -499,7 +499,7 @@ heuristic should appear at most once:
 
 | Key | Type | Required | Description |
 |---|---|---|---|
-| `id` | String | Yes | The heuristic: `fast` or `accurate` |
+| `id` | String | Yes | Identifier of the heuristic algorithm available in the GEMS interpreter: `fast` or `accurate` |
 | `inputs` | List of mappings | Yes | The model elements the heuristic reads: one entry for each of its input elements |
 | `outputs` | List of mappings | Yes | The model elements the heuristic writes: one entry for each of its output elements |
 
