@@ -20,6 +20,67 @@ from .env import EnvironmentPaths
 logger = logging.getLogger(__name__)
 
 
+def execute_notebook_in_docker(
+    *,
+    dockerfile: Path,
+    context: Path,
+    image_tag: str,
+    notebook_in_container: str,
+    volumes: list[str],
+    output_path: Path,
+    timeout: int = 600,
+) -> Path:
+    """Build a Docker image, execute a notebook inside a container, and write the
+    output to *output_path*.
+
+    The container mounts *output_path.parent* at ``/notebook_output`` and writes
+    the executed notebook there so it can be read by the test process.
+    Returns *output_path* for convenience.
+    """
+    build = subprocess.run(
+        ["docker", "build", "-f", str(dockerfile), "-t", image_tag, str(context)],
+        capture_output=True,
+        text=True,
+    )
+    if build.returncode != 0:
+        logger.error("docker build stderr:\n%s", build.stderr)
+        raise RuntimeError(f"Docker build failed for {dockerfile}\n{build.stderr}")
+
+    output_dir = output_path.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_filename = output_path.name
+
+    run = subprocess.run(
+        [
+            "docker",
+            "run",
+            "--rm",
+            *[arg for v in volumes for arg in ("-v", v)],
+            "-v",
+            f"{output_dir}:/notebook_output",
+            image_tag,
+            "jupyter",
+            "nbconvert",
+            "--to",
+            "notebook",
+            "--execute",
+            f"--ExecutePreprocessor.timeout={timeout}",
+            "--output",
+            f"/notebook_output/{output_filename}",
+            notebook_in_container,
+        ],
+        capture_output=True,
+        text=True,
+    )
+    if run.returncode != 0:
+        logger.error("docker run stdout:\n%s", run.stdout)
+        logger.error("docker run stderr:\n%s", run.stderr)
+        raise RuntimeError(
+            f"Notebook execution failed in Docker: {notebook_in_container}\n{run.stderr}"
+        )
+    return output_path
+
+
 # Common function to extract values from notebooks
 def get_notebook_objective(notebook_path: Path, simulation_index: int = 0) -> float:
     """Extract the Nth GEMS objective value from a pre-executed notebook's cell outputs.
