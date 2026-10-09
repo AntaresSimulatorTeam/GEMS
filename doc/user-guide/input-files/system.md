@@ -53,6 +53,7 @@ The system file describes the energy system to be simulated. Each component defi
 | `model` | String | Specifies which model this component instantiates. The format is `library_id.model_id`, combining the library `id` and the model `id` as defined in the [library file](library.md#models).|
 |`scenario-group`| String | *(Optional)* The `id` of the scenario group this component belongs to. Used to map Monte Carlo scenarios to data series columns via the [scenario builder](scenario-builder.md).|
 |`parameters`| List | *(Optional)* Collection of values assigned to the model’s parameters. All [parameters defined by the model](library.md#parameters) must be assigned a value.|
+|`integer-strategy`| Mapping | *(Optional)* How the integer and binary variables of this component are built: kept integer (default), relaxed to continuous, or relaxed and refined by a heuristic. See [Integer strategy](#integer-strategy).|
 
 ### Parameters
 
@@ -93,6 +94,45 @@ system:
         - id: company
           value: frenchpower
 ```
+
+### Integer strategy
+
+!!! note "Only available in GemsPy"
+    `integer-strategy` is only available in GemsPy (from v0.2.0). Antares modeler does not
+    support it: it ignores this field and solves integer and binary variables exactly.
+
+(Optional) `integer-strategy` sets how the integer and binary [variables](library.md#variables) of the component's model are built for this component. It applies to all of them; continuous variables are not affected. Components of the same model can use different strategies.
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | `exact` (default), `relaxed` or `heuristic` (see below).|
+| `heuristic-id` | String | The heuristic to apply: `fast` or `accurate`. Required when `id` is `heuristic`, not allowed otherwise.|
+
+| `id` | Effect |
+|------|--------------------------|
+| `exact` | Integer and binary variables stay integer: the problem is a MILP. This is the default when `integer-strategy` is absent.|
+| `relaxed` | Integer and binary variables are relaxed to continuous variables. Binary variables keep their range from 0 to 1.|
+| `heuristic` | Integer and binary variables are relaxed to continuous variables. After a first solve, the heuristic `heuristic-id` computes tighter bounds for some of the component's variables from that solution, and the problem is solved a second time with those bounds.|
+
+```yaml
+system:
+  components:
+    - id: thermal_1
+      model: my_library.thermal
+      integer-strategy:
+        id: heuristic
+        heuristic-id: accurate
+    - id: thermal_2
+      model: my_library.thermal
+      integer-strategy:
+        id: relaxed
+```
+
+A heuristic reads and writes elements of the model, such as the solved number of units on or the bounds of a variable. Which parameter or variable of the model each heuristic element is bound to is declared once per model, in the [`heuristics`](optimization-configuration.md#heuristics) section of the optimization configuration file. The following rules apply:
+
+- A component with `id: heuristic` must use a `heuristic-id` declared for its model in that section.
+- `heuristic` cannot be used with [Benders decomposition](optimization-configuration.md#benders-decomposition).
+- When at least one component uses `heuristic`, the whole problem is solved twice.
 
 ## Connections
 
