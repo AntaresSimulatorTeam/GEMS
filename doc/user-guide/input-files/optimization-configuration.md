@@ -39,7 +39,7 @@ back to the default given in its table below, so a study needs to declare only w
 | [`scenario-scope`](#scenario-scope) | Mapping | The Monte-Carlo scenarios to simulate |
 | [`solver-options`](#solver-options) | Mapping | Which (MI)LP solver to call, and how |
 | [`resolution`](#resolution) | Mapping | How the horizon is decomposed into optimization subproblems |
-| [`models`](#models) | List of mappings | Per-model settings: boundary handling and Benders decomposition |
+| [`models`](#models) | List of mappings | Per-model settings: boundary handling, Benders decomposition and heuristics |
 
 A complete file, showing every section at once:
 
@@ -300,7 +300,8 @@ element goes to which side is declared per model, in
 !!! warning
     The subproblems must be continuous. A variable a model declares as integer or binary has to
     be placed in the master problem, unless the components using that model relax it to
-    continuous. See [`model-decomposition`](#model-decomposition).
+    continuous with their [integer strategy](system.md#integer-strategy). See
+    [`model-decomposition`](#model-decomposition).
 
 ---
 
@@ -314,6 +315,7 @@ models:
   - id: <library-id>.<model-id>        # which model these settings apply to
     out-of-bounds-processing: {...}    # optional
     model-decomposition: {...}         # optional
+    heuristics: [...]                  # optional
 ```
 
 | Key | Type | Required | Description |
@@ -321,6 +323,7 @@ models:
 | `id` | String | Yes | The **fully qualified model id**, `<library-id>.<model-id>` |
 | [`out-of-bounds-processing`](#out-of-bounds-processing) | Mapping | No | How the model's constraints behave at block boundaries |
 | [`model-decomposition`](#model-decomposition) | Mapping | No | Where the model's elements go under Benders decomposition |
+| [`heuristics`](#heuristics) | List of mappings | No | How the heuristics used by the model's components read and write the model's elements |
 
 Four points about how this list is matched:
 
@@ -333,8 +336,8 @@ Four points about how this list is matched:
   or objective contribution it refers to must exist in that model. Any mismatch, such as a model
   no component instantiates or a misspelled constraint id, is reported as an error before solving.
 - **Everything unlisted keeps its default.** Models absent from the list, and elements absent
-  from an entry, behave as described in the two sections below. A model can declare
-  `out-of-bounds-processing`, `model-decomposition`, or both; the two are independent.
+  from an entry, behave as described in the sections below. A model can declare any of
+  `out-of-bounds-processing`, `model-decomposition` and `heuristics`; they are independent.
 
 Order does not matter, but each model should appear at most once.
 
@@ -447,10 +450,93 @@ in `subproblems`.
       have to stay continuous, and `master-and-subproblems` puts a copy of the variable in the
       subproblems too, so it is rejected for such a variable just as `subproblems` is. The rule
       concerns variables that are actually built as integers: it does not apply where the
-      components using the model relax them to continuous.
+      components using the model relax them to continuous, with their
+      [integer strategy](system.md#integer-strategy).
 
     These rules are checked against the model libraries before solving, and every violation is
     reported at once.
+
+### `heuristics`
+
+!!! note "Only available in GemsPy"
+    `heuristics` is only available in GemsPy (from v0.2.0). Antares modeler does not support
+    it: it ignores this section.
+
+A component whose [integer strategy](system.md#integer-strategy) is `heuristic` is solved with
+its integer and binary variables relaxed to continuous. After this first solve, a heuristic
+computes, from the solution, tighter bounds for some of the component's variables, and the problem
+is solved a second time with those bounds. The component selects the heuristic with its
+`heuristic-id`; this section declares, for each model, which of the model's parameters and
+variables each heuristic reads and writes.
+
+```yaml
+models:
+  - id: my_library.thermal
+    heuristics:
+      - id: accurate
+        inputs:
+          - heuristic-element: num_units_on_opt
+            id: nb_units_on
+            type: variable-solution
+          - heuristic-element: num_units_max
+            id: nb_units_max
+          - heuristic-element: min_up_duration
+            id: d_min_up
+          - heuristic-element: min_down_duration
+            id: d_min_down
+        outputs:
+          - heuristic-element: minimum_num_units_on
+            id: nb_units_on
+            type: variable-lower-bound
+```
+
+Here, every component of `my_library.thermal` that declares `heuristic-id: accurate` gets, after
+the first solve, a lower bound on its `nb_units_on` variable, computed from its solved
+`nb_units_on`, its `nb_units_max` parameter and its minimum up and down durations.
+
+`heuristics` is a list of entries, one per heuristic used by the model's components. Each
+heuristic should appear at most once:
+
+| Key | Type | Required | Description |
+|---|---|---|---|
+| `id` | String | Yes | Identifier of the heuristic algorithm available in the GEMS interpreter: `fast` or `accurate` |
+| `inputs` | List of mappings | Yes | The model elements the heuristic reads: one entry for each of its input elements |
+| `outputs` | List of mappings | Yes | The model elements the heuristic writes: one entry for each of its output elements |
+
+Each entry of `inputs` and `outputs` binds an element of the heuristic to an element of the model:
+
+| Key | Type | Required | Description |
+|---|---|---|---|
+| `heuristic-element` | String | Yes | The name of the heuristic's element, from the tables below |
+| `id` | String | Yes | The id of a parameter or a variable of the model |
+| `type` | String | No | What is read or written (see below). Default: `parameter` |
+
+| `type` | Element of the model | Use |
+|---|---|---|
+| `parameter` | The value of the parameter `id` | Inputs only |
+| `variable-solution` | The value of the variable `id` in the first solve | Inputs only |
+| `variable-lower-bound` | The lower bound of the variable `id` | Inputs and outputs |
+| `variable-upper-bound` | The upper bound of the variable `id` | Inputs and outputs |
+
+??? info "Heuristics available in GemsPy"
+    GemsPy implements two heuristics, `fast` and `accurate`. What each one computes, and the
+    elements it reads and writes, are described in the
+    [GemsPy documentation](https://gemspy.readthedocs.io/en/latest/user-guide/optim-config/#available-heuristics).
+
+!!! info "Validation rules"
+    - **`inputs` and `outputs` list exactly the heuristic's elements**, each once, as given in
+      the interpreter's documentation (see above).
+    - **Outputs are variable bounds**: their `type` must be `variable-lower-bound` or
+      `variable-upper-bound`.
+    - **Each `id` names an element of the model**: a parameter for `type: parameter`, a variable
+      for the other types, with the time dependence the heuristic expects for that element.
+    - **Every component with `integer-strategy` `heuristic` uses a declared heuristic**: its model
+      must have an entry in this section for its `heuristic-id`.
+    - **Heuristics cannot be used with [`benders-decomposition`](#benders-decomposition)**: no
+      component may use `integer-strategy` `heuristic` in that mode.
+
+The bounds written by a heuristic can be read in extra outputs with the
+[`lower_bound` and `upper_bound` operators](../syntax.md#variable-bound-operators).
 
 ---
 
