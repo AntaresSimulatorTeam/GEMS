@@ -8,6 +8,12 @@ description: Reference for GEMS expression syntax — operators, variables, para
 
 This section provides a description of the supported operators, linearity condition, the usage of parameters, variables, and ports in expressions, and the mechanisms for time and scenario indexing and aggregation.
 
+!!! warning "Language reference, not an interpreter reference"
+    This page documents the expression syntax as defined by the **latest design of the GEMS
+    language**. Not every feature described here is necessarily supported by every interpreter.
+    Refer to the documentation of the interpreter you are running to know which features it
+    supports.
+
 ## Basic Operators
 
 Basic operators can be divided into two groups:
@@ -239,10 +245,6 @@ In some cases, there is a  need to access dual results of variables or constrain
 - dual result of a constraint whose id is `my_constraint` is accessed by `dual(constraint_id)`
 
 ### Variable Bound Operators
-
-!!! note "Only available in GemsPy"
-    `lower_bound` and `upper_bound` are only available in GemsPy (from v0.2.0). Antares modeler
-    does not support them: it rejects expressions that use them.
 
 The bounds of a variable, as used by the solver, are accessed by two unary operators:
 

@@ -33,6 +33,12 @@ The system `my_system` instantiates two components: `load_1`, which is an instan
 
 The `connections` section specifies how components are linked. In this case, the `balance_port` port of `load_1` is connected to the `balance_port` port of `bus_1`, indicating that the load is connected to the node.
 
+!!! warning "Language reference, not an interpreter reference"
+    This page documents the system file as defined by the **latest design of the GEMS
+    language**. Not every feature described here is necessarily supported by every interpreter.
+    Refer to the documentation of the interpreter you are running to know which features it
+    supports.
+
 The top-level fields of a system file are:
 
 | Element | Type | Description |
@@ -96,10 +102,6 @@ system:
 ```
 
 ### Integer strategy
-
-!!! note "Only available in GemsPy"
-    `integer-strategy` is only available in GemsPy (from v0.2.0). Antares modeler does not
-    support it: it ignores this field and solves integer and binary variables exactly.
 
 (Optional) `integer-strategy` sets how the integer and binary [variables](library.md#variables) of the component's model are built for this component. It applies to all of them; continuous variables are not affected. Components of the same model can use different strategies.
 

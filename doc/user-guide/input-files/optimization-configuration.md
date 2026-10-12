@@ -458,10 +458,6 @@ in `subproblems`.
 
 ### `heuristics`
 
-!!! note "Only available in GemsPy"
-    `heuristics` is only available in GemsPy (from v0.2.0). Antares modeler does not support
-    it: it ignores this section.
-
 A component whose [integer strategy](system.md#integer-strategy) is `heuristic` is solved with
 its integer and binary variables relaxed to continuous. After this first solve, a heuristic
 computes, from the solution, tighter bounds for some of the component's variables, and the problem
@@ -518,10 +514,10 @@ Each entry of `inputs` and `outputs` binds an element of the heuristic to an ele
 | `variable-lower-bound` | The lower bound of the variable `id` | Inputs and outputs |
 | `variable-upper-bound` | The upper bound of the variable `id` | Inputs and outputs |
 
-??? info "Heuristics available in GemsPy"
-    GemsPy implements two heuristics, `fast` and `accurate`. What each one computes, and the
-    elements it reads and writes, are described in the
-    [GemsPy documentation](https://gemspy.readthedocs.io/en/latest/user-guide/optim-config/#available-heuristics).
+??? info "Available heuristics"
+    What the `fast` and `accurate` heuristics compute, and the elements each one reads and
+    writes, are described in the documentation of the interpreter you are running; for GemsPy,
+    see the [GemsPy documentation](https://gemspy.readthedocs.io/en/latest/user-guide/optim-config/#available-heuristics).
 
 !!! info "Validation rules"
     - **`inputs` and `outputs` list exactly the heuristic's elements**, each once, as given in
