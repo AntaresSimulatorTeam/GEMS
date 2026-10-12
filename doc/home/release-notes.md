@@ -1,6 +1,34 @@
 
 # Release Notes
 
+## v0.5.0 | *12-10-2026*
+
+### Added
+
+* Document the optimization configuration file `optim-config.yml` ([PR77](https://github.com/AntaresSimulatorTeam/GEMS/pull/226))
+
+* Document integer strategy, heuristics and the `lower_bound` / `upper_bound` variable bound operators, available in GemsPy only ([#251](https://github.com/AntaresSimulatorTeam/GEMS/pull/251))
+
+* Add a CI link checker for the documentation ([PR80](https://github.com/AntaresSimulatorTeam/GEMS/pull/236))
+
+### Changed
+
+* Bump GemsPy to v0.2.0 ([#251](https://github.com/AntaresSimulatorTeam/GEMS/pull/251))
+
+* Align the taxonomy, catalog, view config and Views output documentation with GEMS ViewsBuilder v0.0.1 ([#242](https://github.com/AntaresSimulatorTeam/GEMS/pull/242), [#248](https://github.com/AntaresSimulatorTeam/GEMS/pull/248))
+
+* Remove `playlist-file` from the `scenario-scope` documentation of the optimization configuration file ([#239](https://github.com/AntaresSimulatorTeam/GEMS/pull/239))
+
+* Bump basic_models_library to v1.0.1 ([#243](https://github.com/AntaresSimulatorTeam/GEMS/pull/243))
+
+### Fixed
+
+* Use the official "Generic Energy systems Modelling Schema" spelling of GEMS ([#233](https://github.com/AntaresSimulatorTeam/GEMS/pull/233))
+
+* Fix links to the reorganized Antares Simulator documentation ([#245](https://github.com/AntaresSimulatorTeam/GEMS/pull/245))
+
+* Fix `time-dependant` typo in basic_models_library ([#243](https://github.com/AntaresSimulatorTeam/GEMS/pull/243))
+
 ## v0.4.0 | *21-08-2026*
 
 ### Added
