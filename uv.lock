@@ -1383,7 +1383,7 @@ wheels = [
 
 [[package]]
 name = "linopy"
-version = "0.9.1"
+version = "0.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "bottleneck" },
