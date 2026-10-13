@@ -64,4 +64,4 @@ Versioning follows the rules defined in `COMPATIBILITY.md`:
 - Initial baseline release.
 - Supported model types: area, thermal, link, short-term storage (STS), load, renewables.
 HYBRID and FULL conversion modes supported.
-- Validated against Antares-Simulator 10.0.0, antares-craft 0.3.0, GemsPy 0.0.2.
+- Validated against Antares-Simulator 10.0.0, antares-craft 0.3.0, GemsPy 0.2.0.
