@@ -12,7 +12,7 @@
 library:
   id: antares_legacy_models
   description: Antares historic model library
-  version: "2.1.2"
+  version: "2.2.0"
   taxonomy: antares_legacy_taxonomy
 
   port-types:
@@ -216,8 +216,12 @@ library:
         - id: market_bid_cost
         - id: startup_cost
         - id: fixed_cost
-        - id: min_up_duration
-        - id: min_down_duration
+        - id: min_up_duration # Bound of a time sum, so must not depend on time.
+          time-dependent: false
+          scenario-dependent: false
+        - id: min_down_duration # Bound of a time sum, so must not depend on time.
+          time-dependent: false
+          scenario-dependent: false
         - id: num_units
         - id: spinning # in percentage, taken into account in cluster_max_generation and max_power_per_unit (except when computing minimum generation)
         - id: co2_emissions_rate

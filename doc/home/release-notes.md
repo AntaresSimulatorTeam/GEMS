@@ -1,7 +1,7 @@
 
 # Release Notes
 
-## v0.5.0 | *12-10-2026*
+## v0.5.0 | *13-10-2026*
 
 ### Added
 
@@ -20,6 +20,8 @@
 * Remove `playlist-file` from the `scenario-scope` documentation of the optimization configuration file ([#239](https://github.com/AntaresSimulatorTeam/GEMS/pull/239))
 
 * Bump basic_models_library to v1.0.1 ([#243](https://github.com/AntaresSimulatorTeam/GEMS/pull/243))
+
+* Bump Antares Legacy Library to v2.2.0: `min_up_duration` and `min_down_duration` of the `thermal` model are now time- and scenario-independent ([#255](https://github.com/AntaresSimulatorTeam/GEMS/pull/255))
 
 ### Fixed
 
