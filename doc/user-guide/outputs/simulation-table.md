@@ -24,9 +24,11 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
 
 ## Simulation Table exported by [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md)
 
-[Antares Simulator](../../overview/gems-interpreters/antares-simulator.md) exports the **Simulation Table** as .csv files. Each run writes to its own timestamped folder of the study's output directory, with one file per Monte-Carlo scenario, named `simulation-table-{scenario}.csv`: for instance `output/20251223-1015/simulation-table-0.csv` for scenario 0.
+[Antares Simulator](../../overview/gems-interpreters/antares-simulator.md) exports the **Simulation Table** as .csv files by default. Each run writes to its own timestamped folder of the study's output directory, with one file per Monte-Carlo scenario, named `simulation-table-{scenario}.csv`: for instance `output/20251223-1015/simulation-table-0.csv` for scenario 0.
 
 In [hybrid studies](../../interoperability/hybrid/outputs.md), one file is written per Monte-Carlo year and per resolution stage, named `simulation-table-{year}-{stage}.csv` (e.g. `simulation-table-0-optim-nb-1.csv`).
+
+With the `--parquet` option of `antares-modeler` or `antares-solver`, the simulation tables are written in Parquet format instead of CSV, with the same names and the `.parquet` extension (e.g. `simulation-table-0.parquet`).
 
 **Example:** To illustrate, here are a couple of rows from a simulation table:
 
