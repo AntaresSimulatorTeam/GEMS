@@ -2,5 +2,5 @@
 
 The study will generate two types of output files:
 
-- [**Files similar to Legacy studies**](https://antares-simulator.readthedocs.io/en/latest/user-guide/solver/03-outputs/): outputs corresponding to the optimization results coming from the components created by the Legacy study.
+- [**Files similar to Legacy studies**](https://antares-simulator.readthedocs.io/en/latest/reference/solver/outputs/): outputs corresponding to the optimization results coming from the components created by the Legacy study.
 - [**Simulation tables**](../../user-guide/outputs/simulation-table.md): specific to modeler's components optimization, in the same output folder as the Legacy outputs. One simulation table for each optimization step (called `simulation_table--optim-nb-X`) will be generated.
