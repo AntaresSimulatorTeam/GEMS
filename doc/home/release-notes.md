@@ -15,7 +15,7 @@
 
 * Bump GemsPy to v0.2.0 ([#251](https://github.com/AntaresSimulatorTeam/GEMS/pull/251))
 
-* Rework the PyPSA-Eur tutorial notebook to run with GemsPy and the PyPSA-to-GEMS converter v0.0.2 ([#238](https://github.com/AntaresSimulatorTeam/GEMS/pull/238))
+* Rework the PyPSA-Eur tutorial to run with GemsPy and the PyPSA-to-GEMS converter v0.0.2, replacing the Antares Modeler notebook ([#238](https://github.com/AntaresSimulatorTeam/GEMS/pull/238), [#258](https://github.com/AntaresSimulatorTeam/GEMS/pull/258))
 
 * Align the taxonomy, catalog, view config and Views output documentation with GEMS ViewsBuilder v0.0.1 ([#242](https://github.com/AntaresSimulatorTeam/GEMS/pull/242), [#248](https://github.com/AntaresSimulatorTeam/GEMS/pull/248))
 

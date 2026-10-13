@@ -4,7 +4,7 @@ This tutorial is a workflow to run a [PyPSA-Eur](https://github.com/PyPSA/pypsa-
 
 1. **Configure a simple PyPSA-Eur study** with minimal settings (one area only, 3 days), download the data.
 2. **Convert to GEMS format** using the Python package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) inside a Docker-hosted Jupyter notebook.
-3. **Run the simulation** with [Antares Modeler](https://github.com/AntaresSimulatorTeam/Antares_Simulator/releases) from within the same notebook.
+3. **Run the simulation** with [GemsPy](../installation/gemspy-installation.md) from within the same notebook.
 
 The Jupyter environment runs inside Docker on the remote server and is accessed locally via VS Code Remote SSH.
 
@@ -143,7 +143,7 @@ We have everything needed by the docker image :
 We can create now the docker image inside the server :
 
 1. In VS Code, open the **Command Palette** (`Ctrl+Shift+P`) and select **Remote-SSH: Connect to Host**.
-2. Access to ```/home/ubuntu/GEMS/doc/getting-started/tutorial-two-pypsa-eur/``` 
+2. Access to ```/home/ubuntu/GEMS/doc/examples/notebooks/tutorial-two-pypsa-eur/``` 
 3. Start the container by the command
 
     ```bash
@@ -151,7 +151,7 @@ We can create now the docker image inside the server :
     docker compose up --build
     ```
 
-    Docker Compose will build the image from `docker-tuto-pypsa-gems/Dockerfile_PyPSA` using `tutorial-two-pypsa-eur/` as the build context and start the container. The Jupyter notebook will be exposed on port **8889**.
+    Docker Compose will build the image from `docker-tuto-pypsa-gems/Dockerfile_PyPSA_GemsPy` using `tutorial-two-pypsa-eur/` as the build context and start the container. The Jupyter notebook will be exposed on port **9988**.
 
-3. Open your browser at `http://localhost:8889`.
-4. Open `tutorial_pypsa_eur.ipynb` and run the cells in order to:
+4. Open your browser at `http://localhost:9988`.
+5. Open `tutorial_pypsa_eur_gemspy.ipynb` and run the cells in order to convert the PyPSA-Eur network into a GEMS study, run it with GemsPy and analyse the results.

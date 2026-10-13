@@ -11,7 +11,7 @@ This table maps documentation/language versions to the interpreter and library v
 | v0.3.4        | 10.1.0            | —      |       |
 | v0.3.5        | 10.1.1            | 0.1.2  |       |
 | v0.4.0        | 10.1.1            | 0.1.3  |       |
-| v0.5.0        | 10.1.1            | 0.2.0  |       |
+| v0.5.0        | 10.1.1            | 0.2.0  | PyPSA-Eur tutorial: pypsa-to-gems-converter 0.0.2 |
 
 ## Versioning Policy
 
