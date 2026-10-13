@@ -15,6 +15,8 @@
 
 * Bump GemsPy to v0.2.0 ([#251](https://github.com/AntaresSimulatorTeam/GEMS/pull/251))
 
+* Rework the PyPSA-Eur tutorial notebook to run with GemsPy and the PyPSA-to-GEMS converter v0.0.2 ([#238](https://github.com/AntaresSimulatorTeam/GEMS/pull/238))
+
 * Align the taxonomy, catalog, view config and Views output documentation with GEMS ViewsBuilder v0.0.1 ([#242](https://github.com/AntaresSimulatorTeam/GEMS/pull/242), [#248](https://github.com/AntaresSimulatorTeam/GEMS/pull/248))
 
 * Remove `playlist-file` from the `scenario-scope` documentation of the optimization configuration file ([#239](https://github.com/AntaresSimulatorTeam/GEMS/pull/239))
