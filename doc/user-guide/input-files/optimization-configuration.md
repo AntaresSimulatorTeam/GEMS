@@ -25,15 +25,6 @@ The same system can therefore be solved several ways by editing this file alone.
 The file itself is optional, and so is every section within it: when a key is absent it falls
 back to the default given in its table below, so a study needs to declare only what it changes.
 
-!!! info "Antares Simulator requires the file"
-    Antares Simulator (from v10.2.0) stops with an error when a study has a `system.yml` but no
-    `optim-config.yml`, and it requires the [`models`](#models) key whenever the file is not empty.
-    A study that keeps every default can therefore declare only:
-
-    ```yaml
-    models: []
-    ```
-
 !!! warning "Language reference, not an interpreter reference"
     This page documents `optim-config.yml` as defined by the **latest design of the GEMS
     language**. Not every feature described here is necessarily supported by every interpreter.
