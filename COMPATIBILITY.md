@@ -11,7 +11,7 @@ This table maps documentation/language versions to the interpreter and library v
 | v0.3.4        | 10.1.0            | —      |       |
 | v0.3.5        | 10.1.1            | 0.1.2  |       |
 | v0.4.0        | 10.1.1            | 0.1.3  |       |
-| vx.x.x        | 10.1.1            | 0.2.0  |       |
+| vx.x.x        | 10.2.0            | 0.2.0  |       |
 
 ## Versioning Policy
 
@@ -31,6 +31,6 @@ This table maps documentation/language versions to the interpreter and library v
 | Library | Current Version |
 |---------|----------------|
 | `basic_models_library` | 1.0.0 |
-| `antares_legacy_models` | 2.2.0 |
+| `antares_legacy_models` | 2.2.1 |
 | `pypsa_models` | 2.0.1 |
 | `andromede_models` | 1.0.0 |
