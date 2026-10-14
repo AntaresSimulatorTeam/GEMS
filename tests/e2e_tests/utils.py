@@ -253,7 +253,7 @@ def get_gems_study_objective(paths: EnvironmentPaths, study_dir: Path) -> float:
 
     output_dir = study_dir / "output"
     result_files = sorted(
-        (f for f in output_dir.rglob("simulation_table*.csv") if f.is_file()),
+        (f for f in output_dir.rglob("simulation-table-*.csv") if f.is_file()),
         key=lambda f: f.stat().st_mtime,
     )
 

@@ -121,7 +121,7 @@ antares-modeler.exe <path-to-study>
 
 ## Outputs
 
-The results are available in the csv file `QSE_1_Adequacy/output/simulation_table--YYYYMMDD-HHMM.csv`
+The results are available in the csv file `QSE_1_Adequacy/output/YYYYMMDD-HHMM/simulation-table-0.csv`
 
 The simulation outputs contain the optimised value of optimisation problem variables, the status of all constraints and bounds, as well as user-defined extra output, as described on the [following page](../../user-guide/outputs/simulation-table.md).
 

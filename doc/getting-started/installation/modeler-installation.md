@@ -88,33 +88,36 @@ Let’s check if Modeler is working correctly.
 
     If you see logs like these, Modeler works correctly !
 
-    Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--yyyymmdd HHMMSS.csv`
+    Especially, `[yyyy-mm-dd HH:MM:SS][modeler][infos] Simulation table of scenario 0 is written in: QSE_1_Adequacy/output/yyyymmdd-HHMM/simulation-table-0.csv`
 
     ```txt
-    [2025-12-16 14:35:48][modeler][infos] Study path: QSE_1_Adequacy/
-    [2025-12-16 14:35:48][modeler][infos] Parameters loaded
-    [2025-12-16 14:35:48][modeler][infos] Loading modeler files...
-    [2025-12-16 14:35:48][modeler][infos] Library loaded: basic_models_library
-    [2025-12-16 14:35:48][modeler][infos] Libraries loaded
-    [2025-12-16 14:35:48][modeler][infos] Optim config file not found at QSE_1_Adequacy/input/optim-config.yml
-    [2025-12-16 14:35:48][modeler][infos] System loaded
-    [2025-12-16 14:35:48][modeler][infos] Data-series could not be loaded: Not a directory: QSE_1_Adequacy/input/data-series
-    [2025-12-16 14:35:48][modeler][infos] Timeseries loaded
-    [2025-12-16 14:35:48][modeler][infos] No scenario builder found, skipping scenario groups loading.
-    [2025-12-16 14:35:48][modeler][infos] Scenario groups loaded
-    [2025-12-16 14:35:48][modeler][infos] Modeler loaded in 0.003 s
-    [2025-12-16 14:35:48][modeler][infos] linear problem of System loaded
-    [2025-12-16 14:35:48][modeler][infos] Linear problem provided
-    [2025-12-16 14:35:48][modeler][infos] Number of variables: 18
-    [2025-12-16 14:35:48][modeler][infos] Number of constraints: 6
-    [2025-12-16 14:35:48][modeler][infos]
-    [2025-12-16 14:35:48][modeler][infos] Modeler build took 0.002 s
-    [2025-12-16 14:35:48][modeler][infos] Output folder : QSE_1_Adequacy/output
-    [2025-12-16 14:35:48][modeler][infos] Launching resolution...
-    [2025-12-16 14:35:48][modeler][infos] Solved in 0.001 s
-    [2025-12-16 14:35:48][modeler][infos] Simulation table is written in: QSE_1_Adequacy/output/simulation_table--20251216-1435.csv
-    [2025-12-16 14:35:48][modeler][infos] Simulation Table is generated in 0 ms
-    ``` 
+    [2026-10-13 17:12:01][modeler][infos] Study path: QSE_1_Adequacy/
+    [2026-10-13 17:12:01][modeler][infos] Output folder : QSE_1_Adequacy/output/20261013-1712
+    [2026-10-13 17:12:01][modeler][infos] Parameters loaded
+    [2026-10-13 17:12:01][modeler][infos] Loading modeler files...
+    [2026-10-13 17:12:01][modeler][infos] Library loaded: basic_models_library
+    [2026-10-13 17:12:01][modeler][infos] Libraries loaded
+    [2026-10-13 17:12:01][modeler][infos] System loaded
+    [2026-10-13 17:12:01][modeler][warns] Data-series could not be loaded: Not a directory: QSE_1_Adequacy/input/data-series
+    [2026-10-13 17:12:01][modeler][infos] Timeseries loaded
+    [2026-10-13 17:12:01][modeler][infos] No scenario builder found, skipping scenario groups loading.
+    [2026-10-13 17:12:01][modeler][infos] Scenario groups loaded
+    [2026-10-13 17:12:01][modeler][infos] Modeler loaded in 0.004 s
+    [2026-10-13 17:12:01][modeler][infos] Locations validity OK
+    [2026-10-13 17:12:01][modeler][infos] Number of Monte-Carlo scenarios to simulate: 1
+    [2026-10-13 17:12:01][modeler][infos] Number of variables: 18
+    [2026-10-13 17:12:01][modeler][infos] Number of constraints: 6
+    [2026-10-13 17:12:01][modeler][infos] Solving scenario 0
+    [2026-10-13 17:12:01][modeler][infos] Launching resolution...
+    [2026-10-13 17:12:01][modeler][infos] Solved in 0.000 s
+    [2026-10-13 17:12:01][modeler][infos] Simulation Table is generated in 0 ms
+    [2026-10-13 17:12:01][modeler][infos] Simulation table of scenario 0 is written in: QSE_1_Adequacy/output/20261013-1712/simulation-table-0.csv
+    ```
+
+    !!! info "`optim-config.yml` is required"
+        Antares Modeler (from v10.2.0) stops with the error `Missing 'optim-config.yml'` if the study has no
+        [`input/optim-config.yml`](../../user-guide/input-files/optimization-configuration.md) file. The example
+        studies already include one.
 
 ### Launch the resolution of an Hybrid study
 
@@ -128,21 +131,21 @@ Let’s check if Modeler is working correctly.
 
     === "Windows"
         ```bash
-        rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study>
+        rte-antares-x.x.x-installer-64bits\bin\antares-solver.exe <path-to-study> --output all
         ```
 
     === "Linux"
         ```bash
-        ./rte-antares-x.x.x-installer-64bits/bin/antares-solver <path-to-study>
+        ./rte-antares-x.x.x-installer-64bits/bin/antares-solver <path-to-study> --output all
         ```
 
-Replace `<path-to-study>` with the path to your Antares study directory.
+Replace `<path-to-study>` with the path to your Antares study directory. The `--output all` option writes the [simulation tables](../../user-guide/outputs/simulation-table.md) of the GEMS components in addition to the Legacy outputs: without it, Antares Solver writes the Legacy outputs only.
 
 ## Requirements
 
 The complete installation, documentation is available on the [official documentation website](https://antares-simulator.readthedocs.io/en/latest/reference/installation/).
 
-In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study, and the process for creating this file is detailed in [this section](../../user-guide/input-files/solver-optimization.md). Unlike the [GemsPy interpreter](gemspy-installation.md), Modeler depends on this configuration file.
+In addition, Antares Modeler requires inside, the study folder, a `parameters.yml` file to run a GEMS study, and the process for creating this file is detailed in [this section](../../user-guide/input-files/solver-optimization.md). Unlike the [GemsPy interpreter](gemspy-installation.md), Modeler depends on this configuration file. Modeler also requires an [`input/optim-config.yml`](../../user-guide/input-files/optimization-configuration.md) file, which may only declare `models: []`.
 
 ## Additional Resources
 

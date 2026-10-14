@@ -1,7 +1,7 @@
 
 # Release Notes
 
-## v0.5.0 | *13-10-2026*
+## v0.5.0 | *14-10-2026*
 
 ### Added
 
@@ -11,9 +11,13 @@
 
 * Add a CI link checker for the documentation ([PR80](https://github.com/AntaresSimulatorTeam/GEMS/pull/236))
 
+* Document the Parquet export of simulation tables (`--parquet` option of `antares-modeler` and `antares-solver`) ([#261](https://github.com/AntaresSimulatorTeam/GEMS/pull/261))
+
 ### Changed
 
 * Bump GemsPy to v0.2.0 ([#251](https://github.com/AntaresSimulatorTeam/GEMS/pull/251))
+
+* Bump Antares Simulator to v10.2.0: Antares Modeler now requires an `input/optim-config.yml` file in every GEMS study, writes one simulation table per scenario (`output/<timestamp>/simulation-table-<scenario>.csv`) with 0-based `block` and time indices, and hybrid studies write their simulation tables only with `antares-solver --output all` ([#261](https://github.com/AntaresSimulatorTeam/GEMS/pull/261))
 
 * Rework the PyPSA-Eur tutorial to run with GemsPy v0.2.0 and the PyPSA-to-GEMS converter v0.0.2, replacing the Antares Modeler notebook ([#238](https://github.com/AntaresSimulatorTeam/GEMS/pull/238), [#258](https://github.com/AntaresSimulatorTeam/GEMS/pull/258))
 
@@ -23,7 +27,7 @@
 
 * Bump basic_models_library to v1.0.1 ([#243](https://github.com/AntaresSimulatorTeam/GEMS/pull/243))
 
-* Bump Antares Legacy Library to v2.2.0: `min_up_duration` and `min_down_duration` of the `thermal` model are now time- and scenario-independent ([#255](https://github.com/AntaresSimulatorTeam/GEMS/pull/255))
+* Bump Antares Legacy Library to v2.2.1: `min_up_duration` and `min_down_duration` of the `thermal` model are now time- and scenario-independent (v2.2.0), and the `thermal` and `short_term_storage` models get a `name` property (v2.2.1) ([#255](https://github.com/AntaresSimulatorTeam/GEMS/pull/255), [#261](https://github.com/AntaresSimulatorTeam/GEMS/pull/261))
 
 ### Fixed
 

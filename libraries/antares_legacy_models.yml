@@ -12,7 +12,7 @@
 library:
   id: antares_legacy_models
   description: Antares historic model library
-  version: "2.2.0"
+  version: "2.2.1"
   taxonomy: antares_legacy_taxonomy
 
   port-types:
@@ -282,6 +282,7 @@ library:
       properties:
         - id: carrier
         - id: technology
+        - id: name
       extra-outputs:
         - id: actual_num_units_on
           expression: ceil(num_units_on)
@@ -441,6 +442,7 @@ library:
       properties:
         - id: carrier
         - id: group
+        - id: name
     
     - id: long_term_storage
       taxonomy-category: long_term_storage
