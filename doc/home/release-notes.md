@@ -1,6 +1,42 @@
 
 # Release Notes
 
+## v0.5.0 | *14-10-2026*
+
+### Added
+
+* Document the optimization configuration file `optim-config.yml` ([PR77](https://github.com/AntaresSimulatorTeam/GEMS/pull/226))
+
+* Document integer strategy, heuristics and the `lower_bound` / `upper_bound` variable bound operators, available in GemsPy only ([#251](https://github.com/AntaresSimulatorTeam/GEMS/pull/251))
+
+* Add a CI link checker for the documentation ([PR80](https://github.com/AntaresSimulatorTeam/GEMS/pull/236))
+
+* Document the Parquet export of simulation tables (`--parquet` option of `antares-modeler` and `antares-solver`) ([#261](https://github.com/AntaresSimulatorTeam/GEMS/pull/261))
+
+### Changed
+
+* Bump GemsPy to v0.2.0 ([#251](https://github.com/AntaresSimulatorTeam/GEMS/pull/251))
+
+* Bump Antares Simulator to v10.2.0: Antares Modeler now requires an `input/optim-config.yml` file in every GEMS study, writes one simulation table per scenario (`output/<timestamp>/simulation-table-<scenario>.csv`) with 0-based `block` and time indices, and hybrid studies write their simulation tables only with `antares-solver --output all` ([#261](https://github.com/AntaresSimulatorTeam/GEMS/pull/261))
+
+* Rework the PyPSA-Eur tutorial to run with GemsPy v0.2.0 and the PyPSA-to-GEMS converter v0.0.2, replacing the Antares Modeler notebook ([#238](https://github.com/AntaresSimulatorTeam/GEMS/pull/238), [#258](https://github.com/AntaresSimulatorTeam/GEMS/pull/258))
+
+* Align the taxonomy, catalog, view config and Views output documentation with GEMS ViewsBuilder v0.0.1 ([#242](https://github.com/AntaresSimulatorTeam/GEMS/pull/242), [#248](https://github.com/AntaresSimulatorTeam/GEMS/pull/248))
+
+* Remove `playlist-file` from the `scenario-scope` documentation of the optimization configuration file ([#239](https://github.com/AntaresSimulatorTeam/GEMS/pull/239))
+
+* Bump basic_models_library to v1.0.1 ([#243](https://github.com/AntaresSimulatorTeam/GEMS/pull/243))
+
+* Bump Antares Legacy Library to v2.2.1: `min_up_duration` and `min_down_duration` of the `thermal` model are now time- and scenario-independent (v2.2.0), and the `thermal` and `short_term_storage` models get a `name` property (v2.2.1) ([#255](https://github.com/AntaresSimulatorTeam/GEMS/pull/255), [#261](https://github.com/AntaresSimulatorTeam/GEMS/pull/261))
+
+### Fixed
+
+* Use the official "Generic Energy systems Modelling Schema" spelling of GEMS ([#233](https://github.com/AntaresSimulatorTeam/GEMS/pull/233))
+
+* Fix links to the reorganized Antares Simulator documentation ([#245](https://github.com/AntaresSimulatorTeam/GEMS/pull/245))
+
+* Fix `time-dependant` typo in basic_models_library ([#243](https://github.com/AntaresSimulatorTeam/GEMS/pull/243))
+
 ## v0.4.0 | *21-08-2026*
 
 ### Added

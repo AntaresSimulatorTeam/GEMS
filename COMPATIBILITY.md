@@ -11,11 +11,11 @@ This table maps documentation/language versions to the interpreter and library v
 | v0.3.4        | 10.1.0            | —      |       |
 | v0.3.5        | 10.1.1            | 0.1.2  |       |
 | v0.4.0        | 10.1.1            | 0.1.3  |       |
-| vx.x.x        | 10.2.0            | 0.2.0  |       |
+| v0.5.0        | 10.2.0            | 0.2.0  | PyPSA-Eur tutorial: pypsa-to-gems-converter 0.0.2 |
 
 ## Versioning Policy
 
-- **GEMS Language / Documentation** — versioned together. The documentation release version (tracked in `doc/0_Home/4_release_notes.md`) is the canonical language version. Bumped whenever the language specification or documentation changes; a future distinction between language and documentation versions may be introduced.
+- **GEMS Language / Documentation** — versioned together. The documentation release version (tracked in `doc/home/release-notes.md`) is the canonical language version. Bumped whenever the language specification or documentation changes; a future distinction between language and documentation versions may be introduced.
 - **Antares-Simulator** — `antares_simulator_version` in `dependencies.json`. The version against which E2E tests are run.
 - **antares-modeler (GemsPy)** — the Antares GEMS interpreter version. Updated when interpreter-specific behavior changes.
 
@@ -30,7 +30,7 @@ This table maps documentation/language versions to the interpreter and library v
 
 | Library | Current Version |
 |---------|----------------|
-| `basic_models_library` | 1.0.0 |
+| `basic_models_library` | 1.0.1 |
 | `antares_legacy_models` | 2.2.1 |
 | `pypsa_models` | 2.0.1 |
 | `andromede_models` | 1.0.0 |
