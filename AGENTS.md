@@ -71,6 +71,8 @@ antares-<version>-Ubuntu-22.04/bin/antares-modeler
 
 The expected path is resolved in `tests/e2e_tests/env.py`.
 
+`tests/e2e_tests/test_pypsa_eur_tutorial.py` also requires **Docker**: it builds the PyPSA-Eur tutorial image (`doc/examples/notebooks/tutorial-two-pypsa-eur/docker-tuto-pypsa-gems/Dockerfile_PyPSA_GemsPy`) and executes the notebook inside it.
+
 ### Commands
 
 ```bash

@@ -99,7 +99,7 @@ Focus on the flows of all components:
 
 ???+ info "Key outputs variables in the Simulation Table"
 
-    The simulation outputs are saved in `output/simulation_table--<timestamp>.csv`. This table gives the key to understand the different output variables relevant to this example of unit commitment.
+    The simulation outputs are saved in `output/<timestamp>/simulation-table-0.csv`. This table gives the key to understand the different output variables relevant to this example of unit commitment.
 
     | Variable | Description |
     |----------|-------------|

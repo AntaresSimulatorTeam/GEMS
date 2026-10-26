@@ -49,6 +49,8 @@ For the design philosophy behind these capabilities, see [Key Principles](key-pr
 
     `Solving`
 
+    [:octicons-arrow-right-24: Integer strategy](../user-guide/input-files/system.md#integer-strategy)
+
 
 -   :material-swap-horizontal:{ .lg .middle } **Solver-agnostic by design**
 

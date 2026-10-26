@@ -80,7 +80,7 @@ The example study makes use of models provided by the [GEMS library](https://git
 
 Since this example performs the simulation over a single time step, the data-series folder does not contain any time-series data.
 
-Simulation options can be configured in the `parameters.yml` file. For more details on available simulation options, refer to the [following link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/user-guide/modeler/04-parameters.md).
+Simulation options can be configured in the `parameters.yml` file. For more details on available simulation options, refer to the [following link](https://github.com/AntaresSimulatorTeam/Antares_Simulator/blob/develop/docs/reference/modeler/04-parameters.md).
 
 ### Relations between library and system files
 
@@ -121,7 +121,7 @@ antares-modeler.exe <path-to-study>
 
 ## Outputs
 
-The results are available in the csv file `QSE_1_Adequacy/output/simulation_table--YYYYMMDD-HHMM.csv`
+The results are available in the csv file `QSE_1_Adequacy/output/YYYYMMDD-HHMM/simulation-table-0.csv`
 
 The simulation outputs contain the optimised value of optimisation problem variables, the status of all constraints and bounds, as well as user-defined extra output, as described on the [following page](../../user-guide/outputs/simulation-table.md).
 
