@@ -52,7 +52,7 @@ wheels = [
 
 [[package]]
 name = "antares-legacy-gems-converter"
-version = "0.4.0"
+version = "0.5.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "antares-craft" },
@@ -65,9 +65,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4c/17/5ce48f0f5585af20545776e611e1ea96913858dd323fc19d4627e2f3173e/antares_legacy_gems_converter-0.4.0.tar.gz", hash = "sha256:249df330545ffdd74ad9bdad8e1f0bbe45faea482ffe57edd70de091cfc0b89d", size = 37036, upload-time = "2026-10-05T14:52:50.584Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1f/2b/b87d851b8cc93a13475574ede078dc6d67eb8dbe8bef1214de708083df1f/antares_legacy_gems_converter-0.5.1.tar.gz", hash = "sha256:7244cf0a0df5ae8e0719b6735b044b8c91a6d4bf2cd7f634c9735c3487d758a6", size = 41302, upload-time = "2026-10-26T14:19:00.831Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ad/03/76375ea787901363b40f3fcd4d498fe4b7aacf25d6b44122744d49750c95/antares_legacy_gems_converter-0.4.0-py3-none-any.whl", hash = "sha256:bca79b0e17257a6d8d329b02fcaa535773b32365c747c5a54b2dd2bb6697dd82", size = 53672, upload-time = "2026-10-05T14:52:49.298Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/fc/f665096a4a6d6b03ec4bcaf01f4a2b21440801e16de274ce453a6054cde0/antares_legacy_gems_converter-0.5.1-py3-none-any.whl", hash = "sha256:143db3c89913672bc9f09729e18ef842449c20597292ed7ea7f7e8ae2d8310c5", size = 63998, upload-time = "2026-10-26T14:18:59.586Z" },
 ]
 
 [[package]]
@@ -863,7 +863,7 @@ dev = [
     { name = "yamllint", specifier = ">=1.35.1" },
 ]
 doc = [
-    { name = "antares-legacy-gems-converter", specifier = "==0.4.0" },
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
     { name = "gemspy", specifier = "==0.2.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mkdocs" },
