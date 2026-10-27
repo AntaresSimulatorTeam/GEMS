@@ -15,6 +15,7 @@ This section is a glossary of the main concepts used by GEMS. For a detailed spe
 | [Dataseries](../user-guide/input-files/data-series.md) | A table containing all the data through time. It is used by time/scenario dependent components|
 | [Taxonomy](../user-guide/input-files/taxonomy.md) | A file classifying component models into **categories**. Used to select which components contribute to a metric.|
 | [Catalog](../user-guide/input-files/catalog.md) | A file defining a set of end-use **Metrics** with their aggregation rules (terms, terms-operator, time-operator).|
+| [Calendar](../user-guide/input-files/calendar.md) | A CSV file mapping simulation time indices to real dates. Used to date the **Views**, and named by `scope.calendar` in the view configuration.|
 | [View Config](../user-guide/input-files/view-config.md) | Configure **views** by specifying scope (location, calendar), time aggregation, and the metrics from `catalog.yml` to compute.|
 
 ## Concepts
