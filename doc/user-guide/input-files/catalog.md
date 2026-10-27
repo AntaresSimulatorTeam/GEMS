@@ -7,7 +7,7 @@ GEMS lets users configure their own outputs. The outputs are defined by **Metric
 ???+ info "Links with `taxonomy.yml` and `view-config.yml`"
     Catalogs use the taxonomy categories defined in [a taxonomy file](taxonomy.md).
 
-    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/views.md). The `taxonomy` and `location.taxonomy-category` of each catalog listed in a [View Configuration file](view-config.md) must match the ones of this file, and all the metrics of the catalog are checked against the taxonomy, even the metrics the View does not select.
+    [`view-config.yml`](view-config.md) uses the metrics from catalogs to then produce [Views](../outputs/views.md). The `taxonomy` and `location.taxonomy-category` of each catalog used by the metrics of a [View Configuration file](view-config.md) must match the ones of that file.
 
 ## Structure of `catalog` files
 
@@ -19,7 +19,7 @@ The catalog file has a single root key `catalog`. Unknown keys under `catalog` a
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `catalog.id` | String | A unique identifier for the catalog. It must match the file name (`<id>.yml`) and must not contain a `.`.|
+| `catalog.id` | String | A unique identifier for the catalog, used by the [View Configuration files](view-config.md#catalogs-and-metrics) to reference its metrics. |
 | `catalog.taxonomy` | String | The `id` of the [taxonomy](taxonomy.md) this catalog uses.|
 | `catalog.location.taxonomy-category` | String | The [taxonomy category](taxonomy.md) whose components serve as location objects for the metrics (e.g. buses/areas, links, generators...).|
 
@@ -29,7 +29,7 @@ The catalog file has a single root key `catalog`. Unknown keys under `catalog` a
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | A unique identifier for the metric within the catalog. It must not contain a `.`. Only this `id` (without the catalog `id`) is written in the `metric_id` column of the Views: metrics of different catalogs used by the same View should therefore have different ids.|
+| `id` | String | A unique identifier for the metric within the catalog. Only this `id` (without the catalog `id`) is written in the `metric_id` column of the Views: metrics of different catalogs used by the same View should therefore have different ids.|
 | `terms` | List | List of [terms](#3-terms) contributing to the metric.|
 | `terms-operator` | String | How to combine values across contributing components of all terms (for a given location, breakdown value, time step and scenario): `sum` or `avg`.|
 | `time-operator` | String | How to aggregate values over time, up to the time granularity requested in the [View Configuration file](view-config.md#aggregation-patterns): `sum` or `avg`.|
@@ -54,7 +54,7 @@ Each term in `terms` selects a group of components defined by the `taxonomy` fil
 
 ## Example
 
-This example uses the taxonomy `my_taxonomy` defined in the [taxonomy page](taxonomy.md#example). The catalog file is named `catalog.yml`.
+This example uses the taxonomy `my_taxonomy` defined in the [taxonomy page](taxonomy.md#example).
 
 ```yaml
 catalog:
