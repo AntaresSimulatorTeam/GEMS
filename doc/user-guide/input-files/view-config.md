@@ -51,7 +51,7 @@ The View Configuration file has a single root key `view`. Unknown keys under `vi
 ???+ warning "Rules on aggregation patterns"
     Each combination of (`time-granularity`, `scenario`) can only be defined once, which gives at most 10 patterns per view.
 
-    Patterns sharing the same `time-granularity` are written in the same output file; the `scenario_aggregation` column of the [Views](../outputs/views.md) tells them apart. The pattern `id` is not written in the output.
+    Each pattern is written in its own [output file](../outputs/views.md#view-output-files), whose name contains the pattern `id`. The pattern `id` is not written in the rows of the file.
 
 ### Metrics
 
@@ -59,7 +59,7 @@ The View Configuration file has a single root key `view`. Unknown keys under `vi
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | List | List of at least one metric, each given by its `id` referenced as `<catalog_id>.<metric_id>`. The catalog is found by its `id` among the catalogs of the catalogs directory, and the metric must be defined in that [catalog](catalog.md).|
+| `metrics` | List | List of at least one metric, each given by its `id` referenced as `<catalog_id>.<metric_id>`. The catalog is found by its `id` among the catalogs of the catalogs directory, and the metric must be defined in that [catalog](catalog.md).|
 
 ## Example
 
