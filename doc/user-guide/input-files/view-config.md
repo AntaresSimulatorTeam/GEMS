@@ -11,6 +11,7 @@ The **View Configuration file** defines which [Views](../outputs/views.md) to pr
 
     Locations are selected thanks to [`taxonomy-category`](taxonomy.md) from the [Taxonomy file](taxonomy.md).
 
+    The dates of the Views come from the [Calendar file](calendar.md). It is not referenced in the View Configuration file: it is given separately to GEMS ViewsBuilder, and used for all the View Configuration files of the run.
 
 ## Structure of the View Configuration file
 
