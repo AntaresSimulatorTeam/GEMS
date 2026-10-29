@@ -11,16 +11,7 @@ The **View Configuration file** defines which [Views](../outputs/views.md) to pr
 
     Locations are selected thanks to [`taxonomy-category`](taxonomy.md) from the [Taxonomy file](taxonomy.md).
 
-    The Calendar file maps simulation time indices to real dates. Only the time steps listed in the calendar (with the same `block` as in the simulation table) are used to build the View. It is a comma-separated CSV file with a header row and exactly the following columns:
-
-    | Column in the Calendar file | Description |
-    |--------|-------------|
-    | `absolute_time_index` | Integer time index from the [simulation table](../outputs/simulation-table.md). Values must be contiguous and start at `0` (`0, 1, ..., N-1`). Each calendar row gives the date of the simulation table rows having the same `absolute_time_index`: the calendar must therefore follow the time indexing of the simulation table, and simulation time steps beyond the last calendar row are not used.|
-    | `block` | Time block index. It must match the `block` column of the simulation table. |
-    | `granular_date` | Real datetime, written `YYYY-MM-DD HH:MM:SS` (like `2025-01-01 00:00:00`). The time step between two consecutive rows must be constant. Dates in another format may not be recognized and make the building of Views fail with the error ``InvalidOperationError: sub operation not supported for dtypes `str` and `str` ``, which does not mention the calendar. Dates with a UTC offset (like `2025-01-01 00:00:00+01:00`) are converted to UTC, and periods (days, months, years) are then cut in UTC. |
-
-    ???+ warning "Calendar and simulation table must match"
-        If no time step of the calendar matches the simulation table (for example because of different `block` values), the View is still produced without error, but each metric on time-dependent outputs only has a single row with an empty `view_date` and `scenario_id` and a `0` value (an empty value with `avg`). Metrics on outputs that are not time-dependent keep their values, so the View can look partly correct.
+    The dates of the Views come from the [Calendar file](calendar.md). It is not referenced in the View Configuration file: it is given separately to GEMS ViewsBuilder, and used for all the View Configuration files of the run.
 
 ## Structure of the View Configuration file
 
