@@ -7,7 +7,6 @@ The **Calendar file** gives a real date to each time step of the [simulation tab
 
     - the file name is free, but its extension must be `.csv`;
     - a single Calendar file is used per run, for all the [View Configuration files](view-config.md) of the run;
-    - the View Configuration file does not reference the calendar (`scope.calendar` was removed in GVB v0.1.0).
 
 ## Columns
 
