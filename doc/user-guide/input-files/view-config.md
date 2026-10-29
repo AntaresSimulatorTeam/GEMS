@@ -11,7 +11,6 @@ The **View Configuration file** defines which [Views](../outputs/views.md) to pr
 
     Locations are selected thanks to [`taxonomy-category`](taxonomy.md) from the [Taxonomy file](taxonomy.md).
 
-    The [Calendar file](calendar.md), named by `scope.calendar`, maps the time indices of the simulation to real dates. Only the time steps listed in the calendar are used to build the View.
 
 ## Structure of the View Configuration file
 
