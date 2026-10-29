@@ -370,7 +370,7 @@ models:
 all, wraps around. Listing a constraint with `mode: cyclic` is therefore a way of making that
 choice explicit in the file.
 
-Two aspects are worth keeping in mind:
+Three aspects are worth keeping in mind:
 
 - **The boundary is the block's, not the horizon's.** In [`frontal`](#frontal) mode the block is
   the whole horizon, so wrapping links its last time step to its first. In the windowed modes
@@ -378,9 +378,13 @@ Two aspects are worth keeping in mind:
   reach real history instead of hitting its own boundary.
 - **`drop` removes constraint instances, not the constraint.** Only the affected time steps lose
   it. It applies per component, since a shift amount may be a parameter with a different value on
-  each component. For that reason, a dropped constraint's shift amounts and time-sum bounds must
-  be constants or parameter references, because a shift that depends on a variable cannot be
-  checked against the block boundary.
+  each component. For that reason, a dropped constraint's shift amounts must be constants or
+  parameter references, because a shift that depends on a variable cannot be checked against the
+  block boundary. Time-sum bounds follow the same rules in every mode: see
+  [Time summation (range)](../syntax.md#time-summation-range-sums-e-x).
+- **Absolute time-sum bounds always wrap.** `drop` only applies to time indices relative to `t`.
+  A time-sum bound without `t`, such as the `-1` in `sum(-1 .. 1, x)`, wraps around the block
+  whatever the mode: in a block of 168 time steps, that sum covers time steps 167, 0 and 1.
 
 Which mode to pick follows from what the constraint means:
 

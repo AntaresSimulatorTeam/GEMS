@@ -176,19 +176,39 @@ Denotes the sum of the time-dependent operand *X* over the entire optimization h
 
 ### **Time summation (range)** `sum(S .. E, X)`
 
-Sums the operand X from time *S* to time *E*.
+Sums the operand *X* from time *S* to time *E*, both included. *S* and *E* are evaluated as integers and follow the rules below.
 
-Here *S* and *E* can be either:
+1. **A bound is relative or absolute, and the two can be mixed.** A relative bound contains *t* (`t`, `t + k`, `t - k`). An absolute bound is an expression without *t*, read as a time index in the block. `sum(0 .. t, X)` mixes both, for a cumulative sum.
+2. **A bound is fixed in time and contains no variable.** An absolute bound must be time-independent itself. For a relative bound `t + k`, the offset `k` must be. Port fields are not allowed in bounds.
+3. **"Time-independent" refers to the model library, not to the data.** A parameter declared time-dependent in the library is rejected as a bound, even when its series is constant, and even when the component declares it `time-dependent: false`. A time-dependent parameter read at a fixed index, such as `d[0]`, is allowed.
+4. **Parameters used in bounds must declare `time-dependent: false`.** A parameter that omits `time-dependent` is time-dependent (see [Parameters](input-files/library.md#parameters)). So `d_min_up` in `sum(t - d_min_up + 1 .. t, nb_starting) <= nb_units_on` needs `time-dependent: false` in the library.
+5. **A bound may depend on the scenario.** The summed window then differs per scenario, and so does the sum.
+6. **A start after the end gives an empty sum.** `sum(S .. E, X)` with *S* > *E* is `0`, whatever the kind of bound.
+7. **Absolute bounds always wrap.** The `drop` mode of [`out-of-bounds-processing`](input-files/optimization-configuration.md#out-of-bounds-processing) only applies to time indices relative to *t*. A time-sum bound without *t* always wraps around the block, whatever the mode. In a block of 168 time steps, `sum(-1 .. 1, X)` sums time steps 167, 0 and 1.
+8. **The bounds decide whether the sum depends on time** (see [Time-Dependent Constraints vs. Aggregation](#time-dependent-constraints-vs-aggregation)):
+    - absolute `..` absolute: no. The window is the same at every *t*, so `sum(0 .. 2, x) <= 100` is a single constraint.
+    - relative `..` relative: only if the operand does. The window moves with *t* but keeps its length.
+    - mixed: yes. The number of terms changes with *t*.
 
-- A constant or parameter expression that resolves to a time index
-
-- A relative expression involving *t*. For example, `sum(t-3 .. t, X)` would sum *X* from 3 periods ago up to the current period *t*. Both *S* and *E* are evaluated as integers. This form allows moving window calculations (e.g., sum over a rolling horizon up to the current time)
+| Expression | Validity |
+|---|---|
+| `sum(t - 1 .. t, x)`, `sum(0 .. 2, x)`, `sum(0 .. t, x)` | Yes |
+| `sum(0 .. d[0], x)`, with `d` time-dependent | Yes, `d` is read at a fixed index |
+| `sum(t - k .. t, x)` or `sum(0 .. k, x)`, with `k` declared time-dependent or omitting the flag | No, even if `k`'s data is constant |
+| `sum(0 .. y, x)`, with `y` a variable | No |
+| `sum(0 .. d[t - 1], x)`, with `d` time-dependent | No, the bound moves with *t* |
 
 Using these time operators, advanced temporal constraints can be created. For example:
 
 ```yaml
-# Enforce that each period's production <= average of next 3 periods
+# Relative bounds: each period's production <= average of the next 3 periods
 expression: production[t] <= (1/3) * sum(t .. t+3, production)
+
+# Absolute bounds: total production over the first 24 time steps of the block
+expression: sum(0 .. 23, production) <= daily_quota
+
+# Mixed bounds: cumulative production since the start of the block
+expression: sum(0 .. t, production) <= cumulative_cap
 ```
 
 ## Constraints
@@ -212,6 +232,9 @@ If a constraint expression includes any time-indexed element (e.g. a time-depend
 | -----------  | ----------  |
 |`x[t] <= 100`| For each time-step apply constraint|
 |`sum(x) <= 100`| Single constraint over entire time horizon|
+|`sum(0 .. 2, x) <= 100`| Single constraint: absolute bounds give the same window at every *t*|
+|`sum(t - 2 .. t, x) <= 100`| For each time-step apply constraint: the window moves with *t*. With relative bounds on both sides, the sum depends on time only if its operand does|
+|`sum(0 .. t, x) <= 100`| For each time-step apply constraint: with mixed bounds, the number of terms changes with *t*|
 
 ## Objective Function
 

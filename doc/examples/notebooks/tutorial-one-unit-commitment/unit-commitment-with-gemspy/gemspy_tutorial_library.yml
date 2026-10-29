@@ -131,7 +131,9 @@ library:
         - id: startup_cost
         - id: fixed_cost
         - id: d_min_up
+          time-dependent: false
         - id: d_min_down
+          time-dependent: false
         - id: unit_count
         - id: spinning # in percentage, taken into account in p_max_cluster and p_max_unit (except when computing minimum generation)
       variables:
