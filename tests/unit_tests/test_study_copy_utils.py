@@ -96,6 +96,8 @@ def test_copy_model_library_installs_file(tmp_path: Path) -> None:
         tutorial_library_dir=repo_root / "resources",
         tutorial_investment_notebook_path=repo_root / "resources" / "invest.ipynb",
         tutorial_investment_doc_path=repo_root / "resources" / "invest",
+        tutorial_legacy_converter_notebook_path=repo_root / "resources" / "legacy.ipynb",
+        tutorial_legacy_converter_dir=repo_root / "resources" / "legacy",
         antares_root=repo_root / "antares",
         antares_solver_bin=repo_root / "antares" / "bin" / "antares-solver",
         antares_modeler_bin=repo_root / "antares" / "bin" / "antares-modeler",
