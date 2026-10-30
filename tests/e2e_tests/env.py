@@ -28,6 +28,7 @@ class EnvironmentPaths:
     tutorial_investment_doc_path: Path
 
     tutorial_legacy_converter_notebook_path: Path
+    tutorial_legacy_converter_dir: Path
 
     antares_root: Path
     antares_solver_bin: Path
@@ -98,13 +99,11 @@ def get_paths() -> EnvironmentPaths:
         / "tutorial_invest"
     )
 
+    tutorial_legacy_converter_dir = (
+        repo_root / "doc" / "examples" / "notebooks" / "tutorial-four-antares-legacy"
+    )
     tutorial_legacy_converter_notebook_path = (
-        repo_root
-        / "doc"
-        / "examples"
-        / "notebooks"
-        / "tutorial-four-antares-legacy"
-        / "tutorial-antares-legacy.ipynb"
+        tutorial_legacy_converter_dir / "tutorial-antares-legacy.ipynb"
     )
 
     antares_version = _read_antares_version(repo_root)
@@ -125,6 +124,7 @@ def get_paths() -> EnvironmentPaths:
         tutorial_investment_notebook_path=tutorial_investment_notebook_path,
         tutorial_investment_doc_path=tutorial_investment_doc_path,
         tutorial_legacy_converter_notebook_path=tutorial_legacy_converter_notebook_path,
+        tutorial_legacy_converter_dir=tutorial_legacy_converter_dir,
         antares_root=antares_root,
         antares_solver_bin=antares_solver_bin,
         antares_modeler_bin=antares_modeler_bin,
