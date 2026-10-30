@@ -6,6 +6,7 @@ dependencies = []
 
 [dependency-groups]
 test = [
+    "antares-legacy-gems-converter==0.5.1",
     "gemspy==0.2.0",
     "matplotlib>=3.10.9",
     "pandas>=2.2.3",

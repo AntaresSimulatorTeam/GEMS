@@ -814,6 +814,7 @@ source = { virtual = "." }
 
 [package.dev-dependencies]
 dev = [
+    { name = "antares-legacy-gems-converter" },
     { name = "gemspy" },
     { name = "matplotlib" },
     { name = "mypy" },
@@ -841,6 +842,7 @@ doc = [
     { name = "pypsa-to-gems-converter" },
 ]
 test = [
+    { name = "antares-legacy-gems-converter" },
     { name = "gemspy" },
     { name = "matplotlib" },
     { name = "pandas" },
@@ -854,6 +856,7 @@ test = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
     { name = "gemspy", specifier = "==0.2.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
@@ -881,6 +884,7 @@ doc = [
     { name = "pypsa-to-gems-converter", specifier = "==0.0.2" },
 ]
 test = [
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
     { name = "gemspy", specifier = "==0.2.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
