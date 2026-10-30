@@ -1,6 +1,16 @@
 
 # Release Notes
 
+## v0.6.0 | *28-10-2026*
+
+### Changed
+
+* Align the taxonomy, catalog, view config and Views output documentation with GEMS ViewsBuilder v0.1.0 ([#263](https://github.com/AntaresSimulatorTeam/GEMS/pull/263)):
+    * View Configuration: `spatial-filter` is renamed `location-filter`; the `catalogs` list and `scope.calendar` are removed, and catalogs are now found by their `id` from `metrics` (`<catalog_id>.<metric_id>`)
+    * Views output: one file per aggregation pattern, named `<view_id>--<pattern_id>--<timestamp>`; several View Configuration files can be processed in the same run
+    * Taxonomy: categories now take separate `port-field-definitions`, `constraints` and `binding-constraints` keys, and models declaring a category must comply with it
+    * Catalog: the catalog `id` no longer needs to match the file name
+
 ## v0.5.0 | *14-10-2026*
 
 ### Added

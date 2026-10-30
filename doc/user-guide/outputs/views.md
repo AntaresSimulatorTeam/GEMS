@@ -14,9 +14,9 @@
 
 ## View output files
 
-One [View Configuration file](../input-files/view-config.md) produces one timestamped file per `time-granularity` used in its [aggregation patterns](../input-files/view-config.md#aggregation-patterns). Views are written as Parquet or CSV files.
+One [View Configuration file](../input-files/view-config.md) produces one timestamped file per [aggregation pattern](../input-files/view-config.md#aggregation-patterns). Views are written as Parquet or CSV files, in the output directory, and are named `<view_id>--<pattern_id>--<timestamp>.parquet` (or `.csv`), where `<view_id>` is the `id` of the View Configuration file, `<pattern_id>` the `id` of the pattern and `<timestamp>` the UTC time of the run, written `YYYYMMDDTHHMMSS` (e.g. `view_area--hourly--20261027T143000.parquet`). All the files of a run share the same timestamp.
 
-Patterns sharing the same `time-granularity` (at most two: one with `scenario: false`, one with `scenario: true`) are written in the same file: the `scenario_aggregation` column tells them apart. With a [`spatial-filter`](../input-files/view-config.md#aggregation-patterns), these two patterns can cover different locations.
+When several View Configuration files are processed in the same run, each one produces its own files.
 
 ???+ info "CSV files"
     CSV files use a comma separator and a header row. An empty field is a missing value (e.g. the `scenario_id` of the statistics rows). Booleans are written `true`/`false` and dates in ISO 8601 format (e.g. `2025-01-01T04:00:00.000000`, followed by `+0000` when the calendar dates have a UTC offset). Values containing a comma, such as most `breakdown_properties`, are double-quoted.
@@ -49,7 +49,7 @@ Statistics across scenarios are computed on the time-aggregated values: for a ye
 
 These rows are extracts of the Views produced by the [View Configuration file example](../input-files/view-config.md#example), with the [taxonomy](../input-files/taxonomy.md#example) and [catalog](../input-files/catalog.md#example) examples. The system has a single area `area_fr` with the property `country: France`, two nuclear and two gas generators and a load. It is simulated over 30 hourly time steps from `2025-01-01 00:00:00`, with 10 scenarios: the yearly values therefore cover these 30 hours only. Values are rounded, and columns are shown in a fixed order for readability.
 
-Extract of the hourly file (pattern `hourly`, one value per scenario):
+Extract of the file `view_area--hourly--<timestamp>` (pattern `hourly`, one value per scenario):
 
 | metric_id | metric_location | breakdown_properties | view_date | scenario_id | metric_value | scenario_aggregation | scenario_stat |
 |---|---|---|---|---|---|---|---|
@@ -59,7 +59,7 @@ Extract of the hourly file (pattern `hourly`, one value per scenario):
 | PRODUCTION_BY_TECH_AND_COMPANY | area_fr | {(technology,nuclear),(company,britishnuke)} | 2025-01-01 04:00:00 | 0 | 187.15 | false | |
 | PRODUCTION_BY_TECH_AND_COMPANY | area_fr | {(technology,nuclear),(company,rhonepower)} | 2025-01-01 04:00:00 | 0 | 250.0 | false | |
 
-Extract of the yearly file (pattern `yearly_stats`, statistics across scenarios):
+Extract of the file `view_area--yearly_stats--<timestamp>` (pattern `yearly_stats`, statistics across scenarios):
 
 | metric_id | metric_location | breakdown_properties | view_date | scenario_id | metric_value | scenario_aggregation | scenario_stat |
 |---|---|---|---|---|---|---|---|

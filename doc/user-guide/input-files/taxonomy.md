@@ -1,6 +1,6 @@
 # Taxonomy
 
-The **Taxonomy** defines a shared classification of GEMS models. It is used to organize models by users' needs. If a [model](library.md#models) in a [library](library.md) declares a `taxonomy-category` (for example `production` or `balance`), it should then comply with the expected parameters, variables, constraints, properties, ports and extra-outputs of its category. On the contrary, additional features in the model (not declared in the taxonomy-category) are allowed.
+The **Taxonomy** defines a shared classification of GEMS models. It is used to organize models by users' needs. If a [model](library.md#models) in a [library](library.md) declares a `taxonomy-category` (for example `production` or `balance`), it must then comply with the expected parameters, variables, ports, port-field-definitions, constraints, binding-constraints, extra-outputs and properties of its category. On the contrary, additional features in the model (not declared in the taxonomy-category) are allowed.
 
 This classification is "transparent" and doesn't impact the optimization solution: it is only used for the building of Views and to standardize graphical interfaces.
 
@@ -33,7 +33,9 @@ Each category lists the elements expected from the models declaring it. Each ele
 | `variables` | List | *(Optional)* The [variables](library.md#variables) that models in this category must declare.|
 | `parameters` | List | *(Optional)* The [parameters](library.md#parameters) that models in this category must declare.|
 | `ports` | List | *(Optional)* The [ports](library.md#ports) on which metrics can be located for this category. It has to be the same port names as declared in the [library](library.md) [models](library.md#models).|
-| `constraints` | List | *(Optional)* The [constraints](library.md#constraints) and [binding-constraints](library.md#binding-constraints) that models in this category must declare. Both are listed under `constraints`: a category has no `binding-constraints` key (the `balance` binding-constraint of the example below is listed this way).|
+| `port-field-definitions` | List | *(Optional)* The [port-field-definitions](library.md#port-field-definition) that models in this category must declare, each given as `<port>.<field>` (e.g. `- id: balance_port.flow`).|
+| `constraints` | List | *(Optional)* The [constraints](library.md#constraints) that models in this category must declare.|
+| `binding-constraints` | List | *(Optional)* The [binding-constraints](library.md#binding-constraints) that models in this category must declare.|
 | `extra-outputs` | List | *(Optional)* The [extra-outputs](library.md#extra-output) that models in this category must declare.|
 | `properties` | List | *(Optional)* The [properties](library.md#properties) that models in this category must declare. They can be used by catalogs to [filter or break down](catalog.md#2-metrics-definition) metrics.|
 
@@ -60,7 +62,7 @@ taxonomy:
         - id: spillage
       ports:
         - id: balance_port
-      constraints:
+      binding-constraints:
         - id: balance
       parameters:
         - id: unsupplied_energy_cost
@@ -74,6 +76,8 @@ taxonomy:
         - id: generation
       ports:
         - id: balance_port
+      port-field-definitions:
+        - id: balance_port.flow
       properties:
         - id: company
         - id: technology

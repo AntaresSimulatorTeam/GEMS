@@ -26,7 +26,7 @@ flowchart LR
     Data1["📊 data-series_1.csv"]
     Data2["📊 data-series_2.csv"]
     Scenario["📄 modeler-scenariobuilder.dat 🔗"]
-    Calendar["📊 calendar_file.csv"]
+    Calendar["📊 calendar_file.csv 🔗"]
     Taxonomy["📊 taxonomy.yml 🔗"]
     Views_Configuration["📊views_config.yml 🔗"]
     
@@ -72,6 +72,7 @@ flowchart LR
     click Params "../solver-optimization/"
     click Catalogs "../catalog/"
     click Taxonomy "../taxonomy/"
+    click Calendar "../calendar/"
     click Views_Configuration "../views-config/"
 ```
 
