@@ -30,9 +30,9 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
     0,bus_1,balance,0,0,0,None,Fixed value
     ```
 
-## Detailed of the structure
+## Storage structure details
 
-To explore in depth the details of the structure of the simulation table, please see directly the dedicated documentation of the main GEMS interpreters :
+To explore in depth the details of the storage structure of the simulation tables (Parquet files), please see directly the dedicated documentation of the main GEMS interpreters :
 
 * Simulation Table exported by [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/reference/modeler/03-outputs/#simulation-table)
 
