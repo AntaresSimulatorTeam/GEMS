@@ -23,7 +23,7 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
 |`basis_status`| The status in the solver basis for this variable or constraint. Possible values are, *Free*, *At lower bound*, *At upper bound*, *Fixed value*, *Basic*, *None (not available or not applicable)*|
 
 ??? note "Example of a simulation table"
-    To illustrate, here are a couple of rows from a simulation table:
+    Here are a couple of rows from a simulation table:
     ```csv
     block,component,output,absolute_time_index,block_time_index,scenario_index,value,basis_status
     0,generator1,generation,0,0,0,80,Basic
