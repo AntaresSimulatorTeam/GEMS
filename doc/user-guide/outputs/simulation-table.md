@@ -16,9 +16,9 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
 | `block`| The time block index, starting at 0 (if the simulation was run in chunks or rolling horizon blocks; otherwise 0 for the whole horizon).|
 | `component` | The component `id` to which this result pertains. Currently, all variables and constraints from all components are exported.|
 |`output`| The name of the output within that component. Typically this is the `id` of a decision variable, constraint identifiers and extra outputs with their values or status.|
-|`absolute_time_index`|The time step index (0-indexed) from the start of the simulation period. For example, 0 = first hour, 23 = 24th hour, etc. This is the same indexing as input data series files (first row = time step 0).|
-|`block_time_index`| The time index within the current block, starting at 0 (if using multi-block simulation). In a single-block (full horizon) run, this will be the same as the absolute index|
-|`scenario_index`| The scenario number for this entry. If multiple Monte Carlo scenarios were run, this distinguishes them.|
+|`absolute_time_index`|The time step index (0-indexed) from the start of the simulation period. For example, 0 = first hour, 23 = 24th hour, etc. This is the same indexing as input data series files (first row = time step 0). Empty/null for outputs that do not depend on time (e.g. investment variables).|
+|`block_time_index`| The time index within the current block, starting at 0 (if using multi-block simulation). In a single-block (full horizon) run, this will be the same as the absolute index. Empty/null for outputs that do not depend on time.|
+|`scenario_index`| The scenario number for this entry (0-indexed). If multiple Monte Carlo scenarios were run, this distinguishes them. Empty/null for outputs that do not depend on the scenario.|
 |`value`|The value of the output (variable). None for constraints.|
 |`basis_status`| The status in the solver basis for this variable or constraint. Possible values are, *Free*, *At lower bound*, *At upper bound*, *Fixed value*, *Basic*, *None (not available or not applicable)*|
 
