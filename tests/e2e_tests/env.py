@@ -19,6 +19,7 @@ class EnvironmentPaths:
     thermal_cluster_studies_path: Path
     sts_studies_path: Path
     doc_examples_path: Path
+    hybrid_doc_examples_path: Path
     pypsa_eur_tutorial_path: Path
     tutorial_doc_examples_path: Path
     tutorial_notebook_path: Path
@@ -54,6 +55,7 @@ def get_paths() -> EnvironmentPaths:
     sts_studies_path = studies_folder / "test_sts"
 
     doc_examples_path = repo_root / "resources" / "Documentation_Examples" / "QSE"
+    hybrid_doc_examples_path = repo_root / "resources" / "Documentation_Examples"
     pypsa_eur_tutorial_path = (
         repo_root / "doc" / "examples" / "notebooks" / "tutorial-two-pypsa-eur"
     )
@@ -107,6 +109,7 @@ def get_paths() -> EnvironmentPaths:
         thermal_cluster_studies_path=thermal_cluster_studies_path,
         sts_studies_path=sts_studies_path,
         doc_examples_path=doc_examples_path,
+        hybrid_doc_examples_path=hybrid_doc_examples_path,
         pypsa_eur_tutorial_path=pypsa_eur_tutorial_path,
         tutorial_doc_examples_path=tutorial_doc_examples_path,
         tutorial_notebook_path=tutorial_notebook_path,
