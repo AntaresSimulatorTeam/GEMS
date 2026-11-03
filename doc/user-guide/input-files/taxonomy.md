@@ -12,8 +12,8 @@ This classification is "transparent" and doesn't impact the optimization solutio
 ???+ warning "Every model used in the system needs a `taxonomy-category`"
     To build Views, each component of the [system](system.md) is attached to the `taxonomy-category` of its model. Models without a `taxonomy-category` cannot be used to build Views.
 
-???+ warning note "Conformance Check (since GemsPy v0.3.0)"
-    Since the GemsPy v0.3.0, when a study is loaded, a conformance check is realized in order to verify the `taxonomy-category`, mentionned by models inside the [library](library.md),against the taxonomy. The study load fails in case of discordancy.
+???+ warning "Conformance Check (since GemsPy v0.3.0)"
+    Since GemsPy v0.3.0, when a study is loaded, every [library](library.md) declaring a `taxonomy` key is checked against the taxonomy read from the `input/taxonomy.yml` file of the study: each model of the library must comply with its `taxonomy-category`. Loading the study fails if `input/taxonomy.yml` is missing, if its `id` differs from the `taxonomy` declared by the library, or if a model does not comply with its category. Libraries without a `taxonomy` key are not checked.
 
 ## Key elements in taxonomy file
 

@@ -58,7 +58,7 @@ library:
 | `id`| String | A unique identifier for the library. This `id` is used by [system files](system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
-| `taxonomy` | String | *(Optional)* The `id` of the [taxonomy](taxonomy.md) whose categories the models of this library declare in their [`taxonomy-category`](#taxonomy). See [Conformance check](taxonomy.md#conformance-check).|
+| `taxonomy` | String | *(Optional)* The `id` of the [taxonomy](taxonomy.md) whose categories the models of this library declare in their [`taxonomy-category`](#taxonomy). The models are then checked against this taxonomy (see [Taxonomy](taxonomy.md)).|
 
 ### Port Types
 
@@ -191,9 +191,10 @@ Together, these flags define how the parameter can be provided - as a single val
 !!! warning "Declare constant parameters explicitly"
     An omitted flag means `true`, so a parameter that must be constant has to declare
     `time-dependent: false` (and `scenario-dependent: false` if needed). This is the case for a
-    parameter used as a bound of a [time sum](../syntax.md#time-summation-range-sums-e-x), as the
-    bound of a time- or scenario-independent variable, or in an objective contribution without
-    `sum` or `expec`. A component can still give a time- and scenario-dependent parameter a
+    parameter used as a bound of a [time sum](../syntax.md#time-summation-range-sums-e-x), as a
+    time-shift amount, as the bound of a time- or scenario-independent variable, in an objective
+    contribution without `sum` or `expec`, or by a
+    [heuristic](optimization-configuration.md#models). A component can still give a time- and scenario-dependent parameter a
     constant value in the [system file](system.md#parameters).
 
 #### Variables

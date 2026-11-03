@@ -625,6 +625,8 @@ The bounds written by a heuristic can be read in extra outputs with the
       last-time-step: 8759
 
     scenario-scope:
+      include:
+        - "0-9"
       exclude:
         - 7                              # scenario 7 dropped for this run
 
