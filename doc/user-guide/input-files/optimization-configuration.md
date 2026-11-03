@@ -89,8 +89,8 @@ time-scope:
   last-time-step: 167     # 168 time steps: one week at hourly resolution
 ```
 
-The range must be covered by the [data series](data-series.md) feeding every time-dependent
-parameter of the study.
+`first-time-step` must not be greater than `last-time-step`. The range must be covered by the
+[data series](data-series.md) feeding every time-dependent parameter of the study.
 
 ---
 
