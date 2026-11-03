@@ -30,6 +30,12 @@ In [hybrid studies](../../interoperability/hybrid/outputs.md), one file is writt
 
 With the `--parquet` option of `antares-modeler` or `antares-solver`, the simulation tables are written in Parquet format instead of CSV, with the same names and the `.parquet` extension (e.g. `simulation-table-0.parquet`).
 
+## Simulation Table exported by [GemsPy](../../overview/gems-interpreters/gemspy.md)
+
+From v0.3.0, the `gemspy` command writes the **Simulation Table** to a new folder for each run, `output/<run_id>/simulation_table/`, as the problems are solved. The folder holds one file per Monte-Carlo scenario (e.g. `scenario-0.parquet`), a `scenario-common` file for the rows shared by all scenarios, if any, and a `manifest.json` file written last. A folder without `manifest.json` comes from a run that failed or was interrupted.
+
+The files are written in Parquet format (zstd-compressed) by default; use `--output-format csv` to write CSV files instead. Benders decomposition runs write no simulation table. See the [GemsPy documentation](https://gemspy.readthedocs.io/en/latest/user-guide/outputs/) for how to read the table back from Python.
+
 **Example:** To illustrate, here are a couple of rows from a simulation table:
 
 ```csv
