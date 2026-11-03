@@ -89,8 +89,10 @@ time-scope:
   last-time-step: 167     # 168 time steps: one week at hourly resolution
 ```
 
-`first-time-step` must not be greater than `last-time-step`. The range must be covered by the
-[data series](data-series.md) feeding every time-dependent parameter of the study.
+!!! info "Rules"
+    - `first-time-step` must not be greater than `last-time-step`.
+    - The range must be covered by the [data series](data-series.md) feeding every
+      time-dependent parameter of the study.
 
 ---
 
@@ -132,6 +134,7 @@ This simulates scenarios 0 to 19 and 49 to 59, minus 9 and 14, so 30 scenarios i
 !!! info "Rules"
     - All indices must be greater than or equal to `0`.
     - Duplicates are removed and the resulting set is sorted in ascending order.
+    - The resulting set must not be empty: it must select at least one scenario once `exclude` is applied.
     - An `exclude` entry that is not in the base set is ignored, with a warning.
     - `exclude` cannot be used on its own: it requires `include`.
     - When `scenario-scope` is omitted, scenario `0` alone is simulated.
