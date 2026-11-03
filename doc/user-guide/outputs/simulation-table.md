@@ -30,17 +30,11 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
     0,bus_1,balance,0,0,0,None,Fixed value
     ```
 
-## Simulation Table exported by [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md)
+## Detailed of the structure
 
-[Antares Simulator](../../overview/gems-interpreters/antares-simulator.md) exports the **Simulation Table** as .csv files by default. Each run writes to its own timestamped folder of the study's output directory, with one file per Monte-Carlo scenario, named `simulation-table-{scenario}.csv`: for instance `output/20251223-1015/simulation-table-0.csv` for scenario 0.
+To explore in depth the details of the structure of the simulation table, please see directly the dedicated documentation of the main GEMS interpreters :
 
-In [hybrid studies](../../interoperability/hybrid/outputs.md), one file is written per Monte-Carlo year and per resolution stage, named `simulation-table-{year}-{stage}.csv` (e.g. `simulation-table-0-optim-nb-1.csv`).
+* Simulation Table exported by [Antares Simulator](https://antares-simulator.readthedocs.io/en/latest/reference/modeler/03-outputs/#simulation-table)
 
-With the `--parquet` option of `antares-modeler` or `antares-solver`, the simulation tables are written in Parquet format instead of CSV, with the same names and the `.parquet` extension (e.g. `simulation-table-0.parquet`).
-
-## Simulation Table exported by [GemsPy](../../overview/gems-interpreters/gemspy.md)
-
-From v0.3.0, the `gemspy` command writes the **Simulation Table** to a new folder for each run, `output/<run_id>/simulation_table/`, as the problems are solved. The folder holds one file per Monte-Carlo scenario (e.g. `scenario-0.parquet`), a `scenario-common` file for the rows shared by all scenarios, if any, and a `manifest.json` file written last. A folder without `manifest.json` comes from a run that failed or was interrupted.
-
-The files are written in Parquet format (zstd-compressed) by default; use `--output-format csv` to write CSV files instead. Benders decomposition runs write no simulation table. See the [GemsPy documentation](https://gemspy.readthedocs.io/en/latest/user-guide/outputs/) for how to read the table back from Python.
+* Simulation Table exported by [GemsPy](https://gemspy.readthedocs.io/en/latest/user-guide/outputs/)
 
