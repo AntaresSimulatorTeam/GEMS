@@ -22,6 +22,14 @@ from the solved [optimization problem](./optimization-problem-files.md). It esse
 |`value`|The value of the output (variable). None for constraints.|
 |`basis_status`| The status in the solver basis for this variable or constraint. Possible values are, *Free*, *At lower bound*, *At upper bound*, *Fixed value*, *Basic*, *None (not available or not applicable)*|
 
+??? note "Example of a simulation table"
+    To illustrate, here are a couple of rows from a simulation table:
+    ```csv
+    block,component,output,absolute_time_index,block_time_index,scenario_index,value,basis_status
+    0,generator1,generation,0,0,0,80,Basic
+    0,bus_1,balance,0,0,0,None,Fixed value
+    ```
+
 ## Simulation Table exported by [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md)
 
 [Antares Simulator](../../overview/gems-interpreters/antares-simulator.md) exports the **Simulation Table** as .csv files by default. Each run writes to its own timestamped folder of the study's output directory, with one file per Monte-Carlo scenario, named `simulation-table-{scenario}.csv`: for instance `output/20251223-1015/simulation-table-0.csv` for scenario 0.
@@ -35,12 +43,4 @@ With the `--parquet` option of `antares-modeler` or `antares-solver`, the simula
 From v0.3.0, the `gemspy` command writes the **Simulation Table** to a new folder for each run, `output/<run_id>/simulation_table/`, as the problems are solved. The folder holds one file per Monte-Carlo scenario (e.g. `scenario-0.parquet`), a `scenario-common` file for the rows shared by all scenarios, if any, and a `manifest.json` file written last. A folder without `manifest.json` comes from a run that failed or was interrupted.
 
 The files are written in Parquet format (zstd-compressed) by default; use `--output-format csv` to write CSV files instead. Benders decomposition runs write no simulation table. See the [GemsPy documentation](https://gemspy.readthedocs.io/en/latest/user-guide/outputs/) for how to read the table back from Python.
-
-**Example:** To illustrate, here are a couple of rows from a simulation table:
-
-```csv
-block,component,output,absolute_time_index,block_time_index,scenario_index,value,basis_status
-0,generator1,generation,0,0,0,80,Basic
-0,bus_1,balance,0,0,0,None,Fixed value
-```
 
