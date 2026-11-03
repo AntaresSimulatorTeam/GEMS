@@ -833,7 +833,7 @@ test = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "gemspy", specifier = "==0.2.0" },
+    { name = "gemspy", specifier = "==0.3.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pandas", specifier = ">=2.2.3" },
@@ -847,7 +847,7 @@ dev = [
     { name = "yamllint", specifier = ">=1.35.1" },
 ]
 doc = [
-    { name = "gemspy", specifier = "==0.2.0" },
+    { name = "gemspy", specifier = "==0.3.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mkdocs" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
@@ -859,7 +859,7 @@ doc = [
     { name = "pypsa-to-gems-converter", specifier = "==0.0.2" },
 ]
 test = [
-    { name = "gemspy", specifier = "==0.2.0" },
+    { name = "gemspy", specifier = "==0.3.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pypsa" },
@@ -870,7 +870,7 @@ test = [
 
 [[package]]
 name = "gemspy"
-version = "0.2.0"
+version = "0.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "antlr4-python3-runtime" },
@@ -881,13 +881,14 @@ dependencies = [
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "pandas" },
+    { name = "pyarrow" },
     { name = "pydantic" },
     { name = "pyyaml" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9c/6c/233bc4095f2f6c706a01d2cbc51789862aad8fdf66789156b9c78b5a67e4/gemspy-0.2.0.tar.gz", hash = "sha256:c64a8abc6ce27ad8c8fa24ccb178f66a97c4367f7253936b4f4498c2641fac9e", size = 102784, upload-time = "2026-08-24T10:05:57.811Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/35/a7/ce19623452136264adc004bdf343a1795b550907387e1c4b8876a20030d5/gemspy-0.3.0.tar.gz", hash = "sha256:576fcf7a63bfd684b85dd9d3eeb67629944783957015e5afed0a83403290ed61", size = 122707, upload-time = "2026-10-30T09:01:41.127Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/78/66/c71e92b95ccc10bcdedd7c409a8939c2dece7100f5536bae1fe984221bf3/gemspy-0.2.0-py3-none-any.whl", hash = "sha256:6699f86bfb25fa9e256e4d2d5daf7bc335e921f191eca3c398482eb5e90b44e1", size = 134372, upload-time = "2026-08-24T10:05:56.612Z" },
+    { url = "https://files.pythonhosted.org/packages/d2/78/e4a8596884e3768c7f91716dbe404ad6e2a7c3d551cab58beaf055c71b89/gemspy-0.3.0-py3-none-any.whl", hash = "sha256:4143e56ec648dc415dfb66bc9dd8b3dcf5d1beba090a9217bd855b83279c06a6", size = 158555, upload-time = "2026-10-30T09:01:39.622Z" },
 ]
 
 [[package]]
