@@ -24,7 +24,7 @@ def test_doc_hybrid_study(
         study_name=study_name,
         source_dir=paths.hybrid_doc_examples_path,
         tmp_root=tmp_root,
-        preserve_symlinks=True,  # the study library is a symlink to libraries/
+        preserve_symlinks=False,
     )
     copy_model_library(paths, study_path, library_filename)
     # Drop outputs from local runs, so that the objective is read from this run
