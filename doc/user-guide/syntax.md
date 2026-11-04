@@ -208,10 +208,36 @@ each zone or HVDC link is a weight indexed by the local set `cnec`:
 The library lists no zone, no link and no CNEC count. Zones and links are the domain's connections
 in the system file, and the PTDFs are their weights.
 
-**Not covered by this proposal:**
+#### Open questions
 
-- weights on the emitter side (for example distribution keys);
-- one decision variable per connection.
+The choices above are provisional. Feedback is welcome on the following points in particular.
+
+1. **How a weight is named and written.** This page proposes a *weighted view* of a field
+   (`sum_connections(zones.ptdf_flow)`), which keeps the grammar unchanged. The alternative is a
+   named connection parameter combined with the field inside the sum
+   (`sum_connections(zones.ptdf * zones.flow)`). It is more general (products of weights, a weight
+   applied to several fields), but needs a grammar change and per-term linearity rules.
+2. **Sharing one weight between several fields** (the optional `weight` key). This is useful, for
+   example, for one participation factor applied to upward and downward reserve. Is it worth the
+   extra key?
+3. **Default values.** The proposal requires a value on every connection, so that a forgotten weight
+   is an error. Should a weighted field be allowed to declare a default (for example `0` or `1`)
+   instead?
+4. **Data layouts and keys.**
+   - Should both layouts (per connection and per-port table) be kept?
+   - Should the key column be named after the port, or have a fixed name such as `connection`?
+   - Should connection keys default to the id of the remote component, or should every weighted
+     connection carry an explicit `id`?
+5. **Weights on the emitter side.** A model would send a differently weighted value on each of its
+   connections, for example a national load spread over nodes with distribution keys. Should this be
+   part of the proposal? It would need its own rules, since such a weight crosses the port.
+6. **One decision variable or constraint per connection.** An example is an aggregator owning a
+   variable for each connected site, which weights cannot express. One possible later extension
+   makes the connections of a port a set of the model that owns it. Should weighted fields be
+   specified from the start as shorthand for that, so the two cannot diverge?
+7. **Sign and orientation.** A weight applies to the field emitted by the port the receiver is wired
+   to; for a link, wiring to `in_port` instead of `out_port` flips the sign. Is a documented
+   convention enough, or are dedicated port types needed?
 
 ## Time Operators and Indexing
 

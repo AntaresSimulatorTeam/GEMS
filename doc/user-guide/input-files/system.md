@@ -160,7 +160,8 @@ If a model additionally defines [**port-field-definitions**](library.md#port-fie
     Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
 
 When a port declares [weighted fields](library.md#weighted-fields), each of its connections must be
-given a value for each declared weight, in one of two ways.
+given a value for each declared weight, in one of two ways. Whether to keep both layouts is
+[open question 4](../syntax.md#open-questions).
 
 **On the connection entry.** This suits a few hand-written connections, such as the terms of a
 binding constraint. Entries follow the rules of [component parameters](#parameters), with `weight`
@@ -195,7 +196,7 @@ Validation rules:
   `component2`. If both ports of a connection declare a weight with the same id, the entry adds
   `component: <id>` to name the owner.
 - Each connection of the port gets **exactly one value per weight**, from exactly one of the two
-  layouts. There is no default value.
+  layouts. There is no default value ([open question 3](../syntax.md#open-questions)).
 - Giving a weight that the port does not declare is an error.
 - The keys of a connection-weight table must be exactly the connection keys of the port. A
   connection `id` is required when the same component is connected twice to that port.

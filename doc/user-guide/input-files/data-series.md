@@ -49,7 +49,8 @@ columns in order:
 
 1. one column per set in `indexed-by` (requires the
    [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207));
-2. one column named after the **port**, holding the connection keys;
+2. one column named after the **port**, holding the connection keys (naming is
+   [open question 4](../syntax.md#open-questions));
 3. `time`, if the weight is time-dependent;
 4. `scenario`, if the weight is scenario-dependent;
 5. `value`.
