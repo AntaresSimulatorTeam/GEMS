@@ -54,7 +54,7 @@ The system file describes the energy system to be simulated. Each component defi
 |`scenario-group`| String | *(Optional)* The `id` of the scenario group this component belongs to. Used to map Monte Carlo scenarios to data series columns via the [scenario builder](scenario-builder.md).|
 |`parameters`| List | *(Optional)* Collection of values assigned to the model’s parameters. All [parameters defined by the model](library.md#parameters) must be assigned a value.|
 |`integer-strategy`| Mapping | *(Optional)* How the integer and binary variables of this component are built: kept integer (default), relaxed to continuous, or relaxed and refined by a heuristic. See [Integer strategy](#integer-strategy).|
-|`connection-weights`| List | *(Optional; [proposed](#connection-weights))* Values of one weight of one of this component's ports, for all its connections, given as one table.|
+|`weights`| List | *(Optional; [proposed](#connection-weights))* Weights of this component's ports, each as one table for all the port's connections.|
 
 ### Parameters
 
@@ -145,8 +145,8 @@ A list of connections between component ports. Each connection entry defines a l
 | `component2` | String | The `id` of the second component being connected.|
 |`port1`| String | The port `id` on `component1`.|
 |`port2`| String | The port `id` on `component2`.|
-|`id`| String | *(Optional; [proposed](#connection-weights))* Key of the connection in [connection-weight tables](data-series.md#connection-weight-tables-proposed). For each port of the connection, it defaults to the `id` of the component at the other end. Must follow the [naming rules](library.md#rules-for-id-naming).|
-|`weights`| List | *(Optional; [proposed](#connection-weights))* Values of the weights declared by the [weighted fields](library.md#weighted-fields) of either port.|
+|`id`| String | *(Optional; [proposed](#connection-weights))* Key of the connection in [connection-weight tables](data-series.md#connection-weight-tables-proposed). Defaults, on each side, to the `id` of the component at the other end. Must follow the [naming rules](library.md#rules-for-id-naming).|
+|`weights`| List | *(Optional; [proposed](#connection-weights))* Values, for this connection, of the [port weights](library.md#port-weights) of either port.|
 
 The two ports being connected must be of the same port type.
 
@@ -159,20 +159,13 @@ If a model additionally defines [**port-field-definitions**](library.md#port-fie
 !!! warning "Design proposal — not yet implemented"
     Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
 
-When a port declares [weighted fields](library.md#weighted-fields), each of its connections must be
-given values for each declared weight, in one of two ways. Whether to keep both layouts is
-[open question 4](../syntax.md#open-questions-on-weighted-connections).
+Each connection of a port that declares [weights](library.md#port-weights) gets a value for each of
+them, under `weights`, in one of two places. Entries follow the rules of
+[component parameters](#parameters) (`id`, `time-dependent`, `scenario-dependent`, `value`); the
+weight's sets come from the library and are not repeated.
 
-In both layouts, the weight's sets come from its declaration in the library and are not repeated in
-the system file. The `time-dependent` and `scenario-dependent` flags follow the rules of
-[component parameters](#parameters). How scenario-dependent weights are mapped to scenarios is
-[open question 5](../syntax.md#open-questions-on-weighted-connections).
-
-**On the connection entry.** This suits a few hand-written connections, such as the terms of a
-binding constraint. Entries follow the rules of [component parameters](#parameters), with `weight`
-in place of `id`. For a set-indexed weight, `value` is the id of a set-indexed series (see the
-[custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207)), without a
-connection-key column:
+**On the connection**, for a few hand-written connections such as the terms of a binding
+constraint. For a set-indexed weight, `value` is a set-indexed series without a connection-key column:
 
 ```yaml
 connections:
@@ -181,32 +174,28 @@ connections:
     component2: link_a_b
     port2: out_port
     weights:
-      - {weight: coef_flow, time-dependent: false, scenario-dependent: false, value: 0.5}
+      - {id: coef, time-dependent: false, scenario-dependent: false, value: 0.5}
 ```
 
-**On the component that owns the port, as one table per weight for all the port's connections.** This suits large
-data, such as the PTDFs of a flow-based domain. The `value` is the `id` of a
-[connection-weight table](data-series.md#connection-weight-tables-proposed):
+**On the component that owns the port**, for large data such as the PTDFs of a flow-based domain.
+Each entry adds `port`, and `value` is a [connection-weight table](data-series.md#connection-weight-tables-proposed):
 
 ```yaml
 components:                              # excerpt
   - id: core
     model: fb.fb_domain
     sets: [{id: cnec, elements: 0..999}]
-    connection-weights:
-      - {port: zones, weight: ptdf_flow, time-dependent: true, scenario-dependent: false, value: core_ptdf_zones}
-      - {port: links, weight: ptdf_flow, time-dependent: true, scenario-dependent: false, value: core_ptdf_links}
+    weights:
+      - {port: zones, id: ptdf, time-dependent: true, scenario-dependent: false, value: core_ptdf_zones}
+      - {port: links, id: ptdf, time-dependent: true, scenario-dependent: false, value: core_ptdf_links}
 ```
 
-Validation rules:
+Validation rules ([open questions 2 to 4](../syntax.md#open-questions-on-weighted-connections)):
 
 - A weight belongs to the port that declares it, whatever the order of `component1` and
   `component2`. The two ports of a connection may not declare weights with the same id.
-- Each connection of the port gets **exactly one value per weight**, from exactly one of the two
-  layouts. There is no default value ([open question 3](../syntax.md#open-questions-on-weighted-connections)).
+- Each connection gets **exactly one value per weight of its port**, from one place. There is no default.
 - Giving a weight that the port does not declare is an error.
-- Connection keys must be unique among the connections of a port. A connection `id` is required
-  when the same component is connected twice to that port, or when an `id` would equal another
-  connection's default key.
-- The keys of a connection-weight table must be exactly the connection keys of the port.
-- As for parameters, a weight value cannot be time- or scenario-dependent if its declaration is not.
+- Connection keys are unique per port: an explicit `id` is required when a component is connected
+  twice to the port, or when an `id` would equal another connection's default key.
+- The keys of a connection-weight table are exactly the connection keys of the port.

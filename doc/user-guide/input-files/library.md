@@ -218,33 +218,32 @@ A list of ports that model exposes to connect with other models. Each port has:
 |------|------|--------------------------|
 |`id`| String | Unique port name within the model. Must follow the [naming rules](#rules-for-id-naming).|
 | `type`| String | The port type `id` that this port conforms to. Must match a port type defined in the [port-types](#port-types) collection of a library included in the system.|
-| `weighted-fields`| List | *(Optional; [proposed](#weighted-fields))* Weighted views of the fields this port receives.|
+| `weights`| List | *(Optional; [proposed](#port-weights))* Connection weights applied to the fields this port receives.|
 
 The port `type` must be one of those defined in the [port-types](#port-types) collection of a library included in the system.
 
-##### Weighted fields
+##### Port weights
 
 !!! warning "Design proposal — not yet implemented"
     Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
 
-A port may declare `weighted-fields`: weighted views of the fields it receives, whose weights are
-given per connection in the [system file](system.md#connection-weights).
+A port may declare `weights`: data with one value per connection, given in the
+[system file](system.md#connection-weights) and read as `sum_connections(port.weight * port.field)`,
+where the model **receives** `field` on this port (it is not in its [port-field definitions](#port-field-definition)).
+A weight is declared like a [parameter](#parameters):
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `id` | String | Name of the view, used as `port_id.id` in expressions. Must differ from the field ids of the port type. |
-| `field` | String | The port-type field being weighted. The model must **receive** this field on this port, so it must not define it in its [port-field definitions](#port-field-definition). |
-| `weight` | String | *(Optional; see [open question 2](../syntax.md#open-questions-on-weighted-connections))* The id under which the system file gives the weight values. Defaults to `id`. Several weighted fields of the same port may share one weight, provided they declare the same dependencies. |
-| `time-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). Whether the **weight** varies over time. The dependence of the view itself is inferred (see [Weighted connections](../syntax.md#weighted-connections-proposed)). |
-| `scenario-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). Whether the **weight** varies across scenarios. |
-| `indexed-by` | List | *(Optional; requires the [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207))* Sets indexing the weight: local sets of this model, or library-level sets. |
+| `id` | String | Used as `port_id.id`. Must differ from the field ids of the port type. |
+| `time-dependent`, `scenario-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). |
+| `indexed-by` | List | *(Optional; requires the [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207))* Local sets of this model, or library-level sets. |
 
 ```yaml
 ports:
   - id: terms
     type: flow
-    weighted-fields:
-      - {id: coef_flow, field: flow, time-dependent: true, scenario-dependent: false}
+    weights:
+      - {id: coef, time-dependent: true, scenario-dependent: false}
 ```
 
 #### Port Field Definition

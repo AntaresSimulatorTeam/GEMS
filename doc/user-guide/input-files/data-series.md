@@ -43,18 +43,12 @@ Here, the first row contains the values at time-step 0 for scenarios 1, 2, 3 res
 !!! warning "Design proposal — not yet implemented"
     Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
 
-A [connection-weight table](system.md#connection-weights) gives the values of one weight of one
-port, for all the port's connections, in a single `csv` file. Unlike the series above, it has a
-**header row**, like the set-indexed series of the custom sets proposal. The columns are, in order:
-
-1. one column per set in `indexed-by` (requires the
-   [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207));
-2. one column named after the **port**, holding the connection keys (naming is
-   [open question 4](../syntax.md#open-questions-on-weighted-connections));
-3. `time`, if the weight is time-dependent;
-4. `scenario`, if the weight is scenario-dependent (its mapping is
-   [open question 5](../syntax.md#open-questions-on-weighted-connections));
-5. `value`.
+A [connection-weight table](system.md#connection-weights) gives one weight of one port for all the
+port's connections. Unlike the series above, it has a **header row**. Its columns are, in order: one
+per set in `indexed-by` (see the [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207)),
+one named after the **port** holding the connection keys, `time` and `scenario` if the weight
+depends on them, and `value`. The table is dense: each combination of keys appears exactly once.
+Column naming and scenario mapping are [open questions 3 and 4](../syntax.md#open-questions-on-weighted-connections).
 
 First rows of `core_ptdf_zones.csv`:
 
@@ -64,5 +58,3 @@ cnec,zones,time,value
 0,be,0,-0.231
 1,fr,0,0.008
 ```
-
-The table is dense: each combination of keys appears exactly once.
