@@ -38,22 +38,25 @@ Represent data that varies across both time and scenarios (a different time seri
 
 Here, the first row contains the values at time-step 0 for scenarios 1, 2, 3 respectively, and the second row contains the values at time-step 1 for scenarios 1, 2, 3.
 
-## Connection-weight tables (proposed)
+## Connection-weight tables (Proposed)
 
 !!! warning "Design proposal — not yet implemented"
     Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
 
-A [connection-weight table](system.md#connection-weights) gives the weights of all connections of
-one port in a single `csv` file. Unlike other data series, it has a **header row**, with these
-columns in order:
+A [connection-weight table](system.md#connection-weights) gives the values of one weight of one
+port, for all the port's connections, in a single `csv` file. Unlike the series above, it has a
+**header row**, like the set-indexed series of the custom sets proposal. The columns are, in order:
 
 1. one column per set in `indexed-by` (requires the
    [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207));
 2. one column named after the **port**, holding the connection keys (naming is
-   [open question 4](../syntax.md#open-questions));
+   [open question 4](../syntax.md#open-questions-on-weighted-connections));
 3. `time`, if the weight is time-dependent;
-4. `scenario`, if the weight is scenario-dependent;
+4. `scenario`, if the weight is scenario-dependent (its mapping is
+   [open question 5](../syntax.md#open-questions-on-weighted-connections));
 5. `value`.
+
+First rows of `core_ptdf_zones.csv`:
 
 ```csv
 cnec,zones,time,value

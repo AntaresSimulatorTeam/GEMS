@@ -132,20 +132,20 @@ expression: balance_port.flow = 0
 expression: sum_connections(balance_port.flow) = 0
 ```
 
-### Weighted connections (proposed)
+### Weighted connections (Proposed)
 
 !!! warning "Design proposal — not yet implemented"
     This section describes a **proposed** extension. It is implemented neither in GemsPy nor in
     Antares Simulator. It is documented here to gather feedback on the design.
 
-Some data belongs to a **pair of connected components**, not to either of them. Examples are the PTDF
-of a flow-based constraint with respect to a bidding zone, the coefficient of a link flow in a
-binding constraint, or the participation factor of a unit in a reserve. A **weighted connection**
-carries such a value:
+Some data belongs to a **pair of connected components**, not to either of them. Examples are the
+PTDF of a flow-based constraint with respect to a bidding zone, the coefficient of a link flow in a
+binding constraint, and the participation factor of a unit in a reserve. A **weighted connection**
+carries such data:
 
 - the library declares *where* a weight applies, and its dependencies, as a
-  [weighted field](input-files/library.md#weighted-fields) on a receiver port;
-- the system file gives one value per connection, as a
+  [weighted field](input-files/library.md#weighted-fields) on a port that receives the field;
+- the system file gives the weight's values for each connection, as a
   [connection weight](input-files/system.md#connection-weights).
 
 A weighted field `v` of port `p` is a weighted view of one field `f` of the port type. It is read
@@ -155,16 +155,18 @@ like a port field:
 expression: sum_connections(terms.coef_flow) <= rhs   # sum over connections k of coef_k * flow_k
 ```
 
-- `sum_connections(p.v)` is the sum, over the connections *k* of `p`, of `w_k · f_k`. Here `f_k` is
-  the value of field `f` emitted on connection *k*, and `w_k` is the weight of connection *k*. With no
-  connection, the sum is 0.
+- `sum_connections(p.v)` is the sum, over the connections *k* of `p`, of `w_k · f_k`, where:
+  - `f_k` is the value of field `f` emitted on connection *k*;
+  - `w_k` is the weight of connection *k*.
+
+  With no connection, the sum is 0.
 - Its time and scenario dependence is the union of the dependence of the emitted fields and that of
-  the weight. A time-dependent weight makes the term time-dependent.
+  the weight.
 - `sum_connections(p.f)` keeps its current meaning, unweighted. The same port can be read weighted in
   one expression and unweighted in another.
-- `p.v` follows the [port field rules](#direct-port-field-usage). It is allowed only inside
-  `sum_connections`, or bare in an extra-output. It cannot be used in a port-field definition.
-- The expression grammar is unchanged: `p.v` is an ordinary `port.field` reference.
+- `p.v` is allowed **only inside `sum_connections`**. Unlike a port field, it is never used bare,
+  not even in an extra-output. As for any port field, it cannot be used in a port-field definition.
+- There is no new syntax: `p.v` parses as a `port.field` reference. Only name resolution changes.
 
 **With custom sets.** If the [custom sets and indexing
 proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207) is adopted, a weight may also be
@@ -173,16 +175,19 @@ rule that local sets never cross a port. The weight is declared, valued and eval
 component, and what crosses the port is still the emitter's field. In general, *a quantity may carry
 a local set of a model only if it is evaluated only within components of that model.*
 
-Adopting both proposals extends four statements of the custom-sets documentation:
+Adopting both proposals extends the following points of the custom-sets documentation:
 
 - `indexed-by` is also allowed on weighted fields;
 - weighted fields, like set-indexed parameters and variables, drive the unfolding of a constraint;
-- the set dimensions of `sum_connections(p.v)` include those declared by the weighted field;
-- [connection-weight tables](input-files/data-series.md#connection-weight-tables-proposed) carry a
-  connection-key column.
+- the set dimensions of `sum_connections(p.v)` include those declared by the weighted field. When a
+  weight and the emitted field share a global set, they are aligned on it; other sets are crossed;
+- headered tables are no longer limited to set-indexed parameters. In
+  [connection-weight tables](input-files/data-series.md#connection-weight-tables-proposed), the
+  canonical column order gains a connection-key column between the set columns and `time`;
+- the id-collision rules also cover table headers, where a port id can meet a set id.
 
-**Example: a flow-based domain.** The PTDF of each critical network element (CNEC) with respect to
-each zone or HVDC link is a weight indexed by the local set `cnec`:
+**Example: a flow-based domain (excerpt of a model).** The PTDF of each critical network element
+(CNEC) with respect to each zone or HVDC link is a weight indexed by the local set `cnec`:
 
 ```yaml
 - id: fb_domain
@@ -199,7 +204,7 @@ each zone or HVDC link is a weight indexed by the local set `cnec`:
       weighted-fields:
         - {id: ptdf_flow, field: flow, indexed-by: [cnec], time-dependent: true, scenario-dependent: false}
   binding-constraints:
-    - id: cnec_limit             # one row per CNEC and time step
+    - id: cnec_limit             # one row per CNEC, time step and scenario
       expression: sum_connections(zones.ptdf_flow) + sum_connections(links.ptdf_flow) <= ram
     - id: region_balance         # same port, unweighted
       expression: sum_connections(zones.flow) = 0
@@ -208,15 +213,17 @@ each zone or HVDC link is a weight indexed by the local set `cnec`:
 The library lists no zone, no link and no CNEC count. Zones and links are the domain's connections
 in the system file, and the PTDFs are their weights.
 
-#### Open questions
+#### Open questions on weighted connections
 
 The choices above are provisional. Feedback is welcome on the following points in particular.
 
 1. **How a weight is named and written.** This page proposes a *weighted view* of a field
-   (`sum_connections(zones.ptdf_flow)`), which keeps the grammar unchanged. The alternative is a
-   named connection parameter combined with the field inside the sum
-   (`sum_connections(zones.ptdf * zones.flow)`). It is more general (products of weights, a weight
-   applied to several fields), but needs a grammar change and per-term linearity rules.
+   (`sum_connections(zones.ptdf_flow)`), which needs no new syntax. The alternative is a named
+   connection parameter combined with the field inside the sum
+   (`sum_connections(zones.ptdf * zones.flow)`).
+   - It is more general: for example, products of weights, or a weight combined with an expression.
+   - It needs a grammar change and per-term linearity rules.
+   - It would make question 2 unnecessary.
 2. **Sharing one weight between several fields** (the optional `weight` key). This is useful, for
    example, for one participation factor applied to upward and downward reserve. Is it worth the
    extra key?
@@ -225,18 +232,27 @@ The choices above are provisional. Feedback is welcome on the following points i
    instead?
 4. **Data layouts and keys.**
    - Should both layouts (per connection and per-port table) be kept?
-   - Should the key column be named after the port, or have a fixed name such as `connection`?
+   - Should the key column be named after the port, or have a fixed name such as `connection`? A
+     port id can collide with a set id or with `time`, `scenario` or `value` in the header, which
+     argues for a fixed name.
    - Should connection keys default to the id of the remote component, or should every weighted
      connection carry an explicit `id`?
-5. **Weights on the emitter side.** A model would send a differently weighted value on each of its
-   connections, for example a national load spread over nodes with distribution keys. Should this be
-   part of the proposal? It would need its own rules, since such a weight crosses the port.
-6. **One decision variable or constraint per connection.** An example is an aggregator owning a
+5. **Scenario-dependent weights.** How are they mapped to scenarios?
+   - Through the `scenario-group` of the component that owns the port, or through a group set on the
+     connection?
+   - In a connection-weight table, does the `scenario` column hold data-series column indices, as
+     in the [scenario builder](input-files/scenario-builder.md)?
+6. **Weights on the emitter side.** A model would send a differently weighted value on each of its
+   connections, for example a national load spread over nodes with distribution keys.
+   - Should this be part of the proposal? It would need its own rules, since such a weight crosses
+     the port.
+   - It is partly covered by receiver-side weights, if question 3 allows a default of `1`.
+7. **One decision variable or constraint per connection.** An example is an aggregator owning a
    variable for each connected site, which weights cannot express. One possible later extension
    makes the connections of a port a set of the model that owns it. Should weighted fields be
    specified from the start as shorthand for that, so the two cannot diverge?
-7. **Sign and orientation.** A weight applies to the field emitted by the port the receiver is wired
-   to; for a link, wiring to `in_port` instead of `out_port` flips the sign. Is a documented
+8. **Sign and orientation.** A weight applies to the field emitted by the port the receiver is wired
+   to. For a link, wiring to `in_port` instead of `out_port` flips the sign. Is a documented
    convention enough, or are dedicated port types needed?
 
 ## Time Operators and Indexing

@@ -218,6 +218,7 @@ A list of ports that model exposes to connect with other models. Each port has:
 |------|------|--------------------------|
 |`id`| String | Unique port name within the model. Must follow the [naming rules](#rules-for-id-naming).|
 | `type`| String | The port type `id` that this port conforms to. Must match a port type defined in the [port-types](#port-types) collection of a library included in the system.|
+| `weighted-fields`| List | *(Optional; [proposed](#weighted-fields))* Weighted views of the fields this port receives.|
 
 The port `type` must be one of those defined in the [port-types](#port-types) collection of a library included in the system.
 
@@ -233,9 +234,9 @@ given per connection in the [system file](system.md#connection-weights).
 |------|------|--------------------------|
 | `id` | String | Name of the view, used as `port_id.id` in expressions. Must differ from the field ids of the port type. |
 | `field` | String | The port-type field being weighted. The model must **receive** this field on this port, so it must not define it in its [port-field definitions](#port-field-definition). |
-| `weight` | String | *(Optional; see [open question 2](../syntax.md#open-questions))* The id under which the system file gives the weight values. Defaults to `id`. Several weighted fields of the same port may share one weight, provided they declare the same dependencies. |
-| `time-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). |
-| `scenario-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). |
+| `weight` | String | *(Optional; see [open question 2](../syntax.md#open-questions-on-weighted-connections))* The id under which the system file gives the weight values. Defaults to `id`. Several weighted fields of the same port may share one weight, provided they declare the same dependencies. |
+| `time-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). Whether the **weight** varies over time. The dependence of the view itself is inferred (see [Weighted connections](../syntax.md#weighted-connections-proposed)). |
+| `scenario-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). Whether the **weight** varies across scenarios. |
 | `indexed-by` | List | *(Optional; requires the [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207))* Sets indexing the weight: local sets of this model, or library-level sets. |
 
 ```yaml
