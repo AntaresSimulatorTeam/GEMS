@@ -184,6 +184,8 @@ Here *S* and *E* can be either:
 
 - A relative expression involving *t*. For example, `sum(t-3 .. t, X)` would sum *X* from 3 periods ago up to the current period *t*. Both *S* and *E* are evaluated as integers. This form allows moving window calculations (e.g., sum over a rolling horizon up to the current time)
 
+Both forms can be mixed: for example, `sum(0 .. t, X)` is the cumulative sum of *X* up to the current period. The bounds must not contain variables, and the parameters they use must be [time-independent](input-files/library.md#parameters).
+
 Using these time operators, advanced temporal constraints can be created. For example:
 
 ```yaml
