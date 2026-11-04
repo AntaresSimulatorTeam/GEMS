@@ -132,14 +132,43 @@ already used for GEMS outputs (simulation tables and views).
 - A data series may be a file `<id>.parquet` instead of `<id>.csv`. It is referenced by the same
   `id` in the [system file](system.md), so a study can switch format without changing `system.yml`.
 - Its content follows the long layout of [set-indexed series](#set-indexed-series): one column per
-  set in `indexed-by` order, then `time`, `scenario` and `value`, with only the columns that apply.
-  Column names and element values follow the same rules as in CSV.
+  set in `indexed-by` order, then `time`, `scenario` and `value`, with only the columns that apply
+  (see [below](#set-indexed-series-in-parquet)).
 - CSV stays fully supported. Parquet is an additional option, never a requirement.
 
 ```text
 data-series/
   segment_fuel_cost.parquet   # columns: segment (int32), fuel (string), time (int32), value (float64)
   load_fr.csv                 # unchanged headerless series
+```
+
+### Set-indexed series in Parquet
+
+[Custom sets](../syntax.md#custom-sets-and-indexing-proposed) are the main reason for this proposal.
+A parameter `indexed-by` sets stores one row per combination of set elements, time step and scenario,
+and Parquet compresses such repeated keys well. The rules of [set-indexed series](#set-indexed-series)
+carry over:
+
+- **Set columns.** There is one column per set, named after the set `id`, in `indexed-by` order,
+  before `time` and `scenario`.
+- **Element values.**
+  - A column holds the set's **elements as instantiated in `system.yml`**, never their positions.
+  - A set instantiated with a range (`0..4`, `2020..2024`) gives an integer column.
+  - A set instantiated with names (`[gas, coal, oil]`) gives a string column. Parquet's dictionary
+    encoding stores each name once.
+- **Local and global sets.**
+  - For a [local set](system.md#local-sets), the rows cover the elements of the component that uses
+    the series. Different components may therefore use files with different sizes.
+  - For a [global set](system.md#global-sets), every file uses the same study-wide elements.
+- **Validation.** It is unchanged from CSV: every combination of elements appears exactly once, and
+  element values must match the instantiation exactly.
+
+```text
+segment_fuel_cost.parquet
+  segment: int32    # local set instantiated as 0..2
+  fuel:    string   # global set instantiated as [gas, coal, oil]
+  time:    int32
+  value:   float64
 ```
 
 ### Open questions
@@ -152,13 +181,22 @@ data-series/
    files in large studies, but needs a referencing syntax (e.g. `file:column`).
 3. **Same `id` in two formats.** If both `<id>.csv` and `<id>.parquet` exist, is that an error, or
    does one take precedence?
-4. **Column types.** Which types are accepted: integer or string set elements, integer `time`,
-   float or integer `value`? Are nulls forbidden, as missing rows already are?
-5. **Scenario column.** Does `scenario` hold the data-series column index used by the
+4. **Column types.** Which types are accepted for `time` (integer) and `value` (float or integer)?
+   Are nulls forbidden, as missing rows already are?
+5. **Set element types.** For a set instantiated with an explicit list of numbers
+   (`[10, 20, 30]`), should the column be integer or string? Must the column type match the way the
+   set is instantiated, or may an interpreter convert it?
+6. **Several components in one file.** A `component` key column would let one file hold a parameter
+   for all the components of a model, including local sets of different sizes. Is this worth a
+   new referencing rule? (This is related to question 2.)
+7. **Set instantiations from files.** Large sets, such as a thousand CNEC names, are tedious to list
+   in `system.yml`. Should a set's `elements` also be readable from a (Parquet) file?
+8. **Scenario column.** Does `scenario` hold the data-series column index used by the
    [scenario builder](scenario-builder.md), as the matrix columns do today?
-6. **Row order and density.** Should rows be required in canonical order, so they can be read
-   without sorting? Should density (every key combination exactly once) be checked as for CSV?
-7. **Physical options.** Should compression, row-group size or partitioning (e.g. one file per
-   scenario) be prescribed, recommended or left free?
-8. **Scope.** Should the same format later cover other inputs (for example the scenario builder,
-   or connection-weight tables if that proposal is adopted)? Should interpreters be required to support it, or may support be optional?
+9. **Row order and density.** Should rows be required in canonical order, so they can be read
+   without sorting? If so, are set columns sorted by position in the set or by element value?
+10. **Physical options.** Should compression, row-group size or partitioning (for example one file
+    per scenario, or per set element) be prescribed, recommended or left free?
+11. **Scope.** Should the same format later cover other inputs (for example the scenario builder,
+    or connection-weight tables if that proposal is adopted)? Should interpreters be required to
+    support it, or may support be optional?
