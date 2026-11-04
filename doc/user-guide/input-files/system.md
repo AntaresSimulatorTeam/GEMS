@@ -54,7 +54,7 @@ The system file describes the energy system to be simulated. Each component defi
 |`scenario-group`| String | *(Optional)* The `id` of the scenario group this component belongs to. Used to map Monte Carlo scenarios to data series columns via the [scenario builder](scenario-builder.md).|
 |`parameters`| List | *(Optional)* Collection of values assigned to the model’s parameters. All [parameters defined by the model](library.md#parameters) must be assigned a value.|
 |`integer-strategy`| Mapping | *(Optional)* How the integer and binary variables of this component are built: kept integer (default), relaxed to continuous, or relaxed and refined by a heuristic. See [Integer strategy](#integer-strategy).|
-|`weights`| List | *(Optional; [proposed](#connection-weights))* Weights of this component's ports, each as one table for all the port's connections.|
+|`port-weights`| List | *(Optional; [proposed](#connection-weights))* Weights of this component's ports, each as one table for all the port's connections.|
 
 ### Parameters
 
@@ -160,12 +160,12 @@ If a model additionally defines [**port-field-definitions**](library.md#port-fie
     Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
 
 Each connection of a port that declares [weights](library.md#port-weights) gets a value for each of
-them, under `weights`, in one of two places. Entries follow the rules of
+them, in one of two places. Entries follow the rules of
 [component parameters](#parameters) (`id`, `time-dependent`, `scenario-dependent`, `value`); the
 weight's sets come from the library and are not repeated.
 
-**On the connection**, for a few hand-written connections such as the terms of a binding
-constraint. For a set-indexed weight, `value` is a set-indexed series without a connection-key column:
+**On the connection**, under `weights`, for a few hand-written connections such as the terms of a
+binding constraint. For a set-indexed weight, `value` is a set-indexed series without a connection-key column:
 
 ```yaml
 connections:
@@ -177,15 +177,15 @@ connections:
       - {id: coef, time-dependent: false, scenario-dependent: false, value: 0.5}
 ```
 
-**On the component that owns the port**, for large data such as the PTDFs of a flow-based domain.
-Each entry adds `port`, and `value` is a [connection-weight table](data-series.md#connection-weight-tables-proposed):
+**On the component that owns the port**, under `port-weights`, for large data such as the PTDFs of a
+flow-based domain. Each entry adds `port`, and `value` is a [connection-weight table](data-series.md#connection-weight-tables-proposed):
 
 ```yaml
 components:                              # excerpt
   - id: core
     model: fb.fb_domain
     sets: [{id: cnec, elements: 0..999}]
-    weights:
+    port-weights:
       - {port: zones, id: ptdf, time-dependent: true, scenario-dependent: false, value: core_ptdf_zones}
       - {port: links, id: ptdf, time-dependent: true, scenario-dependent: false, value: core_ptdf_links}
 ```

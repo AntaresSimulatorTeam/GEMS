@@ -213,7 +213,8 @@ The choices above are provisional. Feedback is welcome on the following points i
 3. **Data layouts and keys.** Should both layouts (on the connection, one table per port) be kept?
    Should the key column be named after the port, or fixed (e.g. `connection`), since a port id can
    collide with a set id or with `time`, `scenario` or `value`? Should keys default to the remote
-   component's id, or should every weighted connection carry an explicit `id`?
+   component's id, or should every weighted connection carry an explicit `id`? Should the
+   component-level key be `port-weights`, as proposed, or `weights`, as on connection entries?
 4. **Scenario-dependent weights.** Are they mapped through the `scenario-group` of the component
    that owns the port, or through a group set on the connection? Does a table's `scenario` column
    hold data-series column indices, as in the [scenario builder](input-files/scenario-builder.md)?
