@@ -20,6 +20,9 @@ resolution-markers = [
     "python_full_version < '3.12' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 
+[manifest]
+overrides = [{ name = "gemspy", specifier = "==0.3.0" }]
+
 [[package]]
 name = "annotated-types"
 version = "0.7.0"
@@ -856,7 +859,8 @@ test = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "gemspy", specifier = "==0.2.0" },
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
+    { name = "gemspy", specifier = "==0.3.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pandas", specifier = ">=2.2.3" },
@@ -870,7 +874,8 @@ dev = [
     { name = "yamllint", specifier = ">=1.35.1" },
 ]
 doc = [
-    { name = "gemspy", specifier = "==0.2.0" },
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
+    { name = "gemspy", specifier = "==0.3.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mkdocs" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
@@ -882,7 +887,8 @@ doc = [
     { name = "pypsa-to-gems-converter", specifier = "==0.0.2" },
 ]
 test = [
-    { name = "gemspy", specifier = "==0.2.0" },
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
+    { name = "gemspy", specifier = "==0.3.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pypsa" },

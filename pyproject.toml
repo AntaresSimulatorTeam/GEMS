@@ -37,6 +37,9 @@ doc = [
     "pypsa-to-gems-converter==0.0.2",
 ]
 
+[tool.uv]
+override-dependencies = ["gemspy==0.3.0"]
+
 [tool.pytest.ini_options]
 filterwarnings = [
     "ignore:numpy.ndarray size changed:RuntimeWarning",
