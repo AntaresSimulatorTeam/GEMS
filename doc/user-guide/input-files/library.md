@@ -221,6 +221,31 @@ A list of ports that model exposes to connect with other models. Each port has:
 
 The port `type` must be one of those defined in the [port-types](#port-types) collection of a library included in the system.
 
+##### Weighted fields
+
+!!! warning "Design proposal — not yet implemented"
+    Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
+
+A port may declare `weighted-fields`: weighted views of the fields it receives, whose weights are
+given per connection in the [system file](system.md#connection-weights).
+
+| Element | Type | Description |
+|------|------|--------------------------|
+| `id` | String | Name of the view, used as `port_id.id` in expressions. Must differ from the field ids of the port type. |
+| `field` | String | The port-type field being weighted. The model must **receive** this field on this port, so it must not define it in its [port-field definitions](#port-field-definition). |
+| `weight` | String | *(Optional)* The id under which the system file gives the weight values. Defaults to `id`. Several weighted fields of the same port may share one weight, provided they declare the same dependencies. |
+| `time-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). |
+| `scenario-dependent` | Boolean | `true` or `false`, as for [parameters](#parameters). |
+| `indexed-by` | List | *(Optional; requires the [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207))* Sets indexing the weight: local sets of this model, or library-level sets. |
+
+```yaml
+ports:
+  - id: terms
+    type: flow
+    weighted-fields:
+      - {id: coef_flow, field: flow, time-dependent: true, scenario-dependent: false}
+```
+
 #### Port Field Definition
 
 A collection of definitions describing the ports **emitted** by a model. Each entry associates one of the model’s variables, parameters, or linear expressions with a specific field of a port. When a model defines a port, it must provide definitions for all fields of that port.

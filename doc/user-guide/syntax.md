@@ -132,6 +132,87 @@ expression: balance_port.flow = 0
 expression: sum_connections(balance_port.flow) = 0
 ```
 
+### Weighted connections (proposed)
+
+!!! warning "Design proposal — not yet implemented"
+    This section describes a **proposed** extension. It is implemented neither in GemsPy nor in
+    Antares Simulator. It is documented here to gather feedback on the design.
+
+Some data belongs to a **pair of connected components**, not to either of them. Examples are the PTDF
+of a flow-based constraint with respect to a bidding zone, the coefficient of a link flow in a
+binding constraint, or the participation factor of a unit in a reserve. A **weighted connection**
+carries such a value:
+
+- the library declares *where* a weight applies, and its dependencies, as a
+  [weighted field](input-files/library.md#weighted-fields) on a receiver port;
+- the system file gives one value per connection, as a
+  [connection weight](input-files/system.md#connection-weights).
+
+A weighted field `v` of port `p` is a weighted view of one field `f` of the port type. It is read
+like a port field:
+
+```yaml
+expression: sum_connections(terms.coef_flow) <= rhs   # sum over connections k of coef_k * flow_k
+```
+
+- `sum_connections(p.v)` is the sum, over the connections *k* of `p`, of `w_k · f_k`. Here `f_k` is
+  the value of field `f` emitted on connection *k*, and `w_k` is the weight of connection *k*. With no
+  connection, the sum is 0.
+- Its time and scenario dependence is the union of the dependence of the emitted fields and that of
+  the weight. A time-dependent weight makes the term time-dependent.
+- `sum_connections(p.f)` keeps its current meaning, unweighted. The same port can be read weighted in
+  one expression and unweighted in another.
+- `p.v` follows the [port field rules](#direct-port-field-usage). It is allowed only inside
+  `sum_connections`, or bare in an extra-output. It cannot be used in a port-field definition.
+- The expression grammar is unchanged: `p.v` is an ordinary `port.field` reference.
+
+**With custom sets.** If the [custom sets and indexing
+proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207) is adopted, a weight may also be
+indexed by sets of the model that declares it, including its **local** sets. This does not break the
+rule that local sets never cross a port. The weight is declared, valued and evaluated by the same
+component, and what crosses the port is still the emitter's field. In general, *a quantity may carry
+a local set of a model only if it is evaluated only within components of that model.*
+
+Adopting both proposals extends four statements of the custom-sets documentation:
+
+- `indexed-by` is also allowed on weighted fields;
+- weighted fields, like set-indexed parameters and variables, drive the unfolding of a constraint;
+- the set dimensions of `sum_connections(p.v)` include those declared by the weighted field;
+- [connection-weight tables](input-files/data-series.md#connection-weight-tables-proposed) carry a
+  connection-key column.
+
+**Example: a flow-based domain.** The PTDF of each critical network element (CNEC) with respect to
+each zone or HVDC link is a weight indexed by the local set `cnec`:
+
+```yaml
+- id: fb_domain
+  sets: [{id: cnec}]
+  parameters:
+    - {id: ram, indexed-by: [cnec], time-dependent: true, scenario-dependent: false}
+  ports:
+    - id: zones                  # connected to the components emitting each zone's net position
+      type: flow
+      weighted-fields:
+        - {id: ptdf_flow, field: flow, indexed-by: [cnec], time-dependent: true, scenario-dependent: false}
+    - id: links                  # connected to the out_port of HVDC links
+      type: flow
+      weighted-fields:
+        - {id: ptdf_flow, field: flow, indexed-by: [cnec], time-dependent: true, scenario-dependent: false}
+  binding-constraints:
+    - id: cnec_limit             # one row per CNEC and time step
+      expression: sum_connections(zones.ptdf_flow) + sum_connections(links.ptdf_flow) <= ram
+    - id: region_balance         # same port, unweighted
+      expression: sum_connections(zones.flow) = 0
+```
+
+The library lists no zone, no link and no CNEC count. Zones and links are the domain's connections
+in the system file, and the PTDFs are their weights.
+
+**Not covered by this proposal:**
+
+- weights on the emitter side (for example distribution keys);
+- one decision variable per connection.
+
 ## Time Operators and Indexing
 
 **Mathematical Expression Syntax**  provides convenient time operators to refer to specific time-indexed values or to aggregate over time. These operators apply to time-dependent parameters, variables, or port fields.  Note that time indices are 0-based (typically, 0 = first time step).
