@@ -113,3 +113,52 @@ holds the resulting integers); the library/model alone never tells a data-series
 element list to use, since neither ever gives a set's concrete `elements` itself (see
 [library.md's Sets](./library.md#sets)).
 
+
+## Parquet data series (Proposed)
+
+!!! warning "Design proposal — not yet implemented"
+    This section is a **placeholder** for a proposed extension. It sketches a direction only, and
+    most of the design is still open (see the questions below). It is not yet implemented in
+    [GemsPy](../../index.md) or Antares Simulator.
+
+Large studies make CSV slow to read and heavy to store. This applies to hourly series over many
+scenarios, and above all to [set-indexed series](#set-indexed-series), which can hold hundreds of
+millions of values. The idea is to let any data series be stored as an
+[Apache Parquet](https://parquet.apache.org/) file instead: a compressed, typed, columnar format,
+already used for GEMS outputs (simulation tables and views).
+
+**Starting point.**
+
+- A data series may be a file `<id>.parquet` instead of `<id>.csv`. It is referenced by the same
+  `id` in the [system file](system.md), so a study can switch format without changing `system.yml`.
+- Its content follows the long layout of [set-indexed series](#set-indexed-series): one column per
+  set in `indexed-by` order, then `time`, `scenario` and `value`, with only the columns that apply.
+  Column names and element values follow the same rules as in CSV.
+- CSV stays fully supported. Parquet is an additional option, never a requirement.
+
+```text
+data-series/
+  segment_fuel_cost.parquet   # columns: segment (int32), fuel (string), time (int32), value (float64)
+  load_fr.csv                 # unchanged headerless series
+```
+
+### Open questions
+
+1. **Layout.** Should Parquet use only the long layout, or also a wide layout mirroring the
+   headerless matrices (one row per time step, one column per scenario)? Long is uniform with
+   set-indexed series. Wide is more compact for plain time × scenario data.
+2. **One series per file, or several?** One file per series keeps the `id` = file name rule. A
+   multi-series file, with one column per series or a `series` key column, would cut the number of
+   files in large studies, but needs a referencing syntax (e.g. `file:column`).
+3. **Same `id` in two formats.** If both `<id>.csv` and `<id>.parquet` exist, is that an error, or
+   does one take precedence?
+4. **Column types.** Which types are accepted: integer or string set elements, integer `time`,
+   float or integer `value`? Are nulls forbidden, as missing rows already are?
+5. **Scenario column.** Does `scenario` hold the data-series column index used by the
+   [scenario builder](scenario-builder.md), as the matrix columns do today?
+6. **Row order and density.** Should rows be required in canonical order, so they can be read
+   without sorting? Should density (every key combination exactly once) be checked as for CSV?
+7. **Physical options.** Should compression, row-group size or partitioning (e.g. one file per
+   scenario) be prescribed, recommended or left free?
+8. **Scope.** Should the same format later cover other inputs (for example the scenario builder,
+   or connection-weight tables if that proposal is adopted)? Should interpreters be required to support it, or may support be optional?
