@@ -1,13 +1,17 @@
 library:
   id: basic_models_library
   description: Ready for use basic models to build simple optimal dispatch problems
-  version: "1.0.1"
+  version: "1.1.0"
 
   port-types:
     - id: flow
       description: A port that transfers a power flow.
       fields:
         - id: flow
+      area-connection:
+        injection-to-balance: flow
+        spillage-bound:
+        unsupplied-energy-bound:
     - id: energy
       description: A port that transfers an amount of energy.
       fields:
