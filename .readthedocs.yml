@@ -3,8 +3,16 @@ version: 2
 build:
   os: "ubuntu-22.04"
   tools:
+    # RTD only accepts major.minor here. The docs are actually built with the
+    # uv-managed 3.11.18 interpreter below, which includes the ssl denylist for
+    # the compromised eMudhra/emSign intermediates:
+    # https://discuss.python.org/t/109576
     python: "3.11"
   commands:
-    - pip install uv
-    - uv sync --frozen --only-group doc
-    - uv run mkdocs build --config-file mkdocs.yml --site-dir $READTHEDOCS_OUTPUT/html
+    # uv >= 0.13.6 is required for the emSign fix; keep in sync with CI.
+    - asdf plugin add uv
+    - asdf install uv 0.13.7
+    - asdf global uv 0.13.7
+    - uv python install 3.11.18
+    - uv sync --frozen --only-group doc --python 3.11.18
+    - uv run --python 3.11.18 mkdocs build --config-file mkdocs.yml --site-dir $READTHEDOCS_OUTPUT/html
