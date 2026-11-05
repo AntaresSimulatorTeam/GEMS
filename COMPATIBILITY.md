@@ -33,6 +33,6 @@ This table maps documentation/language versions to the interpreter and library v
 | Library | Current Version |
 |---------|----------------|
 | `basic_models_library` | 1.0.1 |
-| `antares_legacy_models` | 2.2.1 |
+| `antares_legacy_models` | 2.4.0 |
 | `pypsa_models` | 2.0.1 |
 | `andromede_models` | 1.0.0 |

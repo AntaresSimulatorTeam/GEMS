@@ -12,7 +12,7 @@
 library:
   id: antares_legacy_models
   description: Antares historic model library
-  version: "2.2.1"
+  version: "2.4.0"
   taxonomy: antares_legacy_taxonomy
 
   port-types:
@@ -21,10 +21,12 @@ library:
       fields:
         - id: flow
         - id: price
+        - id: spillage_bound # Generation that may be spilled in the area (positive), as in the legacy "fictitious load" constraint
+        - id: unsupplied_energy_bound # Load that may be left unsupplied in the area (positive), as in the legacy bound on unsupplied energy
       area-connection:
         injection-to-balance: flow
-        spillage-bound: flow
-        unsupplied-energy-bound:
+        spillage-bound: spillage_bound
+        unsupplied-energy-bound: unsupplied_energy_bound
 
   models:
     - id: area
@@ -79,6 +81,12 @@ library:
         - port: balance_port
           field: flow
           definition: -load
+        - port: balance_port
+          field: spillage_bound
+          definition: max(0, -load) # A negative load may be spilled
+        - port: balance_port
+          field: unsupplied_energy_bound
+          definition: max(0, load)
       extra-outputs:
         - id: actual_load
           expression: load
@@ -126,6 +134,19 @@ library:
         - port: in_port
           field: flow
           definition: -flow
+        # Imports may neither be spilled nor left unsupplied
+        - port: out_port
+          field: spillage_bound
+          definition: 0
+        - port: in_port
+          field: spillage_bound
+          definition: 0
+        - port: out_port
+          field: unsupplied_energy_bound
+          definition: 0
+        - port: in_port
+          field: unsupplied_energy_bound
+          definition: 0
       objective-contributions:
         - id: objective
           expression: sum(direct_hurdle_cost * direct_flow + indirect_hurdle_cost * indirect_flow)
@@ -169,6 +190,12 @@ library:
         - port: balance_port
           field: flow
           definition: available_power
+        - port: balance_port
+          field: spillage_bound
+          definition: available_power # Must-run generation may be spilled
+        - port: balance_port
+          field: unsupplied_energy_bound
+          definition: 0
       extra-outputs:
         - id: minus_generation
           expression: -available_power
@@ -177,7 +204,8 @@ library:
       properties:
         - id: carrier
         - id: technology
-    
+        - id: name
+
     - id: miscellaneous_generation
       taxonomy-category: miscellaneous_fatal_generation
       parameters:
@@ -191,6 +219,12 @@ library:
         - port: balance_port
           field: flow
           definition: available_power
+        - port: balance_port
+          field: spillage_bound
+          definition: available_power # Must-run generation may be spilled
+        - port: balance_port
+          field: unsupplied_energy_bound
+          definition: 0
       extra-outputs:
         - id: minus_generation
           expression: -available_power
@@ -263,6 +297,12 @@ library:
         - port: balance_port
           field: flow
           definition: generation_power
+        - port: balance_port
+          field: spillage_bound
+          definition: generation_power # Dispatchable generation may be spilled
+        - port: balance_port
+          field: unsupplied_energy_bound
+          definition: 0
       constraints:
         - id: max_generation
           expression: generation_power <= num_units_on * max_power_per_unit*(1-spinning/100)
@@ -420,6 +460,12 @@ library:
         - port: balance_port
           field: flow
           definition: withdrawal_power - injection_power
+        - port: balance_port
+          field: spillage_bound
+          definition: withdrawal_power # Withdrawn energy may be spilled, injected energy does not reduce the bound
+        - port: balance_port
+          field: unsupplied_energy_bound
+          definition: 0
       constraints:
         - id: initial_level_constraint
           expression: level[167] = initial_level * reservoir_capacity # 167 = last timestep of the week (168h - 1); enforces end-of-week level target
@@ -441,7 +487,7 @@ library:
           expression: floor((withdrawal_power - injection_power) * sum_connections(balance_port.price)+0.5)
       properties:
         - id: carrier
-        - id: group
+        - id: technology
         - id: name
     
     - id: long_term_storage
@@ -501,6 +547,12 @@ library:
         - port: balance_port
           field: flow
           definition: withdrawal_power - injection_power
+        - port: balance_port
+          field: spillage_bound
+          definition: withdrawal_power # Withdrawn energy may be spilled, injected energy does not reduce the bound
+        - port: balance_port
+          field: unsupplied_energy_bound
+          definition: 0
       constraints:
         - id: level_equation
           expression: level = level[t-1] + pumping_efficiency * injection_power + inflows - withdrawal_power - overflow
