@@ -183,8 +183,8 @@ A list of parameters that this model takes. Each parameter defines a configurabl
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique parameter identifier within the model. Must follow the [naming rules](#rules-for-id-naming).|
-| `time-dependent`| Boolean | *(Optional, default `true`)* `true` or `false`. If `true`, this parameter can vary over the simulation timeline (meaning it will be associated with a time series input). If `false`, it is treated as constant in time.|
-|`scenario-dependent`| Boolean | *(Optional, default `true`)* `true` or `false`. If `true`, the parameter can have different values in different scenarios (i.e., it requires scenario-specific data). If `false`, it does not vary between scenarios.|
+| `time-dependent`| Boolean | *(Optional)* If `true`, this parameter can vary over the simulation timeline (meaning it can be associated with a time series input). If `false`, it is constant in time. Defaults to `true`.|
+|`scenario-dependent`| Boolean | *(Optional)* If `true`, the parameter can have different values in different scenarios (i.e., it can be given scenario-specific data). If `false`, it does not vary between scenarios. Defaults to `true`.|
 
 Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md). For how parameter values are assigned in the system file, see [System — Parameters](system.md#parameters).
 
@@ -207,6 +207,8 @@ A list of decision variables introduced by this model for the optimization probl
 | `variable-type`| Enum | The type of variable: `continuous`, `integer`, or `binary`. This determines how the solver treats the variable.|
 |`lower-bound`| Number or Expression | *(Optional)* Lower bound for the variable. Can be a numeric literal or an expression using only model parameters and constants. Defaults to −∞ for `continuous`/`integer`, or `0` for `binary`.|
 |`upper-bound`| Number or Expression | *(Optional)* Upper bound for the variable. Can be a numeric literal or an expression using only model parameters and constants. Defaults to +∞ for `continuous`/`integer`, or `1` for `binary`.|
+| `time-dependent`| Boolean | *(Optional)* If `true`, the variable takes a separate value at each time step of the simulation horizon. If `false`, a single value is shared by all time steps (as for an investment decision). Defaults to `true`.|
+|`scenario-dependent`| Boolean | *(Optional)* If `true`, the variable takes a separate value in each scenario. If `false`, a single value is shared by all scenarios. Defaults to `true`.|
 
 Any expression used for bounds must use only constants or models parameters.
 
