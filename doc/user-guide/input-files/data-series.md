@@ -37,3 +37,24 @@ Represent data that varies across both time and scenarios (a different time seri
 ```
 
 Here, the first row contains the values at time-step 0 for scenarios 1, 2, 3 respectively, and the second row contains the values at time-step 1 for scenarios 1, 2, 3.
+
+## Connection-weight tables (Proposed)
+
+!!! warning "Design proposal — not yet implemented"
+    Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
+
+A [connection-weight table](system.md#connection-weights) gives one weight of one port for all the
+port's connections. Unlike the series above, it has a **header row**. Its columns are, in order: one
+per set in `indexed-by` (see the [custom sets proposal](https://github.com/AntaresSimulatorTeam/GEMS/pull/207)),
+one named after the **port** holding the connection keys, `time` and `scenario` if the weight
+depends on them, and `value`. The table is dense: each combination of keys appears exactly once.
+Column naming and scenario mapping are [open questions 3 and 4](../syntax.md#open-questions-on-weighted-connections).
+
+First rows of `core_ptdf_zones.csv`:
+
+```csv
+cnec,zones,time,value
+0,fr,0,0.112
+0,be,0,-0.231
+1,fr,0,0.008
+```

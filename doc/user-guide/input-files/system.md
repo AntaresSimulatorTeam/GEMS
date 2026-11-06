@@ -54,6 +54,7 @@ The system file describes the energy system to be simulated. Each component defi
 |`scenario-group`| String | *(Optional)* The `id` of the scenario group this component belongs to. Used to map Monte Carlo scenarios to data series columns via the [scenario builder](scenario-builder.md).|
 |`parameters`| List | *(Optional)* Collection of values assigned to the model’s parameters. All [parameters defined by the model](library.md#parameters) must be assigned a value.|
 |`integer-strategy`| Mapping | *(Optional)* How the integer and binary variables of this component are built: kept integer (default), relaxed to continuous, or relaxed and refined by a heuristic. See [Integer strategy](#integer-strategy).|
+|`port-weights`| List | *(Optional; [proposed](#connection-weights))* Weights of this component's ports, each as one table for all the port's connections.|
 
 ### Parameters
 
@@ -144,9 +145,57 @@ A list of connections between component ports. Each connection entry defines a l
 | `component2` | String | The `id` of the second component being connected.|
 |`port1`| String | The port `id` on `component1`.|
 |`port2`| String | The port `id` on `component2`.|
+|`id`| String | *(Optional; [proposed](#connection-weights))* Key of the connection in [connection-weight tables](data-series.md#connection-weight-tables-proposed). Defaults, on each side, to the `id` of the component at the other end. Must follow the [naming rules](library.md#rules-for-id-naming).|
+|`weights`| List | *(Optional; [proposed](#connection-weights))* Values, for this connection, of the [port weights](library.md#port-weights) of either port.|
 
 The two ports being connected must be of the same port type.
 
 Port `connections` determine how linear expressions are exchanged between components. If a model defines a [port](library.md#ports) only in the ports section, it acts as a **receiver** for that port and collects linear expressions emitted by connected components. A typical example is a **bus** model, which receives flow expressions from connected components (generators, load etc.).
 
 If a model additionally defines [**port-field-definitions**](library.md#port-field-definition), it acts as an **emitter** for that port. In this case, the model exposes linear expressions through the port, allowing connected receiver component to consume them. A common example is a generator model, which emits its `generation` variable to connected bus component.
+
+### Connection weights
+
+!!! warning "Design proposal — not yet implemented"
+    Part of the [Weighted connections](../syntax.md#weighted-connections-proposed) proposal.
+
+Each connection of a port that declares [weights](library.md#port-weights) gets a value for each of
+them, in one of two places. Entries follow the rules of
+[component parameters](#parameters) (`id`, `time-dependent`, `scenario-dependent`, `value`); the
+weight's sets come from the library and are not repeated.
+
+**On the connection**, under `weights`, for a few hand-written connections such as the terms of a
+binding constraint. For a set-indexed weight, `value` is a set-indexed series without a connection-key column:
+
+```yaml
+connections:
+  - component1: bc_north
+    port1: terms
+    component2: link_a_b
+    port2: out_port
+    weights:
+      - {id: coef, time-dependent: false, scenario-dependent: false, value: 0.5}
+```
+
+**On the component that owns the port**, under `port-weights`, for large data such as the PTDFs of a
+flow-based domain. Each entry adds `port`, and `value` is a [connection-weight table](data-series.md#connection-weight-tables-proposed):
+
+```yaml
+components:                              # excerpt
+  - id: core
+    model: fb.fb_domain
+    sets: [{id: cnec, elements: 0..999}]
+    port-weights:
+      - {port: zones, id: ptdf, time-dependent: true, scenario-dependent: false, value: core_ptdf_zones}
+      - {port: links, id: ptdf, time-dependent: true, scenario-dependent: false, value: core_ptdf_links}
+```
+
+Validation rules ([open questions 2 to 4](../syntax.md#open-questions-on-weighted-connections)):
+
+- A weight belongs to the port that declares it, whatever the order of `component1` and
+  `component2`. The two ports of a connection may not declare weights with the same id.
+- Each connection gets **exactly one value per weight of its port**, from one place. There is no default.
+- Giving a weight that the port does not declare is an error.
+- Connection keys are unique per port: an explicit `id` is required when a component is connected
+  twice to the port, or when an `id` would equal another connection's default key.
+- The keys of a connection-weight table are exactly the connection keys of the port.
