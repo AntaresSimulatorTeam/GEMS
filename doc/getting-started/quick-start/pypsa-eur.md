@@ -3,23 +3,21 @@
 This tutorial is a workflow to run a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) study on a remote Linux server using GEMS. [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) is an open-source energy system model covering the European power grid coded in PyPSA format whose native format is not compatible with Antares Modeler. The package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) converts PyPSA format studies into GEMS readable studies.
 
 1. **Configure a simple PyPSA-Eur study** with minimal settings (one area only, 3 days), download the data.
-2. **Convert to GEMS format** using the Python package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) inside a Docker-hosted Jupyter notebook.
+2. **Convert to GEMS format** using the Python package [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) inside a Jupyter notebook.
 3. **Run the simulation** with [GemsPy](../installation/gemspy-installation.md) from within the same notebook.
 
-The Jupyter environment runs inside Docker on the remote server and is accessed locally via VS Code Remote SSH.
+The Jupyter notebook runs in a Python virtual environment on the remote server and is accessed locally via VS Code Remote SSH.
 
 ## Requirements
 
-- A remote Linux server with Docker and Docker Compose installed
+- A remote Linux server with Python 3.11 or later installed
 - [VS Code](https://code.visualstudio.com/) with the [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension installed locally
-
-The configuration of the VS Code Remote SSH linked to remote server running Jupyter docker image is detailed in this tutorial [VS Code Remote SSH + Jupyter tutorial](https://www.w3tutorials.net/blog/vscode-how-to-run-a-jupyter-notebook-in-a-docker-container-over-a-remote-server/).
 
 ## Part 1 - Clone the GEMS repository
 
 These steps are run **on the remote server** (connect via SSH first).
 
-The GEMS repository contains the Docker configuration and the Jupyter notebook needed for the conversion step and run the GEMS simulation of the converted study.
+The GEMS repository contains the Jupyter notebook needed for the conversion step and run the GEMS simulation of the converted study.
 
 ```bash
 git clone https://github.com/AntaresSimulatorTeam/GEMS.git
@@ -134,24 +132,30 @@ pixi run snakemake -c all all -j 4 --rerun-incomplete
 ```
 
 
-## Part 3 - Build docker image and Open the Jupyter notebook via Remote SSH
+## Part 3 - Install the Python environment and open the Jupyter notebook
 
-We have everything needed by the docker image :
+We have everything needed to convert and run the study:
+
 - PyPSA-Eur data
-- GEMS repo with the jupyter notebook and docker configuration
+- GEMS repo with the Jupyter notebook
 
-We can create now the docker image inside the server :
+We can now create the Python environment on the server and open the notebook:
 
 1. In VS Code, open the **Command Palette** (`Ctrl+Shift+P`) and select **Remote-SSH: Connect to Host**.
-2. Access to ```/home/ubuntu/GEMS/doc/examples/notebooks/tutorial-two-pypsa-eur/``` 
-3. Start the container by the command
+2. Access to ```/home/ubuntu/GEMS/doc/examples/notebooks/tutorial-two-pypsa-eur/```
+3. Create a virtual environment and install the packages used by the notebook
 
     ```bash
-    cd docker-tuto-pypsa-gems
-    docker compose up --build
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install jupyter matplotlib netcdf4 xarray pypsa pypsa-to-gems-converter==0.0.2 gemspy==0.3.0
     ```
 
-    Docker Compose will build the image from `docker-tuto-pypsa-gems/Dockerfile_PyPSA_GemsPy` using `tutorial-two-pypsa-eur/` as the build context and start the container. The Jupyter notebook will be exposed on port **9988**.
+4. Copy the network generated in Part 2 next to the notebook (a pre-generated copy is already shipped with the tutorial, so this step is optional)
 
-4. Open your browser at `http://localhost:9988`.
-5. Open `tutorial_pypsa_eur_gemspy.ipynb` and run the cells in order to convert the PyPSA-Eur network into a GEMS study, run it with GemsPy and analyse the results.
+    ```bash
+    mkdir -p pypsa-eur/resources/networks
+    cp /home/ubuntu/GEMS/pypsa-eur/resources/networks/base_s_1_elec.nc pypsa-eur/resources/networks/
+    ```
+
+5. Open `tutorial_pypsa_eur_gemspy.ipynb` in VS Code, select the `.venv` interpreter as kernel and run the cells in order to convert the PyPSA-Eur network into a GEMS study, run it with GemsPy and analyse the results.
