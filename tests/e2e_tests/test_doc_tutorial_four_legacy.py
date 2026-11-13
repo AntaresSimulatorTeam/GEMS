@@ -35,6 +35,11 @@ def test_doc_tutorial_4_legacy_converter(tmp_root, paths, notebook_simulation_in
         preserve_symlinks=False,
     )
     output_root = tmp_root / "converter_output"
+    # Pinned to v2.2.1: the converter's templates (0.5.1) don't set the `name`
+    # property added to `renewable` in v2.4.0.
+    legacy_library_path = (
+        paths.repo_root / "resources" / "e2e_studies" / "tutorial-four-antares-legacy" / LEGACY_LIBRARY_NAME
+    )
 
     study = read_study_local(legacy_path)
     converter = AntaresStudyConverter(
@@ -42,7 +47,7 @@ def test_doc_tutorial_4_legacy_converter(tmp_root, paths, notebook_simulation_in
         logger=Logger("e2e_legacy_converter", study.path),
         mode="full",
         output_folder=output_root,
-        lib_paths=[str(paths.repo_root / "libraries" / LEGACY_LIBRARY_NAME)],
+        lib_paths=[str(legacy_library_path)],
         models_to_convert=["load", "wind", "thermal", "link"],
     )
     converter.process_all()
