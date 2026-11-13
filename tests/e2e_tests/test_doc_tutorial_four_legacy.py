@@ -38,7 +38,11 @@ def test_doc_tutorial_4_legacy_converter(tmp_root, paths, notebook_simulation_in
     # Pinned to v2.2.1: the converter's templates (0.5.1) don't set the `name`
     # property added to `renewable` in v2.4.0.
     legacy_library_path = (
-        paths.repo_root / "resources" / "e2e_studies" / "tutorial-four-antares-legacy" / LEGACY_LIBRARY_NAME
+        paths.repo_root
+        / "resources"
+        / "e2e_studies"
+        / "tutorial-four-antares-legacy"
+        / LEGACY_LIBRARY_NAME
     )
 
     study = read_study_local(legacy_path)
