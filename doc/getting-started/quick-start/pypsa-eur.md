@@ -16,3 +16,5 @@ The notebook covers these steps:
 4. **Analyse the results** and check them against the original PyPSA solution.
 
 ## Locally
+
+@ToDo complete this part and edit the local notebook
