@@ -6,7 +6,7 @@ This tutorial runs a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) study with 
 
 The whole workflow can be run in your browser with Google Colab, so you don't need to install anything:
 
-[![Open In Colab] @ToDo add the link to Google Colab
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1u1ZczyVc0d6D3DWWbFHfxqqgc9QJAIF0#scrollTo=colab-title)
 
 The notebook covers these steps:
 
