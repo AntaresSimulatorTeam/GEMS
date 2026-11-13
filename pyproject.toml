@@ -8,7 +8,9 @@ dependencies = []
 test = [
     "antares-legacy-gems-converter==0.5.1",
     "gemspy==0.3.0",
+    "ipykernel",
     "matplotlib>=3.10.9",
+    "nbconvert",
     "pandas>=2.2.3",
     "pypsa",
     "pypsa-to-gems-converter==0.0.2",
