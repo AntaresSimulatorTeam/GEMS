@@ -16,6 +16,8 @@ if "__file__" in globals():  # paths relative to the script folder, wherever it 
 # creates files with very long names in .snakemake/ -> failure in a deeply nested folder.
 pypsa_eur_dir = Path.home() / "pypsa-eur"  # C:\Users\<user>\pypsa-eur
 pypsa_eur_file = pypsa_eur_dir / "resources/networks/base_s_1_elec.nc"
+# Pre-generated copy shipped with the tutorial, in case the workflow below fails
+backup_file = Path("pypsa-eur/resources/networks/base_s_1_elec.nc").resolve()
 
 PYPSA_EUR_CONFIG = """\
 benchmark:
@@ -59,62 +61,57 @@ plotting:
 """
 
 if not pypsa_eur_file.is_file():
-    # 0.1 Install Pixi (PyPSA-Eur package manager)
-    pixi = shutil.which("pixi") or str(Path.home() / ".pixi/bin/pixi.exe")
-    if not Path(pixi).is_file():
-        subprocess.run(["powershell", "-ExecutionPolicy", "ByPass", "-c",
-                        "irm -useb https://pixi.sh/install.ps1 | iex"], check=True)
+    try:
+        # 0.1 Install Pixi (PyPSA-Eur package manager)
+        pixi = shutil.which("pixi") or str(Path.home() / ".pixi/bin/pixi.exe")
+        if not Path(pixi).is_file():
+            subprocess.run(["powershell", "-ExecutionPolicy", "ByPass", "-c",
+                            "irm -useb https://pixi.sh/install.ps1 | iex"], check=True)
+        print(f"Pixi installed: {pixi}")
 
-    # 0.2 Clone PyPSA-Eur v2026.08.0: last release that still produces base_s_{clusters}_elec.nc
-    #     (from v2026.09.0 on, networks are named networks/clustered.nc / composed_{horizon}.nc)
-    if not pypsa_eur_dir.is_dir():
-        subprocess.run(["git", "clone", "--branch", "v2026.08.0", "--depth", "1",
-                        "https://github.com/PyPSA/pypsa-eur.git", str(pypsa_eur_dir)], check=True)
+        # 0.2 Clone PyPSA-Eur v2026.08.0: last release that still produces base_s_{clusters}_elec.nc
+        #     (from v2026.09.0 on, networks are named networks/clustered.nc / composed_{horizon}.nc)
+        if not pypsa_eur_dir.is_dir():
+            subprocess.run(["git", "clone", "--branch", "v2026.08.0", "--depth", "1",
+                            "https://github.com/PyPSA/pypsa-eur.git", str(pypsa_eur_dir)], check=True)
+        print(f"PyPSA-Eur cloned: {pypsa_eur_dir}")
 
-    # 0.3 Install the environment (reads pixi.toml -> .pixi/envs/default/)
-    subprocess.run([pixi, "install"], cwd=pypsa_eur_dir, check=True)
+        # 0.3 Install the environment (reads pixi.toml -> .pixi/envs/default/)
+        subprocess.run([pixi, "install"], cwd=pypsa_eur_dir, check=True)
+        print(f"Environment installed: {pypsa_eur_dir}")
 
-    # 0.4 Configure the study (FR, 1 cluster, 48 h); automatically merged with config.default.yaml
-    (pypsa_eur_dir / "config/config.yaml").write_text(PYPSA_EUR_CONFIG, encoding="utf-8")
+        # 0.4 Configure the study (FR, 1 cluster, 48 h); automatically merged with config.default.yaml
+        (pypsa_eur_dir / "config/config.yaml").write_text(PYPSA_EUR_CONFIG, encoding="utf-8")
+        print(f"PyPSA-Eur configured: {pypsa_eur_dir / 'config/config.yaml'}")
 
-    # 0.5 Run the workflow only up to base_s_1_elec.nc
-    #     (no sector coupling, no solving; --rerun-incomplete resumes after an interruption)
-    subprocess.run([pixi, "run", "snakemake", "-c", "all", "-j", "4", "--rerun-incomplete",
-                    pypsa_eur_file.relative_to(pypsa_eur_dir).as_posix()],
-                   cwd=pypsa_eur_dir, check=True)
+        # 0.5 Run the workflow only up to base_s_1_elec.nc
+        #     (no sector coupling, no solving; --rerun-incomplete resumes after an interruption)
+        subprocess.run([pixi, "run", "snakemake", "-c", "all", "-j", "4", "--rerun-incomplete",
+                        pypsa_eur_file.relative_to(pypsa_eur_dir).as_posix()],
+                       cwd=pypsa_eur_dir, check=True)
+        print(f"PyPSA-Eur generated: {pypsa_eur_file}")
+        
+    except (subprocess.CalledProcessError, OSError) as err:
+        print(f"PyPSA-Eur generation failed: {err}")
 
-# %% 1. PyPSA network (PyPSA-Eur if available, otherwise demo network)
+# %% 1. Load the PyPSA network
 import sys
 import types
 import warnings
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import pypsa
 
 warnings.filterwarnings("ignore")
 
-if pypsa_eur_file.is_file():
-    network = pypsa.Network(str(pypsa_eur_file))
-    print(f"PyPSA-Eur network (Snakemake) loaded: {pypsa_eur_file}")
-else:
-    print(f"{pypsa_eur_file} not found -> demo network built in memory (no file created)")
-    network = pypsa.Network(name="demo_FR")
-    network.set_snapshots(pd.date_range("2013-01-01", periods=168, freq="h"))
-    h = np.arange(168)
-    scale = 168 / 8760  # capital costs scaled down to one week
-    network.add("Carrier", ["AC", "nuclear", "CCGT", "onwind", "solar", "battery"])
-    network.add("Bus", "FR0_0", carrier="AC")
-    network.add("Load", "FR0_0", bus="FR0_0", p_set=55_000 + 10_000 * np.sin(2 * np.pi * (h % 24 - 6) / 24))
-    network.add("Generator", "FR0_0 nuclear", bus="FR0_0", carrier="nuclear", p_nom=40_000, marginal_cost=10)
-    network.add("Generator", "FR0_0 CCGT", bus="FR0_0", carrier="CCGT", p_nom_extendable=True,
-                capital_cost=90_000 * scale, marginal_cost=70)
-    network.add("Generator", "FR0_0 0 onwind", bus="FR0_0", carrier="onwind", p_nom_extendable=True,
-                capital_cost=110_000 * scale, p_max_pu=0.35 + 0.25 * np.sin(2 * np.pi * h / 61))
-    network.add("Generator", "FR0_0 0 solar", bus="FR0_0", carrier="solar", p_nom_extendable=True,
-                capital_cost=50_000 * scale, p_max_pu=np.clip(np.sin(2 * np.pi * (h % 24 - 6) / 24), 0, None))
-    network.add("StorageUnit", "FR0_0 battery", bus="FR0_0", carrier="battery", p_nom_extendable=True,
-                capital_cost=60_000 * scale, max_hours=4, cyclic_state_of_charge=True)
+if not pypsa_eur_file.is_file():
+    raise FileNotFoundError(
+        f"\n\nThe PyPSA-Eur network was not generated:\n  {pypsa_eur_file}\n\n"
+        f"A pre-generated copy is provided with this tutorial:\n  {backup_file}\n\n"
+        f"Copy it to the location above, then re-run this cell."
+    )
+network = pypsa.Network(str(pypsa_eur_file))
+print(f"PyPSA-Eur network loaded: {pypsa_eur_file}")
 
 # %% 2. Conversion to a GEMS study
 # The converter imports antares.craft but does not need it for GEMS: dummy module + hybrid study disabled.
