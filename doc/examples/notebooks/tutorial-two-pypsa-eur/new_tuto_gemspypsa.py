@@ -8,6 +8,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
+import platform
 
 if "__file__" in globals():  # paths relative to the script folder, wherever it is launched from
     os.chdir(Path(__file__).resolve().parent)
@@ -65,8 +66,14 @@ if not pypsa_eur_file.is_file():
         # 0.1 Install Pixi (PyPSA-Eur package manager)
         pixi = shutil.which("pixi") or str(Path.home() / ".pixi/bin/pixi.exe")
         if not Path(pixi).is_file():
-            subprocess.run(["powershell", "-ExecutionPolicy", "ByPass", "-c",
+            if platform.system() == "Windows":
+                subprocess.run(["powershell", "-ExecutionPolicy", "ByPass", "-c",
                             "irm -useb https://pixi.sh/install.ps1 | iex"], check=True)
+            elif platform.system() == "Linux":
+                subprocess.run(["bash", "-c",
+                            "curl -sSL https://pixi.sh/install.sh | bash"], check=True)
+            else:
+                raise OSError(f"Pixi installation not implemented for {platform.system()}")
         print(f"Pixi installed: {pixi}")
 
         # 0.2 Clone PyPSA-Eur v2026.08.0: last release that still produces base_s_{clusters}_elec.nc
