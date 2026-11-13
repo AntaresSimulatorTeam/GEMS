@@ -9,6 +9,7 @@ import logging
 import re
 import shutil
 import subprocess
+import sys
 import zipfile
 from pathlib import Path
 
@@ -20,64 +21,44 @@ from .env import EnvironmentPaths
 logger = logging.getLogger(__name__)
 
 
-def execute_notebook_in_docker(
+def execute_notebook_locally(
     *,
-    dockerfile: Path,
-    context: Path,
-    image_tag: str,
-    notebook_in_container: str,
-    volumes: list[str],
+    notebook_path: Path,
     output_path: Path,
     timeout: int = 600,
 ) -> Path:
-    """Build a Docker image, execute a notebook inside a container, and write the
-    output to *output_path*.
+    """Execute a notebook with the current Python environment and write the
+    executed copy to *output_path*.
 
-    The container mounts *output_path.parent* at ``/notebook_output`` and writes
-    the executed notebook there so it can be read by the test process.
-    Returns *output_path* for convenience.
+    The notebook runs with its own folder as working directory, so the relative
+    paths it uses resolve next to it. Returns *output_path* for convenience.
     """
-    build = subprocess.run(
-        ["docker", "build", "-f", str(dockerfile), "-t", image_tag, str(context)],
-        capture_output=True,
-        text=True,
-    )
-    if build.returncode != 0:
-        logger.error("docker build stderr:\n%s", build.stderr)
-        raise RuntimeError(f"Docker build failed for {dockerfile}\n{build.stderr}")
-
-    output_dir = output_path.parent
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_filename = output_path.name
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     run = subprocess.run(
         [
-            "docker",
-            "run",
-            "--rm",
-            *[arg for v in volumes for arg in ("-v", v)],
-            "-v",
-            f"{output_dir}:/notebook_output",
-            image_tag,
-            "jupyter",
+            sys.executable,
+            "-m",
             "nbconvert",
             "--to",
             "notebook",
             "--execute",
+            "--ExecutePreprocessor.kernel_name=python3",
             f"--ExecutePreprocessor.timeout={timeout}",
+            "--output-dir",
+            str(output_path.parent),
             "--output",
-            f"/notebook_output/{output_filename}",
-            notebook_in_container,
+            output_path.name,
+            str(notebook_path),
         ],
         capture_output=True,
         text=True,
+        cwd=str(notebook_path.parent),
     )
     if run.returncode != 0:
-        logger.error("docker run stdout:\n%s", run.stdout)
-        logger.error("docker run stderr:\n%s", run.stderr)
-        raise RuntimeError(
-            f"Notebook execution failed in Docker: {notebook_in_container}\n{run.stderr}"
-        )
+        logger.error("nbconvert stdout:\n%s", run.stdout)
+        logger.error("nbconvert stderr:\n%s", run.stderr)
+        raise RuntimeError(f"Notebook execution failed: {notebook_path}\n{run.stderr}")
     return output_path
 
 

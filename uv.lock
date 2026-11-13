@@ -819,8 +819,10 @@ source = { virtual = "." }
 dev = [
     { name = "antares-legacy-gems-converter" },
     { name = "gemspy" },
+    { name = "ipykernel" },
     { name = "matplotlib" },
     { name = "mypy" },
+    { name = "nbconvert" },
     { name = "pandas" },
     { name = "pandas-stubs" },
     { name = "pypsa" },
@@ -847,7 +849,9 @@ doc = [
 test = [
     { name = "antares-legacy-gems-converter" },
     { name = "gemspy" },
+    { name = "ipykernel" },
     { name = "matplotlib" },
+    { name = "nbconvert" },
     { name = "pandas" },
     { name = "pypsa" },
     { name = "pypsa-to-gems-converter" },
@@ -861,8 +865,10 @@ test = [
 dev = [
     { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
     { name = "gemspy", specifier = "==0.3.0" },
+    { name = "ipykernel" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
+    { name = "nbconvert" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pandas-stubs" },
     { name = "pypsa" },
@@ -889,7 +895,9 @@ doc = [
 test = [
     { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
     { name = "gemspy", specifier = "==0.3.0" },
+    { name = "ipykernel" },
     { name = "matplotlib", specifier = ">=3.10.9" },
+    { name = "nbconvert" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pypsa" },
     { name = "pypsa-to-gems-converter", specifier = "==0.0.2" },

@@ -2,5 +2,10 @@
   "ignorePatterns": [
     { "pattern": "\\.(png|jpg|jpeg|gif|svg|webp|ico|drawio)$" },
     { "pattern": "^http://127\\.0\\.0\\.1" }
-  ]
+  ],
+  "timeout": "20s",
+  "retryOn429": true,
+  "retryCount": 3,
+  "fallbackRetryDelay": "10s",
+  "aliveStatusCodes": [200, 206, 502, 503, 504]
 }
