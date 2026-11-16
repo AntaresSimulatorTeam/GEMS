@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir --no-input \
     xarray \
     pypsa \
     pypsa-to-gems-converter==0.0.2 \
-    gemspy==0.2.0
+    gemspy==0.3.0
 
 WORKDIR /workspace
 

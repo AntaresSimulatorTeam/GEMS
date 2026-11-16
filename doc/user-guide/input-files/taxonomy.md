@@ -12,6 +12,7 @@ This classification is "transparent" and doesn't impact the optimization solutio
 ???+ warning "Every model used in the system needs a `taxonomy-category`"
     To build Views, each component of the [system](system.md) is attached to the `taxonomy-category` of its model. Models without a `taxonomy-category` cannot be used to build Views.
 
+
 ## Key elements in taxonomy file
 
 The taxonomy file has a single root key `taxonomy`. Unknown keys under `taxonomy` are rejected.

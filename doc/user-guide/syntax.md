@@ -198,6 +198,8 @@ Sums the operand *X* from time *S* to time *E*, both included. *S* and *E* are e
 | `sum(0 .. y, x)`, with `y` a variable | No |
 | `sum(0 .. d[t - 1], x)`, with `d` time-dependent | No, the bound moves with *t* |
 
+Both forms can be mixed: for example, `sum(0 .. t, X)` is the cumulative sum of *X* up to the current period. The bounds must not contain variables, and the parameters they use must be [time-independent](input-files/library.md#parameters).
+
 Using these time operators, advanced temporal constraints can be created. For example:
 
 ```yaml

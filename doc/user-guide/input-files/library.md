@@ -58,6 +58,7 @@ library:
 | `id`| String | A unique identifier for the library. This `id` is used by [system files](system.md) to reference models from this library via the `model-libraries` field. It must be unique across all libraries that are used to build a system and must follow standard [naming rules](#rules-for-id-naming).|
 | `description` | String | *(Optional)* A human-readable description of the library’s content or purpose.|
 | `version` | String | *(Optional)* A version string for the library (e.g. `"1.0.0"`). Should be bumped whenever the library changes; see the corresponding `CHANGELOG` file.|
+| `taxonomy` | String | *(Optional)* The `id` of the [taxonomy](taxonomy.md) whose categories the models of this library declare in their [`taxonomy-category`](#taxonomy). The models are then checked against this taxonomy (see [Taxonomy](taxonomy.md)).|
 
 ### Port Types
 
@@ -182,10 +183,19 @@ A list of parameters that this model takes. Each parameter defines a configurabl
 | Element | Type | Description |
 |------|------|--------------------------|
 |`id`| String | Unique parameter identifier within the model. Must follow the [naming rules](#rules-for-id-naming).|
-| `time-dependent`| Boolean | `true` or `false`. If `true`, this parameter can vary over the simulation timeline (meaning it will be associated with a time series input). If `false`, it is treated as constant in time.|
-|`scenario-dependent`| Boolean | `true` or `false`. If `true`, the parameter can have different values in different scenarios (i.e., it requires scenario-specific data). If `false`, it does not vary between scenarios.|
+| `time-dependent`| Boolean | *(Optional)* If `true`, this parameter can vary over the simulation timeline (meaning it can be associated with a time series input). If `false`, it is constant in time. Defaults to `true`.|
+|`scenario-dependent`| Boolean | *(Optional)* If `true`, the parameter can have different values in different scenarios (i.e., it can be given scenario-specific data). If `false`, it does not vary between scenarios. Defaults to `true`.|
 
 Together, these flags define how the parameter can be provided - as a single value, a time series, scenario-based data, or a matrix. For details on how parameter data is stored and referenced, see the [data-series](./data-series.md). For how parameter values are assigned in the system file, see [System — Parameters](system.md#parameters).
+
+!!! warning "Declare constant parameters explicitly"
+    An omitted flag means `true`, so a parameter that must be constant has to declare
+    `time-dependent: false` (and `scenario-dependent: false` if needed). This is the case for a
+    parameter used as a bound of a [time sum](../syntax.md#time-summation-range-sums-e-x), as a
+    time-shift amount, as the bound of a time- or scenario-independent variable, in an objective
+    contribution without `sum` or `expec`, or by a
+    [heuristic](optimization-configuration.md#models). A component can still give a time- and scenario-dependent parameter a
+    constant value in the [system file](system.md#parameters).
 
 #### Variables
 
@@ -197,6 +207,8 @@ A list of decision variables introduced by this model for the optimization probl
 | `variable-type`| Enum | The type of variable: `continuous`, `integer`, or `binary`. This determines how the solver treats the variable.|
 |`lower-bound`| Number or Expression | *(Optional)* Lower bound for the variable. Can be a numeric literal or an expression using only model parameters and constants. Defaults to −∞ for `continuous`/`integer`, or `0` for `binary`.|
 |`upper-bound`| Number or Expression | *(Optional)* Upper bound for the variable. Can be a numeric literal or an expression using only model parameters and constants. Defaults to +∞ for `continuous`/`integer`, or `1` for `binary`.|
+| `time-dependent`| Boolean | *(Optional)* If `true`, the variable takes a separate value at each time step of the simulation horizon. If `false`, a single value is shared by all time steps (as for an investment decision). Defaults to `true`.|
+|`scenario-dependent`| Boolean | *(Optional)* If `true`, the variable takes a separate value in each scenario. If `false`, a single value is shared by all scenarios. Defaults to `true`.|
 
 Any expression used for bounds must use only constants or models parameters.
 

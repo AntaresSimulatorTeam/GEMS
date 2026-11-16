@@ -13,6 +13,7 @@ This table maps documentation/language versions to the interpreter and library v
 | v0.4.0        | 10.1.1            | 0.1.3  |       |
 | v0.5.0        | 10.2.0            | 0.2.0  | PyPSA-Eur tutorial: pypsa-to-gems-converter 0.0.2 |
 | v0.6.0        | 10.2.0            | 0.2.0  | GEMS ViewsBuilder 0.1.0 |
+| v0.6.1        | 10.2.0            | 0.3.0  |       |
 
 ## Versioning Policy
 
@@ -32,6 +33,6 @@ This table maps documentation/language versions to the interpreter and library v
 | Library | Current Version |
 |---------|----------------|
 | `basic_models_library` | 1.0.1 |
-| `antares_legacy_models` | 2.2.1 |
+| `antares_legacy_models` | 2.4.0 |
 | `pypsa_models` | 2.0.1 |
 | `andromede_models` | 1.0.0 |
