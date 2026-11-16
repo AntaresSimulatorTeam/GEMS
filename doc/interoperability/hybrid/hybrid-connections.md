@@ -103,7 +103,7 @@ area-connections:
 Explanation of fields:
 
 - **component:** Refers to the `id` of the GEMS component to be connected. This `id` must match the one declared in the components section of the `system.yml` file. In this example, it refers to a component named `wind_farm`
-- **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding **port type** must include an `area-connection` section in the model library definition, and must specify at least one of `injection-to-balance`, `spillage-bound` or `unsupplied-energy-bound`
+- **port:** Specifies which port on the component is used to establish the connection to the Antares Simulator area. The corresponding **port type** must include an `area-connection` section in the model library definition, declaring the three keys `injection-to-balance`, `spillage-bound` and `unsupplied-energy-bound`, with a value for at least one of them
 - **area:** Indicates the target Antares Simulator area. The component's output, through the defined port, will contribute to this Antares Simulator area's balance constraint during simulation
 
 ## Abstract definition of the thermal-capacity-connection field type 

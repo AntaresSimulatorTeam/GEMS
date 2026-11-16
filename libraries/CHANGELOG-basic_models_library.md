@@ -2,6 +2,11 @@
 
 All notable changes to this library are documented here.
 
+## [1.1.0] — 2026-11-03
+
+### Added
+- `area-connection` on the `flow` port type (`injection-to-balance: flow`), so that components of this library can be connected to Antares Simulator legacy areas in hybrid studies.
+
 ## [1.0.1] — 2026-10-01
 
 ### Fixed
