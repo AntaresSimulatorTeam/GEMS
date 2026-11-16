@@ -2,11 +2,11 @@
 
 This tutorial runs a [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) study with GEMS. [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) is an open-source energy system model of the European power grid. It is written in PyPSA format, which Antares Modeler cannot read directly. The [PyPSA-to-GEMS-Converter](https://github.com/AntaresSimulatorTeam/PyPSA-to-GEMS-Converter) package converts PyPSA studies into GEMS studies.
 
-## On Google Colab
+## Locally
 
-The whole workflow can be run in your browser with Google Colab, so you don't need to install anything:
+The conversion workflow can be run locally :
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1u1ZczyVc0d6D3DWWbFHfxqqgc9QJAIF0#scrollTo=colab-title)
+[Download the jupyter notebook](https://github.com/AntaresSimulatorTeam/GEMS/blob/docs/refactor-pypsa-eur-notebook/doc/examples/notebooks/tutorial-two-pypsa-eur/tutorial_pypsa_eur_local.ipynb)
 
 The notebook covers these steps:
 
@@ -15,6 +15,8 @@ The notebook covers these steps:
 3. **Run the simulation** with [GemsPy](../installation/gemspy-installation.md).
 4. **Analyse the results** and check them against the original PyPSA solution.
 
-## Locally
+## On Google Colab
 
-@ToDo complete this part and edit the local notebook
+The whole workflow is also uploaded on Google Colab, so you can use it without installing anything:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1u1ZczyVc0d6D3DWWbFHfxqqgc9QJAIF0#scrollTo=colab-title)
