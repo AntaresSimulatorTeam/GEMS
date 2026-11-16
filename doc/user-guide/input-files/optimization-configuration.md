@@ -480,10 +480,13 @@ models:
             type: variable-solution
           - heuristic-element: num_units_max
             id: nb_units_max
+            type: parameter
           - heuristic-element: min_up_duration
             id: d_min_up
+            type: parameter
           - heuristic-element: min_down_duration
             id: d_min_down
+            type: parameter
         outputs:
           - heuristic-element: minimum_num_units_on
             id: nb_units_on
@@ -495,21 +498,22 @@ the first solve, a lower bound on its `nb_units_on` variable, computed from its 
 `nb_units_on`, its `nb_units_max` parameter and its minimum up and down durations.
 
 `heuristics` is a list of entries, one per heuristic used by the model's components. Each
-heuristic should appear at most once:
+heuristic should appear at most once. All keys are required:
 
-| Key | Type | Required | Description |
-|---|---|---|---|
-| `id` | String | Yes | Identifier of the heuristic algorithm available in the GEMS interpreter: `fast` or `accurate` |
-| `inputs` | List of mappings | Yes | The model elements the heuristic reads: one entry for each of its input elements |
-| `outputs` | List of mappings | Yes | The model elements the heuristic writes: one entry for each of its output elements |
+| Key | Type | Description |
+|---|---|---|
+| `id` | String | Identifier of the heuristic algorithm available in the GEMS interpreter: `fast` or `accurate` |
+| `inputs` | List of mappings | The model elements the heuristic reads: one entry for each of its input elements |
+| `outputs` | List of mappings | The model elements the heuristic writes: one entry for each of its output elements |
 
-Each entry of `inputs` and `outputs` binds an element of the heuristic to an element of the model:
+Each entry of `inputs` and `outputs` binds an element of the heuristic to an element of the model.
+All keys are required:
 
-| Key | Type | Required | Description |
-|---|---|---|---|
-| `heuristic-element` | String | Yes | The name of the heuristic's element, from the tables below |
-| `id` | String | Yes | The id of a parameter or a variable of the model |
-| `type` | String | No | What is read or written (see below). Default: `parameter` |
+| Key | Type | Description |
+|---|---|---|
+| `heuristic-element` | String | The name of the heuristic's element, as given in the interpreter's documentation (see below) |
+| `id` | String | The id of a parameter or a variable of the model |
+| `type` | String | What is read or written (see below) |
 
 | `type` | Element of the model | Use |
 |---|---|---|
