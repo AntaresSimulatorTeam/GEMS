@@ -6,7 +6,7 @@ dependencies = []
 
 [dependency-groups]
 test = [
-    "antares-legacy-gems-converter==0.5.1",
+    "antares-legacy-gems-converter==0.5.2",
     "gemspy==0.3.0",
     "matplotlib>=3.10.9",
     "pandas>=2.2.3",
@@ -24,7 +24,7 @@ dev = [
     "yamllint>=1.35.1",
 ]
 doc = [
-    "antares-legacy-gems-converter==0.5.1",
+    "antares-legacy-gems-converter==0.5.2",
     "gemspy==0.3.0",
     "matplotlib>=3.10.9",
     "mkdocs",
