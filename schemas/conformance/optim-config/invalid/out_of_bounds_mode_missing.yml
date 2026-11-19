@@ -1,0 +1,5 @@
+models:
+  - id: l.m
+    out-of-bounds-processing:
+      constraints:
+        - id: level_equation

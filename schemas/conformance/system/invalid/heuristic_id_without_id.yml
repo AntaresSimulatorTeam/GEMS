@@ -1,0 +1,6 @@
+system:
+  components:
+    - id: c
+      model: l.m
+      integer-strategy:
+        heuristic-id: fast

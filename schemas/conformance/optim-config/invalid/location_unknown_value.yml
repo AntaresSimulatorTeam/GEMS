@@ -1,0 +1,6 @@
+models:
+  - id: l.m
+    model-decomposition:
+      variables:
+        - id: x
+          location: both

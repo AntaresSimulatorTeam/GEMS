@@ -1,0 +1,2 @@
+solver_options:
+  name: highs

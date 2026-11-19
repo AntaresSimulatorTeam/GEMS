@@ -1,0 +1,8 @@
+system:
+  components:
+    - id: c
+      model: l.m
+      parameters:
+        - id: p
+          time-dependent: true
+          value: 3.5

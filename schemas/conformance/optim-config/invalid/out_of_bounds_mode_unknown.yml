@@ -1,0 +1,6 @@
+models:
+  - id: l.m
+    out-of-bounds-processing:
+      constraints:
+        - id: c
+          mode: clamp

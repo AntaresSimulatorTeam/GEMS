@@ -1,0 +1,7 @@
+library:
+  id: lib
+  models:
+    - id: m
+      port-field-definitions:
+        - port: p
+          field: f

@@ -1,0 +1,245 @@
+# PROVISIONAL. JSON Schema (draft 2020-12), authored in YAML, for GEMS optimization
+# configuration files (input/optim-config.yml).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/schemas-v0.1.0/schemas/optim-config.schema.yml
+title: GEMS optimization configuration
+x-schema-version: 0.1.0
+x-status: provisional
+description: >-
+  PROVISIONAL: GemsPy/GEMS-doc and Antares_Simulator read two different dialects of this file
+  (DISCREPANCIES O01-O06) and the GEMS doc itself says not every feature is supported by every
+  interpreter. This schema describes the dialect of the GEMS doc and GemsPy
+  (`gems_craft.optim_config.parsing`): top-level `time-scope`, `scenario-scope`, `solver-options`,
+  `resolution`, `models`; there is no root key. The Simulator dialect (`resolution-mode`, mandatory
+  `model-decomposition`) is deliberately NOT accepted; its real example files are in the conformance
+  corpus as documented divergences. An empty mapping and an empty document (null: a file holding only comments, which is what AntaREST creates and the Simulator accepts, O07) are valid; every key is optional.
+
+type: [object, 'null']
+additionalProperties: false
+properties:
+  time-scope:
+    description: Rejected by Antares_Simulator (O02). `first-time-step <= last-time-step` is NOT checked (N05).
+    type: object
+    additionalProperties: false
+    properties:
+      first-time-step: {type: integer}
+      last-time-step: {type: integer}
+    x-discrepancy: [O02]
+
+  scenario-scope:
+    type: object
+    additionalProperties: false
+    properties:
+      include:
+        $ref: "#/$defs/ScenarioEntries"
+      exclude:
+        $ref: "#/$defs/ScenarioEntries"
+    dependentRequired:
+      exclude: [include]
+
+  solver-options:
+    description: Rejected by Antares_Simulator (O02). Solver option strings are NOT checked (N06).
+    type: object
+    additionalProperties: false
+    properties:
+      name: {type: string}
+      logs: {type: boolean}
+      parameters:
+        description: Whitespace-separated KEY VALUE pairs; the even token count is NOT checked (N06).
+        type: string
+    x-discrepancy: [O02]
+
+  resolution:
+    description: >-
+      Antares_Simulator instead reads a top-level `resolution-mode` string with only two values
+      (O01). Numeric relations between the block fields are NOT checked (N05).
+    type: object
+    additionalProperties: false
+    properties:
+      mode:
+        description: Defaults to `frontal` (Antares_Simulator defaults to `sequential-subproblems`, O01).
+        enum: [frontal, sequential-subproblems, parallel-subproblems, benders-decomposition]
+      block-length: {type: integer, minimum: 1}
+      block-overlap: {type: integer, minimum: 0}
+      carry-over-length: {type: integer, minimum: 0}
+    allOf:
+      - description: block-length is required for the windowed modes.
+        if:
+          required: [mode]
+          properties:
+            mode: {enum: [sequential-subproblems, parallel-subproblems]}
+        then:
+          required: [block-length]
+      - description: block-overlap and carry-over-length only exist in sequential-subproblems, even when written as 0.
+        if:
+          required: [mode]
+          properties:
+            mode: {const: sequential-subproblems}
+        else:
+          not:
+            anyOf:
+              - {required: [block-overlap]}
+              - {required: [carry-over-length]}
+    x-discrepancy: [O01]
+
+  models:
+    description: Each model should appear at most once (NOT checked, N05).
+    type: array
+    items:
+      $ref: "#/$defs/ModelConfig"
+
+$defs:
+  ScenarioEntries:
+    description: 0-based scenario indices, as integers, quoted integers or quoted inclusive ranges `a-b`. `a <= b` is NOT checked (N05).
+    type: array
+    items:
+      oneOf:
+        - {type: integer, minimum: 0}
+        - {type: string, pattern: "^\\d+(-\\d+)?$"}
+
+  ModelConfig:
+    type: object
+    required: [id]
+    additionalProperties: false
+    properties:
+      id:
+        $ref: common.schema.yml#/$defs/QualifiedModelId
+      model-decomposition:
+        description: Optional in the doc and GemsPy, mandatory in Antares_Simulator (O03).
+        $ref: "#/$defs/ModelDecomposition"
+        x-discrepancy: [O03]
+      out-of-bounds-processing:
+        $ref: "#/$defs/OutOfBoundsProcessing"
+      heuristics:
+        description: GemsPy only; Antares_Simulator develop rejects it (O05).
+        type: array
+        items:
+          $ref: "#/$defs/Heuristic"
+        x-discrepancy: [O05]
+
+  ModelDecomposition:
+    type: object
+    additionalProperties: false
+    properties:
+      variables: {$ref: "#/$defs/LocatedElements"}
+      constraints: {$ref: "#/$defs/LocatedElements"}
+      objective-contributions: {$ref: "#/$defs/LocatedElements"}
+
+  LocatedElements:
+    type: array
+    items:
+      type: object
+      required: [id, location]
+      additionalProperties: false
+      properties:
+        id:
+          $ref: common.schema.yml#/$defs/Identifier
+        location:
+          enum: [master, subproblems, master-and-subproblems]
+
+  OutOfBoundsProcessing:
+    type: object
+    additionalProperties: false
+    properties:
+      constraints:
+        type: array
+        items:
+          type: object
+          required: [id, mode]
+          additionalProperties: false
+          properties:
+            id:
+              $ref: common.schema.yml#/$defs/Identifier
+            mode:
+              description: Mandatory in the doc and GemsPy; Antares_Simulator defaults it to `cyclic` (O04).
+              enum: [cyclic, drop]
+              x-discrepancy: [O04]
+
+  HeuristicElement:
+    type: object
+    required: [heuristic-element, id, type]
+    additionalProperties: false
+    properties:
+      heuristic-element: {type: string}
+      id:
+        $ref: common.schema.yml#/$defs/Identifier
+      type:
+        description: >-
+          Optional with default `parameter` in the GEMS doc, mandatory in GemsPy (O06). The schema
+          follows GemsPy: a file the reference implementation rejects must not validate.
+        enum: [parameter, variable-solution, variable-lower-bound, variable-upper-bound]
+        x-discrepancy: [O06]
+
+  HeuristicOutput:
+    allOf:
+      - $ref: "#/$defs/HeuristicElement"
+      - properties:
+          type: {enum: [variable-lower-bound, variable-upper-bound]}
+
+  Heuristic:
+    description: >-
+      The element names of each heuristic are hard-coded in GemsPy (`_HEURISTIC_SCHEMA`); they are
+      copied here and must be kept in sync (O05). `inputs` and `outputs` list exactly those
+      elements, each once.
+    type: object
+    required: [id, inputs, outputs]
+    additionalProperties: false
+    properties:
+      id:
+        enum: [fast, accurate]
+      inputs:
+        type: array
+        items: {$ref: "#/$defs/HeuristicElement"}
+      outputs:
+        type: array
+        items: {$ref: "#/$defs/HeuristicOutput"}
+    allOf:
+      - if:
+          required: [id]
+          properties:
+            id: {const: accurate}
+        then:
+          properties:
+            inputs:
+              maxItems: 4
+              items:
+                properties:
+                  heuristic-element: {enum: [num_units_on_opt, num_units_max, min_up_duration, min_down_duration]}
+              allOf:
+                - {contains: {properties: {heuristic-element: {const: num_units_on_opt}}}}
+                - {contains: {properties: {heuristic-element: {const: num_units_max}}}}
+                - {contains: {properties: {heuristic-element: {const: min_up_duration}}}}
+                - {contains: {properties: {heuristic-element: {const: min_down_duration}}}}
+            outputs:
+              maxItems: 1
+              items:
+                properties:
+                  heuristic-element: {enum: [minimum_num_units_on]}
+              allOf:
+                - {contains: {properties: {heuristic-element: {const: minimum_num_units_on}}}}
+      - if:
+          required: [id]
+          properties:
+            id: {const: fast}
+        then:
+          properties:
+            inputs:
+              maxItems: 6
+              items:
+                properties:
+                  heuristic-element: {enum: [generation_power, cluster_max_generation, min_power_per_unit, max_power_per_unit, min_up_duration, min_down_duration]}
+              allOf:
+                - {contains: {properties: {heuristic-element: {const: generation_power}}}}
+                - {contains: {properties: {heuristic-element: {const: cluster_max_generation}}}}
+                - {contains: {properties: {heuristic-element: {const: min_power_per_unit}}}}
+                - {contains: {properties: {heuristic-element: {const: max_power_per_unit}}}}
+                - {contains: {properties: {heuristic-element: {const: min_up_duration}}}}
+                - {contains: {properties: {heuristic-element: {const: min_down_duration}}}}
+            outputs:
+              maxItems: 2
+              items:
+                properties:
+                  heuristic-element: {enum: [minimum_generation_power, maximum_generation_power]}
+              allOf:
+                - {contains: {properties: {heuristic-element: {const: minimum_generation_power}}}}
+                - {contains: {properties: {heuristic-element: {const: maximum_generation_power}}}}

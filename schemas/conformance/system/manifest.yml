@@ -1,0 +1,205 @@
+# Conformance manifest for the `system` schema.
+# valid: true  -> the file must validate.
+# valid: false -> the file must fail, with an error at `expect.path` (JSON pointer into the file,
+#                 empty = document root) and, when given, `expect.keyword`; `reason` says why.
+# source: provenance of real files (copied byte for byte) or `hand-written`.
+cases:
+- file: valid/gems_qse1_system.yml
+  valid: true
+  source: GEMS@9c52d63:resources/Documentation_Examples/QSE/QSE_1_Adequacy/input/system.yml
+- file: valid/gems_hybrid_system.yml
+  valid: true
+  source: GEMS@9c52d63:resources/Documentation_Examples/Hybrid_Study/input/system.yml
+- file: valid/gems_tutorial_uc_system.yml
+  valid: true
+  source: GEMS@9c52d63:resources/e2e_studies/tutorial-one-unit-commitment/step-three-unit-commitment/input/system.yml
+- file: valid/gemspy_heuristic_system.yml
+  valid: true
+  source: GemsPy@b197a14:tests/e2e/functional/studies/thermal_heuristic_four_clusters_mixed_strategies/input/system.yml
+- file: valid/gemspy_system.yml
+  valid: true
+  source: GemsPy@b197a14:tests/e2e/functional/systems/system.yml
+- file: valid/gemspy_hybrid_fixture.yml
+  valid: true
+  source: GemsPy@b197a14:tests/unittests/gems_craft_hybrid/fixtures/hybrid_system.yml
+- file: valid/simulator_system_10_3.yml
+  valid: true
+  source: Antares_Simulator@6744889:resources/modeler/10_3/input/system.yml
+- file: valid/doc_example_system.yml
+  valid: true
+  source: hand-written
+- file: valid/minimal_system.yml
+  valid: true
+  source: hand-written
+  note: every key of `system` is optional for GemsPy
+- file: valid/integer_strategies_and_properties.yml
+  valid: true
+  source: hand-written
+- file: valid/parameter_defaults.yml
+  valid: true
+  source: hand-written
+  note: flags default to false; value follows them
+- file: invalid/missing_system_key.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: ''
+    keyword: required
+  reason: the single root key must be `system`
+- file: invalid/unknown_root_sibling.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: ''
+    keyword: additionalProperties
+  reason: GemsPy ignores siblings of `system`, Antares_Simulator rejects them (DISCREPANCIES S11)
+- file: invalid/unknown_system_key.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system
+    keyword: additionalProperties
+  reason: 'typo `component`: AntaREST (extra=allow) would let it through (DISCREPANCIES S10)'
+- file: invalid/components_not_a_list.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components
+    keyword: type
+  reason: components is a list
+- file: invalid/component_missing_model.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0
+    keyword: required
+  reason: '`model` is mandatory'
+- file: invalid/model_not_qualified.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/model
+    keyword: pattern
+  reason: model must be `<library_id>.<model_id>`
+- file: invalid/model_two_dots.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/model
+    keyword: pattern
+  reason: 'exactly one dot: Antares_Simulator splits on ''.'' and silently drops the rest'
+- file: invalid/typo_in_component_key.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0
+    keyword: additionalProperties
+  reason: unknown key `paramters`
+- file: invalid/parameter_missing_value.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/parameters/0
+    keyword: required
+  reason: '`value` is mandatory'
+- file: invalid/parameter_flag_not_boolean.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/parameters/0/time-dependent
+    keyword: type
+  reason: flags are booleans
+- file: invalid/time_dependent_parameter_with_number.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/parameters/0/value
+    keyword: type
+  reason: a time-dependent parameter takes a data-series id (string); enforced by the doc and AntaREST, not by GemsPy
+    at parse time (DISCREPANCIES S05)
+- file: invalid/simulator_constant_parameter_with_series_id.yml
+  valid: false
+  source: Antares_Simulator@6744889:resources/modeler/1_5/input/system.yml
+  expect:
+    path: /system/components/0/parameters/2/value
+    keyword: type
+  reason: constant parameter (both flags false) given a data-series id; Antares_Simulator's own test 1.5 expects
+    the run to fail ('fails because of timeseries given for parameter with time_dependant = false')
+  note: intentional negative test of the Simulator, reused as an invalid case
+- file: valid/parameter_scenario_group_key.yml
+  valid: true
+  source: hand-written
+  note: '`scenario-group` on a parameter is GemsPy-only (DISCREPANCIES S06); accepted by the schema, flagged there'
+- file: invalid/heuristic_without_heuristic_id.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/integer-strategy
+    keyword: required
+  reason: '`heuristic-id` is required when id is `heuristic`'
+- file: invalid/relaxed_with_heuristic_id.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/integer-strategy
+    keyword: not
+  reason: '`heuristic-id` is only allowed when id is `heuristic`'
+- file: invalid/heuristic_id_without_id.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/integer-strategy
+    keyword: not
+  reason: id defaults to `exact`, so `heuristic-id` is not allowed
+- file: invalid/integer_strategy_unknown_id.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/integer-strategy/id
+    keyword: enum
+  reason: id is exact | relaxed | heuristic
+- file: invalid/property_value_not_string.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/properties/0/value
+    keyword: type
+  reason: property values are strings (GemsPy, AntaREST); Antares_Simulator reads any scalar as a string (DISCREPANCIES
+    S12)
+- file: invalid/connection_missing_port2.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/connections/0
+    keyword: required
+  reason: all four keys are mandatory
+- file: invalid/connection_unknown_key.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/connections/0
+    keyword: additionalProperties
+  reason: unknown key
+- file: invalid/area_connection_missing_area.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/area-connections/0
+    keyword: required
+  reason: '`area` is mandatory'
+- file: invalid/thermal_capacity_connection_missing_cluster.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/thermal-capacity-connections/0/thermal-component
+    keyword: required
+  reason: '`cluster-id` is mandatory'
+- file: invalid/gemspy_snake_case_model_libraries.yml
+  valid: false
+  source: GemsPy@b197a14:tests/e2e/functional/studies/simple_system_cyclic/input/system.yml
+  expect:
+    path: /system
+    keyword: additionalProperties
+  reason: 'real GemsPy study written with `model_libraries` (snake_case): GemsPy reads it (populate_by_name), the
+    doc and Antares_Simulator only know `model-libraries` (DISCREPANCIES S13)'
+  note: documented divergence; same pattern in the PyPSA converter output

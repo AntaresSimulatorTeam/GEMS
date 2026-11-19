@@ -1,0 +1,27 @@
+library:
+  id: lib
+  models:
+    - id: m
+      parameters:
+        - id: p
+          time-dependent: false
+          scenario-dependent: false
+      variables:
+        - id: x
+          lower-bound: 0
+          upper-bound: p
+          variable-type: binary
+        - id: y
+          time-dependent: false
+          scenario-dependent: false
+          lower-bound: -1.5
+      constraints:
+        - id: c
+          expression: x <= 1
+          lower-bound: 0
+      objective-contributions:
+        - id: obj
+          expression: sum(x)
+      extra-outputs:
+        - id: out
+          expression: x

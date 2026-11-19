@@ -1,0 +1,5 @@
+system:
+  components:
+    - id: c
+      model: l.m
+      paramters: []

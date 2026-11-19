@@ -1,0 +1,8 @@
+system:
+  components:
+    - id: c
+      model: l.m
+      parameters:
+        - id: p
+          value: 1
+          scenario-group: g
