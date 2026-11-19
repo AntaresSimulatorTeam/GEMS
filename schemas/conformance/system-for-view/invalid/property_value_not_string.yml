@@ -1,0 +1,9 @@
+system:
+  id: s
+  components:
+    - id: c
+      model: l.m
+      properties:
+        - id: year
+          value: 2030
+  connections: []

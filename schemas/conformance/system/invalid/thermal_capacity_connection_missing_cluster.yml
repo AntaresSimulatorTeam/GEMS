@@ -1,0 +1,6 @@
+system:
+  thermal-capacity-connections:
+    - component: c
+      port: p
+      thermal-component:
+        area: fr

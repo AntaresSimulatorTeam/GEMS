@@ -1,0 +1,6 @@
+system:
+  id: s
+  components:
+    - id: c
+      model: area
+  connections: []

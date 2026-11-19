@@ -1,0 +1,162 @@
+# Copyright (c) 2026, RTE (https://www.rte-france.com)
+#
+# See AUTHORS.txt
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+# This file is part of the Antares project.
+system:
+
+  components:
+    - id: N
+      model: antares_legacy_models.area
+      parameters:
+        - id: spillage_cost
+          value: 1
+        - id: unsupplied_energy_cost
+          value: 10000
+    - id: D
+      model: antares_legacy_models.load
+      parameters:
+        - id: load
+          time-dependent: true
+          value: demand-ts
+    - id: G1
+      model: antares_legacy_models.thermal
+      integer-strategy:
+        id: relaxed
+      parameters:
+        - id: max_power_per_unit
+          value: 300
+        - id: min_power_per_unit
+          value: 100
+        - id: cluster_max_generation
+          value: 1200
+        - id: cluster_min_gen_modulation
+          value: 0
+        - id: market_bid_cost
+          value: 10
+        - id: startup_cost
+          value: 1000
+        - id: fixed_cost
+          value: 1
+        - id: min_up_duration
+          value: 4
+        - id: min_down_duration
+          value: 4
+        - id: num_units
+          value: 4
+        - id: spinning
+          value: 0
+    - id: G2
+      model: antares_legacy_models.thermal_fast
+      integer-strategy:
+        id: heuristic
+        heuristic-id: fast
+      parameters:
+        - id: max_power_per_unit
+          value: 250
+        - id: min_power_per_unit
+          value: 80
+        - id: cluster_max_generation
+          value: 750
+        - id: cluster_min_gen_modulation
+          value: 0
+        - id: market_bid_cost
+          value: 20
+        - id: startup_cost
+          value: 1500
+        - id: fixed_cost
+          value: 1
+        - id: min_up_duration
+          value: 3
+        - id: min_down_duration
+          value: 3
+        - id: num_units
+          value: 3
+        - id: spinning
+          value: 0
+    - id: G3
+      model: antares_legacy_models.thermal
+      parameters:
+        - id: max_power_per_unit
+          value: 200
+        - id: min_power_per_unit
+          value: 60
+        - id: cluster_max_generation
+          value: 600
+        - id: cluster_min_gen_modulation
+          value: 0
+        - id: market_bid_cost
+          value: 30
+        - id: startup_cost
+          value: 2000
+        - id: fixed_cost
+          value: 1
+        - id: min_up_duration
+          value: 4
+        - id: min_down_duration
+          value: 4
+        - id: num_units
+          value: 3
+        - id: spinning
+          value: 0
+    - id: G4
+      model: antares_legacy_models.thermal
+      integer-strategy:
+        id: heuristic
+        heuristic-id: accurate
+      parameters:
+        - id: max_power_per_unit
+          value: 150
+        - id: min_power_per_unit
+          value: 50
+        - id: cluster_max_generation
+          value: 300
+        - id: cluster_min_gen_modulation
+          value: 0
+        - id: market_bid_cost
+          value: 50
+        - id: startup_cost
+          value: 3000
+        - id: fixed_cost
+          value: 1
+        - id: min_up_duration
+          value: 2
+        - id: min_down_duration
+          value: 2
+        - id: num_units
+          value: 2
+        - id: spinning
+          value: 0
+
+
+  connections:
+    - component1: N
+      port1: balance_port
+      component2: D
+      port2: balance_port
+
+    - component1: N
+      port1: balance_port
+      component2: G1
+      port2: balance_port
+
+    - component1: N
+      port1: balance_port
+      component2: G2
+      port2: balance_port
+
+    - component1: N
+      port1: balance_port
+      component2: G3
+      port2: balance_port
+
+    - component1: N
+      port1: balance_port
+      component2: G4
+      port2: balance_port

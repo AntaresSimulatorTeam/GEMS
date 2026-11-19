@@ -1,0 +1,79 @@
+# Copyright (c) 2026, RTE (https://www.rte-france.com)
+#
+# See AUTHORS.txt
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+# This file is part of the Antares project.
+#
+# Shared by every thermal-heuristic e2e case, across every mode: every case
+# solves the same 168-timestep, single-scenario horizon, so time-scope and
+# scenario-scope are fixed here rather than passed in per call. Declares
+# heuristics for both thermal models side by side (thermal, thermal_fast);
+# callers (thermal_heuristic_helpers.optim_config_for) trim ``models`` down
+# to just the entry matching whichever model the mode resolves to (unused
+# heuristic declarations are harmless — validate_optim_config only requires
+# that every entry left in ``models`` exists in the resolved system).
+time-scope:
+  first-time-step: 0
+  last-time-step: 167
+
+scenario-scope:
+  include:
+    - 0
+
+models:
+  - id: antares_legacy_models.thermal
+    heuristics:
+      - id: accurate
+        inputs:
+          - heuristic-element: num_units_on_opt
+            id: num_units_on
+            type: variable-solution
+          - heuristic-element: num_units_max
+            id: num_units_on
+            type: variable-upper-bound
+          - heuristic-element: min_up_duration
+            id: min_up_duration
+            type: parameter
+          - heuristic-element: min_down_duration
+            id: min_down_duration
+            type: parameter
+        outputs:
+          - heuristic-element: minimum_num_units_on
+            id: num_units_on
+            type: variable-lower-bound
+    
+  - id: antares_legacy_models.thermal_fast
+    heuristics:
+      - id: fast
+        inputs:
+          - heuristic-element: generation_power
+            id: generation_power
+            type: variable-solution
+          - heuristic-element: cluster_max_generation
+            id: cluster_max_generation
+            type: parameter
+          - heuristic-element: min_power_per_unit
+            id: min_power_per_unit
+            type: parameter
+          - heuristic-element: max_power_per_unit
+            id: max_power_per_unit
+            type: parameter
+          - heuristic-element: min_up_duration
+            id: min_up_duration
+            type: parameter
+          - heuristic-element: min_down_duration
+            id: min_down_duration
+            type: parameter
+        outputs:
+          - heuristic-element: minimum_generation_power
+            id: generation_power
+            type: variable-lower-bound
+          - heuristic-element: maximum_generation_power
+            id: generation_power
+            type: variable-upper-bound

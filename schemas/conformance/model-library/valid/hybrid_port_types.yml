@@ -1,0 +1,17 @@
+# GEMS doc/interoperability/hybrid/hybrid-connections.md: area-connection with some keys left empty
+library:
+  id: hybrid_lib
+  port-types:
+    - id: port_to_area
+      fields:
+        - id: field_to_balance
+        - id: to_area_bound
+      area-connection:
+        injection-to-balance: field_to_balance
+        spillage-bound: to_area_bound
+        unsupplied-energy-bound:
+    - id: capacity_port
+      fields:
+        - id: capacity
+      thermal-capacity-connection:
+        capacity-field: capacity

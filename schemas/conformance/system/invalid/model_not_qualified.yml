@@ -1,0 +1,4 @@
+system:
+  components:
+    - id: c
+      model: bus

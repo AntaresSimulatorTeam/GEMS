@@ -1,0 +1,5 @@
+resolution:
+  mode: sequential-subproblems
+  block-length: 10
+  block-overlap: 4
+  carry-over-length: 0

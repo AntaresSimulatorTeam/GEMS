@@ -1,0 +1,9 @@
+# Real upstream example files that do NOT validate, each with the reason.
+# `tools/run_conformance.py --real` fails when a file fails that is not listed here, or when a listed file starts to validate.
+# class: upstream-data-bug | documented-divergence (projects disagree, see DISCREPANCIES.md ref) | intentional-negative-test | schema-bug
+known_failures:
+- file: resources/e2e_studies/antares_legacy_models/test_thermal_clusters/GEMS-Thermal-Test/input/model-libraries/antares_legacy_models.yml
+  class: upstream-data-bug
+  ref: L07
+  why: 'stale library copy: area-connection is a list with the obsolete key injection-field; GEMS tests/e2e_tests/utils.py:216 (copy_model_library) overwrites it with libraries/antares_legacy_models.yml
+    before every run, so it is dead data'

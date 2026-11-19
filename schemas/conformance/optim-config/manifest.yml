@@ -1,0 +1,264 @@
+# Conformance manifest for the `optim-config` schema.
+# valid: true  -> the file must validate.
+# valid: false -> the file must fail, with an error at `expect.path` (JSON pointer into the file,
+#                 empty = document root) and, when given, `expect.keyword`; `reason` says why.
+# source: provenance of real files (copied byte for byte) or `hand-written`.
+cases:
+- file: valid/gemspy_benders_full.yml
+  valid: true
+  source: GemsPy@b197a14:tests/e2e/functional/studies/13_1/input/optim-config.yml
+- file: valid/gemspy_heuristics.yml
+  valid: true
+  source: GemsPy@b197a14:tests/e2e/functional/optim-config/thermal_variants_for_heuristic.yml
+- file: valid/gems_models_empty_list.yml
+  valid: true
+  source: GEMS@9c52d63:resources/Documentation_Examples/Hybrid_Study/input/optim-config.yml
+- file: valid/gemspy_simple_system_drop.yml
+  valid: true
+  source: GemsPy@b197a14:tests/e2e/functional/studies/simple_system_drop/input/optim-config.yml
+- file: valid/empty_mapping.yml
+  valid: true
+  source: hand-written
+  note: every key is optional; `{}` is the explicit way to write 'all defaults'
+- file: valid/doc_complete_example.yml
+  valid: true
+  source: hand-written
+- file: valid/doc_parallel_example.yml
+  valid: true
+  source: hand-written
+- file: valid/sequential_carry_over_zero.yml
+  valid: true
+  source: hand-written
+  note: 'carry-over-length: 0 is legal and different from omitting it'
+- file: valid/heuristic_fast.yml
+  valid: true
+  source: hand-written
+- file: valid/empty_file.yml
+  valid: true
+  source: hand-written
+  note: 'an empty file parses to null: valid by decision (DISCREPANCIES O07); GemsPy still raises on it and needs a fix'
+- file: valid/simulator_empty_optim_config.yml
+  valid: true
+  source: Antares_Simulator@6744889:resources/modeler/1_1/input/optim-config.yml
+  note: real Simulator test study with a comments-only optim-config.yml (DISCREPANCIES O07)
+- file: invalid/simulator_resolution_mode_dialect.yml
+  valid: false
+  source: Antares_Simulator@6744889:resources/modeler/13_1/input/optim-config.yml
+  expect:
+    path: ''
+    keyword: additionalProperties
+  reason: 'Simulator dialect: top-level `resolution-mode` instead of `resolution.mode` (DISCREPANCIES O01)'
+  note: documented divergence
+- file: invalid/converter_resolution_mode_dialect.yml
+  valid: false
+  source: PyPSA-to-GEMS-Converter@4f2c92e:resources/optim-config.yml
+  expect:
+    path: ''
+    keyword: additionalProperties
+  reason: the PyPSA converter writes the Simulator dialect (`resolution-mode`) which GemsPy and the doc reject (DISCREPANCIES
+    O01)
+  note: documented divergence
+- file: invalid/unknown_top_level_key.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: ''
+    keyword: additionalProperties
+  reason: 'snake_case spelling: only `solver-options` exists'
+- file: invalid/time_scope_not_integer.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /time-scope/first-time-step
+    keyword: type
+  reason: integer
+- file: invalid/time_scope_unknown_key.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /time-scope
+    keyword: additionalProperties
+  reason: unknown key
+- file: invalid/exclude_without_include.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /scenario-scope
+    keyword: dependentRequired
+  reason: '`exclude` requires `include`'
+- file: invalid/scenario_entry_boolean.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /scenario-scope/include/0
+    keyword: oneOf
+  reason: booleans are rejected as scenario indices
+- file: invalid/scenario_entry_bad_range.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /scenario-scope/include/0
+    keyword: oneOf
+  reason: entries are integers, quoted integers or `a-b` ranges
+- file: invalid/scenario_entry_negative.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /scenario-scope/include/0
+    keyword: oneOf
+  reason: indices are >= 0
+- file: invalid/solver_options_logs_string.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /solver-options/logs
+    keyword: type
+  reason: boolean
+- file: invalid/resolution_mode_unknown.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /resolution/mode
+    keyword: enum
+  reason: mode is one of four values (the Simulator only knows two, DISCREPANCIES O01)
+- file: invalid/sequential_without_block_length.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /resolution
+    keyword: required
+  reason: '`block-length` is required for the windowed modes'
+- file: invalid/parallel_without_block_length.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /resolution
+    keyword: required
+  reason: '`block-length` is required for the windowed modes'
+- file: invalid/frontal_with_block_overlap.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /resolution
+    keyword: not
+  reason: block-overlap only applies to sequential-subproblems, even when written as 0
+- file: invalid/default_mode_with_carry_over.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /resolution
+    keyword: not
+  reason: mode defaults to frontal, so carry-over-length is rejected
+- file: invalid/parallel_with_block_overlap.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /resolution
+    keyword: not
+  reason: block-overlap only applies to sequential-subproblems
+- file: invalid/block_length_zero.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /resolution/block-length
+    keyword: minimum
+  reason: block-length >= 1 (GemsPy rejects 0 through the overlap < length rule)
+- file: invalid/block_overlap_negative.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /resolution/block-overlap
+    keyword: minimum
+  reason: block-overlap >= 0
+- file: invalid/model_id_not_qualified.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/id
+    keyword: pattern
+  reason: model id is `<library_id>.<model_id>`
+- file: invalid/model_without_id.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0
+    keyword: required
+  reason: '`id` is mandatory'
+- file: invalid/model_unknown_key.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0
+    keyword: additionalProperties
+  reason: unknown key
+- file: invalid/location_unknown_value.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/model-decomposition/variables/0/location
+    keyword: enum
+  reason: master | subproblems | master-and-subproblems
+- file: invalid/decomposition_missing_location.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/model-decomposition/constraints/0
+    keyword: required
+  reason: '`location` is mandatory'
+- file: invalid/out_of_bounds_mode_missing.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/out-of-bounds-processing/constraints/0
+    keyword: required
+  reason: '`mode` is mandatory in the doc and GemsPy; Antares_Simulator defaults it to cyclic (DISCREPANCIES O04)'
+- file: invalid/out_of_bounds_mode_unknown.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/out-of-bounds-processing/constraints/0/mode
+    keyword: enum
+  reason: cyclic | drop
+- file: invalid/heuristic_unknown_id.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/heuristics/0/id
+    keyword: enum
+  reason: fast | accurate
+- file: invalid/heuristic_missing_input_element.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/heuristics/0/inputs
+    keyword: contains
+  reason: '`min_down_duration` is missing: inputs list exactly the heuristic''s elements'
+- file: invalid/heuristic_duplicate_input_element.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/heuristics/0/inputs
+    keyword: maxItems
+  reason: each element exactly once
+- file: invalid/heuristic_element_of_other_heuristic.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/heuristics/0/inputs/0/heuristic-element
+    keyword: enum
+  reason: '`generation_power` belongs to `fast`'
+- file: invalid/heuristic_output_type_parameter.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/heuristics/0/outputs/0/type
+    keyword: enum
+  reason: outputs are variable bounds only
+- file: invalid/heuristic_element_without_type.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /models/0/heuristics/0/inputs/1
+    keyword: required
+  reason: the schema follows GemsPy, which makes `type` mandatory while the doc says it is optional
+  note: open question O06

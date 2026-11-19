@@ -1,0 +1,10 @@
+library:
+  id: lib
+  port-types:
+    - id: p
+      fields:
+        - id: f
+      area-connection:
+        injection-to-balance:
+        spillage-bound:
+        unsupplied-energy-bound:

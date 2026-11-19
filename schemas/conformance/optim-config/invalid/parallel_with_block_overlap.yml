@@ -1,0 +1,4 @@
+resolution:
+  mode: parallel-subproblems
+  block-length: 5
+  block-overlap: 1

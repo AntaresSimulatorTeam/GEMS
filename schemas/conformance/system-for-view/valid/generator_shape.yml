@@ -1,0 +1,20 @@
+# shape written by Antares_Simulator (src/view-builder/generateSystemForView.cpp)
+system:
+  id: /some/study/folder
+  components:
+    - id: area1_node
+      model: antares_legacy_models.area
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: district_all areas
+          value: all areas
+    - id: area1_load
+      model: antares_legacy_models.load
+      parameters: []
+  connections:
+    - component1: area1_load
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port

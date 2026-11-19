@@ -1,0 +1,5 @@
+system:
+  connections:
+    - component1: a
+      port1: p
+      component2: b

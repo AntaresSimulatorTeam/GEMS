@@ -1,0 +1,7 @@
+library:
+  id: lib
+  models:
+    - id: m
+      variables:
+        - id: x
+          location: master

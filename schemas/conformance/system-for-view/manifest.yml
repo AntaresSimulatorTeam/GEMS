@@ -1,0 +1,74 @@
+# Conformance manifest for the `system-for-view` schema.
+# valid: true  -> the file must validate.
+# valid: false -> the file must fail, with an error at `expect.path` (JSON pointer into the file,
+#                 empty = document root) and, when given, `expect.keyword`; `reason` says why.
+# source: provenance of real files (copied byte for byte) or `hand-written`.
+cases:
+- file: valid/antarest_fixture_system_for_views.yml
+  valid: true
+  source: AntaREST@cf5852e:tests/output/filestudy/data/20261104-1636eco-gems_views/views/input/system-for-views.yml
+  note: real output of Antares_Simulator's exportSystemForView
+- file: valid/viewsbuilder_system.yml
+  valid: true
+  source: GEMS-ViewsBuilder@975baab:resources/tests_inputs/filtering_and_breakdown/system.yml
+  note: ViewsBuilder input system (read with GemsPy parse_yaml_system)
+- file: valid/generator_shape.yml
+  valid: true
+  source: hand-written
+  note: free-text id (a path) and a property id with a space are both emitted by the generator
+- file: invalid/missing_root.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: ''
+    keyword: required
+  reason: root key `system`
+- file: invalid/missing_id.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system
+    keyword: required
+  reason: the generator always writes `id`
+- file: invalid/missing_connections.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system
+    keyword: required
+  reason: the generator always writes `connections` (possibly empty)
+- file: invalid/missing_components.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system
+    keyword: required
+  reason: the generator always writes `components` (possibly empty)
+- file: invalid/hybrid_section.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system
+    keyword: additionalProperties
+  reason: GemsPy's plain SystemSchema (used by ViewsBuilder) rejects hybrid sections
+- file: invalid/component_missing_model.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0
+    keyword: required
+  reason: '`model` is mandatory'
+- file: invalid/model_not_qualified.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/model
+    keyword: pattern
+  reason: model is `<library_id>.<model_id>`
+- file: invalid/property_value_not_string.yml
+  valid: false
+  source: hand-written
+  expect:
+    path: /system/components/0/properties/0/value
+    keyword: type
+  reason: property values are strings

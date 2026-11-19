@@ -1,0 +1,6 @@
+models:
+  - id: l.m
+    heuristics:
+      - id: slow
+        inputs: []
+        outputs: []
