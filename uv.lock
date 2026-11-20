@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.15' and platform_machine == 'ARM64' and sys_platform == 'win32'",
@@ -21,7 +21,7 @@ resolution-markers = [
 ]
 
 [manifest]
-overrides = [{ name = "gemspy", specifier = "==0.3.0" }]
+overrides = [{ name = "gemspy", specifier = "==0.4.0" }]
 
 [[package]]
 name = "annotated-types"
@@ -55,7 +55,7 @@ wheels = [
 
 [[package]]
 name = "antares-legacy-gems-converter"
-version = "0.5.1"
+version = "0.5.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "antares-craft" },
@@ -68,9 +68,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1f/2b/b87d851b8cc93a13475574ede078dc6d67eb8dbe8bef1214de708083df1f/antares_legacy_gems_converter-0.5.1.tar.gz", hash = "sha256:7244cf0a0df5ae8e0719b6735b044b8c91a6d4bf2cd7f634c9735c3487d758a6", size = 41302, upload-time = "2026-10-26T14:19:00.831Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/af/fa/a563b9bbaece074900141ac2cda8aacdf9d8a5e35d553d55bd2c267a32db/antares_legacy_gems_converter-0.5.2.tar.gz", hash = "sha256:e5184f69921811e040ff3da9cf50e4e1208efeb44821e1bcad62c107372d58ed", size = 43004, upload-time = "2026-11-18T11:35:37.186Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/eb/fc/f665096a4a6d6b03ec4bcaf01f4a2b21440801e16de274ce453a6054cde0/antares_legacy_gems_converter-0.5.1-py3-none-any.whl", hash = "sha256:143db3c89913672bc9f09729e18ef842449c20597292ed7ea7f7e8ae2d8310c5", size = 63998, upload-time = "2026-10-26T14:18:59.586Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/a8/599b501465174efa3c8f99ac0e53f6ed19138ef639d81b21e4294756eb0a/antares_legacy_gems_converter-0.5.2-py3-none-any.whl", hash = "sha256:3e4d91cb7122a7bd40c9d3f0112b0b34044793ab2c58fe56a10b27b50a02f640", size = 66416, upload-time = "2026-11-18T11:35:36.004Z" },
 ]
 
 [[package]]
@@ -819,8 +819,10 @@ source = { virtual = "." }
 dev = [
     { name = "antares-legacy-gems-converter" },
     { name = "gemspy" },
+    { name = "ipykernel" },
     { name = "matplotlib" },
     { name = "mypy" },
+    { name = "nbconvert" },
     { name = "pandas" },
     { name = "pandas-stubs" },
     { name = "pypsa" },
@@ -847,7 +849,9 @@ doc = [
 test = [
     { name = "antares-legacy-gems-converter" },
     { name = "gemspy" },
+    { name = "ipykernel" },
     { name = "matplotlib" },
+    { name = "nbconvert" },
     { name = "pandas" },
     { name = "pypsa" },
     { name = "pypsa-to-gems-converter" },
@@ -859,10 +863,12 @@ test = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
-    { name = "gemspy", specifier = "==0.3.0" },
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.2" },
+    { name = "gemspy", specifier = "==0.4.0" },
+    { name = "ipykernel" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
+    { name = "nbconvert" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pandas-stubs" },
     { name = "pypsa" },
@@ -874,8 +880,8 @@ dev = [
     { name = "yamllint", specifier = ">=1.35.1" },
 ]
 doc = [
-    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
-    { name = "gemspy", specifier = "==0.3.0" },
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.2" },
+    { name = "gemspy", specifier = "==0.4.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mkdocs" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
@@ -887,9 +893,11 @@ doc = [
     { name = "pypsa-to-gems-converter", specifier = "==0.0.2" },
 ]
 test = [
-    { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
-    { name = "gemspy", specifier = "==0.3.0" },
+    { name = "antares-legacy-gems-converter", specifier = "==0.5.2" },
+    { name = "gemspy", specifier = "==0.4.0" },
+    { name = "ipykernel" },
     { name = "matplotlib", specifier = ">=3.10.9" },
+    { name = "nbconvert" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pypsa" },
     { name = "pypsa-to-gems-converter", specifier = "==0.0.2" },
@@ -899,7 +907,7 @@ test = [
 
 [[package]]
 name = "gemspy"
-version = "0.3.0"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "antlr4-python3-runtime" },
@@ -915,9 +923,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/35/a7/ce19623452136264adc004bdf343a1795b550907387e1c4b8876a20030d5/gemspy-0.3.0.tar.gz", hash = "sha256:576fcf7a63bfd684b85dd9d3eeb67629944783957015e5afed0a83403290ed61", size = 122707, upload-time = "2026-10-30T09:01:41.127Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/8b/8f/b3378235c206fd80ffddad022f120790adb2da96cdc26fa6e39461ff1f8a/gemspy-0.4.0.tar.gz", hash = "sha256:e6c7e5b9a182b32712a07accc8b71ba8c76b6f0fbc1382f18ea66347d95cca29", size = 124049, upload-time = "2026-11-20T12:54:27.865Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d2/78/e4a8596884e3768c7f91716dbe404ad6e2a7c3d551cab58beaf055c71b89/gemspy-0.3.0-py3-none-any.whl", hash = "sha256:4143e56ec648dc415dfb66bc9dd8b3dcf5d1beba090a9217bd855b83279c06a6", size = 158555, upload-time = "2026-10-30T09:01:39.622Z" },
+    { url = "https://files.pythonhosted.org/packages/d4/fc/b9003a9ac06c72438e17572b684739905be68e3748928c9369ffc7442faa/gemspy-0.4.0-py3-none-any.whl", hash = "sha256:1774558b449f364c42a132c2aac20b288de902de69c0c0aa20039c7d26c0d811", size = 160276, upload-time = "2026-11-20T12:54:26.374Z" },
 ]
 
 [[package]]
