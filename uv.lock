@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.15' and platform_machine == 'ARM64' and sys_platform == 'win32'",
@@ -21,7 +21,7 @@ resolution-markers = [
 ]
 
 [manifest]
-overrides = [{ name = "gemspy", git = "https://github.com/AntaresSimulatorTeam/GemsPy.git?rev=main" }]
+overrides = [{ name = "gemspy", specifier = "==0.4.0" }]
 
 [[package]]
 name = "annotated-types"
@@ -864,7 +864,7 @@ test = [
 [package.metadata.requires-dev]
 dev = [
     { name = "antares-legacy-gems-converter", specifier = "==0.5.2" },
-    { name = "gemspy", git = "https://github.com/AntaresSimulatorTeam/GemsPy.git?rev=main" },
+    { name = "gemspy", specifier = "==0.4.0" },
     { name = "ipykernel" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
@@ -881,7 +881,7 @@ dev = [
 ]
 doc = [
     { name = "antares-legacy-gems-converter", specifier = "==0.5.2" },
-    { name = "gemspy", git = "https://github.com/AntaresSimulatorTeam/GemsPy.git?rev=main" },
+    { name = "gemspy", specifier = "==0.4.0" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mkdocs" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
@@ -894,7 +894,7 @@ doc = [
 ]
 test = [
     { name = "antares-legacy-gems-converter", specifier = "==0.5.2" },
-    { name = "gemspy", git = "https://github.com/AntaresSimulatorTeam/GemsPy.git?rev=main" },
+    { name = "gemspy", specifier = "==0.4.0" },
     { name = "ipykernel" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "nbconvert" },
@@ -907,8 +907,8 @@ test = [
 
 [[package]]
 name = "gemspy"
-version = "0.3.0"
-source = { git = "https://github.com/AntaresSimulatorTeam/GemsPy.git?rev=main#b197a14fda0f332f635e77f46cbf940e6ad23be8" }
+version = "0.4.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "antlr4-python3-runtime" },
     { name = "anytree" },
@@ -922,6 +922,10 @@ dependencies = [
     { name = "pydantic" },
     { name = "pyyaml" },
     { name = "xarray" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8b/8f/b3378235c206fd80ffddad022f120790adb2da96cdc26fa6e39461ff1f8a/gemspy-0.4.0.tar.gz", hash = "sha256:e6c7e5b9a182b32712a07accc8b71ba8c76b6f0fbc1382f18ea66347d95cca29", size = 124049, upload-time = "2026-11-20T12:54:27.865Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d4/fc/b9003a9ac06c72438e17572b684739905be68e3748928c9369ffc7442faa/gemspy-0.4.0-py3-none-any.whl", hash = "sha256:1774558b449f364c42a132c2aac20b288de902de69c0c0aa20039c7d26c0d811", size = 160276, upload-time = "2026-11-20T12:54:26.374Z" },
 ]
 
 [[package]]
