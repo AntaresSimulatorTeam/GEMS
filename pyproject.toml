@@ -7,7 +7,7 @@ dependencies = []
 [dependency-groups]
 test = [
     "antares-legacy-gems-converter==0.5.2",
-    "gemspy==0.3.0",
+    "gemspy @ git+https://github.com/AntaresSimulatorTeam/GemsPy.git@main",
     "ipykernel",
     "matplotlib>=3.10.9",
     "nbconvert",
@@ -27,7 +27,7 @@ dev = [
 ]
 doc = [
     "antares-legacy-gems-converter==0.5.2",
-    "gemspy==0.3.0",
+    "gemspy @ git+https://github.com/AntaresSimulatorTeam/GemsPy.git@main",
     "matplotlib>=3.10.9",
     "mkdocs",
     "mkdocs-git-revision-date-localized-plugin",
@@ -40,7 +40,7 @@ doc = [
 ]
 
 [tool.uv]
-override-dependencies = ["gemspy==0.3.0"]
+override-dependencies = ["gemspy @ git+https://github.com/AntaresSimulatorTeam/GemsPy.git@main"]
 
 [tool.pytest.ini_options]
 filterwarnings = [
