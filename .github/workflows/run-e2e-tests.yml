@@ -31,9 +31,18 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
+          version: 0.13.7
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
           python-version: '3.11'
+          check-latest: true
 
       - name: Install dependencies
+        env:
+          UV_PYTHON: python
+          UV_NO_MANAGED_PYTHON: "true"
         run: uv sync --frozen --only-group test
 
       - name: Override Antares version

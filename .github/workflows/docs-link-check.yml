@@ -21,15 +21,21 @@ jobs:
           npm install -g markdown-link-check
           find . -name "*.md" ! -path "./.git/*" | xargs -L1 markdown-link-check --config .mlc_config.json
 
-      - name: Set up Python
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: 0.13.7
+
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Install uv
-        run: pip install uv
+          check-latest: true
 
       - name: Install doc dependencies
+        env:
+          UV_PYTHON: python
+          UV_NO_MANAGED_PYTHON: "true"
         run: uv sync --frozen --only-group doc
 
       # Fail if any internal page link is broken
