@@ -1,0 +1,200 @@
+# Copyright (c) 2024, RTE (https://www.rte-france.com)
+#
+# See AUTHORS.txt
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+# This file is part of the Antares project.
+library:
+  id: basic
+  description: Basic library
+
+  port-types:
+    - id: flow
+      description: A port which transfers power flow
+      fields:
+        - id: flow
+
+  models:
+    - id: node
+      ports:
+        - id: balance_port
+          type: flow
+      binding-constraints:
+        - id: balance
+          expression:  sum_connections(balance_port.flow) = 0
+
+    - id: demand
+      parameters:
+        - id: demand
+          time-dependent: true
+          scenario-dependent: true
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: -demand
+
+    - id: production
+      parameters:
+        - id: cost
+          time-dependent: false
+          scenario-dependent: false
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+      variables:
+        - id: generation
+          lower-bound: 0
+          upper-bound: p_max
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+      objective-contributions:
+        - id: obj
+          expression: expec(sum(cost * generation))
+
+    - id: production_with_min
+      parameters:
+        - id: cost
+          time-dependent: false
+          scenario-dependent: false
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+        - id: p_min
+          time-dependent: false
+          scenario-dependent: false
+      variables:
+        - id: generation
+          lower-bound: p_min
+          upper-bound: p_max
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: generation
+      objective-contributions:
+        - id: obj
+          expression: expec(sum(cost * generation))
+
+    - id: link
+      parameters:
+        - id: f_max
+          time-dependent: false
+          scenario-dependent: false
+      variables:
+        - id: input
+          lower-bound: -f_max
+          upper-bound: f_max
+      ports:
+        - id: out_port
+          type: flow
+        - id: in_port
+          type: flow
+      port-field-definitions:
+        - port: out_port
+          field: flow
+          definition: input
+        - port: in_port
+          field: flow
+          definition: -input
+
+    - id: spillage
+      parameters:
+        - id: cost
+          time-dependent: false
+          scenario-dependent: false
+      variables:
+        - id: input
+          lower-bound: 0
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: -input
+      objective-contributions:
+        - id: obj
+          expression: expec(sum(cost * input))
+
+    - id: unsuplied
+      parameters:
+        - id: cost
+          time-dependent: false
+          scenario-dependent: false
+      variables:
+        - id: output
+          lower-bound: 0
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: output
+      objective-contributions:
+        - id: obj
+          expression: expec(sum(cost * output))
+
+    - id: thermal_cluster
+      parameters:
+        - id: p_max
+        - id: p_min
+        - id: cost
+        - id: d_min_up
+          time-dependent: false
+        - id: d_min_down
+          time-dependent: false
+        - id: nb_units_max
+        - id: nb_failures
+      variables:
+        - id: nb_units_on
+          lower-bound: 0
+          upper-bound: nb_units_max
+          variable-type: integer
+        - id: nb_starting
+          lower-bound: 0
+          upper-bound: nb_units_max
+          variable-type: integer
+        - id: nb_stoping
+          lower-bound: 0
+          upper-bound: nb_units_max
+          variable-type: integer
+        - id: production
+          lower-bound: 0
+          upper-bound: nb_units_max * p_max
+      ports:
+        - id: balance_port
+          type: flow
+      port-field-definitions:
+        - port: balance_port
+          field: flow
+          definition: production
+      constraints:
+        - id: max production
+          expression: production <= nb_units_on * p_max
+        - id: min production
+          expression: production >= nb_units_on * p_min
+        - id: on units variation
+          expression: nb_units_on = nb_units_on[t-1] + nb_starting - nb_stoping
+        - id: starting time
+          expression: sum(t-d_min_up + 1 .. t, nb_starting) <= nb_units_on
+        - id: stoping time
+          expression: sum(t-d_min_down + 1 .. t, nb_stoping) <= nb_units_max - nb_units_on
+      objective-contributions:
+        - id: obj
+          expression: expec(sum(cost * production))

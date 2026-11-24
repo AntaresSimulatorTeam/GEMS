@@ -1,0 +1,18 @@
+# Example of GEMS doc/user-guide/input-files/library.md (header)
+library:
+  id: example_library
+  description: "Example model library"
+  port-types:
+    - id: flow_port
+      description: "Power flow port"
+      fields:
+        - id: flow
+  models:
+    - id: bus
+      description: "A simple balance node model"
+      ports:
+        - id: balance_port
+          type: flow_port
+      binding-constraints:
+        - id: balance
+          expression: sum_connections(flow_port.flow) = 0

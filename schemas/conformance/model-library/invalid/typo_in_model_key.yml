@@ -1,0 +1,6 @@
+library:
+  id: lib
+  models:
+    - id: m
+      parameter:
+        - id: p

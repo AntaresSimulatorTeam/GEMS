@@ -1,0 +1,9 @@
+library:
+  id: lib
+  port-types:
+    - id: p
+      fields:
+        - id: f
+      area-connection:
+        injection-to-balance: f
+        spillage-bound: f

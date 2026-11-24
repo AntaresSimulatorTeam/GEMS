@@ -1,0 +1,7 @@
+library:
+  id: lib
+  models:
+    - id: m
+      parameters:
+        - id: p
+          time-dependent: "yes"

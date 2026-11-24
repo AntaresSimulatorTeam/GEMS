@@ -1,0 +1,5 @@
+library:
+  id: lib
+  port-types:
+    - id: p
+      thermal-capacity-connection: {}
