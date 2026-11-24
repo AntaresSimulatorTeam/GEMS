@@ -1,0 +1,4 @@
+library:
+  id: lib
+  models:
+    - description: no id

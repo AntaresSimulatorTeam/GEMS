@@ -6,6 +6,7 @@ schemas; no other project uses them yet.
 
 | Schema | Validates | Status |
 |---|---|---|
+| `schemas/model-library.schema.yml` | `input/model-libraries/*.yml`, `libraries/*.yml` | draft |
 | `schemas/common.schema.yml` | shared `$defs`, referenced with `$ref` | draft |
 
 ## Layout
