@@ -1,0 +1,13 @@
+system:
+  components:
+    - id: c
+      model: lib.m
+      parameters:
+        - id: constant_by_default
+          value: 12.5
+        - id: series_time_only
+          time-dependent: true
+          value: series_a
+        - id: series_scenario_only
+          scenario-dependent: true
+          value: series_b

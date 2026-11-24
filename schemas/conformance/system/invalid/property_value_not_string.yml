@@ -1,0 +1,7 @@
+system:
+  components:
+    - id: c
+      model: l.m
+      properties:
+        - id: year
+          value: 2030
