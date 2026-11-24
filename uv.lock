@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.15' and platform_machine == 'ARM64' and sys_platform == 'win32'",
@@ -819,6 +819,7 @@ source = { virtual = "." }
 dev = [
     { name = "antares-legacy-gems-converter" },
     { name = "gemspy" },
+    { name = "jsonschema" },
     { name = "matplotlib" },
     { name = "mypy" },
     { name = "pandas" },
@@ -827,6 +828,7 @@ dev = [
     { name = "pypsa-to-gems-converter" },
     { name = "pytest" },
     { name = "pytest-xdist" },
+    { name = "pyyaml" },
     { name = "ruff" },
     { name = "types-pyyaml" },
     { name = "yamllint" },
@@ -847,12 +849,14 @@ doc = [
 test = [
     { name = "antares-legacy-gems-converter" },
     { name = "gemspy" },
+    { name = "jsonschema" },
     { name = "matplotlib" },
     { name = "pandas" },
     { name = "pypsa" },
     { name = "pypsa-to-gems-converter" },
     { name = "pytest" },
     { name = "pytest-xdist" },
+    { name = "pyyaml" },
 ]
 
 [package.metadata]
@@ -861,6 +865,7 @@ test = [
 dev = [
     { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
     { name = "gemspy", specifier = "==0.3.0" },
+    { name = "jsonschema", specifier = ">=4.21" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pandas", specifier = ">=2.2.3" },
@@ -869,6 +874,7 @@ dev = [
     { name = "pypsa-to-gems-converter", specifier = "==0.0.2" },
     { name = "pytest", specifier = ">=7.0.1" },
     { name = "pytest-xdist", specifier = ">=3.8.0" },
+    { name = "pyyaml", specifier = ">=6" },
     { name = "ruff", specifier = ">=0.9.10" },
     { name = "types-pyyaml" },
     { name = "yamllint", specifier = ">=1.35.1" },
@@ -889,12 +895,14 @@ doc = [
 test = [
     { name = "antares-legacy-gems-converter", specifier = "==0.5.1" },
     { name = "gemspy", specifier = "==0.3.0" },
+    { name = "jsonschema", specifier = ">=4.21" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pypsa" },
     { name = "pypsa-to-gems-converter", specifier = "==0.0.2" },
     { name = "pytest", specifier = ">=7.0.1" },
     { name = "pytest-xdist", specifier = ">=3.8.0" },
+    { name = "pyyaml", specifier = ">=6" },
 ]
 
 [[package]]
