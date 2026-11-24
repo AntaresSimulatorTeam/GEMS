@@ -1,0 +1,10 @@
+catalog:
+  id: c
+  taxonomy: t
+  location: {taxonomy-category: b}
+  metrics-definition:
+    - id: M
+      terms: []
+      terms-operator: sum
+      time-operator: sum
+      filter: {key: country}

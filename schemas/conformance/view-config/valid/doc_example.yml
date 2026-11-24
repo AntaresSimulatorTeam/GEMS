@@ -1,0 +1,27 @@
+view:
+  id: view_area
+
+  taxonomy: my_taxonomy
+
+  scope:
+    location:
+      taxonomy-category: balance
+    extra-locations:
+      - id: country
+
+  aggregations-patterns:
+    - id: hourly
+      time-granularity: hour
+      scenario: false
+    - id: yearly_stats
+      time-granularity: year
+      scenario: true
+      location-filter:
+        - area_fr
+        - France
+
+  metrics:
+    - id: catalog.PRODUCTION
+    - id: catalog.LOAD
+    - id: catalog.PRODUCTION_BY_TECH_AND_COMPANY
+    - id: catalog.NUCLEAR_PRODUCTION

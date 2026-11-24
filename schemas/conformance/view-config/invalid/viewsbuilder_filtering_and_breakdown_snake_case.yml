@@ -1,0 +1,25 @@
+# Copyright 2007-2026, RTE (https://www.rte-france.com)
+# SPDX-License-Identifier: MPL-2.0
+
+view:
+
+  id: view_area
+
+  taxonomy: my_taxonomy
+
+  scope:
+    location:
+      taxonomy-category: balance # category of the taxonomy, the components of which serves as locational objects. Main case is 'area'.
+
+  aggregations-patterns:
+    - id: hourly
+      time_granularity: hour
+      scenario: false
+
+  metrics:  #reference to the selected metric among the catalog
+      - id: catalog.PRODUCTION
+      - id: catalog.LOAD
+      - id: catalog.PRODUCTION_BY_TECH
+      - id: catalog.PRODUCTION_BY_COMPANY
+      - id: catalog.NUCLEAR_PRODUCTION
+      - id: catalog.PRODUCTION_BY_TECH_AND_COMPANY

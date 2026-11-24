@@ -1,0 +1,39 @@
+# Copyright 2007-2026, RTE (https://www.rte-france.com)
+# SPDX-License-Identifier: MPL-2.0
+
+taxonomy:
+  id: my_taxonomy
+  description: "Filtering and breakdown test taxonomy"
+
+  categories:
+
+    - id: balance
+      variables:
+        - id: unsupplied_energy
+        - id: spillage
+      ports:
+        - id: balance_port
+      binding-constraints:
+        - id: balance
+      parameters:
+        - id: unsupplied_energy_cost
+        - id: spillage_cost
+
+    - id: production
+      parameters:
+        - id: p_max
+        - id: cost
+      variables:
+        - id: generation
+      ports:
+        - id: balance_port
+
+    - id: consumption
+      parameters:
+        - id: load
+      ports:
+        - id: balance_port
+      extra-outputs:
+        - id: effective_load
+
+    - id: storage

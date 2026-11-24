@@ -1,0 +1,42 @@
+# Copyright 2007-2026, RTE (https://www.rte-france.com)
+# SPDX-License-Identifier: MPL-2.0
+
+taxonomy:
+  id: my_taxonomy
+  description: Minimal taxonomy
+
+  categories:
+    - id: balance
+      ports:
+        - id: p_balance_port
+        - id: q_balance_port
+
+    - id: consumption
+      ports:
+        - id: p_balance_port
+        - id: q_balance_port
+      extra-outputs:
+        - id: active_load
+
+    - id: production
+      ports:
+        - id: p_balance_port
+      variables:
+        - id: p
+        - id: p_nom
+
+    - id: storage
+      ports:
+        - id: p_balance_port
+
+    - id: link
+      ports:
+        - id: p0_port
+        - id: p1_port
+      extra-outputs:
+        - id: p0_port.flow
+        - id: p1_port.flow
+
+    - id: coupling
+      ports:
+        - id: emission_port

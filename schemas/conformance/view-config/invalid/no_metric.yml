@@ -1,0 +1,8 @@
+view:
+  id: v
+  taxonomy: t
+  scope:
+    location: {taxonomy-category: b}
+  aggregations-patterns:
+    - {id: p, time-granularity: hour, scenario: false}
+  metrics: []

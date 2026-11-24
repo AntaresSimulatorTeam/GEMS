@@ -97,6 +97,14 @@ PC writes the ASim one.
 | O08 | `scenario-scope` entries | int, quoted int, quoted range (`DOC/...:111-117`) | `Union[int, str]`, booleans rejected, `exclude` needs `include` (`parsing.py:310-349`) | any scalar, stored as string (`CPP/yml-optim-config/decoders.cpp:77-120`) | - | int >= 0 or string `a-b`; `exclude` needs `include` |
 | O09 | model `id` format | "fully qualified model id, `<library-id>.<model-id>`" (`DOC/...:326`) | free `str` (`parsing.py:138`) | split on `.`, uses the first two parts (`readLibraries.cpp:102-107`) | - | exactly one dot |
 
+## 5. Views inputs (taxonomy, catalog, view-config)
+
+| ID | Observation | Evidence |
+|---|---|---|
+| W01 | **ViewsBuilder accepts snake_case spellings of every key** (`time_granularity`, `location_port`, ...) because its base model sets `validate_by_name=True` next to the kebab-case alias; the GEMS doc only documents kebab-case, and the schemas reject snake_case (as for L10 / S13). Two of ViewsBuilder's own test inputs write `time_granularity`. | `GEMS-ViewsBuilder/gems_views_builder/base_model.py`; `resources/tests_inputs/test_3/view_config.yml`, `resources/tests_inputs/filtering_and_breakdown/view_config.yml` |
+| W02 | **Id patterns exist in code only**: the view `id` and aggregation pattern `id` are `[A-Za-z0-9_]+`, a metric reference is `<catalog>.<metric>` with `[A-Za-z0-9_-]` on both sides. The doc states none of them. The schema follows the code. | `GEMS-ViewsBuilder/gems_views_builder/input/view_config.py:37-52` |
+| W03 | The doc says "at least one" pattern / metric; ViewsBuilder enforces it (`min_length=1`), while `metrics-definition`, `terms` and taxonomy `categories` may be empty. The schema mirrors this. | `view_config.py:53-58`, `input/catalog.py` |
+
 ## 6. Other findings worth knowing
 
 * **Real files that fail the schemas** are recorded one by one in `conformance/real-examples-known.yml`
