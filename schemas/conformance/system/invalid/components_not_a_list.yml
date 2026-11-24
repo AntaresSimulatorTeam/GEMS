@@ -1,0 +1,4 @@
+system:
+  components:
+    c1:
+      model: l.m

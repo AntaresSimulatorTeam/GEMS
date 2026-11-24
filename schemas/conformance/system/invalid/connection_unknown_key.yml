@@ -1,0 +1,7 @@
+system:
+  connections:
+    - component1: a
+      port1: p
+      component2: b
+      port2: p
+      weight: 1

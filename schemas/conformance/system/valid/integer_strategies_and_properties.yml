@@ -1,0 +1,17 @@
+system:
+  components:
+    - id: thermal_1
+      model: my_library.thermal
+      properties:
+        - id: technology
+          value: nuclear
+      integer-strategy:
+        id: heuristic
+        heuristic-id: accurate
+    - id: thermal_2
+      model: my_library.thermal
+      integer-strategy:
+        id: relaxed
+    - id: thermal_3
+      model: my_library.thermal
+      integer-strategy: {}

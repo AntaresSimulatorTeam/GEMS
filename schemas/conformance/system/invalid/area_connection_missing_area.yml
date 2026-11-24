@@ -1,0 +1,4 @@
+system:
+  area-connections:
+    - component: c
+      port: p

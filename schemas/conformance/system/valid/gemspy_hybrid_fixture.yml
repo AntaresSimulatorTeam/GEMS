@@ -1,0 +1,49 @@
+system:
+  model-libraries: hybrid_basic
+  components:
+    - id: N
+      model: hybrid_basic.node
+    - id: G
+      model: hybrid_basic.generator
+      parameters:
+        - id: cost
+          value: 30
+        - id: p_max
+          value: 100
+    - id: G2
+      model: hybrid_basic.generator
+      parameters:
+        - id: cost
+          value: 100
+        - id: p_max
+          value: 200
+    - id: I
+      model: hybrid_basic.investment_decision
+      parameters:
+        - id: investment_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: max_capacity
+          time-dependent: false
+          scenario-dependent: false
+          value: 200
+        - id: availability_factor
+          time-dependent: false
+          scenario-dependent: false
+          value: 1.0
+  connections:
+    - component1: N
+      port1: injection_port
+      component2: G
+      port2: injection_port
+  area-connections:
+    - component: G2
+      port: injection_port
+      area: fr
+  thermal-capacity-connections:
+    - component: I
+      port: investment_port
+      thermal-component:
+        area: fr
+        cluster-id: nuclear1
