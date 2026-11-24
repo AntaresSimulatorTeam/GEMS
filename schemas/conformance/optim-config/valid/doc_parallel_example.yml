@@ -1,0 +1,17 @@
+time-scope:
+  first-time-step: 0
+  last-time-step: 8759
+scenario-scope:
+  include:
+    - "0-9"
+  exclude:
+    - 7
+resolution:
+  mode: parallel-subproblems
+  block-length: 168
+models:
+  - id: antares_legacy_models.short_term_storage
+    out-of-bounds-processing:
+      constraints:
+        - id: level_equation
+          mode: cyclic

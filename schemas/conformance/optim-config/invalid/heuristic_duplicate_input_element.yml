@@ -1,0 +1,12 @@
+models:
+  - id: l.m
+    heuristics:
+      - id: accurate
+        inputs:
+          - {heuristic-element: num_units_on_opt, id: a, type: variable-solution}
+          - {heuristic-element: num_units_max, id: b, type: parameter}
+          - {heuristic-element: min_up_duration, id: c, type: parameter}
+          - {heuristic-element: min_down_duration, id: d, type: parameter}
+          - {heuristic-element: min_down_duration, id: d, type: parameter}
+        outputs:
+          - {heuristic-element: minimum_num_units_on, id: a, type: variable-lower-bound}

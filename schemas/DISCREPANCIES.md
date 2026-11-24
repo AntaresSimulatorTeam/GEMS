@@ -80,6 +80,23 @@ See L10 / S13.
 | S13 | `model_libraries` / `area_connections` in snake_case | kebab only | accepted | rejected | accepted for known fields, passed through otherwise | PC writes `model_libraries` and `area_connections` (`PyPSA-to-GEMS-Converter/src/models/gems_system_yml_schema/gems_system.py:62,81`); four GemsPy test studies and `GEMS-ViewsBuilder/resources/tests_inputs/test_3/system.yml:6` do the same | kebab only; these 6 files are recorded as known failures |
 | S14 | property ids | "key name" (`DOC/system.md:83`) | free string | free string | free string | ASim writes `district_<name>` with the raw district name, e.g. `district_all areas` (`Antares_Simulator/src/view-builder/generateSystemForView.cpp:38`; AntaREST fixture `.../system-for-views.yml`) | free string |
 
+## 3. Optimization configuration
+
+The two dialects barely overlap. DOC and GemsPy describe the same file; ASim reads a different, smaller one;
+PC writes the ASim one.
+
+| ID | Field / structure | DOC | GemsPy | ASim (develop) | Others | Schema |
+|---|---|---|---|---|---|---|
+| O01 | resolution mode | `resolution.mode`, 4 values, default `frontal`, plus `block-length`, `block-overlap`, `carry-over-length` (`DOC/optimization-configuration.md:170-186`) | same (`GP/optim_config/parsing.py:144-228`) | top-level **`resolution-mode`** string, only `benders-decomposition` and `sequential-subproblems` accepted, default `sequential-subproblems` (`CPP/yml-optim-config/parser.cpp:30`, `decoders.cpp:126-130`, `OptimConfig.h:58-59`, `Antares_Simulator/src/modeler/loadFiles/readLibraries.cpp:196-204`) | PC writes `resolution-mode: benders-decomposition` (`PyPSA-to-GEMS-Converter/resources/optim-config.yml:12`); Simulator test studies 13_1 and 13_2 too | DOC/GemsPy dialect only (provisional) |
+| O02 | `time-scope`, `solver-options` | documented (`DOC/optimization-configuration.md:76-166`) | `TimeScopeConfig`, `SolverOptionsConfig` (`parsing.py:231-271`) | **not in `optimConfigFields`**, rejected (`parser.cpp:16-31`) | in the Simulator the equivalent settings live in `parameters.yml`, outside this task's four kinds | accepted |
+| O03 | `models[].model-decomposition` | optional (`DOC/...:324-329`) | optional (`parsing.py:139`) | **mandatory** (`required` = true at `CPP/yml-optim-config/parser.cpp:21`) | - | optional |
+| O04 | `out-of-bounds-processing.constraints[].mode` | "mandatory for every listed constraint" (`DOC/...:365`) | mandatory (`parsing.py:54-56`) | optional, default `cyclic` (`parser.cpp:28`, `decoders.cpp:35`) | - | mandatory |
+| O05 | `models[].heuristics` | documented, "Only available in GemsPy ... Antares modeler ... ignores this section" (`DOC/...:464-466`) | accepted; element names hard-coded in `_HEURISTIC_SCHEMA` (`parsing.py:76-134`) | **rejected** (not in `optimConfigFields`), contradicting "ignores" | - | accepted; element names copied into the schema |
+| O06 | heuristic element `type` | optional, default `parameter` (`DOC/...:515`); the doc's own example omits it (`:481-489`) | **mandatory** (`type: ModelElementAccessType`, no default, `parsing.py:70-73`) | n/a | - | mandatory (follows GemsPy) |
+| O07 | file absent / empty | "The file itself is optional" (`DOC/...:25`); examples write `models: []` "Antares Modeler (from v10.2.0) requires this file in every study" (`GEMS/resources/.../Hybrid_Study/input/optim-config.yml:2`) | absent -> defaults (`parsing.py:386-392`); **empty file -> error** (`safe_load` gives `None`, `model_validate(None)` fails, `:394-397`) | file **required** when `system.yml` exists (`Antares_Simulator/src/modeler/loadFiles/readOptimConfig.cpp:58-64`); empty content accepted (`:70-74`) | AntaREST creates an **empty** `optim-config.yml` with `touch()` (`antarest/study/dao/file/file_study_gems_system_dao.py:152-157`); 44 real Simulator test studies carry comment-only files | **decided: empty document accepted** (null or `{}`); GemsPy must be fixed to accept it |
+| O08 | `scenario-scope` entries | int, quoted int, quoted range (`DOC/...:111-117`) | `Union[int, str]`, booleans rejected, `exclude` needs `include` (`parsing.py:310-349`) | any scalar, stored as string (`CPP/yml-optim-config/decoders.cpp:77-120`) | - | int >= 0 or string `a-b`; `exclude` needs `include` |
+| O09 | model `id` format | "fully qualified model id, `<library-id>.<model-id>`" (`DOC/...:326`) | free `str` (`parsing.py:138`) | split on `.`, uses the first two parts (`readLibraries.cpp:102-107`) | - | exactly one dot |
+
 ## 6. Other findings worth knowing
 
 * **Real files that fail the schemas** are recorded one by one in `conformance/real-examples-known.yml`
@@ -88,3 +105,6 @@ See L10 / S13.
   `GEMS/AGENTS.md` on hyphens in model ids.
 * **GemsPy rejects `description` on `system`** although the GEMS doc documents it (S01) and two other
   consumers accept it.
+* **AntaREST writes a file GemsPy cannot read** (empty `optim-config.yml`, O07): resolved on the schema side (empty is valid), GemsPy still needs the fix.
+* **The PyPSA converter writes two things GemsPy's own schemas or the doc reject**: snake_case
+  `model_libraries` (S13) and the Simulator-dialect `resolution-mode` (O01).

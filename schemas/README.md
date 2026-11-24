@@ -8,6 +8,7 @@ schemas; no other project uses them yet.
 |---|---|---|
 | `schemas/model-library.schema.yml` | `input/model-libraries/*.yml`, `libraries/*.yml` | draft |
 | `schemas/system.schema.yml` | `input/system.yml` (including the two hybrid sections) | draft |
+| `schemas/optim-config.schema.yml` | `input/optim-config.yml` | **provisional**: two incompatible dialects exist |
 | `schemas/common.schema.yml` | shared `$defs`, referenced with `$ref` | draft |
 
 ## Layout
