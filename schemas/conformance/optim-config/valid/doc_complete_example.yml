@@ -1,0 +1,26 @@
+# complete example of GEMS doc/user-guide/input-files/optimization-configuration.md
+time-scope:
+  first-time-step: 0
+  last-time-step: 8759
+
+scenario-scope:
+  include:
+    - "0-9"
+
+solver-options:
+  name: highs
+  logs: false
+  parameters: "THREADS 4"
+
+resolution:
+  mode: sequential-subproblems
+  block-length: 168
+  block-overlap: 24
+  carry-over-length: 24
+
+models:
+  - id: antares_legacy_models.short_term_storage
+    out-of-bounds-processing:
+      constraints:
+        - id: level_equation
+          mode: cyclic

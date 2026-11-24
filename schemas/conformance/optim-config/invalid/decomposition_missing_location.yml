@@ -1,0 +1,5 @@
+models:
+  - id: l.m
+    model-decomposition:
+      constraints:
+        - id: c
