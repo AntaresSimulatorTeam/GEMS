@@ -1,0 +1,39 @@
+taxonomy:
+  id: my_taxonomy
+  description: Example taxonomy
+
+  categories:
+
+    - id: balance
+      variables:
+        - id: unsupplied_energy
+        - id: spillage
+      ports:
+        - id: balance_port
+      binding-constraints:
+        - id: balance
+      parameters:
+        - id: unsupplied_energy_cost
+        - id: spillage_cost
+
+    - id: production
+      parameters:
+        - id: p_max
+        - id: cost
+      variables:
+        - id: generation
+      ports:
+        - id: balance_port
+      port-field-definitions:
+        - id: balance_port.flow
+      properties:
+        - id: company
+        - id: technology
+
+    - id: consumption
+      parameters:
+        - id: load
+      ports:
+        - id: balance_port
+      extra-outputs:
+        - id: effective_load

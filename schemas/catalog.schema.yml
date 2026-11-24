@@ -1,0 +1,97 @@
+# JSON Schema (draft 2020-12), authored in YAML, for GEMS ViewsBuilder catalog files
+# (doc/user-guide/input-files/catalog.md).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/schemas-v0.1.0/schemas/catalog.schema.yml
+title: GEMS catalog
+x-schema-version: 0.1.0
+x-status: draft
+description: >-
+  Root key `catalog`; unknown keys are rejected (GEMS-ViewsBuilder `ViewBuilderBasedModel`, extra=forbid).
+  The file name (`<catalog_id>.yml`), unique metric ids, and the cross-file rules (taxonomy match,
+  categories, outputs and ports declared in the taxonomy) are NOT checked (NOT_COVERED N11).
+
+type: object
+required: [catalog]
+additionalProperties: false
+properties:
+  catalog:
+    type: object
+    required: [id, taxonomy, location, metrics-definition]
+    additionalProperties: false
+    properties:
+      id: {type: string, minLength: 1}
+      taxonomy:
+        description: The `id` of the taxonomy file.
+        type: string
+      location:
+        type: object
+        required: [taxonomy-category]
+        additionalProperties: false
+        properties:
+          taxonomy-category: {type: string}
+      metrics-definition:
+        type: array
+        items:
+          $ref: "#/$defs/Metric"
+
+$defs:
+  Operator:
+    type: string
+    enum: [sum, avg]
+
+  Term:
+    type: object
+    required: [taxonomy-category, output-id, location-port]
+    additionalProperties: false
+    properties:
+      taxonomy-category: {type: string}
+      output-id: {type: string}
+      location-port:
+        description: >-
+          Mandatory, even for a self-referencing term (`null`). A blank string is rejected by
+          ViewsBuilder.
+        type: [string, 'null']
+        pattern: "\\S"
+      weight-output-id:
+        description: Reserved for weighted aggregation; accepted but not used yet.
+        type: [string, 'null']
+
+  BreakdownProperty:
+    type: object
+    required: [key]
+    additionalProperties: false
+    properties:
+      key: {type: string}
+      value:
+        description: Accepted by ViewsBuilder but meaningless for a breakdown.
+        type: [string, 'null']
+
+  FilterProperty:
+    description: >-
+      `value` is mandatory and must be a string: a bare YAML number or boolean is rejected
+      (quote it, e.g. `"NO"` for Norway).
+    type: object
+    required: [key, value]
+    additionalProperties: false
+    properties:
+      key: {type: string}
+      value: {type: string}
+
+  Metric:
+    type: object
+    required: [id, terms, terms-operator, time-operator]
+    additionalProperties: false
+    properties:
+      id: {type: string, minLength: 1}
+      terms:
+        type: array
+        items: {$ref: "#/$defs/Term"}
+      terms-operator: {$ref: "#/$defs/Operator"}
+      time-operator: {$ref: "#/$defs/Operator"}
+      breakdown:
+        type: [array, 'null']
+        items: {$ref: "#/$defs/BreakdownProperty"}
+      filter:
+        oneOf:
+          - {$ref: "#/$defs/FilterProperty"}
+          - {type: 'null'}

@@ -1,0 +1,9 @@
+catalog:
+  id: c
+  taxonomy: t
+  location: {taxonomy-category: b}
+  metrics-definition:
+    - id: M
+      terms: []
+      terms-operator: max
+      time-operator: sum

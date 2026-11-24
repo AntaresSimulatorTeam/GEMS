@@ -1,0 +1,54 @@
+catalog:
+  id: catalog
+  taxonomy: my_taxonomy
+
+  location:
+    taxonomy-category: balance
+
+  metrics-definition:
+
+    - id: LOAD
+      terms:
+        - taxonomy-category: consumption
+          output-id: effective_load
+          location-port: balance_port
+      terms-operator: sum
+      time-operator: sum
+
+    - id: PRODUCTION
+      terms:
+        - taxonomy-category: production
+          output-id: generation
+          location-port: balance_port
+      terms-operator: sum
+      time-operator: sum
+
+    - id: PRODUCTION_BY_TECH_AND_COMPANY
+      terms:
+        - taxonomy-category: production
+          output-id: generation
+          location-port: balance_port
+      terms-operator: sum
+      time-operator: sum
+      breakdown:
+        - key: technology
+        - key: company
+
+    - id: NUCLEAR_PRODUCTION
+      terms:
+        - taxonomy-category: production
+          output-id: generation
+          location-port: balance_port
+      terms-operator: sum
+      time-operator: sum
+      filter:
+        key: technology
+        value: nuclear
+
+    - id: UNSUPPLIED_ENERGY
+      terms:
+        - taxonomy-category: balance
+          output-id: unsupplied_energy
+          location-port: null
+      terms-operator: sum
+      time-operator: sum

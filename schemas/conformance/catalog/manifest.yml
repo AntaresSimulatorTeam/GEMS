@@ -1,0 +1,57 @@
+# Conformance manifest for the `catalog` schema.
+# valid: true  -> the file must validate.
+# valid: false -> the file must fail, with an error at `expect.path` (JSON pointer into the file,
+#                 empty = document root) and, when given, `expect.keyword`; `reason` says why.
+# source: provenance of real files (copied byte for byte) or `hand-written`.
+cases:
+- file: valid/doc_example.yml
+  valid: true
+  source: "GEMS@HEAD:doc/user-guide/input-files/catalog.md (Example)"
+- file: valid/viewsbuilder_filtering_and_breakdown.yml
+  valid: true
+  source: "GEMS-ViewsBuilder@975baab:resources/tests_inputs/filtering_and_breakdown/catalogs/catalog.yml"
+- file: valid/viewsbuilder_test_3.yml
+  valid: true
+  source: "GEMS-ViewsBuilder@975baab:resources/tests_inputs/test_3/catalogs/catalog.yml"
+- file: invalid/missing_location.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/catalog'
+    keyword: required
+  reason: "`catalog.location` is mandatory"
+- file: invalid/term_missing_location_port.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/catalog/metrics-definition/0/terms/0'
+    keyword: required
+  reason: "`location-port` must always be written, `null` for self-location"
+- file: invalid/location_port_blank.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/catalog/metrics-definition/0/terms/0/location-port'
+    keyword: pattern
+  reason: "an empty string is not allowed for `location-port`"
+- file: invalid/operator_unknown.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/catalog/metrics-definition/0/terms-operator'
+    keyword: enum
+  reason: "operators are `sum` or `avg`"
+- file: invalid/filter_without_value.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/catalog/metrics-definition/0/filter'
+    keyword: required
+  reason: "`filter.value` is mandatory"
+- file: invalid/filter_value_boolean.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/catalog/metrics-definition/0/filter/value'
+    keyword: type
+  reason: "unquoted `NO` is read as boolean false by YAML 1.1; the value must be a string"

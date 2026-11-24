@@ -1,0 +1,10 @@
+catalog:
+  id: c
+  taxonomy: t
+  location: {taxonomy-category: b}
+  metrics-definition:
+    - id: M
+      terms:
+        - {taxonomy-category: b, output-id: x, location-port: ""}
+      terms-operator: sum
+      time-operator: sum

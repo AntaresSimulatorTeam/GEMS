@@ -1,0 +1,6 @@
+taxonomy:
+  id: t
+  categories:
+    - id: c
+      variable:
+        - id: x

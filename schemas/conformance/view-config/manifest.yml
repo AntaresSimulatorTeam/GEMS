@@ -1,0 +1,72 @@
+# Conformance manifest for the `view-config` schema.
+# valid: true  -> the file must validate.
+# valid: false -> the file must fail, with an error at `expect.path` (JSON pointer into the file,
+#                 empty = document root) and, when given, `expect.keyword`; `reason` says why.
+# source: provenance of real files (copied byte for byte) or `hand-written`.
+cases:
+- file: valid/doc_example.yml
+  valid: true
+  source: "GEMS@HEAD:doc/user-guide/input-files/view-config.md (Example)"
+- file: invalid/no_pattern.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/view/aggregations-patterns'
+    keyword: minItems
+  reason: "at least one aggregation pattern"
+- file: invalid/no_metric.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/view/metrics'
+    keyword: minItems
+  reason: "at least one metric"
+- file: invalid/granularity_unknown.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/view/aggregations-patterns/0/time-granularity'
+    keyword: enum
+  reason: "hour, day, week, month or year"
+- file: invalid/metric_id_not_qualified.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/view/metrics/0/id'
+    keyword: pattern
+  reason: "metric ids are `<catalog_id>.<metric_id>`"
+- file: invalid/pattern_missing_scenario.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/view/aggregations-patterns/0'
+    keyword: required
+  reason: "`scenario` is mandatory"
+- file: invalid/unknown_key.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/view'
+    keyword: additionalProperties
+  reason: "unknown keys under `view` are rejected"
+- file: invalid/view_id_pattern.yml
+  valid: false
+  source: "hand-written"
+  expect:
+    path: '/view/id'
+    keyword: pattern
+  reason: "view id is used in file names: letters, digits, underscore (ViewsBuilder code)"
+- file: invalid/viewsbuilder_filtering_and_breakdown_snake_case.yml
+  valid: false
+  source: "GEMS-ViewsBuilder@975baab:resources/tests_inputs/filtering_and_breakdown/view_config.yml"
+  expect:
+    path: '/view/aggregations-patterns/0'
+    keyword: additionalProperties
+  reason: "writes `time_granularity`; ViewsBuilder accepts it (validate_by_name) but the doc only documents kebab-case (DISCREPANCIES W01)"
+- file: invalid/viewsbuilder_test_3_snake_case.yml
+  valid: false
+  source: "GEMS-ViewsBuilder@975baab:resources/tests_inputs/test_3/view_config.yml"
+  expect:
+    path: '/view/aggregations-patterns/0'
+    keyword: additionalProperties
+  reason: "same as above (DISCREPANCIES W01)"

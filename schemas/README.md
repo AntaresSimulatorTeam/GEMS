@@ -9,6 +9,9 @@ schemas; no other project uses them yet.
 | `schemas/model-library.schema.yml` | `input/model-libraries/*.yml`, `libraries/*.yml` | draft |
 | `schemas/system.schema.yml` | `input/system.yml` (including the two hybrid sections) | draft |
 | `schemas/optim-config.schema.yml` | `input/optim-config.yml` | **provisional**: two incompatible dialects exist |
+| `schemas/taxonomy.schema.yml` | `taxonomy.yml` (GEMS ViewsBuilder input) | draft |
+| `schemas/catalog.schema.yml` | catalog files (`<catalog_id>.yml`, GEMS ViewsBuilder input) | draft |
+| `schemas/view-config.schema.yml` | view configuration files (GEMS ViewsBuilder input) | draft |
 | `schemas/common.schema.yml` | shared `$defs`, referenced with `$ref` | draft |
 
 ## Layout

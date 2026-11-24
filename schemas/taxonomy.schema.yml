@@ -1,0 +1,55 @@
+# JSON Schema (draft 2020-12), authored in YAML, for the GEMS taxonomy file read by GEMS ViewsBuilder
+# (doc/user-guide/input-files/taxonomy.md).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/schemas-v0.1.0/schemas/taxonomy.schema.yml
+title: GEMS taxonomy
+x-schema-version: 0.1.0
+x-status: draft
+description: >-
+  Root key `taxonomy`; unknown keys are rejected at every level (GemsPy `ModifiedBaseModel`,
+  doc taxonomy.md). Uniqueness of category ids, existence of `parent-category`, and the match with
+  libraries, catalogs and view configurations are NOT checked (NOT_COVERED N11).
+
+type: object
+required: [taxonomy]
+additionalProperties: false
+properties:
+  taxonomy:
+    type: object
+    required: [id]
+    additionalProperties: false
+    properties:
+      id: {type: string, minLength: 1}
+      description: {type: string}
+      categories:
+        type: array
+        items:
+          $ref: "#/$defs/Category"
+
+$defs:
+  ItemList:
+    description: >-
+      List of elements, each given by its `id` (`- id: <element_id>`).
+    type: array
+    items:
+      $ref: common.schema.yml#/$defs/IdOnly
+
+  Category:
+    type: object
+    required: [id]
+    additionalProperties: false
+    properties:
+      id: {type: string, minLength: 1}
+      parent-category:
+        description: Inheritance is work in progress, elements are not inherited yet.
+        type: string
+      variables: {$ref: "#/$defs/ItemList"}
+      parameters: {$ref: "#/$defs/ItemList"}
+      ports: {$ref: "#/$defs/ItemList"}
+      port-field-definitions:
+        description: Each id is written `<port>.<field>`; the format is NOT checked.
+        $ref: "#/$defs/ItemList"
+      constraints: {$ref: "#/$defs/ItemList"}
+      binding-constraints: {$ref: "#/$defs/ItemList"}
+      extra-outputs: {$ref: "#/$defs/ItemList"}
+      properties: {$ref: "#/$defs/ItemList"}
