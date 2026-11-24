@@ -1,0 +1,40 @@
+# PROVISIONAL. JSON Schema (draft 2020-12), authored in YAML, for the system file that
+# Antares_Simulator exports for the views builder (<output>/views/input/system-for-views.yml).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://raw.githubusercontent.com/AntaresSimulatorTeam/GEMS/schemas-v0.1.0/schemas/system-for-view.schema.yml
+title: GEMS system for view
+x-schema-version: 0.1.0
+x-status: provisional
+description: >-
+  PROVISIONAL. This file kind has no specification in the GEMS docs. Its only producer is
+  Antares_Simulator (src/view-builder/generateSystemForView.cpp), its consumers are GEMS-ViewsBuilder
+  (which reads it with GemsPy's plain `parse_yaml_system`) and AntaREST test fixtures. The schema is
+  therefore a profile of `system.schema.yml`: same component and connection structure, with the
+  differences observed in the generator (free-text `id`, `components` and `connections` always
+  present, no hybrid sections). It is derived from the generator's code and one AntaREST fixture, not
+  from a written specification (DISCREPANCIES V01-V03). The `parameters` list is always empty in
+  generated files but consumers tolerate parameters, so it is not restricted here.
+
+type: object
+required: [system]
+additionalProperties: false
+properties:
+  system:
+    type: object
+    required: [id, components, connections]
+    additionalProperties: false
+    properties:
+      id:
+        description: >-
+          The generator writes the study folder path (`study.folder.string()`), so the id naming
+          rule of `system.schema.yml` does not apply (V02).
+        type: string
+        x-discrepancy: [V02]
+      components:
+        type: array
+        items:
+          $ref: system.schema.yml#/$defs/Component
+      connections:
+        type: array
+        items:
+          $ref: system.schema.yml#/$defs/Connection
