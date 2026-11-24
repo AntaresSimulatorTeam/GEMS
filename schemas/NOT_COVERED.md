@@ -22,6 +22,8 @@ referenced from the schema descriptions.
 
 ## Not covered because no project specifies it
 
+* **`system-for-view`** has no written specification (DISCREPANCIES V01-V04). The schema is a profile of
+  `system` derived from the producer's code; it is provisional.
 * **`optim-config`** exists in two incompatible dialects (DISCREPANCIES O01-O07). Only the DOC/GemsPy one
   is described; the Simulator one is rejected on purpose. It is provisional.
 * **Whether a missing optional file is an error** (optim-config absent or empty, O07) is a rule about the

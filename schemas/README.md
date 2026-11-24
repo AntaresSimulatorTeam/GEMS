@@ -9,6 +9,7 @@ schemas; no other project uses them yet.
 | `schemas/model-library.schema.yml` | `input/model-libraries/*.yml`, `libraries/*.yml` | draft |
 | `schemas/system.schema.yml` | `input/system.yml` (including the two hybrid sections) | draft |
 | `schemas/optim-config.schema.yml` | `input/optim-config.yml` | **provisional**: two incompatible dialects exist |
+| `schemas/system-for-view.schema.yml` | `views/input/system-for-views.yml` written by Antares_Simulator | **provisional**: no specification exists |
 | `schemas/taxonomy.schema.yml` | `taxonomy.yml` (GEMS ViewsBuilder input) | draft |
 | `schemas/catalog.schema.yml` | catalog files (`<catalog_id>.yml`, GEMS ViewsBuilder input) | draft |
 | `schemas/view-config.schema.yml` | view configuration files (GEMS ViewsBuilder input) | draft |

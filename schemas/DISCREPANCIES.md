@@ -97,6 +97,15 @@ PC writes the ASim one.
 | O08 | `scenario-scope` entries | int, quoted int, quoted range (`DOC/...:111-117`) | `Union[int, str]`, booleans rejected, `exclude` needs `include` (`parsing.py:310-349`) | any scalar, stored as string (`CPP/yml-optim-config/decoders.cpp:77-120`) | - | int >= 0 or string `a-b`; `exclude` needs `include` |
 | O09 | model `id` format | "fully qualified model id, `<library-id>.<model-id>`" (`DOC/...:326`) | free `str` (`parsing.py:138`) | split on `.`, uses the first two parts (`readLibraries.cpp:102-107`) | - | exactly one dot |
 
+## 4. System for view
+
+| ID | Observation | Evidence |
+|---|---|---|
+| V01 | **No specification exists and the name is not consistent.** The task calls it `system-for-view`; the only producer writes `views/input/system-for-views.yml` (plural). The GEMS docs do not mention the file. | `Antares_Simulator/src/view-builder/generateSystemForView.cpp:181` |
+| V02 | **It is a generated profile of the system file.** Root `system` with `id` (the study folder path, `:200`), `components` and `connections` always set (`:350-351`); every component has `parameters: []` (`legacyToYaml.cpp:26-27`) and optional `properties`; no hybrid sections, no `description`, no `model-libraries`. Because the id is a path, the id naming rule cannot apply. | `generateSystemForView.cpp:184-356`, `legacyToYaml.cpp:19-43` |
+| V03 | **Consumers read it as a plain system.** ViewsBuilder calls `parse_yaml_system` (GemsPy `SystemSchema`) and "reads component ids, model ids, properties and connections, never parameter values" (so parameters may be absent or incomplete). AntaREST only ships it as a test fixture. | `GEMS-ViewsBuilder/gems_views_builder/input/system.py:59-66,84`; `AntaREST/tests/output/filestudy/data/20261104-1636eco-gems_views/views/input/system-for-views.yml` |
+| V04 | Property ids can contain spaces (`district_all areas`), so they cannot follow the id naming rule either (S14). | `generateSystemForView.cpp:38`, fixture above |
+
 ## 5. Views inputs (taxonomy, catalog, view-config)
 
 | ID | Observation | Evidence |

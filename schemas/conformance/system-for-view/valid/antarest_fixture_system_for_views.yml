@@ -1,0 +1,424 @@
+system:
+  id: outputs_3nodes_2mcy
+  components:
+    - id: area1_node
+      model: antares_legacy_models.area
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: district_all areas
+          value: all areas
+    - id: area1_load
+      model: antares_legacy_models.load
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+    - id: area1_combined_heat_power
+      model: antares_legacy_models.miscellaneous_generation
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: combined_heat_power
+        - id: miscellaneous_type
+          value: misc_ndg
+    - id: area1_biomass
+      model: antares_legacy_models.miscellaneous_generation
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: biomass
+        - id: miscellaneous_type
+          value: misc_ndg
+    - id: area1_biogas
+      model: antares_legacy_models.miscellaneous_generation
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: biogas
+        - id: miscellaneous_type
+          value: misc_ndg
+    - id: area1_waste
+      model: antares_legacy_models.miscellaneous_generation
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: waste
+        - id: miscellaneous_type
+          value: misc_ndg
+    - id: area1_geothermal
+      model: antares_legacy_models.miscellaneous_generation
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: geothermal
+        - id: miscellaneous_type
+          value: misc_ndg
+    - id: area1_other
+      model: antares_legacy_models.miscellaneous_generation
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: other
+        - id: miscellaneous_type
+          value: misc_ndg
+    - id: area1_pumped_storage_power
+      model: antares_legacy_models.miscellaneous_generation
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: pumped_storage_power
+        - id: miscellaneous_type
+          value: pumped_storage_power
+    - id: area1_rest_world
+      model: antares_legacy_models.miscellaneous_generation
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: rest_world
+        - id: miscellaneous_type
+          value: rest_world
+    - id: area1_thermal_gas
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area1_thermal_gas
+        - id: technology
+          value: gas
+    - id: area1_thermal_nuclear
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area1_thermal_nuclear
+        - id: technology
+          value: nuclear
+    - id: area1_hydro_storage
+      model: antares_legacy_models.long_term_storage
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+    - id: area1_area2_link
+      model: antares_legacy_models.link
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+    - id: area1_area3_link
+      model: antares_legacy_models.link
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+    - id: area2_node
+      model: antares_legacy_models.area
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: district_all areas
+          value: all areas
+    - id: area2_load
+      model: antares_legacy_models.load
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+    - id: area2_wind
+      model: antares_legacy_models.renewable
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: wind
+        - id: name
+          value: area2_wind
+    - id: area2_solar
+      model: antares_legacy_models.renewable
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: solar
+        - id: name
+          value: area2_solar
+    - id: area2_run_of_river
+      model: antares_legacy_models.renewable
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: technology
+          value: run_of_river
+        - id: name
+          value: area2_run_of_river
+    - id: area2_thermal_coal
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area2_thermal_coal
+        - id: technology
+          value: coal
+    - id: area2_thermal_gas
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area2_thermal_gas
+        - id: technology
+          value: gas
+    - id: area2_thermal_lignite
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area2_thermal_lignite
+        - id: technology
+          value: lignite
+    - id: area2_thermal_oil
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area2_thermal_oil
+        - id: technology
+          value: oil
+    - id: area2_hydro_storage
+      model: antares_legacy_models.long_term_storage
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+    - id: area2_area3_link
+      model: antares_legacy_models.link
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+    - id: area3_node
+      model: antares_legacy_models.area
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: district_all areas
+          value: all areas
+    - id: area3_load
+      model: antares_legacy_models.load
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+    - id: area3_thermal_gas
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area3_thermal_gas
+        - id: technology
+          value: gas
+    - id: area3_thermal_nuclear
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area3_thermal_nuclear
+        - id: technology
+          value: nuclear
+    - id: area3_thermal_oil
+      model: antares_legacy_models.thermal
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area3_thermal_oil
+        - id: technology
+          value: oil
+    - id: area3_short_term_storage_st
+      model: antares_legacy_models.short_term_storage
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+        - id: name
+          value: area3_short_term_storage_st
+        - id: technology
+          value: other1
+    - id: area3_hydro_storage
+      model: antares_legacy_models.long_term_storage
+      parameters: []
+      properties:
+        - id: carrier
+          value: electricity
+  connections:
+    - component1: area1_load
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_combined_heat_power
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_biomass
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_biogas
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_waste
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_geothermal
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_other
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_pumped_storage_power
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_rest_world
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_thermal_gas
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_thermal_nuclear
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_hydro_storage
+      port1: balance_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_area2_link
+      port1: in_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_area2_link
+      port1: out_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area1_area3_link
+      port1: in_port
+      component2: area1_node
+      port2: balance_port
+    - component1: area1_area3_link
+      port1: out_port
+      component2: area3_node
+      port2: balance_port
+    - component1: area2_load
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_wind
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_solar
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_run_of_river
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_thermal_coal
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_thermal_gas
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_thermal_lignite
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_thermal_oil
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_hydro_storage
+      port1: balance_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_area3_link
+      port1: in_port
+      component2: area2_node
+      port2: balance_port
+    - component1: area2_area3_link
+      port1: out_port
+      component2: area3_node
+      port2: balance_port
+    - component1: area3_load
+      port1: balance_port
+      component2: area3_node
+      port2: balance_port
+    - component1: area3_thermal_gas
+      port1: balance_port
+      component2: area3_node
+      port2: balance_port
+    - component1: area3_thermal_nuclear
+      port1: balance_port
+      component2: area3_node
+      port2: balance_port
+    - component1: area3_thermal_oil
+      port1: balance_port
+      component2: area3_node
+      port2: balance_port
+    - component1: area3_short_term_storage_st
+      port1: balance_port
+      component2: area3_node
+      port2: balance_port
+    - component1: area3_hydro_storage
+      port1: balance_port
+      component2: area3_node
+      port2: balance_port

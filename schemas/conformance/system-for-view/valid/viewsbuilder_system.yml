@@ -1,0 +1,120 @@
+# Copyright 2007-2026, RTE (https://www.rte-france.com)
+# SPDX-License-Identifier: MPL-2.0
+
+system:
+  id: basic_example
+
+  components:
+    - id: area
+      model: basic_lib.area
+      parameters:
+        - id: spillage_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+        - id: unsupplied_energy_cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 1000
+
+    - id: nuclear_1
+      model: basic_lib.generator_basic
+      parameters:
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 250
+        - id: cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 5
+      properties:
+        - id: technology
+          value: nuclear
+        - id: company
+          value: rhonepower
+
+    - id: nuclear_2
+      model: basic_lib.generator_basic
+      parameters:
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 250
+        - id: cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 10
+      properties:
+        - id: technology
+          value: nuclear
+        - id: company
+          value: britishnuke
+
+    - id: gas_1
+      model: basic_lib.generator_basic
+      parameters:
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 250
+        - id: cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 50
+      properties:
+        - id: technology
+          value: gas
+        - id: company
+          value: rhonepower
+
+    - id: gas_2
+      model: basic_lib.generator_basic
+      parameters:
+        - id: p_max
+          time-dependent: false
+          scenario-dependent: false
+          value: 250
+        - id: cost
+          time-dependent: false
+          scenario-dependent: false
+          value: 100
+      properties:
+        - id: technology
+          value: gas
+        - id: company
+          value: rhonepower
+
+    - id: load
+      model: basic_lib.load
+      parameters:
+        - id: load
+          time-dependent: true
+          scenario-dependent: true
+          value: load_data
+
+  connections:
+    - component1: area
+      port1: balance_port
+      component2: nuclear_1
+      port2: balance_port
+
+    - component1: area
+      port1: balance_port
+      component2: nuclear_2
+      port2: balance_port
+
+    - component1: area
+      port1: balance_port
+      component2: gas_1
+      port2: balance_port
+
+    - component1: area
+      port1: balance_port
+      component2: gas_2
+      port2: balance_port
+
+    - component1: area
+      port1: balance_port
+      component2: load
+      port2: balance_port
