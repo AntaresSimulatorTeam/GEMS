@@ -31,19 +31,19 @@ Each category lists the elements expected from the models declaring it. Each ele
 | `id` | String | A unique identifier for the category.|
 | `parent-category` | String | *(Optional)* The `id` of a parent category. Inheritance from the parent category is work in progress: elements are not inherited yet.|
 | `variables` | List | *(Optional)* The [variables](library.md#variables) that models in this category must declare.|
-| `parameters` | List | *(Optional)* The [parameters](library.md#parameters) that models in this category must declare. Each element accepts an optional [`importance`](#importance).|
+| `parameters` | List | *(Optional)* The [parameters](library.md#parameters) that models in this category must declare. Each element accepts an optional [`display-priority`](#display-priority).|
 | `ports` | List | *(Optional)* The [ports](library.md#ports) on which metrics can be located for this category. It has to be the same port names as declared in the [library](library.md) [models](library.md#models).|
 | `constraints` | List | *(Optional)* The [constraints](library.md#constraints) and [binding-constraints](library.md#binding-constraints) that models in this category must declare. Both are listed under `constraints`: a category has no `binding-constraints` key (the `balance` binding-constraint of the example below is listed this way).|
 | `extra-outputs` | List | *(Optional)* The [extra-outputs](library.md#extra-output) that models in this category must declare.|
-| `properties` | List | *(Optional)* The [properties](library.md#properties) that models in this category must declare. They can be used by catalogs to [filter or break down](catalog.md#2-metrics-definition) metrics. Each element accepts an optional [`importance`](#importance).|
+| `properties` | List | *(Optional)* The [properties](library.md#properties) that models in this category must declare. They can be used by catalogs to [filter or break down](catalog.md#2-metrics-definition) metrics. Each element accepts an optional [`display-priority`](#display-priority).|
 
-#### Importance
+#### Display priority
 
-Elements of `parameters` and `properties` accept an optional `importance` field, a metadata that marks the main inputs of a category. Other lists do not accept it.
+Elements of `parameters` and `properties` accept an optional `display-priority` field, a UI-only display hint that marks the entries of a category to display first. Other lists do not accept it.
 
 | Element | Type | Description |
 |------|------|--------------------------|
-| `importance` | String | *(Optional)* `main` or `standard`. Default: `standard`.|
+| `display-priority` | String | *(Optional)* `high` or `normal`. Default: `normal`.|
 
 It has no effect on the simulation nor on the conformity check of models, which matches elements by `id` only.
 
@@ -79,8 +79,8 @@ taxonomy:
     - id: production
       parameters:
         - id: p_max
-          importance: main
-        - id: cost            # standard by default
+          display-priority: high
+        - id: cost            # normal by default
       variables:
         - id: generation
       ports:
@@ -88,7 +88,7 @@ taxonomy:
       properties:
         - id: company
         - id: technology
-          importance: main
+          display-priority: high
 
     - id: consumption
       parameters:
